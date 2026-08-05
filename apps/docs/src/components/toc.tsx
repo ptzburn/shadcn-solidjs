@@ -11,8 +11,6 @@ import { isServer } from "solid-js/web";
 
 import { useLocation } from "@solidjs/router";
 
-import { cn } from "~/lib/utils.ts";
-
 type TocItem = {
   depth: number;
   text: string;
@@ -139,34 +137,31 @@ export function TableOfContents() {
   );
 
   return (
-    <aside class="sticky top-24">
-      <nav aria-labelledby="on-this-page-title">
-        <Suspense>
-          <h2 id="on-this-page-title" class="font-medium">
-            On This Page
-          </h2>
-          <ul class="m-0 list-none">
-            <For each={toc()}>
-              {(section) => (
-                <li class={cn("mt-0 pt-2", section.depth === 3 && "pl-4")}>
-                  <a
-                    data-toc-slug={section.slug}
-                    class={cn(
-                      "inline-block text-muted-foreground no-underline transition-colors hover:text-foreground",
-                      section.slug === currentSection()
-                        ? "font-medium text-foreground"
-                        : "text-muted-foreground",
-                    )}
-                    href={`${location.pathname}#${section.slug}`}
-                  >
-                    {section.text}
-                  </a>
-                </li>
-              )}
-            </For>
-          </ul>
-        </Suspense>
-      </nav>
-    </aside>
+    <nav
+      aria-labelledby="on-this-page-title"
+      class="flex flex-col gap-2 p-4 pt-0 text-sm"
+    >
+      <Suspense>
+        <p
+          id="on-this-page-title"
+          class="h-6 bg-background text-xs font-medium text-muted-foreground"
+        >
+          On This Page
+        </p>
+        <For each={toc()}>
+          {(section) => (
+            <a
+              data-toc-slug={section.slug}
+              data-active={section.slug === currentSection()}
+              data-depth={section.depth}
+              class="text-[0.8rem] text-muted-foreground no-underline transition-colors hover:text-foreground data-[active=true]:font-medium data-[active=true]:text-foreground data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+              href={`${location.pathname}#${section.slug}`}
+            >
+              {section.text}
+            </a>
+          )}
+        </For>
+      </Suspense>
+    </nav>
   );
 }

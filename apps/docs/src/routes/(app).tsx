@@ -2,21 +2,22 @@ import { type ParentProps, Suspense } from "solid-js";
 
 import { MDXProvider } from "solid-mdx";
 
-import Footer from "~/components/footer.tsx";
 import { MDXComponents } from "~/components/mdx-components.tsx";
-import Navbar from "~/components/navbar.tsx";
+import { SiteFooter } from "~/components/site-footer.tsx";
+import { SiteHeader } from "~/components/site-header.tsx";
 
-export default function DocsLayout(props: ParentProps) {
+export default function AppLayout(props: ParentProps) {
   return (
     <MDXProvider components={MDXComponents}>
-      <div data-wrapper="" class="border-border/40 dark:border-border">
-        <div class="mx-auto w-full border-border/40 min-[1800px]:max-w-screen-2xl min-[1800px]:border-x dark:border-border">
-          <Navbar />
-          <div class="flex-1">
-            <Suspense>{props.children}</Suspense>
-          </div>
-          <Footer />
-        </div>
+      <div
+        data-slot="layout"
+        class="group/layout group/body relative z-10 flex min-h-svh flex-col overscroll-none bg-background"
+      >
+        <SiteHeader />
+        <main class="flex min-h-0 flex-1 flex-col">
+          <Suspense>{props.children}</Suspense>
+        </main>
+        <SiteFooter />
       </div>
     </MDXProvider>
   );

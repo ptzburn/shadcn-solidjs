@@ -12,7 +12,7 @@ import {
   CommandList,
 } from "~/registry/ui/command.tsx";
 
-import { IconCommand, IconFile } from "./icons.tsx";
+import { IconFile } from "./icons.tsx";
 
 export default function SearchBar() {
   const [open, setOpen] = createSignal(false);
@@ -40,15 +40,11 @@ export default function SearchBar() {
       <Button
         id="search-trigger"
         variant="outline"
-        class="relative flex h-8 w-full justify-between bg-muted/50 pr-1 text-muted-foreground md:w-44 lg:w-64"
+        class="relative h-8 w-full justify-start rounded-lg border-none bg-muted pl-3 font-normal text-foreground shadow-none transition-colors hover:bg-muted/50 md:w-48 lg:w-40 xl:w-64"
         onClick={() => setOpen(true)}
       >
-        <span class="hidden lg:inline-flex">Search documentation...</span>
-        <span class="inline-flex lg:hidden">Search...</span>
-        <kbd class="pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 py-0.5 font-mono text-xs font-medium">
-          <IconCommand stroke-width={1} />
-          <span>K</span>
-        </kbd>
+        <span class="hidden xl:inline-flex">Search documentation...</span>
+        <span class="inline-flex xl:hidden">Search...</span>
       </Button>
       <CommandDialog open={open()} onOpenChange={setOpen}>
         <CommandInput placeholder="Search documentation..." />
