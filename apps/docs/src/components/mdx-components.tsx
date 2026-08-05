@@ -101,7 +101,7 @@ export const MDXComponents = {
   code: (props: ComponentProps<"code">) => {
     return (
       <code
-        class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm group-[&.code]:p-0"
+        class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm group-[&.code]:bg-transparent group-[&.code]:p-0"
         {...props}
       />
     );
@@ -113,13 +113,13 @@ export const MDXComponents = {
         <pre
           ref={preRef}
           class={cn(
-            "code group mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
+            "code group mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-code text-code-foreground py-4",
           )}
         >
           {props.children}
         </pre>
         <CopyButton
-          class="absolute right-4 top-4 hover:bg-[#24283a]"
+          class="absolute right-4 top-4"
           content={preRef?.querySelector("code")?.innerText ?? ""}
         />
       </div>

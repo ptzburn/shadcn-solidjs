@@ -1,29 +1,39 @@
 @reference "./app.css";
 
-[data-rehype-pretty-code-fragment] {
+[data-rehype-pretty-code-figure] {
   @apply relative;
 }
 
-[data-rehype-pretty-code-fragment] [data-highlighted-line] {
-  @apply bg-white/10;
-}
-
-[data-rehype-pretty-code-fragment] [data-line] {
-  @apply px-4 min-h-[1rem] py-0.5 w-full inline-block;
-}
-
-[data-rehype-pretty-code-fragment] code {
+[data-rehype-pretty-code-figure] code {
   @apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0;
   counter-reset: line;
   box-decoration-break: clone;
 }
 
-[data-rehype-pretty-code-fragment] [data-line-numbers] [data-line] {
+[data-rehype-pretty-code-figure] [data-line] {
+  @apply px-4 min-h-[1rem] py-0.5 w-full inline-block;
+}
+
+[data-rehype-pretty-code-figure] [data-line] span {
+  color: var(--shiki-light);
+
+  @variant dark {
+    color: var(--shiki-dark);
+  }
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-line],
+[data-rehype-pretty-code-figure] [data-highlighted-chars] {
+  background-color: var(--color-code-highlight);
+}
+
+[data-rehype-pretty-code-figure] [data-line-numbers] [data-line] {
   @apply px-2;
 }
 
-[data-rehype-pretty-code-fragment] [data-line-numbers] > [data-line]::before {
-  @apply text-zinc-50/40 text-xs;
+[data-rehype-pretty-code-figure] [data-line-numbers] > [data-line]::before {
+  @apply text-xs;
+  color: var(--color-code-number);
   counter-increment: line;
   content: counter(line);
   display: inline-block;
@@ -36,6 +46,7 @@
   @apply mt-2 pt-6 px-4 text-sm font-medium;
 }
 
+[data-rehype-pretty-code-title] + pre,
 [data-rehype-pretty-code-title] + div > pre {
   @apply mt-2;
 }

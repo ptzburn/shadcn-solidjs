@@ -26,7 +26,11 @@ export default defineConfig({
         providerImportSource: "solid-mdx",
         remarkPlugins: [remarkGfm],
         rehypePlugins: [rehypeSlug, rehypeComponent, [rehypePrettyCode, {
-          theme: "github-dark",
+          theme: {
+            dark: "github-dark",
+            light: "github-light-default",
+          },
+          keepBackground: false,
         }]],
       }),
     },
