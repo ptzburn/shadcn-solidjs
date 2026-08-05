@@ -5,6 +5,7 @@ import * as NumberFieldPrimitive from "@kobalte/core/number-field";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const NumberField = NumberFieldPrimitive.Root;
 
@@ -91,18 +92,14 @@ const NumberFieldIncrementTrigger = <T extends ValidComponent = "button">(
       <Show
         when={local.children}
         fallback={
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+          <IconPlaceholder
+            lucide="chevron-up"
+            tabler="chevron-up"
+            ph="caret-up"
+            ri="arrow-up-s-line"
+            hugeicons="arrow-up-01"
             class="size-4"
-          >
-            <path d="M6 15l6 -6l6 6" />
-          </svg>
+          />
         }
       >
         {(children) => children()}
@@ -139,18 +136,14 @@ const NumberFieldDecrementTrigger = <T extends ValidComponent = "button">(
       <Show
         when={local.children}
         fallback={
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+          <IconPlaceholder
+            lucide="chevron-down"
+            tabler="chevron-down"
+            ph="caret-down"
+            ri="arrow-down-s-line"
+            hugeicons="arrow-down-01"
             class="size-4"
-          >
-            <path d="M6 9l6 6l6 -6" />
-          </svg>
+          />
         }
       >
         {(children) => children()}

@@ -6,6 +6,7 @@ import * as SelectPrimitive from "@kobalte/core/select";
 import { cva } from "class-variance-authority";
 
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const Select = SelectPrimitive.Root;
 const SelectValue = SelectPrimitive.Value;
@@ -34,19 +35,15 @@ const SelectTrigger = <T extends ValidComponent = "button">(
       {...others}
     >
       {local.children}
-      <SelectPrimitive.Icon
-        as="svg"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="size-4 opacity-50"
-      >
-        <path d="M8 9l4 -4l4 4" />
-        <path d="M16 15l-4 4l-4 -4" />
+      <SelectPrimitive.Icon>
+        <IconPlaceholder
+          lucide="chevrons-up-down"
+          tabler="selector"
+          ph="caret-up-down"
+          ri="expand-up-down-line"
+          hugeicons="unfold-more"
+          class="size-4 opacity-50"
+        />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
@@ -98,19 +95,14 @@ const SelectItem = <T extends ValidComponent = "li">(
       {...others}
     >
       <SelectPrimitive.ItemIndicator class="absolute right-2 flex size-3.5 items-center justify-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+        <IconPlaceholder
+          lucide="check"
+          tabler="check"
+          ph="check"
+          ri="check-line"
+          hugeicons="tick-02"
           class="size-4"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M5 12l5 5l10 -10" />
-        </svg>
+        />
       </SelectPrimitive.ItemIndicator>
       <SelectPrimitive.ItemLabel>{local.children}</SelectPrimitive.ItemLabel>
     </SelectPrimitive.Item>

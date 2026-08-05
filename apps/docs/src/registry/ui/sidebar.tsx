@@ -36,6 +36,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "~/registry/ui/tooltip.tsx";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const MOBILE_BREAKPOINT = 768;
 const SIDEBAR_COOKIE_NAME = "sidebar:state";
@@ -305,18 +306,14 @@ const SidebarTrigger = <T extends ValidComponent = "button">(
       }}
       {...others}
     >
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+      <IconPlaceholder
+        lucide="panel-left"
+        tabler="layout-sidebar"
+        ph="sidebar-simple"
+        ri="layout-left-line"
+        hugeicons="sidebar-left-01"
         class="size-4"
-      >
-        <rect width="18" height="18" x="3" y="3" rx="2" />
-        <path d="M9 3v18" />
-      </svg>
+      />
       <span class="sr-only">Toggle Sidebar</span>
     </Button>
   );

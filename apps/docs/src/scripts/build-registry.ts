@@ -1,21 +1,114 @@
-import fs from "fs";
-import path, { basename } from "path";
+/**
+ * Builds all registry outputs:
+ *
+ * - `src/__registry__/index.tsx` — lazy component index for the docs site.
+ * - `public/r/<name>.json` — registry items in the official shadcn v4
+ *   registry-item format, icons resolved to the default library.
+ * - `public/r/icons/<library>/<name>.json` — per-icon-library variants of
+ *   every ui item that uses icons.
+ * - `public/r/themes/<name>.json` — theme items (cssVars only).
+ * - `public/r/registry.json` + `public/r/index.json` — item index.
+ * - `public/registry/**` — legacy format consumed by solidui-cli, icons
+ *   resolved to the default library.
+ *
+ * IconPlaceholder markers in authored components are resolved here into
+ * concrete `~icons/<library>/<name>` imports (unplugin-icons / @iconify-json
+ * on the consumer side); the marker component itself never ships.
+ *
+ * Run with: deno run -A ./src/scripts/build-registry.ts
+ */
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import path, { basename } from "node:path";
+import process from "node:process";
 
 import { safeParse } from "valibot";
 
+import {
+  defaultIconLibrary,
+  iconLibraries,
+  type IconLibrary,
+  iconLibraryNames,
+} from "../registry/icons/icon-libraries.ts";
 import { registry } from "../registry/index.ts";
-import { registrySchema } from "../registry/schema.ts";
+import { type RegistryItem, registrySchema } from "../registry/schema.ts";
 
-const REGISTRY_PATH = path.join(process.cwd(), "public/registry");
+const LEGACY_PATH = path.join(process.cwd(), "public/registry");
+const R_PATH = path.join(process.cwd(), "public/r");
+const HOMEPAGE = "https://shadcn-solid.com";
 
 const result = safeParse(registrySchema, registry);
 if (!result.success) {
   console.error(result.issues);
   process.exit(1);
 }
+const items = result.output;
 
 // #######################################
-//    BUILD __registry__/index.tsx.
+//    Icon resolution
+// #######################################
+
+const PLACEHOLDER_IMPORT_RE =
+  /^import \{ IconPlaceholder \} from "~\/registry\/icons\/icon-placeholder\.tsx";$\n?/m;
+const PLACEHOLDER_TAG_RE = /<IconPlaceholder\b[\s\S]*?\/>/g;
+const LIB_ATTRS_RE = new RegExp(
+  `\\s*(?:${iconLibraryNames.join("|")})="[^"]*"`,
+  "g",
+);
+
+function pascalCase(iconName: string): string {
+  return iconName
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
+}
+
+/**
+ * Replaces IconPlaceholder markers with the concrete icon component of the
+ * given library and swaps the placeholder import for `~icons` imports.
+ */
+function resolveIcons(
+  source: string,
+  library: IconLibrary,
+): { code: string; icons: string[] } {
+  const icons = new Set<string>();
+  let code = source.replace(PLACEHOLDER_TAG_RE, (tag) => {
+    const name = tag.match(new RegExp(`\\b${library}="([^"]+)"`))?.[1];
+    if (!name) {
+      throw new Error(`IconPlaceholder is missing the "${library}" prop`);
+    }
+    icons.add(name);
+    return tag
+      .replace(LIB_ATTRS_RE, "")
+      .replace(/^<IconPlaceholder/, `<Icon${pascalCase(name)}`);
+  });
+  if (icons.size === 0) {
+    return { code, icons: [] };
+  }
+  if (!PLACEHOLDER_IMPORT_RE.test(code)) {
+    throw new Error("IconPlaceholder used without its import");
+  }
+  const sorted = [...icons].sort();
+  const imports = sorted
+    .map((name) =>
+      `import Icon${pascalCase(name)} from "~icons/${library}/${name}";`
+    )
+    .join("\n");
+  code = code.replace(PLACEHOLDER_IMPORT_RE, `${imports}\n`);
+  return { code, icons: sorted };
+}
+
+function readItemFiles(item: RegistryItem) {
+  return item.files.map((file) => ({
+    ...file,
+    content: readFileSync(
+      path.join(process.cwd(), "src", "registry", file.path),
+      "utf8",
+    ).replaceAll("\r\n", "\n"),
+  }));
+}
+
+// #######################################
+//    BUILD __registry__/index.tsx
 // #######################################
 
 let index = `
@@ -28,14 +121,19 @@ import type { RegistryIndex } from "~/registry/schema.ts"
 
 export const Index: RegistryIndex = {
 `;
-for (const item of result.output) {
+for (const item of items) {
+  if (item.type === "theme") {
+    continue;
+  }
+  const componentPath = item.files[0]?.path ??
+    `${item.type}/${item.name}.tsx`;
   index += `
   "${item.name}": {
     name: "${item.name}",
     description: "${item.description ?? ""}",
     type: "${item.type}",
     registryDependencies: ${JSON.stringify(item.registryDependencies)},
-    component: lazy(() => import("~/registry/${item.type}/${item.name}.tsx")),
+    component: lazy(() => import("~/registry/${componentPath}")),
     files: [${
     item.files.map(
       (file) =>
@@ -52,59 +150,142 @@ index += `
 }
 `;
 
-fs.writeFileSync(
+writeFileSync(
   path.join(process.cwd(), "src", "__registry__", "index.tsx"),
   index,
 );
 
 // #######################################
-//    BUILD registry/ui/[name].json
+//    BUILD public/r (shadcn v4 format)
 // #######################################
 
-for (const item of result.output) {
+function toRegistryItem(
+  item: RegistryItem,
+  files: { path: string; content: string; type: string; target?: string }[],
+  devDependencies: string[],
+) {
+  return {
+    $schema: "https://ui.shadcn.com/schema/registry-item.json",
+    name: item.name,
+    type: `registry:${item.type}`,
+    ...(item.title ? { title: item.title } : {}),
+    ...(item.description ? { description: item.description } : {}),
+    ...(item.dependencies?.length ? { dependencies: item.dependencies } : {}),
+    ...(devDependencies.length ? { devDependencies } : {}),
+    ...(item.registryDependencies?.length
+      ? { registryDependencies: item.registryDependencies }
+      : {}),
+    ...(files.length
+      ? {
+        files: files.map((file) => ({
+          path: `src/registry/${file.path}`,
+          content: file.content,
+          type: `registry:${file.type}`,
+          ...(file.target ? { target: file.target } : {}),
+        })),
+      }
+      : {}),
+    ...(item.cssVars ? { cssVars: item.cssVars } : {}),
+  };
+}
+
+function writeJson(filePath: string, payload: unknown) {
+  mkdirSync(path.dirname(filePath), { recursive: true });
+  writeFileSync(filePath, JSON.stringify(payload, null, 2), "utf8");
+}
+
+const indexItems: Record<string, unknown>[] = [];
+
+for (const item of items) {
+  if (item.type === "theme") {
+    const payload = toRegistryItem(item, [], []);
+    writeJson(path.join(R_PATH, "themes", `${item.name}.json`), payload);
+    indexItems.push({ ...payload, files: undefined });
+    continue;
+  }
+
   if (item.type !== "ui") {
     continue;
   }
 
-  const files = item.files?.map((file) => {
-    const content = fs
-      .readFileSync(
-        path.join(process.cwd(), "src", "registry", file.path),
-        "utf8",
-      )
-      .replaceAll("\r\n", "\n");
+  const files = readItemFiles(item);
 
-    return {
-      name: basename(file.path),
-      content,
-    };
+  for (const library of iconLibraryNames) {
+    let usesIcons = false;
+    const resolved = files.map((file) => {
+      const { code, icons } = resolveIcons(file.content, library);
+      if (icons.length > 0) {
+        usesIcons = true;
+      }
+      return { ...file, content: code };
+    });
+    const devDependencies = usesIcons
+      ? ["unplugin-icons", iconLibraries[library].package]
+      : [];
+    const payload = toRegistryItem(item, resolved, devDependencies);
+    writeJson(
+      path.join(R_PATH, "icons", library, `${item.name}.json`),
+      payload,
+    );
+    if (library === defaultIconLibrary) {
+      writeJson(path.join(R_PATH, `${item.name}.json`), payload);
+      indexItems.push({ ...payload, files: undefined });
+    }
+  }
+}
+
+const registryIndex = {
+  $schema: "https://ui.shadcn.com/schema/registry.json",
+  name: "shadcn-solid",
+  homepage: HOMEPAGE,
+  items: indexItems,
+};
+writeJson(path.join(R_PATH, "registry.json"), registryIndex);
+writeJson(path.join(R_PATH, "index.json"), registryIndex);
+
+// #######################################
+//    BUILD public/registry (legacy, solidui-cli)
+// #######################################
+
+for (const item of items) {
+  if (item.type !== "ui") {
+    continue;
+  }
+
+  let usesIcons = false;
+  const files = readItemFiles(item).map((file) => {
+    const { code, icons } = resolveIcons(file.content, defaultIconLibrary);
+    if (icons.length > 0) {
+      usesIcons = true;
+    }
+    return { name: basename(file.path), content: code };
   });
 
   const payload = {
     ...item,
+    dependencies: usesIcons
+      ? [
+        ...(item.dependencies ?? []),
+        "unplugin-icons",
+        iconLibraries[defaultIconLibrary].package,
+      ]
+      : item.dependencies,
     files,
   };
 
-  fs.writeFileSync(
-    path.join(REGISTRY_PATH, item.type, `${item.name}.json`),
-    JSON.stringify(payload, null, 2),
-    "utf8",
-  );
+  writeJson(path.join(LEGACY_PATH, item.type, `${item.name}.json`), payload);
 }
 
-// #######################################
-//    BUILD registry/index.json
-// #######################################
-
-const uiPayload = result.output
+const legacyIndex = items
   .filter((item) => item.type === "ui")
   .map((item) => ({
     ...item,
     files: item.files.map((file) => file.path),
   }));
+writeJson(path.join(LEGACY_PATH, "index.json"), legacyIndex);
 
-fs.writeFileSync(
-  path.join(REGISTRY_PATH, "index.json"),
-  JSON.stringify(uiPayload, null, 2),
-  "utf-8",
+console.log(
+  `Built ${items.filter((i) => i.type === "ui").length} ui items ` +
+    `(x${iconLibraryNames.length} icon libraries), ` +
+    `${items.filter((i) => i.type === "theme").length} themes.`,
 );

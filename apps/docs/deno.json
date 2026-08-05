@@ -1,8 +1,8 @@
 {
   "tasks": {
     "dev": "deno run --allow-env --allow-sys --allow-ffi --env-file --allow-net --allow-read --allow-write --allow-run vite --port 3228",
-    "build": "shadcn build && deno run -A vite build",
-    "build:registry": "tsx ./src/scripts/build-registry.ts && shadcn build",
+    "build": "deno task build:registry && deno run -A npm:vite build",
+    "build:registry": "deno run -A ./src/scripts/build-icons.ts && deno run -A ./src/scripts/build-registry.ts && deno fmt ./src/__registry__ ./src/registry/icons",
     "start": "deno run --allow-net --allow-read --allow-write --allow-ffi --allow-env --allow-sys ./.output/server/index.mjs",
     "release": "changeset version",
     "check": "deno fmt ./src/ && deno lint ./src/ && deno check ./src/",
@@ -15,6 +15,11 @@
     "@corvu/otp-field": "npm:@corvu/otp-field@^0.1.4",
     "@corvu/resizable": "npm:@corvu/resizable@^0.2.5",
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^2.0.3",
+    "@iconify-json/lucide": "npm:@iconify-json/lucide@^1.2.121",
+    "@iconify-json/tabler": "npm:@iconify-json/tabler@^1.2.38",
+    "@iconify-json/ph": "npm:@iconify-json/ph@^1.2.2",
+    "@iconify-json/ri": "npm:@iconify-json/ri@^1.2.10",
+    "@iconify-json/hugeicons": "npm:@iconify-json/hugeicons@^1.2.32",
     "@kobalte/core": "npm:@kobalte/core@^0.13.12",
     "@kobalte/tailwindcss": "npm:@kobalte/tailwindcss@^0.9.0",
     "@mdx-js/mdx": "npm:@mdx-js/mdx@^3.1.1",
@@ -42,7 +47,6 @@
     "rehype-pretty-code": "npm:rehype-pretty-code@^0.14.5",
     "rehype-slug": "npm:rehype-slug@^6.0.0",
     "remark-gfm": "npm:remark-gfm@^4.0.1",
-    "shadcn": "npm:shadcn@^4.16.1",
     "shiki": "npm:shiki@^4.4.1",
     "shosho": "npm:shosho@^1.4.3",
     "solid-js": "npm:solid-js@^1.9.14",
@@ -79,7 +83,9 @@
       "unplugin-icons/types/solid"
     ],
     "paths": {
-      "~icons/*": ["./node_modules/unplugin-icons/types/solid.d.ts"]
+      "~icons/*": [
+        "./node_modules/unplugin-icons/types/solid.d.ts"
+      ]
     }
   }
 }

@@ -15,6 +15,7 @@ import createEmblaCarousel from "embla-carousel-solid";
 import { cn } from "~/lib/utils.ts";
 import type { ButtonProps } from "~/registry/ui/button.tsx";
 import { Button } from "~/registry/ui/button.tsx";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 export type CarouselApi = CreateEmblaCarouselType[1];
 
@@ -214,20 +215,14 @@ const CarouselPrevious: Component<CarouselButtonProps> = (rawProps) => {
       onClick={scrollPrev}
       {...others}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+      <IconPlaceholder
+        lucide="arrow-left"
+        tabler="arrow-left"
+        ph="arrow-left"
+        ri="arrow-left-line"
+        hugeicons="arrow-left-02"
         class="size-4"
-      >
-        <path d="M5 12l14 0" />
-        <path d="M5 12l6 6" />
-        <path d="M5 12l6 -6" />
-      </svg>
+      />
       <span class="sr-only">Previous slide</span>
     </Button>
   );
@@ -256,20 +251,14 @@ const CarouselNext: Component<CarouselButtonProps> = (rawProps) => {
       onClick={scrollNext}
       {...others}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+      <IconPlaceholder
+        lucide="arrow-right"
+        tabler="arrow-right"
+        ph="arrow-right"
+        ri="arrow-right-line"
+        hugeicons="arrow-right-02"
         class="size-4"
-      >
-        <path d="M5 12l14 0" />
-        <path d="M13 18l6 -6" />
-        <path d="M13 6l6 6" />
-      </svg>
+      />
       <span class="sr-only">Next slide</span>
     </Button>
   );

@@ -5,6 +5,7 @@ import * as ComboboxPrimitive from "@kobalte/core/combobox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const Combobox = ComboboxPrimitive.Root;
 const ComboboxItemLabel = ComboboxPrimitive.ItemLabel;
@@ -48,18 +49,14 @@ const ComboboxItemIndicator = <T extends ValidComponent = "div">(
       <Show
         when={local.children}
         fallback={
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+          <IconPlaceholder
+            lucide="check"
+            tabler="check"
+            ph="check"
+            ri="check-line"
+            hugeicons="tick-02"
             class="size-4"
-          >
-            <path d="M5 12l5 5l10 -10" />
-          </svg>
+          />
         }
       >
         {(children) => children()}
@@ -150,19 +147,14 @@ const ComboboxTrigger = <T extends ValidComponent = "button">(
         <Show
           when={local.children}
           fallback={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+            <IconPlaceholder
+              lucide="chevrons-up-down"
+              tabler="selector"
+              ph="caret-up-down"
+              ri="expand-up-down-line"
+              hugeicons="unfold-more"
               class="size-4"
-            >
-              <path d="M8 9l4 -4l4 4" />
-              <path d="M16 15l-4 4l-4 -4" />
-            </svg>
+            />
           }
         >
           {(children) => children()}

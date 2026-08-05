@@ -5,6 +5,7 @@ import type { PolymorphicProps } from "@kobalte/core";
 import * as NavigationMenuPrimitive from "@kobalte/core/navigation-menu";
 
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const NavigationMenuItem = NavigationMenuPrimitive.Menu;
 
@@ -62,18 +63,14 @@ const NavigationMenuTrigger = <T extends ValidComponent = "button">(
 const NavigationMenuIcon = () => {
   return (
     <NavigationMenuPrimitive.Icon aria-hidden="true">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+      <IconPlaceholder
+        lucide="chevron-down"
+        tabler="chevron-down"
+        ph="caret-down"
+        ri="arrow-down-s-line"
+        hugeicons="arrow-down-01"
         class="relative top-px ml-1 size-3 transition duration-200 group-data-[expanded]/trigger:rotate-180 group-data-[orientation=vertical]/menu:-rotate-90 group-data-[orientation=vertical]/menu:group-data-[expanded]/trigger:rotate-90"
-      >
-        <path d="M6 9l6 6l6 -6" />
-      </svg>
+      />
     </NavigationMenuPrimitive.Icon>
   );
 };

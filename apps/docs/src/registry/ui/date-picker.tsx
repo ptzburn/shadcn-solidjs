@@ -4,6 +4,7 @@ import { DatePicker as DatePickerPrimitive } from "@ark-ui/solid";
 
 import { cn } from "~/lib/utils.ts";
 import { buttonVariants } from "~/registry/ui/button.tsx";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const DatePicker = DatePickerPrimitive.Root;
 const DatePickerLabel = DatePickerPrimitive.Label;
@@ -53,24 +54,14 @@ const DatePickerTrigger = (props: DatePickerPrimitive.TriggerProps) => {
       {...others}
     >
       <Show when={!hasChildren()} fallback={resolvedChildren()}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+        <IconPlaceholder
+          lucide="calendar"
+          tabler="calendar"
+          ph="calendar-blank"
+          ri="calendar-line"
+          hugeicons="calendar-03"
           class="size-4"
-        >
-          <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
-          <path d="M16 3v4" />
-          <path d="M8 3v4" />
-          <path d="M4 11h16" />
-          <path d="M11 15h1" />
-          <path d="M12 15v3" />
-          <title>Calendar</title>
-        </svg>
+        />
       </Show>
     </DatePickerPrimitive.Trigger>
   );
@@ -131,19 +122,14 @@ const DatePickerPrevTrigger = (props: DatePickerPrimitive.PrevTriggerProps) => {
       {...others}
     >
       <Show when={!hasChildren()} fallback={resolvedChildren()}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+        <IconPlaceholder
+          lucide="chevron-left"
+          tabler="chevron-left"
+          ph="caret-left"
+          ri="arrow-left-s-line"
+          hugeicons="arrow-left-01"
           class="size-4"
-        >
-          <path d="M15 6l-6 6l6 6" />
-          <title>Previous</title>
-        </svg>
+        />
       </Show>
     </DatePickerPrimitive.PrevTrigger>
   );
@@ -168,19 +154,14 @@ const DatePickerNextTrigger = (props: DatePickerPrimitive.NextTriggerProps) => {
       {...others}
     >
       <Show when={!hasChildren()} fallback={resolvedChildren()}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+        <IconPlaceholder
+          lucide="chevron-right"
+          tabler="chevron-right"
+          ph="caret-right"
+          ri="arrow-right-s-line"
+          hugeicons="arrow-right-01"
           class="size-4"
-        >
-          <path d="M9 6l6 6l-6 6" />
-          <title>Next</title>
-        </svg>
+        />
       </Show>
     </DatePickerPrimitive.NextTrigger>
   );

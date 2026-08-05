@@ -9,6 +9,11 @@
     "npm:@corvu/otp-field@~0.1.4": "0.1.4_solid-js@1.9.14",
     "npm:@corvu/resizable@~0.2.5": "0.2.5_solid-js@1.9.14",
     "npm:@deno/vite-plugin@^2.0.3": "2.0.3_vite@8.2.0__@types+node@26.1.2__yaml@2.9.0_@types+node@26.1.2",
+    "npm:@iconify-json/hugeicons@^1.2.32": "1.2.32",
+    "npm:@iconify-json/lucide@^1.2.121": "1.2.121",
+    "npm:@iconify-json/ph@^1.2.2": "1.2.2",
+    "npm:@iconify-json/ri@^1.2.10": "1.2.10",
+    "npm:@iconify-json/tabler@^1.2.38": "1.2.38",
     "npm:@kobalte/core@~0.13.12": "0.13.12_solid-js@1.9.14",
     "npm:@kobalte/tailwindcss@0.9": "0.9.0_tailwindcss@4.3.3",
     "npm:@mdx-js/mdx@^3.1.1": "3.1.1",
@@ -36,7 +41,6 @@
     "npm:rehype-pretty-code@~0.14.5": "0.14.5_shiki@4.4.1",
     "npm:rehype-slug@6": "6.0.0",
     "npm:remark-gfm@^4.0.1": "4.0.1",
-    "npm:shadcn@^4.16.1": "4.16.1",
     "npm:shiki@^4.4.1": "4.4.1",
     "npm:shosho@^1.4.3": "1.4.3",
     "npm:solid-js@^1.9.14": "1.9.14",
@@ -490,6 +494,36 @@
       "integrity": "sha512-XovyyCCnBzW+zKu+z/zq8hwNs4KOR5rEMAOxo2f40Q5xoOI37IMm6MIg2COOUtUApo0i6850MTBKH2u4QLGIqg==",
       "dependencies": [
         "hono"
+      ]
+    },
+    "@iconify-json/hugeicons@1.2.32": {
+      "integrity": "sha512-J+iRbVCR9jZnX619pHzTuB5XSVJIPVE66i0a3TFcTjsjhoaULpjl/kgqDByQABhcNxhz0GnBIXHHke5XdDA36A==",
+      "dependencies": [
+        "@iconify/types"
+      ]
+    },
+    "@iconify-json/lucide@1.2.121": {
+      "integrity": "sha512-zSoQQSmsyFaeTpSwURHJ9PIrsDcGFpDNhGlpiTrs+Ua4uFeH5UsE26L4OEBLrgLWoSK0UO+JhsO8yehSw0403g==",
+      "dependencies": [
+        "@iconify/types"
+      ]
+    },
+    "@iconify-json/ph@1.2.2": {
+      "integrity": "sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==",
+      "dependencies": [
+        "@iconify/types"
+      ]
+    },
+    "@iconify-json/ri@1.2.10": {
+      "integrity": "sha512-WWMhoncVVM+Xmu9T5fgu2lhYRrKTEWhKk3Com0KiM111EeEsRLiASjpsFKnC/SrB6covhUp95r2mH8tGxhgd5Q==",
+      "dependencies": [
+        "@iconify/types"
+      ]
+    },
+    "@iconify-json/tabler@1.2.38": {
+      "integrity": "sha512-9v6ooRU/bKOK/Whv4w2aiK5gBnfCV9Ei+uD1iDDeLu2b+EnF3G3ZKkRKWEOOLG8bJyfKn6XEia6gUQ9oO7cF+Q==",
+      "dependencies": [
+        "@iconify/types"
       ]
     },
     "@iconify/types@2.0.0": {
@@ -5305,6 +5339,11 @@
           "npm:@corvu/otp-field@~0.1.4",
           "npm:@corvu/resizable@~0.2.5",
           "npm:@deno/vite-plugin@^2.0.3",
+          "npm:@iconify-json/hugeicons@^1.2.32",
+          "npm:@iconify-json/lucide@^1.2.121",
+          "npm:@iconify-json/ph@^1.2.2",
+          "npm:@iconify-json/ri@^1.2.10",
+          "npm:@iconify-json/tabler@^1.2.38",
           "npm:@kobalte/core@~0.13.12",
           "npm:@kobalte/tailwindcss@0.9",
           "npm:@mdx-js/mdx@^3.1.1",
@@ -5332,7 +5371,6 @@
           "npm:rehype-pretty-code@~0.14.5",
           "npm:rehype-slug@6",
           "npm:remark-gfm@^4.0.1",
-          "npm:shadcn@^4.16.1",
           "npm:shiki@^4.4.1",
           "npm:shosho@^1.4.3",
           "npm:solid-js@^1.9.14",

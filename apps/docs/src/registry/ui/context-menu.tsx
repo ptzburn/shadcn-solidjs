@@ -5,6 +5,7 @@ import * as ContextMenuPrimitive from "@kobalte/core/context-menu";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const ContextMenuTrigger = ContextMenuPrimitive.Trigger;
 const ContextMenuPortal = ContextMenuPrimitive.Portal;
@@ -117,18 +118,14 @@ const ContextMenuSubTrigger = <T extends ValidComponent = "div">(
       {...others}
     >
       {local.children}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+      <IconPlaceholder
+        lucide="chevron-right"
+        tabler="chevron-right"
+        ph="caret-right"
+        ri="arrow-right-s-line"
+        hugeicons="arrow-right-01"
         class="ml-auto size-4"
-      >
-        <path d="M9 6l6 6l-6 6" />
-      </svg>
+      />
     </ContextMenuPrimitive.SubTrigger>
   );
 };
@@ -180,18 +177,14 @@ const ContextMenuCheckboxItem = <T extends ValidComponent = "div">(
     >
       <span class="absolute left-2 flex size-3.5 items-center justify-center">
         <ContextMenuPrimitive.ItemIndicator>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+          <IconPlaceholder
+            lucide="check"
+            tabler="check"
+            ph="check"
+            ri="check-line"
+            hugeicons="tick-02"
             class="size-4"
-          >
-            <path d="M5 12l5 5l10 -10" />
-          </svg>
+          />
         </ContextMenuPrimitive.ItemIndicator>
       </span>
       {local.children}
@@ -243,18 +236,14 @@ const ContextMenuRadioItem = <T extends ValidComponent = "div">(
     >
       <span class="absolute left-2 flex size-3.5 items-center justify-center">
         <ContextMenuPrimitive.ItemIndicator>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+          <IconPlaceholder
+            lucide="circle"
+            tabler="circle"
+            ph="circle"
+            ri="circle-line"
+            hugeicons="circle"
             class="size-2 fill-current"
-          >
-            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-          </svg>
+          />
         </ContextMenuPrimitive.ItemIndicator>
       </span>
       {local.children}

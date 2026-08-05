@@ -7,6 +7,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "~/lib/utils.ts";
 import type { BadgeProps } from "~/registry/ui/badge.tsx";
 import { Badge } from "~/registry/ui/badge.tsx";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 type DeltaType =
   | "increase"
@@ -32,82 +33,54 @@ const iconMap: {
   [key in DeltaType]: (props: { class?: string }) => JSXElement;
 } = {
   increase: (props) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+    <IconPlaceholder
+      lucide="arrow-up"
+      tabler="arrow-up"
+      ph="arrow-up"
+      ri="arrow-up-line"
+      hugeicons="arrow-up-02"
       class={props.class}
-    >
-      <path d="M12 5l0 14" />
-      <path d="M18 11l-6 -6" />
-      <path d="M6 11l6 -6" />
-    </svg>
+    />
   ),
   moderateIncrease: (props) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+    <IconPlaceholder
+      lucide="arrow-up-right"
+      tabler="arrow-up-right"
+      ph="arrow-up-right"
+      ri="arrow-right-up-line"
+      hugeicons="arrow-up-right-01"
       class={props.class}
-    >
-      <path d="M17 7l-10 10" />
-      <path d="M8 7l9 0l0 9" />
-    </svg>
+    />
   ),
   unchanged: (props) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+    <IconPlaceholder
+      lucide="arrow-right"
+      tabler="arrow-right"
+      ph="arrow-right"
+      ri="arrow-right-line"
+      hugeicons="arrow-right-02"
       class={props.class}
-    >
-      <path d="M5 12l14 0" />
-      <path d="M13 18l6 -6" />
-      <path d="M13 6l6 6" />
-    </svg>
+    />
   ),
   moderateDecrease: (props) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+    <IconPlaceholder
+      lucide="arrow-down-right"
+      tabler="arrow-down-right"
+      ph="arrow-down-right"
+      ri="arrow-right-down-line"
+      hugeicons="arrow-down-right-01"
       class={props.class}
-    >
-      <path d="M7 7l10 10" />
-      <path d="M17 8l0 9l-9 0" />
-    </svg>
+    />
   ),
   decrease: (props) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+    <IconPlaceholder
+      lucide="arrow-down"
+      tabler="arrow-down"
+      ph="arrow-down"
+      ri="arrow-down-line"
+      hugeicons="arrow-down-02"
       class={props.class}
-    >
-      <path d="M12 5l0 14" />
-      <path d="M18 13l-6 6" />
-      <path d="M6 13l6 6" />
-    </svg>
+    />
   ),
 };
 

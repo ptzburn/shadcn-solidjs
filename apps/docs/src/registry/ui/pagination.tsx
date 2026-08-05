@@ -6,6 +6,7 @@ import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
 import { buttonVariants } from "~/registry/ui/button.tsx";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const PaginationItems = PaginationPrimitive.Items;
 
@@ -67,20 +68,14 @@ const PaginationEllipsis = <T extends ValidComponent = "div">(
       class={cn("flex size-10 items-center justify-center", local.class)}
       {...others}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+      <IconPlaceholder
+        lucide="ellipsis"
+        tabler="dots"
+        ph="dots-three"
+        ri="more-line"
+        hugeicons="more-horizontal"
         class="size-4"
-      >
-        <circle cx="12" cy="12" r="1" />
-        <circle cx="19" cy="12" r="1" />
-        <circle cx="5" cy="12" r="1" />
-      </svg>
+      />
       <span class="sr-only">More pages</span>
     </PaginationPrimitive.Ellipsis>
   );
@@ -115,18 +110,14 @@ const PaginationPrevious = <T extends ValidComponent = "button">(
         when={local.children}
         fallback={
           <>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+            <IconPlaceholder
+              lucide="chevron-left"
+              tabler="chevron-left"
+              ph="caret-left"
+              ri="arrow-left-s-line"
+              hugeicons="arrow-left-01"
               class="size-4"
-            >
-              <path d="M15 6l-6 6l6 6" />
-            </svg>
+            />
             <span>Previous</span>
           </>
         }
@@ -167,18 +158,14 @@ const PaginationNext = <T extends ValidComponent = "button">(
         fallback={
           <>
             <span>Next</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+            <IconPlaceholder
+              lucide="chevron-right"
+              tabler="chevron-right"
+              ph="caret-right"
+              ri="arrow-right-s-line"
+              hugeicons="arrow-right-01"
               class="size-4"
-            >
-              <path d="M9 6l6 6l-6 6" />
-            </svg>
+            />
           </>
         }
       >

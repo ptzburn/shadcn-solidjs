@@ -1,12 +1,30 @@
-import type { JSX, ValidComponent } from "solid-js";
-import { splitProps } from "solid-js";
-
 import * as AccordionPrimitive from "@kobalte/core/accordion";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+import type { JSX, ValidComponent } from "solid-js";
 
-const Accordion = AccordionPrimitive.Root;
+import { splitProps } from "solid-js";
+
+type AccordionProps<T extends ValidComponent = "div"> =
+  & AccordionPrimitive.AccordionRootProps<T>
+  & {
+    class?: string | undefined;
+  };
+
+const Accordion = <T extends ValidComponent = "div">(
+  props: PolymorphicProps<T, AccordionProps<T>>,
+) => {
+  const [local, others] = splitProps(props as AccordionProps, ["class"]);
+  return (
+    <AccordionPrimitive.Root
+      data-slot="accordion"
+      class={cn("flex w-full flex-col", local.class)}
+      {...others}
+    />
+  );
+};
 
 type AccordionItemProps<T extends ValidComponent = "div"> =
   & AccordionPrimitive.AccordionItemProps<T>
@@ -19,7 +37,11 @@ const AccordionItem = <T extends ValidComponent = "div">(
 ) => {
   const [local, others] = splitProps(props as AccordionItemProps, ["class"]);
   return (
-    <AccordionPrimitive.Item class={cn("border-b", local.class)} {...others} />
+    <AccordionPrimitive.Item
+      data-slot="accordion-item"
+      class={cn("not-last:border-b", local.class)}
+      {...others}
+    />
   );
 };
 
@@ -40,25 +62,32 @@ const AccordionTrigger = <T extends ValidComponent = "button">(
   return (
     <AccordionPrimitive.Header class="flex">
       <AccordionPrimitive.Trigger
+        data-slot="accordion-trigger"
         class={cn(
-          "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-expanded]>svg]:rotate-180",
+          "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-2.5 text-left font-medium text-sm outline-none transition-all hover:underline focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground",
           local.class,
         )}
         {...others}
       >
         {local.children}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="size-4 shrink-0 transition-transform duration-200"
-        >
-          <path d="M6 9l6 6l6 -6" />
-        </svg>
+        <IconPlaceholder
+          lucide="chevron-down"
+          tabler="chevron-down"
+          ph="caret-down"
+          ri="arrow-down-s-line"
+          hugeicons="arrow-down-01"
+          data-slot="accordion-trigger-icon"
+          class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
+        />
+        <IconPlaceholder
+          lucide="chevron-up"
+          tabler="chevron-up"
+          ph="caret-up"
+          ri="arrow-up-s-line"
+          hugeicons="arrow-up-01"
+          data-slot="accordion-trigger-icon"
+          class="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
+        />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
@@ -80,13 +109,18 @@ const AccordionContent = <T extends ValidComponent = "div">(
   ]);
   return (
     <AccordionPrimitive.Content
-      class={cn(
-        "animate-accordion-up overflow-hidden text-sm transition-all data-[expanded]:animate-accordion-down",
-        local.class,
-      )}
+      data-slot="accordion-content"
+      class="overflow-hidden text-sm data-[closed]:animate-accordion-up data-[expanded]:animate-accordion-down"
       {...others}
     >
-      <div class="pb-4 pt-0">{local.children}</div>
+      <div
+        class={cn(
+          "h-(--kb-accordion-content-height) pt-0 pb-2.5 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+          local.class,
+        )}
+      >
+        {local.children}
+      </div>
     </AccordionPrimitive.Content>
   );
 };

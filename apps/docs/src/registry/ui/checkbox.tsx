@@ -5,6 +5,7 @@ import * as CheckboxPrimitive from "@kobalte/core/checkbox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 type CheckboxRootProps<T extends ValidComponent = "div"> =
   & CheckboxPrimitive.CheckboxRootProps<T>
@@ -24,32 +25,24 @@ const Checkbox = <T extends ValidComponent = "div">(
         <CheckboxPrimitive.Indicator>
           <Switch>
             <Match when={!others.indeterminate}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+              <IconPlaceholder
+                lucide="check"
+                tabler="check"
+                ph="check"
+                ri="check-line"
+                hugeicons="tick-02"
                 class="size-4"
-              >
-                <path d="M5 12l5 5l10 -10" />
-              </svg>
+              />
             </Match>
             <Match when={others.indeterminate}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+              <IconPlaceholder
+                lucide="minus"
+                tabler="minus"
+                ph="minus"
+                ri="subtract-line"
+                hugeicons="minus-sign"
                 class="size-4"
-              >
-                <path d="M5 12l14 0" />
-              </svg>
+              />
             </Match>
           </Switch>
         </CheckboxPrimitive.Indicator>
