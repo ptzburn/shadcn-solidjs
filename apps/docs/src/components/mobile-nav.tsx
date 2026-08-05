@@ -19,7 +19,7 @@ export function MobileNav() {
         <IconSidebarOpen class="size-6" />
         <span class="sr-only">Toggle Menu</span>
       </SheetTrigger>
-      <SheetContent position="left" class="pr-0">
+      <SheetContent side="left" class="pr-0">
         <MobileLink href="/" onOpenChange={setOpen} class="flex items-center">
           <IconLogo class="mr-2" />
           <span class="font-bold">SolidUI</span>

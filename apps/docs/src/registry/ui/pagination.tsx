@@ -1,11 +1,11 @@
-import type { JSX, ValidComponent } from "solid-js";
-import { Show, splitProps } from "solid-js";
-
 import * as PaginationPrimitive from "@kobalte/core/pagination";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
+import { buttonVariants } from "./button.tsx";
 import { cn } from "~/lib/utils.ts";
-import { buttonVariants } from "~/registry/ui/button.tsx";
+
+import type { JSX, ValidComponent } from "solid-js";
+import { Show, splitProps } from "solid-js";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const PaginationItems = PaginationPrimitive.Items;
@@ -20,8 +20,10 @@ const Pagination = <T extends ValidComponent = "nav">(
   const [local, others] = splitProps(props as PaginationRootProps, ["class"]);
   return (
     <PaginationPrimitive.Root
+      data-slot="pagination"
       class={cn(
-        "[&>*]:flex [&>*]:flex-row [&>*]:items-center [&>*]:gap-1",
+        "mx-auto flex w-full justify-center",
+        "[&>ul]:flex [&>ul]:flex-row [&>ul]:items-center [&>ul]:gap-0.5",
         local.class,
       )}
       {...others}
@@ -39,11 +41,13 @@ const PaginationItem = <T extends ValidComponent = "button">(
   const [local, others] = splitProps(props as PaginationItemProps, ["class"]);
   return (
     <PaginationPrimitive.Item
+      data-slot="pagination-link"
       class={cn(
         buttonVariants({
           variant: "ghost",
+          size: "icon",
         }),
-        "size-10 data-[current]:border",
+        "dark:data-[current]:border-input dark:data-[current]:bg-input/30 data-[current]:border-border data-[current]:bg-background",
         local.class,
       )}
       {...others}
@@ -65,7 +69,12 @@ const PaginationEllipsis = <T extends ValidComponent = "div">(
   ]);
   return (
     <PaginationPrimitive.Ellipsis
-      class={cn("flex size-10 items-center justify-center", local.class)}
+      aria-hidden
+      data-slot="pagination-ellipsis"
+      class={cn(
+        "flex size-8 items-center justify-center [&_svg:not([class*='size-'])]:size-4",
+        local.class,
+      )}
       {...others}
     >
       <IconPlaceholder
@@ -74,7 +83,6 @@ const PaginationEllipsis = <T extends ValidComponent = "div">(
         ph="dots-three"
         ri="more-line"
         hugeicons="more-horizontal"
-        class="size-4"
       />
       <span class="sr-only">More pages</span>
     </PaginationPrimitive.Ellipsis>
@@ -85,6 +93,7 @@ type PaginationPreviousProps<T extends ValidComponent = "button"> =
   & PaginationPrimitive.PaginationPreviousProps<T>
   & {
     class?: string | undefined;
+    text?: string;
     children?: JSX.Element;
   };
 
@@ -93,15 +102,18 @@ const PaginationPrevious = <T extends ValidComponent = "button">(
 ) => {
   const [local, others] = splitProps(props as PaginationPreviousProps, [
     "class",
+    "text",
     "children",
   ]);
   return (
     <PaginationPrimitive.Previous
+      aria-label="Go to previous page"
       class={cn(
         buttonVariants({
           variant: "ghost",
+          size: "default",
         }),
-        "gap-1 pl-2.5",
+        "pl-1.5!",
         local.class,
       )}
       {...others}
@@ -116,9 +128,10 @@ const PaginationPrevious = <T extends ValidComponent = "button">(
               ph="caret-left"
               ri="arrow-left-s-line"
               hugeicons="arrow-left-01"
-              class="size-4"
+              data-icon="inline-start"
+              class="cn-rtl-flip"
             />
-            <span>Previous</span>
+            <span class="hidden sm:block">{local.text ?? "Previous"}</span>
           </>
         }
       >
@@ -132,6 +145,7 @@ type PaginationNextProps<T extends ValidComponent = "button"> =
   & PaginationPrimitive.PaginationNextProps<T>
   & {
     class?: string | undefined;
+    text?: string;
     children?: JSX.Element;
   };
 
@@ -140,15 +154,18 @@ const PaginationNext = <T extends ValidComponent = "button">(
 ) => {
   const [local, others] = splitProps(props as PaginationNextProps, [
     "class",
+    "text",
     "children",
   ]);
   return (
     <PaginationPrimitive.Next
+      aria-label="Go to next page"
       class={cn(
         buttonVariants({
           variant: "ghost",
+          size: "default",
         }),
-        "gap-1 pl-2.5",
+        "pr-1.5!",
         local.class,
       )}
       {...others}
@@ -157,14 +174,15 @@ const PaginationNext = <T extends ValidComponent = "button">(
         when={local.children}
         fallback={
           <>
-            <span>Next</span>
+            <span class="hidden sm:block">{local.text ?? "Next"}</span>
             <IconPlaceholder
               lucide="chevron-right"
               tabler="chevron-right"
               ph="caret-right"
               ri="arrow-right-s-line"
               hugeicons="arrow-right-01"
-              class="size-4"
+              data-icon="inline-end"
+              class="cn-rtl-flip"
             />
           </>
         }

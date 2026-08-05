@@ -5,10 +5,14 @@
   "dependencies": [
     "solid-sonner"
   ],
+  "devDependencies": [
+    "unplugin-icons",
+    "@iconify-json/ri"
+  ],
   "files": [
     {
       "path": "src/registry/ui/sonner.tsx",
-      "content": "import type { Component, ComponentProps } from \"solid-js\";\n\nimport { Toaster as Sonner } from \"solid-sonner\";\n\ntype ToasterProps = ComponentProps<typeof Sonner>;\n\nconst Toaster: Component<ToasterProps> = (props) => {\n  return (\n    <Sonner\n      class=\"toaster group\"\n      toastOptions={{\n        classes: {\n          toast:\n            \"group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg\",\n          description: \"group-[.toast]:text-muted-foreground\",\n          actionButton:\n            \"group-[.toast]:bg-primary group-[.toast]:text-primary-foreground\",\n          cancelButton:\n            \"group-[.toast]:bg-muted group-[.toast]:text-muted-foreground\",\n        },\n      }}\n      {...props}\n    />\n  );\n};\n\nexport { Toaster };\n",
+      "content": "import { useColorMode } from \"@kobalte/core\";\nimport type { Component, ComponentProps } from \"solid-js\";\n\nimport { Toaster as Sonner } from \"solid-sonner\";\nimport IconAlertLine from \"~icons/ri/alert-line\";\nimport IconCheckboxCircleLine from \"~icons/ri/checkbox-circle-line\";\nimport IconCloseCircleLine from \"~icons/ri/close-circle-line\";\nimport IconInformationLine from \"~icons/ri/information-line\";\nimport IconLoader4Line from \"~icons/ri/loader-4-line\";\n\ntype ToasterProps = ComponentProps<typeof Sonner>;\n\nconst Toaster: Component<ToasterProps> = (props) => {\n  const { colorMode } = useColorMode();\n\n  return (\n    <Sonner\n      theme={colorMode()}\n      class=\"group toaster\"\n      icons={{\n        success: <IconCheckboxCircleLine class=\"size-4\" />,\n        info: <IconInformationLine class=\"size-4\" />,\n        warning: <IconAlertLine class=\"size-4\" />,\n        error: <IconCloseCircleLine class=\"size-4\" />,\n        loading: <IconLoader4Line class=\"size-4 animate-spin\" />,\n      }}\n      style={{\n        \"--normal-bg\": \"var(--popover)\",\n        \"--normal-text\": \"var(--popover-foreground)\",\n        \"--normal-border\": \"var(--border)\",\n        \"--border-radius\": \"var(--radius)\",\n      }}\n      toastOptions={{\n        classes: {\n          toast: \"cn-toast\",\n        },\n      }}\n      {...props}\n    />\n  );\n};\n\nexport { Toaster };\n",
       "type": "registry:ui"
     }
   ]

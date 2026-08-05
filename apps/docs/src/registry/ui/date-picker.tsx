@@ -1,9 +1,9 @@
-import { children, Show, splitProps } from "solid-js";
-
 import { DatePicker as DatePickerPrimitive } from "@ark-ui/solid";
 
+import { buttonVariants } from "./button.tsx";
+
 import { cn } from "~/lib/utils.ts";
-import { buttonVariants } from "~/registry/ui/button.tsx";
+import { children, Show, splitProps } from "solid-js";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const DatePicker = DatePickerPrimitive.Root;
@@ -30,7 +30,7 @@ const DatePickerInput = (props: DatePickerPrimitive.InputProps) => {
   return (
     <DatePickerPrimitive.Input
       class={cn(
-        "h-9 w-full rounded-md border border-border bg-background px-3 py-1 text-sm shadow-sm transition-shadow placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1.5px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+        "h-9 w-full rounded-md border border-border bg-background px-3 py-1 text-sm shadow-sm transition-shadow placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-[1.5px] disabled:cursor-not-allowed disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -48,7 +48,7 @@ const DatePickerTrigger = (props: DatePickerPrimitive.TriggerProps) => {
   return (
     <DatePickerPrimitive.Trigger
       class={cn(
-        "flex min-h-9 min-w-9 items-center justify-center rounded-md border border-border bg-background transition-[box-shadow,background-color] hover:bg-accent/50 focus-visible:outline-none focus-visible:ring-[1.5px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>svg]:size-4",
+        "flex min-h-9 min-w-9 items-center justify-center rounded-md border border-border bg-background transition-[box-shadow,background-color] hover:bg-accent/50 focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-[1.5px] disabled:cursor-not-allowed disabled:opacity-50 [&>svg]:size-4",
         local.class,
       )}
       {...others}
@@ -61,6 +61,7 @@ const DatePickerTrigger = (props: DatePickerPrimitive.TriggerProps) => {
           ri="calendar-line"
           hugeicons="calendar-03"
           class="size-4"
+          aria-label="Calendar"
         />
       </Show>
     </DatePickerPrimitive.Trigger>
@@ -73,7 +74,7 @@ const DatePickerContent = (props: DatePickerPrimitive.ContentProps) => {
   return (
     <DatePickerPrimitive.Content
       class={cn(
-        "z-50 rounded-md border bg-popover p-3 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+        "data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 z-50 rounded-md border bg-popover p-3 text-popover-foreground shadow-md outline-none data-[state=closed]:animate-out data-[state=open]:animate-in",
         local.class,
       )}
       {...others}
@@ -129,6 +130,7 @@ const DatePickerPrevTrigger = (props: DatePickerPrimitive.PrevTriggerProps) => {
           ri="arrow-left-s-line"
           hugeicons="arrow-left-01"
           class="size-4"
+          aria-label="Previous"
         />
       </Show>
     </DatePickerPrimitive.PrevTrigger>
@@ -161,6 +163,7 @@ const DatePickerNextTrigger = (props: DatePickerPrimitive.NextTriggerProps) => {
           ri="arrow-right-s-line"
           hugeicons="arrow-right-01"
           class="size-4"
+          aria-label="Next"
         />
       </Show>
     </DatePickerPrimitive.NextTrigger>
@@ -181,7 +184,7 @@ const DatePickerRangeText = (props: DatePickerPrimitive.RangeTextProps) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
     <DatePickerPrimitive.RangeText
-      class={cn("text-sm font-medium", local.class)}
+      class={cn("font-medium text-sm", local.class)}
       {...others}
     />
   );
@@ -212,7 +215,7 @@ const DatePickerTableHeader = (props: DatePickerPrimitive.TableHeaderProps) => {
   return (
     <DatePickerPrimitive.TableHeader
       class={cn(
-        "w-8 flex-1 text-[0.8rem] font-normal text-muted-foreground",
+        "w-8 flex-1 font-normal text-muted-foreground text-[0.8rem]",
         local.class,
       )}
       {...others}

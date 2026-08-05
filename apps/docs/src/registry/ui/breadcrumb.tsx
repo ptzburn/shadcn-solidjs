@@ -1,20 +1,23 @@
-import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
-import { Show, splitProps } from "solid-js";
-
-import type { PolymorphicProps } from "@kobalte/core";
-import * as BreadcrumbPrimitive from "@kobalte/core/breadcrumbs";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { Polymorphic } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
+import type { Component, ComponentProps, ValidComponent } from "solid-js";
+
+import { Show, splitProps } from "solid-js";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
-const Breadcrumb = BreadcrumbPrimitive.Root;
+const Breadcrumb: Component<ComponentProps<"nav">> = (props) => {
+  return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;
+};
 
 const BreadcrumbList: Component<ComponentProps<"ol">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
     <ol
+      data-slot="breadcrumb-list"
       class={cn(
-        "flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5",
+        "flex flex-wrap items-center gap-1.5 break-words text-muted-foreground text-sm sm:gap-2.5",
         local.class,
       )}
       {...others}
@@ -26,6 +29,7 @@ const BreadcrumbItem: Component<ComponentProps<"li">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
     <li
+      data-slot="breadcrumb-item"
       class={cn("inline-flex items-center gap-1.5", local.class)}
       {...others}
     />
@@ -33,7 +37,7 @@ const BreadcrumbItem: Component<ComponentProps<"li">> = (props) => {
 };
 
 type BreadcrumbLinkProps<T extends ValidComponent = "a"> =
-  & BreadcrumbPrimitive.BreadcrumbsLinkProps<T>
+  & ComponentProps<"a">
   & { class?: string | undefined };
 
 const BreadcrumbLink = <T extends ValidComponent = "a">(
@@ -41,32 +45,36 @@ const BreadcrumbLink = <T extends ValidComponent = "a">(
 ) => {
   const [local, others] = splitProps(props as BreadcrumbLinkProps, ["class"]);
   return (
-    <BreadcrumbPrimitive.Link
-      class={cn(
-        "transition-colors hover:text-foreground data-[current]:font-normal data-[current]:text-foreground",
-        local.class,
-      )}
+    <Polymorphic
+      as="a"
+      data-slot="breadcrumb-link"
+      class={cn("transition-colors hover:text-foreground", local.class)}
       {...others}
     />
   );
 };
 
-type BreadcrumbSeparatorProps<T extends ValidComponent = "span"> =
-  & BreadcrumbPrimitive.BreadcrumbsSeparatorProps<T>
-  & {
-    class?: string | undefined;
-    children?: JSX.Element;
-  };
-
-const BreadcrumbSeparator = <T extends ValidComponent = "span">(
-  props: PolymorphicProps<T, BreadcrumbSeparatorProps<T>>,
-) => {
-  const [local, others] = splitProps(props as BreadcrumbSeparatorProps, [
-    "class",
-    "children",
-  ]);
+const BreadcrumbPage: Component<ComponentProps<"span">> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
   return (
-    <BreadcrumbPrimitive.Separator
+    <span
+      data-slot="breadcrumb-page"
+      role="link"
+      aria-disabled="true"
+      aria-current="page"
+      class={cn("font-normal text-foreground", local.class)}
+      {...others}
+    />
+  );
+};
+
+const BreadcrumbSeparator: Component<ComponentProps<"li">> = (props) => {
+  const [local, others] = splitProps(props, ["class", "children"]);
+  return (
+    <li
+      data-slot="breadcrumb-separator"
+      role="presentation"
+      aria-hidden="true"
       class={cn("[&>svg]:size-3.5", local.class)}
       {...others}
     >
@@ -84,7 +92,7 @@ const BreadcrumbSeparator = <T extends ValidComponent = "span">(
       >
         {local.children}
       </Show>
-    </BreadcrumbPrimitive.Separator>
+    </li>
   );
 };
 
@@ -92,6 +100,9 @@ const BreadcrumbEllipsis: Component<ComponentProps<"span">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
     <span
+      data-slot="breadcrumb-ellipsis"
+      role="presentation"
+      aria-hidden="true"
       class={cn("flex size-9 items-center justify-center", local.class)}
       {...others}
     >
@@ -114,5 +125,6 @@ export {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
+  BreadcrumbPage,
   BreadcrumbSeparator,
 };

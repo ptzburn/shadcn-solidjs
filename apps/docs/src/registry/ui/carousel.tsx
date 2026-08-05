@@ -1,3 +1,11 @@
+// deno-lint-ignore-file no-non-null-assertion
+import type { ButtonProps } from "./button.tsx";
+import { Button } from "./button.tsx";
+
+import { cn } from "~/lib/utils.ts";
+
+import type { CreateEmblaCarouselType } from "embla-carousel-solid";
+import createEmblaCarousel from "embla-carousel-solid";
 import type { Accessor, Component, ComponentProps, VoidProps } from "solid-js";
 import {
   createContext,
@@ -8,13 +16,6 @@ import {
   splitProps,
   useContext,
 } from "solid-js";
-
-import type { CreateEmblaCarouselType } from "embla-carousel-solid";
-import createEmblaCarousel from "embla-carousel-solid";
-
-import { cn } from "~/lib/utils.ts";
-import type { ButtonProps } from "~/registry/ui/button.tsx";
-import { Button } from "~/registry/ui/button.tsx";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 export type CarouselApi = CreateEmblaCarouselType[1];
@@ -146,6 +147,7 @@ const Carousel: Component<CarouselProps & ComponentProps<"div">> = (
         class={cn("relative", local.class)}
         role="region"
         aria-roledescription="carousel"
+        data-slot="carousel"
         {...others}
       >
         {local.children}
@@ -159,7 +161,7 @@ const CarouselContent: Component<ComponentProps<"div">> = (props) => {
   const { carouselRef, orientation } = useCarousel();
 
   return (
-    <div ref={carouselRef} class="overflow-hidden">
+    <div ref={carouselRef} class="overflow-hidden" data-slot="carousel-content">
       <div
         class={cn(
           "flex",
@@ -180,6 +182,7 @@ const CarouselItem: Component<ComponentProps<"div">> = (props) => {
     <div
       role="group"
       aria-roledescription="slide"
+      data-slot="carousel-item"
       class={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "horizontal" ? "pl-4" : "pt-4",
@@ -195,19 +198,20 @@ type CarouselButtonProps = VoidProps<ButtonProps>;
 const CarouselPrevious: Component<CarouselButtonProps> = (rawProps) => {
   const props = mergeProps<CarouselButtonProps[]>({
     variant: "outline",
-    size: "icon",
+    size: "icon-sm",
   }, rawProps);
   const [local, others] = splitProps(props, ["class", "variant", "size"]);
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
     <Button
+      data-slot="carousel-previous"
       variant={local.variant}
       size={local.size}
       class={cn(
-        "absolute size-8 touch-manipulation rounded-full",
+        "absolute touch-manipulation rounded-full",
         orientation === "horizontal"
-          ? "-left-12 top-1/2 -translate-y-1/2"
+          ? "inset-y-0 -left-12 my-auto"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         local.class,
       )}
@@ -216,12 +220,12 @@ const CarouselPrevious: Component<CarouselButtonProps> = (rawProps) => {
       {...others}
     >
       <IconPlaceholder
-        lucide="arrow-left"
-        tabler="arrow-left"
-        ph="arrow-left"
-        ri="arrow-left-line"
-        hugeicons="arrow-left-02"
-        class="size-4"
+        lucide="chevron-left"
+        tabler="chevron-left"
+        ph="caret-left"
+        ri="arrow-left-s-line"
+        hugeicons="arrow-left-01"
+        class="cn-rtl-flip"
       />
       <span class="sr-only">Previous slide</span>
     </Button>
@@ -231,19 +235,20 @@ const CarouselPrevious: Component<CarouselButtonProps> = (rawProps) => {
 const CarouselNext: Component<CarouselButtonProps> = (rawProps) => {
   const props = mergeProps<CarouselButtonProps[]>({
     variant: "outline",
-    size: "icon",
+    size: "icon-sm",
   }, rawProps);
   const [local, others] = splitProps(props, ["class", "variant", "size"]);
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
   return (
     <Button
+      data-slot="carousel-next"
       variant={local.variant}
       size={local.size}
       class={cn(
-        "absolute size-8 touch-manipulation rounded-full",
+        "absolute touch-manipulation rounded-full",
         orientation === "horizontal"
-          ? "-right-12 top-1/2 -translate-y-1/2"
+          ? "inset-y-0 -right-12 my-auto"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         local.class,
       )}
@@ -252,12 +257,12 @@ const CarouselNext: Component<CarouselButtonProps> = (rawProps) => {
       {...others}
     >
       <IconPlaceholder
-        lucide="arrow-right"
-        tabler="arrow-right"
-        ph="arrow-right"
-        ri="arrow-right-line"
-        hugeicons="arrow-right-02"
-        class="size-4"
+        lucide="chevron-right"
+        tabler="chevron-right"
+        ph="caret-right"
+        ri="arrow-right-s-line"
+        hugeicons="arrow-right-01"
+        class="cn-rtl-flip"
       />
       <span class="sr-only">Next slide</span>
     </Button>

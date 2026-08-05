@@ -94,6 +94,7 @@ const variantMap: { [key in DeltaType]: DeltaVariant } = {
 
 type BadgeDeltaProps = Omit<BadgeProps, "variant"> & {
   deltaType: DeltaType;
+  children?: JSXElement;
 };
 
 const BadgeDelta: Component<BadgeDeltaProps> = (props) => {

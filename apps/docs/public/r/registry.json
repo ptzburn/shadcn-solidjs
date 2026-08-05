@@ -29,10 +29,6 @@
       "type": "registry:ui",
       "dependencies": [
         "@kobalte/core"
-      ],
-      "devDependencies": [
-        "unplugin-icons",
-        "@iconify-json/lucide"
       ]
     },
     {
@@ -238,6 +234,23 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "empty",
+      "type": "registry:ui"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "field",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ],
+      "registryDependencies": [
+        "label",
+        "separator"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "flex",
       "type": "registry:ui"
     },
@@ -252,6 +265,32 @@
       "type": "registry:ui",
       "dependencies": [
         "@kobalte/core"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input",
+      "type": "registry:ui"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input-group",
+      "type": "registry:ui",
+      "registryDependencies": [
+        "button",
+        "input",
+        "textarea"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "item",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ],
+      "registryDependencies": [
+        "separator"
       ]
     },
     {
@@ -352,10 +391,6 @@
       "type": "registry:ui",
       "dependencies": [
         "@kobalte/core"
-      ],
-      "devDependencies": [
-        "unplugin-icons",
-        "@iconify-json/lucide"
       ]
     },
     {
@@ -409,10 +444,6 @@
       "dependencies": [
         "@kobalte/core"
       ],
-      "devDependencies": [
-        "unplugin-icons",
-        "@iconify-json/lucide"
-      ],
       "registryDependencies": [
         "button",
         "separator",
@@ -448,6 +479,19 @@
       "type": "registry:ui",
       "dependencies": [
         "solid-sonner"
+      ],
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "spinner",
+      "type": "registry:ui",
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
       ]
     },
     {
@@ -478,6 +522,11 @@
       "dependencies": [
         "@kobalte/core"
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "textarea",
+      "type": "registry:ui"
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

@@ -5,10 +5,14 @@
   "dependencies": [
     "solid-sonner"
   ],
+  "devDependencies": [
+    "unplugin-icons",
+    "@iconify-json/lucide"
+  ],
   "files": [
     {
       "path": "src/registry/ui/sonner.tsx",
-      "content": "import type { Component, ComponentProps } from \"solid-js\";\n\nimport { Toaster as Sonner } from \"solid-sonner\";\n\ntype ToasterProps = ComponentProps<typeof Sonner>;\n\nconst Toaster: Component<ToasterProps> = (props) => {\n  return (\n    <Sonner\n      class=\"toaster group\"\n      toastOptions={{\n        classes: {\n          toast:\n            \"group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg\",\n          description: \"group-[.toast]:text-muted-foreground\",\n          actionButton:\n            \"group-[.toast]:bg-primary group-[.toast]:text-primary-foreground\",\n          cancelButton:\n            \"group-[.toast]:bg-muted group-[.toast]:text-muted-foreground\",\n        },\n      }}\n      {...props}\n    />\n  );\n};\n\nexport { Toaster };\n",
+      "content": "import { useColorMode } from \"@kobalte/core\";\nimport type { Component, ComponentProps } from \"solid-js\";\n\nimport { Toaster as Sonner } from \"solid-sonner\";\nimport IconCircleCheck from \"~icons/lucide/circle-check\";\nimport IconInfo from \"~icons/lucide/info\";\nimport IconLoaderCircle from \"~icons/lucide/loader-circle\";\nimport IconOctagonX from \"~icons/lucide/octagon-x\";\nimport IconTriangleAlert from \"~icons/lucide/triangle-alert\";\n\ntype ToasterProps = ComponentProps<typeof Sonner>;\n\nconst Toaster: Component<ToasterProps> = (props) => {\n  const { colorMode } = useColorMode();\n\n  return (\n    <Sonner\n      theme={colorMode()}\n      class=\"group toaster\"\n      icons={{\n        success: <IconCircleCheck class=\"size-4\" />,\n        info: <IconInfo class=\"size-4\" />,\n        warning: <IconTriangleAlert class=\"size-4\" />,\n        error: <IconOctagonX class=\"size-4\" />,\n        loading: <IconLoaderCircle class=\"size-4 animate-spin\" />,\n      }}\n      style={{\n        \"--normal-bg\": \"var(--popover)\",\n        \"--normal-text\": \"var(--popover-foreground)\",\n        \"--normal-border\": \"var(--border)\",\n        \"--border-radius\": \"var(--radius)\",\n      }}\n      toastOptions={{\n        classes: {\n          toast: \"cn-toast\",\n        },\n      }}\n      {...props}\n    />\n  );\n};\n\nexport { Toaster };\n",
       "type": "registry:ui"
     }
   ]

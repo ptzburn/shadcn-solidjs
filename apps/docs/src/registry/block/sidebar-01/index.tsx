@@ -3,6 +3,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
+  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "~/registry/ui/breadcrumb.tsx";
 import { Separator } from "~/registry/ui/separator.tsx";
@@ -31,7 +32,7 @@ export default function Index() {
               </BreadcrumbItem>
               <BreadcrumbSeparator class="hidden md:block" />
               <BreadcrumbItem>
-                <BreadcrumbLink current>Data Fetching</BreadcrumbLink>
+                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>

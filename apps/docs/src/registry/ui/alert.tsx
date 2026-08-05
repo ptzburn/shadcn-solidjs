@@ -1,21 +1,21 @@
-import type { Component, ComponentProps, ValidComponent } from "solid-js";
-import { splitProps } from "solid-js";
-
 import * as AlertPrimitive from "@kobalte/core/alert";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import type { VariantProps } from "class-variance-authority";
-import { cva } from "class-variance-authority";
 
 import { cn } from "~/lib/utils.ts";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import type { Component, ComponentProps, ValidComponent } from "solid-js";
+
+import { splitProps } from "solid-js";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border p-4 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7",
+  "group/alert relative grid w-full gap-0.5 rounded-lg border px-2.5 py-2 text-left text-sm has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pr-18 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current *:[svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
-        default: "bg-background text-foreground",
+        default: "bg-card text-card-foreground",
         destructive:
-          "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
+          "bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90 *:[svg]:text-current",
       },
     },
     defaultVariants: {
@@ -38,17 +38,22 @@ const Alert = <T extends ValidComponent = "div">(
   ]);
   return (
     <AlertPrimitive.Root
-      class={cn(alertVariants({ variant: props.variant }), local.class)}
+      data-slot="alert"
+      class={cn(alertVariants({ variant: local.variant }), local.class)}
       {...others}
     />
   );
 };
 
-const AlertTitle: Component<ComponentProps<"h5">> = (props) => {
+const AlertTitle: Component<ComponentProps<"div">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
-    <h5
-      class={cn("mb-1 font-medium leading-none tracking-tight", local.class)}
+    <div
+      data-slot="alert-title"
+      class={cn(
+        "font-medium group-has-[>svg]/alert:col-start-2 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground",
+        local.class,
+      )}
       {...others}
     />
   );
@@ -57,8 +62,26 @@ const AlertTitle: Component<ComponentProps<"h5">> = (props) => {
 const AlertDescription: Component<ComponentProps<"div">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
-    <div class={cn("text-sm [&_p]:leading-relaxed", local.class)} {...others} />
+    <div
+      data-slot="alert-description"
+      class={cn(
+        "text-balance text-muted-foreground text-sm md:text-pretty [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+        local.class,
+      )}
+      {...others}
+    />
   );
 };
 
-export { Alert, AlertDescription, AlertTitle };
+const AlertAction: Component<ComponentProps<"div">> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
+  return (
+    <div
+      data-slot="alert-action"
+      class={cn("absolute top-2 right-2", local.class)}
+      {...others}
+    />
+  );
+};
+
+export { Alert, AlertAction, AlertDescription, AlertTitle };

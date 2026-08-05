@@ -1,11 +1,11 @@
-import type { JSX, ValidComponent } from "solid-js";
-import { splitProps } from "solid-js";
-
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import * as SliderPrimitive from "@kobalte/core/slider";
 
+import { Label } from "./label.tsx";
 import { cn } from "~/lib/utils.ts";
-import { Label } from "~/registry/ui/label.tsx";
+
+import type { JSX, ValidComponent } from "solid-js";
+import { splitProps } from "solid-js";
 
 type SliderRootProps<T extends ValidComponent = "div"> =
   & SliderPrimitive.SliderRootProps<T>
@@ -19,8 +19,9 @@ const Slider = <T extends ValidComponent = "div">(
   const [local, others] = splitProps(props as SliderRootProps, ["class"]);
   return (
     <SliderPrimitive.Root
+      data-slot="slider"
       class={cn(
-        "relative flex w-full touch-none select-none flex-col items-center",
+        "relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-40 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50",
         local.class,
       )}
       {...others}
@@ -40,8 +41,9 @@ const SliderTrack = <T extends ValidComponent = "div">(
   const [local, others] = splitProps(props as SliderTrackProps, ["class"]);
   return (
     <SliderPrimitive.Track
+      data-slot="slider-track"
       class={cn(
-        "relative h-2 w-full grow rounded-full bg-secondary",
+        "relative grow overflow-hidden rounded-full bg-muted data-[orientation=horizontal]:h-1 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-1",
         local.class,
       )}
       {...others}
@@ -61,7 +63,11 @@ const SliderFill = <T extends ValidComponent = "div">(
   const [local, others] = splitProps(props as SliderFillProps, ["class"]);
   return (
     <SliderPrimitive.Fill
-      class={cn("absolute h-full rounded-full bg-primary", local.class)}
+      data-slot="slider-range"
+      class={cn(
+        "absolute select-none bg-primary data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full",
+        local.class,
+      )}
       {...others}
     />
   );
@@ -83,8 +89,9 @@ const SliderThumb = <T extends ValidComponent = "span">(
   ]);
   return (
     <SliderPrimitive.Thumb
+      data-slot="slider-thumb"
       class={cn(
-        "top-[-6px] block size-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "top-1/2 block size-3 shrink-0 -translate-y-1/2 select-none rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] after:absolute after:-inset-2 hover:ring-3 focus-visible:outline-hidden focus-visible:ring-3 active:ring-3 disabled:pointer-events-none disabled:opacity-50",
         local.class,
       )}
       {...others}

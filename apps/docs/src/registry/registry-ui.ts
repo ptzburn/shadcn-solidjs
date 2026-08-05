@@ -263,6 +263,28 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "empty",
+    type: "ui",
+    files: [
+      {
+        path: "ui/empty.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
+    name: "field",
+    type: "ui",
+    dependencies: ["@kobalte/core"],
+    registryDependencies: ["label", "separator"],
+    files: [
+      {
+        path: "ui/field.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "flex",
     type: "ui",
     files: [
@@ -289,6 +311,39 @@ export const ui: Registry = [
     files: [
       {
         path: "ui/hover-card.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
+    name: "input",
+    type: "ui",
+    files: [
+      {
+        path: "ui/input.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
+    name: "input-group",
+    type: "ui",
+    registryDependencies: ["button", "input", "textarea"],
+    files: [
+      {
+        path: "ui/input-group.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
+    name: "item",
+    type: "ui",
+    dependencies: ["@kobalte/core"],
+    registryDependencies: ["separator"],
+    files: [
+      {
+        path: "ui/item.tsx",
         type: "ui",
       },
     ],
@@ -502,6 +557,16 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "spinner",
+    type: "ui",
+    files: [
+      {
+        path: "ui/spinner.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "switch",
     type: "ui",
     dependencies: ["@kobalte/core"],
@@ -540,6 +605,16 @@ export const ui: Registry = [
     files: [
       {
         path: "ui/text-field.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
+    name: "textarea",
+    type: "ui",
+    files: [
+      {
+        path: "ui/textarea.tsx",
         type: "ui",
       },
     ],

@@ -32,7 +32,7 @@ export default function Sidebar() {
                       <span>{link.title}</span>
                       <Switch>
                         <Match when={link.status === "new"}>
-                          <Badge variant="success" class="ml-2">
+                          <Badge class="ml-2">
                             new
                           </Badge>
                         </Match>

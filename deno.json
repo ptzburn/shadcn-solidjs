@@ -11,5 +11,12 @@
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@^1.0.0"
+  },
+  "compilerOptions": {
+    "paths": {
+      "~icons/*": [
+        "./node_modules/unplugin-icons/types/solid.d.ts"
+      ]
+    }
   }
 }

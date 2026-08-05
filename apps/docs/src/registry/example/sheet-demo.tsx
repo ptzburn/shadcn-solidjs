@@ -27,7 +27,7 @@ export default function SheetDemo() {
             <SheetTrigger as={Button<"button">} variant="outline">
               {position}
             </SheetTrigger>
-            <SheetContent position={position}>
+            <SheetContent side={position}>
               <SheetHeader>
                 <SheetTitle>Edit profile</SheetTitle>
                 <SheetDescription>

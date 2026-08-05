@@ -7,7 +7,6 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuDescription,
-  NavigationMenuIcon,
   NavigationMenuItem,
   NavigationMenuLabel,
   NavigationMenuLink,
@@ -27,7 +26,6 @@ export default function NavigationMenuDemo() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>
             Getting started
-            <NavigationMenuIcon />
           </NavigationMenuTrigger>
 
           <NavigationMenuContent class="grid w-[90vw] grid-rows-3 gap-3 sm:w-[500px] sm:grid-cols-2 md:w-[500px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] [&>li:first-child]:row-span-3">
@@ -72,7 +70,6 @@ export default function NavigationMenuDemo() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>
             Overview
-            <NavigationMenuIcon />
           </NavigationMenuTrigger>
 
           <NavigationMenuContent class="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">

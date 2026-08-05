@@ -233,6 +233,27 @@
     "type": "ui"
   },
   {
+    "name": "empty",
+    "files": [
+      "ui/empty.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "field",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "registryDependencies": [
+      "label",
+      "separator"
+    ],
+    "files": [
+      "ui/field.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "flex",
     "files": [
       "ui/flex.tsx"
@@ -253,6 +274,38 @@
     ],
     "files": [
       "ui/hover-card.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "input",
+    "files": [
+      "ui/input.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "input-group",
+    "registryDependencies": [
+      "button",
+      "input",
+      "textarea"
+    ],
+    "files": [
+      "ui/input-group.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "item",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "registryDependencies": [
+      "separator"
+    ],
+    "files": [
+      "ui/item.tsx"
     ],
     "type": "ui"
   },
@@ -449,6 +502,13 @@
     "type": "ui"
   },
   {
+    "name": "spinner",
+    "files": [
+      "ui/spinner.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "switch",
     "dependencies": [
       "@kobalte/core"
@@ -482,6 +542,13 @@
     ],
     "files": [
       "ui/text-field.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "textarea",
+    "files": [
+      "ui/textarea.tsx"
     ],
     "type": "ui"
   },

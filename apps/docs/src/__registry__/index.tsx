@@ -294,6 +294,30 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "empty": {
+    name: "empty",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/empty.tsx")),
+    files: [{
+      path: "registry/ui/empty.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
+  "field": {
+    name: "field",
+    description: "",
+    type: "ui",
+    registryDependencies: ["label", "separator"],
+    component: lazy(() => import("~/registry/ui/field.tsx")),
+    files: [{
+      path: "registry/ui/field.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "flex": {
     name: "flex",
     description: "",
@@ -326,6 +350,42 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/ui/hover-card.tsx")),
     files: [{
       path: "registry/ui/hover-card.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
+  "input": {
+    name: "input",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/input.tsx")),
+    files: [{
+      path: "registry/ui/input.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
+  "input-group": {
+    name: "input-group",
+    description: "",
+    type: "ui",
+    registryDependencies: ["button", "input", "textarea"],
+    component: lazy(() => import("~/registry/ui/input-group.tsx")),
+    files: [{
+      path: "registry/ui/input-group.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
+  "item": {
+    name: "item",
+    description: "",
+    type: "ui",
+    registryDependencies: ["separator"],
+    component: lazy(() => import("~/registry/ui/item.tsx")),
+    files: [{
+      path: "registry/ui/item.tsx",
       type: "ui",
       target: "",
     }],
@@ -554,6 +614,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "spinner": {
+    name: "spinner",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/spinner.tsx")),
+    files: [{
+      path: "registry/ui/spinner.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "switch": {
     name: "switch",
     description: "",
@@ -598,6 +670,18 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/ui/text-field.tsx")),
     files: [{
       path: "registry/ui/text-field.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
+  "textarea": {
+    name: "textarea",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/textarea.tsx")),
+    files: [{
+      path: "registry/ui/textarea.tsx",
       type: "ui",
       target: "",
     }],

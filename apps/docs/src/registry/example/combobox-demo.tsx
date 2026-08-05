@@ -4,7 +4,6 @@ import {
   ComboboxControl,
   ComboboxInput,
   ComboboxItem,
-  ComboboxItemIndicator,
   ComboboxItemLabel,
   ComboboxSection,
   ComboboxTrigger,
@@ -54,7 +53,6 @@ export default function ComboboxDemo() {
       itemComponent={(props) => (
         <ComboboxItem item={props.item}>
           <ComboboxItemLabel>{props.item.rawValue.label}</ComboboxItemLabel>
-          <ComboboxItemIndicator />
         </ComboboxItem>
       )}
       sectionComponent={(props) => (

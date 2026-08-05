@@ -81,11 +81,6 @@
     "types": [
       "vite/client",
       "unplugin-icons/types/solid"
-    ],
-    "paths": {
-      "~icons/*": [
-        "./node_modules/unplugin-icons/types/solid.d.ts"
-      ]
-    }
+    ]
   }
 }

@@ -1,24 +1,44 @@
-import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
-import { splitProps } from "solid-js";
-
 import type {
+  CloseProps,
   ContentProps,
   DescriptionProps,
   DynamicProps,
   LabelProps,
   OverlayProps,
+  TriggerProps,
 } from "@corvu/drawer";
 import DrawerPrimitive from "@corvu/drawer";
 
 import { cn } from "~/lib/utils.ts";
+import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
+
+import { splitProps } from "solid-js";
 
 const Drawer = DrawerPrimitive;
 
-const DrawerTrigger = DrawerPrimitive.Trigger;
-
 const DrawerPortal = DrawerPrimitive.Portal;
 
-const DrawerClose = DrawerPrimitive.Close;
+const DrawerTrigger = <T extends ValidComponent = "button">(
+  props: DynamicProps<T, TriggerProps<T>>,
+) => {
+  return (
+    <DrawerPrimitive.Trigger
+      data-slot="drawer-trigger"
+      {...(props as TriggerProps)}
+    />
+  );
+};
+
+const DrawerClose = <T extends ValidComponent = "button">(
+  props: DynamicProps<T, CloseProps<T>>,
+) => {
+  return (
+    <DrawerPrimitive.Close
+      data-slot="drawer-close"
+      {...(props as CloseProps)}
+    />
+  );
+};
 
 type DrawerOverlayProps<T extends ValidComponent = "div"> = OverlayProps<T> & {
   class?: string;
@@ -31,13 +51,14 @@ const DrawerOverlay = <T extends ValidComponent = "div">(
   const drawerContext = DrawerPrimitive.useContext();
   return (
     <DrawerPrimitive.Overlay
+      data-slot="drawer-overlay"
       class={cn(
-        "fixed inset-0 z-50 data-[transitioning]:transition-colors data-[transitioning]:duration-300",
+        "fixed inset-0 z-50 supports-backdrop-filter:backdrop-blur-xs data-transitioning:transition-colors data-transitioning:duration-300",
         props.class,
       )}
       style={{
         "background-color": `rgb(0 0 0 / ${
-          0.8 * drawerContext.openPercentage()
+          0.1 * drawerContext.openPercentage()
         })`,
       }}
       {...rest}
@@ -61,13 +82,14 @@ const DrawerContent = <T extends ValidComponent = "div">(
     <DrawerPortal>
       <DrawerOverlay />
       <DrawerPrimitive.Content
+        data-slot="drawer-content"
         class={cn(
-          "fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background after:absolute after:inset-x-0 after:top-full after:h-1/2 after:bg-inherit data-[transitioning]:transition-transform data-[transitioning]:duration-300 md:select-none",
+          "group/drawer-content fixed z-50 flex h-auto flex-col bg-popover text-popover-foreground text-sm data-[side=bottom]:inset-x-0 data-[side=left]:inset-y-0 data-[side=right]:inset-y-0 data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=right]:right-0 data-[side=bottom]:bottom-0 data-[side=left]:left-0 data-[side=bottom]:mt-24 data-[side=top]:mb-24 data-[side=bottom]:max-h-[80vh] data-[side=top]:max-h-[80vh] data-[side=left]:w-3/4 data-[side=right]:w-3/4 data-[side=bottom]:rounded-t-xl data-[side=left]:rounded-r-xl data-[side=right]:rounded-l-xl data-[side=top]:rounded-b-xl data-[side=bottom]:border-t data-[side=left]:border-r data-[side=right]:border-l data-[side=top]:border-b data-transitioning:transition-transform data-transitioning:duration-300 data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm",
           props.class,
         )}
         {...rest}
       >
-        <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
+        <div class="mx-auto mt-4 hidden h-1 w-[100px] shrink-0 rounded-full bg-muted group-data-[side=bottom]/drawer-content:block" />
         {props.children}
       </DrawerPrimitive.Content>
     </DrawerPortal>
@@ -78,7 +100,11 @@ const DrawerHeader: Component<ComponentProps<"div">> = (props) => {
   const [, rest] = splitProps(props, ["class"]);
   return (
     <div
-      class={cn("grid gap-1.5 p-4 text-center sm:text-left", props.class)}
+      data-slot="drawer-header"
+      class={cn(
+        "flex flex-col gap-0.5 p-4 md:gap-0.5 md:text-left group-data-[side=bottom]/drawer-content:text-center group-data-[side=top]/drawer-content:text-center",
+        props.class,
+      )}
       {...rest}
     />
   );
@@ -87,7 +113,11 @@ const DrawerHeader: Component<ComponentProps<"div">> = (props) => {
 const DrawerFooter: Component<ComponentProps<"div">> = (props) => {
   const [, rest] = splitProps(props, ["class"]);
   return (
-    <div class={cn("t-auto flex flex-col gap-2 p-4", props.class)} {...rest} />
+    <div
+      data-slot="drawer-footer"
+      class={cn("mt-auto flex flex-col gap-2 p-4", props.class)}
+      {...rest}
+    />
   );
 };
 
@@ -101,8 +131,9 @@ const DrawerTitle = <T extends ValidComponent = "div">(
   const [, rest] = splitProps(props as DrawerTitleProps, ["class"]);
   return (
     <DrawerPrimitive.Label
+      data-slot="drawer-title"
       class={cn(
-        "text-lg font-semibold leading-none tracking-tight",
+        "font-heading font-medium text-base text-foreground",
         props.class,
       )}
       {...rest}
@@ -122,7 +153,8 @@ const DrawerDescription = <T extends ValidComponent = "div">(
   const [, rest] = splitProps(props as DrawerDescriptionProps, ["class"]);
   return (
     <DrawerPrimitive.Description
-      class={cn("text-sm text-muted-foreground", props.class)}
+      data-slot="drawer-description"
+      class={cn("text-muted-foreground text-sm", props.class)}
       {...rest}
     />
   );
