@@ -4,14 +4,18 @@ description: A vertically stacked set of interactive headings that each reveal a
 docs: https://kobalte.dev/docs/core/components/accordion
 ---
 
-<ComponentPreview name="accordion-demo" />
+<ComponentPreview
+  name="accordion-demo"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px] min-h-0"
+/>
 
 ## Installation
 
 <Tabs defaultValue="cli">
 
 <TabsList>
-  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="cli">Command</TabsTrigger>
   <TabsTrigger value="manual">Manual</TabsTrigger>
 </TabsList>
 
@@ -26,48 +30,22 @@ npx solidui-cli@latest add accordion
 <TabsContent value="manual">
 <Steps>
 
-<Step>Install the following dependencies: </Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @kobalte/core
 ```
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="accordion" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 </TabsContent>
 
 </Tabs>
-
-### tailwind.config.js
-
-Add the following animations to your `tailwind.config.js` file:
-
-```js {5-18} /module/
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  theme: {
-    extend: {
-      keyframes: {
-        "accordion-down": {
-          from: { height: 0 },
-          to: { height: "var(--kb-accordion-content-height)" }
-        },
-        "accordion-up": {
-          from: { height: "var(--kb-accordion-content-height)" },
-          to: { height: 0 }
-        }
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out"
-      }
-    }
-  }
-}
-```
 
 ## Usage
 
@@ -81,10 +59,80 @@ import {
 ```
 
 ```tsx
-<Accordion multiple={false} collapsible>
+<Accordion collapsible defaultValue={["item-1"]}>
   <AccordionItem value="item-1">
     <AccordionTrigger>Is it accessible?</AccordionTrigger>
-    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+    <AccordionContent>
+      Yes. It adheres to the WAI-ARIA design pattern.
+    </AccordionContent>
   </AccordionItem>
 </Accordion>
 ```
+
+## Composition
+
+Use the following composition to build an `Accordion`:
+
+```text
+Accordion
+├── AccordionItem
+│   ├── AccordionTrigger
+│   └── AccordionContent
+└── AccordionItem
+    ├── AccordionTrigger
+    └── AccordionContent
+```
+
+## Basic
+
+A basic accordion that shows one item at a time. The first item is open by default.
+
+<ComponentPreview
+  name="accordion-basic"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px] min-h-0"
+/>
+
+## Multiple
+
+Use the `multiple` prop to allow multiple items to be open at the same time.
+
+<ComponentPreview
+  name="accordion-multiple"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[36rem] md:h-[30rem] min-h-0"
+/>
+
+## Disabled
+
+Use the `disabled` prop on `AccordionItem` to disable individual items.
+
+<ComponentPreview
+  name="accordion-disabled"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[300px] min-h-0"
+/>
+
+## Borders
+
+Add `border` to the `Accordion` and `border-b last:border-b-0` to the `AccordionItem` to add borders to the items.
+
+<ComponentPreview
+  name="accordion-borders"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-96 md:h-80 min-h-0"
+/>
+
+## Card
+
+Wrap the `Accordion` in a `Card` component.
+
+<ComponentPreview
+  name="accordion-card"
+  align="start"
+  previewClassName="*:data-[slot=accordion]:max-w-sm h-[32rem] md:h-[28rem] min-h-0"
+/>
+
+## API Reference
+
+See the [Kobalte](https://kobalte.dev/docs/core/components/accordion) documentation for more information.

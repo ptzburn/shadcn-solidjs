@@ -54,7 +54,7 @@ export const MDXComponents = {
         <pre
           ref={preRef}
           class={cn(
-            "code group mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-code text-code-foreground py-4",
+            "code group no-scrollbar mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-code text-code-foreground py-4",
           )}
         >
           {props.children}

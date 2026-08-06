@@ -39,6 +39,7 @@ const CopyButton: Component<CopyButtonProps> = (props) => {
       <Tooltip placement="top">
         <TooltipTrigger
           as={Toggle<"button">}
+          data-slot="copy-button"
           onChange={setCopied}
           pressed={isCopied()}
           disabled={isCopied()}

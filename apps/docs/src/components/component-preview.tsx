@@ -2,6 +2,7 @@ import {
   type Component,
   type ComponentProps,
   createMemo,
+  createSignal,
   mergeProps,
   Show,
   splitProps,
@@ -9,18 +10,15 @@ import {
 
 import { Index } from "~/__registry__/index.tsx";
 import { cn } from "~/lib/utils.ts";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "~/registry/ui/tabs.tsx";
+import { Button } from "~/registry/ui/button.tsx";
 
 interface ComponentPreviewProps extends ComponentProps<"div"> {
   name: string;
   source: string;
   align?: "center" | "start" | "end";
   type?: "block" | "component" | "example";
+  previewClassName?: string;
+  hideCode?: boolean;
 }
 
 const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
@@ -31,7 +29,10 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
     "children",
     "name",
     "type",
+    "previewClassName",
+    "hideCode",
   ]);
+  const [isCodeVisible, setIsCodeVisible] = createSignal(false);
 
   const Preview = createMemo(() => {
     const Component = Index[local.name]?.component;
@@ -63,46 +64,56 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
       }
     >
       <div
-        class={cn("group relative my-4 flex flex-col space-y-2", local.class)}
+        data-slot="component-preview"
+        class={cn(
+          "group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-2xl border",
+          local.class,
+        )}
         {...others}
       >
-        <Tabs defaultValue="preview" class="relative mr-auto w-full">
-          <div class="flex items-center justify-between pb-3">
-            <TabsList class="w-full justify-start rounded-none border-b bg-transparent p-0">
-              <TabsTrigger
-                value="preview"
-                class="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[selected]:border-b-primary data-[selected]:text-foreground data-[selected]:shadow-none"
-              >
-                Preview
-              </TabsTrigger>
-              <TabsTrigger
-                value="code"
-                class="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[selected]:border-b-primary data-[selected]:text-foreground data-[selected]:shadow-none"
-              >
-                Code
-              </TabsTrigger>
-            </TabsList>
+        <div data-slot="preview">
+          <div
+            data-align={local.align}
+            class={cn(
+              "preview relative flex min-h-[350px] w-full justify-center p-10",
+              local.align === "center" && "items-center",
+              local.align === "start" && "items-start",
+              local.align === "end" && "items-end",
+              local.previewClassName,
+            )}
+          >
+            <Preview />
           </div>
-          <TabsContent value="preview" class="relative rounded-md border">
-            <div
-              class={cn(
-                "preview flex min-h-[350px] w-full justify-center p-10",
-                local.align === "center" && "items-center",
-                local.align === "start" && "items-start",
-                local.align === "end" && "items-end",
-              )}
-            >
-              <Preview />
-            </div>
-          </TabsContent>
-          <TabsContent value="code">
-            <div class="flex flex-col space-y-4">
-              <div class="w-full rounded-md [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto">
-                {local.children}
+        </div>
+        <Show when={!local.hideCode}>
+          <div
+            data-slot="code"
+            data-code-visible={isCodeVisible()}
+            class="relative overflow-hidden **:data-[slot=copy-button]:right-4 **:data-[slot=copy-button]:hidden data-[code-visible=true]:**:data-[slot=copy-button]:flex [&_pre]:my-0 [&_pre]:rounded-none [&_pre]:border-0 [&_pre]:border-t [&_pre]:max-h-72 data-[code-visible=false]:[&_pre]:max-h-28 data-[code-visible=false]:[&_pre]:overflow-hidden"
+          >
+            {local.children}
+            <Show when={!isCodeVisible()}>
+              <div class="absolute inset-0 flex items-center justify-center pb-4">
+                <div
+                  class="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(to top, var(--color-code), color-mix(in oklab, var(--color-code) 60%, transparent), transparent)",
+                  }}
+                />
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  class="relative z-10 rounded-lg bg-background text-foreground shadow-none hover:bg-muted dark:bg-background dark:text-foreground dark:hover:bg-muted"
+                  onClick={() => setIsCodeVisible(true)}
+                >
+                  View Code
+                </Button>
               </div>
-            </div>
-          </TabsContent>
-        </Tabs>
+            </Show>
+          </div>
+        </Show>
       </div>
     </Show>
   );
