@@ -758,6 +758,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "alert-dialog-basic": {
+    name: "alert-dialog-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/alert-dialog-basic.tsx")),
+    files: [{
+      path: "registry/example/alert-dialog-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "alert-dialog-demo": {
     name: "alert-dialog-demo",
     description: "",
@@ -766,6 +778,58 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/alert-dialog-demo.tsx")),
     files: [{
       path: "registry/example/alert-dialog-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-dialog-destructive": {
+    name: "alert-dialog-destructive",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/alert-dialog-destructive.tsx")
+    ),
+    files: [{
+      path: "registry/example/alert-dialog-destructive.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-dialog-media": {
+    name: "alert-dialog-media",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/alert-dialog-media.tsx")),
+    files: [{
+      path: "registry/example/alert-dialog-media.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-dialog-small": {
+    name: "alert-dialog-small",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/alert-dialog-small.tsx")),
+    files: [{
+      path: "registry/example/alert-dialog-small.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-dialog-small-media": {
+    name: "alert-dialog-small-media",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/alert-dialog-small-media.tsx")
+    ),
+    files: [{
+      path: "registry/example/alert-dialog-small-media.tsx",
       type: "example",
       target: "",
     }],

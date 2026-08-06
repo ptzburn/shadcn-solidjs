@@ -112,11 +112,61 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "alert-dialog-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/alert-dialog-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "alert-dialog-demo",
     type: "example",
     files: [
       {
         path: "example/alert-dialog-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "alert-dialog-destructive",
+    type: "example",
+    files: [
+      {
+        path: "example/alert-dialog-destructive.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "alert-dialog-media",
+    type: "example",
+    files: [
+      {
+        path: "example/alert-dialog-media.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "alert-dialog-small",
+    type: "example",
+    files: [
+      {
+        path: "example/alert-dialog-small.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "alert-dialog-small-media",
+    type: "example",
+    files: [
+      {
+        path: "example/alert-dialog-small-media.tsx",
         type: "example",
       },
     ],

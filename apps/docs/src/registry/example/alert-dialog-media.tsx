@@ -1,3 +1,4 @@
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -6,28 +7,37 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
+  AlertDialogMedia,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "~/registry/ui/alert-dialog.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 
-export default function AlertDialogDemo() {
+export default function AlertDialogWithMedia() {
   return (
     <AlertDialog>
       <AlertDialogTrigger as={Button} variant="outline">
-        Show Dialog
+        Share Project
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogMedia>
+            <IconPlaceholder
+              lucide="circle-fading-plus"
+              tabler="circle-dashed-plus"
+              ph="plus-circle"
+              ri="add-circle-line"
+              hugeicons="plus-sign-circle"
+            />
+          </AlertDialogMedia>
+          <AlertDialogTitle>Share this project?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account from our servers.
+            Anyone with the link will be able to view and edit this project.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogAction>Share</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

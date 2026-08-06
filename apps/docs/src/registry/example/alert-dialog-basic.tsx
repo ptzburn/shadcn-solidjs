@@ -11,7 +11,7 @@ import {
 } from "~/registry/ui/alert-dialog.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 
-export default function AlertDialogDemo() {
+export default function AlertDialogBasic() {
   return (
     <AlertDialog>
       <AlertDialogTrigger as={Button} variant="outline">
@@ -22,7 +22,7 @@ export default function AlertDialogDemo() {
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your
-            account from our servers.
+            account and remove your data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

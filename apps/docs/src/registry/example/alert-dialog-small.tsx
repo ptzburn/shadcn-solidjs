@@ -11,23 +11,22 @@ import {
 } from "~/registry/ui/alert-dialog.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 
-export default function AlertDialogDemo() {
+export default function AlertDialogSmall() {
   return (
     <AlertDialog>
       <AlertDialogTrigger as={Button} variant="outline">
         Show Dialog
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent size="sm">
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account from our servers.
+            Do you want to allow the USB accessory to connect to this device?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogCancel>Don't allow</AlertDialogCancel>
+          <AlertDialogAction>Allow</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
