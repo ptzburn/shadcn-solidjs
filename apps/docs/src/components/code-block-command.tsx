@@ -2,6 +2,7 @@ import type { Component } from "solid-js";
 import { createSignal, For, Show } from "solid-js";
 
 import { IconCheck, IconCopy, IconTerminal } from "~/components/icons.tsx";
+import { type Config, useConfig } from "~/lib/hooks/use-config.ts";
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Tabs,
@@ -12,22 +13,36 @@ import {
 
 interface CodeBlockCommandProps {
   npm: string;
+  yarn: string;
+  pnpm: string;
+  bun: string;
+  deno: string;
 }
 
 /**
- * Port of the upstream shadcn command block. Only npm is offered for
- * now — add the other package managers to `tabs` once the CLI story
- * supports them, plus a persisted selection like upstream's useConfig.
+ * Port of the upstream shadcn command block: the package manager choice
+ * persists across pages via the shared config.
  *
  * font-mono on the root stands in for the `pre` wrapper the upstream
  * block renders inside, which its tab labels inherit their font from.
  */
 const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
+  const [config, setConfig] = useConfig();
   const [hasCopied, setHasCopied] = createSignal(false);
-  const tabs = () => ({ npm: props.npm });
+
+  const packageManager = () => config().packageManager;
+  const tabs = () => ({
+    pnpm: props.pnpm,
+    npm: props.npm,
+    yarn: props.yarn,
+    bun: props.bun,
+    deno: props.deno,
+  });
 
   const copyCommand = () => {
-    navigator.clipboard?.writeText(props.npm);
+    const command = tabs()[packageManager()];
+    if (!command) return;
+    navigator.clipboard?.writeText(command);
     setHasCopied(true);
     setTimeout(() => setHasCopied(false), 2000);
   };
@@ -37,7 +52,14 @@ const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
       data-not-typeset
       class="relative -mx-1 mt-6 overflow-hidden rounded-2xl bg-code font-mono text-sm text-code-foreground md:-mx-1"
     >
-      <Tabs value="npm" class="gap-0">
+      <Tabs
+        value={packageManager()}
+        onChange={(value) =>
+          setConfig({
+            packageManager: value as Config["packageManager"],
+          })}
+        class="gap-0"
+      >
         <div class="flex items-center gap-2 border-b border-border/50 px-3 py-1">
           <div class="flex size-4 items-center justify-center rounded-[1px] bg-foreground opacity-70">
             <IconTerminal class="size-3 text-code" />

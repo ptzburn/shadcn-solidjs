@@ -7,12 +7,14 @@ import { type Accessor, createSignal, onMount } from "solid-js";
  */
 export type Config = {
   installationType: "cli" | "manual";
+  packageManager: "npm" | "yarn" | "pnpm" | "bun" | "deno";
 };
 
 const STORAGE_KEY = "config";
 
 const defaultConfig: Config = {
   installationType: "cli",
+  packageManager: "pnpm",
 };
 
 const [config, setConfigSignal] = createSignal<Config>(defaultConfig);
