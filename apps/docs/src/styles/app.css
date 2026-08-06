@@ -357,9 +357,15 @@
     font-display: swap;
   }
 
+  /*
+   * Upstream registers Geist Mono at weight 400 only, so its font-medium
+   * mono text (e.g. the package manager tabs) still renders 400 glyphs.
+   * Pin the variable font the same way to match.
+   */
   @font-face {
     font-family: "Geist Mono";
     src: url("/fonts/GeistMono.woff2") format("woff2");
+    font-weight: 400;
     font-display: swap;
   }
 

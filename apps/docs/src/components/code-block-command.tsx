@@ -18,6 +18,9 @@ interface CodeBlockCommandProps {
  * Port of the upstream shadcn command block. Only npm is offered for
  * now — add the other package managers to `tabs` once the CLI story
  * supports them, plus a persisted selection like upstream's useConfig.
+ *
+ * font-mono on the root stands in for the `pre` wrapper the upstream
+ * block renders inside, which its tab labels inherit their font from.
  */
 const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
   const [hasCopied, setHasCopied] = createSignal(false);
@@ -32,7 +35,7 @@ const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
   return (
     <div
       data-not-typeset
-      class="relative -mx-1 mt-6 overflow-hidden rounded-2xl bg-code text-sm text-code-foreground md:-mx-1"
+      class="relative -mx-1 mt-6 overflow-hidden rounded-2xl bg-code font-mono text-sm text-code-foreground md:-mx-1"
     >
       <Tabs value="npm" class="gap-0">
         <div class="flex items-center gap-2 border-b border-border/50 px-3 py-1">
