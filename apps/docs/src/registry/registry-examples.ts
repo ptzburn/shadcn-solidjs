@@ -542,6 +542,56 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "badge-variants",
+    type: "example",
+    files: [
+      {
+        path: "example/badge-variants.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "badge-icon",
+    type: "example",
+    files: [
+      {
+        path: "example/badge-icon.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "badge-spinner",
+    type: "example",
+    files: [
+      {
+        path: "example/badge-spinner.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "badge-link",
+    type: "example",
+    files: [
+      {
+        path: "example/badge-link.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "badge-colors",
+    type: "example",
+    files: [
+      {
+        path: "example/badge-colors.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "breadcrumb-demo",
     type: "example",
     files: [
