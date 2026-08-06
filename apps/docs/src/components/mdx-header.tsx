@@ -4,19 +4,12 @@ import { A } from "@solidjs/router";
 import { DocsCopyPage } from "~/components/docs-copy-page.tsx";
 import { useDocsNeighbours } from "~/components/docs-pager.tsx";
 import { MetaTags } from "~/components/meta-tags.tsx";
-import {
-  IconArrowLeft,
-  IconArrowRight,
-  IconExternalLink,
-} from "~/components/icons.tsx";
-import { cn } from "~/lib/utils.ts";
-import { badgeVariants } from "~/registry/ui/badge.tsx";
+import { IconArrowLeft, IconArrowRight } from "~/components/icons.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 
 type HeaderProps = {
   title: string;
   description: string;
-  docs?: string;
 };
 
 export function MDXHeader(props: HeaderProps) {
@@ -68,19 +61,6 @@ export function MDXHeader(props: HeaderProps) {
       <p class="text-balance text-[1.05rem] text-muted-foreground sm:text-base md:max-w-[80%]">
         {props.description}
       </p>
-      <Show when={props.docs}>
-        {(docs) => (
-          <A
-            href={docs()}
-            target="_blank"
-            rel="noreferrer"
-            class={cn(badgeVariants({ variant: "secondary" }), "w-fit gap-1")}
-          >
-            Docs
-            <IconExternalLink class="size-3" />
-          </A>
-        )}
-      </Show>
     </div>
   );
 }

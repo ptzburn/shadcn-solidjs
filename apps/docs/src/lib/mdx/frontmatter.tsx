@@ -5,7 +5,6 @@ import { parse } from "yaml";
 export type Frontmatter = {
   title: string;
   description: string;
-  docs?: string;
 };
 
 export default function remarkSolidFrontmatter() {
