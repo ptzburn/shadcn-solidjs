@@ -712,6 +712,16 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "carousel-api",
+    type: "example",
+    files: [
+      {
+        path: "example/carousel-api.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "carousel-demo",
     type: "example",
     files: [
@@ -722,51 +732,41 @@ export const examples: Registry = [
     ],
   },
   {
-    name: "carousel-size-demo",
+    name: "carousel-orientation",
     type: "example",
     files: [
       {
-        path: "example/carousel-size-demo.tsx",
+        path: "example/carousel-orientation.tsx",
         type: "example",
       },
     ],
   },
   {
-    name: "carousel-api-demo",
+    name: "carousel-plugin",
     type: "example",
     files: [
       {
-        path: "example/carousel-api-demo.tsx",
+        path: "example/carousel-plugin.tsx",
         type: "example",
       },
     ],
   },
   {
-    name: "carousel-orientation-demo",
+    name: "carousel-size",
     type: "example",
     files: [
       {
-        path: "example/carousel-orientation-demo.tsx",
+        path: "example/carousel-size.tsx",
         type: "example",
       },
     ],
   },
   {
-    name: "carousel-plugin-demo",
+    name: "carousel-spacing",
     type: "example",
     files: [
       {
-        path: "example/carousel-plugin-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "carousel-spacing-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/carousel-spacing-demo.tsx",
+        path: "example/carousel-spacing.tsx",
         type: "example",
       },
     ],

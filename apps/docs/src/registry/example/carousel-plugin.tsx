@@ -1,5 +1,7 @@
 import { Index } from "solid-js";
 
+import Autoplay from "embla-carousel-autoplay";
+
 import { Card, CardContent } from "~/registry/ui/card.tsx";
 import {
   Carousel,
@@ -9,22 +11,24 @@ import {
   CarouselPrevious,
 } from "~/registry/ui/carousel.tsx";
 
-export default function CarouselSizeDemo() {
+export default function CarouselPlugin() {
+  const plugin = Autoplay({ delay: 2000, stopOnInteraction: true });
+
   return (
     <Carousel
-      opts={{
-        align: "start",
-      }}
-      class="w-full max-w-sm"
+      plugins={[plugin]}
+      class="w-full max-w-[10rem] sm:max-w-xs"
+      onMouseEnter={plugin.stop}
+      onMouseLeave={plugin.reset}
     >
       <CarouselContent>
         <Index each={Array.from({ length: 5 })}>
           {(_, index) => (
-            <CarouselItem class="md:basis-1/2 lg:basis-1/3">
+            <CarouselItem>
               <div class="p-1">
                 <Card>
                   <CardContent class="flex aspect-square items-center justify-center p-6">
-                    <span class="text-3xl font-semibold">{index + 1}</span>
+                    <span class="text-4xl font-semibold">{index + 1}</span>
                   </CardContent>
                 </Card>
               </div>

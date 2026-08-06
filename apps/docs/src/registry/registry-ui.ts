@@ -114,6 +114,7 @@ export const ui: Registry = [
     name: "carousel",
     type: "ui",
     dependencies: ["embla-carousel-solid"],
+    registryDependencies: ["button"],
     files: [
       {
         path: "ui/carousel.tsx",

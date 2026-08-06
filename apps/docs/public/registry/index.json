@@ -101,6 +101,9 @@
     "dependencies": [
       "embla-carousel-solid"
     ],
+    "registryDependencies": [
+      "button"
+    ],
     "files": [
       "ui/carousel.tsx"
     ],

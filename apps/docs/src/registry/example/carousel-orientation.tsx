@@ -9,17 +9,23 @@ import {
   CarouselPrevious,
 } from "~/registry/ui/carousel.tsx";
 
-export default function CarouselSpacingDemo() {
+export default function CarouselOrientation() {
   return (
-    <Carousel class="w-full max-w-sm">
-      <CarouselContent class="-ml-1">
+    <Carousel
+      opts={{
+        align: "start",
+      }}
+      orientation="vertical"
+      class="w-full max-w-xs"
+    >
+      <CarouselContent class="-mt-1 h-[270px]">
         <Index each={Array.from({ length: 5 })}>
           {(_, index) => (
-            <CarouselItem class="pl-1 md:basis-1/2 lg:basis-1/3">
+            <CarouselItem class="basis-1/2 pt-1">
               <div class="p-1">
                 <Card>
-                  <CardContent class="flex aspect-square items-center justify-center p-6">
-                    <span class="text-2xl font-semibold">{index + 1}</span>
+                  <CardContent class="flex items-center justify-center p-6">
+                    <span class="text-3xl font-semibold">{index + 1}</span>
                   </CardContent>
                 </Card>
               </div>

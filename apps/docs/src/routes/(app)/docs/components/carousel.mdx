@@ -3,7 +3,7 @@ title: Carousel
 description: A carousel with motion and swipe built using Embla.
 ---
 
-<ComponentPreview name="carousel-demo" />
+<ComponentPreview name="carousel-demo" previewClassName="h-80 sm:h-[32rem]" />
 
 ## About
 
@@ -56,7 +56,7 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious
+  CarouselPrevious,
 } from "~/components/ui/carousel"
 ```
 
@@ -72,15 +72,26 @@ import {
 </Carousel>
 ```
 
-## Examples
+## Composition
 
-### Sizes
+Use the following composition to build a `Carousel`:
+
+```text
+Carousel
+├── CarouselContent
+│   ├── CarouselItem
+│   └── CarouselItem
+├── CarouselPrevious
+└── CarouselNext
+```
+
+## Sizes
 
 To set the size of the items, you can use the `basis` utility class on the `<CarouselItem />`.
 
-<ComponentPreview name="carousel-size-demo" />
+<ComponentPreview name="carousel-size" />
 
-```tsx {4-6} showLineNumbers
+```tsx showLineNumbers {4-6}
 // 33% of the carousel width.
 <Carousel>
   <CarouselContent>
@@ -91,7 +102,7 @@ To set the size of the items, you can use the `basis` utility class on the `<Car
 </Carousel>
 ```
 
-```tsx {4-6} showLineNumbers
+```tsx showLineNumbers {4-6}
 // 50% on small screens and 33% on larger screens.
 <Carousel>
   <CarouselContent>
@@ -102,25 +113,13 @@ To set the size of the items, you can use the `basis` utility class on the `<Car
 </Carousel>
 ```
 
-### Spacing
+## Spacing
 
 To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<CarouselItem />` and a negative `-ml-[VALUE]` on the `<CarouselContent />`.
 
-<Alert class="mt-6">
-  <AlertDescription>
-    **Why:** I tried to use the `gap` property or a `grid` layout on the `
-    <CarouselContent />` but it required a lot of math and mental effort to get the
-    spacing right. I found `pl-[VALUE]` and `-ml-[VALUE]` utilities much easier to
-    use.
+<ComponentPreview name="carousel-spacing" />
 
-    You can always adjust this in your own project if you need to.
-
-  </AlertDescription>
-</Alert>
-
-<ComponentPreview name="carousel-spacing-demo" />
-
-```tsx showLineNumbers
+```tsx showLineNumbers /-ml-4/ /pl-4/
 <Carousel>
   <CarouselContent class="-ml-4">
     <CarouselItem class="pl-4">...</CarouselItem>
@@ -130,7 +129,7 @@ To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<Car
 </Carousel>
 ```
 
-```tsx showLineNumbers
+```tsx showLineNumbers /-ml-2/ /pl-2/ /md:-ml-4/ /md:pl-4/
 <Carousel>
   <CarouselContent class="-ml-2 md:-ml-4">
     <CarouselItem class="pl-2 md:pl-4">...</CarouselItem>
@@ -140,13 +139,13 @@ To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<Car
 </Carousel>
 ```
 
-### Orientation
+## Orientation
 
 Use the `orientation` prop to set the orientation of the carousel.
 
-<ComponentPreview name="carousel-orientation-demo" />
+<ComponentPreview name="carousel-orientation" previewClassName="h-[32rem]" />
 
-```tsx showLineNumbers
+```tsx showLineNumbers /vertical | horizontal/
 <Carousel orientation="vertical | horizontal">
   <CarouselContent>
     <CarouselItem>...</CarouselItem>
@@ -160,11 +159,11 @@ Use the `orientation` prop to set the orientation of the carousel.
 
 You can pass options to the carousel using the `opts` prop. See the [Embla Carousel docs](https://www.embla-carousel.com/api/options/) for more information.
 
-```tsx {2-5} showLineNumbers
+```tsx showLineNumbers {2-5}
 <Carousel
   opts={{
     align: "start",
-    loop: true
+    loop: true,
   }}
 >
   <CarouselContent>
@@ -179,9 +178,9 @@ You can pass options to the carousel using the `opts` prop. See the [Embla Carou
 
 Use a state and the `setApi` props to get an instance of the carousel API.
 
-<ComponentPreview name="carousel-api-demo" />
+<ComponentPreview name="carousel-api" previewClassName="sm:h-[32rem]" />
 
-```tsx {1,4,22} showLineNumbers
+```tsx showLineNumbers {1,4,22}
 import type { CarouselApi } from "~/components/ui/carousel"
 
 export function Example() {
@@ -218,22 +217,20 @@ export function Example() {
 
 You can listen to events using the api instance from `setApi`.
 
-```tsx {1,4-16} showLineNumbers
+```tsx showLineNumbers {1,4-14,16}
 import type { CarouselApi } from "~/components/ui/carousel"
 
 export function Example() {
   const [api, setApi] = createSignal<ReturnType<CarouselApi>>()
-
-  const onSelect = () => {
-    // Do something on select.
-  }
 
   createEffect(() => {
     if (!api()) {
       return
     }
 
-    api().on("select", onSelect)
+    api().on("select", () => {
+      // Do something on select.
+    })
   })
 
   return (
@@ -254,7 +251,7 @@ See the [Embla Carousel docs](https://www.embla-carousel.com/api/events/) for mo
 
 You can use the `plugins` prop to add plugins to the carousel.
 
-```tsx {1,6-10} showLineNumbers
+```tsx showLineNumbers {1,6-10}
 import Autoplay from "embla-carousel-autoplay"
 
 export function Example() {
@@ -262,8 +259,8 @@ export function Example() {
     <Carousel
       plugins={[
         Autoplay({
-          delay: 2000
-        })
+          delay: 2000,
+        }),
       ]}
     >
       // ...
@@ -272,6 +269,8 @@ export function Example() {
 }
 ```
 
-<ComponentPreview name="carousel-plugin-demo" />
+<ComponentPreview name="carousel-plugin" previewClassName="sm:h-[32rem]" />
 
-See the [Embla Carousel docs](https://www.embla-carousel.com/api/plugins/) for more information on using plugins.
+## API Reference
+
+See the [Embla Carousel docs](https://www.embla-carousel.com/api/) for more information on props and plugins.

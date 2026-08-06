@@ -130,7 +130,7 @@ export const Index: RegistryIndex = {
     name: "carousel",
     description: "",
     type: "ui",
-    registryDependencies: undefined,
+    registryDependencies: ["button"],
     component: lazy(() => import("~/registry/ui/carousel.tsx")),
     files: [{
       path: "registry/ui/carousel.tsx",
@@ -1498,6 +1498,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "carousel-api": {
+    name: "carousel-api",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/carousel-api.tsx")),
+    files: [{
+      path: "registry/example/carousel-api.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "carousel-demo": {
     name: "carousel-demo",
     description: "",
@@ -1510,68 +1522,52 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
-  "carousel-size-demo": {
-    name: "carousel-size-demo",
-    description: "",
-    type: "example",
-    registryDependencies: undefined,
-    component: lazy(() => import("~/registry/example/carousel-size-demo.tsx")),
-    files: [{
-      path: "registry/example/carousel-size-demo.tsx",
-      type: "example",
-      target: "",
-    }],
-  },
-  "carousel-api-demo": {
-    name: "carousel-api-demo",
-    description: "",
-    type: "example",
-    registryDependencies: undefined,
-    component: lazy(() => import("~/registry/example/carousel-api-demo.tsx")),
-    files: [{
-      path: "registry/example/carousel-api-demo.tsx",
-      type: "example",
-      target: "",
-    }],
-  },
-  "carousel-orientation-demo": {
-    name: "carousel-orientation-demo",
+  "carousel-orientation": {
+    name: "carousel-orientation",
     description: "",
     type: "example",
     registryDependencies: undefined,
     component: lazy(() =>
-      import("~/registry/example/carousel-orientation-demo.tsx")
+      import("~/registry/example/carousel-orientation.tsx")
     ),
     files: [{
-      path: "registry/example/carousel-orientation-demo.tsx",
+      path: "registry/example/carousel-orientation.tsx",
       type: "example",
       target: "",
     }],
   },
-  "carousel-plugin-demo": {
-    name: "carousel-plugin-demo",
+  "carousel-plugin": {
+    name: "carousel-plugin",
     description: "",
     type: "example",
     registryDependencies: undefined,
-    component: lazy(() =>
-      import("~/registry/example/carousel-plugin-demo.tsx")
-    ),
+    component: lazy(() => import("~/registry/example/carousel-plugin.tsx")),
     files: [{
-      path: "registry/example/carousel-plugin-demo.tsx",
+      path: "registry/example/carousel-plugin.tsx",
       type: "example",
       target: "",
     }],
   },
-  "carousel-spacing-demo": {
-    name: "carousel-spacing-demo",
+  "carousel-size": {
+    name: "carousel-size",
     description: "",
     type: "example",
     registryDependencies: undefined,
-    component: lazy(() =>
-      import("~/registry/example/carousel-spacing-demo.tsx")
-    ),
+    component: lazy(() => import("~/registry/example/carousel-size.tsx")),
     files: [{
-      path: "registry/example/carousel-spacing-demo.tsx",
+      path: "registry/example/carousel-size.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "carousel-spacing": {
+    name: "carousel-spacing",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/carousel-spacing.tsx")),
+    files: [{
+      path: "registry/example/carousel-spacing.tsx",
       type: "example",
       target: "",
     }],

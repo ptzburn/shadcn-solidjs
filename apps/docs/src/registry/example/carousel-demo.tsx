@@ -11,7 +11,7 @@ import {
 
 export default function CarouselDemo() {
   return (
-    <Carousel class="w-full max-w-xs">
+    <Carousel class="w-full max-w-[12rem] sm:max-w-xs">
       <CarouselContent>
         <Index each={Array.from({ length: 5 })}>
           {(_, index) => (

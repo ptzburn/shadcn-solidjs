@@ -15,10 +15,6 @@ export default function CarouselApiDemo() {
   const [current, setCurrent] = createSignal(0);
   const [count, setCount] = createSignal(0);
 
-  const onSelect = () => {
-    setCurrent(api()!.selectedScrollSnap() + 1);
-  };
-
   createEffect(() => {
     if (!api()) {
       return;
@@ -27,17 +23,19 @@ export default function CarouselApiDemo() {
     setCount(api()!.scrollSnapList().length);
     setCurrent(api()!.selectedScrollSnap() + 1);
 
-    api()!.on("select", onSelect);
+    api()!.on("select", () => {
+      setCurrent(api()!.selectedScrollSnap() + 1);
+    });
   });
 
   return (
-    <div>
+    <div class="mx-auto max-w-[10rem] sm:max-w-xs">
       <Carousel setApi={setApi} class="w-full max-w-xs">
         <CarouselContent>
           <Index each={Array.from({ length: 5 })}>
             {(_, index) => (
               <CarouselItem>
-                <Card>
+                <Card class="m-px">
                   <CardContent class="flex aspect-square items-center justify-center p-6">
                     <span class="text-4xl font-semibold">{index + 1}</span>
                   </CardContent>
@@ -49,7 +47,7 @@ export default function CarouselApiDemo() {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-      <div class="py-2 text-center text-sm text-muted-foreground">
+      <div class="text-muted-foreground py-2 text-center text-sm">
         Slide {current()} of {count()}
       </div>
     </div>
