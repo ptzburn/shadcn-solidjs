@@ -344,6 +344,7 @@
   html {
     /* Anchor jumps clear the sticky header. */
     scroll-padding-top: var(--header-height);
+    @apply overscroll-y-none;
   }
 
   @media (width >= --theme(--breakpoint-lg)) {
@@ -359,23 +360,9 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-  }
-
-  /**
-   * Scrollbar
-   */
-
-  ::-webkit-scrollbar {
-    @apply w-4;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply rounded-full border-4 border-transparent bg-accent bg-clip-content;
-  }
-
-  ::-webkit-scrollbar-corner {
-    @apply hidden;
+    @apply relative overscroll-none bg-background text-foreground antialiased;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
   }
 
   /**
