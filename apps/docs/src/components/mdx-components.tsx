@@ -55,6 +55,7 @@ export const MDXComponents = {
       <div class="group relative">
         <pre
           ref={preRef}
+          data-not-typeset=""
           class={cn(
             "code group no-scrollbar max-h-[650px] min-w-0 overflow-x-auto bg-transparent py-4 outline-none",
           )}
