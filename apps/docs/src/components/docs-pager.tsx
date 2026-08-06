@@ -5,19 +5,38 @@ import { IconArrowLeft, IconArrowRight } from "~/components/icons.tsx";
 import { docsConfig } from "~/config/docs.ts";
 import { Button } from "~/registry/ui/button.tsx";
 
-const pages = docsConfig.sidebarNav.flatMap((category) => category.items);
+const categories = docsConfig.sidebarNav.map((category) => category.items);
 
+/**
+ * Neighbours wrap within their sidebar category, like the upstream page
+ * tree where the adjacent base folders repeat the component list — there
+ * the first component's previous is the last component and vice versa.
+ */
 export function useDocsNeighbours() {
   const location = useLocation();
-  const index = () =>
-    pages.findIndex((item) => item.href === location.pathname);
+  const found = () => {
+    for (const items of categories) {
+      const index = items.findIndex((item) =>
+        item.href === location.pathname
+      );
+      if (index !== -1) return { items, index };
+    }
+    return undefined;
+  };
 
   return {
-    previous: () => (index() > 0 ? pages[index() - 1] : undefined),
-    next: () =>
-      index() >= 0 && index() < pages.length - 1
-        ? pages[index() + 1]
-        : undefined,
+    previous: () => {
+      const match = found();
+      if (!match) return undefined;
+      const { items, index } = match;
+      return items[(index - 1 + items.length) % items.length];
+    },
+    next: () => {
+      const match = found();
+      if (!match) return undefined;
+      const { items, index } = match;
+      return items[(index + 1) % items.length];
+    },
   };
 }
 
