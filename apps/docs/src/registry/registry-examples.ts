@@ -672,6 +672,46 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "card-edge-to-edge",
+    type: "example",
+    files: [
+      {
+        path: "example/card-edge-to-edge.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "card-image",
+    type: "example",
+    files: [
+      {
+        path: "example/card-image.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "card-small",
+    type: "example",
+    files: [
+      {
+        path: "example/card-small.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "card-spacing",
+    type: "example",
+    files: [
+      {
+        path: "example/card-spacing.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "carousel-demo",
     type: "example",
     files: [
