@@ -90,7 +90,7 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
           <div
             data-slot="code"
             data-code-visible={isCodeVisible()}
-            class="relative overflow-hidden **:data-[slot=copy-button]:right-4 **:data-[slot=copy-button]:hidden data-[code-visible=true]:**:data-[slot=copy-button]:flex [&_pre]:my-0 [&_pre]:rounded-none [&_pre]:border-0 [&_pre]:border-t [&_pre]:max-h-72 data-[code-visible=false]:[&_pre]:max-h-28 data-[code-visible=false]:[&_pre]:overflow-hidden"
+            class="relative overflow-hidden **:data-[slot=copy-button]:right-4 **:data-[slot=copy-button]:hidden data-[code-visible=true]:**:data-[slot=copy-button]:flex [&_[data-rehype-pretty-code-figure]]:m-0! [&_[data-rehype-pretty-code-figure]]:rounded-t-none [&_[data-rehype-pretty-code-figure]]:border-t [&_pre]:max-h-72 data-[code-visible=false]:[&_pre]:max-h-28 data-[code-visible=false]:[&_pre]:overflow-hidden"
           >
             {local.children}
             <Show when={!isCodeVisible()}>

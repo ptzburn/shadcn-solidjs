@@ -32,7 +32,7 @@ const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
   return (
     <div
       data-not-typeset
-      class="relative mt-6 mb-4 overflow-hidden rounded-lg border bg-code text-code-foreground"
+      class="relative -mx-1 mt-6 overflow-hidden rounded-2xl bg-code text-sm text-code-foreground md:-mx-1"
     >
       <Tabs value="npm" class="gap-0">
         <div class="flex items-center gap-2 border-b border-border/50 px-3 py-1">

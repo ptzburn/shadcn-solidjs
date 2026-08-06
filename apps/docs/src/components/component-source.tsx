@@ -11,7 +11,7 @@ const ComponentSource: Component<ComponentSourceProps> = (props) => {
   return (
     <CodeBlockWrapper
       expandButtonTitle="Expand"
-      class={cn("my-6 overflow-hidden rounded-md", props.class)}
+      class={cn("my-6 overflow-hidden rounded-2xl", props.class)}
     >
       {props.children}
     </CodeBlockWrapper>

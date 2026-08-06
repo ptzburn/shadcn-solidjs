@@ -1,7 +1,23 @@
 @reference "./app.css";
 
-[data-rehype-pretty-code-figure] {
-  @apply relative;
+@layer components {
+  [data-rehype-pretty-code-figure] {
+    background-color: var(--color-code);
+    color: var(--color-code-foreground);
+    border-radius: var(--radius-2xl);
+    border-width: 0px;
+    border-color: var(--border);
+    margin-top: calc(var(--spacing) * 6);
+    overflow: hidden;
+    font-size: var(--text-sm);
+    outline: none;
+    position: relative;
+    @apply -mx-1 md:-mx-1;
+
+    &:has([data-rehype-pretty-code-title]) [data-slot="copy-button"] {
+      top: calc(var(--spacing) * 1.5) !important;
+    }
+  }
 }
 
 [data-rehype-pretty-code-figure] code {

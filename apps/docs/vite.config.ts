@@ -27,7 +27,7 @@ const mdxPlugin = mdx({
   rehypePlugins: [rehypeSlug, rehypeComponent, [rehypePrettyCode, {
     theme: {
       dark: "github-dark",
-      light: "github-light-default",
+      light: "github-light",
     },
     keepBackground: false,
   }]],

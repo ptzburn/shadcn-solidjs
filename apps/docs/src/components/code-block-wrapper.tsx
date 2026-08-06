@@ -36,7 +36,7 @@ const CodeBlockWrapper: Component<CodeBlockProps> = (rawProps) => {
         >
           <div
             class={cn(
-              "[&_pre]:my-0 [&_pre]:max-h-[650px] [&_pre]:pb-[100px]",
+              "[&_[data-rehype-pretty-code-figure]]:m-0! [&_[data-rehype-pretty-code-figure]]:rounded-none [&_pre]:my-0 [&_pre]:max-h-[650px] [&_pre]:pb-[100px]",
               !isOpened()
                 ? "[&_pre]:overflow-hidden"
                 : "[&_pre]:overflow-auto]",
