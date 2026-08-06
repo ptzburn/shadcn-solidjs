@@ -11,6 +11,7 @@ import Icons from "unplugin-icons/vite";
 import { defineConfig, type Rollup } from "vite";
 
 import rehypeComponent from "./src/lib/mdx/component.tsx";
+import rehypePrettyCodeSecondPass from "./src/lib/mdx/pretty-code.ts";
 import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
 import remarkNpmCommand from "./src/lib/mdx/npm-command.ts";
 
@@ -24,13 +25,27 @@ const mdxPlugin = mdx({
     remarkSolidFrontmatter,
     remarkNpmCommand,
   ],
-  rehypePlugins: [rehypeSlug, rehypeComponent, [rehypePrettyCode, {
-    theme: {
-      dark: "github-dark",
-      light: "github-light",
-    },
-    keepBackground: false,
-  }]],
+  // Two highlighting passes like upstream: authored fences use the docs
+  // themes (source.config.ts), while the registry sources rehypeComponent
+  // injects afterwards keep the github themes (lib/highlight-code.ts).
+  rehypePlugins: [
+    rehypeSlug,
+    [rehypePrettyCode, {
+      theme: {
+        dark: "vesper",
+        light: "github-light-default",
+      },
+      keepBackground: false,
+    }],
+    rehypeComponent,
+    [rehypePrettyCodeSecondPass, {
+      theme: {
+        dark: "github-dark",
+        light: "github-light",
+      },
+      keepBackground: false,
+    }],
+  ],
 });
 
 export default defineConfig({
