@@ -212,6 +212,86 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "avatar-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/avatar-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "avatar-badge",
+    type: "example",
+    files: [
+      {
+        path: "example/avatar-badge.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "avatar-badge-icon",
+    type: "example",
+    files: [
+      {
+        path: "example/avatar-badge-icon.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "avatar-group",
+    type: "example",
+    files: [
+      {
+        path: "example/avatar-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "avatar-group-count",
+    type: "example",
+    files: [
+      {
+        path: "example/avatar-group-count.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "avatar-group-count-icon",
+    type: "example",
+    files: [
+      {
+        path: "example/avatar-group-count-icon.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "avatar-size",
+    type: "example",
+    files: [
+      {
+        path: "example/avatar-size.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "avatar-dropdown",
+    type: "example",
+    files: [
+      {
+        path: "example/avatar-dropdown.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "button-demo",
     type: "example",
     files: [

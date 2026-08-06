@@ -25,7 +25,7 @@ const Avatar = <T extends ValidComponent = "span">(
       data-slot="avatar"
       data-size={local.size ?? "default"}
       class={cn(
-        "cn-avatar group/avatar relative flex shrink-0 select-none overflow-hidden",
+        "cn-avatar group/avatar relative flex shrink-0 select-none after:absolute after:inset-0 after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten",
         local.class,
       )}
       {...others}
@@ -46,7 +46,10 @@ const AvatarImage = <T extends ValidComponent = "img">(
   return (
     <ImagePrimitive.Img
       data-slot="avatar-image"
-      class={cn("cn-avatar-image aspect-square size-full", local.class)}
+      class={cn(
+        "cn-avatar-image aspect-square size-full object-cover",
+        local.class,
+      )}
       {...others}
     />
   );
@@ -78,7 +81,7 @@ const AvatarBadge: Component<ComponentProps<"span">> = (props) => {
     <span
       data-slot="avatar-badge"
       class={cn(
-        "cn-avatar-badge absolute right-0 bottom-0 z-10 inline-flex select-none items-center justify-center rounded-full ring-2",
+        "cn-avatar-badge absolute right-0 bottom-0 z-10 inline-flex items-center justify-center rounded-full bg-blend-color ring-2 select-none",
         "group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden",
         "group-data-[size=default]/avatar:size-2.5 group-data-[size=default]/avatar:[&>svg]:size-2",
         "group-data-[size=lg]/avatar:size-3 group-data-[size=lg]/avatar:[&>svg]:size-2",

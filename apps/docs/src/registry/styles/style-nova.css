@@ -119,14 +119,17 @@
 
   /* MARK: Avatar */
   .cn-avatar {
-    @apply size-8 rounded-full data-[size=lg]:size-10 data-[size=sm]:size-6;
+    @apply size-8 rounded-full after:rounded-full data-[size=lg]:size-10
+      data-[size=sm]:size-6;
   }
 
   .cn-avatar-fallback {
     @apply bg-muted text-muted-foreground rounded-full;
   }
 
-  .cn-avatar-image {}
+  .cn-avatar-image {
+    @apply rounded-full;
+  }
 
   .cn-avatar-badge {
     @apply bg-primary text-primary-foreground ring-background;
