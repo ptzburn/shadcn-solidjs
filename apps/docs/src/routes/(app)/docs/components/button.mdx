@@ -25,15 +25,17 @@ npx shadcn-solidjs@latest add button
 <TabsContent value="manual">
 <Steps class="mb-0 pt-2">
 
-<Step>Install the following dependencies: </Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @kobalte/core
 ```
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="button" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 </TabsContent>
@@ -50,29 +52,89 @@ import { Button } from "~/components/ui/button"
 <Button variant="outline">Button</Button>
 ```
 
-### Link
+## Cursor
 
-You can use the `buttonVariants` helper to create a link that looks like a button.
+Tailwind v4 [switched](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor) from `cursor: pointer` to `cursor: default` for the button component.
 
-```tsx
-import { buttonVariants } from "~/components/ui/button"
+If you want to keep the `cursor: pointer` behavior, add the following code to your CSS file:
+
+You can also enable this during project setup with `npx shadcn-solidjs@latest init --pointer`.
+
+```css showLineNumbers title="app.css"
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
 ```
 
-```tsx
-<a class={buttonVariants({ variant: "outline" })}>Click here</a>
-```
+## Size
 
-Alternatively, you can set the `as` parameter with the component you want to use as your link.
-```tsx
-import { A } from "@solidjs/router";
-```
+Use the `size` prop to change the size of the button.
 
-```tsx
-<Button as={A} href="/login">Login</Button>
-```
+<ComponentPreview name="button-size" />
 
-Or set it as `"a"`, in case you want to use the standard HTML anchor tag.
+## Default
 
-```tsx
-<Button as="a" href="/login">Login</Button>
-```
+<ComponentPreview name="button-default" />
+
+## Outline
+
+<ComponentPreview name="button-outline" />
+
+## Secondary
+
+<ComponentPreview name="button-secondary" />
+
+## Ghost
+
+<ComponentPreview name="button-ghost" />
+
+## Destructive
+
+<ComponentPreview name="button-destructive" />
+
+## Link
+
+<ComponentPreview name="button-link" />
+
+## Icon
+
+<ComponentPreview name="button-icon" />
+
+## With Icon
+
+Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the icon for the correct spacing.
+
+<ComponentPreview name="button-with-icon" />
+
+## Rounded
+
+Use the `rounded-full` class to make the button rounded.
+
+<ComponentPreview name="button-rounded" />
+
+## Spinner
+
+Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
+
+<ComponentPreview name="button-spinner" />
+
+## As
+
+You can use the `as` prop on `<Button />` to make another component look like a button. Here's an example of a link that looks like a button.
+
+<ComponentPreview name="button-as" />
+
+## API Reference
+
+### Button
+
+The `Button` component is a wrapper around the `button` element that adds a variety of styles and functionality.
+
+| Prop      | Type                                                                                 | Default     |
+| --------- | ------------------------------------------------------------------------------------ | ----------- |
+| `variant` | `"default" \| "outline" \| "ghost" \| "destructive" \| "secondary" \| "link"`        | `"default"` |
+| `size`    | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` |
+| `as`      | `ValidComponent`                                                                     | `"button"`  |

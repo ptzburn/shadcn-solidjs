@@ -1,14 +1,14 @@
+import { IconArrowUp } from "~/components/icons.tsx";
+
 import { Button } from "~/registry/ui/button.tsx";
 
 export default function ButtonDemo() {
   return (
-    <div class="grid max-w-md grid-cols-3 gap-4">
-      <Button>Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="link">Link</Button>
+    <div class="flex flex-wrap items-center gap-2 md:flex-row">
+      <Button variant="outline">Button</Button>
+      <Button variant="outline" size="icon" aria-label="Submit">
+        <IconArrowUp />
+      </Button>
     </div>
   );
 }

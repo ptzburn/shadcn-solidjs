@@ -112,6 +112,126 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "button-size",
+    type: "example",
+    files: [
+      {
+        path: "example/button-size.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-default",
+    type: "example",
+    files: [
+      {
+        path: "example/button-default.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-outline",
+    type: "example",
+    files: [
+      {
+        path: "example/button-outline.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-secondary",
+    type: "example",
+    files: [
+      {
+        path: "example/button-secondary.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-ghost",
+    type: "example",
+    files: [
+      {
+        path: "example/button-ghost.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-destructive",
+    type: "example",
+    files: [
+      {
+        path: "example/button-destructive.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-link",
+    type: "example",
+    files: [
+      {
+        path: "example/button-link.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-icon",
+    type: "example",
+    files: [
+      {
+        path: "example/button-icon.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-with-icon",
+    type: "example",
+    files: [
+      {
+        path: "example/button-with-icon.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-rounded",
+    type: "example",
+    files: [
+      {
+        path: "example/button-rounded.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-spinner",
+    type: "example",
+    files: [
+      {
+        path: "example/button-spinner.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-as",
+    type: "example",
+    files: [
+      {
+        path: "example/button-as.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "badge-demo",
     type: "example",
     files: [

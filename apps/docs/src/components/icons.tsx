@@ -110,6 +110,15 @@ export function IconArrowUp(props: IconProps) {
   );
 }
 
+export function IconArrowUpRight(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M7 7h10v10" />
+      <path d="M7 17L17 7" />
+    </Icon>
+  );
+}
+
 export function IconBell(props: IconProps) {
   return (
     <Icon {...props}>
@@ -311,6 +320,20 @@ export function IconCircleCheck(props: IconProps) {
   );
 }
 
+export function IconCircleFadingArrowUp(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12 2a10 10 0 0 1 7.38 16.75" />
+      <path d="M16 12l-4-4l-4 4" />
+      <path d="M12 16V8" />
+      <path d="M2.5 8.875a10 10 0 0 0-.5 3" />
+      <path d="M2.83 16a10 10 0 0 0 2.43 3.4" />
+      <path d="M4.636 5.235a10 10 0 0 1 .891-.857" />
+      <path d="M8.644 21.42a10 10 0 0 0 7.631-.38" />
+    </Icon>
+  );
+}
+
 export function IconCircleHelp(props: IconProps) {
   return (
     <Icon {...props}>
@@ -472,6 +495,19 @@ export function IconFullscreen(props: IconProps) {
       <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
       <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
       <rect width="10" height="8" x="7" y="8" rx="1" />
+    </Icon>
+  );
+}
+
+export function IconGitBranch(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M5 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+      <path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+      <path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+      <path d="M7 8v8" />
+      <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+      <path d="M14 14l3 -3l3 3" />
     </Icon>
   );
 }
