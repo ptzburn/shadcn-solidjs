@@ -1,5 +1,4 @@
-import { IconPlus } from "~/components/icons.tsx";
-
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
 
@@ -17,7 +16,13 @@ export default function ButtonGroupSize() {
           Group
         </Button>
         <Button variant="outline" size="icon-sm">
-          <IconPlus />
+          <IconPlaceholder
+            lucide="plus"
+            tabler="plus"
+            ph="plus"
+            ri="add-line"
+            hugeicons="plus-sign"
+          />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -25,7 +30,13 @@ export default function ButtonGroupSize() {
         <Button variant="outline">Button</Button>
         <Button variant="outline">Group</Button>
         <Button variant="outline" size="icon">
-          <IconPlus />
+          <IconPlaceholder
+            lucide="plus"
+            tabler="plus"
+            ph="plus"
+            ri="add-line"
+            hugeicons="plus-sign"
+          />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -39,7 +50,13 @@ export default function ButtonGroupSize() {
           Group
         </Button>
         <Button variant="outline" size="icon-lg">
-          <IconPlus />
+          <IconPlaceholder
+            lucide="plus"
+            tabler="plus"
+            ph="plus"
+            ri="add-line"
+            hugeicons="plus-sign"
+          />
         </Button>
       </ButtonGroup>
     </div>

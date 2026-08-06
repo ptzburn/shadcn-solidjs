@@ -1,5 +1,4 @@
-import { IconMicrophone, IconPlus } from "~/components/icons.tsx";
-
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
 import {
@@ -18,7 +17,13 @@ export default function ButtonGroupNested() {
     <ButtonGroup>
       <ButtonGroup>
         <Button variant="outline" size="icon">
-          <IconPlus />
+          <IconPlaceholder
+            lucide="plus"
+            tabler="plus"
+            ph="plus"
+            ri="add-line"
+            hugeicons="plus-sign"
+          />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -26,7 +31,13 @@ export default function ButtonGroupNested() {
           <InputGroupInput placeholder="Send a message..." />
           <Tooltip>
             <TooltipTrigger as={InputGroupAddon} align="inline-end">
-              <IconMicrophone />
+              <IconPlaceholder
+                lucide="audio-lines"
+                tabler="wave-sine"
+                ph="waveform"
+                ri="pulse-line"
+                hugeicons="audio-wave-01"
+              />
             </TooltipTrigger>
             <TooltipContent>Voice Mode</TooltipContent>
           </Tooltip>

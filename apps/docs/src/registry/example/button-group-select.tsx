@@ -1,7 +1,6 @@
 import { createSignal } from "solid-js";
 
-import { IconArrowRight } from "~/components/icons.tsx";
-
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
 import { Input } from "~/registry/ui/input.tsx";
@@ -65,7 +64,13 @@ export default function ButtonGroupSelect() {
       </ButtonGroup>
       <ButtonGroup>
         <Button aria-label="Send" size="icon" variant="outline">
-          <IconArrowRight />
+          <IconPlaceholder
+            lucide="arrow-right"
+            tabler="arrow-right"
+            ph="arrow-right"
+            ri="arrow-right-line"
+            hugeicons="arrow-right-02"
+          />
         </Button>
       </ButtonGroup>
     </ButtonGroup>

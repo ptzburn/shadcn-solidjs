@@ -1,5 +1,4 @@
-import { IconPlus } from "~/components/icons.tsx";
-
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import {
   ButtonGroup,
@@ -12,7 +11,13 @@ export default function ButtonGroupSplit() {
       <Button variant="secondary">Button</Button>
       <ButtonGroupSeparator />
       <Button size="icon" variant="secondary">
-        <IconPlus />
+        <IconPlaceholder
+          lucide="plus"
+          tabler="plus"
+          ph="plus"
+          ri="add-line"
+          hugeicons="plus-sign"
+        />
       </Button>
     </ButtonGroup>
   );

@@ -1,5 +1,4 @@
-import { IconChevronDown, IconRobot } from "~/components/icons.tsx";
-
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
 import { Field, FieldDescription, FieldLabel } from "~/registry/ui/field.tsx";
@@ -17,7 +16,14 @@ export default function ButtonGroupPopover() {
   return (
     <ButtonGroup>
       <Button variant="outline">
-        <IconRobot /> Copilot
+        <IconPlaceholder
+          lucide="bot"
+          tabler="robot"
+          ph="robot"
+          ri="robot-line"
+          hugeicons="robotic"
+        />{" "}
+        Copilot
       </Button>
       <Popover>
         <PopoverTrigger
@@ -26,7 +32,13 @@ export default function ButtonGroupPopover() {
           size="icon"
           aria-label="Open Popover"
         >
-          <IconChevronDown />
+          <IconPlaceholder
+            lucide="chevron-down"
+            tabler="chevron-down"
+            ph="caret-down"
+            ri="arrow-down-s-line"
+            hugeicons="arrow-down-01"
+          />
         </PopoverTrigger>
         <PopoverContent class="rounded-xl text-sm">
           <PopoverHeader>

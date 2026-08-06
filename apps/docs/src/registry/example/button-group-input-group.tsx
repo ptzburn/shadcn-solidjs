@@ -1,7 +1,6 @@
 import { createSignal } from "solid-js";
 
-import { IconMicrophone, IconPlus } from "~/components/icons.tsx";
-
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
 import {
@@ -23,7 +22,13 @@ export default function ButtonGroupInputGroup() {
     <ButtonGroup class="[--radius:9999rem]">
       <ButtonGroup>
         <Button variant="outline" size="icon">
-          <IconPlus />
+          <IconPlaceholder
+            lucide="plus"
+            tabler="plus"
+            ph="plus"
+            ri="add-line"
+            hugeicons="plus-sign"
+          />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -44,7 +49,13 @@ export default function ButtonGroupInputGroup() {
                 class="data-[active=true]:bg-orange-100 data-[active=true]:text-orange-700 dark:data-[active=true]:bg-orange-800 dark:data-[active=true]:text-orange-100"
                 aria-pressed={voiceEnabled()}
               >
-                <IconMicrophone />
+                <IconPlaceholder
+                  lucide="audio-lines"
+                  tabler="wave-sine"
+                  ph="waveform"
+                  ri="pulse-line"
+                  hugeicons="audio-wave-01"
+                />
               </TooltipTrigger>
               <TooltipContent>Voice Mode</TooltipContent>
             </Tooltip>

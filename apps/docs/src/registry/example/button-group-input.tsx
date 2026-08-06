@@ -1,5 +1,4 @@
-import { IconSearch } from "~/components/icons.tsx";
-
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
 import { Input } from "~/registry/ui/input.tsx";
@@ -9,7 +8,13 @@ export default function ButtonGroupInput() {
     <ButtonGroup>
       <Input placeholder="Search..." />
       <Button variant="outline" aria-label="Search">
-        <IconSearch />
+        <IconPlaceholder
+          lucide="search"
+          tabler="search"
+          ph="magnifying-glass"
+          ri="search-line"
+          hugeicons="search-01"
+        />
       </Button>
     </ButtonGroup>
   );
