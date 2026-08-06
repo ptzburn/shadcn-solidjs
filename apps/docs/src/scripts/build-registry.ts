@@ -8,8 +8,8 @@
  *   every ui item that uses icons.
  * - `public/r/themes/<name>.json` — theme items (cssVars only).
  * - `public/r/registry.json` + `public/r/index.json` — item index.
- * - `public/registry/**` — legacy format consumed by solidui-cli, icons
- *   resolved to the default library.
+ * - `public/registry/**` — legacy format consumed by the old solidui-cli
+ *   (superseded by shadcn-solidjs), icons resolved to the default library.
  *
  * Authored components carry two kinds of build-time markers, neither of
  * which ships to consumers:
@@ -215,7 +215,7 @@ writeJson(path.join(R_PATH, "registry.json"), registryIndex);
 writeJson(path.join(R_PATH, "index.json"), registryIndex);
 
 // #######################################
-//    BUILD public/registry (legacy, solidui-cli)
+//    BUILD public/registry (legacy, old solidui-cli format)
 // #######################################
 
 for (const item of items) {

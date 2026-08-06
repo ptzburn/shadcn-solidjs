@@ -12,7 +12,7 @@ apps/
     deno.json        # member deps + "~/" -> "./src/" alias (mirrors tsconfig paths)
     src/lib/         # cn(), clamp(), toggleValue(), use-id hook
 packages/
-  cli/               # solidui-cli (not yet ported)
+  cli/               # shadcn-solidjs (not yet ported)
 ```
 
 Porting happens gradually, file-for-file. Dependencies are added per member as
