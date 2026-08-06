@@ -72,9 +72,11 @@ export const MDXComponents = {
       </div>
     );
   },
-  figcaption: (props: ComponentProps<"figcaption"> & {
-    "data-language"?: string;
-  }) => (
+  figcaption: (
+    props: ComponentProps<"figcaption"> & {
+      "data-language"?: string;
+    },
+  ) => (
     <figcaption
       {...props}
       class={cn(

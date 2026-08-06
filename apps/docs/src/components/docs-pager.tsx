@@ -16,9 +16,7 @@ export function useDocsNeighbours() {
   const location = useLocation();
   const found = () => {
     for (const items of categories) {
-      const index = items.findIndex((item) =>
-        item.href === location.pathname
-      );
+      const index = items.findIndex((item) => item.href === location.pathname);
       if (index !== -1) return { items, index };
     }
     return undefined;
