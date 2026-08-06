@@ -46,14 +46,14 @@ const ProgressCircle: Component<ProgressCircleProps> = (rawProps) => {
 
   return (
     <div
-      class={cn("flex flex-col items-center justify-center", local.class)}
+      class={cn("cn-progress-circle flex flex-col", local.class)}
       {...others}
     >
       <svg
         width={radius() * 2}
         height={radius() * 2}
         viewBox={`0 0 ${radius() * 2} ${radius() * 2}`}
-        class="-rotate-90"
+        class="cn-progress-circle-svg -rotate-90"
       >
         <circle
           r={normalizedRadius()}
@@ -63,7 +63,7 @@ const ProgressCircle: Component<ProgressCircleProps> = (rawProps) => {
           fill="transparent"
           stroke=""
           stroke-linecap="round"
-          class={cn("stroke-secondary transition-colors ease-linear")}
+          class={cn("cn-progress-circle-track")}
         />
         {value() >= 0
           ? (
@@ -78,16 +78,16 @@ const ProgressCircle: Component<ProgressCircleProps> = (rawProps) => {
               stroke=""
               stroke-linecap="round"
               class={cn(
-                "stroke-primary transition-colors ease-linear",
+                "cn-progress-circle-indicator",
                 local.showAnimation
-                  ? "transition-all duration-300 ease-in-out"
+                  ? "cn-progress-circle-indicator-animation"
                   : "",
               )}
             />
           )
           : null}
       </svg>
-      <div class={cn("absolute flex")}>{local.children}</div>
+      <div class={cn("cn-progress-circle-label flex")}>{local.children}</div>
     </div>
   );
 };

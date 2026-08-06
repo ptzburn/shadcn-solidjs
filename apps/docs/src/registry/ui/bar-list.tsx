@@ -58,18 +58,18 @@ const BarList = <T,>(rawProps: BarListProps<T>) => {
 
   return (
     <div
-      class={cn("flex flex-col space-y-1.5", local.class)}
+      class={cn("cn-bar-list flex flex-col", local.class)}
       aria-sort={local.sortOrder}
       {...others}
     >
       <For each={sortedData()}>
         {(bar, idx) => {
           return (
-            <div class="row flex w-full justify-between space-x-6">
-              <div class="grow">
+            <div class="cn-bar-list-item row flex w-full justify-between">
+              <div class="cn-bar-list-bar-wrapper grow">
                 <div
                   class={cn(
-                    "flex h-8 items-center rounded-md bg-secondary px-2",
+                    "cn-bar-list-bar flex items-center",
                   )}
                   style={{
                     width: `${widths()[idx()]}%`,
@@ -79,7 +79,7 @@ const BarList = <T,>(rawProps: BarListProps<T>) => {
                     {(icon) => (
                       <Dynamic
                         component={icon()}
-                        class="mr-2 size-5 flex-none"
+                        class="cn-bar-list-icon flex-none"
                       />
                     )}
                   </Show>
@@ -89,7 +89,7 @@ const BarList = <T,>(rawProps: BarListProps<T>) => {
                         href={href()}
                         target={bar.target ?? "_blank"}
                         rel="noreferrer"
-                        class="hover:underline"
+                        class="cn-bar-list-link"
                       >
                         {bar.name}
                       </a>
@@ -97,7 +97,7 @@ const BarList = <T,>(rawProps: BarListProps<T>) => {
                   </Show>
                 </div>
               </div>
-              <div class="flex items-center">
+              <div class="cn-bar-list-value flex items-center">
                 {local.valueFormatter(bar.value)}
               </div>
             </div>

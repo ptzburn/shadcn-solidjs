@@ -10,7 +10,7 @@ const Empty: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="empty"
       class={cn(
-        "flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 text-balance rounded-xl border-dashed p-6 text-center",
+        "cn-empty flex w-full min-w-0 flex-1 flex-col items-center justify-center text-balance text-center",
         local.class,
       )}
       {...others}
@@ -25,7 +25,7 @@ const EmptyHeader: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="empty-header"
       class={cn(
-        "flex max-w-sm flex-col items-center gap-2",
+        "cn-empty-header flex max-w-sm flex-col items-center",
         local.class,
       )}
       {...others}
@@ -34,13 +34,12 @@ const EmptyHeader: Component<ComponentProps<"div">> = (props) => {
 };
 
 const emptyMediaVariants = cva(
-  "flex shrink-0 items-center justify-center mb-2 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "cn-empty-media flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-transparent",
-        icon:
-          "bg-muted text-foreground flex size-8 shrink-0 items-center justify-center rounded-lg [&_svg:not([class*='size-'])]:size-4",
+        default: "cn-empty-media-default",
+        icon: "cn-empty-media-icon",
       },
     },
     defaultVariants: {
@@ -74,7 +73,7 @@ const EmptyTitle: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="empty-title"
       class={cn(
-        "font-heading font-medium text-sm tracking-tight",
+        "cn-empty-title font-heading",
         local.class,
       )}
       {...others}
@@ -88,7 +87,7 @@ const EmptyDescription: Component<ComponentProps<"p">> = (props) => {
     <div
       data-slot="empty-description"
       class={cn(
-        "text-muted-foreground text-sm/relaxed [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
+        "cn-empty-description text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
         local.class,
       )}
       {...others}
@@ -102,7 +101,7 @@ const EmptyContent: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="empty-content"
       class={cn(
-        "flex w-full min-w-0 max-w-sm flex-col items-center gap-2.5 text-balance text-sm",
+        "cn-empty-content flex w-full min-w-0 max-w-sm flex-col items-center text-balance",
         local.class,
       )}
       {...others}

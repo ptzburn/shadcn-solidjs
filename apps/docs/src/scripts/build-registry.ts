@@ -11,9 +11,15 @@
  * - `public/registry/**` — legacy format consumed by solidui-cli, icons
  *   resolved to the default library.
  *
- * IconPlaceholder markers in authored components are resolved here into
- * concrete `~icons/<library>/<name>` imports (unplugin-icons / @iconify-json
- * on the consumer side); the marker component itself never ships.
+ * Authored components carry two kinds of build-time markers, neither of
+ * which ships to consumers:
+ *
+ * - `cn-*` style markers, inlined from `src/registry/styles/style-nova.css`
+ *   (see src/lib/registry/style-map.ts). The docs site instead styles the
+ *   markers at runtime by importing that CSS in app.css.
+ * - IconPlaceholder components, resolved into concrete
+ *   `~icons/<library>/<name>` imports (unplugin-icons / @iconify-json on
+ *   the consumer side).
  *
  * Run with: deno run -A ./src/scripts/build-registry.ts
  */
@@ -23,10 +29,11 @@ import process from "node:process";
 
 import { safeParse } from "valibot";
 
+import { resolveIcons } from "../lib/registry/resolve-icons.ts";
+import { createStyleMap, inlineStyles } from "../lib/registry/style-map.ts";
 import {
   defaultIconLibrary,
   iconLibraries,
-  type IconLibrary,
   iconLibraryNames,
 } from "../registry/icons/icon-libraries.ts";
 import { registry } from "../registry/index.ts";
@@ -44,66 +51,30 @@ if (!result.success) {
 const items = result.output;
 
 // #######################################
-//    Icon resolution
+//    Style + icon resolution
 // #######################################
 
-const PLACEHOLDER_IMPORT_RE =
-  /^import \{ IconPlaceholder \} from "~\/registry\/icons\/icon-placeholder\.tsx";$\n?/m;
-const PLACEHOLDER_TAG_RE = /<IconPlaceholder\b[\s\S]*?\/>/g;
-const LIB_ATTRS_RE = new RegExp(
-  `\\s*(?:${iconLibraryNames.join("|")})="[^"]*"`,
-  "g",
+const styleMap = createStyleMap(
+  readFileSync(
+    path.join(process.cwd(), "src", "registry", "styles", "style-nova.css"),
+    "utf8",
+  ),
 );
 
-function pascalCase(iconName: string): string {
-  return iconName
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join("");
-}
-
 /**
- * Replaces IconPlaceholder markers with the concrete icon component of the
- * given library and swaps the placeholder import for `~icons` imports.
+ * Reads an item's authored files with `cn-*` style markers already
+ * inlined; only IconPlaceholder resolution remains per icon library.
  */
-function resolveIcons(
-  source: string,
-  library: IconLibrary,
-): { code: string; icons: string[] } {
-  const icons = new Set<string>();
-  let code = source.replace(PLACEHOLDER_TAG_RE, (tag) => {
-    const name = tag.match(new RegExp(`\\b${library}="([^"]+)"`))?.[1];
-    if (!name) {
-      throw new Error(`IconPlaceholder is missing the "${library}" prop`);
-    }
-    icons.add(name);
-    return tag
-      .replace(LIB_ATTRS_RE, "")
-      .replace(/^<IconPlaceholder/, `<Icon${pascalCase(name)}`);
-  });
-  if (icons.size === 0) {
-    return { code, icons: [] };
-  }
-  if (!PLACEHOLDER_IMPORT_RE.test(code)) {
-    throw new Error("IconPlaceholder used without its import");
-  }
-  const sorted = [...icons].sort();
-  const imports = sorted
-    .map((name) =>
-      `import Icon${pascalCase(name)} from "~icons/${library}/${name}";`
-    )
-    .join("\n");
-  code = code.replace(PLACEHOLDER_IMPORT_RE, `${imports}\n`);
-  return { code, icons: sorted };
-}
-
 function readItemFiles(item: RegistryItem) {
   return item.files.map((file) => ({
     ...file,
-    content: readFileSync(
-      path.join(process.cwd(), "src", "registry", file.path),
-      "utf8",
-    ).replaceAll("\r\n", "\n"),
+    content: inlineStyles(
+      readFileSync(
+        path.join(process.cwd(), "src", "registry", file.path),
+        "utf8",
+      ).replaceAll("\r\n", "\n"),
+      styleMap,
+    ),
   }));
 }
 

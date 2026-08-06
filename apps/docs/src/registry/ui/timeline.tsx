@@ -90,9 +90,9 @@ const TimelineItem: Component<TimelineItemProps> = (props) => {
   return (
     <li
       class={cn(
-        "relative border-l pb-8 pl-8",
-        local.isLast && "border-l-transparent pb-0",
-        local.isActive && !local.isLast && "border-l-primary",
+        "cn-timeline-item relative",
+        local.isLast && "cn-timeline-item-last",
+        local.isActive && !local.isLast && "cn-timeline-item-active",
         local.class,
       )}
       style={{
@@ -127,7 +127,7 @@ const TimelineItemBullet: Component<TimelineItemBulletProps> = (props) => {
     <div
       class={cn(
         `absolute top-0 flex items-center justify-center rounded-full border bg-background`,
-        props.isActive && "border-primary",
+        props.isActive && "cn-timeline-item-bullet-active",
       )}
       style={{
         width: `${props.bulletSize}px`,
@@ -144,7 +144,7 @@ const TimelineItemBullet: Component<TimelineItemBulletProps> = (props) => {
 
 const TimelineItemTitle: ParentComponent = (props) => {
   return (
-    <div class="mb-1 text-base font-semibold leading-none">
+    <div class="cn-timeline-item-title">
       {props.children}
     </div>
   );
@@ -153,7 +153,7 @@ const TimelineItemTitle: ParentComponent = (props) => {
 const TimelineItemDescription: Component<ComponentProps<"p">> = (props) => {
   const [local, others] = splitProps(props, ["class", "children"]);
   return (
-    <p class={cn("text-sm text-muted-foreground", local.class)} {...others}>
+    <p class={cn("cn-timeline-item-description", local.class)} {...others}>
       {local.children}
     </p>
   );

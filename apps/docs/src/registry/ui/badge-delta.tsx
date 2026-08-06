@@ -16,12 +16,12 @@ type DeltaType =
   | "moderateDecrease"
   | "decrease";
 
-const badgeDeltaVariants = cva("", {
+const badgeDeltaVariants = cva("cn-badge-delta", {
   variants: {
     variant: {
-      success: "bg-success text-success-foreground hover:bg-success",
-      warning: "bg-warning text-warning-foreground hover:bg-warning",
-      error: "bg-error text-error-foreground hover:bg-error",
+      success: "cn-badge-delta-variant-success",
+      warning: "cn-badge-delta-variant-warning",
+      error: "cn-badge-delta-variant-error",
     },
   },
 });
@@ -119,8 +119,8 @@ const BadgeDelta: Component<BadgeDeltaProps> = (props) => {
       )}
       {...others}
     >
-      <span class="flex gap-1">
-        <Icon class="size-4" />
+      <span class="cn-badge-delta-content flex">
+        <Icon class="cn-badge-delta-icon" />
         {local.children}
       </span>
     </Badge>

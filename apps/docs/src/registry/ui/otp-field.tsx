@@ -22,7 +22,7 @@ const OTPField = <T extends ValidComponent = "div">(
   return (
     <OtpField
       class={cn(
-        "flex items-center gap-2 disabled:cursor-not-allowed has-[:disabled]:opacity-50",
+        "cn-input-otp flex items-center disabled:cursor-not-allowed has-[:disabled]:opacity-50",
         local.class,
       )}
       {...others}
@@ -49,7 +49,7 @@ const OTPFieldSlot: Component<ComponentProps<"div"> & { index: number }> = (
   return (
     <div
       class={cn(
-        "group relative flex size-10 items-center justify-center border-y border-r border-input text-sm first:rounded-l-md first:border-l last:rounded-r-md",
+        "cn-input-otp-slot group relative flex items-center justify-center",
         local.class,
       )}
       {...others}
@@ -63,8 +63,8 @@ const OTPFieldSlot: Component<ComponentProps<"div"> & { index: number }> = (
       />
       {char()}
       <Show when={showFakeCaret()}>
-        <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div class="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
+        <div class="cn-input-otp-caret pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div class="cn-input-otp-caret-line" />
         </div>
       </Show>
     </div>

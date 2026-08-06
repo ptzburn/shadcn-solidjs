@@ -20,7 +20,7 @@ const Accordion = <T extends ValidComponent = "div">(
   return (
     <AccordionPrimitive.Root
       data-slot="accordion"
-      class={cn("flex w-full flex-col", local.class)}
+      class={cn("cn-accordion flex w-full flex-col", local.class)}
       {...others}
     />
   );
@@ -39,7 +39,7 @@ const AccordionItem = <T extends ValidComponent = "div">(
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      class={cn("not-last:border-b", local.class)}
+      class={cn("cn-accordion-item", local.class)}
       {...others}
     />
   );
@@ -64,7 +64,7 @@ const AccordionTrigger = <T extends ValidComponent = "button">(
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         class={cn(
-          "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-2.5 text-left font-medium text-sm outline-none transition-all hover:underline focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground",
+          "cn-accordion-trigger group/accordion-trigger relative flex flex-1 items-start justify-between border border-transparent transition-all outline-none disabled:pointer-events-none disabled:opacity-50",
           local.class,
         )}
         {...others}
@@ -77,7 +77,7 @@ const AccordionTrigger = <T extends ValidComponent = "button">(
           ri="arrow-down-s-line"
           hugeicons="arrow-down-01"
           data-slot="accordion-trigger-icon"
-          class="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
+          class="cn-accordion-trigger-icon pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
         />
         <IconPlaceholder
           lucide="chevron-up"
@@ -86,7 +86,7 @@ const AccordionTrigger = <T extends ValidComponent = "button">(
           ri="arrow-up-s-line"
           hugeicons="arrow-up-01"
           data-slot="accordion-trigger-icon"
-          class="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
+          class="cn-accordion-trigger-icon pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
@@ -110,12 +110,12 @@ const AccordionContent = <T extends ValidComponent = "div">(
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      class="overflow-hidden text-sm data-[closed]:animate-accordion-up data-[expanded]:animate-accordion-down"
+      class="cn-accordion-content overflow-hidden"
       {...others}
     >
       <div
         class={cn(
-          "h-(--kb-accordion-content-height) pt-0 pb-2.5 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+          "cn-accordion-content-inner h-(--kb-accordion-content-height) [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
           local.class,
         )}
       >

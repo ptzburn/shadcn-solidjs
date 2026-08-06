@@ -31,7 +31,7 @@ const SwitchControl = <T extends ValidComponent = "input">(
         data-slot="switch"
         data-size={local.size ?? "default"}
         class={cn(
-          "group/switch relative inline-flex shrink-0 cursor-pointer items-center rounded-full border border-transparent bg-input outline-none transition-all after:absolute after:-inset-x-3 after:-inset-y-2 peer-focus-visible:border-ring peer-focus-visible:ring-3 peer-focus-visible:ring-ring/50 dark:bg-input/80 dark:data-invalid:border-destructive/50 dark:data-invalid:ring-destructive/40 data-[size=default]:h-[18.4px] data-[size=sm]:h-[14px] data-[size=default]:w-[32px] data-[size=sm]:w-[24px] data-disabled:cursor-not-allowed data-invalid:border-destructive data-[checked]:bg-primary data-disabled:opacity-50 data-invalid:ring-3 data-invalid:ring-destructive/20",
+          "cn-switch group/switch relative inline-flex cursor-pointer items-center outline-none transition-all after:absolute after:-inset-x-3 after:-inset-y-2 data-disabled:cursor-not-allowed data-disabled:opacity-50",
           local.class,
         )}
         {...others}
@@ -54,7 +54,7 @@ const SwitchThumb = <T extends ValidComponent = "div">(
     <SwitchPrimitive.Thumb
       data-slot="switch-thumb"
       class={cn(
-        "pointer-events-none block translate-x-0 rounded-full bg-background ring-0 transition-transform dark:bg-foreground dark:data-[checked]:bg-primary-foreground group-data-[size=default]/switch:size-4 group-data-[size=sm]/switch:size-3 data-[checked]:translate-x-[calc(100%-2px)]",
+        "cn-switch-thumb pointer-events-none block ring-0 transition-transform",
         local.class,
       )}
       {...others}

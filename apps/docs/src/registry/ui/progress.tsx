@@ -23,13 +23,13 @@ const Progress = <T extends ValidComponent = "div">(
       {local.children}
       <ProgressPrimitive.Track
         class={cn(
-          "relative flex h-1 w-full items-center overflow-x-hidden rounded-full bg-muted",
+          "cn-progress relative flex w-full items-center overflow-x-hidden",
           local.class,
         )}
       >
         <ProgressPrimitive.Fill
           data-slot="progress-indicator"
-          class="size-full flex-1 bg-primary transition-all"
+          class="cn-progress-indicator size-full flex-1 transition-all"
           style={{
             transform: "translateX(calc(var(--kb-progress-fill-width) - 100%))",
           }}

@@ -29,35 +29,35 @@ const DeltaBar: Component<DeltaBarProps> = (rawProps) => {
   const barColor = () =>
     (local.value > 0 && local.isIncreasePositive) ||
       (local.value < 0 && !local.isIncreasePositive)
-      ? "bg-success-foreground"
-      : "bg-error-foreground";
+      ? "cn-delta-bar-favorable"
+      : "cn-delta-bar-unfavorable";
 
   return (
     <div
       class={cn(
-        "relative flex h-2 w-full items-center rounded-full bg-secondary",
+        "cn-delta-bar relative flex w-full items-center",
         local.class,
       )}
       {...others}
     >
-      <div class="flex h-full w-1/2 justify-end">
+      <div class="cn-delta-bar-negative-half flex h-full w-1/2 justify-end">
         <Show when={local.value < 0}>
           <div
-            class={cn("rounded-l-full", barColor())}
+            class={cn("cn-delta-bar-negative-bar", barColor())}
             style={{ width: `${Math.abs(local.value)}%` }}
           />
         </Show>
       </div>
       <div
         class={cn(
-          "z-10 h-4 w-1 rounded-full ring-2 ring-background",
+          "cn-delta-bar-origin z-10",
           barColor(),
         )}
       />
-      <div class="flex h-full w-1/2 justify-start">
+      <div class="cn-delta-bar-positive-half flex h-full w-1/2 justify-start">
         <Show when={local.value > 0}>
           <div
-            class={cn("rounded-r-full", barColor())}
+            class={cn("cn-delta-bar-positive-bar", barColor())}
             style={{ width: `${Math.abs(local.value)}%` }}
           />
         </Show>

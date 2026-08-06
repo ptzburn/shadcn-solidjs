@@ -53,7 +53,7 @@ const DrawerOverlay = <T extends ValidComponent = "div">(
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"
       class={cn(
-        "fixed inset-0 z-50 supports-backdrop-filter:backdrop-blur-xs data-transitioning:transition-colors data-transitioning:duration-300",
+        "cn-drawer-overlay fixed inset-0 z-50 data-transitioning:transition-colors data-transitioning:duration-300",
         props.class,
       )}
       style={{
@@ -84,12 +84,12 @@ const DrawerContent = <T extends ValidComponent = "div">(
       <DrawerPrimitive.Content
         data-slot="drawer-content"
         class={cn(
-          "group/drawer-content fixed z-50 flex h-auto flex-col bg-popover text-popover-foreground text-sm data-[side=bottom]:inset-x-0 data-[side=left]:inset-y-0 data-[side=right]:inset-y-0 data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=right]:right-0 data-[side=bottom]:bottom-0 data-[side=left]:left-0 data-[side=bottom]:mt-24 data-[side=top]:mb-24 data-[side=bottom]:max-h-[80vh] data-[side=top]:max-h-[80vh] data-[side=left]:w-3/4 data-[side=right]:w-3/4 data-[side=bottom]:rounded-t-xl data-[side=left]:rounded-r-xl data-[side=right]:rounded-l-xl data-[side=top]:rounded-b-xl data-[side=bottom]:border-t data-[side=left]:border-r data-[side=right]:border-l data-[side=top]:border-b data-transitioning:transition-transform data-transitioning:duration-300 data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm",
+          "cn-drawer-content group/drawer-content fixed z-50 data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:mt-24 data-[side=bottom]:max-h-[80vh] data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:w-3/4 data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:w-3/4 data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:mb-24 data-[side=top]:max-h-[80vh] data-transitioning:transition-transform data-transitioning:duration-300 data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm",
           props.class,
         )}
         {...rest}
       >
-        <div class="mx-auto mt-4 hidden h-1 w-[100px] shrink-0 rounded-full bg-muted group-data-[side=bottom]/drawer-content:block" />
+        <div class="cn-drawer-handle mx-auto hidden shrink-0 group-data-[side=bottom]/drawer-content:block" />
         {props.children}
       </DrawerPrimitive.Content>
     </DrawerPortal>
@@ -102,7 +102,7 @@ const DrawerHeader: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="drawer-header"
       class={cn(
-        "flex flex-col gap-0.5 p-4 md:gap-0.5 md:text-left group-data-[side=bottom]/drawer-content:text-center group-data-[side=top]/drawer-content:text-center",
+        "cn-drawer-header flex flex-col group-data-[side=bottom]/drawer-content:text-center group-data-[side=top]/drawer-content:text-center",
         props.class,
       )}
       {...rest}
@@ -115,7 +115,7 @@ const DrawerFooter: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="drawer-footer"
-      class={cn("mt-auto flex flex-col gap-2 p-4", props.class)}
+      class={cn("cn-drawer-footer mt-auto flex flex-col", props.class)}
       {...rest}
     />
   );
@@ -133,7 +133,7 @@ const DrawerTitle = <T extends ValidComponent = "div">(
     <DrawerPrimitive.Label
       data-slot="drawer-title"
       class={cn(
-        "font-heading font-medium text-base text-foreground",
+        "cn-drawer-title font-heading",
         props.class,
       )}
       {...rest}
@@ -154,7 +154,7 @@ const DrawerDescription = <T extends ValidComponent = "div">(
   return (
     <DrawerPrimitive.Description
       data-slot="drawer-description"
-      class={cn("text-muted-foreground text-sm", props.class)}
+      class={cn("cn-drawer-description", props.class)}
       {...rest}
     />
   );

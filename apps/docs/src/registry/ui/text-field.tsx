@@ -19,7 +19,7 @@ const TextField = <T extends ValidComponent = "div">(
   const [local, others] = splitProps(props as TextFieldRootProps, ["class"]);
   return (
     <TextFieldPrimitive.Root
-      class={cn("flex flex-col gap-1", local.class)}
+      class={cn("cn-text-field flex flex-col", local.class)}
       {...others}
     />
   );
@@ -69,7 +69,7 @@ const TextFieldInput = <T extends ValidComponent = "input">(
     <TextFieldPrimitive.Input
       type={local.type}
       class={cn(
-        "flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:border-error-foreground data-[invalid]:text-error-foreground",
+        "cn-text-field-input flex w-full file:border-0 file:bg-transparent placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -90,7 +90,7 @@ const TextFieldTextArea = <T extends ValidComponent = "textarea">(
   return (
     <TextFieldPrimitive.TextArea
       class={cn(
-        "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        "cn-text-field-textarea flex min-h-[80px] w-full placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -99,13 +99,13 @@ const TextFieldTextArea = <T extends ValidComponent = "textarea">(
 };
 
 const labelVariants = cva(
-  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+  "cn-text-field-label leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
   {
     variants: {
       variant: {
-        label: "data-[invalid]:text-destructive",
-        description: "font-normal text-muted-foreground",
-        error: "text-xs text-destructive",
+        label: "cn-text-field-label-variant-label",
+        description: "cn-text-field-label-variant-description",
+        error: "cn-text-field-label-variant-error",
       },
     },
     defaultVariants: {

@@ -21,7 +21,7 @@ const Slider = <T extends ValidComponent = "div">(
     <SliderPrimitive.Root
       data-slot="slider"
       class={cn(
-        "relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-40 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50",
+        "cn-slider relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-[disabled]:opacity-50",
         local.class,
       )}
       {...others}
@@ -43,7 +43,7 @@ const SliderTrack = <T extends ValidComponent = "div">(
     <SliderPrimitive.Track
       data-slot="slider-track"
       class={cn(
-        "relative grow overflow-hidden rounded-full bg-muted data-[orientation=horizontal]:h-1 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-1",
+        "cn-slider-track relative grow overflow-hidden data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full",
         local.class,
       )}
       {...others}
@@ -65,7 +65,7 @@ const SliderFill = <T extends ValidComponent = "div">(
     <SliderPrimitive.Fill
       data-slot="slider-range"
       class={cn(
-        "absolute select-none bg-primary data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full",
+        "cn-slider-range absolute select-none data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full",
         local.class,
       )}
       {...others}
@@ -91,7 +91,7 @@ const SliderThumb = <T extends ValidComponent = "span">(
     <SliderPrimitive.Thumb
       data-slot="slider-thumb"
       class={cn(
-        "top-1/2 block size-3 shrink-0 -translate-y-1/2 select-none rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] after:absolute after:-inset-2 hover:ring-3 focus-visible:outline-hidden focus-visible:ring-3 active:ring-3 disabled:pointer-events-none disabled:opacity-50",
+        "cn-slider-thumb top-1/2 block shrink-0 -translate-y-1/2 select-none disabled:pointer-events-none disabled:opacity-50",
         local.class,
       )}
       {...others}

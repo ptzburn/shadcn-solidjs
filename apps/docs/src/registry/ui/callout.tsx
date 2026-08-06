@@ -6,13 +6,13 @@ import { cva } from "class-variance-authority";
 
 import { cn } from "~/lib/utils.ts";
 
-const calloutVariants = cva("rounded-md border-l-4 p-2 pl-4", {
+const calloutVariants = cva("cn-callout", {
   variants: {
     variant: {
-      default: "border-info-foreground bg-info text-info-foreground",
-      success: "border-success-foreground bg-success text-success-foreground",
-      warning: "border-warning-foreground bg-warning text-warning-foreground",
-      error: "border-error-foreground bg-error text-error-foreground",
+      default: "cn-callout-variant-default",
+      success: "cn-callout-variant-success",
+      warning: "cn-callout-variant-warning",
+      error: "cn-callout-variant-error",
     },
   },
   defaultVariants: {
@@ -36,12 +36,12 @@ const Callout: Component<CalloutProps> = (props) => {
 
 const CalloutTitle: Component<ComponentProps<"h3">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <h3 class={cn("font-semibold", local.class)} {...others} />;
+  return <h3 class={cn("cn-callout-title", local.class)} {...others} />;
 };
 
 const CalloutContent: Component<ComponentProps<"div">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <div class={cn("mt-2", local.class)} {...others} />;
+  return <div class={cn("cn-callout-content", local.class)} {...others} />;
 };
 
 export { Callout, CalloutContent, CalloutTitle };

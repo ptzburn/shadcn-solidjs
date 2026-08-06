@@ -41,7 +41,7 @@ const TooltipContent = <T extends ValidComponent = "div">(
       <TooltipPrimitive.Content
         data-slot="tooltip-content"
         class={cn(
-          "data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 z-50 inline-flex w-fit max-w-xs origin-(--kb-tooltip-content-transform-origin) items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-background text-xs duration-100 data-closed:animate-out data-expanded:animate-in",
+          "cn-tooltip-content z-50 w-fit max-w-xs origin-(--kb-tooltip-content-transform-origin) bg-foreground text-background duration-100",
           local.class,
         )}
         {...others}

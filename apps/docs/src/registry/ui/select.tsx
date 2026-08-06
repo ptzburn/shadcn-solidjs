@@ -33,7 +33,7 @@ const SelectTrigger = <T extends ValidComponent = "button">(
       data-slot="select-trigger"
       data-size={local.size}
       class={cn(
-        "flex w-fit select-none items-center justify-between gap-1.5 whitespace-nowrap rounded-lg border border-input bg-transparent py-2 pr-2 pl-2.5 text-sm outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 dark:bg-input/30 dark:hover:bg-input/50 dark:data-invalid:border-destructive/50 dark:data-invalid:ring-destructive/40 [&_svg]:pointer-events-none data-[size=default]:h-8 data-[size=sm]:h-7 [&_svg]:shrink-0 data-disabled:cursor-not-allowed data-[size=sm]:rounded-[min(var(--radius-md),10px)] data-invalid:border-destructive data-placeholder:text-muted-foreground data-disabled:opacity-50 data-invalid:ring-3 data-invalid:ring-destructive/20 [&_svg:not([class*='size-'])]:size-4",
+        "cn-select-trigger flex w-fit items-center justify-between whitespace-nowrap outline-none data-disabled:cursor-not-allowed data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}
@@ -46,7 +46,7 @@ const SelectTrigger = <T extends ValidComponent = "button">(
           ph="caret-down"
           ri="arrow-down-s-line"
           hugeicons="arrow-down-01"
-          class="pointer-events-none size-4 text-muted-foreground"
+          class="cn-select-trigger-icon pointer-events-none"
         />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
@@ -66,7 +66,7 @@ const SelectContent = <T extends ValidComponent = "div">(
       <SelectPrimitive.Content
         data-slot="select-content"
         class={cn(
-          "data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 relative z-50 min-w-32 origin-(--kb-select-content-transform-origin) overflow-hidden rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 data-closed:animate-out data-expanded:animate-in",
+          "cn-select-content relative z-50 origin-(--kb-select-content-transform-origin) overflow-hidden",
           local.class,
         )}
         {...others}
@@ -98,7 +98,7 @@ const SelectItem = <T extends ValidComponent = "li">(
     <SelectPrimitive.Item
       data-slot="select-item"
       class={cn(
-        "relative flex w-full cursor-default select-none items-center gap-2 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4",
+        "cn-select-item relative flex w-full cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -106,7 +106,7 @@ const SelectItem = <T extends ValidComponent = "li">(
       <SelectPrimitive.ItemLabel>{local.children}</SelectPrimitive.ItemLabel>
       <SelectPrimitive.ItemIndicator
         data-slot="select-item-indicator"
-        class="pointer-events-none absolute right-2 flex size-4 items-center justify-center"
+        class="cn-select-item-indicator"
       >
         <IconPlaceholder
           lucide="check"
@@ -114,7 +114,7 @@ const SelectItem = <T extends ValidComponent = "li">(
           ph="check"
           ri="check-line"
           hugeicons="tick-02"
-          class="pointer-events-none"
+          class="cn-select-item-indicator-icon pointer-events-none"
         />
       </SelectPrimitive.ItemIndicator>
     </SelectPrimitive.Item>
@@ -132,7 +132,7 @@ const SelectSection = <T extends ValidComponent = "li">(
   return (
     <SelectPrimitive.Section
       data-slot="select-label"
-      class={cn("px-1.5 py-1 text-muted-foreground text-xs", local.class)}
+      class={cn("cn-select-label", local.class)}
       {...others}
     />
   );

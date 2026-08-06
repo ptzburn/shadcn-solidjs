@@ -76,7 +76,7 @@ const DropdownMenuContent = <T extends ValidComponent = "div">(
       <DropdownMenuPrimitive.Content
         data-slot="dropdown-menu-content"
         class={cn(
-          "data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 z-50 max-h-(--kb-popper-content-available-height) w-(--kb-popper-anchor-width) min-w-32 origin-(--kb-menu-content-transform-origin) overflow-y-auto overflow-x-hidden rounded-lg bg-popover p-1 text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 data-closed:animate-out data-expanded:animate-in data-closed:overflow-hidden",
+          "cn-dropdown-menu-content z-50 max-h-(--kb-popper-content-available-height) w-(--kb-popper-anchor-width) origin-(--kb-menu-content-transform-origin) overflow-x-hidden overflow-y-auto data-closed:overflow-hidden",
           local.class,
         )}
         {...rest}
@@ -107,7 +107,7 @@ const DropdownMenuItem = <T extends ValidComponent = "div">(
       data-inset={local.inset}
       data-variant={local.variant}
       class={cn(
-        "group/dropdown-menu-item relative flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden dark:data-[variant=destructive]:data-highlighted:bg-destructive/20 data-[variant=destructive]:*:[svg]:text-destructive [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-highlighted:bg-accent data-inset:pl-7 data-[variant=destructive]:text-destructive data-highlighted:text-accent-foreground data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 data-[variant=destructive]:data-highlighted:bg-destructive/10 data-[variant=destructive]:data-highlighted:text-destructive not-data-[variant=destructive]:data-highlighted:**:text-accent-foreground",
+        "cn-dropdown-menu-item group/dropdown-menu-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...rest}
@@ -136,13 +136,13 @@ const DropdownMenuCheckboxItem = <T extends ValidComponent = "div">(
       data-slot="dropdown-menu-checkbox-item"
       data-inset={local.inset}
       class={cn(
-        "relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-highlighted:bg-accent data-inset:pl-7 data-highlighted:text-accent-foreground data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 data-highlighted:**:text-accent-foreground",
+        "cn-dropdown-menu-checkbox-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...rest}
     >
       <span
-        class="pointer-events-none absolute right-2 flex items-center justify-center"
+        class="cn-dropdown-menu-item-indicator pointer-events-none"
         data-slot="dropdown-menu-checkbox-item-indicator"
       >
         <DropdownMenuPrimitive.ItemIndicator>
@@ -181,13 +181,13 @@ const DropdownMenuRadioItem = <T extends ValidComponent = "div">(
       data-slot="dropdown-menu-radio-item"
       data-inset={local.inset}
       class={cn(
-        "relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-highlighted:bg-accent data-inset:pl-7 data-highlighted:text-accent-foreground data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 data-highlighted:**:text-accent-foreground",
+        "cn-dropdown-menu-radio-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...rest}
     >
       <span
-        class="pointer-events-none absolute right-2 flex items-center justify-center"
+        class="cn-dropdown-menu-item-indicator pointer-events-none"
         data-slot="dropdown-menu-radio-item-indicator"
       >
         <DropdownMenuPrimitive.ItemIndicator>
@@ -214,7 +214,7 @@ const DropdownMenuLabel: Component<
       data-slot="dropdown-menu-label"
       data-inset={local.inset}
       class={cn(
-        "px-1.5 py-1 font-medium text-muted-foreground text-xs data-inset:pl-7",
+        "cn-dropdown-menu-label",
         local.class,
       )}
       {...rest}
@@ -257,7 +257,7 @@ const DropdownMenuSeparator = <T extends ValidComponent = "hr">(
   return (
     <DropdownMenuPrimitive.Separator
       data-slot="dropdown-menu-separator"
-      class={cn("-mx-1 my-1 h-px bg-border", local.class)}
+      class={cn("cn-dropdown-menu-separator", local.class)}
       {...rest}
     />
   );
@@ -269,7 +269,7 @@ const DropdownMenuShortcut: Component<ComponentProps<"span">> = (props) => {
     <span
       data-slot="dropdown-menu-shortcut"
       class={cn(
-        "ml-auto text-muted-foreground text-xs tracking-widest group-data-[highlighted]/dropdown-menu-item:text-accent-foreground",
+        "cn-dropdown-menu-shortcut",
         local.class,
       )}
       {...rest}
@@ -298,7 +298,7 @@ const DropdownMenuSubTrigger = <T extends ValidComponent = "div">(
       data-slot="dropdown-menu-sub-trigger"
       data-inset={local.inset}
       class={cn(
-        "flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden [&_svg]:pointer-events-none [&_svg]:shrink-0 data-expanded:bg-accent data-highlighted:bg-accent data-inset:pl-7 data-expanded:text-accent-foreground data-highlighted:text-accent-foreground [&_svg:not([class*='size-'])]:size-4 not-data-[variant=destructive]:data-highlighted:**:text-accent-foreground",
+        "cn-dropdown-menu-sub-trigger flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...rest}
@@ -331,7 +331,7 @@ const DropdownMenuSubContent = <T extends ValidComponent = "div">(
       <DropdownMenuPrimitive.SubContent
         data-slot="dropdown-menu-sub-content"
         class={cn(
-          "data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 z-50 min-w-[96px] origin-(--kb-menu-content-transform-origin) overflow-hidden rounded-lg bg-popover p-1 text-popover-foreground shadow-lg ring-1 ring-foreground/10 duration-100 data-closed:animate-out data-expanded:animate-in",
+          "cn-dropdown-menu-sub-content z-50 origin-(--kb-menu-content-transform-origin) overflow-hidden",
           local.class,
         )}
         {...rest}

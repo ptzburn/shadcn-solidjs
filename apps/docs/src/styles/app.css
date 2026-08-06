@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "../registry/styles/style-nova.css";
 @plugin "@kobalte/tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *, [data-kb-theme=dark],

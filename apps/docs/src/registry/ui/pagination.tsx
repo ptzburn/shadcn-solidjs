@@ -22,7 +22,7 @@ const Pagination = <T extends ValidComponent = "nav">(
     <PaginationPrimitive.Root
       data-slot="pagination"
       class={cn(
-        "mx-auto flex w-full justify-center",
+        "cn-pagination mx-auto flex w-full justify-center",
         "[&>ul]:flex [&>ul]:flex-row [&>ul]:items-center [&>ul]:gap-0.5",
         local.class,
       )}
@@ -47,7 +47,7 @@ const PaginationItem = <T extends ValidComponent = "button">(
           variant: "ghost",
           size: "icon",
         }),
-        "dark:data-[current]:border-input dark:data-[current]:bg-input/30 data-[current]:border-border data-[current]:bg-background",
+        "cn-pagination-link dark:data-[current]:border-input dark:data-[current]:bg-input/30 data-[current]:border-border data-[current]:bg-background",
         local.class,
       )}
       {...others}
@@ -72,7 +72,7 @@ const PaginationEllipsis = <T extends ValidComponent = "div">(
       aria-hidden
       data-slot="pagination-ellipsis"
       class={cn(
-        "flex size-8 items-center justify-center [&_svg:not([class*='size-'])]:size-4",
+        "cn-pagination-ellipsis flex items-center justify-center",
         local.class,
       )}
       {...others}
@@ -113,7 +113,7 @@ const PaginationPrevious = <T extends ValidComponent = "button">(
           variant: "ghost",
           size: "default",
         }),
-        "pl-1.5!",
+        "cn-pagination-previous",
         local.class,
       )}
       {...others}
@@ -165,7 +165,7 @@ const PaginationNext = <T extends ValidComponent = "button">(
           variant: "ghost",
           size: "default",
         }),
-        "pr-1.5!",
+        "cn-pagination-next",
         local.class,
       )}
       {...others}

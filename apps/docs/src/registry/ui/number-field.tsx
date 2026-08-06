@@ -14,7 +14,7 @@ const NumberFieldGroup: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       class={cn(
-        "relative rounded-md focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
+        "cn-number-field-group relative",
         local.class,
       )}
       {...others}
@@ -35,7 +35,7 @@ const NumberFieldLabel = <T extends ValidComponent = "label">(
   return (
     <NumberFieldPrimitive.Label
       class={cn(
-        "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+        "cn-number-field-label leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
         local.class,
       )}
       {...others}
@@ -56,7 +56,7 @@ const NumberFieldInput = <T extends ValidComponent = "input">(
   return (
     <NumberFieldPrimitive.Input
       class={cn(
-        "flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:border-error-foreground data-[invalid]:text-error-foreground",
+        "cn-number-field-input flex w-full file:border-0 file:bg-transparent placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -84,7 +84,7 @@ const NumberFieldIncrementTrigger = <T extends ValidComponent = "button">(
   return (
     <NumberFieldPrimitive.IncrementTrigger
       class={cn(
-        "absolute right-1 top-1 inline-flex size-4 items-center justify-center",
+        "cn-number-field-increment-trigger absolute right-1 top-1 inline-flex size-4 items-center justify-center",
         local.class,
       )}
       {...others}
@@ -128,7 +128,7 @@ const NumberFieldDecrementTrigger = <T extends ValidComponent = "button">(
   return (
     <NumberFieldPrimitive.DecrementTrigger
       class={cn(
-        "absolute bottom-1 right-1 inline-flex size-4 items-center justify-center",
+        "cn-number-field-decrement-trigger absolute bottom-1 right-1 inline-flex size-4 items-center justify-center",
         local.class,
       )}
       {...others}
@@ -166,7 +166,7 @@ const NumberFieldDescription = <T extends ValidComponent = "div">(
   ]);
   return (
     <NumberFieldPrimitive.Description
-      class={cn("text-sm text-muted-foreground", local.class)}
+      class={cn("cn-number-field-description", local.class)}
       {...others}
     />
   );
@@ -186,7 +186,7 @@ const NumberFieldErrorMessage = <T extends ValidComponent = "div">(
   ]);
   return (
     <NumberFieldPrimitive.ErrorMessage
-      class={cn("text-sm text-error-foreground", local.class)}
+      class={cn("cn-number-field-error-message", local.class)}
       {...others}
     />
   );

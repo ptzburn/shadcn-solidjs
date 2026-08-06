@@ -172,17 +172,16 @@ function showTooltip(context: ChartContext) {
   let content = "";
 
   model.title.forEach((title) => {
-    content +=
-      `<h3 class="font-semibold leading-none tracking-tight">${title}</h3>`;
+    content += `<h3 class="cn-chart-tooltip-title">${title}</h3>`;
   });
 
-  content += `<div class="mt-1 text-muted-foreground">`;
+  content += `<div class="cn-chart-tooltip-body">`;
   const body = model.body.flatMap((body) => body.lines);
   body.forEach((line, i) => {
     const colors = model.labelColors[i];
     content += `
-        <div class="flex items-center">
-          <span class="inline-block h-2 w-2 mr-1 rounded-full border" style="background: ${colors.backgroundColor}; border-color: ${colors.borderColor}"></span>
+        <div class="cn-chart-tooltip-item flex items-center">
+          <span class="cn-chart-tooltip-indicator inline-block h-2 w-2 mr-1" style="background: ${colors.backgroundColor}; border-color: ${colors.borderColor}"></span>
           ${line}
         </div>`;
   });

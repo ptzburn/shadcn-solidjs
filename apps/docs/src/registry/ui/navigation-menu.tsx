@@ -34,7 +34,7 @@ const NavigationMenu = <T extends ValidComponent = "ul">(
       data-slot="navigation-menu"
       data-viewport={viewport()}
       class={cn(
-        "group/navigation-menu relative flex max-w-max flex-1 list-none items-center justify-center gap-1 data-[orientation=vertical]:flex-col",
+        "cn-navigation-menu group/navigation-menu relative flex max-w-max flex-1 list-none items-center justify-center gap-1 data-[orientation=vertical]:flex-col",
         local.class,
       )}
       {...others}
@@ -48,7 +48,7 @@ const NavigationMenu = <T extends ValidComponent = "ul">(
 };
 
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-[color,box-shadow] outline-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-expanded:bg-accent/50 data-expanded:text-accent-foreground data-expanded:hover:bg-accent data-expanded:focus:bg-accent",
+  "cn-navigation-menu-trigger group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 transition-[color,box-shadow] outline-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none data-expanded:bg-accent/50 data-expanded:text-accent-foreground data-expanded:hover:bg-accent data-expanded:focus:bg-accent",
 );
 
 type NavigationMenuTriggerProps<T extends ValidComponent = "button"> =
@@ -78,7 +78,7 @@ const NavigationMenuTrigger = <T extends ValidComponent = "button">(
         ph="caret-down"
         ri="arrow-down-s-line"
         hugeicons="arrow-down-01"
-        class="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[expanded]:rotate-180"
+        class="cn-navigation-menu-trigger-icon"
         aria-hidden="true"
       />
     </NavigationMenuPrimitive.Trigger>
@@ -100,7 +100,7 @@ const NavigationMenuViewport = <T extends ValidComponent = "li">(
       data-slot="navigation-menu-viewport"
       class={cn(
         // base settings
-        "pointer-events-none z-[1000] flex h-[var(--kb-navigation-menu-viewport-height)] w-[var(--kb-navigation-menu-viewport-width)] origin-[var(--kb-menu-content-transform-origin)] items-center justify-center overflow-x-clip overflow-y-visible rounded-md border bg-popover text-popover-foreground opacity-0 shadow-lg data-[expanded]:pointer-events-auto data-[orientation=vertical]:overflow-y-clip data-[orientation=vertical]:overflow-x-visible data-[expanded]:rounded-md",
+        "cn-navigation-menu-viewport pointer-events-none z-[1000] flex h-[var(--kb-navigation-menu-viewport-height)] w-[var(--kb-navigation-menu-viewport-width)] origin-[var(--kb-menu-content-transform-origin)] items-center justify-center overflow-x-clip overflow-y-visible rounded-md border opacity-0 shadow-lg data-[expanded]:pointer-events-auto data-[orientation=vertical]:overflow-y-clip data-[orientation=vertical]:overflow-x-visible data-[expanded]:rounded-md",
         // animate
         "animate-content-hide transition-[width,height] duration-200 ease-in data-[expanded]:animate-content-show data-[expanded]:opacity-100 data-[expanded]:ease-out",
         local.class,
@@ -128,7 +128,7 @@ const NavigationMenuContent = <T extends ValidComponent = "ul">(
         data-slot="navigation-menu-content"
         class={cn(
           // base settings
-          "pointer-events-none absolute top-0 left-0 box-border p-4 focus:outline-none data-[expanded]:pointer-events-auto",
+          "cn-navigation-menu-content pointer-events-none absolute top-0 left-0 box-border p-4 focus:outline-none data-[expanded]:pointer-events-auto",
           // base animation settings
           "data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out",
           // left to right
@@ -162,7 +162,7 @@ const NavigationMenuLink = <T extends ValidComponent = "a">(
     <NavigationMenuPrimitive.Item
       data-slot="navigation-menu-link"
       class={cn(
-        "flex flex-col gap-1 rounded-sm p-2 text-sm outline-none transition-all hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:outline-1 focus-visible:ring-ring/50 focus-visible:ring-[3px] data-[current]:bg-accent/50 data-[current]:text-accent-foreground data-[current]:hover:bg-accent data-[current]:focus:bg-accent [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground",
+        "cn-navigation-menu-link flex-col gap-1 rounded-sm hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[current]:bg-accent/50 data-[current]:text-accent-foreground data-[current]:hover:bg-accent data-[current]:focus:bg-accent [&_svg:not([class*='text-'])]:text-muted-foreground",
         local.class,
       )}
       {...others}

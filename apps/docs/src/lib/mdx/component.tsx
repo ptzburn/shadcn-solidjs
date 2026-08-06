@@ -6,6 +6,24 @@ import { u } from "unist-builder";
 import { visit } from "unist-util-visit";
 
 import { Index } from "../../__registry__/index.tsx";
+import { resolveIcons } from "../registry/resolve-icons.ts";
+import { createStyleMap, inlineStyles } from "../registry/style-map.ts";
+import { defaultIconLibrary } from "../../registry/icons/icon-libraries.ts";
+
+const styleMap = createStyleMap(
+  fs.readFileSync(
+    path.join(process.cwd(), "src/registry/styles/style-nova.css"),
+    "utf-8",
+  ),
+);
+
+/**
+ * Docs code blocks show the consumer form of registry files: style
+ * markers inlined and icons resolved, matching what the CLI installs.
+ */
+function toConsumerSource(source: string): string {
+  return resolveIcons(inlineStyles(source, styleMap), defaultIconLibrary).code;
+}
 
 interface ComponentNode extends Node, Parent {
   name?: string;
@@ -39,7 +57,7 @@ export default function rehypeComponent() {
           "src",
           component.files[0].path,
         );
-        let source = fs.readFileSync(filePath, "utf-8");
+        let source = toConsumerSource(fs.readFileSync(filePath, "utf-8"));
 
         source = source.replaceAll("~/registry/", "~/components/");
         source = source.replaceAll("export default", "export");
@@ -82,7 +100,7 @@ export default function rehypeComponent() {
           "src",
           component.files[0].path,
         );
-        let source = fs.readFileSync(filePath, "utf-8");
+        let source = toConsumerSource(fs.readFileSync(filePath, "utf-8"));
 
         source = source.replaceAll("~/registry/", "~/components/");
         source = source.replaceAll("export default", "export");

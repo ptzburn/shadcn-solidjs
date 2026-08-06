@@ -26,7 +26,7 @@ const ComboboxControl = <T, U extends ValidComponent = "div">(
     <ComboboxPrimitive.Control
       data-slot="combobox-control"
       class={cn(
-        "flex min-h-8 w-full flex-wrap items-center gap-1 rounded-lg border border-input bg-clip-padding bg-transparent px-2.5 py-1 text-sm transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 dark:bg-input/30 dark:has-aria-invalid:border-destructive/50 dark:has-aria-invalid:ring-destructive/40 has-aria-invalid:border-destructive has-aria-invalid:ring-3 has-aria-invalid:ring-destructive/20",
+        "cn-combobox-chips w-full",
         local.class,
       )}
       {...others}
@@ -72,7 +72,7 @@ const ComboboxTrigger = <T extends ValidComponent = "button">(
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
       class={cn(
-        "flex items-center justify-center [&_svg:not([class*='size-'])]:size-4",
+        "cn-combobox-trigger flex items-center justify-center",
         local.class,
       )}
       {...others}
@@ -87,7 +87,7 @@ const ComboboxTrigger = <T extends ValidComponent = "button">(
               ph="caret-down"
               ri="arrow-down-s-line"
               hugeicons="arrow-down-01"
-              class="pointer-events-none size-4 text-muted-foreground"
+              class="cn-combobox-trigger-icon pointer-events-none"
             />
           }
         >
@@ -120,7 +120,7 @@ const ComboboxClear: Component<ComboboxClearProps> = (props) => {
             ph="x"
             ri="close-line"
             hugeicons="cancel-01"
-            class="pointer-events-none"
+            class="cn-combobox-clear-icon pointer-events-none"
           />
         }
       >
@@ -146,7 +146,7 @@ const ComboboxChip: Component<ComboboxChipProps> = (props) => {
     <span
       data-slot="combobox-chip"
       class={cn(
-        "flex h-[calc(--spacing(5.25))] w-fit items-center justify-center gap-1 whitespace-nowrap rounded-sm bg-muted px-1.5 font-medium text-foreground text-xs has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-data-[slot=combobox-chip-remove]:pr-0 has-disabled:opacity-50",
+        "cn-combobox-chip has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -158,7 +158,7 @@ const ComboboxChip: Component<ComboboxChipProps> = (props) => {
           type="button"
           variant="ghost"
           size="icon-xs"
-          class="-ml-1 opacity-50 hover:opacity-100"
+          class="cn-combobox-chip-remove"
           onClick={() => local.onRemove?.()}
         >
           <IconPlaceholder
@@ -167,7 +167,7 @@ const ComboboxChip: Component<ComboboxChipProps> = (props) => {
             ph="x"
             ri="close-line"
             hugeicons="cancel-01"
-            class="pointer-events-none"
+            class="cn-combobox-chip-indicator-icon pointer-events-none"
           />
         </Button>
       </Show>
@@ -181,7 +181,7 @@ const ComboboxEmpty: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="combobox-empty"
       class={cn(
-        "flex w-full justify-center py-2 text-center text-muted-foreground text-sm",
+        "cn-combobox-empty",
         local.class,
       )}
       {...others}
@@ -200,7 +200,7 @@ const ComboboxSection = <T extends ValidComponent = "li">(
   return (
     <ComboboxPrimitive.Section
       data-slot="combobox-label"
-      class={cn("px-2 py-1.5 text-muted-foreground text-xs", local.class)}
+      class={cn("cn-combobox-label", local.class)}
       {...others}
     />
   );
@@ -224,20 +224,20 @@ const ComboboxItem = <T extends ValidComponent = "li">(
     <ComboboxPrimitive.Item
       data-slot="combobox-item"
       class={cn(
-        "relative flex w-full cursor-default select-none items-center gap-2 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4",
+        "cn-combobox-item relative flex w-full cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...others}
     >
       {local.children}
-      <ComboboxPrimitive.ItemIndicator class="pointer-events-none absolute right-2 flex size-4 items-center justify-center">
+      <ComboboxPrimitive.ItemIndicator class="cn-combobox-item-indicator">
         <IconPlaceholder
           lucide="check"
           tabler="check"
           ph="check"
           ri="check-line"
           hugeicons="tick-02"
-          class="pointer-events-none"
+          class="cn-combobox-item-indicator-icon pointer-events-none"
         />
       </ComboboxPrimitive.ItemIndicator>
     </ComboboxPrimitive.Item>
@@ -257,14 +257,14 @@ const ComboboxContent = <T extends ValidComponent = "div">(
       <ComboboxPrimitive.Content
         data-slot="combobox-content"
         class={cn(
-          "data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 group/combobox-content relative z-50 min-w-32 origin-(--kb-combobox-content-transform-origin) overflow-hidden rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10 data-closed:animate-out data-expanded:animate-in",
+          "cn-combobox-content group/combobox-content relative z-50 origin-(--kb-combobox-content-transform-origin)",
           local.class,
         )}
         {...others}
       >
         <ComboboxPrimitive.Listbox
           data-slot="combobox-list"
-          class="no-scrollbar max-h-72 scroll-py-1 overflow-y-auto overscroll-contain p-1"
+          class="cn-combobox-list overflow-y-auto overscroll-contain"
         />
       </ComboboxPrimitive.Content>
     </ComboboxPrimitive.Portal>

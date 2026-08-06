@@ -35,7 +35,7 @@ const ContextMenuContent = <T extends ValidComponent = "div">(
     <ContextMenuPrimitive.Portal>
       <ContextMenuPrimitive.Content
         class={cn(
-          "z-50 min-w-32 origin-[var(--kb-menu-content-transform-origin)] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md animate-in",
+          "cn-context-menu-content z-50 origin-[var(--kb-menu-content-transform-origin)] overflow-hidden border",
           local.class,
         )}
         {...others}
@@ -57,7 +57,7 @@ const ContextMenuItem = <T extends ValidComponent = "div">(
   return (
     <ContextMenuPrimitive.Item
       class={cn(
-        "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+        "cn-context-menu-item relative flex cursor-default select-none items-center outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         local.class,
       )}
       {...others}
@@ -69,7 +69,7 @@ const ContextMenuShortcut: Component<ComponentProps<"span">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
     <span
-      class={cn("ml-auto text-xs tracking-widest opacity-60", local.class)}
+      class={cn("cn-context-menu-shortcut opacity-60", local.class)}
       {...others}
     />
   );
@@ -89,7 +89,7 @@ const ContextMenuSeparator = <T extends ValidComponent = "hr">(
   ]);
   return (
     <ContextMenuPrimitive.Separator
-      class={cn("-mx-1 my-1 h-px bg-muted", local.class)}
+      class={cn("cn-context-menu-separator", local.class)}
       {...others}
     />
   );
@@ -112,7 +112,7 @@ const ContextMenuSubTrigger = <T extends ValidComponent = "div">(
   return (
     <ContextMenuPrimitive.SubTrigger
       class={cn(
-        "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent",
+        "cn-context-menu-sub-trigger flex cursor-default select-none items-center outline-none",
         local.class,
       )}
       {...others}
@@ -145,7 +145,7 @@ const ContextMenuSubContent = <T extends ValidComponent = "div">(
   return (
     <ContextMenuPrimitive.SubContent
       class={cn(
-        "z-50 min-w-32 origin-[var(--kb-menu-content-transform-origin)] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md animate-in",
+        "cn-context-menu-sub-content z-50 origin-[var(--kb-menu-content-transform-origin)] overflow-hidden",
         local.class,
       )}
       {...others}
@@ -170,12 +170,12 @@ const ContextMenuCheckboxItem = <T extends ValidComponent = "div">(
   return (
     <ContextMenuPrimitive.CheckboxItem
       class={cn(
-        "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+        "cn-context-menu-checkbox-item relative flex cursor-default select-none items-center outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         local.class,
       )}
       {...others}
     >
-      <span class="absolute left-2 flex size-3.5 items-center justify-center">
+      <span class="cn-context-menu-item-indicator flex size-3.5 items-center justify-center">
         <ContextMenuPrimitive.ItemIndicator>
           <IconPlaceholder
             lucide="check"
@@ -206,7 +206,7 @@ const ContextMenuGroupLabel = <T extends ValidComponent = "span">(
   ]);
   return (
     <ContextMenuPrimitive.GroupLabel
-      class={cn("px-2 py-1.5 text-sm font-semibold", local.class)}
+      class={cn("cn-context-menu-label", local.class)}
       {...others}
     />
   );
@@ -229,12 +229,12 @@ const ContextMenuRadioItem = <T extends ValidComponent = "div">(
   return (
     <ContextMenuPrimitive.RadioItem
       class={cn(
-        "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+        "cn-context-menu-radio-item relative flex cursor-default select-none items-center outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         local.class,
       )}
       {...others}
     >
-      <span class="absolute left-2 flex size-3.5 items-center justify-center">
+      <span class="cn-context-menu-item-indicator flex size-3.5 items-center justify-center">
         <ContextMenuPrimitive.ItemIndicator>
           <IconPlaceholder
             lucide="circle"

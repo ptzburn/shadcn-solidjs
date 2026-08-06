@@ -25,7 +25,7 @@ const FieldSet = <T extends ValidComponent = "fieldset">(
       as="fieldset"
       data-slot="field-set"
       class={cn(
-        "flex flex-col gap-4 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
+        "cn-field-set flex flex-col",
         local.class,
       )}
       {...others}
@@ -54,7 +54,7 @@ const FieldLegend = <T extends ValidComponent = "legend">(
       data-slot="field-legend"
       data-variant={local.variant ?? "legend"}
       class={cn(
-        "mb-1.5 font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base",
+        "cn-field-legend",
         local.class,
       )}
       {...others}
@@ -76,7 +76,7 @@ const FieldGroup = <T extends ValidComponent = "div">(
       as="div"
       data-slot="field-group"
       class={cn(
-        "@container/field-group group/field-group flex w-full flex-col gap-5 *:data-[slot=field-group]:gap-4 data-[slot=checkbox-group]:gap-3",
+        "cn-field-group @container/field-group group/field-group flex w-full flex-col",
         local.class,
       )}
       {...others}
@@ -85,15 +85,16 @@ const FieldGroup = <T extends ValidComponent = "div">(
 };
 
 const fieldVariants = cva(
-  "group/field flex w-full gap-2 data-[invalid=true]:text-destructive",
+  "cn-field group/field flex w-full",
   {
     variants: {
       orientation: {
-        vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
+        vertical:
+          "cn-field-orientation-vertical flex-col *:w-full [&>.sr-only]:w-auto",
         horizontal:
-          "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+          "cn-field-orientation-horizontal flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
         responsive:
-          "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+          "cn-field-orientation-responsive flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
       },
     },
     defaultVariants: {
@@ -147,7 +148,7 @@ const FieldContent = <T extends ValidComponent = "div">(
       as="div"
       data-slot="field-content"
       class={cn(
-        "group/field-content flex flex-1 flex-col gap-0.5 leading-snug",
+        "cn-field-content group/field-content flex flex-1 flex-col leading-snug",
         local.class,
       )}
       {...others}
@@ -168,7 +169,7 @@ const FieldLabel = <T extends ValidComponent = "label">(
     <Label
       data-slot="field-label"
       class={cn(
-        "group/field-label peer/field-label flex w-fit gap-2 leading-snug *:data-[slot=field]:p-2.5 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10 has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border has-data-checked:border-primary/30 has-data-checked:bg-primary/5 group-data-[disabled=true]/field:opacity-50",
+        "cn-field-label group/field-label peer/field-label flex w-fit",
         "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col",
         local.class,
       )}
@@ -191,7 +192,7 @@ const FieldTitle = <T extends ValidComponent = "div">(
       as="div"
       data-slot="field-label"
       class={cn(
-        "flex w-fit items-center gap-2 font-medium text-sm group-data-[disabled=true]/field:opacity-50",
+        "cn-field-title flex w-fit items-center",
         local.class,
       )}
       {...others}
@@ -215,7 +216,7 @@ const FieldDescription = <T extends ValidComponent = "p">(
       as="p"
       data-slot="field-description"
       class={cn(
-        "text-left font-normal text-muted-foreground text-sm leading-normal [[data-variant=legend]+&]:-mt-1.5 group-has-[[data-orientation=horizontal]]/field:text-balance",
+        "cn-field-description font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance",
         "last:mt-0 nth-last-2:-mt-1",
         "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
         local.class,
@@ -246,7 +247,7 @@ const FieldSeparator = <T extends ValidComponent = "div">(
       data-slot="field-separator"
       data-content={!!local.children}
       class={cn(
-        "relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2",
+        "cn-field-separator relative",
         local.class,
       )}
       {...others}
@@ -254,7 +255,7 @@ const FieldSeparator = <T extends ValidComponent = "div">(
       <Separator class="absolute inset-0 top-1/2" />
       <Show when={local.children}>
         <span
-          class="relative mx-auto block w-fit bg-background px-2 text-muted-foreground"
+          class="cn-field-separator-content relative mx-auto block w-fit bg-background"
           data-slot="field-separator-content"
         >
           {local.children}
@@ -318,7 +319,7 @@ const FieldError = <T extends ValidComponent = "div">(
         role="alert"
         data-slot="field-error"
         class={cn(
-          "font-normal text-destructive text-sm",
+          "cn-field-error font-normal",
           local.class,
         )}
         {...others}
