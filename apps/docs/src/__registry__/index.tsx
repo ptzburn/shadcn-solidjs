@@ -698,6 +698,42 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "alert-action": {
+    name: "alert-action",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/alert-action.tsx")),
+    files: [{
+      path: "registry/example/alert-action.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-basic": {
+    name: "alert-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/alert-basic.tsx")),
+    files: [{
+      path: "registry/example/alert-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-colors": {
+    name: "alert-colors",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/alert-colors.tsx")),
+    files: [{
+      path: "registry/example/alert-colors.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "alert-demo": {
     name: "alert-demo",
     description: "",
@@ -706,6 +742,18 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/alert-demo.tsx")),
     files: [{
       path: "registry/example/alert-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-destructive": {
+    name: "alert-destructive",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/alert-destructive.tsx")),
+    files: [{
+      path: "registry/example/alert-destructive.tsx",
       type: "example",
       target: "",
     }],

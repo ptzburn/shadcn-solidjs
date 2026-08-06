@@ -62,11 +62,51 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "alert-action",
+    type: "example",
+    files: [
+      {
+        path: "example/alert-action.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "alert-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/alert-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "alert-colors",
+    type: "example",
+    files: [
+      {
+        path: "example/alert-colors.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "alert-demo",
     type: "example",
     files: [
       {
         path: "example/alert-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "alert-destructive",
+    type: "example",
+    files: [
+      {
+        path: "example/alert-destructive.tsx",
         type: "example",
       },
     ],
