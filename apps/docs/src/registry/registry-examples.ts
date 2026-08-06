@@ -372,26 +372,6 @@ export const examples: Registry = [
     ],
   },
   {
-    name: "flex-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/flex-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "grid-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/grid-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
     name: "hover-card-demo",
     type: "example",
     files: [

@@ -3,7 +3,6 @@ import { createForm } from "@modular-forms/solid";
 
 import { IconBrandGithub, IconLoader } from "~/components/icons.tsx";
 import { Button } from "~/registry/ui/button.tsx";
-import { Grid } from "~/registry/ui/grid.tsx";
 import {
   TextField,
   TextFieldInput,
@@ -22,7 +21,7 @@ export function UserAuthForm() {
   return (
     <div class="grid gap-6">
       <Form onSubmit={handleSubmit}>
-        <Grid class="gap-4">
+        <div class="grid gap-4">
           <Field name="email">
             {(_, props) => (
               <TextField class="gap-1">
@@ -41,7 +40,7 @@ export function UserAuthForm() {
             )}
             Login
           </Button>
-        </Grid>
+        </div>
       </Form>
       <div class="relative">
         <div class="absolute inset-0 flex items-center">

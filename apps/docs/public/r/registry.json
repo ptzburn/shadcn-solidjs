@@ -251,16 +251,6 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "flex",
-      "type": "registry:ui"
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "grid",
-      "type": "registry:ui"
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "hover-card",
       "type": "registry:ui",
       "dependencies": [

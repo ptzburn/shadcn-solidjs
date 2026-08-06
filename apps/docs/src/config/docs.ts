@@ -318,18 +318,5 @@ export const docsConfig: Config = {
         },
       ],
     },
-    {
-      title: "Layout",
-      items: [
-        {
-          title: "Flex",
-          href: "/docs/components/flex",
-        },
-        {
-          title: "Grid",
-          href: "/docs/components/grid",
-        },
-      ],
-    },
   ],
 };

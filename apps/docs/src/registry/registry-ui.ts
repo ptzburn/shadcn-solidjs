@@ -285,26 +285,6 @@ export const ui: Registry = [
     ],
   },
   {
-    name: "flex",
-    type: "ui",
-    files: [
-      {
-        path: "ui/flex.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
-    name: "grid",
-    type: "ui",
-    files: [
-      {
-        path: "ui/grid.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
     name: "hover-card",
     type: "ui",
     dependencies: ["@kobalte/core"],

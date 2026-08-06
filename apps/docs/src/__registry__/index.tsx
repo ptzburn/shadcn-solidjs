@@ -318,30 +318,6 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
-  "flex": {
-    name: "flex",
-    description: "",
-    type: "ui",
-    registryDependencies: undefined,
-    component: lazy(() => import("~/registry/ui/flex.tsx")),
-    files: [{
-      path: "registry/ui/flex.tsx",
-      type: "ui",
-      target: "",
-    }],
-  },
-  "grid": {
-    name: "grid",
-    description: "",
-    type: "ui",
-    registryDependencies: undefined,
-    component: lazy(() => import("~/registry/ui/grid.tsx")),
-    files: [{
-      path: "registry/ui/grid.tsx",
-      type: "ui",
-      target: "",
-    }],
-  },
   "hover-card": {
     name: "hover-card",
     description: "",
@@ -1194,30 +1170,6 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/dropdown-menu-demo.tsx")),
     files: [{
       path: "registry/example/dropdown-menu-demo.tsx",
-      type: "example",
-      target: "",
-    }],
-  },
-  "flex-demo": {
-    name: "flex-demo",
-    description: "",
-    type: "example",
-    registryDependencies: undefined,
-    component: lazy(() => import("~/registry/example/flex-demo.tsx")),
-    files: [{
-      path: "registry/example/flex-demo.tsx",
-      type: "example",
-      target: "",
-    }],
-  },
-  "grid-demo": {
-    name: "grid-demo",
-    description: "",
-    type: "example",
-    registryDependencies: undefined,
-    component: lazy(() => import("~/registry/example/grid-demo.tsx")),
-    files: [{
-      path: "registry/example/grid-demo.tsx",
       type: "example",
       target: "",
     }],

@@ -254,20 +254,6 @@
     "type": "ui"
   },
   {
-    "name": "flex",
-    "files": [
-      "ui/flex.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "grid",
-    "files": [
-      "ui/grid.tsx"
-    ],
-    "type": "ui"
-  },
-  {
     "name": "hover-card",
     "dependencies": [
       "@kobalte/core"

@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
-import { Grid } from "~/registry/ui/grid.tsx";
 import {
   Tabs,
   TabsContent,
@@ -177,7 +176,7 @@ export function Dashboard() {
                   </CardContent>
                 </Card>
               </div>
-              <Grid colsMd={2} colsLg={7} class="gap-4">
+              <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
                 <Card class="col-span-4">
                   <CardHeader>
                     <CardTitle>Overview</CardTitle>
@@ -197,7 +196,7 @@ export function Dashboard() {
                     <RecentSales />
                   </CardContent>
                 </Card>
-              </Grid>
+              </div>
             </TabsContent>
           </Tabs>
         </div>
