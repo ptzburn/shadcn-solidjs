@@ -296,10 +296,6 @@ export const docsConfig: Config = {
       title: "Get Started",
       items: [
         {
-          title: "Introduction",
-          href: "/docs/introduction",
-        },
-        {
           title: "Installation",
           href: "/docs/installation/overview",
         },
