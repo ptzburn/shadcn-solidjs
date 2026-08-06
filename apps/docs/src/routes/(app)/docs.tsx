@@ -24,7 +24,7 @@ export default function DocsLayout(props: RouteProps<string>) {
           >
             <div class="flex min-w-0 flex-1 flex-col">
               <div class="h-(--top-spacing) shrink-0" />
-              <div class="mx-auto flex w-full min-w-0 max-w-160 flex-1 flex-col gap-6 px-4 py-6 text-foreground md:px-0 lg:py-8">
+              <div class="mx-auto flex w-full min-w-0 max-w-160 flex-1 flex-col gap-6 px-4 py-6 text-foreground md:px-0 lg:py-8 dark:text-foreground">
                 <MDXProvider components={MDXComponents}>
                   <article class="w-full flex-1 pb-16 sm:pb-0">
                     {props.children}

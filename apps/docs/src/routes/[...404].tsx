@@ -1,7 +1,7 @@
 import { A } from "@solidjs/router";
 
 import {
-  PageHeaderActions,
+  PageActions,
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/page-header.tsx";
@@ -14,11 +14,11 @@ export default function NotFound() {
       <PageHeaderDescription>
         The page you're looking for doesn't exist or has been moved.
       </PageHeaderDescription>
-      <PageHeaderActions class="justify-center">
+      <PageActions class="justify-center">
         <Button as={A} href="/">
           Go back home
         </Button>
-      </PageHeaderActions>
+      </PageActions>
     </div>
   );
 }

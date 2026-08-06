@@ -4,16 +4,17 @@ import { ExamplesNav } from "~/components/examples-nav.tsx";
 import { IconBrandGithub } from "~/components/icons.tsx";
 import { Mail } from "~/components/mail/index.tsx";
 import {
+  PageActions,
   PageHeader,
-  PageHeaderActions,
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/page-header.tsx";
+import { PageNav } from "~/components/page-nav.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 
 export default function Home() {
   return (
-    <div class="relative">
+    <>
       <PageHeader>
         <PageHeaderHeading>Build your component library.</PageHeaderHeading>
         <PageHeaderDescription>
@@ -41,7 +42,7 @@ export default function Home() {
           </A>{" "}
           to Solid.
         </p>
-        <PageHeaderActions>
+        <PageActions>
           <Button as={A} size="sm" href="/docs/introduction">
             Get Started
           </Button>
@@ -55,16 +56,18 @@ export default function Home() {
           >
             <IconBrandGithub /> GitHub
           </Button>
-        </PageHeaderActions>
+        </PageActions>
       </PageHeader>
-      <section class="container py-6">
-        <ExamplesNav />
-        <div class="hidden md:block [&>div]:p-0">
-          <div class="overflow-hidden rounded-[0.5rem] border bg-background shadow">
+      <PageNav class="hidden md:flex">
+        <ExamplesNav class="flex-1 overflow-hidden [&>a:first-child]:text-primary" />
+      </PageNav>
+      <div class="container-wrapper section-soft flex flex-1 flex-col pb-6">
+        <div class="container theme-container hidden flex-1 scroll-mt-20 flex-col md:flex">
+          <div class="flex flex-col overflow-hidden rounded-lg border bg-background bg-clip-padding md:flex-1 xl:rounded-xl [&>div]:p-0">
             <Mail />
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 }
