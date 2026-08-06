@@ -50,7 +50,7 @@ The `<Toaster />` component is where your toasts are displayed. You can place it
 import { Toaster } from "~/components/ui/toast"
 ```
 
-```tsx
+```tsx showLineNumbers
 <html>
   <body>
     <main>{children}</main>
@@ -67,7 +67,7 @@ The `showToast` function creates a `<Toast />` component that is shown using the
 import { showToast } from "~/components/ui/toast"
 ```
 
-```tsx
+```tsx showLineNumbers
 <Button
   onClick={() =>
     showToast({ title: "Event added.", description: "Friday, February 10, 2023 at 5:57 PM" })

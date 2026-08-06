@@ -28,7 +28,7 @@ npx solidui-cli@latest add otp-field
 
 Add the following animations to your `tailwind.config.cjs` file:
 
-```js {6-9,12}
+```js {6-9,12} showLineNumbers
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   theme: {
@@ -68,7 +68,7 @@ npm install @corvu/otp-field
 
 Add the following animations to your `tailwind.config.cjs` file:
 
-```js {6-9,12}
+```js {6-9,12} showLineNumbers
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   theme: {
@@ -94,7 +94,7 @@ module.exports = {
 
 ## Usage
 
-```tsx
+```tsx showLineNumbers
 import {
   OTPField,
   OTPFieldGroup,
@@ -104,7 +104,7 @@ import {
 } from "~/registry/ui/otp-field"
 ```
 
-```tsx
+```tsx showLineNumbers
 <OTPField maxLength={6}>
   <OTPFieldInput />
   <OTPFieldGroup>
@@ -131,7 +131,7 @@ Use the `pattern` prop to define a custom pattern for the OTP input.
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "~/components/ui/otp-field"
 ```
 
-```tsx {2}
+```tsx {2} showLineNumbers
 <OTPField maxLength={6}>
   <OTPFieldInput pattern={REGEXP_ONLY_DIGITS_AND_CHARS} />
   <OTPFieldGroup>

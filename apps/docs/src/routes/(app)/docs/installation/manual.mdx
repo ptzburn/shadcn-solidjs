@@ -23,7 +23,7 @@ npm install tailwindcss-animate class-variance-authority clsx tailwind-merge
 
 Add the following code to the `tsconfig.json` file to resolve paths:
 
-```ts {4-9}
+```ts {4-9} showLineNumbers
 {
   "compilerOptions": {
     // ...
@@ -47,7 +47,7 @@ Add the following code to the `vite.config.ts` so your app can resolve paths wit
 npm i -D @types/node
 ```
 
-```ts
+```ts showLineNumbers
 import path from "path"
 
 import solid from "@vitejs/plugin-solid"
@@ -67,7 +67,7 @@ export default defineConfig({
 
 Here's what my `tailwind.config.js` file looks like:
 
-```js
+```js showLineNumbers
 /**@type {import("tailwindcss").Config} */
 module.exports = {
   darkMode: ["variant", [".dark &", '[data-kb-theme="dark"] &']],
@@ -173,7 +173,7 @@ module.exports = {
 
 Add the following to your `app.css` file:
 
-```css
+```css showLineNumbers
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -294,7 +294,7 @@ Add the following to your `app.css` file:
 
 I use a `cn` helper to make it easier to conditionally add Tailwind CSS classes. Here's how I define it in `lib/utils.ts`:
 
-```ts
+```ts showLineNumbers
 import type { ClassValue } from "clsx"
 import { clsx } from "clsx"
 import { twMerge } from "tailwind-merge"

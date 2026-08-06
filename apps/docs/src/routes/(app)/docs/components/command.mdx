@@ -46,7 +46,7 @@ npm install @kobalte/core cmdk-solid
 
 ## Usage
 
-```tsx
+```tsx showLineNumbers
 import {
   Command,
   CommandDialog,
@@ -60,7 +60,7 @@ import {
 } from "@/components/ui/command"
 ```
 
-```tsx
+```tsx showLineNumbers
 <Command>
   <CommandInput placeholder="Type a command or search..." />
   <CommandList>
@@ -88,7 +88,7 @@ import {
 
 To show the command menu in a dialog, use the `<CommandDialog />` component.
 
-```tsx
+```tsx showLineNumbers
 export function CommandMenu() {
   const [open, setOpen] = createSignal(false)
 

@@ -56,7 +56,7 @@ Answer `Yes` to all the question prompted by the CLI when installing Tailwind CS
 
 Add the following code to the `tsconfig.json` file to resolve paths:
 
-```ts {4-9}
+```ts {4-9} showLineNumbers
 {
   "compilerOptions": {
     // ...
@@ -94,7 +94,7 @@ Configure the import alias for the src directory: ~/*
 
 Import the `globals.css` file in the `src/pages/index.astro` file:
 
-```ts {2}
+```ts {2} showLineNumbers
 ---
 import "~/styles/globals.css"
 ---
@@ -104,7 +104,7 @@ import "~/styles/globals.css"
 
 To prevent serving the Tailwind base styles twice, we need to tell Astro not to apply the base styles, since we already include them in our own `globals.css` file. To do this, set the `applyBaseStyles` config option for the tailwind plugin in `astro.config.mjs` to `false`.
 
-```ts {3-5}
+```ts {3-5} showLineNumbers
 export default defineConfig({
   integrations: [
     tailwind({
@@ -118,7 +118,7 @@ export default defineConfig({
 
 When running `npx solidui-cli@latest init`, your tailwind config for content will be overwritten. To fix this, change the `module.exports` to `export default` and the `content` section with the code below to your `tailwind.config.mjs` file:
 
-```js {2}
+```js {2} showLineNumbers
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"]
 }
@@ -134,7 +134,7 @@ npx solidui-cli@latest add button
 
 The command above will add the `Button` component to your project. You can then import it like this:
 
-```astro {2,10}
+```astro {2,10} showLineNumbers
 ---
 import { Button } from "~/components/ui/button"
 ---

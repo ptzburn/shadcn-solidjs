@@ -40,7 +40,7 @@ npm install @kobalte/core
 
 </CodeTabs>
 
-```tsx
+```tsx showLineNumbers
 import {
   Sheet,
   SheetContent,
@@ -51,7 +51,7 @@ import {
 } from "~/components/ui/sheet"
 ```
 
-```tsx
+```tsx showLineNumbers
 <Sheet>
   <SheetTrigger>Open</SheetTrigger>
   <SheetContent>
@@ -70,7 +70,7 @@ import {
 
 Use the `position` property to `<SheetContent />` to indicate the edge of the screen where the component will appear. The values can be `top`, `right`, `bottom` or `left`.
 
-```tsx {3}
+```tsx {3} showLineNumbers
 <Sheet>
   <SheetTrigger>Open</SheetTrigger>
   <SheetContent position="bottom">
@@ -89,7 +89,7 @@ Use the `position` property to `<SheetContent />` to indicate the edge of the sc
 
 You can adjust the size of the sheet using CSS classes:
 
-```tsx {3}
+```tsx {3} showLineNumbers
 <Sheet>
   <SheetTrigger>Open</SheetTrigger>
   <SheetContent className="w-[400px] sm:w-[540px]">

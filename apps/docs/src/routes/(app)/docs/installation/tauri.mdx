@@ -37,7 +37,7 @@ npx tailwindcss init -p
 
 Add the following code to the `tsconfig.json` file to resolve paths:
 
-```ts {4-9}
+```ts {4-9} showLineNumbers
 {
   "compilerOptions": {
     // ...
@@ -61,7 +61,7 @@ Add the following code to the `vite.config.ts` so your app can resolve paths wit
 npm i -D @types/node
 ```
 
-```ts
+```ts showLineNumbers
 import path from "path"
 
 import solid from "@vitejs/plugin-solid"

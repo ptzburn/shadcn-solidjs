@@ -78,7 +78,7 @@ export default function rehypeComponent() {
                 tagName: "code",
                 properties: {
                   className: ["language-tsx"],
-                  metastring: `title="${title}"`,
+                  metastring: `title="${title}" showLineNumbers`,
                 },
                 children: [
                   {
@@ -122,6 +122,7 @@ export default function rehypeComponent() {
                 tagName: "code",
                 properties: {
                   className: ["language-tsx"],
+                  metastring: "showLineNumbers",
                 },
                 children: [
                   {

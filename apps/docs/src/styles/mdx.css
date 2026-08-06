@@ -43,19 +43,38 @@
   background-color: var(--color-code-highlight);
 }
 
-[data-rehype-pretty-code-figure] [data-line-numbers] [data-line] {
-  @apply px-2;
+[data-line-numbers] {
+  display: grid;
+  min-width: 100%;
+  white-space: pre;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  counter-reset: line;
+  box-decoration-break: clone;
 }
 
-[data-rehype-pretty-code-figure] [data-line-numbers] > [data-line]::before {
-  @apply text-xs;
-  color: var(--color-code-number);
+/* The number column carries the horizontal inset instead of the line. */
+[data-rehype-pretty-code-figure] [data-line-numbers] [data-line] {
+  @apply px-0;
+}
+
+[data-line-numbers] [data-line]::before {
+  font-size: var(--text-sm);
   counter-increment: line;
   content: counter(line);
   display: inline-block;
-  width: 1.8rem;
-  margin-right: 1.4rem;
+  width: calc(var(--spacing) * 16);
+  padding-right: calc(var(--spacing) * 6);
   text-align: right;
+  color: var(--color-code-number);
+  background-color: var(--color-code);
+  position: sticky;
+  left: 0;
+}
+
+[data-line-numbers] [data-highlighted-line][data-line]::before {
+  background-color: var(--color-code-highlight);
 }
 
 [data-rehype-pretty-code-title] {

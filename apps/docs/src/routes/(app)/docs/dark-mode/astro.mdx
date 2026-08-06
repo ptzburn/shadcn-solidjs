@@ -7,7 +7,7 @@ description: Adding dark mode to your Astro app.
 
 ### Create an inline theme script
 
-```astro
+```astro showLineNumbers
 ---
 import '~/styles/globals.css'
 ---
@@ -41,7 +41,7 @@ import '~/styles/globals.css'
 
 ### Add a mode toggle
 
-```tsx
+```tsx showLineNumbers
 import { createEffect, createSignal } from "solid-js"
 
 import { As } from "@kobalte/core"
@@ -100,7 +100,7 @@ export function ModeToggle() {
 
 Place a mode toggle on your site to toggle between light and dark mode.
 
-```astro
+```astro showLineNumbers
 ---
 import '~/styles/globals.css'
 import { ModeToggle } from '~/components/mode-toggle';
