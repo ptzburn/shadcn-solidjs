@@ -5,16 +5,33 @@ import { parse } from "yaml";
 export type Frontmatter = {
   title: string;
   description: string;
-  kobalte?: string;
+  docs?: string;
 };
 
 export default function remarkSolidFrontmatter() {
   return function (tree: Parent) {
-    const node = tree.children.find((node) => node.type === "yaml") as Literal;
-    if (!node) {
+    const index = tree.children.findIndex((node) => node.type === "yaml");
+    if (index === -1) {
       return;
     }
-    const data = parse(node.value as string);
+    const node = tree.children[index] as Literal;
+    const data = parse(node.value as string) as Frontmatter;
+
+    // Render the page header from frontmatter, like the upstream docs page
+    // does with fumadocs page data.
+    const header = {
+      type: "mdxJsxFlowElement",
+      name: "MDXHeader",
+      attributes: Object.entries(data)
+        .filter(([, value]) => typeof value === "string")
+        .map(([name, value]) => ({
+          type: "mdxJsxAttribute",
+          name,
+          value,
+        })),
+      children: [],
+    } as unknown as Parent["children"][number];
+    tree.children.splice(index + 1, 0, header);
 
     tree.children.unshift({
       type: "mdxjsEsm",

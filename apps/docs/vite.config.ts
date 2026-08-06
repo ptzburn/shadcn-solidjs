@@ -5,11 +5,27 @@ import { nitro } from "nitro/vite";
 import tailwindcss from "@tailwindcss/vite";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
+import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import Icons from "unplugin-icons/vite";
-import { defineConfig } from "vite";
+import { defineConfig, type Rollup } from "vite";
 
 import rehypeComponent from "./src/lib/mdx/component.tsx";
+import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
+
+const mdxPlugin = mdx({
+  jsx: true,
+  jsxImportSource: "solid-js",
+  providerImportSource: "solid-mdx",
+  remarkPlugins: [remarkGfm, remarkFrontmatter, remarkSolidFrontmatter],
+  rehypePlugins: [rehypeSlug, rehypeComponent, [rehypePrettyCode, {
+    theme: {
+      dark: "github-dark",
+      light: "github-light-default",
+    },
+    keepBackground: false,
+  }]],
+});
 
 export default defineConfig({
   root: import.meta.dirname,
@@ -19,24 +35,23 @@ export default defineConfig({
   },
   plugins: [
     {
+      ...mdxPlugin,
       enforce: "pre",
-      ...mdx({
-        jsx: true,
-        jsxImportSource: "solid-js",
-        providerImportSource: "solid-mdx",
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [rehypeSlug, rehypeComponent, [rehypePrettyCode, {
-          theme: {
-            dark: "github-dark",
-            light: "github-light-default",
-          },
-          keepBackground: false,
-        }]],
-      }),
+      // Skip ?raw imports so vite serves the untouched MDX source; the
+      // docs middleware and Copy Page rely on it staying uncompiled.
+      transform(code, id) {
+        if (id.includes("?raw")) return;
+        return (mdxPlugin.transform as (
+          this: unknown,
+          code: string,
+          id: string,
+        ) => Promise<Rollup.TransformResult>).call(this, code, id);
+      },
     },
     tailwindcss(),
     solidStart({
       extensions: ["mdx", "md"],
+      middleware: "./src/middleware.ts",
     }),
     nitro({
       preset: "deno_server",

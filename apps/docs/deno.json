@@ -46,6 +46,7 @@
     "postcss": "npm:postcss@^8.5.25",
     "rehype-pretty-code": "npm:rehype-pretty-code@^0.14.5",
     "rehype-slug": "npm:rehype-slug@^6.0.0",
+    "remark-frontmatter": "npm:remark-frontmatter@^5.0.0",
     "remark-gfm": "npm:remark-gfm@^4.0.1",
     "shiki": "npm:shiki@^4.4.1",
     "shosho": "npm:shosho@^1.4.3",

@@ -15,6 +15,7 @@ import { getCookie } from "@solidjs/start/http";
 import { MetaTags } from "~/components/meta-tags.tsx";
 
 import "~/styles/app.css";
+import "~/styles/typeset.css";
 
 function getServerCookies() {
   "use server";

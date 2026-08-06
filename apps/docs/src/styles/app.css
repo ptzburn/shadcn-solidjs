@@ -163,6 +163,7 @@
 
   --font-*: initial;
   --font-sans: "Geist Sans", sans-serif;
+  --font-heading: "Geist Sans", sans-serif;
   --font-mono: "Geist Mono", monospace;
 
   @keyframes accordion-down {

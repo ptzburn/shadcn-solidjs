@@ -5,6 +5,12 @@ import { ComponentSource } from "~/components/component-source.tsx";
 import { CopyButton } from "~/components/copy-button.tsx";
 import { MDXHeader } from "~/components/mdx-header.tsx";
 import { cn } from "~/lib/utils.ts";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "~/registry/ui/accordion.tsx";
 import { Alert, AlertDescription, AlertTitle } from "~/registry/ui/alert.tsx";
 import { Callout } from "~/registry/ui/callout.tsx";
 import {
@@ -16,92 +22,27 @@ import {
 
 export const MDXComponents = {
   h1: (props: ComponentProps<"h1">) => {
-    return (
-      <h1
-        data-toc=""
-        class="font-heading mt-2 scroll-m-20 text-4xl font-bold"
-        {...props}
-      />
-    );
+    return <h1 data-toc="" {...props} />;
   },
   h2: (props: ComponentProps<"h2">) => {
-    return (
-      <h2
-        data-toc=""
-        class="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0"
-        {...props}
-      />
-    );
+    return <h2 data-toc="" {...props} />;
   },
   h3: (props: ComponentProps<"h3">) => {
-    return (
-      <h3
-        data-toc=""
-        class="font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight"
-        {...props}
-      />
-    );
+    return <h3 data-toc="" {...props} />;
   },
   h4: (props: ComponentProps<"h4">) => {
-    return (
-      <h4
-        data-toc=""
-        class="font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight"
-        {...props}
-      />
-    );
+    return <h4 data-toc="" {...props} />;
   },
   h5: (props: ComponentProps<"h5">) => {
-    return (
-      <h5
-        data-toc=""
-        class="font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight"
-        {...props}
-      />
-    );
+    return <h5 data-toc="" {...props} />;
   },
   h6: (props: ComponentProps<"h6">) => {
-    return (
-      <h6
-        data-toc=""
-        class="font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight"
-        {...props}
-      />
-    );
+    return <h6 data-toc="" {...props} />;
   },
   a: (props: ComponentProps<"a">) => {
     return (
       <a
         target={props.href?.includes("http") ? "_blank" : "_self"}
-        class="font-medium underline underline-offset-4"
-        {...props}
-      />
-    );
-  },
-  p: (props: ComponentProps<"p">) => {
-    return (
-      <p class="break-words leading-7 [&:not(:first-child)]:mt-6" {...props} />
-    );
-  },
-  ul: (props: ComponentProps<"ul">) => {
-    return <ul class="my-6 ml-6 list-disc" {...props} />;
-  },
-  ol: (props: ComponentProps<"ol">) => {
-    return <ol class="my-6 ml-6 list-decimal" {...props} />;
-  },
-  li: (props: ComponentProps<"li">) => {
-    return <li class="mt-2" {...props} />;
-  },
-  blockquote: (props: ComponentProps<"blockquote">) => {
-    return <blockquote class="mt-6 border-l-2 pl-6 italic" {...props} />;
-  },
-  img: (props: ComponentProps<"img">) => {
-    return <img class="rounded-md" {...props} />;
-  },
-  code: (props: ComponentProps<"code">) => {
-    return (
-      <code
-        class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm group-[&.code]:bg-transparent group-[&.code]:p-0"
         {...props}
       />
     );
@@ -167,6 +108,10 @@ export const MDXComponents = {
   MDXHeader,
   ComponentPreview,
   ComponentSource,
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
   Alert,
   AlertTitle,
   AlertDescription,
