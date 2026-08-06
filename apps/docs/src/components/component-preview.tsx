@@ -106,7 +106,7 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
                   type="button"
                   size="sm"
                   variant="outline"
-                  class="relative z-10 rounded-lg bg-background text-foreground shadow-none hover:bg-muted dark:bg-background dark:text-foreground dark:hover:bg-muted"
+                  class="relative z-10 h-8 rounded-lg bg-background px-3 text-sm text-foreground shadow-none hover:bg-muted dark:bg-background dark:text-foreground dark:hover:bg-muted"
                   onClick={() => setIsCodeVisible(true)}
                 >
                   View Code

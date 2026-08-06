@@ -34,7 +34,7 @@ export function MDXHeader(props: HeaderProps) {
                   href={page().href}
                   variant="secondary"
                   size="icon"
-                  class="extend-touch-target size-8 shadow-none md:size-7"
+                  class="extend-touch-target size-8 shadow-none hover:bg-secondary/80 md:size-7"
                 >
                   <IconArrowLeft />
                   <span class="sr-only">Previous</span>
@@ -48,7 +48,7 @@ export function MDXHeader(props: HeaderProps) {
                   href={page().href}
                   variant="secondary"
                   size="icon"
-                  class="extend-touch-target size-8 shadow-none md:size-7"
+                  class="extend-touch-target size-8 shadow-none hover:bg-secondary/80 md:size-7"
                 >
                   <span class="sr-only">Next</span>
                   <IconArrowRight />
