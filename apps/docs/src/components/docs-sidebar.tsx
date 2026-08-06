@@ -2,7 +2,6 @@ import { For, Show } from "solid-js";
 import { A, useLocation } from "@solidjs/router";
 
 import { docsConfig } from "~/config/docs.ts";
-import { cn } from "~/lib/utils.ts";
 import {
   Sidebar,
   SidebarContent,
@@ -30,9 +29,35 @@ export function DocsSidebar() {
         data-docs-sidebar-content=""
         class="scroll-fade no-scrollbar w-(--sidebar-menu-width) overflow-x-hidden pl-2.5"
       >
+        <SidebarGroup class="pt-12">
+          <SidebarGroupLabel class="font-medium text-muted-foreground">
+            Sections
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <For each={docsConfig.sectionsNav}>
+                {(section) => (
+                  <SidebarMenuItem>
+                    <SidebarMenuButton
+                      as={A}
+                      href={section.href}
+                      isActive={location.pathname.startsWith(
+                        section.prefix ?? section.href,
+                      )}
+                      class={menuButtonClass}
+                    >
+                      <span class="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
+                      {section.title}
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )}
+              </For>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
         <For each={docsConfig.sidebarNav}>
-          {(category, index) => (
-            <SidebarGroup class={cn(index() === 0 && "pt-12")}>
+          {(category) => (
+            <SidebarGroup>
               <SidebarGroupLabel class="font-medium text-muted-foreground">
                 {category.title}
               </SidebarGroupLabel>

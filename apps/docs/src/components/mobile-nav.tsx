@@ -58,6 +58,20 @@ export function MobileNav(props: { class?: string }) {
               </For>
             </div>
           </div>
+          <div class="flex flex-col gap-4">
+            <div class="text-sm font-medium text-muted-foreground">
+              Sections
+            </div>
+            <div class="flex flex-col gap-3">
+              <For each={docsConfig.sectionsNav}>
+                {(section) => (
+                  <MobileLink href={section.href} onOpenChange={setOpen}>
+                    {section.title}
+                  </MobileLink>
+                )}
+              </For>
+            </div>
+          </div>
           <div class="flex flex-col gap-8">
             <For each={docsConfig.sidebarNav}>
               {(category) => (

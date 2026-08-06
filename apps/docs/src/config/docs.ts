@@ -5,6 +5,13 @@ type NavElement = {
   status?: "new" | "updated";
 };
 
+type NavSection = {
+  title: string;
+  href: string;
+  // Marks the section active for every pathname under this prefix; defaults to href.
+  prefix?: string;
+};
+
 type NavCategory = {
   title: string;
   items: NavElement[];
@@ -12,6 +19,7 @@ type NavCategory = {
 
 type Config = {
   mainNav: NavElement[];
+  sectionsNav: NavSection[];
   sidebarNav: NavCategory[];
 };
 
@@ -38,88 +46,34 @@ export const docsConfig: Config = {
       href: "/blocks",
     },
   ],
-  sidebarNav: [
+  sectionsNav: [
     {
-      title: "Getting Started",
-      items: [
-        {
-          title: "Introduction",
-          href: "/docs/introduction",
-        },
-        {
-          title: "Installation",
-          href: "/docs/installation/overview",
-        },
-        {
-          title: "Dark Mode",
-          href: "/docs/dark-mode/overview",
-        },
-        {
-          title: "CLI",
-          href: "/docs/cli",
-        },
-        {
-          title: "Figma",
-          href: "/docs/figma",
-        },
-        {
-          title: "About",
-          href: "/docs/about",
-        },
-      ],
+      title: "Introduction",
+      href: "/docs/introduction",
+    },
+    {
+      title: "Components",
+      href: "/docs/components/accordion",
+      prefix: "/docs/components",
     },
     {
       title: "Installation",
-      items: [
-        {
-          title: "SolidStart",
-          href: "/docs/installation/solid-start",
-        },
-        {
-          title: "Vite",
-          href: "/docs/installation/vite",
-        },
-        {
-          title: "Astro",
-          href: "/docs/installation/astro",
-        },
-        {
-          title: "Tauri",
-          href: "/docs/installation/tauri",
-        },
-        {
-          title: "Manual",
-          href: "/docs/installation/manual",
-        },
-      ],
+      href: "/docs/installation/overview",
+      prefix: "/docs/installation",
     },
     {
-      title: "Visualizations",
-      items: [
-        {
-          title: "Bar List",
-          href: "/docs/components/bar-list",
-        },
-        {
-          title: "Charts",
-          href: "/docs/components/charts",
-        },
-        {
-          title: "Delta Bar",
-          href: "/docs/components/delta-bar",
-        },
-        {
-          title: "Progress",
-          href: "/docs/components/progress",
-        },
-        {
-          title: "Progress Circle",
-          href: "/docs/components/progress-circle",
-        },
-      ],
+      title: "Dark Mode",
+      href: "/docs/dark-mode/overview",
+      prefix: "/docs/dark-mode",
     },
     {
-      title: "UI",
+      title: "CLI",
+      href: "/docs/cli",
+    },
+  ],
+  sidebarNav: [
+    {
+      title: "Components",
       items: [
         {
           title: "Accordion",
@@ -150,6 +104,10 @@ export const docsConfig: Config = {
           href: "/docs/components/badge-delta",
         },
         {
+          title: "Bar List",
+          href: "/docs/components/bar-list",
+        },
+        {
           title: "Breadcrumb",
           href: "/docs/components/breadcrumb",
         },
@@ -168,6 +126,10 @@ export const docsConfig: Config = {
         {
           title: "Carousel",
           href: "/docs/components/carousel",
+        },
+        {
+          title: "Charts",
+          href: "/docs/components/charts",
         },
         {
           title: "Checkbox",
@@ -198,6 +160,10 @@ export const docsConfig: Config = {
           title: "Date Picker",
           href: "/docs/components/date-picker",
           status: "new",
+        },
+        {
+          title: "Delta Bar",
+          href: "/docs/components/delta-bar",
         },
         {
           title: "Dialog",
@@ -242,6 +208,14 @@ export const docsConfig: Config = {
         {
           title: "Popover",
           href: "/docs/components/popover",
+        },
+        {
+          title: "Progress",
+          href: "/docs/components/progress",
+        },
+        {
+          title: "Progress Circle",
+          href: "/docs/components/progress-circle",
         },
         {
           title: "Radio Group",
@@ -315,6 +289,35 @@ export const docsConfig: Config = {
         {
           title: "Tooltip",
           href: "/docs/components/tooltip",
+        },
+      ],
+    },
+    {
+      title: "Get Started",
+      items: [
+        {
+          title: "Introduction",
+          href: "/docs/introduction",
+        },
+        {
+          title: "Installation",
+          href: "/docs/installation/overview",
+        },
+        {
+          title: "Dark Mode",
+          href: "/docs/dark-mode/overview",
+        },
+        {
+          title: "CLI",
+          href: "/docs/cli",
+        },
+        {
+          title: "Figma",
+          href: "/docs/figma",
+        },
+        {
+          title: "About",
+          href: "/docs/about",
         },
       ],
     },
