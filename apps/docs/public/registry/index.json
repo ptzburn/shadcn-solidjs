@@ -48,6 +48,9 @@
   },
   {
     "name": "badge",
+    "dependencies": [
+      "@kobalte/core"
+    ],
     "files": [
       "ui/badge.tsx"
     ],

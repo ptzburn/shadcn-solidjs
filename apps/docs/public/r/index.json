@@ -47,7 +47,10 @@
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "badge",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

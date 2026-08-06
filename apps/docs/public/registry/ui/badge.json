@@ -1,5 +1,8 @@
 {
   "name": "badge",
+  "dependencies": [
+    "@kobalte/core"
+  ],
   "files": [
     {
       "name": "badge.tsx",

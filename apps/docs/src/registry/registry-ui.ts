@@ -58,6 +58,7 @@ export const ui: Registry = [
   {
     name: "badge",
     type: "ui",
+    dependencies: ["@kobalte/core"],
     files: [
       {
         path: "ui/badge.tsx",
