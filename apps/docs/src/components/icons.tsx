@@ -1,4 +1,6 @@
 import { type ComponentProps, splitProps } from "solid-js";
+import IconSimpleCss from "~icons/simple-icons/css";
+import IconSimpleJson from "~icons/simple-icons/json";
 import IconSimpleTypescript from "~icons/simple-icons/typescript";
 
 import { cn } from "~/lib/utils.ts";
@@ -11,6 +13,10 @@ type IconProps = ComponentProps<"svg">;
  */
 export function getIconForLanguageExtension(language: string) {
   switch (language) {
+    case "json":
+      return <IconSimpleJson />;
+    case "css":
+      return <IconSimpleCss />;
     case "js":
     case "jsx":
     case "ts":
