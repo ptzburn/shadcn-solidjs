@@ -12,12 +12,18 @@ import { defineConfig, type Rollup } from "vite";
 
 import rehypeComponent from "./src/lib/mdx/component.tsx";
 import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
+import remarkNpmCommand from "./src/lib/mdx/npm-command.ts";
 
 const mdxPlugin = mdx({
   jsx: true,
   jsxImportSource: "solid-js",
   providerImportSource: "solid-mdx",
-  remarkPlugins: [remarkGfm, remarkFrontmatter, remarkSolidFrontmatter],
+  remarkPlugins: [
+    remarkGfm,
+    remarkFrontmatter,
+    remarkSolidFrontmatter,
+    remarkNpmCommand,
+  ],
   rehypePlugins: [rehypeSlug, rehypeComponent, [rehypePrettyCode, {
     theme: {
       dark: "github-dark",
