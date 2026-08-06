@@ -62,7 +62,6 @@ const Button = <T extends ValidComponent = "button">(
           size: local.size,
           class: local.class,
         }),
-        local.class,
       )}
       {...others}
     />
