@@ -1,20 +1,17 @@
 import type { Component, ComponentProps } from "solid-js";
 
-import { cn } from "~/lib/utils.ts";
-import { CodeBlockWrapper } from "~/components/code-block-wrapper.tsx";
+import { CodeCollapsibleWrapper } from "~/components/code-collapsible-wrapper.tsx";
 
 interface ComponentSourceProps extends ComponentProps<"div"> {
-  src: string;
+  name?: string;
+  src?: string;
 }
 
 const ComponentSource: Component<ComponentSourceProps> = (props) => {
   return (
-    <CodeBlockWrapper
-      expandButtonTitle="Expand"
-      class={cn("my-6 overflow-hidden rounded-2xl", props.class)}
-    >
+    <CodeCollapsibleWrapper class={props.class}>
       {props.children}
-    </CodeBlockWrapper>
+    </CodeCollapsibleWrapper>
   );
 };
 

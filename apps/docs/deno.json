@@ -16,6 +16,7 @@
     "@corvu/resizable": "npm:@corvu/resizable@^0.2.5",
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^2.0.3",
     "@iconify-json/lucide": "npm:@iconify-json/lucide@^1.2.121",
+    "@iconify-json/simple-icons": "npm:@iconify-json/simple-icons@^1.2.93",
     "@iconify-json/tabler": "npm:@iconify-json/tabler@^1.2.38",
     "@iconify-json/ph": "npm:@iconify-json/ph@^1.2.2",
     "@iconify-json/ri": "npm:@iconify-json/ri@^1.2.10",

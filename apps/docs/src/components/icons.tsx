@@ -1,8 +1,26 @@
 import { type ComponentProps, splitProps } from "solid-js";
+import IconSimpleTypescript from "~icons/simple-icons/typescript";
 
 import { cn } from "~/lib/utils.ts";
 
 type IconProps = ComponentProps<"svg">;
+
+/**
+ * Port of the upstream getIconForLanguageExtension used by code block
+ * title bars.
+ */
+export function getIconForLanguageExtension(language: string) {
+  switch (language) {
+    case "js":
+    case "jsx":
+    case "ts":
+    case "tsx":
+    case "typescript":
+      return <IconSimpleTypescript />;
+    default:
+      return <IconFile />;
+  }
+}
 
 const Icon = (props: IconProps) => {
   const [, rest] = splitProps(props, ["class"]);

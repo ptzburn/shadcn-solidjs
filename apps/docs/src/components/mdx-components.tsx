@@ -2,6 +2,7 @@ import { type ComponentProps } from "solid-js";
 
 import { ComponentPreview } from "~/components/component-preview.tsx";
 import { ComponentSource } from "~/components/component-source.tsx";
+import { getIconForLanguageExtension } from "~/components/icons.tsx";
 import { CodeBlockCommand } from "~/components/code-block-command.tsx";
 import { CodeTabs } from "~/components/code-tabs.tsx";
 import { CopyButton } from "~/components/copy-button.tsx";
@@ -51,8 +52,10 @@ export const MDXComponents = {
   },
   pre: (props: ComponentProps<"pre">) => {
     let preRef: HTMLPreElement | undefined;
+    // The copy button anchors to the figure (position: relative in
+    // mdx.css), so a title bar pulls it up into the bar like upstream.
     return (
-      <div class="group relative">
+      <div class="group">
         <pre
           ref={preRef}
           data-not-typeset=""
@@ -63,12 +66,27 @@ export const MDXComponents = {
           {props.children}
         </pre>
         <CopyButton
-          class="absolute right-4 top-4"
+          class="absolute top-3 right-2"
           content={preRef?.querySelector("code")?.innerText ?? ""}
         />
       </div>
     );
   },
+  figcaption: (props: ComponentProps<"figcaption"> & {
+    "data-language"?: string;
+  }) => (
+    <figcaption
+      {...props}
+      class={cn(
+        "flex items-center gap-2 text-code-foreground [&_svg]:size-4 [&_svg]:text-code-foreground [&_svg]:opacity-70",
+        props.class,
+      )}
+    >
+      {props["data-language"] &&
+        getIconForLanguageExtension(props["data-language"])}
+      {props.children}
+    </figcaption>
+  ),
   Step: (props: ComponentProps<"h3">) => <h3 {...props} />,
   Steps: (props: ComponentProps<"div">) => (
     <div

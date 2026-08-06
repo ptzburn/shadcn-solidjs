@@ -62,6 +62,13 @@ export default function rehypeComponent() {
         source = source.replaceAll("~/registry/", "~/components/");
         source = source.replaceAll("export default", "export");
 
+        // The consumer path doubles as the code block title, like the
+        // upstream title="components/ui/…" on every ComponentSource.
+        const title = component.files[0].path.replace(
+          /^registry\//,
+          "components/",
+        );
+
         node.children?.push(
           u("element", {
             tagName: "pre",
@@ -71,6 +78,7 @@ export default function rehypeComponent() {
                 tagName: "code",
                 properties: {
                   className: ["language-tsx"],
+                  metastring: `title="${title}"`,
                 },
                 children: [
                   {
