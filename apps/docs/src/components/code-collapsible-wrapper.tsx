@@ -28,12 +28,7 @@ export function CodeCollapsibleWrapper(
       class={cn("group/collapsible relative md:-mx-1", local.class)}
       {...rest}
     >
-      {/* data-not-typeset: the Kobalte separator renders an hr, which the
-          typeset stylesheet would otherwise give a large top margin. */}
-      <div
-        data-not-typeset=""
-        class="absolute top-1.5 right-9 z-10 flex items-center"
-      >
+      <div class="absolute top-1.5 right-9 z-10 flex items-center">
         <CollapsibleTrigger
           as={Button<"button">}
           variant="ghost"
