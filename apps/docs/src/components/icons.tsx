@@ -518,6 +518,18 @@ export function IconGitBranch(props: IconProps) {
   );
 }
 
+export function IconGitFork(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M10 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+      <path d="M5 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+      <path d="M15 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+      <path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2V8" />
+      <path d="M12 12v4" />
+    </Icon>
+  );
+}
+
 export function IconHash(props: IconProps) {
   return (
     <Icon {...props}>
