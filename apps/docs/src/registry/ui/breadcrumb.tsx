@@ -4,11 +4,19 @@ import { Polymorphic } from "@kobalte/core/polymorphic";
 import { cn } from "~/lib/utils.ts";
 import type { Component, ComponentProps, ValidComponent } from "solid-js";
 
-import { Show, splitProps } from "solid-js";
+import { children, Show, splitProps } from "solid-js";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const Breadcrumb: Component<ComponentProps<"nav">> = (props) => {
-  return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;
+  const [local, others] = splitProps(props, ["class"]);
+  return (
+    <nav
+      aria-label="breadcrumb"
+      data-slot="breadcrumb"
+      class={cn("cn-breadcrumb", local.class)}
+      {...others}
+    />
+  );
 };
 
 const BreadcrumbList: Component<ComponentProps<"ol">> = (props) => {
@@ -17,7 +25,7 @@ const BreadcrumbList: Component<ComponentProps<"ol">> = (props) => {
     <ol
       data-slot="breadcrumb-list"
       class={cn(
-        "cn-breadcrumb-list flex flex-wrap items-center break-words sm:gap-2.5",
+        "cn-breadcrumb-list flex flex-wrap items-center wrap-break-word",
         local.class,
       )}
       {...others}
@@ -70,6 +78,11 @@ const BreadcrumbPage: Component<ComponentProps<"span">> = (props) => {
 
 const BreadcrumbSeparator: Component<ComponentProps<"li">> = (props) => {
   const [local, others] = splitProps(props, ["class", "children"]);
+
+  // prevents rendering children twice
+  const resolvedChildren = children(() => local.children);
+  const hasChildren = () => resolvedChildren.toArray().length !== 0;
+
   return (
     <li
       data-slot="breadcrumb-separator"
@@ -78,19 +91,15 @@ const BreadcrumbSeparator: Component<ComponentProps<"li">> = (props) => {
       class={cn("cn-breadcrumb-separator", local.class)}
       {...others}
     >
-      <Show
-        when={local.children}
-        fallback={
-          <IconPlaceholder
-            lucide="chevron-right"
-            tabler="chevron-right"
-            ph="caret-right"
-            ri="arrow-right-s-line"
-            hugeicons="arrow-right-01"
-          />
-        }
-      >
-        {local.children}
+      <Show when={!hasChildren()} fallback={resolvedChildren()}>
+        <IconPlaceholder
+          lucide="chevron-right"
+          tabler="chevron-right"
+          ph="caret-right"
+          ri="arrow-right-s-line"
+          hugeicons="arrow-right-01"
+          class="cn-rtl-flip"
+        />
       </Show>
     </li>
   );
@@ -103,7 +112,10 @@ const BreadcrumbEllipsis: Component<ComponentProps<"span">> = (props) => {
       data-slot="breadcrumb-ellipsis"
       role="presentation"
       aria-hidden="true"
-      class={cn("cn-breadcrumb-ellipsis flex", local.class)}
+      class={cn(
+        "cn-breadcrumb-ellipsis flex items-center justify-center",
+        local.class,
+      )}
       {...others}
     >
       <IconPlaceholder
@@ -112,7 +124,6 @@ const BreadcrumbEllipsis: Component<ComponentProps<"span">> = (props) => {
         ph="dots-three"
         ri="more-line"
         hugeicons="more-horizontal"
-        class="size-4"
       />
       <span class="sr-only">More</span>
     </span>

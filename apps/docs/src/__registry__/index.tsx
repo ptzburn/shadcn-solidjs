@@ -1352,6 +1352,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "breadcrumb-basic": {
+    name: "breadcrumb-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/breadcrumb-basic.tsx")),
+    files: [{
+      path: "registry/example/breadcrumb-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "breadcrumb-demo": {
     name: "breadcrumb-demo",
     description: "",
@@ -1360,6 +1372,56 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/breadcrumb-demo.tsx")),
     files: [{
       path: "registry/example/breadcrumb-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "breadcrumb-dropdown": {
+    name: "breadcrumb-dropdown",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/breadcrumb-dropdown.tsx")),
+    files: [{
+      path: "registry/example/breadcrumb-dropdown.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "breadcrumb-ellipsis": {
+    name: "breadcrumb-ellipsis",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/breadcrumb-ellipsis.tsx")),
+    files: [{
+      path: "registry/example/breadcrumb-ellipsis.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "breadcrumb-link": {
+    name: "breadcrumb-link",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/breadcrumb-link.tsx")),
+    files: [{
+      path: "registry/example/breadcrumb-link.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "breadcrumb-separator": {
+    name: "breadcrumb-separator",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/breadcrumb-separator.tsx")
+    ),
+    files: [{
+      path: "registry/example/breadcrumb-separator.tsx",
       type: "example",
       target: "",
     }],

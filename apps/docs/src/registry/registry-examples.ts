@@ -592,11 +592,61 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "breadcrumb-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/breadcrumb-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "breadcrumb-demo",
     type: "example",
     files: [
       {
         path: "example/breadcrumb-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "breadcrumb-dropdown",
+    type: "example",
+    files: [
+      {
+        path: "example/breadcrumb-dropdown.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "breadcrumb-ellipsis",
+    type: "example",
+    files: [
+      {
+        path: "example/breadcrumb-ellipsis.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "breadcrumb-link",
+    type: "example",
+    files: [
+      {
+        path: "example/breadcrumb-link.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "breadcrumb-separator",
+    type: "example",
+    files: [
+      {
+        path: "example/breadcrumb-separator.tsx",
         type: "example",
       },
     ],
