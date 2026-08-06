@@ -3,6 +3,7 @@ import { type ComponentProps } from "solid-js";
 import { ComponentPreview } from "~/components/component-preview.tsx";
 import { ComponentSource } from "~/components/component-source.tsx";
 import { CodeBlockCommand } from "~/components/code-block-command.tsx";
+import { CodeTabs } from "~/components/code-tabs.tsx";
 import { CopyButton } from "~/components/copy-button.tsx";
 import { MDXHeader } from "~/components/mdx-header.tsx";
 import { cn } from "~/lib/utils.ts";
@@ -84,19 +85,19 @@ export const MDXComponents = {
   ),
   TabsList: (props: ComponentProps<typeof TabsList>) => (
     <TabsList
-      class="w-full justify-start rounded-none border-b bg-transparent p-0"
+      class="justify-start gap-4 rounded-none bg-transparent px-0"
       {...props}
     />
   ),
   TabsTrigger: (props: ComponentProps<typeof TabsTrigger>) => (
     <TabsTrigger
-      class="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[selected]:border-b-primary data-[selected]:text-foreground data-[selected]:shadow-none"
+      class="rounded-none border-0 border-b-2 border-transparent bg-transparent px-0 pb-3 text-base text-muted-foreground hover:text-primary dark:hover:text-primary data-selected:border-primary data-selected:bg-transparent data-selected:text-foreground data-selected:shadow-none! dark:data-selected:border-primary dark:data-selected:bg-transparent"
       {...props}
     />
   ),
   TabsContent: (props: ComponentProps<typeof TabsContent>) => (
     <TabsContent
-      class="relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-semibold"
+      class="relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-medium [&>.steps]:mt-6"
       {...props}
     />
   ),
@@ -108,6 +109,7 @@ export const MDXComponents = {
   ),
   MDXHeader,
   CodeBlockCommand,
+  CodeTabs,
   ComponentPreview,
   ComponentSource,
   Accordion,
