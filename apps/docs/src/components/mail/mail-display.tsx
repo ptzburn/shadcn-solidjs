@@ -15,7 +15,7 @@ import {
   SwitchLabel,
   SwitchThumb,
 } from "~/registry/ui/switch.tsx";
-import { TextField, TextFieldTextArea } from "~/registry/ui/text-field.tsx";
+import { Textarea } from "~/registry/ui/textarea.tsx";
 import {
   Tooltip,
   TooltipContent,
@@ -183,12 +183,10 @@ export function MailDisplay() {
           <Separator class="mt-auto" />
           <div class="p-4">
             <div class="grid gap-4">
-              <TextField>
-                <TextFieldTextArea
-                  class="p-4"
-                  placeholder={`Reply ${data()!.name}...`}
-                />
-              </TextField>
+              <Textarea
+                class="p-4"
+                placeholder={`Reply ${data()!.name}...`}
+              />
               <div class="flex items-center">
                 <Switch class="flex items-center gap-2 text-xs font-normal">
                   <SwitchControl>

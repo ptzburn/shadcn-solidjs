@@ -15,7 +15,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "~/registry/ui/tabs.tsx";
-import { TextField, TextFieldInput } from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
 
 import {
   IconArchive,
@@ -159,7 +159,7 @@ export function Mail() {
           </div>
           <Separator />
           <div class="p-4">
-            <TextField class="relative">
+            <div class="relative">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="absolute left-2 top-2.5 size-4 text-muted-foreground"
@@ -174,8 +174,8 @@ export function Mail() {
                   d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"
                 />
               </svg>
-              <TextFieldInput class="pl-8" placeholder="Search" type="text" />
-            </TextField>
+              <Input class="pl-8" placeholder="Search" type="text" />
+            </div>
           </div>
           <TabsContent value="all" class="m-0">
             <MailList type="all" />

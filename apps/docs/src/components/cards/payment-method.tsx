@@ -21,11 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/registry/ui/select.tsx";
-import {
-  TextField,
-  TextFieldInput,
-  TextFieldLabel,
-} from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
 
 export function PaymentMethod() {
   return (
@@ -69,14 +65,14 @@ export function PaymentMethod() {
             </Label>
           </div>
         </RadioGroup>
-        <TextField class="grid gap-2">
-          <TextFieldLabel>Name</TextFieldLabel>
-          <TextFieldInput placeholder="First Last" type="text" />
-        </TextField>
-        <TextField class="grid gap-2">
-          <TextFieldLabel>Card number</TextFieldLabel>
-          <TextFieldInput placeholder="" type="text" />
-        </TextField>
+        <div class="grid gap-2">
+          <Label for="name">Name</Label>
+          <Input id="name" placeholder="First Last" />
+        </div>
+        <div class="grid gap-2">
+          <Label for="number">Card number</Label>
+          <Input id="number" placeholder="" />
+        </div>
         <div class="grid grid-cols-3 gap-4">
           <div class="grid gap-2">
             <Label html-for="month">Expires</Label>
@@ -128,10 +124,10 @@ export function PaymentMethod() {
               <SelectContent />
             </Select>
           </div>
-          <TextField class="grid gap-2">
-            <TextFieldLabel>CVC</TextFieldLabel>
-            <TextFieldInput placeholder="CVC" type="text" />
-          </TextField>
+          <div class="grid gap-2">
+            <Label for="cvc">CVC</Label>
+            <Input id="cvc" placeholder="CVC" />
+          </div>
         </div>
       </CardContent>
       <CardFooter>

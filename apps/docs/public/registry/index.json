@@ -47,29 +47,9 @@
     "type": "ui"
   },
   {
-    "name": "badge-delta",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "registryDependencies": [
-      "badge"
-    ],
-    "files": [
-      "ui/badge-delta.tsx"
-    ],
-    "type": "ui"
-  },
-  {
     "name": "badge",
     "files": [
       "ui/badge.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "bar-list",
-    "files": [
-      "ui/bar-list.tsx"
     ],
     "type": "ui"
   },
@@ -103,13 +83,6 @@
     ],
     "files": [
       "ui/button-group.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "callout",
-    "files": [
-      "ui/callout.tsx"
     ],
     "type": "ui"
   },
@@ -205,13 +178,6 @@
     ],
     "files": [
       "ui/date-picker.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "delta-bar",
-    "files": [
-      "ui/delta-bar.tsx"
     ],
     "type": "ui"
   },
@@ -333,16 +299,6 @@
     "type": "ui"
   },
   {
-    "name": "number-field",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/number-field.tsx"
-    ],
-    "type": "ui"
-  },
-  {
     "name": "otp-field",
     "dependencies": [
       "@corvu/otp-field"
@@ -385,16 +341,6 @@
     ],
     "files": [
       "ui/progress.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "progress-circle",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/progress-circle.tsx"
     ],
     "type": "ui"
   },
@@ -455,10 +401,10 @@
     ],
     "registryDependencies": [
       "button",
+      "input",
       "separator",
       "sheet",
       "skeleton",
-      "text-field",
       "tooltip",
       "use-mobile"
     ],
@@ -535,36 +481,9 @@
     "type": "ui"
   },
   {
-    "name": "text-field",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/text-field.tsx"
-    ],
-    "type": "ui"
-  },
-  {
     "name": "textarea",
     "files": [
       "ui/textarea.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "timeline",
-    "files": [
-      "ui/timeline.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "toast",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/toast.tsx"
     ],
     "type": "ui"
   },

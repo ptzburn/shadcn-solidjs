@@ -100,14 +100,6 @@ export const docsConfig: Config = {
           href: "/docs/components/badge",
         },
         {
-          title: "Badge Delta",
-          href: "/docs/components/badge-delta",
-        },
-        {
-          title: "Bar List",
-          href: "/docs/components/bar-list",
-        },
-        {
           title: "Breadcrumb",
           href: "/docs/components/breadcrumb",
         },
@@ -119,10 +111,6 @@ export const docsConfig: Config = {
           title: "Button Group",
           href: "/docs/components/button-group",
           status: "new",
-        },
-        {
-          title: "Callout",
-          href: "/docs/components/callout",
         },
         {
           title: "Card",
@@ -167,10 +155,6 @@ export const docsConfig: Config = {
           status: "new",
         },
         {
-          title: "Delta Bar",
-          href: "/docs/components/delta-bar",
-        },
-        {
           title: "Dialog",
           href: "/docs/components/dialog",
         },
@@ -199,10 +183,6 @@ export const docsConfig: Config = {
           href: "/docs/components/navigation-menu",
         },
         {
-          title: "Number Field",
-          href: "/docs/components/number-field",
-        },
-        {
           title: "OTP Field",
           href: "/docs/components/otp-field",
         },
@@ -217,10 +197,6 @@ export const docsConfig: Config = {
         {
           title: "Progress",
           href: "/docs/components/progress",
-        },
-        {
-          title: "Progress Circle",
-          href: "/docs/components/progress-circle",
         },
         {
           title: "Radio Group",
@@ -270,18 +246,6 @@ export const docsConfig: Config = {
         {
           title: "Tabs",
           href: "/docs/components/tabs",
-        },
-        {
-          title: "Text Field",
-          href: "/docs/components/text-field",
-        },
-        {
-          title: "Timeline",
-          href: "/docs/components/timeline",
-        },
-        {
-          title: "Toast",
-          href: "/docs/components/toast",
         },
         {
           title: "Toggle",

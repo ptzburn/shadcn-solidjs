@@ -15,7 +15,7 @@ import {
   AccordionTrigger,
 } from "~/registry/ui/accordion.tsx";
 import { Alert, AlertDescription, AlertTitle } from "~/registry/ui/alert.tsx";
-import { Callout } from "~/registry/ui/callout.tsx";
+import { Callout } from "~/components/callout.tsx";
 import {
   Tabs,
   TabsContent,

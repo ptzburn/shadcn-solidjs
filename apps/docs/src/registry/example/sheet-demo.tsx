@@ -10,11 +10,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "~/registry/ui/sheet.tsx";
-import {
-  TextField,
-  TextFieldInput,
-  TextFieldLabel,
-} from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
+import { Label } from "~/registry/ui/label.tsx";
 
 const SHEET_POSITIONS = ["top", "right", "bottom", "left"] as const;
 
@@ -36,22 +33,26 @@ export default function SheetDemo() {
                 </SheetDescription>
               </SheetHeader>
               <div class="grid gap-4 py-4">
-                <TextField class="grid grid-cols-4 items-center gap-4">
-                  <TextFieldLabel class="text-right">Name</TextFieldLabel>
-                  <TextFieldInput
+                <div class="grid grid-cols-4 items-center gap-4">
+                  <Label for={`name-${position}`} class="justify-end">
+                    Name
+                  </Label>
+                  <Input
+                    id={`name-${position}`}
                     value="Pedro Duarte"
                     class="col-span-3"
-                    type="text"
                   />
-                </TextField>
-                <TextField class="grid grid-cols-4 items-center gap-4">
-                  <TextFieldLabel class="text-right">Username</TextFieldLabel>
-                  <TextFieldInput
+                </div>
+                <div class="grid grid-cols-4 items-center gap-4">
+                  <Label for={`username-${position}`} class="justify-end">
+                    Username
+                  </Label>
+                  <Input
+                    id={`username-${position}`}
                     value="@peduarte"
                     class="col-span-3"
-                    type="text"
                   />
-                </TextField>
+                </div>
               </div>
               <SheetFooter>
                 <Button type="submit">Save changes</Button>

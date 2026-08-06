@@ -21,11 +21,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "~/registry/ui/drawer.tsx";
-import {
-  TextField,
-  TextFieldInput,
-  TextFieldLabel,
-} from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
+import { Label } from "~/registry/ui/label.tsx";
 
 export default function DrawerDialogDemo() {
   const [open, setOpen] = createSignal(false);
@@ -80,14 +77,14 @@ export default function DrawerDialogDemo() {
 function ProfileForm(props: ComponentProps<"form">) {
   return (
     <form class={cn("grid items-start gap-4", props.class)}>
-      <TextField class="grid gap-2">
-        <TextFieldLabel>Email</TextFieldLabel>
-        <TextFieldInput placeholder="shadcn@example.com" type="email" />
-      </TextField>
-      <TextField class="grid gap-2">
-        <TextFieldLabel>Username</TextFieldLabel>
-        <TextFieldInput placeholder="@shadcn" type="text" />
-      </TextField>
+      <div class="grid gap-2">
+        <Label for="email">Email</Label>
+        <Input id="email" type="email" placeholder="shadcn@example.com" />
+      </div>
+      <div class="grid gap-2">
+        <Label for="username">Username</Label>
+        <Input id="username" placeholder="@shadcn" />
+      </div>
       <Button type="submit">Save changes</Button>
     </form>
   );

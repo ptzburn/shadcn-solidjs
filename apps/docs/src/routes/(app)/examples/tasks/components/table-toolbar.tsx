@@ -2,7 +2,7 @@ import type { RowData, Table } from "@tanstack/solid-table";
 
 import { IconX } from "~/components/icons.tsx";
 import { Button } from "~/registry/ui/button.tsx";
-import { TextField, TextFieldInput } from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
 
 import { priorities, statuses } from "./data.tsx";
 import type { TaskTableFeatures } from "./data-table.tsx";
@@ -21,17 +21,16 @@ export function TableToolbar<TData extends RowData>(
   return (
     <div class="flex items-center justify-between">
       <div class="flex flex-1 items-center space-x-2">
-        <TextField
+        <Input
+          placeholder="Filter tasks..."
           value={(props.table.getColumn("title")?.getFilterValue() as string) ??
             ""}
-          onChange={(value) =>
-            props.table.getColumn("title")?.setFilterValue(value)}
-        >
-          <TextFieldInput
-            placeholder="Filter tasks..."
-            class="h-8 w-[150px] lg:w-[250px]"
-          />
-        </TextField>
+          onInput={(e) =>
+            props.table.getColumn("title")?.setFilterValue(
+              e.currentTarget.value,
+            )}
+          class="h-8 w-[150px] lg:w-[250px]"
+        />
         {props.table.getColumn("status") && (
           <TableFacetedFilter
             column={props.table.getColumn("status")}

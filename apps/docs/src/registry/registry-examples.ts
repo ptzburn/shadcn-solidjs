@@ -352,26 +352,6 @@ export const examples: Registry = [
     ],
   },
   {
-    name: "badge-delta-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/badge-delta-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "bar-list-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/bar-list-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
     name: "breadcrumb-demo",
     type: "example",
     files: [
@@ -387,16 +367,6 @@ export const examples: Registry = [
     files: [
       {
         path: "example/calendar-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "callout-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/callout-demo.tsx",
         type: "example",
       },
     ],
@@ -602,16 +572,6 @@ export const examples: Registry = [
     ],
   },
   {
-    name: "delta-bar-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/delta-bar-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
     name: "dialog-demo",
     type: "example",
     files: [
@@ -692,16 +652,6 @@ export const examples: Registry = [
     ],
   },
   {
-    name: "number-field-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/number-field-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
     name: "otp-field-demo",
     type: "example",
     files: [
@@ -737,16 +687,6 @@ export const examples: Registry = [
     files: [
       {
         path: "example/progress-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "progress-circle-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/progress-circle-demo.tsx",
         type: "example",
       },
     ],
@@ -857,56 +797,6 @@ export const examples: Registry = [
     files: [
       {
         path: "example/tabs-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "text-field-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/text-field-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "text-field-error-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/text-field-error-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "text-field-textarea-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/text-field-textarea-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "timeline-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/timeline-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "toast-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/toast-demo.tsx",
         type: "example",
       },
     ],

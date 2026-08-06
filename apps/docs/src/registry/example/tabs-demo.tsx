@@ -13,11 +13,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "~/registry/ui/tabs.tsx";
-import {
-  TextField,
-  TextFieldInput,
-  TextFieldLabel,
-} from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
+import { Label } from "~/registry/ui/label.tsx";
 
 export default function TabsDemo() {
   return (
@@ -35,14 +32,14 @@ export default function TabsDemo() {
             </CardDescription>
           </CardHeader>
           <CardContent class="space-y-2">
-            <TextField class="space-y-1">
-              <TextFieldLabel>Name</TextFieldLabel>
-              <TextFieldInput value="Pedro Duarte" type="text" />
-            </TextField>
-            <TextField class="space-y-1">
-              <TextFieldLabel>Username</TextFieldLabel>
-              <TextFieldInput value="@peduarte" type="text" />
-            </TextField>
+            <div class="space-y-1">
+              <Label for="name">Name</Label>
+              <Input id="name" value="Pedro Duarte" />
+            </div>
+            <div class="space-y-1">
+              <Label for="username">Username</Label>
+              <Input id="username" value="@peduarte" />
+            </div>
           </CardContent>
           <CardFooter>
             <Button>Save changes</Button>
@@ -58,14 +55,14 @@ export default function TabsDemo() {
             </CardDescription>
           </CardHeader>
           <CardContent class="space-y-2">
-            <TextField class="space-y-1">
-              <TextFieldLabel>Current password</TextFieldLabel>
-              <TextFieldInput type="password" />
-            </TextField>
-            <TextField class="space-y-1">
-              <TextFieldLabel>New password</TextFieldLabel>
-              <TextFieldInput type="password" />
-            </TextField>
+            <div class="space-y-1">
+              <Label for="current">Current password</Label>
+              <Input id="current" type="password" />
+            </div>
+            <div class="space-y-1">
+              <Label for="new">New password</Label>
+              <Input id="new" type="password" />
+            </div>
           </CardContent>
           <CardFooter>
             <Button>Save password</Button>

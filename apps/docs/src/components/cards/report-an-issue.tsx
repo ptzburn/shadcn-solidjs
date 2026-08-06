@@ -17,11 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/registry/ui/select.tsx";
-import {
-  TextField,
-  TextFieldInput,
-  TextFieldTextArea,
-} from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
+import { Textarea } from "~/registry/ui/textarea.tsx";
 
 export function ReportAnIssue() {
   const [area, setArea] = createSignal();
@@ -90,22 +87,14 @@ export function ReportAnIssue() {
         </div>
         <div class="grid gap-2">
           <Label for="subject">Subject</Label>
-          <TextField>
-            <TextFieldInput
-              id="subject"
-              placeholder="I need help with..."
-              type="text"
-            />
-          </TextField>
+          <Input id="subject" placeholder="I need help with..." />
         </div>
         <div class="grid gap-2">
           <Label for="description">Description</Label>
-          <TextField>
-            <TextFieldTextArea
-              id="description"
-              placeholder="Please include all information relevant to your issue."
-            />
-          </TextField>
+          <Textarea
+            id="description"
+            placeholder="Please include all information relevant to your issue."
+          />
         </div>
       </CardContent>
       <CardFooter class="justify-between space-x-2">

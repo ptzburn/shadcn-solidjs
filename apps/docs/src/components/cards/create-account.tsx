@@ -8,11 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
-import {
-  TextField,
-  TextFieldInput,
-  TextFieldLabel,
-} from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
+import { Label } from "~/registry/ui/label.tsx";
 
 export function CreateAccount() {
   return (
@@ -45,14 +42,14 @@ export function CreateAccount() {
             </span>
           </div>
         </div>
-        <TextField class="grid gap-2">
-          <TextFieldLabel>Email</TextFieldLabel>
-          <TextFieldInput type="email" placeholder="m@example.com" />
-        </TextField>
-        <TextField class="grid gap-2">
-          <TextFieldLabel>Password</TextFieldLabel>
-          <TextFieldInput type="password" />
-        </TextField>
+        <div class="grid gap-2">
+          <Label for="email">Email</Label>
+          <Input id="email" type="email" placeholder="m@example.com" />
+        </div>
+        <div class="grid gap-2">
+          <Label for="password">Password</Label>
+          <Input id="password" type="password" />
+        </div>
       </CardContent>
       <CardFooter>
         <Button class="w-full">Create account</Button>

@@ -48,7 +48,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/registry/ui/table.tsx";
-import { TextField, TextFieldInput } from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
 
 const data: Payment[] = [
   {
@@ -242,12 +242,13 @@ get data() {
   return (
     <div class="w-full">
       <div class="flex items-center py-4">
-        <TextField
+        <Input
+          placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(value) => table.getColumn("email")?.setFilterValue(value)}
-        >
-          <TextFieldInput placeholder="Filter emails..." class="max-w-sm" />
-        </TextField>
+          onInput={(e) =>
+            table.getColumn("email")?.setFilterValue(e.currentTarget.value)}
+          class="max-w-sm"
+        />
         <DropdownMenu placement="bottom-end">
           <DropdownMenuTrigger
             as={Button<"button">}

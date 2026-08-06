@@ -2,8 +2,9 @@
  * Style tokens for the registry's `cn-*` marker classes, ported from the
  * upstream shadcn "nova" style (registry/styles/style-nova.css) and
  * adapted for Kobalte/SolidJS (data-expanded/data-closed attributes,
- * --kb-* CSS variables). Solid-only components (bar-list, timeline, ...)
- * use solid-namespace marker names following the same conventions.
+ * --kb-* CSS variables). Solid-only markers (cn-date-picker-content,
+ * cn-chart-tooltip-body, ...) use solid-namespace names following the
+ * same conventions.
  *
  * The registry build inlines these tokens into shipped component code
  * (src/lib/registry/style-map.ts); the docs site imports this file at
@@ -174,54 +175,6 @@
     @apply text-primary underline-offset-4 [a&]:hover:underline;
   }
 
-  /* MARK: Badge Delta */
-  .cn-badge-delta {}
-
-  .cn-badge-delta-variant-success {
-    @apply bg-success text-success-foreground hover:bg-success;
-  }
-
-  .cn-badge-delta-variant-warning {
-    @apply bg-warning text-warning-foreground hover:bg-warning;
-  }
-
-  .cn-badge-delta-variant-error {
-    @apply bg-error text-error-foreground hover:bg-error;
-  }
-
-  .cn-badge-delta-content {
-    @apply gap-1;
-  }
-
-  .cn-badge-delta-icon {
-    @apply size-4;
-  }
-
-  /* MARK: Bar List */
-  .cn-bar-list {
-    @apply space-y-1.5;
-  }
-
-  .cn-bar-list-item {
-    @apply space-x-6;
-  }
-
-  .cn-bar-list-bar-wrapper {}
-
-  .cn-bar-list-bar {
-    @apply h-8 rounded-md bg-secondary px-2;
-  }
-
-  .cn-bar-list-icon {
-    @apply mr-2 size-5;
-  }
-
-  .cn-bar-list-link {
-    @apply hover:underline;
-  }
-
-  .cn-bar-list-value {}
-
   /* MARK: Breadcrumb */
   .cn-breadcrumb-list {
     @apply text-muted-foreground gap-1.5 text-sm;
@@ -357,35 +310,6 @@
      bg-border; the build-time inlining dedupes the two. */
   .cn-button-group-separator {
     @apply bg-input;
-  }
-
-  /* MARK: Callout */
-  .cn-callout {
-    @apply rounded-md border-l-4 p-2 pl-4;
-  }
-
-  .cn-callout-variant-default {
-    @apply border-info-foreground bg-info text-info-foreground;
-  }
-
-  .cn-callout-variant-success {
-    @apply border-success-foreground bg-success text-success-foreground;
-  }
-
-  .cn-callout-variant-warning {
-    @apply border-warning-foreground bg-warning text-warning-foreground;
-  }
-
-  .cn-callout-variant-error {
-    @apply border-error-foreground bg-error text-error-foreground;
-  }
-
-  .cn-callout-title {
-    @apply font-semibold;
-  }
-
-  .cn-callout-content {
-    @apply mt-2;
   }
 
   /* MARK: Card */
@@ -678,35 +602,6 @@
   .cn-date-picker-table-cell {}
 
   .cn-date-picker-table-cell-trigger {}
-
-  /* MARK: Delta Bar */
-  .cn-delta-bar {
-    @apply h-2 rounded-full bg-secondary;
-  }
-
-  .cn-delta-bar-favorable {
-    @apply bg-success-foreground;
-  }
-
-  .cn-delta-bar-unfavorable {
-    @apply bg-error-foreground;
-  }
-
-  .cn-delta-bar-negative-half {}
-
-  .cn-delta-bar-negative-bar {
-    @apply rounded-l-full;
-  }
-
-  .cn-delta-bar-origin {
-    @apply h-4 w-1 rounded-full ring-2 ring-background;
-  }
-
-  .cn-delta-bar-positive-half {}
-
-  .cn-delta-bar-positive-bar {
-    @apply rounded-r-full;
-  }
 
   /* MARK: Dialog */
   .cn-dialog-overlay {
@@ -1246,35 +1141,6 @@
     @apply bg-popover text-popover-foreground;
   }
 
-  /* MARK: Number Field */
-  .cn-number-field-group {
-    @apply rounded-md focus-within:ring-2 focus-within:ring-ring
-      focus-within:ring-offset-2;
-  }
-
-  .cn-number-field-label {
-    @apply text-sm font-medium;
-  }
-
-  .cn-number-field-input {
-    @apply h-10 rounded-md border border-input bg-transparent px-3 py-2 text-sm
-      ring-offset-background file:text-sm file:font-medium
-      data-[invalid]:border-error-foreground
-      data-[invalid]:text-error-foreground;
-  }
-
-  .cn-number-field-increment-trigger {}
-
-  .cn-number-field-decrement-trigger {}
-
-  .cn-number-field-description {
-    @apply text-sm text-muted-foreground;
-  }
-
-  .cn-number-field-error-message {
-    @apply text-sm text-error-foreground;
-  }
-
   /* MARK: Pagination */
   .cn-pagination {}
 
@@ -1319,29 +1185,6 @@
 
   .cn-progress-indicator {
     @apply bg-primary;
-  }
-
-  /* MARK: Progress Circle */
-  .cn-progress-circle {
-    @apply items-center justify-center;
-  }
-
-  .cn-progress-circle-svg {}
-
-  .cn-progress-circle-track {
-    @apply stroke-secondary transition-colors ease-linear;
-  }
-
-  .cn-progress-circle-indicator {
-    @apply stroke-primary transition-colors ease-linear;
-  }
-
-  .cn-progress-circle-indicator-animation {
-    @apply transition-all duration-300 ease-in-out;
-  }
-
-  .cn-progress-circle-label {
-    @apply absolute;
   }
 
   /* MARK: Radio Group */
@@ -1707,41 +1550,6 @@
     @apply text-sm;
   }
 
-  /* MARK: Text Field */
-  .cn-text-field {
-    @apply gap-1;
-  }
-
-  .cn-text-field-input {
-    @apply h-10 rounded-md border border-input bg-transparent px-3 py-2 text-sm
-      ring-offset-background file:text-sm file:font-medium focus-visible:ring-2
-      focus-visible:ring-ring focus-visible:ring-offset-2
-      data-[invalid]:border-error-foreground
-      data-[invalid]:text-error-foreground;
-  }
-
-  .cn-text-field-textarea {
-    @apply rounded-md border border-input bg-background px-3 py-2 text-sm
-      ring-offset-background focus-visible:ring-2 focus-visible:ring-ring
-      focus-visible:ring-offset-2;
-  }
-
-  .cn-text-field-label {
-    @apply text-sm font-medium;
-  }
-
-  .cn-text-field-label-variant-label {
-    @apply data-[invalid]:text-destructive;
-  }
-
-  .cn-text-field-label-variant-description {
-    @apply font-normal text-muted-foreground;
-  }
-
-  .cn-text-field-label-variant-error {
-    @apply text-xs text-destructive;
-  }
-
   /* MARK: Textarea */
   .cn-textarea {
     @apply rounded-lg border border-input bg-transparent px-2.5 py-2 text-base
@@ -1751,78 +1559,6 @@
       dark:aria-invalid:border-destructive/50
       dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive
       aria-invalid:ring-3 aria-invalid:ring-destructive/20;
-  }
-
-  /* MARK: Timeline */
-  .cn-timeline-item {
-    @apply border-l pb-8 pl-8;
-  }
-
-  .cn-timeline-item-last {
-    @apply border-l-transparent pb-0;
-  }
-
-  .cn-timeline-item-active {
-    @apply border-l-primary;
-  }
-
-  .cn-timeline-item-bullet-active {
-    @apply border-primary;
-  }
-
-  .cn-timeline-item-title {
-    @apply mb-1 text-base font-semibold leading-none;
-  }
-
-  .cn-timeline-item-description {
-    @apply text-sm text-muted-foreground;
-  }
-
-  /* MARK: Toast */
-  .cn-toast-list {}
-
-  .cn-toast-root {
-    @apply rounded-md border p-6 pr-8 shadow-lg data-[opened]:animate-in
-      data-[closed]:animate-out data-[swipe=end]:animate-out
-      data-[closed]:fade-out-80 data-[closed]:slide-out-to-right-full
-      data-[opened]:slide-in-from-top-full
-      data-[opened]:sm:slide-in-from-bottom-full;
-  }
-
-  .cn-toast-root-variant-default {
-    @apply border bg-background text-foreground;
-  }
-
-  .cn-toast-root-variant-destructive {
-    @apply border-destructive bg-destructive text-destructive-foreground;
-  }
-
-  .cn-toast-root-variant-success {
-    @apply border-success-foreground bg-success text-success-foreground;
-  }
-
-  .cn-toast-root-variant-warning {
-    @apply border-warning-foreground bg-warning text-warning-foreground;
-  }
-
-  .cn-toast-root-variant-error {
-    @apply border-error-foreground bg-error text-error-foreground;
-  }
-
-  .cn-toast-close {
-    @apply rounded-md p-1 text-foreground/50 focus:ring-2
-      group-[.destructive]:text-destructive-foreground
-      group-[.error]:text-error-foreground
-      group-[.success]:text-success-foreground
-      group-[.warning]:text-warning-foreground;
-  }
-
-  .cn-toast-title {
-    @apply text-sm font-semibold;
-  }
-
-  .cn-toast-description {
-    @apply text-sm opacity-90;
   }
 
   /* MARK: Toggle */

@@ -5,10 +5,10 @@
   ],
   "registryDependencies": [
     "button",
+    "input",
     "separator",
     "sheet",
     "skeleton",
-    "text-field",
     "tooltip",
     "use-mobile"
   ],

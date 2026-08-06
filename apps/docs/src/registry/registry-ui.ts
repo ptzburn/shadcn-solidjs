@@ -56,33 +56,11 @@ export const ui: Registry = [
     ],
   },
   {
-    name: "badge-delta",
-    type: "ui",
-    dependencies: ["@kobalte/core"],
-    registryDependencies: ["badge"],
-    files: [
-      {
-        path: "ui/badge-delta.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
     name: "badge",
     type: "ui",
     files: [
       {
         path: "ui/badge.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
-    name: "bar-list",
-    type: "ui",
-    files: [
-      {
-        path: "ui/bar-list.tsx",
         type: "ui",
       },
     ],
@@ -117,16 +95,6 @@ export const ui: Registry = [
     files: [
       {
         path: "ui/button-group.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
-    name: "callout",
-    type: "ui",
-    files: [
-      {
-        path: "ui/callout.tsx",
         type: "ui",
       },
     ],
@@ -227,16 +195,6 @@ export const ui: Registry = [
     files: [
       {
         path: "ui/date-picker.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
-    name: "delta-bar",
-    type: "ui",
-    files: [
-      {
-        path: "ui/delta-bar.tsx",
         type: "ui",
       },
     ],
@@ -372,17 +330,6 @@ export const ui: Registry = [
     ],
   },
   {
-    name: "number-field",
-    type: "ui",
-    dependencies: ["@kobalte/core"],
-    files: [
-      {
-        path: "ui/number-field.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
     name: "otp-field",
     type: "ui",
     dependencies: ["@corvu/otp-field"],
@@ -424,17 +371,6 @@ export const ui: Registry = [
     files: [
       {
         path: "ui/progress.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
-    name: "progress-circle",
-    type: "ui",
-    dependencies: ["@kobalte/core"],
-    files: [
-      {
-        path: "ui/progress-circle.tsx",
         type: "ui",
       },
     ],
@@ -500,10 +436,10 @@ export const ui: Registry = [
     dependencies: ["@kobalte/core"],
     registryDependencies: [
       "button",
+      "input",
       "separator",
       "sheet",
       "skeleton",
-      "text-field",
       "tooltip",
       "use-mobile",
     ],
@@ -591,43 +527,11 @@ export const ui: Registry = [
     ],
   },
   {
-    name: "text-field",
-    type: "ui",
-    dependencies: ["@kobalte/core"],
-    files: [
-      {
-        path: "ui/text-field.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
     name: "textarea",
     type: "ui",
     files: [
       {
         path: "ui/textarea.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
-    name: "timeline",
-    type: "ui",
-    files: [
-      {
-        path: "ui/timeline.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
-    name: "toast",
-    type: "ui",
-    dependencies: ["@kobalte/core"],
-    files: [
-      {
-        path: "ui/toast.tsx",
         type: "ui",
       },
     ],

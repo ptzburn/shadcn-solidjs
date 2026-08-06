@@ -3,12 +3,12 @@ import { splitProps } from "solid-js";
 
 import type { Column, RowData } from "@tanstack/solid-table";
 
-import { TextField, TextFieldInput } from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
 
 import type { TaskTableFeatures } from "./data-table.tsx";
 
 type TableInputFilterProps<TData extends RowData, TValue> =
-  & ComponentProps<typeof TextFieldInput>
+  & ComponentProps<typeof Input>
   & {
     column?: Column<TaskTableFeatures, TData, TValue>;
   };
@@ -18,11 +18,10 @@ export function TableInputFilter<TData extends RowData, TValue>(
 ) {
   const [local, others] = splitProps(props, ["column"]);
   return (
-    <TextField
+    <Input
       value={(local.column?.getFilterValue() as string) ?? ""}
-      onChange={(value) => local.column?.setFilterValue(value)}
-    >
-      <TextFieldInput {...others} />
-    </TextField>
+      onInput={(e) => local.column?.setFilterValue(e.currentTarget.value)}
+      {...others}
+    />
   );
 }

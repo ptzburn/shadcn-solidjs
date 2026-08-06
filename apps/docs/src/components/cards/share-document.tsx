@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "~/registry/ui/select.tsx";
 import { Separator } from "~/registry/ui/separator.tsx";
-import { TextField, TextFieldInput } from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
 
 export function ShareDocument() {
   return (
@@ -28,13 +28,7 @@ export function ShareDocument() {
       </CardHeader>
       <CardContent>
         <div class="flex space-x-2">
-          <TextField>
-            <TextFieldInput
-              value="http://example.com/link/to/document"
-              type="text"
-              readOnly
-            />
-          </TextField>
+          <Input value="http://example.com/link/to/document" readonly />
           <Button variant="secondary" class="shrink-0">
             Copy Link
           </Button>

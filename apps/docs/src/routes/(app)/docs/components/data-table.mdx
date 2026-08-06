@@ -552,7 +552,7 @@ import {
 } from "@tanstack/solid-table"
 
 import { Button } from "~/components/ui/button"
-import { TextField, TextFieldInput } from "~/components/ui/text-field"
+import { Input } from "~/components/ui/input"
 
 export function DataTable<TData, TValue>(props: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = createSignal<SortingState>([])
@@ -584,12 +584,12 @@ export function DataTable<TData, TValue>(props: DataTableProps<TData, TValue>) {
   return (
     <div>
       <div class="flex items-center py-4">
-        <TextField
+        <Input
+          placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(value) => table.getColumn("email")?.setFilterValue(value)}
-        >
-          <TextFieldInput placeholder="Filter emails..." class="max-w-sm" />
-        </TextField>
+          onInput={(e) => table.getColumn("email")?.setFilterValue(e.currentTarget.value)}
+          class="max-w-sm"
+        />
       </div>
       <div class="rounded-md border">
         <Table>{ ... }</Table>
@@ -670,12 +670,12 @@ export function DataTable<TData, TValue>(props: DataTableProps<TData, TValue>) {
   return (
     <div>
       <div class="flex items-center py-4">
-        <TextField
+        <Input
+          placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(value) => table.getColumn("email")?.setFilterValue(value)}
-        >
-          <TextFieldInput placeholder="Filter emails..." class="max-w-sm" />
-        </TextField>
+          onInput={(e) => table.getColumn("email")?.setFilterValue(e.currentTarget.value)}
+          class="max-w-sm"
+        />
         <DropdownMenu placement="bottom-end">
           <DropdownMenuTrigger as={Button<"button">} variant="outline" class="ml-auto">
             Columns <IconChevronDown />

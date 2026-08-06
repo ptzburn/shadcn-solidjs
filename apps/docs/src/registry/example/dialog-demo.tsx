@@ -8,11 +8,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/registry/ui/dialog.tsx";
-import {
-  TextField,
-  TextFieldInput,
-  TextFieldLabel,
-} from "~/registry/ui/text-field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
+import { Label } from "~/registry/ui/label.tsx";
 
 export default function DialogDemo() {
   return (
@@ -26,18 +23,14 @@ export default function DialogDemo() {
           </DialogDescription>
         </DialogHeader>
         <div class="grid gap-4 py-4">
-          <TextField class="grid grid-cols-4 items-center gap-4">
-            <TextFieldLabel class="text-right">Name</TextFieldLabel>
-            <TextFieldInput
-              value="Pedro Duarte"
-              class="col-span-3"
-              type="text"
-            />
-          </TextField>
-          <TextField class="grid grid-cols-4 items-center gap-4">
-            <TextFieldLabel class="text-right">Username</TextFieldLabel>
-            <TextFieldInput value="@peduarte" class="col-span-3" type="text" />
-          </TextField>
+          <div class="grid grid-cols-4 items-center gap-4">
+            <Label for="name" class="justify-end">Name</Label>
+            <Input id="name" value="Pedro Duarte" class="col-span-3" />
+          </div>
+          <div class="grid grid-cols-4 items-center gap-4">
+            <Label for="username" class="justify-end">Username</Label>
+            <Input id="username" value="@peduarte" class="col-span-3" />
+          </div>
         </div>
         <DialogFooter>
           <Button type="submit">Save changes</Button>
