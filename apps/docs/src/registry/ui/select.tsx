@@ -8,7 +8,20 @@ import type { JSX, ValidComponent } from "solid-js";
 import { mergeProps, splitProps } from "solid-js";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
-const Select = SelectPrimitive.Root;
+// Unlike radix, Kobalte's Root renders a real <div> wrapping the
+// trigger, so the slot marks the element grouped containers (e.g.
+// button-group) match on.
+const Select = <Option, OptGroup = never, T extends ValidComponent = "div">(
+  props: PolymorphicProps<
+    T,
+    SelectPrimitive.SelectRootProps<Option, OptGroup, T>
+  >,
+) => (
+  <SelectPrimitive.Root
+    data-slot="select"
+    {...(props as SelectPrimitive.SelectRootProps<Option, OptGroup>)}
+  />
+);
 const SelectValue = SelectPrimitive.Value;
 const SelectHiddenSelect = SelectPrimitive.HiddenSelect;
 

@@ -332,6 +332,33 @@
     @apply size-9;
   }
 
+  /* MARK: Button Group */
+  .cn-button-group {
+    @apply has-[>[data-slot=button-group]]:gap-2
+      has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-lg;
+  }
+
+  .cn-button-group-orientation-horizontal {
+    @apply [&>[data-slot]:not(:has(~[data-slot]))]:rounded-r-lg!;
+  }
+
+  .cn-button-group-orientation-vertical {
+    @apply [&>[data-slot]:not(:has(~[data-slot]))]:rounded-b-lg!;
+  }
+
+  .cn-button-group-text {
+    @apply bg-muted gap-2 rounded-lg border px-2.5 text-sm font-medium
+      [&_svg:not([class*='size-'])]:size-4;
+  }
+
+  /* bg-input is also authored in the component's class string: at docs
+     runtime this components-layer rule loses to the separator's
+     bg-border utility, while the string form lets tailwind-merge drop
+     bg-border; the build-time inlining dedupes the two. */
+  .cn-button-group-separator {
+    @apply bg-input;
+  }
+
   /* MARK: Callout */
   .cn-callout {
     @apply rounded-md border-l-4 p-2 pl-4;

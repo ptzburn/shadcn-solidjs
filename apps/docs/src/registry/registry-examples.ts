@@ -232,6 +232,116 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "button-group-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/button-group-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-group-orientation",
+    type: "example",
+    files: [
+      {
+        path: "example/button-group-orientation.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-group-size",
+    type: "example",
+    files: [
+      {
+        path: "example/button-group-size.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-group-nested",
+    type: "example",
+    files: [
+      {
+        path: "example/button-group-nested.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-group-separator",
+    type: "example",
+    files: [
+      {
+        path: "example/button-group-separator.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-group-split",
+    type: "example",
+    files: [
+      {
+        path: "example/button-group-split.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-group-input",
+    type: "example",
+    files: [
+      {
+        path: "example/button-group-input.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-group-input-group",
+    type: "example",
+    files: [
+      {
+        path: "example/button-group-input-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-group-dropdown",
+    type: "example",
+    files: [
+      {
+        path: "example/button-group-dropdown.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-group-select",
+    type: "example",
+    files: [
+      {
+        path: "example/button-group-select.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "button-group-popover",
+    type: "example",
+    files: [
+      {
+        path: "example/button-group-popover.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "badge-demo",
     type: "example",
     files: [

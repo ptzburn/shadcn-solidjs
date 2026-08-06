@@ -116,6 +116,11 @@ export const docsConfig: Config = {
           href: "/docs/components/button",
         },
         {
+          title: "Button Group",
+          href: "/docs/components/button-group",
+          status: "new",
+        },
+        {
           title: "Callout",
           href: "/docs/components/callout",
         },

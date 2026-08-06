@@ -94,6 +94,19 @@
     "type": "ui"
   },
   {
+    "name": "button-group",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "registryDependencies": [
+      "separator"
+    ],
+    "files": [
+      "ui/button-group.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "callout",
     "files": [
       "ui/callout.tsx"

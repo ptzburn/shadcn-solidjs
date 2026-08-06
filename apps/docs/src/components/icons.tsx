@@ -250,6 +250,19 @@ export function IconCalendar(props: IconProps) {
   );
 }
 
+export function IconCalendarPlus(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M12.5 21H6a2 2 0 0 1 -2 -2V7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v5" />
+      <path d="M16 3v4" />
+      <path d="M8 3v4" />
+      <path d="M4 11h16" />
+      <path d="M16 19h6" />
+      <path d="M19 16v6" />
+    </Icon>
+  );
+}
+
 export function IconCheck(props: IconProps) {
   return (
     <Icon {...props}>
@@ -484,6 +497,14 @@ export function IconFile(props: IconProps) {
   );
 }
 
+export function IconFilter(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414L15 12v7l-6 2v-8.5L4.52 7.572A2 2 0 0 1 4 6.227z" />
+    </Icon>
+  );
+}
+
 export function IconForward(props: IconProps) {
   return (
     <Icon {...props}>
@@ -603,11 +624,32 @@ export function IconMail(props: IconProps) {
   );
 }
 
+export function IconMailCheck(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M11 19H5a2 2 0 0 1 -2 -2V7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v6" />
+      <path d="M3 7l9 6l9 -6" />
+      <path d="M15 19l2 2l4 -4" />
+    </Icon>
+  );
+}
+
 export function IconMessages(props: IconProps) {
   return (
     <Icon {...props}>
       <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2z" />
       <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
+    </Icon>
+  );
+}
+
+export function IconMicrophone(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M9 5a3 3 0 0 1 3 -3a3 3 0 0 1 3 3v5a3 3 0 0 1 -3 3a3 3 0 0 1 -3 -3z" />
+      <path d="M5 10a7 7 0 0 0 14 0" />
+      <path d="M8 21h8" />
+      <path d="M12 17v4" />
     </Icon>
   );
 }
@@ -666,6 +708,22 @@ export function IconPlus(props: IconProps) {
   );
 }
 
+export function IconRobot(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M6 6a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2H8a2 2 0 0 1 -2 -2z" />
+      <path d="M12 2v2" />
+      <path d="M9 12v9" />
+      <path d="M15 12v9" />
+      <path d="M5 16l4 -2" />
+      <path d="M15 14l4 2" />
+      <path d="M9 18h6" />
+      <path d="M10 8v.01" />
+      <path d="M14 8v.01" />
+    </Icon>
+  );
+}
+
 export function IconRocket(props: IconProps) {
   return (
     <Icon {...props}>
@@ -708,6 +766,18 @@ export function IconSettings(props: IconProps) {
     <Icon {...props}>
       <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
       <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+    </Icon>
+  );
+}
+
+export function IconShare(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M3 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+      <path d="M15 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+      <path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+      <path d="M8.7 10.7l6.6 -3.4" />
+      <path d="M8.7 13.3l6.6 3.4" />
     </Icon>
   );
 }
@@ -766,6 +836,15 @@ export function IconTablet(props: IconProps) {
     <Icon {...props}>
       <path d="M18 3a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2z" />
       <path d="M9 18h6" />
+    </Icon>
+  );
+}
+
+export function IconTag(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M6.5 7.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+      <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71A2 2 0 0 0 11.172 3H6a3 3 0 0 0 -3 3" />
     </Icon>
   );
 }
@@ -830,6 +909,17 @@ export function IconUser(props: IconProps) {
   );
 }
 
+export function IconUserX(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+      <path d="M6 21v-2a4 4 0 0 1 4 -4h3.5" />
+      <path d="M22 22l-5 -5" />
+      <path d="M17 22l5 -5" />
+    </Icon>
+  );
+}
+
 export function IconUsers(props: IconProps) {
   return (
     <Icon {...props}>
@@ -837,6 +927,20 @@ export function IconUsers(props: IconProps) {
       <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
       <path d="M16 3.13a4 4 0 0 1 0 7.75" />
       <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+    </Icon>
+  );
+}
+
+export function IconVolumeOff(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M15 8a5 5 0 0 1 1.912 4.934" />
+      <path d="M15.535 15.536A5 5 0 0 1 15 16" />
+      <path d="M17.7 5a9 9 0 0 1 2.362 11.086" />
+      <path d="M18.386 18.385A9 9 0 0 1 17.7 19" />
+      <path d="M9.069 5.054L9.5 4.5A.8 .8 0 0 1 11 5v2" />
+      <path d="M11 11v8a.8 .8 0 0 1 -1.5 .5L6 15H4a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l1.294 -1.664" />
+      <path d="M3 3l18 18" />
     </Icon>
   );
 }

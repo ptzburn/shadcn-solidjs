@@ -110,6 +110,18 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "button-group",
+    type: "ui",
+    dependencies: ["@kobalte/core"],
+    registryDependencies: ["separator"],
+    files: [
+      {
+        path: "ui/button-group.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "callout",
     type: "ui",
     files: [
