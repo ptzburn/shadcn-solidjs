@@ -846,6 +846,32 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "aspect-ratio-portrait": {
+    name: "aspect-ratio-portrait",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/aspect-ratio-portrait.tsx")
+    ),
+    files: [{
+      path: "registry/example/aspect-ratio-portrait.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "aspect-ratio-square": {
+    name: "aspect-ratio-square",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/aspect-ratio-square.tsx")),
+    files: [{
+      path: "registry/example/aspect-ratio-square.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "avatar-demo": {
     name: "avatar-demo",
     description: "",

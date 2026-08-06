@@ -182,6 +182,26 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "aspect-ratio-portrait",
+    type: "example",
+    files: [
+      {
+        path: "example/aspect-ratio-portrait.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "aspect-ratio-square",
+    type: "example",
+    files: [
+      {
+        path: "example/aspect-ratio-square.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "avatar-demo",
     type: "example",
     files: [
