@@ -103,7 +103,11 @@ export function inlineStyles(source: string, styleMap: StyleMap): string {
     });
 
     return `"${twMerge(expanded.join(" "))}"`;
-  });
+  })
+    // A marker that inlines to nothing leaves an empty first argument
+    // behind; upstream's transform drops it (removeEmptyArgumentsFromCnCall)
+    // so consumers never see cn("", ...).
+    .replace(/\bcn\(\s*"",\s*/g, "cn(");
 
   // Markers must never hide in template literals where the transform
   // cannot reach them.

@@ -188,6 +188,7 @@ const AlertDialogAction = <T extends ValidComponent = "button">(
     <AlertDialogPrimitive.CloseButton
       data-slot="alert-dialog-action"
       class={cn(
+        "cn-alert-dialog-action",
         buttonVariants({
           variant: local.variant ?? "default",
           size: local.size ?? "default",
@@ -223,6 +224,7 @@ const AlertDialogCancel = <T extends ValidComponent = "button">(
     <AlertDialogPrimitive.CloseButton
       data-slot="alert-dialog-cancel"
       class={cn(
+        "cn-alert-dialog-cancel",
         buttonVariants({
           variant: local.variant ?? "outline",
           size: local.size ?? "default",
