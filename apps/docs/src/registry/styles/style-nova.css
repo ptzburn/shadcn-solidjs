@@ -1353,10 +1353,12 @@
   /* MARK: Resizable */
   .cn-resizable-panel-group {}
 
+  .cn-resizable-panel {}
+
   .cn-resizable-handle {}
 
   .cn-resizable-handle-icon {
-    @apply bg-border;
+    @apply bg-border h-6 w-1 rounded-lg;
   }
 
   /* MARK: Select */

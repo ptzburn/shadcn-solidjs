@@ -3654,6 +3654,30 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "resizable-vertical": {
+    name: "resizable-vertical",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/resizable-vertical.tsx")),
+    files: [{
+      path: "registry/example/resizable-vertical.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "resizable-handle": {
+    name: "resizable-handle",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/resizable-handle.tsx")),
+    files: [{
+      path: "registry/example/resizable-handle.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "select-demo": {
     name: "select-demo",
     description: "",

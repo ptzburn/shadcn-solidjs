@@ -1,9 +1,13 @@
 ---
 title: Resizable
-description: SolidJS components for building resizable panels and splitters.
+description: Accessible resizable panel groups and layouts with keyboard support.
 ---
 
 <ComponentPreview name="resizable-demo" />
+
+## About
+
+Resizable is built on top of [Corvu Resizable](https://corvu.dev/docs/primitives/resizable/).
 
 ## Installation
 
@@ -25,15 +29,17 @@ npx shadcn-solidjs@latest add resizable
 <TabsContent value="manual">
 <Steps class="mb-0 pt-2">
 
-<Step>Install the following dependencies: </Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @corvu/resizable
 ```
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="resizable" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 </TabsContent>
@@ -43,7 +49,11 @@ npm install @corvu/resizable
 ## Usage
 
 ```tsx
-import { Resizable, ResizableHandle, ResizablePanel } from "~/components/ui/resizable"
+import {
+  Resizable,
+  ResizableHandle,
+  ResizablePanel,
+} from "~/components/ui/resizable"
 ```
 
 ```tsx showLineNumbers
@@ -53,3 +63,71 @@ import { Resizable, ResizableHandle, ResizablePanel } from "~/components/ui/resi
   <ResizablePanel>Two</ResizablePanel>
 </Resizable>
 ```
+
+## Composition
+
+Use the following composition to build a `Resizable`:
+
+```text
+Resizable
+├── ResizablePanel
+├── ResizableHandle
+└── ResizablePanel
+```
+
+## Vertical
+
+Use `orientation="vertical"` for vertical resizing. Panels are sized with
+`flex-basis` percentages, so give a vertical group a definite height.
+
+<ComponentPreview name="resizable-vertical" />
+
+## Handle
+
+Use the `withHandle` prop on `ResizableHandle` to show a visible handle.
+
+<ComponentPreview name="resizable-handle" />
+
+## API Reference
+
+See the [Corvu Resizable documentation](https://corvu.dev/docs/primitives/resizable/) for the full API reference.
+
+### Resizable
+
+The `Resizable` component is the panel group. It renders a `div` and lays its
+panels out along `orientation`.
+
+| Prop             | Type                         | Default        |
+| ---------------- | ---------------------------- | -------------- |
+| `orientation`    | `"horizontal" \| "vertical"` | `"horizontal"` |
+| `sizes`          | `number[]`                   | -              |
+| `initialSizes`   | `number[]`                   | -              |
+| `onSizesChange`  | `(sizes: number[]) => void`  | -              |
+| `keyboardDelta`  | `number \| string`           | `0.1`          |
+| `class`          | `string`                     | -              |
+
+### ResizablePanel
+
+The `ResizablePanel` component is a single panel of the group. Sizes are
+fractions of the group, so `0.25` is a quarter of it.
+
+| Prop          | Type                     | Default |
+| ------------- | ------------------------ | ------- |
+| `initialSize` | `number \| string`       | -       |
+| `minSize`     | `number \| string`       | `0`     |
+| `maxSize`     | `number \| string`       | `1`     |
+| `collapsible` | `boolean`                | `false` |
+| `onResize`    | `(size: number) => void` | -       |
+| `class`       | `string`                 | -       |
+
+### ResizableHandle
+
+The `ResizableHandle` component is the draggable separator between two panels.
+It renders a `button` with `role="separator"` and is operable with the arrow
+keys.
+
+| Prop         | Type      | Default |
+| ------------ | --------- | ------- |
+| `withHandle` | `boolean` | `false` |
+| `disabled`   | `boolean` | -       |
+| `class`      | `string`  | -       |

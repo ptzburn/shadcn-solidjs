@@ -2433,6 +2433,26 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "resizable-vertical",
+    type: "example",
+    files: [
+      {
+        path: "example/resizable-vertical.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "resizable-handle",
+    type: "example",
+    files: [
+      {
+        path: "example/resizable-handle.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "select-demo",
     type: "example",
     files: [

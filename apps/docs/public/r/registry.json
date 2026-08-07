@@ -378,10 +378,6 @@
       "type": "registry:ui",
       "dependencies": [
         "@corvu/resizable"
-      ],
-      "devDependencies": [
-        "unplugin-icons",
-        "@iconify-json/lucide"
       ]
     },
     {

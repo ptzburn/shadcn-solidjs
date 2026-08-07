@@ -1,11 +1,15 @@
 import type { ValidComponent } from "solid-js";
 import { Show, splitProps } from "solid-js";
 
-import type { DynamicProps, HandleProps, RootProps } from "@corvu/resizable";
+import type {
+  DynamicProps,
+  HandleProps,
+  PanelProps,
+  RootProps,
+} from "@corvu/resizable";
 import ResizablePrimitive from "@corvu/resizable";
 
 import { cn } from "~/lib/utils.ts";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 type ResizableProps<T extends ValidComponent = "div"> = RootProps<T> & {
   class?: string;
@@ -14,19 +18,39 @@ type ResizableProps<T extends ValidComponent = "div"> = RootProps<T> & {
 const Resizable = <T extends ValidComponent = "div">(
   props: DynamicProps<T, ResizableProps<T>>,
 ) => {
-  const [, rest] = splitProps(props as ResizableProps, ["class"]);
+  const [local, others] = splitProps(props as ResizableProps, ["class"]);
   return (
     <ResizablePrimitive
+      data-slot="resizable-panel-group"
       class={cn(
-        "cn-resizable-panel-group flex size-full data-[orientation=vertical]:flex-col",
-        props.class,
+        "cn-resizable-panel-group flex h-full w-full data-[orientation=vertical]:flex-col",
+        local.class,
       )}
-      {...rest}
+      {...others}
     />
   );
 };
 
-const ResizablePanel = ResizablePrimitive.Panel;
+type ResizablePanelProps<T extends ValidComponent = "div"> = PanelProps<T> & {
+  class?: string;
+};
+
+const ResizablePanel = <T extends ValidComponent = "div">(
+  props: DynamicProps<T, ResizablePanelProps<T>>,
+) => {
+  const [local, others] = splitProps(props as ResizablePanelProps, ["class"]);
+  return (
+    <ResizablePrimitive.Panel
+      data-slot="resizable-panel"
+      // Corvu only sets `flex-basis` on a panel, so the automatic minimum
+      // size of the flex item would keep it from shrinking past its
+      // content. Clipping restores the behaviour react-resizable-panels
+      // gets from its own inline `overflow: hidden`.
+      class={cn("cn-resizable-panel overflow-hidden", local.class)}
+      {...others}
+    />
+  );
+};
 
 type ResizableHandleProps<T extends ValidComponent = "button"> =
   & HandleProps<T>
@@ -38,29 +62,21 @@ type ResizableHandleProps<T extends ValidComponent = "button"> =
 const ResizableHandle = <T extends ValidComponent = "button">(
   props: DynamicProps<T, ResizableHandleProps<T>>,
 ) => {
-  const [, rest] = splitProps(props as ResizableHandleProps, [
+  const [local, others] = splitProps(props as ResizableHandleProps, [
     "class",
     "withHandle",
   ]);
   return (
     <ResizablePrimitive.Handle
+      data-slot="resizable-handle"
       class={cn(
-        "cn-resizable-handle relative flex w-px shrink-0 items-center justify-center bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 data-[orientation=vertical]:h-px data-[orientation=vertical]:w-full data-[orientation=vertical]:after:left-0 data-[orientation=vertical]:after:h-1 data-[orientation=vertical]:after:w-full data-[orientation=vertical]:after:-translate-y-1/2 data-[orientation=vertical]:after:translate-x-0 [&[data-orientation=vertical]>div]:rotate-90",
-        props.class,
+        "cn-resizable-handle relative flex w-px items-center justify-center bg-border ring-offset-background after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-hidden data-[orientation=vertical]:h-px data-[orientation=vertical]:w-full data-[orientation=vertical]:after:left-0 data-[orientation=vertical]:after:h-1 data-[orientation=vertical]:after:w-full data-[orientation=vertical]:after:translate-x-0 data-[orientation=vertical]:after:-translate-y-1/2 [&[data-orientation=vertical]>div]:rotate-90",
+        local.class,
       )}
-      {...rest}
+      {...others}
     >
-      <Show when={props.withHandle}>
-        <div class="cn-resizable-handle-icon z-10 flex h-4 w-3 items-center justify-center rounded-sm border">
-          <IconPlaceholder
-            lucide="grip-vertical"
-            tabler="grip-vertical"
-            ph="dots-six-vertical"
-            ri="draggable"
-            hugeicons="drag-drop-vertical"
-            class="size-2.5"
-          />
-        </div>
+      <Show when={local.withHandle}>
+        <div class="cn-resizable-handle-icon z-10 flex shrink-0" />
       </Show>
     </ResizablePrimitive.Handle>
   );
