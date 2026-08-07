@@ -2688,6 +2688,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "hover-card-sides": {
+    name: "hover-card-sides",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/hover-card-sides.tsx")),
+    files: [{
+      path: "registry/example/hover-card-sides.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "menubar-demo": {
     name: "menubar-demo",
     description: "",

@@ -1663,6 +1663,16 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "hover-card-sides",
+    type: "example",
+    files: [
+      {
+        path: "example/hover-card-sides.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "menubar-demo",
     type: "example",
     files: [
