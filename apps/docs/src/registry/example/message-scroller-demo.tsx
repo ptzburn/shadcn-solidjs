@@ -133,36 +133,41 @@ function MessageRow(props: { message: ChatMessage }) {
 }
 
 export default function MessageScrollerDemo() {
-  const [messages, setMessages] = createSignal<ChatMessage[]>([script[0]]);
+  // Opens empty, like upstream's chat.get(0).
+  const [messages, setMessages] = createSignal<ChatMessage[]>([]);
   const [busy, setBusy] = createSignal(false);
 
   let timer: ReturnType<typeof setInterval> | undefined;
   onCleanup(() => clearInterval(timer));
 
-  const nextMessage = () => script[messages().length];
+  // The composer only ever previews the next user turn, never an assistant
+  // reply — upstream's chat.next() is findNextUserTurn().
+  const nextMessage = () =>
+    script.slice(messages().length).find((message) =>
+      message.role === "user"
+    ) ?? null;
 
-  // Stands in for the ai-sdk transport: appends the queued turn, streaming an
-  // assistant reply a few words at a time.
+  // Stands in for the ai-sdk transport: sending a user turn appends it and
+  // then streams the assistant turn that follows it in the script.
   const send = (event: SubmitEvent) => {
     event.preventDefault();
     const next = nextMessage();
     if (!next || busy()) return;
 
-    if (next.role === "user") {
-      setMessages((current) => [...current, next]);
-      return;
-    }
+    const reply = script[script.indexOf(next) + 1];
+    setMessages((current) => [...current, next]);
+    if (reply?.role !== "assistant") return;
 
     setBusy(true);
-    setMessages((current) => [...current, { ...next, text: "" }]);
-    const words = next.text.split(" ");
+    setMessages((current) => [...current, { ...reply, text: "" }]);
+    const words = reply.text.split(" ");
     let index = 0;
     timer = setInterval(() => {
       index += 3;
       const text = words.slice(0, index).join(" ");
       setMessages((current) =>
         current.map((message) =>
-          message.id === next.id ? { ...message, text } : message
+          message.id === reply.id ? { ...message, text } : message
         )
       );
       if (index >= words.length) {
@@ -175,7 +180,7 @@ export default function MessageScrollerDemo() {
   const reset = () => {
     clearInterval(timer);
     setBusy(false);
-    setMessages([script[0]]);
+    setMessages([]);
   };
 
   return (
