@@ -37,14 +37,6 @@ export const docsConfig: Config = {
       title: "Components",
       href: "/docs/components/accordion",
     },
-    {
-      title: "Examples",
-      href: "/examples/cards",
-    },
-    {
-      title: "Blocks",
-      href: "/blocks",
-    },
   ],
   sectionsNav: [
     {
