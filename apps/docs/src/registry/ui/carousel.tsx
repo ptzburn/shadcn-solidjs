@@ -113,16 +113,17 @@ const Carousel: Component<CarouselProps & ComponentProps<"div">> = (
   });
 
   createEffect(() => {
-    if (!api()) {
+    const carouselApi = api();
+    if (!carouselApi) {
       return;
     }
 
-    onSelect(api()!);
-    api()!.on("reInit", onSelect);
-    api()!.on("select", onSelect);
+    onSelect(carouselApi);
+    carouselApi.on("reInit", onSelect);
+    carouselApi.on("select", onSelect);
 
     onCleanup(() => {
-      api()?.off("select", onSelect);
+      carouselApi.off("select", onSelect);
     });
   });
 
@@ -144,7 +145,10 @@ const Carousel: Component<CarouselProps & ComponentProps<"div">> = (
   return (
     <CarouselContext.Provider value={value}>
       <div
-        onKeyDown={handleKeyDown}
+        // capture phase like upstream's onKeyDownCapture; Solid's
+        // oncapture: namespace needs module augmentation to type-check
+        ref={(el) =>
+          el.addEventListener("keydown", handleKeyDown, { capture: true })}
         class={cn("relative", local.class)}
         role="region"
         aria-roledescription="carousel"
