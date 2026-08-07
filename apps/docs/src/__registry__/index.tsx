@@ -1968,6 +1968,32 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "context-menu-basic": {
+    name: "context-menu-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/context-menu-basic.tsx")),
+    files: [{
+      path: "registry/example/context-menu-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-checkboxes": {
+    name: "context-menu-checkboxes",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/context-menu-checkboxes.tsx")
+    ),
+    files: [{
+      path: "registry/example/context-menu-checkboxes.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "context-menu-demo": {
     name: "context-menu-demo",
     description: "",
@@ -1976,6 +2002,84 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/context-menu-demo.tsx")),
     files: [{
       path: "registry/example/context-menu-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-destructive": {
+    name: "context-menu-destructive",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/context-menu-destructive.tsx")
+    ),
+    files: [{
+      path: "registry/example/context-menu-destructive.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-groups": {
+    name: "context-menu-groups",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/context-menu-groups.tsx")),
+    files: [{
+      path: "registry/example/context-menu-groups.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-icons": {
+    name: "context-menu-icons",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/context-menu-icons.tsx")),
+    files: [{
+      path: "registry/example/context-menu-icons.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-radio": {
+    name: "context-menu-radio",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/context-menu-radio.tsx")),
+    files: [{
+      path: "registry/example/context-menu-radio.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-shortcuts": {
+    name: "context-menu-shortcuts",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/context-menu-shortcuts.tsx")
+    ),
+    files: [{
+      path: "registry/example/context-menu-shortcuts.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-submenu": {
+    name: "context-menu-submenu",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/context-menu-submenu.tsx")
+    ),
+    files: [{
+      path: "registry/example/context-menu-submenu.tsx",
       type: "example",
       target: "",
     }],

@@ -1092,11 +1092,91 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "context-menu-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/context-menu-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "context-menu-checkboxes",
+    type: "example",
+    files: [
+      {
+        path: "example/context-menu-checkboxes.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "context-menu-demo",
     type: "example",
     files: [
       {
         path: "example/context-menu-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "context-menu-destructive",
+    type: "example",
+    files: [
+      {
+        path: "example/context-menu-destructive.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "context-menu-groups",
+    type: "example",
+    files: [
+      {
+        path: "example/context-menu-groups.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "context-menu-icons",
+    type: "example",
+    files: [
+      {
+        path: "example/context-menu-icons.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "context-menu-radio",
+    type: "example",
+    files: [
+      {
+        path: "example/context-menu-radio.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "context-menu-shortcuts",
+    type: "example",
+    files: [
+      {
+        path: "example/context-menu-shortcuts.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "context-menu-submenu",
+    type: "example",
+    files: [
+      {
+        path: "example/context-menu-submenu.tsx",
         type: "example",
       },
     ],

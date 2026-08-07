@@ -1,6 +1,6 @@
 ---
 title: Context Menu
-description: Displays a menu located at the pointer, triggered by a right-click or a long-press.
+description: Displays a menu of actions triggered by a right click.
 ---
 
 <ComponentPreview name="context-menu-demo" />
@@ -25,15 +25,17 @@ npx shadcn-solidjs@latest add context-menu
 <TabsContent value="manual">
 <Steps class="mb-0 pt-2">
 
-<Step>Install the following dependencies: </Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @kobalte/core
 ```
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="context-menu" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 </TabsContent>
@@ -47,18 +49,14 @@ import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
-  ContextMenuLabel,
-  ContextMenuSeparator,
-  ContextMenuTrigger
+  ContextMenuTrigger,
 } from "~/components/ui/context-menu"
 ```
 
 ```tsx showLineNumbers
 <ContextMenu>
-  <ContextMenuTrigger>Open</ContextMenuTrigger>
+  <ContextMenuTrigger>Right click here</ContextMenuTrigger>
   <ContextMenuContent>
-    <ContextMenuLabel>My Account</ContextMenuLabel>
-    <ContextMenuSeparator />
     <ContextMenuItem>Profile</ContextMenuItem>
     <ContextMenuItem>Billing</ContextMenuItem>
     <ContextMenuItem>Team</ContextMenuItem>
@@ -66,3 +64,90 @@ import {
   </ContextMenuContent>
 </ContextMenu>
 ```
+
+## Composition
+
+Use the following composition to build a `ContextMenu`:
+
+```text
+ContextMenu
+├── ContextMenuTrigger
+└── ContextMenuContent
+    ├── ContextMenuGroup
+    │   ├── ContextMenuLabel
+    │   ├── ContextMenuItem
+    │   └── ContextMenuItem
+    ├── ContextMenuSeparator
+    ├── ContextMenuGroup
+    │   ├── ContextMenuLabel
+    │   ├── ContextMenuCheckboxItem
+    │   └── ContextMenuCheckboxItem
+    ├── ContextMenuSeparator
+    ├── ContextMenuGroup
+    │   ├── ContextMenuLabel
+    │   └── ContextMenuRadioGroup
+    │       ├── ContextMenuRadioItem
+    │       └── ContextMenuRadioItem
+    └── ContextMenuSub
+        ├── ContextMenuSubTrigger
+        └── ContextMenuSubContent
+            └── ContextMenuGroup
+                ├── ContextMenuItem
+                └── ContextMenuItem
+```
+
+Unlike the upstream radix port, `ContextMenuLabel` must be placed inside a
+`ContextMenuGroup` or `ContextMenuRadioGroup`.
+
+## Basic
+
+A simple context menu with a few actions.
+
+<ComponentPreview name="context-menu-basic" />
+
+## Submenu
+
+Use `ContextMenuSub` to nest secondary actions.
+
+<ComponentPreview name="context-menu-submenu" />
+
+## Shortcuts
+
+Add `ContextMenuShortcut` to show keyboard hints.
+
+<ComponentPreview name="context-menu-shortcuts" />
+
+## Groups
+
+Group related actions and separate them with dividers.
+
+<ComponentPreview name="context-menu-groups" />
+
+## Icons
+
+Combine icons with labels for quick scanning.
+
+<ComponentPreview name="context-menu-icons" />
+
+## Checkboxes
+
+Use `ContextMenuCheckboxItem` for toggles.
+
+<ComponentPreview name="context-menu-checkboxes" />
+
+## Radio
+
+Use `ContextMenuRadioItem` for exclusive choices.
+
+<ComponentPreview name="context-menu-radio" />
+
+## Destructive
+
+Use `variant="destructive"` to style the menu item as destructive.
+
+<ComponentPreview name="context-menu-destructive" />
+
+## API Reference
+
+See the [Kobalte](https://kobalte.dev/docs/core/components/context-menu)
+documentation for more information.
