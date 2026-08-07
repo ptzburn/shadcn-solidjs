@@ -864,7 +864,7 @@
   }
 
   .cn-field-title {
-    @apply gap-2 leading-snug font-medium text-sm
+    @apply gap-2 font-medium text-sm leading-snug
       group-data-[disabled=true]/field:opacity-50;
   }
 
