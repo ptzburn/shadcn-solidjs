@@ -296,6 +296,9 @@
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "menubar",
       "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ],
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"

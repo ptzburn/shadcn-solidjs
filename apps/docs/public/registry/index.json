@@ -306,6 +306,9 @@
   },
   {
     "name": "menubar",
+    "dependencies": [
+      "@kobalte/core"
+    ],
     "files": [
       "ui/menubar.tsx"
     ],

@@ -318,6 +318,7 @@ export const ui: Registry = [
   {
     name: "menubar",
     type: "ui",
+    dependencies: ["@kobalte/core"],
     files: [
       {
         path: "ui/menubar.tsx",

@@ -1,48 +1,16 @@
+import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
+import { splitProps } from "solid-js";
+
 import * as MenubarPrimitive from "@kobalte/core/menubar";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
-import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
-
-import { mergeProps, splitProps } from "solid-js";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
+// Kobalte's Portal and Sub render no DOM node, so unlike upstream there is
+// no element to stamp a data-slot attribute on.
 const MenubarPortal = MenubarPrimitive.Portal;
 const MenubarSub = MenubarPrimitive.Sub;
-
-const MenubarMenu: Component<MenubarPrimitive.MenubarMenuProps> = (props) => {
-  return <MenubarPrimitive.Menu gutter={8} {...props} />;
-};
-
-type MenubarGroupProps<T extends ValidComponent = "div"> =
-  & MenubarPrimitive.MenubarGroupProps<T>
-  & { class?: string | undefined };
-
-const MenubarGroup = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, MenubarGroupProps<T>>,
-) => {
-  return (
-    <MenubarPrimitive.Group
-      data-slot="menubar-group"
-      {...(props as MenubarGroupProps)}
-    />
-  );
-};
-
-type MenubarRadioGroupProps<T extends ValidComponent = "div"> =
-  & MenubarPrimitive.MenubarRadioGroupProps<T>
-  & { class?: string | undefined };
-
-const MenubarRadioGroup = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, MenubarRadioGroupProps<T>>,
-) => {
-  return (
-    <MenubarPrimitive.RadioGroup
-      data-slot="menubar-radio-group"
-      {...(props as MenubarRadioGroupProps)}
-    />
-  );
-};
 
 type MenubarRootProps<T extends ValidComponent = "div"> =
   & MenubarPrimitive.MenubarRootProps<T>
@@ -57,18 +25,47 @@ const Menubar = <T extends ValidComponent = "div">(
   return (
     <MenubarPrimitive.Root
       data-slot="menubar"
-      class={cn(
-        "cn-menubar flex items-center",
-        local.class,
-      )}
+      class={cn("cn-menubar flex items-center", local.class)}
       {...others}
+    />
+  );
+};
+
+// Kobalte's MenubarMenu renders no DOM node either; the popper offsets live
+// here instead of on the content, matching upstream's sideOffset={8} and
+// alignOffset={-4} (Kobalte's popper defaults to gutter 0, shift 0).
+const MenubarMenu: Component<MenubarPrimitive.MenubarMenuProps> = (props) => {
+  return <MenubarPrimitive.Menu gutter={8} shift={-4} {...props} />;
+};
+
+type MenubarGroupProps<T extends ValidComponent = "div"> =
+  MenubarPrimitive.MenubarGroupProps<T>;
+
+const MenubarGroup = <T extends ValidComponent = "div">(
+  props: PolymorphicProps<T, MenubarGroupProps<T>>,
+) => {
+  return <MenubarPrimitive.Group data-slot="menubar-group" {...props} />;
+};
+
+type MenubarRadioGroupProps<T extends ValidComponent = "div"> =
+  MenubarPrimitive.MenubarRadioGroupProps<T>;
+
+const MenubarRadioGroup = <T extends ValidComponent = "div">(
+  props: PolymorphicProps<T, MenubarRadioGroupProps<T>>,
+) => {
+  return (
+    <MenubarPrimitive.RadioGroup
+      data-slot="menubar-radio-group"
+      {...(props as MenubarRadioGroupProps)}
     />
   );
 };
 
 type MenubarTriggerProps<T extends ValidComponent = "button"> =
   & MenubarPrimitive.MenubarTriggerProps<T>
-  & { class?: string | undefined };
+  & {
+    class?: string | undefined;
+  };
 
 const MenubarTrigger = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, MenubarTriggerProps<T>>,
@@ -78,7 +75,7 @@ const MenubarTrigger = <T extends ValidComponent = "button">(
     <MenubarPrimitive.Trigger
       data-slot="menubar-trigger"
       class={cn(
-        "cn-menubar-trigger flex select-none items-center outline-hidden",
+        "cn-menubar-trigger flex items-center outline-hidden select-none",
         local.class,
       )}
       {...others}
@@ -88,7 +85,9 @@ const MenubarTrigger = <T extends ValidComponent = "button">(
 
 type MenubarContentProps<T extends ValidComponent = "div"> =
   & MenubarPrimitive.MenubarContentProps<T>
-  & { class?: string | undefined };
+  & {
+    class?: string | undefined;
+  };
 
 const MenubarContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, MenubarContentProps<T>>,
@@ -99,7 +98,7 @@ const MenubarContent = <T extends ValidComponent = "div">(
       <MenubarPrimitive.Content
         data-slot="menubar-content"
         class={cn(
-          "cn-menubar-content data-closed:fade-out-0 data-closed:zoom-out-95 z-50 origin-(--kb-menu-content-transform-origin) overflow-hidden data-closed:animate-out",
+          "cn-menubar-content z-50 origin-(--kb-menu-content-transform-origin) overflow-hidden",
           local.class,
         )}
         {...others}
@@ -117,20 +116,20 @@ type MenubarItemProps<T extends ValidComponent = "div"> =
   };
 
 const MenubarItem = <T extends ValidComponent = "div">(
-  rawProps: PolymorphicProps<T, MenubarItemProps<T>>,
+  props: PolymorphicProps<T, MenubarItemProps<T>>,
 ) => {
-  const props = mergeProps(
-    { variant: "default" as const },
-    rawProps as MenubarItemProps,
-  );
-  const [local, others] = splitProps(props, ["class", "inset", "variant"]);
+  const [local, others] = splitProps(props as MenubarItemProps, [
+    "class",
+    "inset",
+    "variant",
+  ]);
   return (
     <MenubarPrimitive.Item
       data-slot="menubar-item"
       data-inset={local.inset}
-      data-variant={local.variant}
+      data-variant={local.variant ?? "default"}
       class={cn(
-        "cn-menubar-item group/menubar-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0",
+        "cn-menubar-item group/menubar-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}
@@ -159,15 +158,12 @@ const MenubarCheckboxItem = <T extends ValidComponent = "div">(
       data-slot="menubar-checkbox-item"
       data-inset={local.inset}
       class={cn(
-        "cn-menubar-checkbox-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0",
+        "cn-menubar-checkbox-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}
     >
-      <span
-        class="cn-menubar-checkbox-item-indicator pointer-events-none absolute flex items-center justify-center"
-        data-slot="menubar-checkbox-item-indicator"
-      >
+      <span class="cn-menubar-checkbox-item-indicator pointer-events-none absolute flex items-center justify-center">
         <MenubarPrimitive.ItemIndicator>
           <IconPlaceholder
             lucide="check"
@@ -204,15 +200,12 @@ const MenubarRadioItem = <T extends ValidComponent = "div">(
       data-slot="menubar-radio-item"
       data-inset={local.inset}
       class={cn(
-        "cn-menubar-radio-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0",
+        "cn-menubar-radio-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}
     >
-      <span
-        class="cn-menubar-radio-item-indicator pointer-events-none absolute flex items-center justify-center"
-        data-slot="menubar-radio-item-indicator"
-      >
+      <span class="cn-menubar-radio-item-indicator pointer-events-none absolute flex items-center justify-center">
         <MenubarPrimitive.ItemIndicator>
           <IconPlaceholder
             lucide="check"
@@ -228,87 +221,50 @@ const MenubarRadioItem = <T extends ValidComponent = "div">(
   );
 };
 
-const MenubarLabel: Component<ComponentProps<"div"> & { inset?: boolean }> = (
-  props,
-) => {
-  const [local, others] = splitProps(props, ["class", "inset"]);
-  return (
-    <div
-      data-slot="menubar-label"
-      data-inset={local.inset}
-      class={cn(
-        "cn-menubar-label",
-        local.class,
-      )}
-      {...others}
-    />
-  );
-};
-
-type MenubarItemLabelProps<T extends ValidComponent = "div"> =
-  & MenubarPrimitive.MenubarItemLabelProps<T>
-  & {
-    class?: string | undefined;
-    inset?: boolean;
-  };
-
-const MenubarItemLabel = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, MenubarItemLabelProps<T>>,
-) => {
-  const [local, others] = splitProps(props as MenubarItemLabelProps, [
-    "class",
-    "inset",
-  ]);
-  return (
-    <MenubarPrimitive.ItemLabel
-      data-slot="menubar-item-label"
-      data-inset={local.inset}
-      class={cn(
-        "px-1.5 py-1 font-medium text-sm data-inset:pl-7",
-        local.class,
-      )}
-      {...others}
-    />
-  );
-};
-
-type MenubarGroupLabelProps<T extends ValidComponent = "span"> =
+type MenubarLabelProps<T extends ValidComponent = "div"> =
   & MenubarPrimitive.MenubarGroupLabelProps<T>
   & {
     class?: string | undefined;
     inset?: boolean;
   };
 
-const MenubarGroupLabel = <T extends ValidComponent = "span">(
-  props: PolymorphicProps<T, MenubarGroupLabelProps<T>>,
+// Rendered as a div like the upstream radix label: Kobalte's GroupLabel
+// defaults to an inline span, which would collapse the label's vertical
+// padding. Unlike radix, it must live inside a Group or RadioGroup.
+const MenubarLabel = <T extends ValidComponent = "div">(
+  props: PolymorphicProps<T, MenubarLabelProps<T>>,
 ) => {
-  const [local, others] = splitProps(props as MenubarGroupLabelProps, [
+  const [local, others] = splitProps(props as MenubarLabelProps, [
     "class",
     "inset",
   ]);
   return (
     <MenubarPrimitive.GroupLabel
-      data-slot="menubar-group-label"
+      as="div"
+      data-slot="menubar-label"
       data-inset={local.inset}
-      class={cn(
-        "px-1.5 py-1 font-medium text-sm data-inset:pl-7",
-        local.class,
-      )}
+      class={cn("cn-menubar-label", local.class)}
       {...others}
     />
   );
 };
 
-type MenubarSeparatorProps<T extends ValidComponent = "hr"> =
+type MenubarSeparatorProps<T extends ValidComponent = "div"> =
   & MenubarPrimitive.MenubarSeparatorProps<T>
-  & { class?: string | undefined };
+  & {
+    class?: string | undefined;
+  };
 
-const MenubarSeparator = <T extends ValidComponent = "hr">(
+// Rendered as a div like the upstream radix separator: tailwind's
+// preflight and typeset both style hr (stray top border, height: 0,
+// prose margins), which Kobalte's Separator renders by default.
+const MenubarSeparator = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, MenubarSeparatorProps<T>>,
 ) => {
   const [local, others] = splitProps(props as MenubarSeparatorProps, ["class"]);
   return (
     <MenubarPrimitive.Separator
+      as="div"
       data-slot="menubar-separator"
       class={cn("cn-menubar-separator -mx-1 my-1 h-px", local.class)}
       {...others}
@@ -321,10 +277,7 @@ const MenubarShortcut: Component<ComponentProps<"span">> = (props) => {
   return (
     <span
       data-slot="menubar-shortcut"
-      class={cn(
-        "cn-menubar-shortcut ml-auto",
-        local.class,
-      )}
+      class={cn("cn-menubar-shortcut ml-auto", local.class)}
       {...others}
     />
   );
@@ -351,7 +304,7 @@ const MenubarSubTrigger = <T extends ValidComponent = "div">(
       data-slot="menubar-sub-trigger"
       data-inset={local.inset}
       class={cn(
-        "cn-menubar-sub-trigger flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-menubar-sub-trigger flex cursor-default items-center outline-none select-none",
         local.class,
       )}
       {...others}
@@ -363,7 +316,7 @@ const MenubarSubTrigger = <T extends ValidComponent = "div">(
         ph="caret-right"
         ri="arrow-right-s-line"
         hugeicons="arrow-right-01"
-        class="cn-rtl-flip ml-auto"
+        class="cn-rtl-flip ml-auto size-4"
       />
     </MenubarPrimitive.SubTrigger>
   );
@@ -375,6 +328,8 @@ type MenubarSubContentProps<T extends ValidComponent = "div"> =
     class?: string | undefined;
   };
 
+// Unlike upstream, the sub content is portalled: Kobalte renders it
+// inside the parent menu content, whose overflow-hidden would clip it.
 const MenubarSubContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, MenubarSubContentProps<T>>,
 ) => {
@@ -400,9 +355,7 @@ export {
   MenubarCheckboxItem,
   MenubarContent,
   MenubarGroup,
-  MenubarGroupLabel,
   MenubarItem,
-  MenubarItemLabel,
   MenubarLabel,
   MenubarMenu,
   MenubarPortal,

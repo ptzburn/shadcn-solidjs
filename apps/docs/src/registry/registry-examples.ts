@@ -2053,11 +2053,51 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "menubar-checkbox",
+    type: "example",
+    files: [
+      {
+        path: "example/menubar-checkbox.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "menubar-demo",
     type: "example",
     files: [
       {
         path: "example/menubar-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "menubar-icons",
+    type: "example",
+    files: [
+      {
+        path: "example/menubar-icons.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "menubar-radio",
+    type: "example",
+    files: [
+      {
+        path: "example/menubar-radio.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "menubar-submenu",
+    type: "example",
+    files: [
+      {
+        path: "example/menubar-submenu.tsx",
         type: "example",
       },
     ],

@@ -3168,6 +3168,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "menubar-checkbox": {
+    name: "menubar-checkbox",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/menubar-checkbox.tsx")),
+    files: [{
+      path: "registry/example/menubar-checkbox.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "menubar-demo": {
     name: "menubar-demo",
     description: "",
@@ -3176,6 +3188,42 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/menubar-demo.tsx")),
     files: [{
       path: "registry/example/menubar-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "menubar-icons": {
+    name: "menubar-icons",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/menubar-icons.tsx")),
+    files: [{
+      path: "registry/example/menubar-icons.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "menubar-radio": {
+    name: "menubar-radio",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/menubar-radio.tsx")),
+    files: [{
+      path: "registry/example/menubar-radio.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "menubar-submenu": {
+    name: "menubar-submenu",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/menubar-submenu.tsx")),
+    files: [{
+      path: "registry/example/menubar-submenu.tsx",
       type: "example",
       target: "",
     }],
