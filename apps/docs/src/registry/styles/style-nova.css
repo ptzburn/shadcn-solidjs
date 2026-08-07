@@ -1249,7 +1249,9 @@
   }
 
   /* MARK: Pagination */
-  .cn-pagination {}
+  .cn-pagination {
+    @apply [&>ul]:gap-0.5;
+  }
 
   .cn-pagination-link {}
 

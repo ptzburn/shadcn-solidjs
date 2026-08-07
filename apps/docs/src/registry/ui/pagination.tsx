@@ -28,7 +28,7 @@ const Pagination = <T extends ValidComponent = "nav">(
         "cn-pagination mx-auto flex w-full justify-center",
         // Kobalte renders the list itself, so the `pagination-content` styles
         // are applied from here.
-        "[&>ul]:flex [&>ul]:items-center [&>ul]:gap-0.5",
+        "cn-pagination [&>ul]:flex [&>ul]:items-center",
         local.class,
       )}
       {...others}
@@ -60,7 +60,7 @@ const PaginationItem = <T extends ValidComponent = "button">(
         }),
         // Kobalte marks the current page with `data-current`, so the outline
         // variant is applied from here instead of swapping variants.
-        "cn-pagination-link data-[current]:border-border data-[current]:bg-background dark:data-[current]:border-input dark:data-[current]:bg-input/30 dark:data-[current]:hover:bg-input/50",
+        "cn-pagination-link data-[current]:border-border data-[current]:bg-background data-[current]:hover:bg-muted dark:data-[current]:border-input dark:data-[current]:bg-input/30 dark:data-[current]:hover:bg-input/50",
         local.class,
       )}
       {...others}

@@ -18,7 +18,7 @@ const ROWS_PER_PAGE = ["10", "25", "50", "100"];
 
 export default function PaginationIconsOnly() {
   return (
-    <div class="flex w-full items-center justify-between gap-4">
+    <div class="flex items-center justify-between gap-4">
       <Field orientation="horizontal" class="w-fit">
         <FieldLabel for="select-rows-per-page">Rows per page</FieldLabel>
         <Select
