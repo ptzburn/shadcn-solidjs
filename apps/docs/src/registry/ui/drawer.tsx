@@ -47,7 +47,10 @@ type DrawerOverlayProps<T extends ValidComponent = "div"> = OverlayProps<T> & {
 const DrawerOverlay = <T extends ValidComponent = "div">(
   props: DynamicProps<T, DrawerOverlayProps<T>>,
 ) => {
-  const [, rest] = splitProps(props as DrawerOverlayProps, ["class"]);
+  const [local, rest] = splitProps(props as DrawerOverlayProps, [
+    "class",
+    "style",
+  ]);
   const drawerContext = DrawerPrimitive.useContext();
   return (
     <DrawerPrimitive.Overlay
@@ -56,7 +59,11 @@ const DrawerOverlay = <T extends ValidComponent = "div">(
         "cn-drawer-overlay fixed inset-0 z-50 data-transitioning:transition-opacity data-transitioning:duration-300",
         props.class,
       )}
-      style={{ opacity: drawerContext.openPercentage() }}
+      // the drag/close fade rides on opacity, so a consumer style has to merge
+      // with it rather than replace it
+      style={typeof local.style === "string"
+        ? `opacity:${drawerContext.openPercentage()};${local.style}`
+        : { opacity: drawerContext.openPercentage(), ...local.style }}
       {...rest}
     />
   );
