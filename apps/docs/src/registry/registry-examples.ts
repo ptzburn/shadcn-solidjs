@@ -2879,11 +2879,61 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "skeleton-avatar",
+    type: "example",
+    files: [
+      {
+        path: "example/skeleton-avatar.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "skeleton-card",
+    type: "example",
+    files: [
+      {
+        path: "example/skeleton-card.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "skeleton-demo",
     type: "example",
     files: [
       {
         path: "example/skeleton-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "skeleton-form",
+    type: "example",
+    files: [
+      {
+        path: "example/skeleton-form.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "skeleton-table",
+    type: "example",
+    files: [
+      {
+        path: "example/skeleton-table.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "skeleton-text",
+    type: "example",
+    files: [
+      {
+        path: "example/skeleton-text.tsx",
         type: "example",
       },
     ],

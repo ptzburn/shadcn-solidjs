@@ -515,7 +515,6 @@ export const ui: Registry = [
   {
     name: "skeleton",
     type: "ui",
-    dependencies: ["@kobalte/core"],
     files: [
       {
         path: "ui/skeleton.tsx",

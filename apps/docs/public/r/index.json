@@ -471,10 +471,7 @@
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "skeleton",
-      "type": "registry:ui",
-      "dependencies": [
-        "@kobalte/core"
-      ]
+      "type": "registry:ui"
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

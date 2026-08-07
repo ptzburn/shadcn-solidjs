@@ -488,9 +488,6 @@
   },
   {
     "name": "skeleton",
-    "dependencies": [
-      "@kobalte/core"
-    ],
     "files": [
       "ui/skeleton.tsx"
     ],

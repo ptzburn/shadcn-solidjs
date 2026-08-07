@@ -4234,6 +4234,30 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "skeleton-avatar": {
+    name: "skeleton-avatar",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/skeleton-avatar.tsx")),
+    files: [{
+      path: "registry/example/skeleton-avatar.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "skeleton-card": {
+    name: "skeleton-card",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/skeleton-card.tsx")),
+    files: [{
+      path: "registry/example/skeleton-card.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "skeleton-demo": {
     name: "skeleton-demo",
     description: "",
@@ -4242,6 +4266,42 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/skeleton-demo.tsx")),
     files: [{
       path: "registry/example/skeleton-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "skeleton-form": {
+    name: "skeleton-form",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/skeleton-form.tsx")),
+    files: [{
+      path: "registry/example/skeleton-form.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "skeleton-table": {
+    name: "skeleton-table",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/skeleton-table.tsx")),
+    files: [{
+      path: "registry/example/skeleton-table.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "skeleton-text": {
+    name: "skeleton-text",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/skeleton-text.tsx")),
+    files: [{
+      path: "registry/example/skeleton-text.tsx",
       type: "example",
       target: "",
     }],
