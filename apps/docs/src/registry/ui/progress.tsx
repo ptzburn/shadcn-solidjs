@@ -60,7 +60,12 @@ const ProgressIndicator = <T extends ValidComponent = "div">(
 ) => {
   const [local, others] = splitProps(props as ProgressIndicatorProps, [
     "class",
+    "style",
   ]);
+  // the fill rides on transform, so a consumer style has to merge with it
+  // rather than replace it
+  const transform =
+    "translateX(calc(var(--kb-progress-fill-width, 0%) - 100%))";
   return (
     <ProgressPrimitive.Fill
       data-slot="progress-indicator"
@@ -68,9 +73,9 @@ const ProgressIndicator = <T extends ValidComponent = "div">(
         "cn-progress-indicator size-full flex-1 transition-all",
         local.class,
       )}
-      style={{
-        transform: "translateX(calc(var(--kb-progress-fill-width, 0%) - 100%))",
-      }}
+      style={typeof local.style === "string"
+        ? `transform:${transform};${local.style}`
+        : { transform, ...local.style }}
       {...others}
     />
   );
