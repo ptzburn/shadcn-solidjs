@@ -1746,6 +1746,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "collapsible-basic": {
+    name: "collapsible-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/collapsible-basic.tsx")),
+    files: [{
+      path: "registry/example/collapsible-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "collapsible-demo": {
     name: "collapsible-demo",
     description: "",
@@ -1754,6 +1766,34 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/collapsible-demo.tsx")),
     files: [{
       path: "registry/example/collapsible-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "collapsible-file-tree": {
+    name: "collapsible-file-tree",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/collapsible-file-tree.tsx")
+    ),
+    files: [{
+      path: "registry/example/collapsible-file-tree.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "collapsible-settings": {
+    name: "collapsible-settings",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/collapsible-settings.tsx")
+    ),
+    files: [{
+      path: "registry/example/collapsible-settings.tsx",
       type: "example",
       target: "",
     }],

@@ -8,7 +8,7 @@ const Collapsible = <T extends ValidComponent = "div">(
   return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />;
 };
 
-const CollapsibleTrigger = <T extends ValidComponent = "div">(
+const CollapsibleTrigger = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, CollapsiblePrimitive.CollapsibleTriggerProps<T>>,
 ) => {
   return (

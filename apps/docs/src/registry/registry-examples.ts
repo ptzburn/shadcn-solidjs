@@ -912,11 +912,41 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "collapsible-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/collapsible-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "collapsible-demo",
     type: "example",
     files: [
       {
         path: "example/collapsible-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "collapsible-file-tree",
+    type: "example",
+    files: [
+      {
+        path: "example/collapsible-file-tree.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "collapsible-settings",
+    type: "example",
+    files: [
+      {
+        path: "example/collapsible-settings.tsx",
         type: "example",
       },
     ],
