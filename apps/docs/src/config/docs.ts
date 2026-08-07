@@ -35,7 +35,7 @@ export const docsConfig: Config = {
     },
     {
       title: "Components",
-      href: "/docs/components/accordion",
+      href: "/docs/components",
     },
   ],
   sectionsNav: [
@@ -45,7 +45,7 @@ export const docsConfig: Config = {
     },
     {
       title: "Components",
-      href: "/docs/components/accordion",
+      href: "/docs/components",
       prefix: "/docs/components",
     },
     {

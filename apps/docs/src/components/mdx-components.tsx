@@ -2,6 +2,7 @@ import { type ComponentProps } from "solid-js";
 
 import { ComponentPreview } from "~/components/component-preview.tsx";
 import { ComponentSource } from "~/components/component-source.tsx";
+import { ComponentsList } from "~/components/components-list.tsx";
 import { getIconForLanguageExtension } from "~/components/icons.tsx";
 import { CodeBlockCommand } from "~/components/code-block-command.tsx";
 import { CodeTabs } from "~/components/code-tabs.tsx";
@@ -132,6 +133,7 @@ export const MDXComponents = {
   CodeTabs,
   ComponentPreview,
   ComponentSource,
+  ComponentsList,
   Accordion,
   AccordionContent,
   AccordionItem,
