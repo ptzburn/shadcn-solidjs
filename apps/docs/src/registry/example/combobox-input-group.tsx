@@ -58,6 +58,7 @@ export default function ComboboxInputGroup() {
       optionGroupChildren="items"
       allowsEmptyCollection
       sameWidth={false}
+      placement="bottom-start"
       itemComponent={(props) => (
         <ComboboxItem item={props.item}>{props.item.rawValue}</ComboboxItem>
       )}

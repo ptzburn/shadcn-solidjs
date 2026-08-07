@@ -14,7 +14,25 @@ import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
 import { Show, splitProps } from "solid-js";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
-const Combobox = ComboboxPrimitive.Root;
+// Kobalte's default triggerMode="input" only opens the popup once the
+// user types; upstream's base-ui combobox opens it when the input is
+// clicked. triggerMode="focus" is the closest match: clicking the input
+// opens the popup (it also opens on keyboard focus, which upstream does
+// not do — the smaller mismatch). placement="bottom-start" mirrors
+// upstream ComboboxContent's side/align defaults; Kobalte only accepts
+// it on the root. Consumers can override both.
+const Combobox = <Option, OptGroup = never, T extends ValidComponent = "div">(
+  props: PolymorphicProps<
+    T,
+    ComboboxPrimitive.ComboboxRootProps<Option, OptGroup, T>
+  >,
+) => (
+  <ComboboxPrimitive.Root
+    triggerMode="focus"
+    placement="bottom-start"
+    {...(props as ComboboxPrimitive.ComboboxRootProps<Option, OptGroup>)}
+  />
+);
 const ComboboxItemLabel = ComboboxPrimitive.ItemLabel;
 const ComboboxHiddenSelect = ComboboxPrimitive.HiddenSelect;
 
@@ -317,7 +335,13 @@ const ComboboxContent = <T extends ValidComponent = "div">(
       <ComboboxPrimitive.Content
         data-slot="combobox-content"
         class={cn(
-          "cn-combobox-content group/combobox-content relative z-50 max-h-(--kb-popper-content-available-height) max-w-(--kb-popper-content-available-width) origin-(--kb-combobox-content-transform-origin)",
+          // Upstream's min-w-[calc(var(--anchor-width)+--spacing(7))]
+          // widens the popup past its anchor (the inner input element) by
+          // the 28px trailing chevron addon. Kobalte anchors to the whole
+          // control (input + addons), so the +28 is already included:
+          // min-w-(--kb-popper-anchor-width) computes the same width, and
+          // upstream's data-chips exact-width exception collapses into it.
+          "cn-combobox-content group/combobox-content relative z-50 max-h-(--kb-popper-content-available-height) max-w-(--kb-popper-content-available-width) min-w-(--kb-popper-anchor-width) origin-(--kb-combobox-content-transform-origin)",
           local.class,
         )}
         {...others}
@@ -362,7 +386,6 @@ export {
   ComboboxChip,
   ComboboxChips,
   ComboboxChipsInput,
-  ComboboxClear,
   ComboboxContent,
   ComboboxEmpty,
   ComboboxHiddenSelect,
