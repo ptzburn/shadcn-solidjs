@@ -3,7 +3,7 @@
  * upstream shadcn "nova" style (registry/styles/style-nova.css) and
  * adapted for Kobalte/SolidJS (data-expanded/data-closed attributes,
  * --kb-* CSS variables). Solid-only markers (cn-date-picker-content,
- * cn-chart-tooltip-body, ...) use solid-namespace names following the
+ * cn-date-picker-input, ...) use solid-namespace names following the
  * same conventions.
  *
  * The registry build inlines these tokens into shipped component code
@@ -365,18 +365,11 @@
   }
 
   /* MARK: Chart */
-  .cn-chart-tooltip-title {
-    @apply font-semibold leading-none tracking-tight;
-  }
+  .cn-chart {}
 
-  .cn-chart-tooltip-body {
-    @apply mt-1 text-muted-foreground;
-  }
-
-  .cn-chart-tooltip-item {}
-
-  .cn-chart-tooltip-indicator {
-    @apply rounded-full border;
+  .cn-chart-tooltip {
+    @apply border-border/50 bg-background gap-1.5 rounded-lg border px-2.5
+      py-1.5 text-xs shadow-xl;
   }
 
   /* MARK: Checkbox */

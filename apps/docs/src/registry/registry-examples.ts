@@ -772,31 +772,71 @@ export const examples: Registry = [
     ],
   },
   {
-    name: "area-chart-demo",
+    name: "charts-demo",
     type: "example",
     files: [
       {
-        path: "example/area-chart-demo.tsx",
+        path: "example/charts-demo.tsx",
         type: "example",
       },
     ],
   },
   {
-    name: "pie-chart-demo",
+    name: "charts-example",
     type: "example",
     files: [
       {
-        path: "example/pie-chart-demo.tsx",
+        path: "example/charts-example.tsx",
         type: "example",
       },
     ],
   },
   {
-    name: "bar-chart-demo",
+    name: "charts-example-axis",
     type: "example",
     files: [
       {
-        path: "example/bar-chart-demo.tsx",
+        path: "example/charts-example-axis.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "charts-example-grid",
+    type: "example",
+    files: [
+      {
+        path: "example/charts-example-grid.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "charts-example-legend",
+    type: "example",
+    files: [
+      {
+        path: "example/charts-example-legend.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "charts-example-tooltip",
+    type: "example",
+    files: [
+      {
+        path: "example/charts-example-tooltip.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "charts-tooltip",
+    type: "example",
+    files: [
+      {
+        path: "example/charts-tooltip.tsx",
         type: "example",
       },
     ],

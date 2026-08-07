@@ -19,6 +19,8 @@ export function Overview() {
     datasets: [
       {
         label: "Sales",
+        backgroundColor: "var(--primary)",
+        borderRadius: 4,
         data: [
           Math.floor(Math.random() * 5000) + 1000,
           Math.floor(Math.random() * 5000) + 1000,
@@ -39,7 +41,20 @@ export function Overview() {
 
   return (
     <div class="h-[350px] w-full">
-      <BarChart data={chartData} />
+      <BarChart
+        data={chartData}
+        options={{
+          scales: {
+            x: { ticks: { display: true } },
+            y: {
+              ticks: {
+                display: true,
+                callback: (value) => `$${value}`,
+              },
+            },
+          },
+        }}
+      />
     </div>
   );
 }
