@@ -32,14 +32,4 @@ export const blocks: Registry = [
       },
     ],
   },
-  {
-    name: "demo-sidebar",
-    type: "block",
-    files: [
-      {
-        path: "block/demo-sidebar.tsx",
-        type: "component",
-      },
-    ],
-  },
 ];

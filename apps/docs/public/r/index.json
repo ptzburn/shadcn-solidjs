@@ -454,6 +454,10 @@
       "dependencies": [
         "@kobalte/core"
       ],
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
+      ],
       "registryDependencies": [
         "button",
         "input",

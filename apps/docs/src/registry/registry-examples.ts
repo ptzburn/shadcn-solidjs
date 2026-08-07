@@ -2863,6 +2863,22 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "sidebar-demo",
+    type: "example",
+    registryDependencies: [
+      "avatar",
+      "collapsible",
+      "dropdown-menu",
+      "sidebar",
+    ],
+    files: [
+      {
+        path: "example/sidebar-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "skeleton-demo",
     type: "example",
     files: [

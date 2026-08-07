@@ -4222,6 +4222,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "sidebar-demo": {
+    name: "sidebar-demo",
+    description: "",
+    type: "example",
+    registryDependencies: ["avatar", "collapsible", "dropdown-menu", "sidebar"],
+    component: lazy(() => import("~/registry/example/sidebar-demo.tsx")),
+    files: [{
+      path: "registry/example/sidebar-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "skeleton-demo": {
     name: "skeleton-demo",
     description: "",
@@ -4356,18 +4368,6 @@ export const Index: RegistryIndex = {
       target: "",
     }, {
       path: "registry/block/sidebar-01/components/version-switcher.tsx",
-      type: "component",
-      target: "",
-    }],
-  },
-  "demo-sidebar": {
-    name: "demo-sidebar",
-    description: "",
-    type: "block",
-    registryDependencies: undefined,
-    component: lazy(() => import("~/registry/block/demo-sidebar.tsx")),
-    files: [{
-      path: "registry/block/demo-sidebar.tsx",
       type: "component",
       target: "",
     }],

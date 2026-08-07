@@ -1,6 +1,7 @@
 import type { PolymorphicProps } from "@kobalte/core";
 import { Polymorphic } from "@kobalte/core";
 
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import type { ButtonProps } from "./button.tsx";
 import { Button } from "./button.tsx";
 import { Input } from "./input.tsx";
@@ -28,7 +29,6 @@ import type {
 import {
   createContext,
   createEffect,
-  createMemo,
   createSignal,
   Match,
   mergeProps,
@@ -41,14 +41,14 @@ import {
 import { getRequestEvent, isServer } from "solid-js/web";
 
 const MOBILE_BREAKPOINT = 768;
-const SIDEBAR_COOKIE_NAME = "sidebar:state";
+const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 
-type SidebarContext = {
+type SidebarContextProps = {
   state: Accessor<"expanded" | "collapsed">;
   open: Accessor<boolean>;
   setOpen: (open: boolean) => void;
@@ -58,35 +58,20 @@ type SidebarContext = {
   toggleSidebar: () => void;
 };
 
-const SidebarContext = createContext<SidebarContext | null>(null);
+const SidebarContext = createContext<SidebarContextProps | null>(null);
 
-function useSidebar(): SidebarContext {
+function useSidebar(): SidebarContextProps {
   const context = useContext(SidebarContext);
   if (!context) {
-    throw new Error("useSidebar must be used within a Sidebar.");
+    throw new Error("useSidebar must be used within a SidebarProvider.");
   }
 
   return context;
 }
 
-export function useIsMobile(fallback = false): Accessor<boolean> {
-  const [isMobile, setIsMobile] = createSignal(fallback);
-
-  createEffect(() => {
-    const mql = globalThis.matchMedia(
-      `(max-width: ${MOBILE_BREAKPOINT - 1}px)`,
-    );
-    const onChange = (e: MediaQueryListEvent | MediaQueryList) => {
-      setIsMobile(e.matches);
-    };
-    mql.addEventListener("change", onChange);
-    onChange(mql);
-    onCleanup(() => mql.removeEventListener("change", onChange));
-  });
-
-  return isMobile;
-}
-
+// Reads the persisted state so the sidebar renders the same way on the server
+// and on the client. React's version of this component leaves the read to the
+// consumer's server component, which SolidStart has no equivalent for.
 function readSidebarOpenCookie(): boolean | undefined {
   const cookieString = isServer
     ? getRequestEvent()?.request.headers.get("cookie") ?? ""
@@ -121,24 +106,24 @@ const SidebarProvider: Component<SidebarProviderProps> = (rawProps) => {
   const isMobile = useMediaQuery(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
   const [openMobile, setOpenMobile] = createSignal(false);
 
-  const cookieOpen = readSidebarOpenCookie();
-  const initialOpen = cookieOpen ?? local.defaultOpen;
-
   // This is the internal state of the sidebar.
   // We use open and onOpenChange for control from outside the component.
-  const [_open, _setOpen] = createSignal(initialOpen);
+  const [_open, _setOpen] = createSignal(
+    readSidebarOpenCookie() ?? local.defaultOpen,
+  );
   const open = () => local.open ?? _open();
   const setOpen = (value: boolean | ((value: boolean) => boolean)) => {
+    const openState = typeof value === "function" ? value(open()) : value;
     if (local.onOpenChange) {
-      return local.onOpenChange?.(
-        typeof value === "function" ? value(open()) : value,
-      );
+      local.onOpenChange(openState);
+    } else {
+      _setOpen(openState);
     }
-    _setOpen(value);
 
+    // This sets the cookie to keep the sidebar state.
     if (typeof document !== "undefined") {
       document.cookie =
-        `${SIDEBAR_COOKIE_NAME}=${open()}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+        `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
     }
   };
 
@@ -169,7 +154,7 @@ const SidebarProvider: Component<SidebarProviderProps> = (rawProps) => {
   // This makes it easier to style the sidebar with Tailwind classes.
   const state = () => (open() ? "expanded" : "collapsed");
 
-  const contextValue = {
+  const contextValue: SidebarContextProps = {
     state,
     open,
     setOpen,
@@ -256,7 +241,7 @@ const Sidebar: Component<SidebarProps> = (rawProps) => {
               <SheetTitle>Sidebar</SheetTitle>
               <SheetDescription>Displays the mobile sidebar.</SheetDescription>
             </SheetHeader>
-            <div class="flex size-full flex-col">{local.children}</div>
+            <div class="flex h-full w-full flex-col">{local.children}</div>
           </SheetContent>
         </Sheet>
       </Match>
@@ -285,7 +270,7 @@ const Sidebar: Component<SidebarProps> = (rawProps) => {
             data-slot="sidebar-container"
             data-side={local.side}
             class={cn(
-              "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex data-[side=right]:right-0 data-[side=left]:left-0 data-[side=right]:group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)] data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]",
+              "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] data-[side=right]:right-0 data-[side=right]:group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)] md:flex",
               // Adjust the padding for floating and inset variants.
               local.variant === "floating" || local.variant === "inset"
                 ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
@@ -320,24 +305,30 @@ const SidebarTrigger = <T extends ValidComponent = "button">(
   const [local, others] = splitProps(props as SidebarTriggerProps, [
     "class",
     "onClick",
-    "children",
   ]);
   const { toggleSidebar } = useSidebar();
 
   return (
     <Button
-      data-slot="sidebar-trigger"
       data-sidebar="trigger"
+      data-slot="sidebar-trigger"
       variant="ghost"
-      size="icon"
-      class={cn("cn-sidebar-trigger size-7", local.class)}
+      size="icon-sm"
+      class={cn("cn-sidebar-trigger", local.class)}
       onClick={(event: MouseEvent) => {
         local.onClick?.(event);
         toggleSidebar();
       }}
       {...others}
     >
-      {local.children}
+      <IconPlaceholder
+        lucide="panel-left"
+        tabler="layout-sidebar"
+        ph="sidebar"
+        ri="side-bar-line"
+        hugeicons="panel-left"
+        class="cn-rtl-flip"
+      />
       <span class="sr-only">Toggle Sidebar</span>
     </Button>
   );
@@ -349,17 +340,17 @@ const SidebarRail: Component<ComponentProps<"button">> = (props) => {
 
   return (
     <button
-      data-slot="sidebar-rail"
       data-sidebar="rail"
+      data-slot="sidebar-rail"
       aria-label="Toggle Sidebar"
       tabIndex={-1}
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       class={cn(
-        "cn-sidebar-rail absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] sm:flex group-data-[side=left]:-right-4 group-data-[side=right]:left-0",
+        "cn-sidebar-rail absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:start-1/2 after:w-[2px] sm:flex",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
-        "hover:group-data-[collapsible=offcanvas]:bg-sidebar group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full",
+        "group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar",
         "[[data-side=left][data-collapsible=offcanvas]_&]:-right-2",
         "[[data-side=right][data-collapsible=offcanvas]_&]:-left-2",
         local.class,
@@ -376,7 +367,6 @@ const SidebarInset: Component<ComponentProps<"main">> = (props) => {
       data-slot="sidebar-inset"
       class={cn(
         "cn-sidebar-inset relative flex w-full flex-1 flex-col",
-        "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
         local.class,
       )}
       {...others}
@@ -459,7 +449,10 @@ const SidebarGroup: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="sidebar-group"
       data-sidebar="group"
-      class={cn("cn-sidebar-group relative flex min-w-0 flex-col", local.class)}
+      class={cn(
+        "cn-sidebar-group relative flex w-full min-w-0 flex-col",
+        local.class,
+      )}
       {...others}
     />
   );
@@ -483,7 +476,6 @@ const SidebarGroupLabel = <T extends ValidComponent = "div">(
       data-sidebar="group-label"
       class={cn(
         "cn-sidebar-group-label flex shrink-0 items-center outline-hidden [&>svg]:shrink-0",
-        "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
         local.class,
       )}
       {...others}
@@ -506,10 +498,7 @@ const SidebarGroupAction = <T extends ValidComponent = "button">(
       data-slot="sidebar-group-action"
       data-sidebar="group-action"
       class={cn(
-        "cn-sidebar-group-action flex aspect-square items-center justify-center outline-hidden transition-transform [&>svg]:shrink-0",
-        // Increases the hit area of the button on mobile.
-        "after:absolute after:-inset-2 md:after:hidden",
-        "group-data-[collapsible=icon]:hidden",
+        "cn-sidebar-group-action flex aspect-square items-center justify-center outline-hidden transition-transform group-data-[collapsible=icon]:hidden after:absolute after:-inset-2 md:after:hidden [&>svg]:shrink-0",
         local.class,
       )}
       {...others}
@@ -554,7 +543,7 @@ const SidebarMenuItem: Component<ComponentProps<"li">> = (props) => {
 };
 
 const sidebarMenuButtonVariants = cva(
-  "cn-sidebar-menu-button peer/menu-button group/menu-button flex w-full items-center overflow-hidden outline-hidden disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+  "cn-sidebar-menu-button peer/menu-button group/menu-button flex w-full items-center overflow-hidden outline-hidden disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0 [&>span:last-child]:truncate",
   {
     variants: {
       variant: {
@@ -574,12 +563,16 @@ const sidebarMenuButtonVariants = cva(
   },
 );
 
+type SidebarMenuButtonTooltipProps = Parameters<
+  typeof TooltipContent<"div">
+>[0];
+
 type SidebarMenuButtonProps<T extends ValidComponent = "button"> =
   & ComponentProps<T>
   & VariantProps<typeof sidebarMenuButtonVariants>
   & {
     isActive?: boolean;
-    tooltip?: string;
+    tooltip?: string | SidebarMenuButtonTooltipProps;
   };
 
 const SidebarMenuButton = <T extends ValidComponent = "button">(
@@ -599,29 +592,47 @@ const SidebarMenuButton = <T extends ValidComponent = "button">(
   ]);
   const { isMobile, state } = useSidebar();
 
-  const button = (
-    <Polymorphic<SidebarMenuButtonProps>
-      as="button"
-      data-slot="sidebar-menu-button"
-      data-sidebar="menu-button"
-      data-size={local.size}
-      data-active={local.isActive}
-      class={cn(
+  // Shared as getters so the same attributes stay reactive whether the button
+  // renders on its own or as the tooltip trigger.
+  const buttonProps = {
+    "data-slot": "sidebar-menu-button",
+    "data-sidebar": "menu-button",
+    get "data-size"() {
+      return local.size;
+    },
+    get "data-active"() {
+      return local.isActive;
+    },
+    get class() {
+      return cn(
         sidebarMenuButtonVariants({ variant: local.variant, size: local.size }),
         local.class,
-        "hover:cursor-pointer",
-      )}
-      {...others}
-    />
-  );
+      );
+    },
+  };
+
+  const tooltipProps = (): SidebarMenuButtonTooltipProps =>
+    typeof local.tooltip === "string"
+      ? { children: local.tooltip }
+      : (local.tooltip ?? {});
 
   return (
-    <Show when={local.tooltip} fallback={button}>
+    <Show
+      when={local.tooltip}
+      fallback={
+        <Polymorphic<SidebarMenuButtonProps>
+          as="button"
+          {...buttonProps}
+          {...others}
+        />
+      }
+    >
       <Tooltip placement="right">
-        <TooltipTrigger class="w-full">{button}</TooltipTrigger>
-        <TooltipContent hidden={state() !== "collapsed" || isMobile()}>
-          {local.tooltip}
-        </TooltipContent>
+        <TooltipTrigger as="button" {...buttonProps} {...others} />
+        <TooltipContent
+          hidden={state() !== "collapsed" || isMobile()}
+          {...tooltipProps()}
+        />
       </Tooltip>
     </Show>
   );
@@ -648,15 +659,9 @@ const SidebarMenuAction = <T extends ValidComponent = "button">(
       data-slot="sidebar-menu-action"
       data-sidebar="menu-action"
       class={cn(
-        "cn-sidebar-menu-action flex items-center justify-center outline-hidden transition-transform [&>svg]:shrink-0",
-        // Increases the hit area of the button on mobile.
-        "after:absolute after:-inset-2 md:after:hidden",
-        "peer-data-[size=sm]/menu-button:top-1",
-        "peer-data-[size=default]/menu-button:top-1.5",
-        "peer-data-[size=lg]/menu-button:top-2.5",
-        "group-data-[collapsible=icon]:hidden",
+        "cn-sidebar-menu-action flex items-center justify-center outline-hidden transition-transform group-data-[collapsible=icon]:hidden after:absolute after:-inset-2 md:after:hidden [&>svg]:shrink-0",
         local.showOnHover &&
-          "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-data-[active=true]/menu-button:text-sidebar-accent-foreground data-[state=open]:opacity-100 md:opacity-0",
+          "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-data-[active=true]/menu-button:text-sidebar-accent-foreground aria-expanded:opacity-100 md:opacity-0",
         local.class,
       )}
       {...others}
@@ -671,12 +676,7 @@ const SidebarMenuBadge: Component<ComponentProps<"div">> = (props) => {
       data-slot="sidebar-menu-badge"
       data-sidebar="menu-badge"
       class={cn(
-        "cn-sidebar-menu-badge flex select-none items-center justify-center tabular-nums",
-        "peer-data-[active=true]/menu-button:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground",
-        "peer-data-[size=sm]/menu-button:top-1",
-        "peer-data-[size=default]/menu-button:top-1.5",
-        "peer-data-[size=lg]/menu-button:top-2.5",
-        "group-data-[collapsible=icon]:hidden",
+        "cn-sidebar-menu-badge flex items-center justify-center tabular-nums select-none group-data-[collapsible=icon]:hidden",
         local.class,
       )}
       {...others}
@@ -693,7 +693,7 @@ const SidebarMenuSkeleton: Component<SidebarMenuSkeletonProps> = (rawProps) => {
   const [local, others] = splitProps(props, ["class", "showIcon"]);
 
   // Random width between 50 to 90%.
-  const width = createMemo(() => `${Math.floor(Math.random() * 40) + 50}%`);
+  const width = `${Math.floor(Math.random() * 40) + 50}%`;
 
   return (
     <div
@@ -702,17 +702,17 @@ const SidebarMenuSkeleton: Component<SidebarMenuSkeletonProps> = (rawProps) => {
       class={cn("cn-sidebar-menu-skeleton flex items-center", local.class)}
       {...others}
     >
-      {local.showIcon && (
+      <Show when={local.showIcon}>
         <Skeleton
           class="cn-sidebar-menu-skeleton-icon"
           data-sidebar="menu-skeleton-icon"
         />
-      )}
+      </Show>
       <Skeleton
         class="cn-sidebar-menu-skeleton-text max-w-(--skeleton-width) flex-1"
         data-sidebar="menu-skeleton-text"
         style={{
-          "--skeleton-width": width(),
+          "--skeleton-width": width,
         }}
       />
     </div>
@@ -726,8 +726,7 @@ const SidebarMenuSub: Component<ComponentProps<"ul">> = (props) => {
       data-slot="sidebar-menu-sub"
       data-sidebar="menu-sub"
       class={cn(
-        "cn-sidebar-menu-sub flex min-w-0 flex-col",
-        "group-data-[collapsible=icon]:hidden",
+        "cn-sidebar-menu-sub flex min-w-0 flex-col group-data-[collapsible=icon]:hidden",
         local.class,
       )}
       {...others}
@@ -757,7 +756,7 @@ type SidebarMenuSubButtonProps<T extends ValidComponent = "a"> =
 const SidebarMenuSubButton = <T extends ValidComponent = "a">(
   rawProps: PolymorphicProps<T, SidebarMenuSubButtonProps<T>>,
 ) => {
-  const props = mergeProps({ size: "md" }, rawProps);
+  const props = mergeProps({ size: "md", isActive: false }, rawProps);
   const [local, others] = splitProps(props as SidebarMenuSubButtonProps, [
     "size",
     "isActive",
@@ -772,10 +771,7 @@ const SidebarMenuSubButton = <T extends ValidComponent = "a">(
       data-size={local.size}
       data-active={local.isActive}
       class={cn(
-        "cn-sidebar-menu-sub-button flex min-w-0 -translate-x-px items-center overflow-hidden outline-hidden disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>svg]:shrink-0 [&>span:last-child]:truncate",
-        "data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground",
-        "data-[size=md]:text-sm data-[size=sm]:text-xs",
-        "group-data-[collapsible=icon]:hidden",
+        "cn-sidebar-menu-sub-button flex min-w-0 -translate-x-px items-center overflow-hidden outline-hidden group-data-[collapsible=icon]:hidden disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:shrink-0",
         local.class,
       )}
       {...others}

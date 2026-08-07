@@ -35,6 +35,13 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
   const [isCodeVisible, setIsCodeVisible] = createSignal(false);
 
   const Preview = createMemo(() => {
+    // Blocks render inside an iframe, so never instantiate the registry
+    // component here — a lazy() component created for a subtree that is
+    // discarded still claims hydration keys and breaks the whole page.
+    if (local.type === "block") {
+      return null;
+    }
+
     const Component = Index[local.name]?.component;
 
     if (!Component) {

@@ -1702,7 +1702,11 @@
   }
 
   .cn-sidebar-inset {
-    @apply bg-background;
+    @apply bg-background md:peer-data-[variant=inset]:m-2
+      md:peer-data-[variant=inset]:ml-0
+      md:peer-data-[variant=inset]:rounded-xl
+      md:peer-data-[variant=inset]:shadow-sm
+      md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2;
   }
 
   .cn-sidebar-input {
@@ -1726,7 +1730,7 @@
   }
 
   .cn-sidebar-group {
-    @apply w-full p-2;
+    @apply p-2;
   }
 
   .cn-sidebar-menu {
@@ -1740,7 +1744,9 @@
   .cn-sidebar-group-label {
     @apply text-sidebar-foreground/70 ring-sidebar-ring h-8 rounded-md px-2
       text-xs font-medium transition-[margin,opacity] duration-200 ease-linear
-      focus-visible:ring-2 [&>svg]:size-4;
+      group-data-[collapsible=icon]:-mt-8
+      group-data-[collapsible=icon]:opacity-0 focus-visible:ring-2
+      [&>svg]:size-4;
   }
 
   .cn-sidebar-group-action {
@@ -1754,8 +1760,8 @@
       hover:text-sidebar-accent-foreground active:bg-sidebar-accent
       active:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent
       data-[active=true]:text-sidebar-accent-foreground
-      data-[state=open]:hover:bg-sidebar-accent
-      data-[state=open]:hover:text-sidebar-accent-foreground gap-2 rounded-md
+      data-expanded:hover:bg-sidebar-accent
+      data-expanded:hover:text-sidebar-accent-foreground gap-2 rounded-md
       p-2 text-left text-sm transition-[width,height,padding]
       group-has-data-[sidebar=menu-action]/menu-item:pr-8
       group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2!
@@ -1789,13 +1795,21 @@
     @apply text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent
       hover:text-sidebar-accent-foreground
       peer-hover/menu-button:text-sidebar-accent-foreground absolute top-1.5
-      right-1 aspect-square w-5 rounded-md p-0 focus-visible:ring-2
+      right-1 aspect-square w-5 rounded-md p-0
+      peer-data-[size=default]/menu-button:top-1.5
+      peer-data-[size=lg]/menu-button:top-2.5
+      peer-data-[size=sm]/menu-button:top-1 focus-visible:ring-2
       [&>svg]:size-4;
   }
 
   .cn-sidebar-menu-badge {
-    @apply text-sidebar-foreground pointer-events-none absolute right-1 h-5
-      min-w-5 rounded-md px-1 text-xs font-medium;
+    @apply text-sidebar-foreground
+      peer-hover/menu-button:text-sidebar-accent-foreground
+      peer-data-[active=true]/menu-button:text-sidebar-accent-foreground
+      pointer-events-none absolute right-1 flex h-5 min-w-5 rounded-md px-1
+      text-xs font-medium peer-data-[size=default]/menu-button:top-1.5
+      peer-data-[size=lg]/menu-button:top-2.5
+      peer-data-[size=sm]/menu-button:top-1;
   }
 
   .cn-sidebar-menu-skeleton {
@@ -1812,15 +1826,18 @@
 
   .cn-sidebar-menu-sub {
     @apply border-sidebar-border mx-3.5 translate-x-px gap-1 border-l px-2.5
-      py-0.5;
+      py-0.5 group-data-[collapsible=icon]:hidden;
   }
 
   .cn-sidebar-menu-sub-button {
     @apply text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent
       hover:text-sidebar-accent-foreground active:bg-sidebar-accent
       active:text-sidebar-accent-foreground
-      [&>svg]:text-sidebar-accent-foreground h-7 gap-2 rounded-md px-2
-      focus-visible:ring-2 [&>svg]:size-4;
+      [&>svg]:text-sidebar-accent-foreground
+      data-[active=true]:bg-sidebar-accent
+      data-[active=true]:text-sidebar-accent-foreground h-7 gap-2 rounded-md
+      px-2 focus-visible:ring-2 data-[size=md]:text-sm data-[size=sm]:text-xs
+      [&>svg]:size-4;
   }
 
   /* MARK: Skeleton */
