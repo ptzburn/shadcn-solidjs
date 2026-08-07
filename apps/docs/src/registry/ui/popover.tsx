@@ -25,20 +25,6 @@ const PopoverTrigger = <T extends ValidComponent = "button">(
   );
 };
 
-type PopoverAnchorProps<T extends ValidComponent = "div"> =
-  PopoverPrimitive.PopoverAnchorProps<T>;
-
-const PopoverAnchor = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, PopoverAnchorProps<T>>,
-) => {
-  return (
-    <PopoverPrimitive.Anchor
-      data-slot="popover-anchor"
-      {...(props as PopoverAnchorProps)}
-    />
-  );
-};
-
 type PopoverContentProps<T extends ValidComponent = "div"> =
   & PopoverPrimitive.PopoverContentProps<T>
   & { class?: string | undefined };
@@ -58,6 +44,20 @@ const PopoverContent = <T extends ValidComponent = "div">(
         {...others}
       />
     </PopoverPrimitive.Portal>
+  );
+};
+
+type PopoverAnchorProps<T extends ValidComponent = "div"> =
+  PopoverPrimitive.PopoverAnchorProps<T>;
+
+const PopoverAnchor = <T extends ValidComponent = "div">(
+  props: PolymorphicProps<T, PopoverAnchorProps<T>>,
+) => {
+  return (
+    <PopoverPrimitive.Anchor
+      data-slot="popover-anchor"
+      {...(props as PopoverAnchorProps)}
+    />
   );
 };
 

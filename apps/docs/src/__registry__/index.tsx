@@ -3418,6 +3418,42 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "popover-basic": {
+    name: "popover-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/popover-basic.tsx")),
+    files: [{
+      path: "registry/example/popover-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "popover-alignments": {
+    name: "popover-alignments",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/popover-alignments.tsx")),
+    files: [{
+      path: "registry/example/popover-alignments.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "popover-form": {
+    name: "popover-form",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/popover-form.tsx")),
+    files: [{
+      path: "registry/example/popover-form.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "progress-demo": {
     name: "progress-demo",
     description: "",

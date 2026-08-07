@@ -2253,6 +2253,36 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "popover-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/popover-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "popover-alignments",
+    type: "example",
+    files: [
+      {
+        path: "example/popover-alignments.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "popover-form",
+    type: "example",
+    files: [
+      {
+        path: "example/popover-form.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "progress-demo",
     type: "example",
     files: [
