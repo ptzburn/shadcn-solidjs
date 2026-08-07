@@ -1,18 +1,11 @@
 import { For, Show } from "solid-js";
 import { A } from "@solidjs/router";
 
-import { docsConfig } from "~/config/docs.ts";
-
-function componentPages() {
-  return (
-    docsConfig.sidebarNav.find((category) => category.title === "Components")
-      ?.items ?? []
-  );
-}
+import { componentPages } from "~/config/docs.ts";
 
 export function ComponentsList(props: { variant?: "all" | "new" }) {
   const list = () =>
-    componentPages().filter(
+    componentPages.filter(
       (component) => props.variant !== "new" || component.status === "new",
     );
 

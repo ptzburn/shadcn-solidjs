@@ -2,7 +2,7 @@ import { Show } from "solid-js";
 import { A, useLocation } from "@solidjs/router";
 
 import { IconArrowLeft, IconArrowRight } from "~/components/icons.tsx";
-import { docsConfig } from "~/config/docs.ts";
+import { componentPages, COMPONENTS_INDEX, docsConfig } from "~/config/docs.ts";
 import { Button } from "~/registry/ui/button.tsx";
 
 const categories = docsConfig.sidebarNav.map((category) => category.items);
@@ -11,6 +11,9 @@ const categories = docsConfig.sidebarNav.map((category) => category.items);
  * Neighbours wrap within their sidebar category, like the upstream page
  * tree where the adjacent base folders repeat the component list — there
  * the first component's previous is the last component and vice versa.
+ *
+ * The Components index is the exception: upstream puts it first in the
+ * tree, so it has no previous and its next is the first component.
  */
 export function useDocsNeighbours() {
   const location = useLocation();
@@ -24,12 +27,14 @@ export function useDocsNeighbours() {
 
   return {
     previous: () => {
+      if (location.pathname === COMPONENTS_INDEX) return undefined;
       const match = found();
       if (!match) return undefined;
       const { items, index } = match;
       return items[(index - 1 + items.length) % items.length];
     },
     next: () => {
+      if (location.pathname === COMPONENTS_INDEX) return componentPages[0];
       const match = found();
       if (!match) return undefined;
       const { items, index } = match;

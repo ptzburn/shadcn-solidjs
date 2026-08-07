@@ -23,6 +23,8 @@ type Config = {
   sidebarNav: NavCategory[];
 };
 
+export const COMPONENTS_INDEX = "/docs/components";
+
 export const docsConfig: Config = {
   mainNav: [
     {
@@ -300,3 +302,7 @@ export const docsConfig: Config = {
     },
   ],
 };
+
+export const componentPages =
+  docsConfig.sidebarNav.find((category) => category.title === "Components")
+    ?.items ?? [];
