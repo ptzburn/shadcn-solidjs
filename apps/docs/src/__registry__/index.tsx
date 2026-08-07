@@ -5016,6 +5016,88 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "toggle-group-outline": {
+    name: "toggle-group-outline",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/toggle-group-outline.tsx")
+    ),
+    files: [{
+      path: "registry/example/toggle-group-outline.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "toggle-group-sizes": {
+    name: "toggle-group-sizes",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/toggle-group-sizes.tsx")),
+    files: [{
+      path: "registry/example/toggle-group-sizes.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "toggle-group-spacing": {
+    name: "toggle-group-spacing",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/toggle-group-spacing.tsx")
+    ),
+    files: [{
+      path: "registry/example/toggle-group-spacing.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "toggle-group-vertical": {
+    name: "toggle-group-vertical",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/toggle-group-vertical.tsx")
+    ),
+    files: [{
+      path: "registry/example/toggle-group-vertical.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "toggle-group-disabled": {
+    name: "toggle-group-disabled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/toggle-group-disabled.tsx")
+    ),
+    files: [{
+      path: "registry/example/toggle-group-disabled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "toggle-group-font-weight-selector": {
+    name: "toggle-group-font-weight-selector",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/toggle-group-font-weight-selector.tsx")
+    ),
+    files: [{
+      path: "registry/example/toggle-group-font-weight-selector.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "tooltip-demo": {
     name: "tooltip-demo",
     description: "",

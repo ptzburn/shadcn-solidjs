@@ -6,7 +6,7 @@ import { cn } from "~/lib/utils.ts";
 import type { VariantProps } from "class-variance-authority";
 
 import type { JSX, ValidComponent } from "solid-js";
-import { createContext, splitProps, useContext } from "solid-js";
+import { createContext, mergeProps, splitProps, useContext } from "solid-js";
 
 type ToggleGroupContextValue = VariantProps<typeof toggleVariants> & {
   spacing?: number;
@@ -86,7 +86,11 @@ type ToggleGroupItemProps<T extends ValidComponent = "button"> =
 const ToggleGroupItem = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, ToggleGroupItemProps<T>>,
 ) => {
-  const [local, others] = splitProps(props as ToggleGroupItemProps, [
+  const mergedProps = mergeProps(
+    { variant: "default", size: "default" } as ToggleGroupItemProps,
+    props as ToggleGroupItemProps,
+  );
+  const [local, others] = splitProps(mergedProps, [
     "class",
     "children",
     "size",

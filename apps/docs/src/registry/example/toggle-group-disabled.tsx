@@ -1,9 +1,9 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { ToggleGroup, ToggleGroupItem } from "~/registry/ui/toggle-group.tsx";
 
-export default function ToggleGroupDemo() {
+export default function ToggleGroupDisabled() {
   return (
-    <ToggleGroup variant="outline" multiple>
+    <ToggleGroup disabled multiple>
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
         <IconPlaceholder
           lucide="bold"

@@ -1,9 +1,14 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { ToggleGroup, ToggleGroupItem } from "~/registry/ui/toggle-group.tsx";
 
-export default function ToggleGroupDemo() {
+export default function ToggleGroupVertical() {
   return (
-    <ToggleGroup variant="outline" multiple>
+    <ToggleGroup
+      multiple
+      orientation="vertical"
+      spacing={1}
+      defaultValue={["bold", "italic"]}
+    >
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
         <IconPlaceholder
           lucide="bold"

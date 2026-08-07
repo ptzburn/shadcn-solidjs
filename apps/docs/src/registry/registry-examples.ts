@@ -3469,6 +3469,66 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "toggle-group-outline",
+    type: "example",
+    files: [
+      {
+        path: "example/toggle-group-outline.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "toggle-group-sizes",
+    type: "example",
+    files: [
+      {
+        path: "example/toggle-group-sizes.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "toggle-group-spacing",
+    type: "example",
+    files: [
+      {
+        path: "example/toggle-group-spacing.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "toggle-group-vertical",
+    type: "example",
+    files: [
+      {
+        path: "example/toggle-group-vertical.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "toggle-group-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/toggle-group-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "toggle-group-font-weight-selector",
+    type: "example",
+    files: [
+      {
+        path: "example/toggle-group-font-weight-selector.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "tooltip-demo",
     type: "example",
     files: [
