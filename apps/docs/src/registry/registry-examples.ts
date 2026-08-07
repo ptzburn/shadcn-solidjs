@@ -2803,6 +2803,36 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "separator-list",
+    type: "example",
+    files: [
+      {
+        path: "example/separator-list.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "separator-menu",
+    type: "example",
+    files: [
+      {
+        path: "example/separator-menu.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "separator-vertical",
+    type: "example",
+    files: [
+      {
+        path: "example/separator-vertical.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "sheet-demo",
     type: "example",
     files: [

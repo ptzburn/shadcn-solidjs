@@ -4148,6 +4148,42 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "separator-list": {
+    name: "separator-list",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/separator-list.tsx")),
+    files: [{
+      path: "registry/example/separator-list.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "separator-menu": {
+    name: "separator-menu",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/separator-menu.tsx")),
+    files: [{
+      path: "registry/example/separator-menu.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "separator-vertical": {
+    name: "separator-vertical",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/separator-vertical.tsx")),
+    files: [{
+      path: "registry/example/separator-vertical.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "sheet-demo": {
     name: "sheet-demo",
     description: "",

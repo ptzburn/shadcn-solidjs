@@ -37,7 +37,7 @@ export function CodeCollapsibleWrapper(
         >
           {isOpened() ? "Collapse" : "Expand"}
         </CollapsibleTrigger>
-        <Separator orientation="vertical" class="mx-1.5 h-4!" />
+        <Separator orientation="vertical" class="mx-1.5 h-4! self-center!" />
       </div>
       <CollapsibleContent class="relative mt-6 overflow-hidden data-[closed]:max-h-64 data-[closed]:[content-visibility:auto] [&>figure]:mt-0 [&>figure]:md:mx-0!">
         {local.children}
