@@ -510,6 +510,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "scroll-area": {
+    name: "scroll-area",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/scroll-area.tsx")),
+    files: [{
+      path: "registry/ui/scroll-area.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "select": {
     name: "select",
     description: "",
@@ -4138,6 +4150,32 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/resizable-handle.tsx")),
     files: [{
       path: "registry/example/resizable-handle.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "scroll-area-demo": {
+    name: "scroll-area-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/scroll-area-demo.tsx")),
+    files: [{
+      path: "registry/example/scroll-area-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "scroll-area-horizontal-demo": {
+    name: "scroll-area-horizontal-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/scroll-area-horizontal-demo.tsx")
+    ),
+    files: [{
+      path: "registry/example/scroll-area-horizontal-demo.tsx",
       type: "example",
       target: "",
     }],

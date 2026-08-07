@@ -442,6 +442,13 @@
     "type": "ui"
   },
   {
+    "name": "scroll-area",
+    "files": [
+      "ui/scroll-area.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "select",
     "dependencies": [
       "@kobalte/core"

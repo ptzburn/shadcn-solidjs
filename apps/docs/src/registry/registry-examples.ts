@@ -2783,6 +2783,26 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "scroll-area-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/scroll-area-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "scroll-area-horizontal-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/scroll-area-horizontal-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "select-demo",
     type: "example",
     files: [

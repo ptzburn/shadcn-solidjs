@@ -1612,6 +1612,13 @@
     @apply bg-border h-6 w-1 rounded-lg;
   }
 
+  /* MARK: Scroll Area */
+  /* Upstream leaves the root unstyled in this style; the scrollbar is the
+     browser's, so the nova scrollbar and thumb blocks belong to the radix
+     and base-ui bases and have no consumer here. Declared so the build
+     knows the marker. */
+  .cn-scroll-area {}
+
   /* MARK: Select */
   .cn-select-trigger {
     @apply border-input has-data-placeholder-shown:text-muted-foreground
@@ -1974,6 +1981,12 @@
 
   .cn-tabs-content {
     @apply text-sm;
+  }
+
+  /* Kobalte-only slot: upstream draws the line-variant underline with the
+     trigger's ::after, so nova has no marker of its own for it. */
+  .cn-tabs-indicator {
+    @apply bg-foreground;
   }
 
   /* MARK: Textarea */
