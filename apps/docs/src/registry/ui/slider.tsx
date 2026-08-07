@@ -50,7 +50,7 @@ const Slider = <T extends ValidComponent = "div">(
           // single-axis transform, so the cross axis has to be centred here.
           <SliderPrimitive.Thumb
             data-slot="slider-thumb"
-            class="cn-slider-thumb block shrink-0 select-none data-[orientation=horizontal]:top-1/2 data-[orientation=horizontal]:-translate-y-1/2 data-[orientation=vertical]:left-1/2 data-[orientation=vertical]:-translate-x-1/2 disabled:pointer-events-none disabled:opacity-50"
+            class="cn-slider-thumb block shrink-0 select-none disabled:pointer-events-none disabled:opacity-50"
           >
             <SliderPrimitive.Input />
           </SliderPrimitive.Thumb>
