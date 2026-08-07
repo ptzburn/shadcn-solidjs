@@ -129,10 +129,11 @@ const SelectSection = <T extends ValidComponent = "li">(
 // Kobalte has no Select.Separator; the listbox renders from the
 // collection, so a separator is a plain presentational element emitted
 // from `sectionComponent`.
-const SelectSeparator: Component<ComponentProps<"div">> = (props) => {
+// an li, not a div: the listbox is a ul, which may only own list items
+const SelectSeparator: Component<ComponentProps<"li">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
-    <div
+    <li
       data-slot="select-separator"
       role="separator"
       aria-orientation="horizontal"

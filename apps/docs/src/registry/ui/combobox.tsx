@@ -268,10 +268,11 @@ const ComboboxSection = <T extends ValidComponent = "li">(
   );
 };
 
-const ComboboxSeparator: Component<ComponentProps<"div">> = (props) => {
+// an li, not a div: the listbox is a ul, which may only own list items
+const ComboboxSeparator: Component<ComponentProps<"li">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
   return (
-    <div
+    <li
       data-slot="combobox-separator"
       role="separator"
       aria-orientation="horizontal"
