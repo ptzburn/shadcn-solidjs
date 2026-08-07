@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "src/registry/ui/spinner.tsx",
-      "content": "import { cn } from \"~/lib/utils.ts\";\n\nimport { type Component, type ComponentProps, splitProps } from \"solid-js\";\nimport IconCircleNotch from \"~icons/ph/circle-notch\";\n\nconst Spinner: Component<ComponentProps<\"svg\">> = (props) => {\n  const [local, others] = splitProps(props, [\"class\"]);\n\n  return (\n    <IconCircleNotch\n      data-slot=\"spinner\"\n      role=\"status\"\n      aria-label=\"Loading\"\n      class={cn(\"size-4 animate-spin\", local.class)}\n      {...others}\n    />\n  );\n};\n\nexport { Spinner };\n",
+      "content": "import { cn } from \"~/lib/utils.ts\";\n\nimport { type Component, type ComponentProps, splitProps } from \"solid-js\";\nimport IconSpinner from \"~icons/ph/spinner\";\n\nconst Spinner: Component<ComponentProps<\"svg\">> = (props) => {\n  const [local, others] = splitProps(props, [\"class\"]);\n\n  return (\n    <IconSpinner\n      data-slot=\"spinner\"\n      role=\"status\"\n      aria-label=\"Loading\"\n      class={cn(\"size-4 animate-spin\", local.class)}\n      {...others}\n    />\n  );\n};\n\nexport { Spinner };\n",
       "type": "registry:ui"
     }
   ]

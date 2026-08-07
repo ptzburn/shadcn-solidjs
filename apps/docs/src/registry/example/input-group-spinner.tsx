@@ -34,9 +34,9 @@ export default function InputGroupSpinner() {
         <InputGroupAddon>
           <IconPlaceholder
             lucide="loader"
-            tabler="loader"
-            ph="spinner"
-            ri="loader-line"
+            tabler="loader-2"
+            ph="circle-notch"
+            ri="loader-4-line"
             hugeicons="loading-01"
             class="animate-spin"
           />

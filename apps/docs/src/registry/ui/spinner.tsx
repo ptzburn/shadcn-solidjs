@@ -9,9 +9,9 @@ const Spinner: Component<ComponentProps<"svg">> = (props) => {
   return (
     <IconPlaceholder
       lucide="loader-circle"
-      tabler="loader-2"
-      ph="circle-notch"
-      ri="loader-4-line"
+      tabler="loader"
+      ph="spinner"
+      ri="loader-line"
       hugeicons="loading-03"
       data-slot="spinner"
       role="status"
