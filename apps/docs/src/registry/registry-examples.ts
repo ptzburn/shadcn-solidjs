@@ -3169,11 +3169,31 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "table-actions",
+    type: "example",
+    files: [
+      {
+        path: "example/table-actions.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "table-demo",
     type: "example",
     files: [
       {
         path: "example/table-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "table-footer",
+    type: "example",
+    files: [
+      {
+        path: "example/table-footer.tsx",
         type: "example",
       },
     ],

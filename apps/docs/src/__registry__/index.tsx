@@ -4582,6 +4582,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "table-actions": {
+    name: "table-actions",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/table-actions.tsx")),
+    files: [{
+      path: "registry/example/table-actions.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "table-demo": {
     name: "table-demo",
     description: "",
@@ -4590,6 +4602,18 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/table-demo.tsx")),
     files: [{
       path: "registry/example/table-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "table-footer": {
+    name: "table-footer",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/table-footer.tsx")),
+    files: [{
+      path: "registry/example/table-footer.tsx",
       type: "example",
       target: "",
     }],

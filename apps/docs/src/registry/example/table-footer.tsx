@@ -56,7 +56,7 @@ const invoices = [
   },
 ];
 
-export default function TableDemo() {
+export default function TableFooterExample() {
   return (
     <Table>
       <TableCaption>A list of your recent invoices.</TableCaption>
@@ -69,7 +69,7 @@ export default function TableDemo() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <For each={invoices}>
+        <For each={invoices.slice(0, 3)}>
           {(invoice) => (
             <TableRow>
               <TableCell class="font-medium">{invoice.invoice}</TableCell>
