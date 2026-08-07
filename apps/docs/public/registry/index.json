@@ -362,6 +362,13 @@
     "type": "ui"
   },
   {
+    "name": "native-select",
+    "files": [
+      "ui/native-select.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "navigation-menu",
     "dependencies": [
       "@kobalte/core"

@@ -414,6 +414,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "native-select": {
+    name: "native-select",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/native-select.tsx")),
+    files: [{
+      path: "registry/ui/native-select.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "navigation-menu": {
     name: "navigation-menu",
     description: "",
@@ -3706,6 +3718,60 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/message-attachment.tsx")),
     files: [{
       path: "registry/example/message-attachment.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "native-select-demo": {
+    name: "native-select-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/native-select-demo.tsx")),
+    files: [{
+      path: "registry/example/native-select-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "native-select-groups": {
+    name: "native-select-groups",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/native-select-groups.tsx")
+    ),
+    files: [{
+      path: "registry/example/native-select-groups.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "native-select-disabled": {
+    name: "native-select-disabled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/native-select-disabled.tsx")
+    ),
+    files: [{
+      path: "registry/example/native-select-disabled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "native-select-invalid": {
+    name: "native-select-invalid",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/native-select-invalid.tsx")
+    ),
+    files: [{
+      path: "registry/example/native-select-invalid.tsx",
       type: "example",
       target: "",
     }],

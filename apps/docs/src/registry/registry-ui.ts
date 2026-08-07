@@ -381,6 +381,16 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "native-select",
+    type: "ui",
+    files: [
+      {
+        path: "ui/native-select.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "navigation-menu",
     type: "ui",
     dependencies: ["@kobalte/core"],

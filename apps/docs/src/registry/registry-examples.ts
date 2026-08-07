@@ -2453,6 +2453,46 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "native-select-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/native-select-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "native-select-groups",
+    type: "example",
+    files: [
+      {
+        path: "example/native-select-groups.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "native-select-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/native-select-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "native-select-invalid",
+    type: "example",
+    files: [
+      {
+        path: "example/native-select-invalid.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "navigation-menu-demo",
     type: "example",
     files: [

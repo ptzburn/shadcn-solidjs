@@ -343,6 +343,15 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "native-select",
+      "type": "registry:ui",
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "navigation-menu",
       "type": "registry:ui",
       "dependencies": [

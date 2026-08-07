@@ -218,6 +218,11 @@ export const docsConfig: Config = {
           status: "new",
         },
         {
+          title: "Native Select",
+          href: "/docs/components/native-select",
+          status: "new",
+        },
+        {
           title: "Navigation Menu",
           href: "/docs/components/navigation-menu",
         },
