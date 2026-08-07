@@ -218,6 +218,11 @@ export const docsConfig: Config = {
           status: "new",
         },
         {
+          title: "Message Scroller",
+          href: "/docs/components/message-scroller",
+          status: "new",
+        },
+        {
           title: "Native Select",
           href: "/docs/components/native-select",
           status: "new",

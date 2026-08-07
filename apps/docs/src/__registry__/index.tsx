@@ -414,6 +414,38 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "message-scroller": {
+    name: "message-scroller",
+    description: "",
+    type: "ui",
+    registryDependencies: ["button"],
+    component: lazy(() => import("~/registry/ui/message-scroller.tsx")),
+    files: [{
+      path: "registry/ui/message-scroller.tsx",
+      type: "ui",
+      target: "",
+    }, {
+      path: "registry/ui/message-scroller-primitive.ts",
+      type: "ui",
+      target: "",
+    }, {
+      path: "registry/ui/message-scroller-components.tsx",
+      type: "ui",
+      target: "",
+    }, {
+      path: "registry/ui/message-scroller-controller.ts",
+      type: "ui",
+      target: "",
+    }, {
+      path: "registry/ui/message-scroller-geometry.ts",
+      type: "ui",
+      target: "",
+    }, {
+      path: "registry/ui/message-scroller-types.ts",
+      type: "ui",
+      target: "",
+    }],
+  },
   "native-select": {
     name: "native-select",
     description: "",
@@ -3730,6 +3762,76 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/message-attachment.tsx")),
     files: [{
       path: "registry/example/message-attachment.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-demo": {
+    name: "message-scroller-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-demo.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-opening-position": {
+    name: "message-scroller-opening-position",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-opening-position.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-opening-position.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-scrollable": {
+    name: "message-scroller-scrollable",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-scrollable.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-scrollable.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-commands": {
+    name: "message-scroller-commands",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-commands.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-commands.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-visibility": {
+    name: "message-scroller-visibility",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-visibility.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-visibility.tsx",
       type: "example",
       target: "",
     }],

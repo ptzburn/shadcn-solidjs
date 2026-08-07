@@ -2453,6 +2453,56 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "message-scroller-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/message-scroller-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-scroller-opening-position",
+    type: "example",
+    files: [
+      {
+        path: "example/message-scroller-opening-position.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-scroller-scrollable",
+    type: "example",
+    files: [
+      {
+        path: "example/message-scroller-scrollable.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-scroller-commands",
+    type: "example",
+    files: [
+      {
+        path: "example/message-scroller-commands.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-scroller-visibility",
+    type: "example",
+    files: [
+      {
+        path: "example/message-scroller-visibility.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "native-select-demo",
     type: "example",
     files: [

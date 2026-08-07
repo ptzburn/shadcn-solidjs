@@ -1418,6 +1418,22 @@
     @apply gap-2;
   }
 
+  /* MARK: Message Scroller */
+  /* Only the content row spacing is styled in this style; the root, viewport,
+     item and button carry all their tokens in the component. Declared so the
+     build knows the markers. */
+  .cn-message-scroller {}
+
+  .cn-message-scroller-viewport {}
+
+  .cn-message-scroller-content {
+    @apply gap-6;
+  }
+
+  .cn-message-scroller-item {}
+
+  .cn-message-scroller-button {}
+
   /* MARK: Native Select */
   /* Upstream leaves the wrapper unstyled; every token lives on the select
      itself. Declared so the build knows the marker. */

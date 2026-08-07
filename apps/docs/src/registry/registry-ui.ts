@@ -381,6 +381,38 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "message-scroller",
+    type: "ui",
+    dependencies: ["@kobalte/core", "@solid-primitives/refs"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "ui/message-scroller.tsx",
+        type: "ui",
+      },
+      {
+        path: "ui/message-scroller-primitive.ts",
+        type: "ui",
+      },
+      {
+        path: "ui/message-scroller-components.tsx",
+        type: "ui",
+      },
+      {
+        path: "ui/message-scroller-controller.ts",
+        type: "ui",
+      },
+      {
+        path: "ui/message-scroller-geometry.ts",
+        type: "ui",
+      },
+      {
+        path: "ui/message-scroller-types.ts",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "native-select",
     type: "ui",
     files: [
