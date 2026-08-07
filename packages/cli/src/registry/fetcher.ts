@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
+import { isUrl } from "./address.ts";
 import {
   RegistryFetchError,
   RegistryForbiddenError,
@@ -93,11 +94,16 @@ export async function fetchRegistryItem(
   return parsed.data;
 }
 
-export async function fetchRegistryIndex(url: string): Promise<RegistryIndex> {
-  const raw = await fetchJson({ url });
+/** Accepts a filesystem path too, so `REGISTRY_URL` can point at `public/r`. */
+export async function fetchRegistryIndex(
+  location: string,
+): Promise<RegistryIndex> {
+  const raw = await fetchJson(
+    isUrl(location) ? { url: location } : { path: location },
+  );
   const parsed = registryIndexSchema.safeParse(raw);
   if (!parsed.success) {
-    throw new RegistryParseError(url, parsed.error);
+    throw new RegistryParseError(location, parsed.error);
   }
   return parsed.data;
 }

@@ -116,6 +116,11 @@ export class DenoTarget implements ProjectTarget {
     );
   }
 
+  /** Import-map keys are the bare package names. */
+  existingDependencies(): Promise<Set<string>> {
+    return Promise.resolve(new Set(Object.keys(this.imports())));
+  }
+
   /**
    * `deno add -D` only applies when writing to a package.json, so a Deno
    * project has no dev/prod split: everything lands in the same `imports` map.

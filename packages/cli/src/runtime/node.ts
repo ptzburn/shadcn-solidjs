@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import {
@@ -61,6 +61,20 @@ export class NodeTarget implements ProjectTarget {
     const matcher = createPathsMatcher(tsconfig);
     const candidates = matcher?.(specifier) ?? [];
     return Promise.resolve(candidates[0] ?? null);
+  }
+
+  existingDependencies(): Promise<Set<string>> {
+    try {
+      const pkg = JSON.parse(readFileSync(this.configPath, "utf8"));
+      return Promise.resolve(
+        new Set([
+          ...Object.keys(pkg.dependencies ?? {}),
+          ...Object.keys(pkg.devDependencies ?? {}),
+        ]),
+      );
+    } catch {
+      return Promise.resolve(new Set());
+    }
   }
 
   async addDependencies(

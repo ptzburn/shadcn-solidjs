@@ -30,6 +30,7 @@
     "npm:@tailwindcss/vite@^4.3.3": "4.3.3_vite@8.2.0__@types+node@26.1.2__yaml@2.9.0_@types+node@26.1.2",
     "npm:@tanstack/solid-table@9": "9.0.0_solid-js@1.9.14",
     "npm:@types/node@^26.1.2": "26.1.2",
+    "npm:@types/prompts@^2.4.9": "2.4.9",
     "npm:@types/unist@^3.0.3": "3.0.3",
     "npm:chart.js@^4.5.1": "4.5.1",
     "npm:chrono-node@^2.8.2": "2.10.1",
@@ -43,6 +44,7 @@
     "npm:get-tsconfig@^4.14.1": "4.14.1",
     "npm:nitro@3.0.260610-beta": "3.0.260610-beta_vite@8.2.0__@types+node@26.1.2__yaml@2.9.0_@types+node@26.1.2",
     "npm:postcss@^8.5.25": "8.5.25",
+    "npm:prompts@^2.4.2": "2.4.2",
     "npm:rehype-pretty-code@~0.14.5": "0.14.5_shiki@4.4.1",
     "npm:rehype-slug@6": "6.0.0",
     "npm:remark-frontmatter@5": "5.0.0",
@@ -1414,6 +1416,13 @@
         "undici-types"
       ]
     },
+    "@types/prompts@2.4.9": {
+      "integrity": "sha512-qTxFi6Buiu8+50/+3DGIWLHM6QuWsEKugJnnP6iv2Mc4ncxE4A/OJkjuVOA+5X0X1S/nq5VJRa8Lu+nwcvbrKA==",
+      "dependencies": [
+        "@types/node",
+        "kleur"
+      ]
+    },
     "@types/unist@2.0.11": {
       "integrity": "sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA=="
     },
@@ -2714,6 +2723,9 @@
       "integrity": "sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==",
       "bin": true
     },
+    "kleur@3.0.3": {
+      "integrity": "sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w=="
+    },
     "lightningcss-android-arm64@1.32.0": {
       "integrity": "sha512-YK7/ClTt4kAK0vo6w3X+Pnm0D2cf2vPHbhOXdoNti1Ga0al1P4TBZhwjATvjNwLEBCnKvjJc2jQgHXH0NEwlAg==",
       "os": ["android"],
@@ -3598,6 +3610,13 @@
         "source-map-js"
       ]
     },
+    "prompts@2.4.2": {
+      "integrity": "sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==",
+      "dependencies": [
+        "kleur",
+        "sisteransi"
+      ]
+    },
     "property-information@7.2.0": {
       "integrity": "sha512-IAtzIB6sUiWaJYrX9smp3V46pBGbBeLFRGdh25kg1334VcBlD8HzhPeNIWQH9zhGmo2itIe25EHt9dQP7G5hmg=="
     },
@@ -3878,6 +3897,9 @@
     },
     "shosho@1.4.3": {
       "integrity": "sha512-VzHiuOtpNcrWLZh+JeX5uSMFcxPGvLyW4LP4EzNZqS5YLDA27FR/QDTP24H1BgpGswr9Rlj0ZHeRAntEh5/XaQ=="
+    },
+    "sisteransi@1.0.5": {
+      "integrity": "sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg=="
     },
     "solid-dismissible@0.1.1_solid-js@1.9.14": {
       "integrity": "sha512-9kcKBJIMdS+586cA1g63HYWxKh3h89leeNHbPZ1csYjuni+NvPBtNr11l0iEX2AKKEt6FHk6qNhc/gjoYAW1pA==",
@@ -4308,8 +4330,10 @@
       },
       "packages/cli": {
         "dependencies": [
+          "npm:@types/prompts@^2.4.9",
           "npm:commander@15",
           "npm:get-tsconfig@^4.14.1",
+          "npm:prompts@^2.4.2",
           "npm:zod@^4.4.3"
         ]
       }
