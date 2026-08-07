@@ -181,6 +181,11 @@ export const docsConfig: Config = {
           href: "/docs/components/hover-card",
         },
         {
+          title: "Input",
+          href: "/docs/components/input",
+          status: "new",
+        },
+        {
           title: "Label",
           href: "/docs/components/label",
         },

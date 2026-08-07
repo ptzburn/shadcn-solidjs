@@ -1673,6 +1673,146 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "input-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/input-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/input-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-field",
+    type: "example",
+    files: [
+      {
+        path: "example/input-field.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-fieldgroup",
+    type: "example",
+    files: [
+      {
+        path: "example/input-fieldgroup.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/input-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-invalid",
+    type: "example",
+    files: [
+      {
+        path: "example/input-invalid.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-file",
+    type: "example",
+    files: [
+      {
+        path: "example/input-file.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-inline",
+    type: "example",
+    files: [
+      {
+        path: "example/input-inline.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-grid",
+    type: "example",
+    files: [
+      {
+        path: "example/input-grid.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-required",
+    type: "example",
+    files: [
+      {
+        path: "example/input-required.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-badge",
+    type: "example",
+    files: [
+      {
+        path: "example/input-badge.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-input-group",
+    type: "example",
+    files: [
+      {
+        path: "example/input-input-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-button-group",
+    type: "example",
+    files: [
+      {
+        path: "example/input-button-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-form",
+    type: "example",
+    files: [
+      {
+        path: "example/input-form.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "menubar-demo",
     type: "example",
     files: [
