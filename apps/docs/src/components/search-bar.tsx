@@ -4,6 +4,7 @@ import { useNavigate } from "@solidjs/router";
 import { docsConfig } from "~/config/docs.ts";
 import { Button } from "~/registry/ui/button.tsx";
 import {
+  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -47,34 +48,42 @@ export default function SearchBar() {
         <span class="inline-flex xl:hidden">Search...</span>
       </Button>
       <CommandDialog open={open()} onOpenChange={setOpen}>
-        <CommandInput placeholder="Search documentation..." />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Links">
-            <For each={docsConfig.mainNav.filter((item) => !item.external)}>
-              {(item) => (
-                <CommandItem onSelect={() => redirect(item.href)}>
-                  <IconFile class="mr-2" />
-                  {item.title}
-                </CommandItem>
+        <Command>
+          <CommandInput placeholder="Search documentation..." />
+          <CommandList>
+            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandGroup heading="Links">
+              <For each={docsConfig.mainNav.filter((item) => !item.external)}>
+                {(item) => (
+                  <CommandItem
+                    value={item.title}
+                    onSelect={() => redirect(item.href)}
+                  >
+                    <IconFile class="mr-2" />
+                    {item.title}
+                  </CommandItem>
+                )}
+              </For>
+            </CommandGroup>
+            <For each={docsConfig.sidebarNav}>
+              {(category) => (
+                <CommandGroup heading={category.title}>
+                  <For each={category.items}>
+                    {(item) => (
+                      <CommandItem
+                        value={item.title}
+                        onSelect={() => redirect(item.href)}
+                      >
+                        <IconFile class="mr-2" />
+                        {item.title}
+                      </CommandItem>
+                    )}
+                  </For>
+                </CommandGroup>
               )}
             </For>
-          </CommandGroup>
-          <For each={docsConfig.sidebarNav}>
-            {(category) => (
-              <CommandGroup heading={category.title}>
-                <For each={category.items}>
-                  {(item) => (
-                    <CommandItem onSelect={() => redirect(item.href)}>
-                      <IconFile class="mr-2" />
-                      {item.title}
-                    </CommandItem>
-                  )}
-                </For>
-              </CommandGroup>
-            )}
-          </For>
-        </CommandList>
+          </CommandList>
+        </Command>
       </CommandDialog>
     </>
   );

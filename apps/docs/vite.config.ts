@@ -54,6 +54,15 @@ export default defineConfig({
   build: {
     target: "esnext",
   },
+  optimizeDeps: {
+    // start's dev toolbar imports these as ESM but they ship CJS. Unless vite
+    // pre-bundles them the named imports throw a SyntaxError that takes down
+    // the whole client graph, so nothing on the page hydrates.
+    include: [
+      "@solidjs/start > source-map-js",
+      "@solidjs/start > error-stack-parser",
+    ],
+  },
   plugins: [
     {
       ...mdxPlugin,
