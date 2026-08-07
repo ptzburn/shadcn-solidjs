@@ -28,7 +28,9 @@ const Tabs = <T extends ValidComponent = "div">(
 };
 
 const tabsListVariants = cva(
-  "cn-tabs-list group/tabs-list inline-flex w-fit items-center justify-center text-muted-foreground group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col",
+  // relative so the Kobalte-only indicator, which is absolute, resolves its
+  // edge pins against the list rather than a distant positioned ancestor
+  "cn-tabs-list group/tabs-list relative inline-flex w-fit items-center justify-center text-muted-foreground group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col",
   {
     variants: {
       variant: {
