@@ -7,7 +7,7 @@ import { cn } from "~/lib/utils.ts";
 
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps, JSX, ValidComponent } from "solid-js";
-import { createMemo, For, Show, splitProps } from "solid-js";
+import { children, createMemo, For, Show, splitProps } from "solid-js";
 
 type FieldSetProps<T extends ValidComponent = "fieldset"> =
   & ComponentProps<T>
@@ -76,7 +76,7 @@ const FieldGroup = <T extends ValidComponent = "div">(
       as="div"
       data-slot="field-group"
       class={cn(
-        "cn-field-group @container/field-group group/field-group flex w-full flex-col",
+        "cn-field-group group/field-group @container/field-group flex w-full flex-col",
         local.class,
       )}
       {...others}
@@ -89,12 +89,18 @@ const fieldVariants = cva(
   {
     variants: {
       orientation: {
+        // Kobalte's Select.Root renders a real wrapper div (radix's renders
+        // nothing), so `*:w-full` lands on the wrapper instead of the
+        // trigger; the extra selector reaches one level deeper.
         vertical:
-          "cn-field-orientation-vertical flex-col *:w-full [&>.sr-only]:w-auto",
+          "cn-field-orientation-vertical flex-col *:w-full [&>.sr-only]:w-auto [&>[data-slot=select]>[data-slot=select-trigger]]:w-full",
+        // Kobalte renders no element carrying an explicit checkbox/radio
+        // role, so upstream's [role=checkbox]/[role=radio] selectors never
+        // match here; the data-slot selectors alongside them do the same job.
         horizontal:
-          "cn-field-orientation-horizontal flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+          "cn-field-orientation-horizontal flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px has-[>[data-slot=field-content]]:[&>[data-slot=checkbox]]:mt-px has-[>[data-slot=field-content]]:[&>[data-slot=radio-group-item]]:mt-px",
         responsive:
-          "cn-field-orientation-responsive flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+          "cn-field-orientation-responsive flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px @md/field-group:has-[>[data-slot=field-content]]:[&>[data-slot=checkbox]]:mt-px @md/field-group:has-[>[data-slot=field-content]]:[&>[data-slot=radio-group-item]]:mt-px [&>[data-slot=select]>[data-slot=select-trigger]]:w-full @md/field-group:[&>[data-slot=select]>[data-slot=select-trigger]]:w-auto",
       },
     },
     defaultVariants: {
@@ -216,7 +222,7 @@ const FieldDescription = <T extends ValidComponent = "p">(
       as="p"
       data-slot="field-description"
       class={cn(
-        "cn-field-description font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance",
+        "cn-field-description leading-normal font-normal group-has-[[data-orientation=horizontal]]/field:text-balance",
         "last:mt-0 nth-last-2:-mt-1",
         "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
         local.class,
@@ -241,11 +247,15 @@ const FieldSeparator = <T extends ValidComponent = "div">(
     "children",
   ]);
 
+  // prevents rendering children twice
+  const resolvedChildren = children(() => local.children);
+  const hasChildren = () => resolvedChildren.toArray().length !== 0;
+
   return (
     <Polymorphic<FieldSeparatorProps>
       as="div"
       data-slot="field-separator"
-      data-content={!!local.children}
+      data-content={hasChildren()}
       class={cn(
         "cn-field-separator relative",
         local.class,
@@ -253,12 +263,12 @@ const FieldSeparator = <T extends ValidComponent = "div">(
       {...others}
     >
       <Separator class="absolute inset-0 top-1/2" />
-      <Show when={local.children}>
+      <Show when={hasChildren()}>
         <span
           class="cn-field-separator-content relative mx-auto block w-fit bg-background"
           data-slot="field-separator-content"
         >
-          {local.children}
+          {resolvedChildren()}
         </span>
       </Show>
     </Polymorphic>
@@ -282,10 +292,14 @@ const FieldError = <T extends ValidComponent = "div">(
     "errors",
   ]);
 
+  // prevents rendering children twice
+  const resolvedChildren = children(() => local.children);
+
   // Reactive memo: computes content only when children or errors change
   const content = createMemo(() => {
-    if (local.children) {
-      return local.children;
+    const kids = resolvedChildren.toArray();
+    if (kids.length !== 0) {
+      return kids;
     }
 
     const errors = local.errors?.filter((e): e is { message: string } =>
@@ -304,7 +318,7 @@ const FieldError = <T extends ValidComponent = "div">(
     }
 
     return (
-      <ul class="ml-4 flex flex-col list-disc gap-1">
+      <ul class="ml-4 flex list-disc flex-col gap-1">
         <For each={uniqueErrors}>
           {(error) => <li>{error.message}</li>}
         </For>

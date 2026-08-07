@@ -172,6 +172,11 @@ export const docsConfig: Config = {
           status: "new",
         },
         {
+          title: "Field",
+          href: "/docs/components/field",
+          status: "new",
+        },
+        {
           title: "Hover Card",
           href: "/docs/components/hover-card",
         },

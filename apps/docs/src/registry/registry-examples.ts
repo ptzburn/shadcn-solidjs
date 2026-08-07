@@ -1533,6 +1533,126 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "field-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/field-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "field-input",
+    type: "example",
+    files: [
+      {
+        path: "example/field-input.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "field-textarea",
+    type: "example",
+    files: [
+      {
+        path: "example/field-textarea.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "field-select",
+    type: "example",
+    files: [
+      {
+        path: "example/field-select.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "field-slider",
+    type: "example",
+    files: [
+      {
+        path: "example/field-slider.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "field-fieldset",
+    type: "example",
+    files: [
+      {
+        path: "example/field-fieldset.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "field-checkbox",
+    type: "example",
+    files: [
+      {
+        path: "example/field-checkbox.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "field-radio",
+    type: "example",
+    files: [
+      {
+        path: "example/field-radio.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "field-switch",
+    type: "example",
+    files: [
+      {
+        path: "example/field-switch.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "field-choice-card",
+    type: "example",
+    files: [
+      {
+        path: "example/field-choice-card.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "field-group",
+    type: "example",
+    files: [
+      {
+        path: "example/field-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "field-responsive",
+    type: "example",
+    files: [
+      {
+        path: "example/field-responsive.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "hover-card-demo",
     type: "example",
     files: [
