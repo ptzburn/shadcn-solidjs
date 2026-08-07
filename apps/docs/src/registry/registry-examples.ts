@@ -2843,6 +2843,26 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "sheet-no-close-button",
+    type: "example",
+    files: [
+      {
+        path: "example/sheet-no-close-button.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "sheet-side",
+    type: "example",
+    files: [
+      {
+        path: "example/sheet-side.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "skeleton-demo",
     type: "example",
     files: [

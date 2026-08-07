@@ -4196,6 +4196,32 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "sheet-no-close-button": {
+    name: "sheet-no-close-button",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/sheet-no-close-button.tsx")
+    ),
+    files: [{
+      path: "registry/example/sheet-no-close-button.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "sheet-side": {
+    name: "sheet-side",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/sheet-side.tsx")),
+    files: [{
+      path: "registry/example/sheet-side.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "skeleton-demo": {
     name: "skeleton-demo",
     description: "",
