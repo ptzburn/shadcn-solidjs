@@ -110,11 +110,20 @@ instead, styled like a popover.
 </NavigationMenu>
 ```
 
-Two things differ from upstream in this mode. Kobalte's `NavigationMenuItem`
+Three things differ from upstream in this mode. Kobalte's `NavigationMenuItem`
 renders no element, so the content is anchored to the menu bar and aligned with
-its left edge rather than to the item it belongs to. And Kobalte keeps a content
-mounted through its exit animation only while a viewport is there to watch, so
-the content disappears immediately on close instead of animating out.
+its left edge rather than to the item it belongs to. The content also stays
+absolutely positioned at every width, where upstream's sits in the flow of the
+page below `md`; because the menu bar is what it is positioned against, it is
+held to the width of the bar on a small screen rather than to the width of the
+screen. And Kobalte keeps a content mounted through its exit animation only while
+a viewport is there to watch, so the content disappears immediately on close
+instead of animating out.
+
+Kobalte wires its escape handling into the viewport, so with no viewport the menu
+would only close on an outside click. `NavigationMenu` closes it on `Escape`
+itself in this mode, which means it takes over `value` — pass `value` and
+`onValueChange` to control it, as usual.
 
 ## Link Component
 

@@ -5,7 +5,15 @@ import { cn } from "~/lib/utils.ts";
 import { cva } from "class-variance-authority";
 import type { JSX, ValidComponent } from "solid-js";
 
-import { createContext, Show, splitProps, useContext } from "solid-js";
+import {
+  createContext,
+  createEffect,
+  createSignal,
+  onCleanup,
+  Show,
+  splitProps,
+  useContext,
+} from "solid-js";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 // Kobalte folds Radix's `Root` and `List` into a single primitive: the root
@@ -28,7 +36,17 @@ type NavigationMenuProps<T extends ValidComponent = "ul"> =
   };
 
 // Kobalte's popper centres the viewport on the menu bar; upstream's wrapper is
-// `left-0`, so the placement is pinned to the start edge to match.
+// `left-0`, so the placement is pinned to the start edge — on the axis Kobalte
+// itself would pick for the orientation, so a vertical menu still opens sideways
+// the way its `data-[orientation=vertical]:flex-col` bar expects.
+//
+// `viewport={false}` also has to be given its own dismissal. Kobalte wires
+// `onEscapeKeyDown` only into the viewport's `DismissableLayer` and into the
+// `Popper.Positioner` branch of `MenuContentBase`; with no viewport neither of
+// them renders, so nothing but an outside click can close the menu. The root
+// therefore takes over the open menu's value and closes it from a document-level
+// `keydown` listener — the same place Kobalte's own dismissable layer listens —
+// attached only while such a menu is open.
 const NavigationMenu = <T extends ValidComponent = "ul">(
   props: PolymorphicProps<T, NavigationMenuProps<T>>,
 ) => {
@@ -36,14 +54,43 @@ const NavigationMenu = <T extends ValidComponent = "ul">(
     "class",
     "children",
     "viewport",
+    "value",
+    "onValueChange",
   ]);
   const viewport = () => local.viewport ?? true;
+  const orientation = () => (props as NavigationMenuProps).orientation;
+  const [openMenu, setOpenMenu] = createSignal<string | null>(
+    (props as NavigationMenuProps).defaultValue ?? null,
+  );
+  const value = () => local.value !== undefined ? local.value : openMenu();
+  const onValueChange = (next: string | null | undefined) => {
+    setOpenMenu(next ?? null);
+    local.onValueChange?.(next);
+  };
+  createEffect(() => {
+    if (viewport() || value() == null) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      const content = (event.target as HTMLElement | null)?.closest(
+        "[data-slot=navigation-menu-content]",
+      );
+      const trigger = document.getElementById(
+        content?.getAttribute("aria-labelledby") ?? "",
+      );
+      onValueChange(null);
+      trigger?.focus();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    onCleanup(() => document.removeEventListener("keydown", onKeyDown));
+  });
   return (
     <NavigationMenuPrimitive.Root
       gutter={6}
-      placement="bottom-start"
+      placement={orientation() === "vertical" ? "right-start" : "bottom-start"}
       data-slot="navigation-menu"
       data-viewport={viewport()}
+      value={viewport() ? undefined : value()}
+      onValueChange={onValueChange}
       class={cn(
         "cn-navigation-menu group/navigation-menu relative flex max-w-max flex-1 list-none items-center justify-center data-[orientation=vertical]:flex-col",
         local.class,
@@ -121,14 +168,20 @@ type NavigationMenuContentProps<T extends ValidComponent = "ul"> =
     class?: string | undefined;
   };
 
-// Kobalte portals the content into the viewport, which measures it to size
-// itself — so the content is absolutely positioned rather than upstream's
-// `md:absolute` (an in-flow content would feed its own measurement back and
-// collapse to zero). Upstream's `w-full` below `md` is replaced by a cap at the
-// popper's own available width, which keeps a wide content from pushing the
-// panel past the edge of the screen without ever measuring zero. With
-// `viewport={false}` there is no viewport to portal into, so the content
-// renders in place.
+// Kobalte portals the content into the viewport, which sizes itself from the
+// content's measured box, so the content is absolutely positioned at every width
+// rather than only from `md` up the way upstream's is. Upstream's in-flow
+// `w-full` below `md` cannot come with it: the viewport is absolutely positioned
+// and shrink-to-fits, so a percentage width resolves against the content's own
+// max-content size and the viewport then locks in at exactly that width —
+// measured at 375px, a 404px content, a 404px
+// `--kb-navigation-menu-viewport-width` and 37px of page overflow. A cap at the
+// popper's own available width narrows the panel instead. With `viewport={false}`
+// there is no viewport to portal into, so the content renders in place: `z-50`
+// gives it the elevation the shared viewport carries here (neither port renders
+// the viewport's wrapper in this mode), and `max-md:max-w-full` holds it to the
+// width of the menu bar, which is its positioning container, since the popper
+// variable is not published outside the popper.
 const NavigationMenuContent = <T extends ValidComponent = "ul">(
   props: PolymorphicProps<T, NavigationMenuContentProps<T>>,
 ) => {
