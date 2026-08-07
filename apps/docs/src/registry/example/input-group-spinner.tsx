@@ -33,11 +33,11 @@ export default function InputGroupSpinner() {
         <InputGroupInput placeholder="Refreshing data..." />
         <InputGroupAddon>
           <IconPlaceholder
-            lucide="loader-circle"
-            tabler="loader-2"
-            ph="circle-notch"
-            ri="loader-4-line"
-            hugeicons="loading-03"
+            lucide="loader"
+            tabler="loader"
+            ph="spinner"
+            ri="loader-line"
+            hugeicons="loading-01"
             class="animate-spin"
           />
         </InputGroupAddon>
