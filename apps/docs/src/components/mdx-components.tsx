@@ -122,7 +122,8 @@ export const MDXComponents = {
   ),
   LinkedCard: (props: ComponentProps<"a">) => (
     <a
-      class="flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors hover:bg-muted/50 sm:p-10"
+      data-not-typeset
+      class="flex w-full flex-col items-center rounded-2xl bg-surface p-6 text-surface-foreground transition-colors hover:bg-surface/80 sm:p-10"
       {...props}
     />
   ),

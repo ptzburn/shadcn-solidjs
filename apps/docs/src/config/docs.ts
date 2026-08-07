@@ -63,7 +63,7 @@ export const docsConfig: Config = {
     },
     {
       title: "Dark Mode",
-      href: "/docs/dark-mode/overview",
+      href: "/docs/dark-mode",
       prefix: "/docs/dark-mode",
     },
     {
@@ -295,7 +295,7 @@ export const docsConfig: Config = {
         },
         {
           title: "Dark Mode",
-          href: "/docs/dark-mode/overview",
+          href: "/docs/dark-mode",
         },
         {
           title: "CLI",

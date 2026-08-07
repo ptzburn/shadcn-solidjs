@@ -61,7 +61,7 @@ export default function NavigationMenuDemo() {
           <ListItem href="/docs/installation/overview" title="Installation">
             How to install dependencies and structure your app.
           </ListItem>
-          <ListItem href="/docs/dark-mode/overview" title="Dark Mode">
+          <ListItem href="/docs/dark-mode" title="Dark Mode">
             Adding dark mode to your site.
           </ListItem>
         </NavigationMenuContent>
