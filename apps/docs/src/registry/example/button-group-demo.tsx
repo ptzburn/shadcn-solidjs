@@ -8,7 +8,6 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuPortal,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
@@ -121,21 +120,19 @@ export default function ButtonGroupDemo() {
                   />
                   Label As...
                 </DropdownMenuSubTrigger>
-                <DropdownMenuPortal>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuRadioGroup value={label()} onChange={setLabel}>
-                      <DropdownMenuRadioItem value="personal">
-                        Personal
-                      </DropdownMenuRadioItem>
-                      <DropdownMenuRadioItem value="work">
-                        Work
-                      </DropdownMenuRadioItem>
-                      <DropdownMenuRadioItem value="other">
-                        Other
-                      </DropdownMenuRadioItem>
-                    </DropdownMenuRadioGroup>
-                  </DropdownMenuSubContent>
-                </DropdownMenuPortal>
+                <DropdownMenuSubContent>
+                  <DropdownMenuRadioGroup value={label()} onChange={setLabel}>
+                    <DropdownMenuRadioItem value="personal">
+                      Personal
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="work">
+                      Work
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="other">
+                      Other
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuSubContent>
               </DropdownMenuSub>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

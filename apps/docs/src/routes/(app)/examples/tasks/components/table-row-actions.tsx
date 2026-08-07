@@ -8,7 +8,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuPortal,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
@@ -45,19 +44,17 @@ export function TableRowActions(props: TableRowActionsProps) {
         <DropdownMenuSeparator />
         <DropdownMenuSub overlap>
           <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
-          <DropdownMenuPortal>
-            <DropdownMenuSubContent>
-              <DropdownMenuRadioGroup value={props.row.original.label}>
-                <For each={labels}>
-                  {(label) => (
-                    <DropdownMenuRadioItem value={label.value}>
-                      {label.label}
-                    </DropdownMenuRadioItem>
-                  )}
-                </For>
-              </DropdownMenuRadioGroup>
-            </DropdownMenuSubContent>
-          </DropdownMenuPortal>
+          <DropdownMenuSubContent>
+            <DropdownMenuRadioGroup value={props.row.original.label}>
+              <For each={labels}>
+                {(label) => (
+                  <DropdownMenuRadioItem value={label.value}>
+                    {label.label}
+                  </DropdownMenuRadioItem>
+                )}
+              </For>
+            </DropdownMenuRadioGroup>
+          </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
