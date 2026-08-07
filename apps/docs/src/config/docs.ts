@@ -302,6 +302,11 @@ export const docsConfig: Config = {
           href: "/docs/components/tabs",
         },
         {
+          title: "Textarea",
+          href: "/docs/components/textarea",
+          status: "new",
+        },
+        {
           title: "Toggle",
           href: "/docs/components/toggle",
         },

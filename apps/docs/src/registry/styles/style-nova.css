@@ -1145,17 +1145,8 @@
       [&_svg:not([class*='size-'])]:size-4;
   }
 
-  .cn-input-group-input {
-    @apply rounded-none border-0 bg-transparent shadow-none ring-0
-      focus-visible:ring-0 disabled:bg-transparent dark:bg-transparent
-      dark:disabled:bg-transparent aria-invalid:ring-0;
-  }
-
-  .cn-input-group-textarea {
-    @apply rounded-none border-0 bg-transparent py-2 shadow-none ring-0
-      focus-visible:ring-0 disabled:bg-transparent dark:bg-transparent
-      dark:disabled:bg-transparent aria-invalid:ring-0;
-  }
+  /* .cn-input-group-input and .cn-input-group-textarea live at the end of
+     this file — see "Input Group (control overrides)". */
 
   /* MARK: Input OTP */
   .cn-input-otp {
@@ -2055,5 +2046,28 @@
       data-expanded:zoom-in-95 data-closed:animate-out data-closed:fade-out-0
       data-closed:zoom-out-95 inline-flex items-center gap-1.5 rounded-md px-3
       py-1.5 text-xs;
+  }
+
+  /* MARK: Input Group (control overrides) */
+  /* InputGroupInput/InputGroupTextarea render Input/Textarea and strip the
+     control's own border, radius and rings so the group draws them. These
+     rules therefore have to outrank .cn-input and .cn-textarea, which have
+     the same specificity — upstream wins that by source order (its Input
+     Group section sits after Textarea). Our sections are alphabetical, so
+     Input Group would sort before Textarea and .cn-textarea would take back
+     the border, radius and focus ring on the docs site. The two control
+     overrides live here at the end instead. The registry build reads this
+     file into an order-independent marker map, so consumers are unaffected
+     either way. */
+  .cn-input-group-input {
+    @apply rounded-none border-0 bg-transparent shadow-none ring-0
+      focus-visible:ring-0 disabled:bg-transparent dark:bg-transparent
+      dark:disabled:bg-transparent aria-invalid:ring-0;
+  }
+
+  .cn-input-group-textarea {
+    @apply rounded-none border-0 bg-transparent py-2 shadow-none ring-0
+      focus-visible:ring-0 disabled:bg-transparent dark:bg-transparent
+      dark:disabled:bg-transparent aria-invalid:ring-0;
   }
 }

@@ -3309,6 +3309,56 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "textarea-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/textarea-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "textarea-field",
+    type: "example",
+    files: [
+      {
+        path: "example/textarea-field.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "textarea-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/textarea-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "textarea-invalid",
+    type: "example",
+    files: [
+      {
+        path: "example/textarea-invalid.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "textarea-button",
+    type: "example",
+    files: [
+      {
+        path: "example/textarea-button.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "toggle-demo",
     type: "example",
     files: [
