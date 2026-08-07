@@ -1,9 +1,7 @@
-import { Button } from "~/registry/ui/button.tsx";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
@@ -13,60 +11,70 @@ import {
   TabsList,
   TabsTrigger,
 } from "~/registry/ui/tabs.tsx";
-import { Input } from "~/registry/ui/input.tsx";
-import { Label } from "~/registry/ui/label.tsx";
 
 export default function TabsDemo() {
   return (
-    <Tabs defaultValue="account" class="w-[400px]">
-      <TabsList class="grid w-full grid-cols-2">
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
+    <Tabs defaultValue="overview" class="w-[400px]">
+      <TabsList>
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="analytics">Analytics</TabsTrigger>
+        <TabsTrigger value="reports">Reports</TabsTrigger>
+        <TabsTrigger value="settings">Settings</TabsTrigger>
       </TabsList>
-      <TabsContent value="account">
+      <TabsContent value="overview">
         <Card>
           <CardHeader>
-            <CardTitle>Account</CardTitle>
+            <CardTitle>Overview</CardTitle>
             <CardDescription>
-              Make changes to your account here. Click save when you're done.
+              View your key metrics and recent project activity. Track progress
+              across all your active projects.
             </CardDescription>
           </CardHeader>
-          <CardContent class="space-y-2">
-            <div class="space-y-1">
-              <Label for="name">Name</Label>
-              <Input id="name" value="Pedro Duarte" />
-            </div>
-            <div class="space-y-1">
-              <Label for="username">Username</Label>
-              <Input id="username" value="@peduarte" />
-            </div>
+          <CardContent class="text-sm text-muted-foreground">
+            You have 12 active projects and 3 pending tasks.
           </CardContent>
-          <CardFooter>
-            <Button>Save changes</Button>
-          </CardFooter>
         </Card>
       </TabsContent>
-      <TabsContent value="password">
+      <TabsContent value="analytics">
         <Card>
           <CardHeader>
-            <CardTitle>Password</CardTitle>
+            <CardTitle>Analytics</CardTitle>
             <CardDescription>
-              Change your password here. After saving, you'll be logged out.
+              Track performance and user engagement metrics. Monitor trends and
+              identify growth opportunities.
             </CardDescription>
           </CardHeader>
-          <CardContent class="space-y-2">
-            <div class="space-y-1">
-              <Label for="current">Current password</Label>
-              <Input id="current" type="password" />
-            </div>
-            <div class="space-y-1">
-              <Label for="new">New password</Label>
-              <Input id="new" type="password" />
-            </div>
+          <CardContent class="text-sm text-muted-foreground">
+            Page views are up 25% compared to last month.
           </CardContent>
-          <CardFooter>
-            <Button>Save password</Button>
-          </CardFooter>
+        </Card>
+      </TabsContent>
+      <TabsContent value="reports">
+        <Card>
+          <CardHeader>
+            <CardTitle>Reports</CardTitle>
+            <CardDescription>
+              Generate and download your detailed reports. Export data in
+              multiple formats for analysis.
+            </CardDescription>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">
+            You have 5 reports ready and available to export.
+          </CardContent>
+        </Card>
+      </TabsContent>
+      <TabsContent value="settings">
+        <Card>
+          <CardHeader>
+            <CardTitle>Settings</CardTitle>
+            <CardDescription>
+              Manage your account preferences and options. Customize your
+              experience to fit your needs.
+            </CardDescription>
+          </CardHeader>
+          <CardContent class="text-sm text-muted-foreground">
+            Configure notifications, security, and themes.
+          </CardContent>
         </Card>
       </TabsContent>
     </Tabs>

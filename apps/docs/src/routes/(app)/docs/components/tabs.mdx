@@ -3,7 +3,7 @@ title: Tabs
 description: A set of layered sections of content—known as tab panels—that are displayed one at a time.
 ---
 
-<ComponentPreview name="tabs-demo" />
+<ComponentPreview name="tabs-demo" previewClassName="h-96" />
 
 ## Installation
 
@@ -25,15 +25,17 @@ npx shadcn-solidjs@latest add tabs
 <TabsContent value="manual">
 <Steps class="mb-0 pt-2">
 
-<Step>Install the following dependencies: </Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @kobalte/core
 ```
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="tabs" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 </TabsContent>
@@ -48,11 +50,48 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs"
 
 ```tsx showLineNumbers
 <Tabs defaultValue="account" class="w-[400px]">
-  <TabsList class="grid w-full grid-cols-2">
+  <TabsList>
     <TabsTrigger value="account">Account</TabsTrigger>
     <TabsTrigger value="password">Password</TabsTrigger>
   </TabsList>
-  <TabsContent value="account">Account Tab</TabsContent>
-  <TabsContent value="password">Password Tab</TabsContent>
+  <TabsContent value="account">Make changes to your account here.</TabsContent>
+  <TabsContent value="password">Change your password here.</TabsContent>
 </Tabs>
 ```
+
+## Composition
+
+Use the following composition to build `Tabs`:
+
+```text
+Tabs
+├── TabsList
+│   ├── TabsTrigger
+│   └── TabsTrigger
+├── TabsContent
+└── TabsContent
+```
+
+## Line
+
+Use the `variant="line"` prop on `TabsList` for a line style.
+
+<ComponentPreview name="tabs-line" />
+
+## Vertical
+
+Use `orientation="vertical"` for vertical tabs.
+
+<ComponentPreview name="tabs-vertical" />
+
+## Disabled
+
+<ComponentPreview name="tabs-disabled" />
+
+## Icons
+
+<ComponentPreview name="tabs-icons" />
+
+## API Reference
+
+See the [Kobalte](https://kobalte.dev/docs/core/components/tabs) documentation for more information.

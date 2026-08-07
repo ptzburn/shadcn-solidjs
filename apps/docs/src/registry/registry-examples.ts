@@ -3269,6 +3269,46 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "tabs-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/tabs-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "tabs-icons",
+    type: "example",
+    files: [
+      {
+        path: "example/tabs-icons.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "tabs-line",
+    type: "example",
+    files: [
+      {
+        path: "example/tabs-line.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "tabs-vertical",
+    type: "example",
+    files: [
+      {
+        path: "example/tabs-vertical.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "toggle-demo",
     type: "example",
     files: [
