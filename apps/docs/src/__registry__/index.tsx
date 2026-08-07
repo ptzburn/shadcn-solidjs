@@ -406,7 +406,7 @@ export const Index: RegistryIndex = {
     name: "progress",
     description: "",
     type: "ui",
-    registryDependencies: ["label"],
+    registryDependencies: undefined,
     component: lazy(() => import("~/registry/ui/progress.tsx")),
     files: [{
       path: "registry/ui/progress.tsx",
@@ -3454,6 +3454,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "progress-controlled": {
+    name: "progress-controlled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/progress-controlled.tsx")),
+    files: [{
+      path: "registry/example/progress-controlled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "progress-demo": {
     name: "progress-demo",
     description: "",
@@ -3462,6 +3474,18 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/progress-demo.tsx")),
     files: [{
       path: "registry/example/progress-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "progress-label": {
+    name: "progress-label",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/progress-label.tsx")),
+    files: [{
+      path: "registry/example/progress-label.tsx",
       type: "example",
       target: "",
     }],

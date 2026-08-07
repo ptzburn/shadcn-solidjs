@@ -2283,11 +2283,31 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "progress-controlled",
+    type: "example",
+    files: [
+      {
+        path: "example/progress-controlled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "progress-demo",
     type: "example",
     files: [
       {
         path: "example/progress-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "progress-label",
+    type: "example",
+    files: [
+      {
+        path: "example/progress-label.tsx",
         type: "example",
       },
     ],

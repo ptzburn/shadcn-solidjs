@@ -375,7 +375,6 @@ export const ui: Registry = [
     name: "progress",
     type: "ui",
     dependencies: ["@kobalte/core"],
-    registryDependencies: ["label"],
     files: [
       {
         path: "ui/progress.tsx",

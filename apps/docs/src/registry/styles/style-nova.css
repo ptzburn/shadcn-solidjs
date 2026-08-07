@@ -1293,12 +1293,22 @@
   }
 
   /* MARK: Progress */
-  .cn-progress {
+  .cn-progress-root {}
+
+  .cn-progress-track {
     @apply bg-muted h-1 rounded-full;
   }
 
   .cn-progress-indicator {
     @apply bg-primary;
+  }
+
+  .cn-progress-label {
+    @apply text-sm font-medium;
+  }
+
+  .cn-progress-value {
+    @apply text-muted-foreground ml-auto text-sm tabular-nums;
   }
 
   /* MARK: Radio Group */

@@ -362,9 +362,6 @@
     "dependencies": [
       "@kobalte/core"
     ],
-    "registryDependencies": [
-      "label"
-    ],
     "files": [
       "ui/progress.tsx"
     ],

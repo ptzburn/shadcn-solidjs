@@ -1,22 +1,14 @@
-import {
-  Progress,
-  ProgressLabel,
-  ProgressValueLabel,
-} from "~/registry/ui/progress.tsx";
+import { createSignal, onCleanup, onMount } from "solid-js";
+
+import { Progress } from "~/registry/ui/progress.tsx";
 
 export default function ProgressDemo() {
-  return (
-    <Progress
-      value={3}
-      minValue={0}
-      maxValue={10}
-      getValueLabel={({ value, max }) => `${value} of ${max} tasks completed`}
-      class="w-[300px] space-y-1"
-    >
-      <div class="flex justify-between">
-        <ProgressLabel>Processing...</ProgressLabel>
-        <ProgressValueLabel />
-      </div>
-    </Progress>
-  );
+  const [progress, setProgress] = createSignal(13);
+
+  onMount(() => {
+    const timer = setTimeout(() => setProgress(66), 500);
+    onCleanup(() => clearTimeout(timer));
+  });
+
+  return <Progress value={progress()} class="w-[60%]" />;
 }
