@@ -295,6 +295,13 @@
     "type": "ui"
   },
   {
+    "name": "kbd",
+    "files": [
+      "ui/kbd.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "label",
     "dependencies": [
       "@kobalte/core"

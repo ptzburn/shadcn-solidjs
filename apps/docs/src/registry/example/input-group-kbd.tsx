@@ -4,6 +4,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "~/registry/ui/input-group.tsx";
+import { Kbd } from "~/registry/ui/kbd.tsx";
 
 export default function InputGroupKbd() {
   return (
@@ -20,12 +21,7 @@ export default function InputGroupKbd() {
         />
       </InputGroupAddon>
       <InputGroupAddon align="inline-end">
-        <kbd
-          data-slot="kbd"
-          class="pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 bg-muted px-1 font-sans text-xs font-medium text-muted-foreground select-none"
-        >
-          ⌘K
-        </kbd>
+        <Kbd>⌘K</Kbd>
       </InputGroupAddon>
     </InputGroup>
   );

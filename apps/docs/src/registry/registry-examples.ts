@@ -2043,6 +2043,56 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "kbd-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/kbd-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "kbd-group",
+    type: "example",
+    files: [
+      {
+        path: "example/kbd-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "kbd-button",
+    type: "example",
+    files: [
+      {
+        path: "example/kbd-button.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "kbd-tooltip",
+    type: "example",
+    files: [
+      {
+        path: "example/kbd-tooltip.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "kbd-input-group",
+    type: "example",
+    files: [
+      {
+        path: "example/kbd-input-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "label-demo",
     type: "example",
     files: [

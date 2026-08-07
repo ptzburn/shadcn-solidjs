@@ -305,6 +305,16 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "kbd",
+    type: "ui",
+    files: [
+      {
+        path: "ui/kbd.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "label",
     type: "ui",
     dependencies: ["@kobalte/core"],
