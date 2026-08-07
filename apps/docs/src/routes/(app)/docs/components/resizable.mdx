@@ -3,7 +3,7 @@ title: Resizable
 description: Accessible resizable panel groups and layouts with keyboard support.
 ---
 
-<ComponentPreview name="resizable-demo" />
+<ComponentPreview name="resizable-demo" previewClassName="h-80" />
 
 ## About
 
@@ -101,21 +101,22 @@ panels out along `orientation`.
 | ---------------- | ---------------------------- | -------------- |
 | `orientation`    | `"horizontal" \| "vertical"` | `"horizontal"` |
 | `sizes`          | `number[]`                   | -              |
-| `initialSizes`   | `number[]`                   | -              |
+| `initialSizes`   | `Size[]`                     | -              |
 | `onSizesChange`  | `(sizes: number[]) => void`  | -              |
-| `keyboardDelta`  | `number \| string`           | `0.1`          |
+| `keyboardDelta`  | `Size`                       | `0.1`          |
 | `class`          | `string`                     | -              |
 
 ### ResizablePanel
 
 The `ResizablePanel` component is a single panel of the group. Sizes are
-fractions of the group, so `0.25` is a quarter of it.
+fractions of the group, so `0.25` is a quarter of it. A `Size` is that
+fraction or a pixel string such as `"200px"` — percentages are not accepted.
 
 | Prop          | Type                     | Default |
 | ------------- | ------------------------ | ------- |
-| `initialSize` | `number \| string`       | -       |
-| `minSize`     | `number \| string`       | `0`     |
-| `maxSize`     | `number \| string`       | `1`     |
+| `initialSize` | `Size`                   | -       |
+| `minSize`     | `Size`                   | `0`     |
+| `maxSize`     | `Size`                   | `1`     |
 | `collapsible` | `boolean`                | `false` |
 | `onResize`    | `(size: number) => void` | -       |
 | `class`       | `string`                 | -       |
