@@ -60,7 +60,8 @@
     "npm:unplugin-icons@^23.0.1": "23.0.1",
     "npm:valibot@^1.4.2": "1.4.2",
     "npm:vite@^8.2.0": "8.2.0_@types+node@26.1.2_yaml@2.9.0",
-    "npm:yaml@^2.9.0": "2.9.0"
+    "npm:yaml@^2.9.0": "2.9.0",
+    "npm:zod@^4.4.3": "4.4.3"
   },
   "jsr": {
     "@std/assert@1.0.19": {
@@ -4222,6 +4223,9 @@
       "integrity": "sha512-2AvhNX3mb8zd6Zy7INTtSpl1F15HW6Wnqj0srWlkKLcpYl/gMIMJiyuGq2KeI2YFxUPjdlB+3Lc10seMLtL4cA==",
       "bin": true
     },
+    "zod@4.4.3": {
+      "integrity": "sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ=="
+    },
     "zwitch@2.0.4": {
       "integrity": "sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A=="
     }
@@ -4294,7 +4298,8 @@
       },
       "packages/cli": {
         "dependencies": [
-          "npm:commander@15"
+          "npm:commander@15",
+          "npm:zod@^4.4.3"
         ]
       }
     }
