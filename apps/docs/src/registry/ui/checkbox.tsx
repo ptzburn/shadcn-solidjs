@@ -18,6 +18,7 @@ const Checkbox = <T extends ValidComponent = "div">(
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
+      class="peer"
       {...others}
     >
       <CheckboxPrimitive.Input class="peer" />

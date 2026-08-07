@@ -20,7 +20,7 @@ const Label = <T extends ValidComponent = "label">(
       as="label"
       data-slot="label"
       class={cn(
-        "cn-label flex select-none items-center peer-disabled:cursor-not-allowed group-data-[disabled=true]:pointer-events-none",
+        "cn-label flex items-center select-none group-data-[disabled=true]:pointer-events-none peer-disabled:cursor-not-allowed peer-data-disabled:cursor-not-allowed",
         local.class,
       )}
       {...others}

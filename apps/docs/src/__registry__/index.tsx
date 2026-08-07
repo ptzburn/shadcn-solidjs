@@ -3156,6 +3156,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "label-demo": {
+    name: "label-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/label-demo.tsx")),
+    files: [{
+      path: "registry/example/label-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "menubar-demo": {
     name: "menubar-demo",
     description: "",

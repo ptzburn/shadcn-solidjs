@@ -1086,8 +1086,9 @@
 
   /* MARK: Label */
   .cn-label {
-    @apply gap-2 font-medium text-sm leading-none peer-disabled:opacity-50
-      group-data-[disabled=true]:opacity-50;
+    @apply gap-2 text-sm leading-none font-medium
+      group-data-[disabled=true]:opacity-50 peer-disabled:opacity-50
+      peer-data-disabled:opacity-50;
   }
 
   /* MARK: Menubar */

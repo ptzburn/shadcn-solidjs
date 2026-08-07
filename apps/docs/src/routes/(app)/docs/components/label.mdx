@@ -3,7 +3,12 @@ title: Label
 description: Renders an accessible label associated with controls.
 ---
 
-<ComponentPreview name="checkbox-demo" />
+<ComponentPreview name="label-demo" />
+
+<Callout>
+  For form fields, use the [Field](/docs/components/field) component which
+  includes built-in label, description, and error handling.
+</Callout>
 
 ## Installation
 
@@ -26,9 +31,17 @@ npx shadcn-solidjs@latest add label
 
 <Steps class="mb-0 pt-2">
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @kobalte/core
+```
+
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="label" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 
@@ -45,3 +58,17 @@ import { Label } from "~/components/ui/label"
 ```tsx
 <Label for="email">Your email address</Label>
 ```
+
+## Label in Field
+
+For form fields, use the [Field](/docs/components/field) component which
+includes built-in `FieldLabel`, `FieldDescription`, and `FieldError` components.
+
+```tsx
+<Field>
+  <FieldLabel for="email">Your email address</FieldLabel>
+  <Input id="email" />
+</Field>
+```
+
+<ComponentPreview name="field-demo" previewClassName="h-[800px] p-6 md:h-[850px]" />

@@ -2043,6 +2043,16 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "label-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/label-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "menubar-demo",
     type: "example",
     files: [

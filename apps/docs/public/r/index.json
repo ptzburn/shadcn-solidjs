@@ -287,7 +287,10 @@
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "label",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

@@ -307,6 +307,7 @@ export const ui: Registry = [
   {
     name: "label",
     type: "ui",
+    dependencies: ["@kobalte/core"],
     files: [
       {
         path: "ui/label.tsx",
