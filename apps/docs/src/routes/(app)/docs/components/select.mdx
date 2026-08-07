@@ -25,15 +25,17 @@ npx shadcn-solidjs@latest add select
 <TabsContent value="manual">
 <Steps class="mb-0 pt-2">
 
-<Step>Install the following dependencies: </Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @kobalte/core
 ```
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="select" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 </TabsContent>
@@ -53,17 +55,104 @@ import {
 ```
 
 ```tsx showLineNumbers
-const [value, setValue] = createSignal("")
-<Select
-    value={value()}
-    onChange={setValue}
-    options={["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]}
-    placeholder="Select a fruit…"
-    itemComponent={(props) => <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>}
->
-    <SelectTrigger aria-label="Fruit" class="w-[180px]">
+const fruits = ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"]
+
+export function ExampleSelect() {
+  return (
+    <Select
+      class="w-full max-w-48"
+      options={fruits}
+      placeholder="Select a fruit"
+      itemComponent={(props) => (
+        <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
+      )}
+    >
+      <SelectTrigger aria-label="Fruit" class="w-full">
         <SelectValue<string>>{(state) => state.selectedOption()}</SelectValue>
+      </SelectTrigger>
+      <SelectContent />
+    </Select>
+  )
+}
+```
+
+## Composition
+
+Kobalte builds the list from the `options` prop instead of children, so items
+render through `itemComponent` and `SelectContent` renders the listbox itself.
+`Select` also renders a real wrapper element around the trigger, so size the
+wrapper and let `SelectTrigger` fill it with `class="w-full"`.
+
+```text
+Select
+├── SelectTrigger
+│   └── SelectValue
+└── SelectContent
+    ├── SelectItem
+    └── SelectItem
+```
+
+### With groups
+
+Nested items per group using the `optionGroupChildren` prop, with group labels
+rendered through `sectionComponent` and a `SelectSeparator` between groups (see
+[Groups](#groups)).
+
+```text
+Select
+├── SelectTrigger
+│   └── SelectValue
+└── SelectContent
+    ├── SelectSection
+    ├── SelectItem
+    ├── SelectItem
+    ├── SelectSeparator
+    ├── SelectSection
+    ├── SelectItem
+    └── SelectItem
+```
+
+## Groups
+
+Use the `optionGroupChildren` prop with `sectionComponent` and
+`SelectSeparator` to organize items.
+
+<ComponentPreview name="select-groups" />
+
+## Scrollable
+
+A select with many items that scrolls.
+
+<ComponentPreview name="select-scrollable" />
+
+## Disabled
+
+Use the `disabled` prop to disable the whole select, and `optionDisabled` to
+disable individual options.
+
+<ComponentPreview name="select-disabled" />
+
+## Invalid
+
+Add the `data-invalid` attribute to the `Field` component and set
+`validationState="invalid"` on the `Select` component to show an error state.
+The `aria-invalid` attribute on `SelectTrigger` styles it the same way.
+
+```tsx showLineNumbers /data-invalid/ /validationState/
+<Field data-invalid>
+  <FieldLabel>Fruit</FieldLabel>
+  <Select validationState="invalid" options={fruits} itemComponent={...}>
+    <SelectTrigger>
+      <SelectValue />
     </SelectTrigger>
     <SelectContent />
-</Select>
+  </Select>
+</Field>
 ```
+
+<ComponentPreview name="select-invalid" />
+
+## API Reference
+
+See the [Kobalte](https://kobalte.dev/docs/core/components/select) documentation
+for more information.

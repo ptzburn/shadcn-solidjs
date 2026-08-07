@@ -2753,6 +2753,46 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "select-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/select-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "select-groups",
+    type: "example",
+    files: [
+      {
+        path: "example/select-groups.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "select-invalid",
+    type: "example",
+    files: [
+      {
+        path: "example/select-invalid.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "select-scrollable",
+    type: "example",
+    files: [
+      {
+        path: "example/select-scrollable.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "separator-demo",
     type: "example",
     files: [

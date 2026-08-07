@@ -1,8 +1,11 @@
+import { Show } from "solid-js";
+
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectSection,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "~/registry/ui/select.tsx";
@@ -15,11 +18,15 @@ type Category = {
 const CATEGORIES: Category[] = [
   {
     label: "Fruits",
-    items: ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"],
+    items: ["Apple", "Banana", "Blueberry"],
+  },
+  {
+    label: "Vegetables",
+    items: ["Carrot", "Broccoli", "Spinach"],
   },
 ];
 
-export default function SelectDemo() {
+export default function SelectGroups() {
   return (
     <Select<string, Category>
       class="w-full max-w-48"
@@ -30,10 +37,15 @@ export default function SelectDemo() {
         <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
       )}
       sectionComponent={(props) => (
-        <SelectSection>{props.section.rawValue.label}</SelectSection>
+        <>
+          <Show when={props.section.rawValue !== CATEGORIES[0]}>
+            <SelectSeparator />
+          </Show>
+          <SelectSection>{props.section.rawValue.label}</SelectSection>
+        </>
       )}
     >
-      <SelectTrigger aria-label="Fruit" class="w-full">
+      <SelectTrigger aria-label="Produce" class="w-full">
         <SelectValue<string>>{(state) => state.selectedOption()}</SelectValue>
       </SelectTrigger>
       <SelectContent />

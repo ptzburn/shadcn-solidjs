@@ -2,35 +2,22 @@ import {
   Select,
   SelectContent,
   SelectItem,
-  SelectSection,
   SelectTrigger,
   SelectValue,
 } from "~/registry/ui/select.tsx";
 
-type Category = {
-  label: string;
-  items: string[];
-};
+const FRUITS = ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"];
 
-const CATEGORIES: Category[] = [
-  {
-    label: "Fruits",
-    items: ["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"],
-  },
-];
-
-export default function SelectDemo() {
+export default function SelectDisabled() {
   return (
-    <Select<string, Category>
+    <Select
+      disabled
       class="w-full max-w-48"
-      options={CATEGORIES}
-      optionGroupChildren="items"
+      options={FRUITS}
+      optionDisabled={(fruit) => fruit === "Grapes"}
       placeholder="Select a fruit"
       itemComponent={(props) => (
         <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
-      )}
-      sectionComponent={(props) => (
-        <SelectSection>{props.section.rawValue.label}</SelectSection>
       )}
     >
       <SelectTrigger aria-label="Fruit" class="w-full">
