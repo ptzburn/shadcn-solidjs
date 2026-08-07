@@ -4,12 +4,19 @@ import { Bubble, BubbleContent } from "~/registry/ui/bubble.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "~/registry/ui/dropdown-menu.tsx";
 import { Message, MessageContent } from "~/registry/ui/message.tsx";
 import {
   MessageScroller,
@@ -21,91 +28,155 @@ import {
   useMessageScroller,
 } from "~/registry/ui/message-scroller.tsx";
 
-const messages = Array.from({ length: 16 }, (_, index) => ({
-  id: `command-${index + 1}`,
-  role: (index % 2 === 0 ? "user" : "assistant") as "user" | "assistant",
-  text: index % 2 === 0
-    ? `Question ${index / 2 + 1}: what changed in the funnel this week?`
-    : `Answer ${
-      Math.ceil(index / 2)
-    }. Workspace creation is up, invite completion is flat, and the gap between the two is where the drop-off sits.`,
-}));
+interface ChatMessage {
+  id: string;
+  role: "user" | "assistant";
+  text: string;
+}
 
-const jumpTargets = [
-  { id: "command-1", label: "First question" },
-  { id: "command-9", label: "Middle of the thread" },
-  { id: "command-15", label: "Last question" },
+const messages: ChatMessage[] = [
+  {
+    id: "command-activation",
+    role: "user",
+    text:
+      "We're seeing activation dip after workspace creation. Can you help me find the likely step?",
+  },
+  {
+    id: "command-activation-reply",
+    role: "assistant",
+    text:
+      "The sharpest drop is between creating the workspace and inviting the first teammate.\n\nWorkspace creation is still healthy, but the invite step is where users pause. That suggests the product is asking for collaboration before the user has enough confidence in the workspace.",
+  },
+  {
+    id: "command-compare",
+    role: "user",
+    text: "What should I compare before we change the onboarding flow?",
+  },
+  {
+    id: "command-compare-reply",
+    role: "assistant",
+    text:
+      "Compare three cohorts:\n\n1. Users who choose a template before inviting teammates.\n2. Users who start from a blank workspace.\n3. Users who skip invites and return within 24 hours.\n\nIf template users invite faster, the fix is probably better first-run guidance rather than a louder invite prompt.",
+  },
+  {
+    id: "command-experiment",
+    role: "user",
+    text: "Can you turn that into an experiment?",
+  },
+  {
+    id: "command-experiment-reply",
+    role: "assistant",
+    text:
+      "Yes. Create a variant that shows a short checklist after workspace creation:\n\n- Pick a template.\n- Add one project detail.\n- Invite a teammate when the workspace has context.\n\nMeasure first invite completion, 24-hour return rate, and whether teams create a second project.",
+  },
+  {
+    id: "command-risk",
+    role: "user",
+    text: "What's the risk if we delay the invite prompt?",
+  },
+  {
+    id: "command-risk-reply",
+    role: "assistant",
+    text:
+      "The main risk is reducing team creation for accounts that already know who they want to invite.\n\nTo protect that path, keep the invite action visible in the header and only change the primary empty-state guidance. That gives confident teams a direct route without forcing uncertain users through the invite step too early.",
+  },
 ];
 
-function JumpControls() {
-  const { scrollToEnd, scrollToMessage, scrollToStart } = useMessageScroller();
+const userMessages = messages.filter((message) => message.role === "user");
+
+const paragraphsOf = (text: string) =>
+  text.split(/\n\s*\n/).map((paragraph) => paragraph.trim()).filter(Boolean);
+
+const trimmed = (text: string) =>
+  text.length > 42 ? `${text.slice(0, 39)}...` : text;
+
+function CommandMenu() {
+  const { scrollToMessage } = useMessageScroller();
 
   return (
-    <CardFooter class="flex-wrap justify-center gap-2 border-t">
-      <Button variant="outline" size="xs" onClick={() => scrollToStart()}>
-        Start
-      </Button>
-      <For each={jumpTargets}>
-        {(target) => (
-          <Button
-            variant="outline"
-            size="xs"
-            onClick={() => scrollToMessage(target.id, { align: "start" })}
-          >
-            {target.label}
-          </Button>
-        )}
-      </For>
-      <Button variant="outline" size="xs" onClick={() => scrollToEnd()}>
-        End
-      </Button>
-    </CardFooter>
+    <DropdownMenu placement="bottom-end">
+      <DropdownMenuTrigger
+        as={Button<"button">}
+        type="button"
+        variant="secondary"
+      >
+        Jump to...
+      </DropdownMenuTrigger>
+      <DropdownMenuContent class="w-64">
+        <DropdownMenuLabel>Conversations</DropdownMenuLabel>
+        <For each={userMessages}>
+          {(message) => (
+            <DropdownMenuItem
+              onSelect={() =>
+                scrollToMessage(message.id, {
+                  align: "start",
+                  behavior: "smooth",
+                })}
+            >
+              <span class="line-clamp-1 min-w-0">{trimmed(message.text)}</span>
+            </DropdownMenuItem>
+          )}
+        </For>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 
 export default function MessageScrollerCommands() {
   return (
-    <Card class="mx-auto h-140 w-full max-w-sm gap-0 overflow-hidden">
-      <CardHeader class="gap-1 border-b">
-        <CardTitle>Scroll Commands</CardTitle>
-        <CardDescription>
-          Jump anywhere in the transcript with `useMessageScroller`.
-        </CardDescription>
-      </CardHeader>
-      <MessageScrollerProvider defaultScrollPosition="start">
-        <CardContent class="flex-1 overflow-hidden p-0">
-          <MessageScroller>
-            <MessageScrollerViewport>
-              <MessageScrollerContent class="gap-4 p-(--card-spacing)">
-                <For each={messages}>
-                  {(message) => (
-                    <MessageScrollerItem
-                      messageId={message.id}
-                      scrollAnchor={message.role === "user"}
-                    >
-                      <Message
-                        align={message.role === "user" ? "end" : "start"}
-                      >
-                        <MessageContent>
-                          <Bubble
-                            variant={message.role === "user"
-                              ? "muted"
-                              : "ghost"}
-                          >
-                            <BubbleContent>{message.text}</BubbleContent>
-                          </Bubble>
-                        </MessageContent>
-                      </Message>
-                    </MessageScrollerItem>
-                  )}
-                </For>
-              </MessageScrollerContent>
-            </MessageScrollerViewport>
-            <MessageScrollerButton />
-          </MessageScroller>
-        </CardContent>
-        <JumpControls />
-      </MessageScrollerProvider>
-    </Card>
+    <MessageScrollerProvider defaultScrollPosition="end">
+      <div class="relative flex flex-col gap-4">
+        <Card class="mx-auto h-140 w-full max-w-sm gap-0">
+          <CardHeader class="gap-1 border-b">
+            <CardTitle>Commands</CardTitle>
+            <CardDescription>
+              Drive the transcript from outside.
+            </CardDescription>
+            <CardAction>
+              <CommandMenu />
+            </CardAction>
+          </CardHeader>
+          <CardContent class="flex-1 overflow-hidden p-0">
+            <MessageScroller>
+              <MessageScrollerViewport>
+                <MessageScrollerContent class="p-(--card-spacing)">
+                  <For each={messages}>
+                    {(message) => {
+                      const isUser = message.role === "user";
+                      return (
+                        <MessageScrollerItem
+                          messageId={message.id}
+                          scrollAnchor={isUser}
+                        >
+                          <Message align={isUser ? "end" : "start"}>
+                            <MessageContent>
+                              <Bubble variant={isUser ? "muted" : "ghost"}>
+                                <BubbleContent class="space-y-2">
+                                  <For each={paragraphsOf(message.text)}>
+                                    {(paragraph) => (
+                                      <p class="whitespace-pre-wrap">
+                                        {paragraph}
+                                      </p>
+                                    )}
+                                  </For>
+                                </BubbleContent>
+                              </Bubble>
+                            </MessageContent>
+                          </Message>
+                        </MessageScrollerItem>
+                      );
+                    }}
+                  </For>
+                </MessageScrollerContent>
+              </MessageScrollerViewport>
+              <MessageScrollerButton />
+            </MessageScroller>
+          </CardContent>
+        </Card>
+        <div class="mx-auto max-w-sm px-0.5 text-center text-xs text-balance text-muted-foreground">
+          Use the controls to jump to any message in the conversation.
+        </div>
+      </div>
+    </MessageScrollerProvider>
   );
 }

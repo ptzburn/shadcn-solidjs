@@ -27,8 +27,11 @@ const messages = Array.from({ length: 12 }, (_, index) => ({
     ? `Review scroll checkpoint ${index + 1}.`
     : `Checkpoint ${
       index + 1
-    } is synced. The scrollable hook updates as the viewport moves.\n\nWhen the reader is at the first message, the footer should only point them down. Once they move into the middle of the transcript, it should explain that both directions are available.`,
+    } is synced. The scrollable hook updates as the viewport moves.\n\nWhen the reader is at the first message, the footer should only point them down. Once they move into the middle of the transcript, it should explain that both directions are available.\n\nAt the latest message, the footer should switch again and only point them back up.`,
 }));
+
+const paragraphsOf = (text: string) =>
+  text.split(/\n\s*\n/).map((paragraph) => paragraph.trim()).filter(Boolean);
 
 function getScrollStatus(start: boolean, end: boolean) {
   if (start && end) return "You can scroll both ways.";
@@ -63,28 +66,31 @@ export default function MessageScrollerScrollable() {
               <MessageScrollerViewport>
                 <MessageScrollerContent class="gap-4 p-(--card-spacing)">
                   <For each={messages}>
-                    {(message) => (
-                      <MessageScrollerItem
-                        messageId={message.id}
-                        scrollAnchor={message.role === "user"}
-                      >
-                        <Message
-                          align={message.role === "user" ? "end" : "start"}
+                    {(message) => {
+                      const isUser = message.role === "user";
+                      return (
+                        <MessageScrollerItem
+                          messageId={message.id}
+                          scrollAnchor={isUser}
                         >
-                          <MessageContent>
-                            <Bubble
-                              variant={message.role === "user"
-                                ? "muted"
-                                : "ghost"}
-                            >
-                              <BubbleContent class="whitespace-pre-line">
-                                {message.text}
-                              </BubbleContent>
-                            </Bubble>
-                          </MessageContent>
-                        </Message>
-                      </MessageScrollerItem>
-                    )}
+                          <Message align={isUser ? "end" : "start"}>
+                            <MessageContent>
+                              <Bubble variant={isUser ? "muted" : "ghost"}>
+                                <BubbleContent class="space-y-2">
+                                  <For each={paragraphsOf(message.text)}>
+                                    {(paragraph) => (
+                                      <p class="whitespace-pre-wrap">
+                                        {paragraph}
+                                      </p>
+                                    )}
+                                  </For>
+                                </BubbleContent>
+                              </Bubble>
+                            </MessageContent>
+                          </Message>
+                        </MessageScrollerItem>
+                      );
+                    }}
                   </For>
                 </MessageScrollerContent>
               </MessageScrollerViewport>

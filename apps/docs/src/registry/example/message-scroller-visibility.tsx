@@ -5,10 +5,14 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "~/registry/ui/hover-card.tsx";
 import { Message, MessageContent } from "~/registry/ui/message.tsx";
 import {
   MessageScroller,
@@ -17,98 +21,165 @@ import {
   MessageScrollerItem,
   MessageScrollerProvider,
   MessageScrollerViewport,
+  useMessageScroller,
   useMessageScrollerVisibility,
 } from "~/registry/ui/message-scroller.tsx";
 
-const turns = [
-  { id: "visibility-1", title: "Funnel overview" },
-  { id: "visibility-3", title: "Invite drop-off" },
-  { id: "visibility-5", title: "Template segments" },
-  { id: "visibility-7", title: "Next experiment" },
+interface ChatMessage {
+  id: string;
+  role: "user" | "assistant";
+  text: string;
+}
+
+const messages: ChatMessage[] = [
+  {
+    id: "vis-brief",
+    role: "user",
+    text: "Review the incident handoff and tell me what to read first.",
+  },
+  {
+    id: "vis-brief-reply",
+    role: "assistant",
+    text:
+      "Start with the summary and the impact section. The regression affected the upload queue, but the recovery path completed for every queued job.",
+  },
+  { id: "vis-impact", role: "user", text: "What was the customer impact?" },
+  {
+    id: "vis-impact-reply",
+    role: "assistant",
+    text:
+      "Impact was limited to delayed processing.\n\nNo records were dropped, and the reconciliation worker confirmed each retry batch. Support saw confusion from two customers, but there were no checkout or billing errors.",
+  },
+  { id: "vis-actions", role: "user", text: "What actions are open?" },
+  {
+    id: "vis-actions-reply",
+    role: "assistant",
+    text:
+      "Keep the retry window enabled until the next deploy, then add a queue-depth alert as the long-term fix.\n\nThe alert should fire on sustained queue growth, not a single short spike.",
+  },
+  {
+    id: "vis-checklist",
+    role: "user",
+    text: "Give me the follow-up checklist.",
+  },
+  {
+    id: "vis-checklist-reply",
+    role: "assistant",
+    text:
+      "After that, compare the queue recovery graph with the deploy timeline so the handoff shows exactly when processing returned to baseline. That makes it easier for support and engineering to answer the same customer questions without re-reading the whole incident thread.\n\nI would also add a short owner note beside each follow-up item. The checklist is small, but ownership keeps the retry-window decision, alert tuning, and support macro from drifting into separate follow-up conversations.\n\nKeep the retry window enabled until the next deploy, then add a queue-depth alert as the long-term fix.\n\nThe alert should fire on sustained queue growth, not a single short spike.",
+  },
 ];
 
-const messages = Array.from({ length: 8 }, (_, index) => {
-  const role = (index % 2 === 0 ? "user" : "assistant") as
-    | "user"
-    | "assistant";
-  const turn = turns[Math.floor(index / 2)];
-  return {
-    id: `visibility-${index + 1}`,
-    role,
-    text: role === "user"
-      ? `${turn.title}: can you walk me through it?`
-      : `${turn.title} holds up. Workspace creation is up 8% while invite completion is flat, so the gap sits at the collaboration step rather than at signup.\n\nThe segments that skip invites still return within a day, which suggests the prompt is mistimed rather than unwanted.`,
-  };
-});
+const userMessages = messages.filter((message) => message.role === "user");
 
-function VisibilityFooter() {
+const paragraphsOf = (text: string) =>
+  text.split(/\n\s*\n/).map((paragraph) => paragraph.trim()).filter(Boolean);
+
+const trimmed = (text: string) =>
+  text.length > 42 ? `${text.slice(0, 39)}...` : text;
+
+function TranscriptOutline() {
+  const { scrollToMessage } = useMessageScroller();
   const visibility = useMessageScrollerVisibility();
 
-  const currentTurn = () =>
-    turns.find((turn) => turn.id === visibility().currentAnchorId)?.title ??
-      "None";
-
   return (
-    <CardFooter class="flex-col items-start gap-1 border-t text-xs text-muted-foreground">
-      <div>
-        Current turn:{" "}
-        <span class="font-medium text-foreground">{currentTurn()}</span>
-      </div>
-      <div>
-        On screen:{" "}
-        <span class="font-medium text-foreground">
-          {visibility().visibleMessageIds.length} of {messages.length}
-        </span>
-      </div>
-    </CardFooter>
+    <HoverCard placement="left" gutter={-28} openDelay={0} closeDelay={0}>
+      <HoverCardTrigger
+        as="button"
+        type="button"
+        aria-label="Open transcript outline"
+        class="flex h-9 w-9 flex-col items-center justify-center gap-1 rounded-md transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+      >
+        <For each={userMessages}>
+          {(message) => (
+            <span
+              data-current={message.id === visibility().currentAnchorId}
+              class="h-0.5 w-4 rounded-full bg-muted-foreground/40 data-[current=true]:bg-foreground"
+            />
+          )}
+        </For>
+      </HoverCardTrigger>
+      <HoverCardContent class="flex w-64 flex-col gap-1 rounded-2xl p-1">
+        <For each={userMessages}>
+          {(message) => (
+            <button
+              type="button"
+              aria-current={visibility().currentAnchorId === message.id
+                ? "location"
+                : undefined}
+              class="flex min-h-7 items-center rounded-xl px-2 py-1.5 text-left text-sm transition-colors outline-none hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground aria-current:bg-accent aria-current:text-accent-foreground"
+              onClick={() =>
+                scrollToMessage(message.id, {
+                  align: "start",
+                  behavior: "smooth",
+                })}
+            >
+              <span class="line-clamp-1 min-w-0">{trimmed(message.text)}</span>
+            </button>
+          )}
+        </For>
+      </HoverCardContent>
+    </HoverCard>
   );
 }
 
 export default function MessageScrollerVisibility() {
   return (
-    <Card class="mx-auto h-140 w-full max-w-sm gap-0 overflow-hidden">
-      <CardHeader class="gap-1 border-b">
-        <CardTitle>Reader Position</CardTitle>
-        <CardDescription>
-          Scroll the transcript to see the anchored turn update.
-        </CardDescription>
-      </CardHeader>
-      <MessageScrollerProvider defaultScrollPosition="start">
-        <CardContent class="flex-1 overflow-hidden p-0">
-          <MessageScroller>
-            <MessageScrollerViewport>
-              <MessageScrollerContent class="gap-4 p-(--card-spacing)">
-                <For each={messages}>
-                  {(message) => (
-                    <MessageScrollerItem
-                      messageId={message.id}
-                      scrollAnchor={message.role === "user"}
-                    >
-                      <Message
-                        align={message.role === "user" ? "end" : "start"}
-                      >
-                        <MessageContent>
-                          <Bubble
-                            variant={message.role === "user"
-                              ? "muted"
-                              : "ghost"}
+    <MessageScrollerProvider scrollMargin={12}>
+      <div class="relative flex flex-col gap-4">
+        <div class="relative mx-auto w-full max-w-sm">
+          <Card class="h-140 w-full gap-0">
+            <CardHeader class="gap-1 border-b">
+              <CardTitle>Transcript Outline</CardTitle>
+              <CardDescription>
+                Track the current anchored turn.
+              </CardDescription>
+            </CardHeader>
+            <CardContent class="flex-1 overflow-hidden p-0">
+              <MessageScroller>
+                <MessageScrollerViewport>
+                  <MessageScrollerContent class="p-(--card-spacing)">
+                    <For each={messages}>
+                      {(message) => {
+                        const isUser = message.role === "user";
+                        return (
+                          <MessageScrollerItem
+                            messageId={message.id}
+                            scrollAnchor={isUser}
                           >
-                            <BubbleContent class="whitespace-pre-line">
-                              {message.text}
-                            </BubbleContent>
-                          </Bubble>
-                        </MessageContent>
-                      </Message>
-                    </MessageScrollerItem>
-                  )}
-                </For>
-              </MessageScrollerContent>
-            </MessageScrollerViewport>
-            <MessageScrollerButton />
-          </MessageScroller>
-        </CardContent>
-        <VisibilityFooter />
-      </MessageScrollerProvider>
-    </Card>
+                            <Message align={isUser ? "end" : "start"}>
+                              <MessageContent>
+                                <Bubble variant={isUser ? "muted" : "ghost"}>
+                                  <BubbleContent class="space-y-2">
+                                    <For each={paragraphsOf(message.text)}>
+                                      {(paragraph) => (
+                                        <p class="whitespace-pre-wrap">
+                                          {paragraph}
+                                        </p>
+                                      )}
+                                    </For>
+                                  </BubbleContent>
+                                </Bubble>
+                              </MessageContent>
+                            </Message>
+                          </MessageScrollerItem>
+                        );
+                      }}
+                    </For>
+                  </MessageScrollerContent>
+                </MessageScrollerViewport>
+                <MessageScrollerButton />
+              </MessageScroller>
+            </CardContent>
+          </Card>
+          <div class="absolute top-1/2 -right-12 -translate-y-1/2">
+            <TranscriptOutline />
+          </div>
+        </div>
+        <div class="mx-auto max-w-sm px-0.5 text-center text-xs text-muted-foreground">
+          Open the outline to jump between anchored turns as you read.
+        </div>
+      </div>
+    </MessageScrollerProvider>
   );
 }
