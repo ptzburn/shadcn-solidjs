@@ -4,6 +4,8 @@ import process from "node:process";
 import type { RegistryConfig } from "../config/schema.ts";
 import { isUrl, resolveItemAddress } from "./address.ts";
 import { buildItemUrl } from "./builder.ts";
+import { REGISTRY_THEME_URL } from "./constants.ts";
+import { RegistryNotFoundError } from "./errors.ts";
 import { fetchRegistryItem } from "./fetcher.ts";
 import type {
   RegistryItem,
@@ -43,21 +45,43 @@ function addressKey(address: string, options: ResolveOptions): string {
  * filesystem path, so `REGISTRY_URL` can point at a built `public/r` directory
  * without a server in front of it.
  */
-function fetchByAddress(
+function fetchFrom(
+  location: string,
+  headers?: Record<string, string>,
+): Promise<RegistryItem> {
+  return isUrl(location)
+    ? fetchRegistryItem({ url: location, headers })
+    : fetchRegistryItem({ path: location });
+}
+
+async function fetchByAddress(
   address: string,
   options: ResolveOptions,
 ): Promise<RegistryItem> {
   const parsed = resolveItemAddress(address);
-  if (parsed.kind === "url") return fetchRegistryItem({ url: parsed.url });
-  if (parsed.kind === "file") return fetchRegistryItem({ path: parsed.path });
+  if (parsed.kind === "url") {
+    return await fetchRegistryItem({ url: parsed.url });
+  }
+  if (parsed.kind === "file") {
+    return await fetchRegistryItem({ path: parsed.path });
+  }
 
   const built = buildItemUrl(parsed, options);
   if (!built) {
     throw new Error(`Could not build a URL for "${address}".`);
   }
-  return isUrl(built.url)
-    ? fetchRegistryItem({ url: built.url, headers: built.headers })
-    : fetchRegistryItem({ path: built.url });
+
+  try {
+    return await fetchFrom(built.url, built.headers);
+  } catch (error) {
+    // Themes carry no files and so sit outside the icon-library fan-out that
+    // the item template addresses. Only a bare name against the built-in
+    // registry can mean a theme, so the retry is scoped to that.
+    if (!(error instanceof RegistryNotFoundError) || parsed.kind !== "name") {
+      throw error;
+    }
+    return await fetchFrom(REGISTRY_THEME_URL.replace("{name}", parsed.name));
+  }
 }
 
 /**

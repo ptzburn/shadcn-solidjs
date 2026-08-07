@@ -1,3 +1,5 @@
+import { readFileSync, writeFileSync } from "node:fs";
+
 import type { Config } from "../config/schema.ts";
 import { REGISTRY_INDEX_URL } from "../registry/constants.ts";
 import { fetchRegistryIndex } from "../registry/fetcher.ts";
@@ -7,6 +9,7 @@ import {
   updateDependencies,
   type UpdateDependenciesResult,
 } from "../updaters/update-dependencies.ts";
+import { transformCssVars } from "../updaters/update-css-vars.ts";
 import {
   updateFiles,
   type UpdateFilesResult,
@@ -22,8 +25,8 @@ export interface AddOptions {
 export interface AddResult {
   dependencies: UpdateDependenciesResult;
   files: UpdateFilesResult;
-  /** Set when the registry item carries CSS this CLI cannot apply yet. */
-  pendingCss: boolean;
+  /** The stylesheet, when an item carried variables that were written to it. */
+  cssUpdated: string | null;
 }
 
 /** Every installable ui item, for `--all`. */
@@ -65,9 +68,22 @@ export async function addComponents(
     dryRun: options.dryRun,
   });
 
-  return {
-    dependencies,
-    files,
-    pendingCss: Boolean(tree.cssVars || tree.css),
-  };
+  // Last, and deliberately: a dev server watching the stylesheet should
+  // rebuild once the components and dependencies it needs are already there.
+  let cssUpdated: string | null = null;
+  if (tree.cssVars && config.tailwind.cssVariables) {
+    const cssPath = config.resolvedPaths.tailwindCss;
+    if (!options.dryRun) {
+      writeFileSync(
+        cssPath,
+        transformCssVars(readFileSync(cssPath, "utf8"), tree.cssVars, {
+          overwrite: true,
+        }),
+        "utf8",
+      );
+    }
+    cssUpdated = cssPath;
+  }
+
+  return { dependencies, files, cssUpdated };
 }

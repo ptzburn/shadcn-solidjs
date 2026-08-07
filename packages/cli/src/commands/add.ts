@@ -59,9 +59,9 @@ function report(result: AddResult, projectCwd: string, dryRun: boolean): void {
     );
   }
 
-  if (result.pendingCss) {
-    logger.warn(
-      "This item carries CSS variables, which this version does not apply yet.",
+  if (result.cssUpdated) {
+    logger.success(
+      `${dryRun ? "Would update" : "Updated"} ${show(result.cssUpdated)}`,
     );
   }
 }

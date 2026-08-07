@@ -43,7 +43,8 @@
     "npm:estree-util-value-to-estree@^3.5.0": "3.5.0",
     "npm:get-tsconfig@^4.14.1": "4.14.1",
     "npm:nitro@3.0.260610-beta": "3.0.260610-beta_vite@8.2.0__@types+node@26.1.2__yaml@2.9.0_@types+node@26.1.2",
-    "npm:postcss@^8.5.25": "8.5.25",
+    "npm:postcss@^8.5.25": "8.5.26",
+    "npm:postcss@^8.5.26": "8.5.26",
     "npm:prompts@^2.4.2": "2.4.2",
     "npm:rehype-pretty-code@~0.14.5": "0.14.5_shiki@4.4.1",
     "npm:rehype-slug@6": "6.0.0",
@@ -3602,8 +3603,8 @@
         "pathe"
       ]
     },
-    "postcss@8.5.25": {
-      "integrity": "sha512-DTPx3RWSSnWyzLxQnlH0rJP+EW5ekl16ZU4/psbIhA0e53kJfdgaN5vKM+xP7yJtXVu+nfdVFmlgFDEKAe4Pyw==",
+    "postcss@8.5.26": {
+      "integrity": "sha512-u82N74LFzG8ca+dD8puPnplTXoGH4fTPpVGuIbt36G3qvNlkvfD0lEAZSxaly3KX8TS/L1A1gsCEmvKmBcVbkQ==",
       "dependencies": [
         "nanoid",
         "picocolors",
@@ -4333,6 +4334,7 @@
           "npm:@types/prompts@^2.4.9",
           "npm:commander@15",
           "npm:get-tsconfig@^4.14.1",
+          "npm:postcss@^8.5.26",
           "npm:prompts@^2.4.2",
           "npm:zod@^4.4.3"
         ]
