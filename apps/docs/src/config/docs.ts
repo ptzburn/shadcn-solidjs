@@ -191,6 +191,11 @@ export const docsConfig: Config = {
           status: "new",
         },
         {
+          title: "Item",
+          href: "/docs/components/item",
+          status: "new",
+        },
+        {
           title: "Label",
           href: "/docs/components/label",
         },

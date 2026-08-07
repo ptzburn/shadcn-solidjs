@@ -1943,6 +1943,106 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "item-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/item-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "item-variant",
+    type: "example",
+    files: [
+      {
+        path: "example/item-variant.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "item-size",
+    type: "example",
+    files: [
+      {
+        path: "example/item-size.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "item-icon",
+    type: "example",
+    files: [
+      {
+        path: "example/item-icon.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "item-avatar",
+    type: "example",
+    files: [
+      {
+        path: "example/item-avatar.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "item-image",
+    type: "example",
+    files: [
+      {
+        path: "example/item-image.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "item-group",
+    type: "example",
+    files: [
+      {
+        path: "example/item-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "item-header",
+    type: "example",
+    files: [
+      {
+        path: "example/item-header.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "item-link",
+    type: "example",
+    files: [
+      {
+        path: "example/item-link.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "item-dropdown",
+    type: "example",
+    files: [
+      {
+        path: "example/item-dropdown.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "menubar-demo",
     type: "example",
     files: [
