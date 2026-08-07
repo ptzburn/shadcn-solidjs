@@ -226,7 +226,7 @@ export const Index: RegistryIndex = {
     name: "dialog",
     description: "",
     type: "ui",
-    registryDependencies: undefined,
+    registryDependencies: ["button"],
     component: lazy(() => import("~/registry/ui/dialog.tsx")),
     files: [{
       path: "registry/ui/dialog.tsx",
@@ -2182,6 +2182,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "dialog-close-button": {
+    name: "dialog-close-button",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/dialog-close-button.tsx")),
+    files: [{
+      path: "registry/example/dialog-close-button.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "dialog-demo": {
     name: "dialog-demo",
     description: "",
@@ -2190,6 +2202,48 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/dialog-demo.tsx")),
     files: [{
       path: "registry/example/dialog-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dialog-no-close-button": {
+    name: "dialog-no-close-button",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dialog-no-close-button.tsx")
+    ),
+    files: [{
+      path: "registry/example/dialog-no-close-button.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dialog-scrollable-content": {
+    name: "dialog-scrollable-content",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dialog-scrollable-content.tsx")
+    ),
+    files: [{
+      path: "registry/example/dialog-scrollable-content.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dialog-sticky-footer": {
+    name: "dialog-sticky-footer",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dialog-sticky-footer.tsx")
+    ),
+    files: [{
+      path: "registry/example/dialog-sticky-footer.tsx",
       type: "example",
       target: "",
     }],

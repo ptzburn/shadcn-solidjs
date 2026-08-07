@@ -9,6 +9,9 @@
     "unplugin-icons",
     "@iconify-json/lucide"
   ],
+  "registryDependencies": [
+    "button"
+  ],
   "files": [
     {
       "path": "src/registry/ui/dialog.tsx",

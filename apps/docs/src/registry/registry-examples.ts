@@ -1263,11 +1263,51 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "dialog-close-button",
+    type: "example",
+    files: [
+      {
+        path: "example/dialog-close-button.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "dialog-demo",
     type: "example",
     files: [
       {
         path: "example/dialog-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dialog-no-close-button",
+    type: "example",
+    files: [
+      {
+        path: "example/dialog-no-close-button.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dialog-scrollable-content",
+    type: "example",
+    files: [
+      {
+        path: "example/dialog-scrollable-content.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dialog-sticky-footer",
+    type: "example",
+    files: [
+      {
+        path: "example/dialog-sticky-footer.tsx",
         type: "example",
       },
     ],

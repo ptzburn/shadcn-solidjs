@@ -197,6 +197,9 @@
     "dependencies": [
       "@kobalte/core"
     ],
+    "registryDependencies": [
+      "button"
+    ],
     "files": [
       "ui/dialog.tsx"
     ],

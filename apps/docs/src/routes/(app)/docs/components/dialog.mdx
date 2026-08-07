@@ -25,15 +25,17 @@ npx shadcn-solidjs@latest add dialog
 <TabsContent value="manual">
 <Steps class="mb-0 pt-2">
 
-<Step>Install the following dependencies: </Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @kobalte/core
 ```
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="dialog" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 </TabsContent>
@@ -47,10 +49,9 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "~/components/ui/dialog"
 ```
 
@@ -59,12 +60,54 @@ import {
   <DialogTrigger>Open</DialogTrigger>
   <DialogContent>
     <DialogHeader>
-      <DialogTitle>Are you sure absolutely sure?</DialogTitle>
+      <DialogTitle>Are you absolutely sure?</DialogTitle>
       <DialogDescription>
-        This action cannot be undone. This will permanently delete your account and remove your data
-        from our servers.
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
       </DialogDescription>
     </DialogHeader>
   </DialogContent>
 </Dialog>
 ```
+
+## Composition
+
+Use the following composition to build a `Dialog`:
+
+```text
+Dialog
+├── DialogTrigger
+└── DialogContent
+    ├── DialogHeader
+    │   ├── DialogTitle
+    │   └── DialogDescription
+    └── DialogFooter
+```
+
+## Custom Close Button
+
+Replace the default close control with your own button.
+
+<ComponentPreview name="dialog-close-button" />
+
+## No Close Button
+
+Use `showCloseButton={false}` to hide the close button.
+
+<ComponentPreview name="dialog-no-close-button" />
+
+## Sticky Footer
+
+Keep actions visible while the content scrolls.
+
+<ComponentPreview name="dialog-sticky-footer" />
+
+## Scrollable Content
+
+Long content can scroll while the header stays in view.
+
+<ComponentPreview name="dialog-scrollable-content" />
+
+## API Reference
+
+See the [Kobalte](https://kobalte.dev/docs/core/components/dialog) documentation for more information.

@@ -206,6 +206,7 @@ export const ui: Registry = [
     name: "dialog",
     type: "ui",
     dependencies: ["@kobalte/core"],
+    registryDependencies: ["button"],
     files: [
       {
         path: "ui/dialog.tsx",
