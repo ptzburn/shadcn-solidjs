@@ -3009,6 +3009,36 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "sonner-description",
+    type: "example",
+    files: [
+      {
+        path: "example/sonner-description.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "sonner-position",
+    type: "example",
+    files: [
+      {
+        path: "example/sonner-position.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "sonner-types",
+    type: "example",
+    files: [
+      {
+        path: "example/sonner-types.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "switch-demo",
     type: "example",
     files: [

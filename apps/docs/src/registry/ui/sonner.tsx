@@ -12,7 +12,7 @@ const Toaster: Component<ToasterProps> = (props) => {
   return (
     <Sonner
       theme={colorMode()}
-      class="group toaster"
+      class="toaster group"
       icons={{
         success: (
           <IconPlaceholder
@@ -39,7 +39,7 @@ const Toaster: Component<ToasterProps> = (props) => {
             lucide="triangle-alert"
             tabler="alert-triangle"
             ph="warning"
-            ri="alert-line"
+            ri="error-warning-line"
             hugeicons="alert-02"
             class="size-4"
           />
@@ -48,18 +48,18 @@ const Toaster: Component<ToasterProps> = (props) => {
           <IconPlaceholder
             lucide="octagon-x"
             tabler="alert-octagon"
-            ph="warning-octagon"
+            ph="x-circle"
             ri="close-circle-line"
-            hugeicons="cancel-circle"
+            hugeicons="multiplication-sign-circle"
             class="size-4"
           />
         ),
         loading: (
           <IconPlaceholder
             lucide="loader-circle"
-            tabler="loader-2"
-            ph="circle-notch"
-            ri="loader-4-line"
+            tabler="loader"
+            ph="spinner"
+            ri="loader-line"
             hugeicons="loading-03"
             class="size-4 animate-spin"
           />

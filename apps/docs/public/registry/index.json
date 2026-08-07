@@ -506,6 +506,7 @@
   {
     "name": "sonner",
     "dependencies": [
+      "@kobalte/core",
       "solid-sonner"
     ],
     "files": [

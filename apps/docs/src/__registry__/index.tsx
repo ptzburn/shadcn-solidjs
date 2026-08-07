@@ -4390,6 +4390,42 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "sonner-description": {
+    name: "sonner-description",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/sonner-description.tsx")),
+    files: [{
+      path: "registry/example/sonner-description.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "sonner-position": {
+    name: "sonner-position",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/sonner-position.tsx")),
+    files: [{
+      path: "registry/example/sonner-position.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "sonner-types": {
+    name: "sonner-types",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/sonner-types.tsx")),
+    files: [{
+      path: "registry/example/sonner-types.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "switch-demo": {
     name: "switch-demo",
     description: "",

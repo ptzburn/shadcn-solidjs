@@ -536,7 +536,7 @@ export const ui: Registry = [
   {
     name: "sonner",
     type: "ui",
-    dependencies: ["solid-sonner"],
+    dependencies: ["@kobalte/core", "solid-sonner"],
     files: [
       {
         path: "ui/sonner.tsx",

@@ -13,6 +13,7 @@ import {
 import { getCookie } from "@solidjs/start/http";
 
 import { MetaTags } from "~/components/meta-tags.tsx";
+import { Toaster } from "~/registry/ui/sonner.tsx";
 
 import "~/styles/app.css";
 import "~/styles/typeset.css";
@@ -37,6 +38,7 @@ export default function App() {
             <main>
               <Suspense>{props.children}</Suspense>
             </main>
+            <Toaster position="top-center" />
           </ColorModeProvider>
         </MetaProvider>
       )}

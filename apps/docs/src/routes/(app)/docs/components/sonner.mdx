@@ -7,7 +7,9 @@ description: An opinionated toast component for Solid.
 
 ## About
 
-`solid-sonner` is built and maintained by [wobsoriano](https://github.com/wobsoriano).
+`solid-sonner` is built and maintained by [wobsoriano](https://github.com/wobsoriano),
+a Solid port of [Sonner](https://sonner.emilkowal.ski) by
+[emilkowalski](https://twitter.com/emilkowalski).
 
 ## Installation
 
@@ -20,44 +22,68 @@ description: An opinionated toast component for Solid.
 
 <TabsContent value="cli">
 
+<Steps class="mb-0 pt-2">
+
+<Step>Run the following command:</Step>
+
 ```bash
 npx shadcn-solidjs@latest add sonner
 ```
 
-</TabsContent>
+<Step>Add the Toaster component</Step>
 
-<TabsContent value="manual">
-<Steps class="mb-0 pt-2">
-
-<Step>Install the following dependencies: </Step>
-
-```bash
-npm install solid-sonner
-```
-
-<Step>Copy and paste the following code into your project: </Step>
-
-<ComponentSource name="sonner" />
-
-<Step>Add the Toaster component:</Step>
-
-```tsx{1,9}
+```tsx {1,9} showLineNumbers
 import { Toaster } from "~/components/ui/sonner"
 
-export default function RootLayout({ children }) {
+export default function App() {
   return (
-    <html lang="en">
-      <head />
-      <body>
-        <main>{children}</main>
-        <Toaster />
-      </body>
-    </html>
+    <ColorModeProvider>
+      <main>
+        <Router />
+      </main>
+      <Toaster />
+    </ColorModeProvider>
   )
 }
 ```
 
 </Steps>
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps class="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install solid-sonner @kobalte/core
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="sonner" />
+
+<Step>Add the Toaster component</Step>
+
+```tsx {1,6} showLineNumbers
+import { Toaster } from "~/components/ui/sonner"
+
+export default function App() {
+  return (
+    <ColorModeProvider>
+      <Toaster />
+      <main>
+        <Router />
+      </main>
+    </ColorModeProvider>
+  )
+}
+```
+
+</Steps>
+
 </TabsContent>
 
 </CodeTabs>
@@ -71,3 +97,23 @@ import { toast } from "solid-sonner"
 ```tsx
 toast("Event has been created.")
 ```
+
+## Types
+
+<ComponentPreview name="sonner-types" />
+
+## Description
+
+<ComponentPreview name="sonner-description" />
+
+## Position
+
+Use the `position` prop to change the position of the toast.
+
+<ComponentPreview name="sonner-position" />
+
+## API Reference
+
+See the [Sonner API Reference](https://sonner.emilkowal.ski/getting-started) and the
+[solid-sonner documentation](https://github.com/wobsoriano/solid-sonner) for more
+information.

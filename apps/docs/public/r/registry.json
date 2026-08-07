@@ -486,6 +486,7 @@
       "name": "sonner",
       "type": "registry:ui",
       "dependencies": [
+        "@kobalte/core",
         "solid-sonner"
       ],
       "devDependencies": [
