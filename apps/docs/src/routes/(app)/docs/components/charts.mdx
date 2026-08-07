@@ -215,7 +215,7 @@ To add an x-axis to the chart, we'll enable the ticks on the `x` scale.
 
 </Steps>
 
-### Tooltip
+### Add Tooltip
 
 So far we've only toggled chart.js options. The tooltip already looks great out of the box: the `charts` component replaces the chart.js canvas tooltip with a styled HTML tooltip, so there is nothing to add.
 
@@ -384,6 +384,22 @@ A chart tooltip contains a label, name, indicator and value. You can use a combi
 <ComponentPreview name="charts-tooltip" hideCode />
 
 The `charts` component ships with a styled HTML tooltip that replaces the chart.js canvas tooltip. It is enabled on every chart out of the box — nothing to import, nothing to wire up.
+
+You can turn on/off any of these using the `hideLabel` and `hideIndicator` options and customize the indicator style using the `indicator` option. Pass them through the `tooltip` prop on any chart component.
+
+```tsx title="components/example-chart.tsx"
+<BarChart data={chartData} tooltip={{ indicator: "line", hideLabel: true }} />
+```
+
+### Options
+
+Use the following options to customize the tooltip.
+
+| Option          | Type                     | Description                          |
+| :-------------- | :----------------------- | :----------------------------------- |
+| `indicator`     | `dot` `line` or `dashed` | The indicator style for the tooltip. |
+| `hideLabel`     | boolean                  | Whether to hide the label.           |
+| `hideIndicator` | boolean                  | Whether to hide the indicator.       |
 
 ### Colors
 

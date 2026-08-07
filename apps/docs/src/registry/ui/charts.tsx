@@ -170,12 +170,19 @@ function resolveColors<T>(value: T, element: Element): T {
   return value;
 }
 
+export type ChartTooltipOptions = {
+  indicator?: "dot" | "line" | "dashed";
+  hideLabel?: boolean;
+  hideIndicator?: boolean;
+};
+
 type TypedChartProps =
   & Omit<ComponentProps<"canvas">, "children" | "height" | "ref" | "width">
   & {
     data: ChartData;
     options?: ChartOptions;
     plugins?: ChartPlugin[];
+    tooltip?: ChartTooltipOptions;
     ref?: Ref<HTMLCanvasElement | null>;
     width?: number | undefined;
     height?: number | undefined;
@@ -203,11 +210,14 @@ const BaseChart: Component<ChartProps> = (rawProps) => {
     },
     rawProps,
   );
+  // `tooltip` is split off so it never reaches the canvas element; the
+  // typed chart components wire it into the external tooltip handler.
   const [local, others] = splitProps(props, [
     "type",
     "data",
     "options",
     "plugins",
+    "tooltip",
     "ref",
     "width",
     "height",
@@ -299,7 +309,10 @@ const BaseChart: Component<ChartProps> = (rawProps) => {
 
   onCleanup(() => {
     chart()?.destroy();
-    mergeRefs(local.ref, null);
+    // The HTML tooltip element is shared across charts; remove it so it
+    // cannot outlive an unmounted chart — the next hover on a still
+    // mounted chart recreates it.
+    document.getElementById("chartjs-tooltip")?.remove();
   });
 
   Chart.register(Colors, Filler, Legend, Tooltip);
@@ -313,19 +326,6 @@ const BaseChart: Component<ChartProps> = (rawProps) => {
   );
 };
 
-const TOOLTIP_CLASS = "cn-chart-tooltip grid min-w-32 items-start";
-const TOOLTIP_LABEL_CLASS = "font-medium";
-const TOOLTIP_ITEM_LIST_CLASS = "grid gap-1.5";
-const TOOLTIP_ITEM_CLASS =
-  "flex w-full flex-wrap items-center gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground";
-const TOOLTIP_INDICATOR_CLASS =
-  "h-2.5 w-2.5 shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)";
-const TOOLTIP_ITEM_CONTENT_CLASS =
-  "flex flex-1 items-center justify-between leading-none";
-const TOOLTIP_ITEM_NAME_CLASS = "text-muted-foreground";
-const TOOLTIP_ITEM_VALUE_CLASS =
-  "font-mono font-medium text-foreground tabular-nums";
-
 function escapeHtml(value: unknown): string {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -334,7 +334,28 @@ function escapeHtml(value: unknown): string {
     .replaceAll('"', "&quot;");
 }
 
-function showTooltip(context: ChartContext) {
+/**
+ * Upstream drives the indicator from a single series color. chart.js
+ * exposes a background/border pair per item — the background is the
+ * series' ink for most chart types while the border can default to a
+ * near-invisible rgba(0,0,0,0.1) — and either can be a gradient or
+ * pattern, so use the first plain color string for both custom
+ * properties and skip the declaration entirely when there is none.
+ */
+function indicatorStyle(
+  colors: { backgroundColor: unknown; borderColor: unknown } | undefined,
+): string {
+  const color = [colors?.backgroundColor, colors?.borderColor].find(
+    (value): value is string => typeof value === "string",
+  );
+  if (!color) {
+    return "";
+  }
+  const value = escapeHtml(color);
+  return `--color-bg: ${value}; --color-border: ${value};`;
+}
+
+function showTooltip(context: ChartContext, options?: ChartTooltipOptions) {
   let el = document.getElementById("chartjs-tooltip");
   if (!el) {
     el = document.createElement("div");
@@ -348,28 +369,52 @@ function showTooltip(context: ChartContext) {
     return;
   }
 
-  el.className = TOOLTIP_CLASS;
+  const indicator = options?.indicator ?? "dot";
+  const nestLabel = model.dataPoints.length === 1 && indicator !== "dot";
 
-  let content = "";
+  el.className = "cn-chart-tooltip grid min-w-32 items-start";
 
-  model.title.forEach((title) => {
-    content += `<div class="${TOOLTIP_LABEL_CLASS}">${escapeHtml(title)}</div>`;
-  });
+  const label = options?.hideLabel ? "" : model.title
+    .map((title) => `<div class="font-medium">${escapeHtml(title)}</div>`)
+    .join("");
 
-  content += `<div class="${TOOLTIP_ITEM_LIST_CLASS}">`;
+  let content = nestLabel ? "" : label;
+
+  content += `<div class="grid gap-1.5">`;
   model.dataPoints.forEach((item, index) => {
     const colors = model.labelColors[index];
     const name = item.dataset.label ?? item.label;
+    const indicatorHtml = options?.hideIndicator ? "" : `
+          <div class="${
+      cn(
+        "shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
+        {
+          "h-2.5 w-2.5": indicator === "dot",
+          "w-1": indicator === "line",
+          "w-0 border-[1.5px] border-dashed bg-transparent":
+            indicator === "dashed",
+          "my-0.5": nestLabel && indicator === "dashed",
+        },
+      )
+    }" style="${indicatorStyle(colors)}"></div>`;
     content += `
-        <div class="${TOOLTIP_ITEM_CLASS}">
-          <div class="${TOOLTIP_INDICATOR_CLASS}" style="--color-bg: ${colors.backgroundColor}; --color-border: ${colors.borderColor}"></div>
-          <div class="${TOOLTIP_ITEM_CONTENT_CLASS}">
-            <div class="${TOOLTIP_ITEM_LIST_CLASS}">
-              <span class="${TOOLTIP_ITEM_NAME_CLASS}">${
-      escapeHtml(name)
-    }</span>
+        <div class="${
+      cn(
+        "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground",
+        indicator === "dot" && "items-center",
+      )
+    }">${indicatorHtml}
+          <div class="${
+      cn(
+        "flex flex-1 justify-between leading-none",
+        nestLabel ? "items-end" : "items-center",
+      )
+    }">
+            <div class="grid gap-1.5">
+              ${nestLabel ? label : ""}
+              <span class="text-muted-foreground">${escapeHtml(name)}</span>
             </div>
-            <span class="${TOOLTIP_ITEM_VALUE_CLASS}">${
+            <span class="font-mono font-medium text-foreground tabular-nums">${
       escapeHtml(item.formattedValue)
     }</span>
           </div>
@@ -392,7 +437,10 @@ const cartesianCharts: ChartType[] = ["bar", "bubble", "line", "scatter"];
 const radialCharts: ChartType[] = ["polarArea", "radar"];
 const indexTooltipCharts: ChartType[] = ["bar", "line"];
 
-function defaultOptions(type: ChartType): ChartOptions {
+function defaultOptions(
+  type: ChartType,
+  tooltip?: () => ChartTooltipOptions | undefined,
+): ChartOptions {
   const axisDefaults = () => ({
     border: { display: false },
     grid: {
@@ -435,7 +483,7 @@ function defaultOptions(type: ChartType): ChartOptions {
       },
       tooltip: {
         enabled: false,
-        external: (context) => showTooltip(context),
+        external: (context) => showTooltip(context, tooltip?.()),
       },
     },
   };
@@ -456,7 +504,9 @@ function createTypedChart(
     <BaseChart
       type={type}
       {...props}
-      options={merge(defaultOptions(type), [props.options ?? {}])}
+      options={merge(defaultOptions(type, () => props.tooltip), [
+        props.options ?? {},
+      ])}
     />
   );
 }
