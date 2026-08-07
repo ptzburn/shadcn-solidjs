@@ -814,7 +814,7 @@
   }
 
   .cn-empty-title {
-    @apply font-medium text-sm tracking-tight;
+    @apply text-sm font-medium tracking-tight;
   }
 
   .cn-empty-description {

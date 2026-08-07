@@ -167,6 +167,11 @@ export const docsConfig: Config = {
           href: "/docs/components/dropdown-menu",
         },
         {
+          title: "Empty",
+          href: "/docs/components/empty",
+          status: "new",
+        },
+        {
           title: "Hover Card",
           href: "/docs/components/hover-card",
         },

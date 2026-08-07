@@ -10,7 +10,7 @@ const Empty: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="empty"
       class={cn(
-        "cn-empty flex w-full min-w-0 flex-1 flex-col items-center justify-center text-balance text-center",
+        "cn-empty flex w-full min-w-0 flex-1 flex-col items-center justify-center text-center text-balance",
         local.class,
       )}
       {...others}
@@ -72,10 +72,7 @@ const EmptyTitle: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="empty-title"
-      class={cn(
-        "cn-empty-title font-heading",
-        local.class,
-      )}
+      class={cn("cn-empty-title font-heading", local.class)}
       {...others}
     />
   );
@@ -101,7 +98,7 @@ const EmptyContent: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="empty-content"
       class={cn(
-        "cn-empty-content flex w-full min-w-0 max-w-sm flex-col items-center text-balance",
+        "cn-empty-content flex w-full max-w-sm min-w-0 flex-col items-center text-balance",
         local.class,
       )}
       {...others}

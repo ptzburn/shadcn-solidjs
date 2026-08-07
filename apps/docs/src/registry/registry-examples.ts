@@ -1473,6 +1473,66 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "empty-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/empty-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "empty-outline",
+    type: "example",
+    files: [
+      {
+        path: "example/empty-outline.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "empty-background",
+    type: "example",
+    files: [
+      {
+        path: "example/empty-background.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "empty-avatar",
+    type: "example",
+    files: [
+      {
+        path: "example/empty-avatar.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "empty-avatar-group",
+    type: "example",
+    files: [
+      {
+        path: "example/empty-avatar-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "empty-input-group",
+    type: "example",
+    files: [
+      {
+        path: "example/empty-input-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "hover-card-demo",
     type: "example",
     files: [
