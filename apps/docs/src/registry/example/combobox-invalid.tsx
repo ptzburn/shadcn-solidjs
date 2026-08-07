@@ -9,7 +9,7 @@ import {
 
 const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
-export default function ComboboxDemo() {
+export default function ComboboxInvalid() {
   return (
     <Combobox
       options={frameworks}
@@ -18,7 +18,7 @@ export default function ComboboxDemo() {
         <ComboboxItem item={props.item}>{props.item.rawValue}</ComboboxItem>
       )}
     >
-      <ComboboxInput placeholder="Select a framework" />
+      <ComboboxInput placeholder="Select a framework" aria-invalid="true" />
       <ComboboxContent>
         <ComboboxEmpty>No items found.</ComboboxEmpty>
         <ComboboxList />

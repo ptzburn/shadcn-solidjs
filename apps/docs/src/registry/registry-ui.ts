@@ -148,6 +148,7 @@ export const ui: Registry = [
     name: "combobox",
     type: "ui",
     dependencies: ["@kobalte/core"],
+    registryDependencies: ["button", "input-group"],
     files: [
       {
         path: "ui/combobox.tsx",

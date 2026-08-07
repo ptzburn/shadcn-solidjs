@@ -9,11 +9,10 @@ import {
 import {
   Combobox,
   ComboboxContent,
-  ComboboxControl,
   ComboboxInput,
   ComboboxItem,
   ComboboxItemLabel,
-  ComboboxTrigger,
+  ComboboxList,
 } from "~/registry/ui/combobox.tsx";
 
 interface Role {
@@ -70,11 +69,10 @@ export function TeamMembers() {
               </ComboboxItem>
             )}
           >
-            <ComboboxControl aria-label="Food">
-              <ComboboxInput />
-              <ComboboxTrigger />
-            </ComboboxControl>
-            <ComboboxContent />
+            <ComboboxInput aria-label="Select new role" />
+            <ComboboxContent>
+              <ComboboxList />
+            </ComboboxContent>
           </Combobox>
         </div>
         <div class="flex items-center justify-between space-x-4">
@@ -109,11 +107,10 @@ export function TeamMembers() {
               </ComboboxItem>
             )}
           >
-            <ComboboxControl aria-label="Food">
-              <ComboboxInput />
-              <ComboboxTrigger />
-            </ComboboxControl>
-            <ComboboxContent />
+            <ComboboxInput aria-label="Select new role" />
+            <ComboboxContent>
+              <ComboboxList />
+            </ComboboxContent>
           </Combobox>
         </div>
         <div class="flex items-center justify-between space-x-4">
@@ -148,11 +145,10 @@ export function TeamMembers() {
               </ComboboxItem>
             )}
           >
-            <ComboboxControl aria-label="Food">
-              <ComboboxInput />
-              <ComboboxTrigger />
-            </ComboboxControl>
-            <ComboboxContent />
+            <ComboboxInput aria-label="Select new role" />
+            <ComboboxContent>
+              <ComboboxList />
+            </ComboboxContent>
           </Combobox>
         </div>
       </CardContent>

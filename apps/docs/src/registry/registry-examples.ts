@@ -952,11 +952,91 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "combobox-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/combobox-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "combobox-clear",
+    type: "example",
+    files: [
+      {
+        path: "example/combobox-clear.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "combobox-custom",
+    type: "example",
+    files: [
+      {
+        path: "example/combobox-custom.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "combobox-demo",
     type: "example",
     files: [
       {
         path: "example/combobox-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "combobox-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/combobox-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "combobox-groups",
+    type: "example",
+    files: [
+      {
+        path: "example/combobox-groups.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "combobox-input-group",
+    type: "example",
+    files: [
+      {
+        path: "example/combobox-input-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "combobox-invalid",
+    type: "example",
+    files: [
+      {
+        path: "example/combobox-invalid.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "combobox-multiple",
+    type: "example",
+    files: [
+      {
+        path: "example/combobox-multiple.tsx",
         type: "example",
       },
     ],

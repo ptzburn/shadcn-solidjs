@@ -9,7 +9,7 @@ import {
 
 const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
-export default function ComboboxDemo() {
+export default function ComboboxBasic() {
   return (
     <Combobox
       options={frameworks}

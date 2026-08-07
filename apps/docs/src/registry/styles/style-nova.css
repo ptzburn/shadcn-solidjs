@@ -394,7 +394,11 @@
     @apply bg-popover text-popover-foreground data-expanded:animate-in
       data-closed:animate-out data-closed:fade-out-0 data-expanded:fade-in-0
       data-closed:zoom-out-95 data-expanded:zoom-in-95 ring-foreground/10
-      min-w-32 overflow-hidden rounded-lg shadow-md ring-1;
+      *:data-[slot=input-group]:bg-input/30
+      *:data-[slot=input-group]:border-input/30 max-h-72 min-w-36
+      overflow-hidden rounded-lg shadow-md ring-1 duration-100
+      *:data-[slot=input-group]:m-1 *:data-[slot=input-group]:mb-0
+      *:data-[slot=input-group]:h-8 *:data-[slot=input-group]:shadow-none;
   }
 
   .cn-combobox-label {
@@ -403,6 +407,7 @@
 
   .cn-combobox-item {
     @apply data-highlighted:bg-accent data-highlighted:text-accent-foreground
+      not-data-[variant=destructive]:data-highlighted:**:text-accent-foreground
       gap-2 rounded-md py-1 pr-8 pl-1.5 text-sm
       [&_svg:not([class*='size-'])]:size-4;
   }
@@ -415,12 +420,23 @@
   .cn-combobox-item-indicator-icon {}
 
   .cn-combobox-empty {
-    @apply text-muted-foreground flex w-full justify-center py-2 text-center
-      text-sm;
+    @apply text-muted-foreground hidden w-full justify-center py-2 text-center
+      text-sm
+      group-has-[[data-slot=combobox-list]:empty]/combobox-content:flex;
   }
 
   .cn-combobox-list {
-    @apply no-scrollbar max-h-72 scroll-py-1 p-1;
+    @apply no-scrollbar
+      max-h-[min(calc(--spacing(72)---spacing(9)),calc(var(--kb-popper-content-available-height)---spacing(9)))]
+      scroll-py-1 overflow-y-auto p-1 empty:p-0;
+  }
+
+  .cn-combobox-item-text {
+    @apply flex flex-1 gap-2;
+  }
+
+  .cn-combobox-separator {
+    @apply bg-border -mx-1 my-1 h-px;
   }
 
   .cn-combobox-trigger {
@@ -431,6 +447,10 @@
     @apply text-muted-foreground size-4;
   }
 
+  .cn-combobox-input {}
+
+  .cn-combobox-clear {}
+
   .cn-combobox-clear-icon {}
 
   .cn-combobox-chips {
@@ -440,8 +460,8 @@
       has-aria-invalid:border-destructive
       dark:has-aria-invalid:border-destructive/50 flex min-h-8 flex-wrap
       items-center gap-1 rounded-lg border bg-transparent bg-clip-padding px-2.5
-      py-1 text-sm transition-colors focus-within:ring-3
-      has-aria-invalid:ring-3;
+      py-1 text-sm transition-colors focus-within:ring-3 has-aria-invalid:ring-3
+      has-data-[slot=combobox-chip]:px-1;
   }
 
   .cn-combobox-chip {
@@ -453,6 +473,8 @@
   .cn-combobox-chip-remove {
     @apply -ml-1 opacity-50 hover:opacity-100;
   }
+
+  .cn-combobox-chip-input {}
 
   .cn-combobox-chip-indicator-icon {}
 

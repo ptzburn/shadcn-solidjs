@@ -135,6 +135,10 @@
     "dependencies": [
       "@kobalte/core"
     ],
+    "registryDependencies": [
+      "button",
+      "input-group"
+    ],
     "files": [
       "ui/combobox.tsx"
     ],

@@ -166,7 +166,7 @@ export const Index: RegistryIndex = {
     name: "combobox",
     description: "",
     type: "ui",
-    registryDependencies: undefined,
+    registryDependencies: ["button", "input-group"],
     component: lazy(() => import("~/registry/ui/combobox.tsx")),
     files: [{
       path: "registry/ui/combobox.tsx",
@@ -1798,6 +1798,42 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "combobox-basic": {
+    name: "combobox-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-basic.tsx")),
+    files: [{
+      path: "registry/example/combobox-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-clear": {
+    name: "combobox-clear",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-clear.tsx")),
+    files: [{
+      path: "registry/example/combobox-clear.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-custom": {
+    name: "combobox-custom",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-custom.tsx")),
+    files: [{
+      path: "registry/example/combobox-custom.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "combobox-demo": {
     name: "combobox-demo",
     description: "",
@@ -1806,6 +1842,68 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/combobox-demo.tsx")),
     files: [{
       path: "registry/example/combobox-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-disabled": {
+    name: "combobox-disabled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-disabled.tsx")),
+    files: [{
+      path: "registry/example/combobox-disabled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-groups": {
+    name: "combobox-groups",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-groups.tsx")),
+    files: [{
+      path: "registry/example/combobox-groups.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-input-group": {
+    name: "combobox-input-group",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/combobox-input-group.tsx")
+    ),
+    files: [{
+      path: "registry/example/combobox-input-group.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-invalid": {
+    name: "combobox-invalid",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-invalid.tsx")),
+    files: [{
+      path: "registry/example/combobox-invalid.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-multiple": {
+    name: "combobox-multiple",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-multiple.tsx")),
+    files: [{
+      path: "registry/example/combobox-multiple.tsx",
       type: "example",
       target: "",
     }],
