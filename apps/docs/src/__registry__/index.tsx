@@ -3490,6 +3490,20 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "radio-group-choice-card": {
+    name: "radio-group-choice-card",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/radio-group-choice-card.tsx")
+    ),
+    files: [{
+      path: "registry/example/radio-group-choice-card.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "radio-group-demo": {
     name: "radio-group-demo",
     description: "",
@@ -3498,6 +3512,60 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/radio-group-demo.tsx")),
     files: [{
       path: "registry/example/radio-group-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "radio-group-description": {
+    name: "radio-group-description",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/radio-group-description.tsx")
+    ),
+    files: [{
+      path: "registry/example/radio-group-description.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "radio-group-disabled": {
+    name: "radio-group-disabled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/radio-group-disabled.tsx")
+    ),
+    files: [{
+      path: "registry/example/radio-group-disabled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "radio-group-fieldset": {
+    name: "radio-group-fieldset",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/radio-group-fieldset.tsx")
+    ),
+    files: [{
+      path: "registry/example/radio-group-fieldset.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "radio-group-invalid": {
+    name: "radio-group-invalid",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/radio-group-invalid.tsx")),
+    files: [{
+      path: "registry/example/radio-group-invalid.tsx",
       type: "example",
       target: "",
     }],

@@ -1317,9 +1317,9 @@
   }
 
   .cn-radio-group-item {
-    @apply border-input dark:bg-input/30 data-[checked]:bg-primary
-      data-[checked]:text-primary-foreground dark:data-[checked]:bg-primary
-      data-[checked]:border-primary data-invalid:data-[checked]:border-primary
+    @apply border-input dark:bg-input/30 data-checked:bg-primary
+      data-checked:text-primary-foreground dark:data-checked:bg-primary
+      data-checked:border-primary data-invalid:data-checked:border-primary
       data-invalid:border-destructive peer-focus-visible:border-ring
       peer-focus-visible:ring-ring/50 data-invalid:ring-destructive/20
       dark:data-invalid:ring-destructive/40

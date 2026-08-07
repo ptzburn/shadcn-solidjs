@@ -2313,11 +2313,61 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "radio-group-choice-card",
+    type: "example",
+    files: [
+      {
+        path: "example/radio-group-choice-card.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "radio-group-demo",
     type: "example",
     files: [
       {
         path: "example/radio-group-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "radio-group-description",
+    type: "example",
+    files: [
+      {
+        path: "example/radio-group-description.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "radio-group-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/radio-group-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "radio-group-fieldset",
+    type: "example",
+    files: [
+      {
+        path: "example/radio-group-fieldset.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "radio-group-invalid",
+    type: "example",
+    files: [
+      {
+        path: "example/radio-group-invalid.tsx",
         type: "example",
       },
     ],

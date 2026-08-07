@@ -40,11 +40,16 @@ const RadioGroupItem = <T extends ValidComponent = "div">(
   return (
     <RadioGroupPrimitive.Item
       data-slot="radio-group-item"
-      class={cn("flex items-center gap-2", local.class)}
+      class="peer flex items-center gap-2"
       {...others}
     >
       <RadioGroupPrimitive.ItemInput class="peer" />
-      <RadioGroupPrimitive.ItemControl class="cn-radio-group-item relative aspect-square shrink-0 items-center justify-center border outline-none transition-colors after:absolute after:-inset-x-3 after:-inset-y-2 data-disabled:cursor-not-allowed data-disabled:opacity-50">
+      <RadioGroupPrimitive.ItemControl
+        class={cn(
+          "cn-radio-group-item group/radio-group-item relative aspect-square shrink-0 border outline-none after:absolute after:-inset-x-3 after:-inset-y-2 data-disabled:cursor-not-allowed data-disabled:opacity-50",
+          local.class,
+        )}
+      >
         <RadioGroupPrimitive.ItemIndicator
           data-slot="radio-group-indicator"
           class="cn-radio-group-indicator"
