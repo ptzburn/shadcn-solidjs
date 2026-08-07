@@ -283,6 +283,7 @@ export const ui: Registry = [
   {
     name: "input-group",
     type: "ui",
+    dependencies: ["@kobalte/core"],
     registryDependencies: ["button", "input", "textarea"],
     files: [
       {

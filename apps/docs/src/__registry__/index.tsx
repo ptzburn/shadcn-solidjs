@@ -2868,6 +2868,174 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "input-group-demo": {
+    name: "input-group-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-group-demo.tsx")),
+    files: [{
+      path: "registry/example/input-group-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-inline-start": {
+    name: "input-group-inline-start",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/input-group-inline-start.tsx")
+    ),
+    files: [{
+      path: "registry/example/input-group-inline-start.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-inline-end": {
+    name: "input-group-inline-end",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/input-group-inline-end.tsx")
+    ),
+    files: [{
+      path: "registry/example/input-group-inline-end.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-block-start": {
+    name: "input-group-block-start",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/input-group-block-start.tsx")
+    ),
+    files: [{
+      path: "registry/example/input-group-block-start.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-block-end": {
+    name: "input-group-block-end",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/input-group-block-end.tsx")
+    ),
+    files: [{
+      path: "registry/example/input-group-block-end.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-icon": {
+    name: "input-group-icon",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-group-icon.tsx")),
+    files: [{
+      path: "registry/example/input-group-icon.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-text": {
+    name: "input-group-text",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-group-text.tsx")),
+    files: [{
+      path: "registry/example/input-group-text.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-button": {
+    name: "input-group-button",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-group-button.tsx")),
+    files: [{
+      path: "registry/example/input-group-button.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-kbd": {
+    name: "input-group-kbd",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-group-kbd.tsx")),
+    files: [{
+      path: "registry/example/input-group-kbd.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-dropdown": {
+    name: "input-group-dropdown",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/input-group-dropdown.tsx")
+    ),
+    files: [{
+      path: "registry/example/input-group-dropdown.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-spinner": {
+    name: "input-group-spinner",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-group-spinner.tsx")),
+    files: [{
+      path: "registry/example/input-group-spinner.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-textarea": {
+    name: "input-group-textarea",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/input-group-textarea.tsx")
+    ),
+    files: [{
+      path: "registry/example/input-group-textarea.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-group-custom": {
+    name: "input-group-custom",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-group-custom.tsx")),
+    files: [{
+      path: "registry/example/input-group-custom.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "menubar-demo": {
     name: "menubar-demo",
     description: "",

@@ -1813,6 +1813,136 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "input-group-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-inline-start",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-inline-start.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-inline-end",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-inline-end.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-block-start",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-block-start.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-block-end",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-block-end.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-icon",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-icon.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-text",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-text.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-button",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-button.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-kbd",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-kbd.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-dropdown",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-dropdown.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-spinner",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-spinner.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-textarea",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-textarea.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-group-custom",
+    type: "example",
+    files: [
+      {
+        path: "example/input-group-custom.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "menubar-demo",
     type: "example",
     files: [

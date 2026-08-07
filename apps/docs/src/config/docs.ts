@@ -186,6 +186,11 @@ export const docsConfig: Config = {
           status: "new",
         },
         {
+          title: "Input Group",
+          href: "/docs/components/input-group",
+          status: "new",
+        },
+        {
           title: "Label",
           href: "/docs/components/label",
         },

@@ -1,3 +1,5 @@
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+
 import { Button, type ButtonProps } from "./button.tsx";
 import { Input } from "./input.tsx";
 import { Textarea } from "./textarea.tsx";
@@ -5,7 +7,7 @@ import { cn } from "~/lib/utils.ts";
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 
-import type { Component, ComponentProps, JSX } from "solid-js";
+import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
 import { mergeProps, splitProps } from "solid-js";
 
 const InputGroup: Component<ComponentProps<"div">> = (props) => {
@@ -86,14 +88,19 @@ const inputGroupButtonVariants = cva(
   },
 );
 
-type InputGroupButtonProps =
-  & Omit<ButtonProps, "size">
+// Kobalte's ButtonRootProps carries only the primitive's own options, so the
+// intrinsic element props upstream gets from `ComponentProps<typeof Button>`
+// (onClick, title, …) arrive through PolymorphicProps instead.
+type InputGroupButtonProps<T extends ValidComponent = "button"> =
+  & Omit<ButtonProps<T>, "size">
   & VariantProps<typeof inputGroupButtonVariants>;
 
-const InputGroupButton: Component<InputGroupButtonProps> = (rawProps) => {
+const InputGroupButton = <T extends ValidComponent = "button">(
+  rawProps: PolymorphicProps<T, InputGroupButtonProps<T>>,
+) => {
   const props = mergeProps(
     { type: "button" as const, variant: "ghost" as const, size: "xs" as const },
-    rawProps,
+    rawProps as InputGroupButtonProps,
   );
   const [local, others] = splitProps(props, [
     "class",
