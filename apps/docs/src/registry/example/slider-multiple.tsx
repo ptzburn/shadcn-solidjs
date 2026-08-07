@@ -1,11 +1,11 @@
 import { Slider } from "~/registry/ui/slider.tsx";
 
-export default function SliderDemo() {
+export default function SliderMultiple() {
   return (
     <Slider
-      defaultValue={[75]}
+      defaultValue={[10, 20, 70]}
       maxValue={100}
-      step={1}
+      step={10}
       class="mx-auto w-full max-w-xs"
     />
   );

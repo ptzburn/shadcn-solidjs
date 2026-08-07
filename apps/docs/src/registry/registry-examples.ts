@@ -2939,11 +2939,61 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "slider-controlled",
+    type: "example",
+    files: [
+      {
+        path: "example/slider-controlled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "slider-demo",
     type: "example",
     files: [
       {
         path: "example/slider-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "slider-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/slider-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "slider-multiple",
+    type: "example",
+    files: [
+      {
+        path: "example/slider-multiple.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "slider-range",
+    type: "example",
+    files: [
+      {
+        path: "example/slider-range.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "slider-vertical",
+    type: "example",
+    files: [
+      {
+        path: "example/slider-vertical.tsx",
         type: "example",
       },
     ],

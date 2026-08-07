@@ -1,12 +1,7 @@
 import { createSignal } from "solid-js";
 
 import { Field, FieldDescription, FieldTitle } from "~/registry/ui/field.tsx";
-import {
-  Slider,
-  SliderFill,
-  SliderThumb,
-  SliderTrack,
-} from "~/registry/ui/slider.tsx";
+import { Slider } from "~/registry/ui/slider.tsx";
 
 export default function FieldSlider() {
   const [value, setValue] = createSignal([200, 800]);
@@ -27,13 +22,7 @@ export default function FieldSlider() {
         step={10}
         class="mt-2 w-full"
         aria-label="Price Range"
-      >
-        <SliderTrack>
-          <SliderFill />
-          <SliderThumb />
-          <SliderThumb />
-        </SliderTrack>
-      </Slider>
+      />
     </Field>
   );
 }

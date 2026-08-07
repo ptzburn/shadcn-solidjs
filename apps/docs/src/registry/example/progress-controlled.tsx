@@ -1,12 +1,7 @@
 import { createSignal } from "solid-js";
 
 import { Progress } from "~/registry/ui/progress.tsx";
-import {
-  Slider,
-  SliderFill,
-  SliderThumb,
-  SliderTrack,
-} from "~/registry/ui/slider.tsx";
+import { Slider } from "~/registry/ui/slider.tsx";
 
 export default function ProgressControlled() {
   const [value, setValue] = createSignal([50]);
@@ -21,12 +16,7 @@ export default function ProgressControlled() {
         maxValue={100}
         step={1}
         aria-label="Progress value"
-      >
-        <SliderTrack>
-          <SliderFill />
-          <SliderThumb />
-        </SliderTrack>
-      </Slider>
+      />
     </div>
   );
 }

@@ -479,9 +479,6 @@
       "type": "registry:ui",
       "dependencies": [
         "@kobalte/core"
-      ],
-      "registryDependencies": [
-        "label"
       ]
     },
     {

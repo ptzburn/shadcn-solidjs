@@ -498,9 +498,6 @@
     "dependencies": [
       "@kobalte/core"
     ],
-    "registryDependencies": [
-      "label"
-    ],
     "files": [
       "ui/slider.tsx"
     ],

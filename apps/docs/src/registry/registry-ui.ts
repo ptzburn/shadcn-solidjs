@@ -526,7 +526,6 @@ export const ui: Registry = [
     name: "slider",
     type: "ui",
     dependencies: ["@kobalte/core"],
-    registryDependencies: ["label"],
     files: [
       {
         path: "ui/slider.tsx",

@@ -1852,6 +1852,7 @@
 
   .cn-slider-track {
     @apply bg-muted rounded-full data-[orientation=horizontal]:h-1
+      data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full
       data-[orientation=vertical]:w-1;
   }
 
@@ -1860,7 +1861,7 @@
   }
 
   .cn-slider-thumb {
-    @apply border-ring ring-ring/50 size-3 rounded-full border bg-white
+    @apply border-ring ring-ring/50 relative size-3 rounded-full border bg-white
       transition-[color,box-shadow] after:absolute after:-inset-2 hover:ring-3
       focus-visible:ring-3 focus-visible:outline-hidden active:ring-3;
   }

@@ -570,7 +570,7 @@ export const Index: RegistryIndex = {
     name: "slider",
     description: "",
     type: "ui",
-    registryDependencies: ["label"],
+    registryDependencies: undefined,
     component: lazy(() => import("~/registry/ui/slider.tsx")),
     files: [{
       path: "registry/ui/slider.tsx",
@@ -4306,6 +4306,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "slider-controlled": {
+    name: "slider-controlled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/slider-controlled.tsx")),
+    files: [{
+      path: "registry/example/slider-controlled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "slider-demo": {
     name: "slider-demo",
     description: "",
@@ -4314,6 +4326,54 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/slider-demo.tsx")),
     files: [{
       path: "registry/example/slider-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "slider-disabled": {
+    name: "slider-disabled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/slider-disabled.tsx")),
+    files: [{
+      path: "registry/example/slider-disabled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "slider-multiple": {
+    name: "slider-multiple",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/slider-multiple.tsx")),
+    files: [{
+      path: "registry/example/slider-multiple.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "slider-range": {
+    name: "slider-range",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/slider-range.tsx")),
+    files: [{
+      path: "registry/example/slider-range.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "slider-vertical": {
+    name: "slider-vertical",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/slider-vertical.tsx")),
+    files: [{
+      path: "registry/example/slider-vertical.tsx",
       type: "example",
       target: "",
     }],
