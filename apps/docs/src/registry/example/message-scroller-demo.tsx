@@ -160,17 +160,20 @@ export default function MessageScrollerDemo() {
 
     setBusy(true);
     setMessages((current) => [...current, { ...reply, text: "" }]);
-    const words = reply.text.split(" ");
+    // One word per tick, 20ms apart, matching upstream's splitTextDeltas
+    // (/\S+\s*/g) and transport({ delayMs: 20 }). Keeping the trailing
+    // whitespace on each delta preserves the paragraph breaks.
+    const deltas = reply.text.match(/\S+\s*/g) ?? [reply.text];
     let index = 0;
     timer = setInterval(() => {
-      index += 3;
-      const text = words.slice(0, index).join(" ");
+      index += 1;
+      const text = deltas.slice(0, index).join("");
       setMessages((current) =>
         current.map((message) =>
           message.id === reply.id ? { ...message, text } : message
         )
       );
-      if (index >= words.length) {
+      if (index >= deltas.length) {
         clearInterval(timer);
         setBusy(false);
       }
