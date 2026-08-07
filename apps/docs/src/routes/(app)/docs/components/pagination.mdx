@@ -35,6 +35,8 @@ npm install @kobalte/core
 
 <ComponentSource name="pagination" />
 
+<Step>Update the import paths to match your project setup.</Step>
+
 </Steps>
 </TabsContent>
 
@@ -55,6 +57,7 @@ import {
 
 ```tsx showLineNumbers
 <Pagination
+  count={10}
   itemComponent={(props) => <PaginationItem page={props.page}>{props.page}</PaginationItem>}
   ellipsisComponent={() => <PaginationEllipsis />}
 >
@@ -63,3 +66,43 @@ import {
   <PaginationNext />
 </Pagination>
 ```
+
+## Composition
+
+Use the following composition to build a `Pagination`:
+
+```text
+Pagination
+├── PaginationPrevious
+├── PaginationItems
+│   ├── PaginationItem      (rendered by itemComponent)
+│   └── PaginationEllipsis  (rendered by ellipsisComponent)
+└── PaginationNext
+```
+
+`Pagination` renders the list element itself, so `PaginationItems` only takes the page items from the `itemComponent` and `ellipsisComponent` render props.
+
+## Simple
+
+A simple pagination with only page numbers.
+
+<ComponentPreview name="pagination-simple" />
+
+## Icons Only
+
+Use just the previous and next buttons without page numbers. This is useful for data tables with a rows per page selector.
+
+<ComponentPreview name="pagination-icons-only" />
+
+## Text
+
+Use the `text` prop to change the label of the previous and next buttons.
+
+```tsx showLineNumbers
+<PaginationPrevious text="Older" />
+<PaginationNext text="Newer" />
+```
+
+## API Reference
+
+See the [Kobalte](https://kobalte.dev/docs/core/components/pagination) documentation for more information.

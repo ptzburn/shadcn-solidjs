@@ -1254,16 +1254,21 @@
   .cn-pagination-link {}
 
   .cn-pagination-ellipsis {
-    @apply size-8 [&_svg:not([class*='size-'])]:size-4;
+    @apply size-8 items-center justify-center
+      [&_svg:not([class*='size-'])]:size-4;
   }
 
   .cn-pagination-previous {
     @apply pl-1.5!;
   }
 
+  .cn-pagination-previous-text {}
+
   .cn-pagination-next {
     @apply pr-1.5!;
   }
+
+  .cn-pagination-next-text {}
 
   /* MARK: Popover */
   .cn-popover-content {

@@ -1,11 +1,12 @@
 import * as PaginationPrimitive from "@kobalte/core/pagination";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
+import type { ButtonProps } from "./button.tsx";
 import { buttonVariants } from "./button.tsx";
 import { cn } from "~/lib/utils.ts";
 
 import type { JSX, ValidComponent } from "solid-js";
-import { Show, splitProps } from "solid-js";
+import { children, Show, splitProps } from "solid-js";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const PaginationItems = PaginationPrimitive.Items;
@@ -20,10 +21,14 @@ const Pagination = <T extends ValidComponent = "nav">(
   const [local, others] = splitProps(props as PaginationRootProps, ["class"]);
   return (
     <PaginationPrimitive.Root
+      role="navigation"
+      aria-label="pagination"
       data-slot="pagination"
       class={cn(
         "cn-pagination mx-auto flex w-full justify-center",
-        "[&>ul]:flex [&>ul]:flex-row [&>ul]:items-center [&>ul]:gap-0.5",
+        // Kobalte renders the list itself, so the `pagination-content` styles
+        // are applied from here.
+        "[&>ul]:flex [&>ul]:items-center [&>ul]:gap-0.5",
         local.class,
       )}
       {...others}
@@ -33,21 +38,29 @@ const Pagination = <T extends ValidComponent = "nav">(
 
 type PaginationItemProps<T extends ValidComponent = "button"> =
   & PaginationPrimitive.PaginationItemProps<T>
-  & { class?: string | undefined };
+  & {
+    class?: string | undefined;
+    size?: ButtonProps["size"];
+  };
 
 const PaginationItem = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, PaginationItemProps<T>>,
 ) => {
-  const [local, others] = splitProps(props as PaginationItemProps, ["class"]);
+  const [local, others] = splitProps(props as PaginationItemProps, [
+    "class",
+    "size",
+  ]);
   return (
     <PaginationPrimitive.Item
       data-slot="pagination-link"
       class={cn(
         buttonVariants({
           variant: "ghost",
-          size: "icon",
+          size: local.size ?? "icon",
         }),
-        "cn-pagination-link dark:data-[current]:border-input dark:data-[current]:bg-input/30 data-[current]:border-border data-[current]:bg-background",
+        // Kobalte marks the current page with `data-current`, so the outline
+        // variant is applied from here instead of swapping variants.
+        "cn-pagination-link data-[current]:border-border data-[current]:bg-background dark:data-[current]:border-input dark:data-[current]:bg-input/30 dark:data-[current]:hover:bg-input/50",
         local.class,
       )}
       {...others}
@@ -105,37 +118,38 @@ const PaginationPrevious = <T extends ValidComponent = "button">(
     "text",
     "children",
   ]);
+
+  // prevents rendering children twice
+  const resolvedChildren = children(() => local.children);
+  const hasChildren = () => resolvedChildren.toArray().length !== 0;
+
   return (
     <PaginationPrimitive.Previous
       aria-label="Go to previous page"
+      data-slot="pagination-link"
       class={cn(
         buttonVariants({
           variant: "ghost",
           size: "default",
         }),
-        "cn-pagination-previous",
+        "cn-pagination-link cn-pagination-previous",
         local.class,
       )}
       {...others}
     >
-      <Show
-        when={local.children}
-        fallback={
-          <>
-            <IconPlaceholder
-              lucide="chevron-left"
-              tabler="chevron-left"
-              ph="caret-left"
-              ri="arrow-left-s-line"
-              hugeicons="arrow-left-01"
-              data-icon="inline-start"
-              class="cn-rtl-flip"
-            />
-            <span class="hidden sm:block">{local.text ?? "Previous"}</span>
-          </>
-        }
-      >
-        {(children) => children()}
+      <Show when={!hasChildren()} fallback={resolvedChildren()}>
+        <IconPlaceholder
+          lucide="chevron-left"
+          tabler="chevron-left"
+          ph="caret-left"
+          ri="arrow-left-s-line"
+          hugeicons="arrow-left-01"
+          data-icon="inline-start"
+          class="cn-rtl-flip"
+        />
+        <span class="cn-pagination-previous-text hidden sm:block">
+          {local.text ?? "Previous"}
+        </span>
       </Show>
     </PaginationPrimitive.Previous>
   );
@@ -157,37 +171,38 @@ const PaginationNext = <T extends ValidComponent = "button">(
     "text",
     "children",
   ]);
+
+  // prevents rendering children twice
+  const resolvedChildren = children(() => local.children);
+  const hasChildren = () => resolvedChildren.toArray().length !== 0;
+
   return (
     <PaginationPrimitive.Next
       aria-label="Go to next page"
+      data-slot="pagination-link"
       class={cn(
         buttonVariants({
           variant: "ghost",
           size: "default",
         }),
-        "cn-pagination-next",
+        "cn-pagination-link cn-pagination-next",
         local.class,
       )}
       {...others}
     >
-      <Show
-        when={local.children}
-        fallback={
-          <>
-            <span class="hidden sm:block">{local.text ?? "Next"}</span>
-            <IconPlaceholder
-              lucide="chevron-right"
-              tabler="chevron-right"
-              ph="caret-right"
-              ri="arrow-right-s-line"
-              hugeicons="arrow-right-01"
-              data-icon="inline-end"
-              class="cn-rtl-flip"
-            />
-          </>
-        }
-      >
-        {(children) => children()}
+      <Show when={!hasChildren()} fallback={resolvedChildren()}>
+        <span class="cn-pagination-next-text hidden sm:block">
+          {local.text ?? "Next"}
+        </span>
+        <IconPlaceholder
+          lucide="chevron-right"
+          tabler="chevron-right"
+          ph="caret-right"
+          ri="arrow-right-s-line"
+          hugeicons="arrow-right-01"
+          data-icon="inline-end"
+          class="cn-rtl-flip"
+        />
       </Show>
     </PaginationPrimitive.Next>
   );

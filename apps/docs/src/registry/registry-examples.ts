@@ -2223,6 +2223,26 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "pagination-simple",
+    type: "example",
+    files: [
+      {
+        path: "example/pagination-simple.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "pagination-icons-only",
+    type: "example",
+    files: [
+      {
+        path: "example/pagination-icons-only.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "popover-demo",
     type: "example",
     files: [

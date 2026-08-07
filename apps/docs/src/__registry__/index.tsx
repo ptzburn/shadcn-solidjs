@@ -3380,6 +3380,32 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "pagination-simple": {
+    name: "pagination-simple",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/pagination-simple.tsx")),
+    files: [{
+      path: "registry/example/pagination-simple.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "pagination-icons-only": {
+    name: "pagination-icons-only",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/pagination-icons-only.tsx")
+    ),
+    files: [{
+      path: "registry/example/pagination-icons-only.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "popover-demo": {
     name: "popover-demo",
     description: "",
