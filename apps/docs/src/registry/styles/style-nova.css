@@ -1169,28 +1169,52 @@
   }
 
   /* MARK: Navigation Menu */
-  .cn-navigation-menu {}
+  /* Kobalte's root is also the list, so upstream's `.cn-navigation-menu-list`
+     tokens (`gap-0`) live here. */
+  .cn-navigation-menu {
+    @apply max-w-max gap-0;
+  }
 
   .cn-navigation-menu-trigger {
-    @apply focus-visible:ring-ring/50 text-sm font-medium
-      focus-visible:ring-[3px] focus-visible:outline-1 disabled:opacity-50;
+    @apply hover:bg-muted focus:bg-muted data-expanded:hover:bg-muted
+      data-expanded:focus:bg-muted data-expanded:bg-muted/50
+      focus-visible:ring-ring/50 rounded-lg px-2.5 py-1.5 text-sm font-medium
+      transition-all focus-visible:ring-3 focus-visible:outline-1
+      disabled:opacity-50;
   }
 
   .cn-navigation-menu-link {
-    @apply focus-visible:ring-ring/50 flex p-2 text-sm transition-all
-      outline-none focus-visible:ring-[3px] focus-visible:outline-1
+    @apply data-active:focus:bg-muted data-active:hover:bg-muted
+      data-active:bg-muted/50 focus-visible:ring-ring/50 hover:bg-muted
+      focus:bg-muted flex items-center gap-2 rounded-lg p-2 text-sm
+      transition-all outline-none focus-visible:ring-3
+      focus-visible:outline-1 in-data-[slot=navigation-menu-content]:rounded-md
       [&_svg:not([class*='size-'])]:size-4;
   }
 
+  .cn-navigation-menu-label {}
+
+  .cn-navigation-menu-description {}
+
   .cn-navigation-menu-trigger-icon {
-    @apply relative top-[1px] ml-1 size-3 transition duration-300
-      group-data-[expanded]:rotate-180;
+    @apply relative top-px ml-1 size-3 transition duration-300
+      group-data-expanded/navigation-menu-trigger:rotate-180;
   }
 
-  .cn-navigation-menu-content {}
+  .cn-navigation-menu-content {
+    @apply data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out
+      data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out
+      data-[motion=from-end]:slide-in-from-right-52
+      data-[motion=from-start]:slide-in-from-left-52
+      data-[motion=to-end]:slide-out-to-right-52
+      data-[motion=to-start]:slide-out-to-left-52 p-1
+      ease-[cubic-bezier(0.22,1,0.36,1)];
+  }
 
   .cn-navigation-menu-viewport {
-    @apply bg-popover text-popover-foreground;
+    @apply bg-popover text-popover-foreground data-expanded:animate-in
+      data-closed:animate-out data-closed:zoom-out-90 data-expanded:zoom-in-90
+      ring-foreground/10 rounded-lg shadow ring-1 duration-100;
   }
 
   /* MARK: Pagination */

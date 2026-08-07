@@ -3,7 +3,11 @@ title: Navigation Menu
 description: A collection of links for navigating websites.
 ---
 
-<ComponentPreview name="navigation-menu-demo" />
+<ComponentPreview
+  name="navigation-menu-demo"
+  previewClassName="h-96"
+  class="overflow-visible"
+/>
 
 ## Installation
 
@@ -25,15 +29,17 @@ npx shadcn-solidjs@latest add navigation-menu
 <TabsContent value="manual">
 <Steps class="mb-0 pt-2">
 
-<Step>Install the following dependencies: </Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @kobalte/core
 ```
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="navigation-menu" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 </TabsContent>
@@ -46,23 +52,115 @@ npm install @kobalte/core
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIcon,
   NavigationMenuItem,
   NavigationMenuLink,
-  NavigationMenuTrigger
+  NavigationMenuTrigger,
 } from "~/components/ui/navigation-menu"
 ```
 
 ```tsx showLineNumbers
 <NavigationMenu>
   <NavigationMenuItem>
-    <NavigationMenuTrigger>
-      Item one
-      <NavigationMenuIcon />
-    </NavigationMenuTrigger>
+    <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
     <NavigationMenuContent>
-      <NavigationMenuLink>Link</NavigationMenuLink>
+      <NavigationMenuLink href="/link">Link</NavigationMenuLink>
     </NavigationMenuContent>
   </NavigationMenuItem>
 </NavigationMenu>
 ```
+
+## Composition
+
+Use the following composition to build a `NavigationMenu`:
+
+```text
+NavigationMenu
+├── NavigationMenuItem
+│   ├── NavigationMenuTrigger
+│   └── NavigationMenuContent
+│       ├── NavigationMenuLink
+│       └── NavigationMenuLink
+└── NavigationMenuTrigger (as="a")
+```
+
+Kobalte merges Radix's `Root` and `List` into a single primitive, so there is no
+`NavigationMenuList`: `NavigationMenu` renders the list itself. `NavigationMenuItem`
+only provides context — the `<li>` wrappers come from `NavigationMenuTrigger` and
+`NavigationMenuLink`. The viewport is always rendered by `NavigationMenu`, since
+Kobalte portals every `NavigationMenuContent` into it.
+
+Kobalte also has no `NavigationMenuIndicator`. Its closest primitive,
+`NavigationMenu.Arrow`, must live inside the viewport and derives its own fill and
+stroke from the viewport's computed style, so it is not exported here.
+
+## Link Component
+
+Use the `as` prop to compose a custom link component such as the router's `A`.
+
+```tsx showLineNumbers
+import { A } from "@solidjs/router"
+
+import {
+  NavigationMenuContent,
+  NavigationMenuLink,
+} from "~/components/ui/navigation-menu"
+
+export function NavigationMenuDemo() {
+  return (
+    <NavigationMenuContent>
+      <NavigationMenuLink as={A} href="/docs">
+        Documentation
+      </NavigationMenuLink>
+    </NavigationMenuContent>
+  )
+}
+```
+
+## Top Level Links
+
+`NavigationMenuLink` belongs inside `NavigationMenuContent`, where Kobalte manages
+its focus. A link that sits directly in the menu bar goes on
+`NavigationMenuTrigger` instead: Kobalte turns a trigger that carries an `href`
+into a plain menu bar link, so it stays in the menu's keyboard navigation, it
+opens nothing, and it renders no chevron. It already carries
+`navigationMenuTriggerStyle()`, which upstream applies to the link by hand.
+
+```tsx showLineNumbers
+<NavigationMenu>
+  <NavigationMenuTrigger as="a" href="/docs">Docs</NavigationMenuTrigger>
+</NavigationMenu>
+```
+
+## Label and Description
+
+`NavigationMenuLabel` and `NavigationMenuDescription` are Kobalte-only slots that
+wire a link's `aria-labelledby` and `aria-describedby`.
+
+```tsx showLineNumbers
+<NavigationMenuLink href="/docs">
+  <div class="flex flex-col gap-1 text-sm">
+    <NavigationMenuLabel class="leading-none font-medium">
+      Introduction
+    </NavigationMenuLabel>
+    <NavigationMenuDescription class="line-clamp-2 text-muted-foreground">
+      Re-usable components built with Kobalte and Tailwind CSS.
+    </NavigationMenuDescription>
+  </div>
+</NavigationMenuLink>
+```
+
+## Active Link
+
+Kobalte's link primitive has no `active` prop, so set `data-active` yourself to
+style the link for the current page.
+
+```tsx showLineNumbers
+<NavigationMenuLink href="/docs" data-active={isActive() ? "" : undefined}>
+  Docs
+</NavigationMenuLink>
+```
+
+## API Reference
+
+See the [Kobalte](https://kobalte.dev/docs/core/components/navigation-menu)
+documentation for more information.
