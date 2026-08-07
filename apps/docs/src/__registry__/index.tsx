@@ -1660,6 +1660,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "checkbox-basic": {
+    name: "checkbox-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/checkbox-basic.tsx")),
+    files: [{
+      path: "registry/example/checkbox-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "checkbox-demo": {
     name: "checkbox-demo",
     description: "",
@@ -1672,16 +1684,64 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
-  "checkbox-indeterminate-demo": {
-    name: "checkbox-indeterminate-demo",
+  "checkbox-description": {
+    name: "checkbox-description",
     description: "",
     type: "example",
     registryDependencies: undefined,
     component: lazy(() =>
-      import("~/registry/example/checkbox-indeterminate-demo.tsx")
+      import("~/registry/example/checkbox-description.tsx")
     ),
     files: [{
-      path: "registry/example/checkbox-indeterminate-demo.tsx",
+      path: "registry/example/checkbox-description.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "checkbox-disabled": {
+    name: "checkbox-disabled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/checkbox-disabled.tsx")),
+    files: [{
+      path: "registry/example/checkbox-disabled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "checkbox-group": {
+    name: "checkbox-group",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/checkbox-group.tsx")),
+    files: [{
+      path: "registry/example/checkbox-group.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "checkbox-invalid": {
+    name: "checkbox-invalid",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/checkbox-invalid.tsx")),
+    files: [{
+      path: "registry/example/checkbox-invalid.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "checkbox-table": {
+    name: "checkbox-table",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/checkbox-table.tsx")),
+    files: [{
+      path: "registry/example/checkbox-table.tsx",
       type: "example",
       target: "",
     }],

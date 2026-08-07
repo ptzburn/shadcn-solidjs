@@ -842,6 +842,16 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "checkbox-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/checkbox-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "checkbox-demo",
     type: "example",
     files: [
@@ -852,11 +862,51 @@ export const examples: Registry = [
     ],
   },
   {
-    name: "checkbox-indeterminate-demo",
+    name: "checkbox-description",
     type: "example",
     files: [
       {
-        path: "example/checkbox-indeterminate-demo.tsx",
+        path: "example/checkbox-description.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "checkbox-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/checkbox-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "checkbox-group",
+    type: "example",
+    files: [
+      {
+        path: "example/checkbox-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "checkbox-invalid",
+    type: "example",
+    files: [
+      {
+        path: "example/checkbox-invalid.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "checkbox-table",
+    type: "example",
+    files: [
+      {
+        path: "example/checkbox-table.tsx",
         type: "example",
       },
     ],
