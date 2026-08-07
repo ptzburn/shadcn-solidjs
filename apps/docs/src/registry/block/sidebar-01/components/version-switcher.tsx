@@ -51,7 +51,7 @@ export function VersionSwitcher(
               class="ml-auto"
             />
           </DropdownMenuTrigger>
-          <DropdownMenuContent class="w-[--kb-popper-anchor-width]">
+          <DropdownMenuContent class="w-(--kb-popper-anchor-width)">
             <For each={props.versions}>
               {(version) => (
                 <DropdownMenuItem onSelect={() => setSelectedVersion(version)}>
