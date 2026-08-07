@@ -35,7 +35,10 @@ export default function EmptyInputGroup() {
             />
           </InputGroupAddon>
           <InputGroupAddon align="inline-end">
-            <kbd class="pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 rounded-sm bg-muted px-1 font-sans text-xs font-medium text-muted-foreground select-none">
+            <kbd
+              data-slot="kbd"
+              class="pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 bg-muted px-1 font-sans text-xs font-medium text-muted-foreground select-none"
+            >
               /
             </kbd>
           </InputGroupAddon>
