@@ -5,6 +5,9 @@
   "dependencies": [
     "@kobalte/core"
   ],
+  "registryDependencies": [
+    "toggle"
+  ],
   "files": [
     {
       "path": "src/registry/ui/toggle-group.tsx",

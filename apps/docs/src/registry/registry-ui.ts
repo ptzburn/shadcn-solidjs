@@ -663,6 +663,7 @@ export const ui: Registry = [
     name: "toggle-group",
     type: "ui",
     dependencies: ["@kobalte/core"],
+    registryDependencies: ["toggle"],
     files: [
       {
         path: "ui/toggle-group.tsx",

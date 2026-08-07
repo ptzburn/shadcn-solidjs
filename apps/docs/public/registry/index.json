@@ -603,6 +603,9 @@
     "dependencies": [
       "@kobalte/core"
     ],
+    "registryDependencies": [
+      "toggle"
+    ],
     "files": [
       "ui/toggle-group.tsx"
     ],
