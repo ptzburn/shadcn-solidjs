@@ -1333,6 +1333,26 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "drawer-scrollable-content",
+    type: "example",
+    files: [
+      {
+        path: "example/drawer-scrollable-content.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "drawer-sides",
+    type: "example",
+    files: [
+      {
+        path: "example/drawer-sides.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "dropdown-menu-demo",
     type: "example",
     files: [

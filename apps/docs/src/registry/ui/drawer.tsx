@@ -53,14 +53,10 @@ const DrawerOverlay = <T extends ValidComponent = "div">(
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"
       class={cn(
-        "cn-drawer-overlay fixed inset-0 z-50 data-transitioning:transition-colors data-transitioning:duration-300",
+        "cn-drawer-overlay fixed inset-0 z-50 data-transitioning:transition-opacity data-transitioning:duration-300",
         props.class,
       )}
-      style={{
-        "background-color": `rgb(0 0 0 / ${
-          0.1 * drawerContext.openPercentage()
-        })`,
-      }}
+      style={{ opacity: drawerContext.openPercentage() }}
       {...rest}
     />
   );
@@ -84,7 +80,7 @@ const DrawerContent = <T extends ValidComponent = "div">(
       <DrawerPrimitive.Content
         data-slot="drawer-content"
         class={cn(
-          "cn-drawer-content group/drawer-content fixed z-50 data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:mt-24 data-[side=bottom]:max-h-[80vh] data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:w-3/4 data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:w-3/4 data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:mb-24 data-[side=top]:max-h-[80vh] data-transitioning:transition-transform data-transitioning:duration-300 data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm",
+          "cn-drawer-content group/drawer-content fixed z-50 data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:mt-24 data-[side=bottom]:max-h-[80vh] data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:w-3/4 data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:w-3/4 data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:mb-24 data-[side=top]:max-h-[80vh] data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm data-transitioning:transition-transform data-transitioning:duration-300",
           props.class,
         )}
         {...rest}

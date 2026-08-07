@@ -2272,6 +2272,32 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "drawer-scrollable-content": {
+    name: "drawer-scrollable-content",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/drawer-scrollable-content.tsx")
+    ),
+    files: [{
+      path: "registry/example/drawer-scrollable-content.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "drawer-sides": {
+    name: "drawer-sides",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/drawer-sides.tsx")),
+    files: [{
+      path: "registry/example/drawer-sides.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "dropdown-menu-demo": {
     name: "dropdown-menu-demo",
     description: "",

@@ -692,7 +692,7 @@
 
   /* MARK: Drawer */
   .cn-drawer-overlay {
-    @apply supports-backdrop-filter:backdrop-blur-xs;
+    @apply bg-black/10 supports-backdrop-filter:backdrop-blur-xs;
   }
 
   .cn-drawer-content {
@@ -704,7 +704,7 @@
   }
 
   .cn-drawer-handle {
-    @apply bg-muted mt-4 h-1 w-[100px] rounded-full;
+    @apply bg-muted mx-auto mt-4 hidden h-1 w-[100px] shrink-0 rounded-full;
   }
 
   .cn-drawer-header {

@@ -1,6 +1,7 @@
 import type { ComponentProps } from "solid-js";
-import { createSignal, onMount, Show } from "solid-js";
+import { createSignal, Show } from "solid-js";
 
+import { useMediaQuery } from "~/lib/hooks/use-media-query.ts";
 import { cn } from "~/lib/utils.ts";
 import { Button } from "~/registry/ui/button.tsx";
 import {
@@ -26,36 +27,33 @@ import { Label } from "~/registry/ui/label.tsx";
 
 export default function DrawerDialogDemo() {
   const [open, setOpen] = createSignal(false);
-  const [isDesktop, setIsDesktop] = createSignal(false);
-
-  onMount(() => {
-    setIsDesktop(globalThis.innerWidth >= 768);
-  });
-
-  const MobileDialog = () => (
-    <Drawer open={open()} onOpenChange={setOpen}>
-      <DrawerTrigger as={Button<"button">} variant="outline">
-        Edit Profile
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader class="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
-          <DrawerDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DrawerDescription>
-        </DrawerHeader>
-        <ProfileForm class="px-4" />
-        <DrawerFooter class="pt-2">
-          <DrawerClose as={Button<"button">} variant="outline">
-            Cancel
-          </DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
-  );
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   return (
-    <Show when={isDesktop()} fallback={<MobileDialog />}>
+    <Show
+      when={isDesktop()}
+      fallback={
+        <Drawer open={open()} onOpenChange={setOpen}>
+          <DrawerTrigger as={Button<"button">} variant="outline">
+            Edit Profile
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader class="text-left">
+              <DrawerTitle>Edit profile</DrawerTitle>
+              <DrawerDescription>
+                Make changes to your profile here. Click save when you're done.
+              </DrawerDescription>
+            </DrawerHeader>
+            <ProfileForm class="px-4" />
+            <DrawerFooter class="pt-2">
+              <DrawerClose as={Button<"button">} variant="outline">
+                Cancel
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      }
+    >
       <Dialog open={open()} onOpenChange={setOpen}>
         <DialogTrigger as={Button} variant="outline">
           Edit Profile
@@ -76,14 +74,14 @@ export default function DrawerDialogDemo() {
 
 function ProfileForm(props: ComponentProps<"form">) {
   return (
-    <form class={cn("grid items-start gap-4", props.class)}>
-      <div class="grid gap-2">
+    <form class={cn("grid items-start gap-6", props.class)}>
+      <div class="grid gap-3">
         <Label for="email">Email</Label>
-        <Input id="email" type="email" placeholder="shadcn@example.com" />
+        <Input type="email" id="email" value="shadcn@example.com" />
       </div>
-      <div class="grid gap-2">
+      <div class="grid gap-3">
         <Label for="username">Username</Label>
-        <Input id="username" placeholder="@shadcn" />
+        <Input id="username" value="@shadcn" />
       </div>
       <Button type="submit">Save changes</Button>
     </form>
