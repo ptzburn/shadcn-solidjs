@@ -450,7 +450,7 @@ export const ui: Registry = [
       "sheet",
       "skeleton",
       "tooltip",
-      "use-mobile",
+      "use-media-query",
     ],
     files: [
       {

@@ -2,6 +2,8 @@ import * as v from "valibot";
 
 export const registryTypeSchema = v.picklist([
   "ui",
+  "lib",
+  "hook",
   "example",
   "block",
   "page",

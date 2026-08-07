@@ -485,7 +485,7 @@ export const Index: RegistryIndex = {
       "sheet",
       "skeleton",
       "tooltip",
-      "use-mobile",
+      "use-media-query",
     ],
     component: lazy(() => import("~/registry/ui/sidebar.tsx")),
     files: [{

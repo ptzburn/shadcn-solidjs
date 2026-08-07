@@ -93,7 +93,9 @@ import type { RegistryIndex } from "~/registry/schema.ts"
 export const Index: RegistryIndex = {
 `;
 for (const item of items) {
-  if (item.type === "theme") {
+  // Themes carry no files; lib and hook items are plain modules rather than
+  // components the docs site can lazily render.
+  if (item.type === "theme" || item.type === "lib" || item.type === "hook") {
     continue;
   }
   const componentPath = item.files[0]?.path ??
@@ -175,7 +177,12 @@ for (const item of items) {
     continue;
   }
 
-  if (item.type !== "ui") {
+  // lib and hook items carry no icons, so the fan-out below writes five
+  // identical variants. That is deliberate: it keeps every item addressable
+  // under the same `icons/<library>/` prefix the CLI selects per icon
+  // library, so resolving a ui item's registryDependencies never has to fall
+  // back to a different path.
+  if (item.type !== "ui" && item.type !== "lib" && item.type !== "hook") {
     continue;
   }
 
@@ -256,7 +263,9 @@ const legacyIndex = items
 writeJson(path.join(LEGACY_PATH, "index.json"), legacyIndex);
 
 console.log(
-  `Built ${items.filter((i) => i.type === "ui").length} ui items ` +
+  `Built ${items.filter((i) => i.type === "ui").length} ui items, ` +
+    `${items.filter((i) => i.type === "lib").length} lib items, ` +
+    `${items.filter((i) => i.type === "hook").length} hooks ` +
     `(x${iconLibraryNames.length} icon libraries), ` +
     `${items.filter((i) => i.type === "theme").length} themes.`,
 );

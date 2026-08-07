@@ -431,7 +431,7 @@
         "sheet",
         "skeleton",
         "tooltip",
-        "use-mobile"
+        "use-media-query"
       ]
     },
     {
@@ -523,6 +523,20 @@
       "dependencies": [
         "@kobalte/core"
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "utils",
+      "type": "registry:lib",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "use-media-query",
+      "type": "registry:hook"
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

@@ -435,7 +435,7 @@
       "sheet",
       "skeleton",
       "tooltip",
-      "use-mobile"
+      "use-media-query"
     ],
     "files": [
       "ui/sidebar.tsx"
