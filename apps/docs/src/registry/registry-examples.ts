@@ -202,6 +202,66 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "attachment-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/attachment-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "attachment-image",
+    type: "example",
+    files: [
+      {
+        path: "example/attachment-image.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "attachment-states",
+    type: "example",
+    files: [
+      {
+        path: "example/attachment-states.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "attachment-sizes",
+    type: "example",
+    files: [
+      {
+        path: "example/attachment-sizes.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "attachment-group",
+    type: "example",
+    files: [
+      {
+        path: "example/attachment-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "attachment-trigger",
+    type: "example",
+    files: [
+      {
+        path: "example/attachment-trigger.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "avatar-demo",
     type: "example",
     files: [
@@ -287,6 +347,96 @@ export const examples: Registry = [
     files: [
       {
         path: "example/avatar-dropdown.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "bubble-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/bubble-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "bubble-variants",
+    type: "example",
+    files: [
+      {
+        path: "example/bubble-variants.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "bubble-alignment",
+    type: "example",
+    files: [
+      {
+        path: "example/bubble-alignment.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "bubble-group-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/bubble-group-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "bubble-link-button",
+    type: "example",
+    files: [
+      {
+        path: "example/bubble-link-button.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "bubble-reactions",
+    type: "example",
+    files: [
+      {
+        path: "example/bubble-reactions.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "bubble-collapsible",
+    type: "example",
+    files: [
+      {
+        path: "example/bubble-collapsible.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "bubble-tooltip",
+    type: "example",
+    files: [
+      {
+        path: "example/bubble-tooltip.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "bubble-popover",
+    type: "example",
+    files: [
+      {
+        path: "example/bubble-popover.tsx",
         type: "example",
       },
     ],
@@ -2103,6 +2253,86 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "marker-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/marker-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "marker-variants",
+    type: "example",
+    files: [
+      {
+        path: "example/marker-variants.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "marker-status",
+    type: "example",
+    files: [
+      {
+        path: "example/marker-status.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "marker-shimmer",
+    type: "example",
+    files: [
+      {
+        path: "example/marker-shimmer.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "marker-separator",
+    type: "example",
+    files: [
+      {
+        path: "example/marker-separator.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "marker-border",
+    type: "example",
+    files: [
+      {
+        path: "example/marker-border.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "marker-icon",
+    type: "example",
+    files: [
+      {
+        path: "example/marker-icon.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "marker-link-button",
+    type: "example",
+    files: [
+      {
+        path: "example/marker-link-button.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "menubar-checkbox",
     type: "example",
     files: [
@@ -2158,6 +2388,66 @@ export const examples: Registry = [
     files: [
       {
         path: "example/mode-toggle.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/message-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-avatar",
+    type: "example",
+    files: [
+      {
+        path: "example/message-avatar.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-group",
+    type: "example",
+    files: [
+      {
+        path: "example/message-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-header-footer",
+    type: "example",
+    files: [
+      {
+        path: "example/message-header-footer.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-actions",
+    type: "example",
+    files: [
+      {
+        path: "example/message-actions.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-attachment",
+    type: "example",
+    files: [
+      {
+        path: "example/message-attachment.tsx",
         type: "example",
       },
     ],

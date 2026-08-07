@@ -40,6 +40,19 @@
     "type": "ui"
   },
   {
+    "name": "attachment",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "files": [
+      "ui/attachment.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "avatar",
     "dependencies": [
       "@kobalte/core"
@@ -66,6 +79,16 @@
     ],
     "files": [
       "ui/breadcrumb.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "bubble",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "files": [
+      "ui/bubble.tsx"
     ],
     "type": "ui"
   },
@@ -312,12 +335,29 @@
     "type": "ui"
   },
   {
+    "name": "marker",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "files": [
+      "ui/marker.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "menubar",
     "dependencies": [
       "@kobalte/core"
     ],
     "files": [
       "ui/menubar.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "message",
+    "files": [
+      "ui/message.tsx"
     ],
     "type": "ui"
   },

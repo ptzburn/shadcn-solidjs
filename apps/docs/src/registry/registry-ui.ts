@@ -46,6 +46,18 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "attachment",
+    type: "ui",
+    dependencies: ["@kobalte/core"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "ui/attachment.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "avatar",
     type: "ui",
     dependencies: ["@kobalte/core"],
@@ -74,6 +86,17 @@ export const ui: Registry = [
     files: [
       {
         path: "ui/breadcrumb.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
+    name: "bubble",
+    type: "ui",
+    dependencies: ["@kobalte/core"],
+    files: [
+      {
+        path: "ui/bubble.tsx",
         type: "ui",
       },
     ],
@@ -326,12 +349,33 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "marker",
+    type: "ui",
+    dependencies: ["@kobalte/core"],
+    files: [
+      {
+        path: "ui/marker.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "menubar",
     type: "ui",
     dependencies: ["@kobalte/core"],
     files: [
       {
         path: "ui/menubar.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
+    name: "message",
+    type: "ui",
+    files: [
+      {
+        path: "ui/message.tsx",
         type: "ui",
       },
     ],

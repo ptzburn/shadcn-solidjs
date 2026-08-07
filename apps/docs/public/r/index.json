@@ -41,6 +41,17 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "attachment",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "avatar",
       "type": "registry:ui",
       "dependencies": [
@@ -65,6 +76,14 @@
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "bubble",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
       ]
     },
     {
@@ -299,6 +318,14 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "marker",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "menubar",
       "type": "registry:ui",
       "dependencies": [
@@ -308,6 +335,11 @@
         "unplugin-icons",
         "@iconify-json/lucide"
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "message",
+      "type": "registry:ui"
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

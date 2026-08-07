@@ -81,6 +81,11 @@ export const docsConfig: Config = {
           href: "/docs/components/aspect-ratio",
         },
         {
+          title: "Attachment",
+          href: "/docs/components/attachment",
+          status: "new",
+        },
+        {
           title: "Avatar",
           href: "/docs/components/avatar",
         },
@@ -91,6 +96,11 @@ export const docsConfig: Config = {
         {
           title: "Breadcrumb",
           href: "/docs/components/breadcrumb",
+        },
+        {
+          title: "Bubble",
+          href: "/docs/components/bubble",
+          status: "new",
         },
         {
           title: "Button",
@@ -194,8 +204,18 @@ export const docsConfig: Config = {
           href: "/docs/components/label",
         },
         {
+          title: "Marker",
+          href: "/docs/components/marker",
+          status: "new",
+        },
+        {
           title: "Menubar",
           href: "/docs/components/menubar",
+        },
+        {
+          title: "Message",
+          href: "/docs/components/message",
+          status: "new",
         },
         {
           title: "Navigation Menu",
