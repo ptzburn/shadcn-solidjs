@@ -24,7 +24,7 @@ type SwitchControlProps = SwitchPrimitive.SwitchControlProps & {
   class?: string | undefined;
   children?: JSX.Element;
   size?: "sm" | "default";
-  onClick?: (event: MouseEvent) => void;
+  onClick?: JSX.EventHandlerUnion<HTMLElement, MouseEvent>;
 };
 
 const SwitchControl = <T extends ValidComponent = "input">(
@@ -43,11 +43,25 @@ const SwitchControl = <T extends ValidComponent = "input">(
         data-slot="switch"
         data-size={local.size ?? "default"}
         onClick={(event: MouseEvent) => {
-          local.onClick?.(event);
+          const handler = local.onClick;
+          const clickEvent = event as MouseEvent & {
+            currentTarget: HTMLElement;
+            target: Element;
+          };
+          // accept both of Solid's handler forms, like Kobalte's callHandler
+          if (typeof handler === "function") {
+            handler(clickEvent);
+          } else if (handler) {
+            handler[1](handler[0], clickEvent);
+          }
           // Kobalte toggles from this handler. An enclosing <label> — the
           // choice card pattern — would then forward a second activation to
           // the hidden input and undo it, so cancel the label's default.
-          event.preventDefault();
+          // Only the label case needs cancelling; anything else keeps its
+          // own default action.
+          if ((event.currentTarget as HTMLElement | null)?.closest("label")) {
+            event.preventDefault();
+          }
         }}
         class={cn(
           "cn-switch group/switch relative inline-flex items-center outline-none transition-all after:absolute after:-inset-x-3 after:-inset-y-2 data-disabled:cursor-not-allowed data-disabled:opacity-50",

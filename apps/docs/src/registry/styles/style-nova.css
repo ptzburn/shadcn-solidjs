@@ -2094,7 +2094,10 @@
      the border, radius and focus ring on the docs site. The two control
      overrides live here at the end instead. The registry build reads this
      file into an order-independent marker map, so consumers are unaffected
-     either way. */
+     either way.
+
+     Any future rule that has to outrank a marker from a later-sorting
+     section belongs in this trailing block too, for the same reason. */
   .cn-input-group-input {
     @apply rounded-none border-0 bg-transparent shadow-none ring-0
       focus-visible:ring-0 disabled:bg-transparent dark:bg-transparent
