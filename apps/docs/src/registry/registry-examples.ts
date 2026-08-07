@@ -2133,6 +2133,86 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "otp-field-pattern",
+    type: "example",
+    files: [
+      {
+        path: "example/otp-field-pattern.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "otp-field-separator",
+    type: "example",
+    files: [
+      {
+        path: "example/otp-field-separator.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "otp-field-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/otp-field-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "otp-field-controlled",
+    type: "example",
+    files: [
+      {
+        path: "example/otp-field-controlled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "otp-field-invalid",
+    type: "example",
+    files: [
+      {
+        path: "example/otp-field-invalid.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "otp-field-four-digits",
+    type: "example",
+    files: [
+      {
+        path: "example/otp-field-four-digits.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "otp-field-alphanumeric",
+    type: "example",
+    files: [
+      {
+        path: "example/otp-field-alphanumeric.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "otp-field-form",
+    type: "example",
+    files: [
+      {
+        path: "example/otp-field-form.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "pagination-demo",
     type: "example",
     files: [

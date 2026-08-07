@@ -1,7 +1,7 @@
 import type { Component, ComponentProps, ValidComponent } from "solid-js";
 import { Show, splitProps } from "solid-js";
 
-import type { DynamicProps, RootProps } from "@corvu/otp-field";
+import type { DynamicProps, InputProps, RootProps } from "@corvu/otp-field";
 import OtpField from "@corvu/otp-field";
 
 import { cn } from "~/lib/utils.ts";
@@ -22,7 +22,7 @@ const OTPField = <T extends ValidComponent = "div">(
   return (
     <OtpField
       class={cn(
-        "cn-input-otp flex items-center disabled:cursor-not-allowed has-[:disabled]:opacity-50",
+        "cn-input-otp flex items-center has-disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -30,11 +30,32 @@ const OTPField = <T extends ValidComponent = "div">(
   );
 };
 
-const OTPFieldInput = OtpField.Input;
+type OTPFieldInputProps<T extends ValidComponent = "input"> = InputProps<T> & {
+  class?: string;
+};
+
+const OTPFieldInput = <T extends ValidComponent = "input">(
+  props: DynamicProps<T, OTPFieldInputProps<T>>,
+) => {
+  const [local, others] = splitProps(props as OTPFieldInputProps, ["class"]);
+  return (
+    <OtpField.Input
+      data-slot="input-otp"
+      class={cn("cn-input-otp-input disabled:cursor-not-allowed", local.class)}
+      {...others}
+    />
+  );
+};
 
 const OTPFieldGroup: Component<ComponentProps<"div">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
-  return <div class={cn("flex items-center", local.class)} {...others} />;
+  return (
+    <div
+      data-slot="input-otp-group"
+      class={cn("cn-input-otp-group flex items-center", local.class)}
+      {...others}
+    />
+  );
 };
 
 const OTPFieldSlot: Component<ComponentProps<"div"> & { index: number }> = (
@@ -43,24 +64,20 @@ const OTPFieldSlot: Component<ComponentProps<"div"> & { index: number }> = (
   const [local, others] = splitProps(props, ["class", "index"]);
   const context = OtpField.useContext();
   const char = () => context.value()[local.index];
+  const isActive = () => context.activeSlots().includes(local.index);
   const showFakeCaret = () =>
     context.value().length === local.index && context.isInserting();
 
   return (
     <div
+      data-slot="input-otp-slot"
+      data-active={isActive()}
       class={cn(
-        "cn-input-otp-slot group relative flex items-center justify-center",
+        "cn-input-otp-slot relative flex items-center justify-center data-[active=true]:z-10",
         local.class,
       )}
       {...others}
     >
-      <div
-        class={cn(
-          "absolute inset-0 z-10 transition-all group-first:rounded-l-md group-last:rounded-r-md",
-          context.activeSlots().includes(local.index) &&
-            "ring-2 ring-ring ring-offset-background",
-        )}
-      />
       {char()}
       <Show when={showFakeCaret()}>
         <div class="cn-input-otp-caret pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -72,15 +89,20 @@ const OTPFieldSlot: Component<ComponentProps<"div"> & { index: number }> = (
 };
 
 const OTPFieldSeparator: Component<ComponentProps<"div">> = (props) => {
+  const [local, others] = splitProps(props, ["class"]);
   return (
-    <div {...props}>
+    <div
+      data-slot="input-otp-separator"
+      class={cn("cn-input-otp-separator flex items-center", local.class)}
+      role="separator"
+      {...others}
+    >
       <IconPlaceholder
-        lucide="dot"
-        tabler="point-filled"
-        ph="dot"
-        ri="circle-fill"
-        hugeicons="record"
-        class="size-6"
+        lucide="minus"
+        tabler="minus"
+        ph="minus"
+        ri="subtract-line"
+        hugeicons="minus-sign"
       />
     </div>
   );

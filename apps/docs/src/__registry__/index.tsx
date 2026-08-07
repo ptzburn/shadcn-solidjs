@@ -3266,6 +3266,108 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "otp-field-pattern": {
+    name: "otp-field-pattern",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/otp-field-pattern.tsx")),
+    files: [{
+      path: "registry/example/otp-field-pattern.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "otp-field-separator": {
+    name: "otp-field-separator",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/otp-field-separator.tsx")),
+    files: [{
+      path: "registry/example/otp-field-separator.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "otp-field-disabled": {
+    name: "otp-field-disabled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/otp-field-disabled.tsx")),
+    files: [{
+      path: "registry/example/otp-field-disabled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "otp-field-controlled": {
+    name: "otp-field-controlled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/otp-field-controlled.tsx")
+    ),
+    files: [{
+      path: "registry/example/otp-field-controlled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "otp-field-invalid": {
+    name: "otp-field-invalid",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/otp-field-invalid.tsx")),
+    files: [{
+      path: "registry/example/otp-field-invalid.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "otp-field-four-digits": {
+    name: "otp-field-four-digits",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/otp-field-four-digits.tsx")
+    ),
+    files: [{
+      path: "registry/example/otp-field-four-digits.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "otp-field-alphanumeric": {
+    name: "otp-field-alphanumeric",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/otp-field-alphanumeric.tsx")
+    ),
+    files: [{
+      path: "registry/example/otp-field-alphanumeric.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "otp-field-form": {
+    name: "otp-field-form",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/otp-field-form.tsx")),
+    files: [{
+      path: "registry/example/otp-field-form.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "pagination-demo": {
     name: "pagination-demo",
     description: "",

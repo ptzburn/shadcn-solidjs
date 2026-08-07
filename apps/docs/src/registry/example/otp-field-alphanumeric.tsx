@@ -1,22 +1,23 @@
-import { createSignal } from "solid-js";
-
 import {
   OTPField,
   OTPFieldGroup,
   OTPFieldInput,
+  OTPFieldSeparator,
   OTPFieldSlot,
+  REGEXP_ONLY_DIGITS_AND_CHARS,
 } from "~/registry/ui/otp-field.tsx";
 
-export default function OTPFieldDemo() {
-  const [value, setValue] = createSignal("123456");
-
+export default function OTPFieldAlphanumeric() {
   return (
-    <OTPField maxLength={6} value={value()} onValueChange={setValue}>
-      <OTPFieldInput />
+    <OTPField maxLength={6}>
+      <OTPFieldInput pattern={REGEXP_ONLY_DIGITS_AND_CHARS} />
       <OTPFieldGroup>
         <OTPFieldSlot index={0} />
         <OTPFieldSlot index={1} />
         <OTPFieldSlot index={2} />
+      </OTPFieldGroup>
+      <OTPFieldSeparator />
+      <OTPFieldGroup>
         <OTPFieldSlot index={3} />
         <OTPFieldSlot index={4} />
         <OTPFieldSlot index={5} />
