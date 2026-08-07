@@ -3109,11 +3109,61 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "switch-choice-card",
+    type: "example",
+    files: [
+      {
+        path: "example/switch-choice-card.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "switch-demo",
     type: "example",
     files: [
       {
         path: "example/switch-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "switch-description",
+    type: "example",
+    files: [
+      {
+        path: "example/switch-description.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "switch-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/switch-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "switch-invalid",
+    type: "example",
+    files: [
+      {
+        path: "example/switch-invalid.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "switch-sizes",
+    type: "example",
+    files: [
+      {
+        path: "example/switch-sizes.tsx",
         type: "example",
       },
     ],

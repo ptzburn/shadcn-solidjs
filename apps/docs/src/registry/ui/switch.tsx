@@ -1,4 +1,4 @@
-import type { PolymorphicProps } from "@kobalte/core";
+import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import * as SwitchPrimitive from "@kobalte/core/switch";
 
 import { cn } from "~/lib/utils.ts";
@@ -6,7 +6,17 @@ import type { JSX, ValidComponent } from "solid-js";
 
 import { splitProps } from "solid-js";
 
-const Switch = SwitchPrimitive.Root;
+type SwitchRootProps<T extends ValidComponent = "div"> =
+  & SwitchPrimitive.SwitchRootProps<T>
+  & { class?: string | undefined };
+
+const Switch = <T extends ValidComponent = "div">(
+  props: PolymorphicProps<T, SwitchRootProps<T>>,
+) => {
+  const [local, others] = splitProps(props as SwitchRootProps, ["class"]);
+  return <SwitchPrimitive.Root class={cn("peer", local.class)} {...others} />;
+};
+
 const SwitchDescription = SwitchPrimitive.Description;
 const SwitchErrorMessage = SwitchPrimitive.ErrorMessage;
 
@@ -14,6 +24,7 @@ type SwitchControlProps = SwitchPrimitive.SwitchControlProps & {
   class?: string | undefined;
   children?: JSX.Element;
   size?: "sm" | "default";
+  onClick?: (event: MouseEvent) => void;
 };
 
 const SwitchControl = <T extends ValidComponent = "input">(
@@ -23,6 +34,7 @@ const SwitchControl = <T extends ValidComponent = "input">(
     "class",
     "children",
     "size",
+    "onClick",
   ]);
   return (
     <>
@@ -30,8 +42,15 @@ const SwitchControl = <T extends ValidComponent = "input">(
       <SwitchPrimitive.Control
         data-slot="switch"
         data-size={local.size ?? "default"}
+        onClick={(event: MouseEvent) => {
+          local.onClick?.(event);
+          // Kobalte toggles from this handler. An enclosing <label> — the
+          // choice card pattern — would then forward a second activation to
+          // the hidden input and undo it, so cancel the label's default.
+          event.preventDefault();
+        }}
         class={cn(
-          "cn-switch group/switch relative inline-flex cursor-pointer items-center outline-none transition-all after:absolute after:-inset-x-3 after:-inset-y-2 data-disabled:cursor-not-allowed data-disabled:opacity-50",
+          "cn-switch group/switch relative inline-flex items-center outline-none transition-all after:absolute after:-inset-x-3 after:-inset-y-2 data-disabled:cursor-not-allowed data-disabled:opacity-50",
           local.class,
         )}
         {...others}
@@ -73,7 +92,7 @@ const SwitchLabel = <T extends ValidComponent = "label">(
   return (
     <SwitchPrimitive.Label
       class={cn(
-        "font-medium text-sm leading-none data-[disabled]:cursor-not-allowed data-[disabled]:opacity-70",
+        "font-medium text-sm leading-none data-disabled:cursor-not-allowed data-disabled:opacity-70",
         local.class,
       )}
       {...others}

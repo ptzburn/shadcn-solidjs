@@ -25,15 +25,17 @@ npx shadcn-solidjs@latest add switch
 <TabsContent value="manual">
 <Steps class="mb-0 pt-2">
 
-<Step>Install the following dependencies: </Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @kobalte/core
 ```
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="switch" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 </TabsContent>
@@ -43,7 +45,12 @@ npm install @kobalte/core
 ## Usage
 
 ```tsx
-import { Switch, SwitchControl, SwitchThumb } from "~/components/ui/switch"
+import {
+  Switch,
+  SwitchControl,
+  SwitchLabel,
+  SwitchThumb,
+} from "~/components/ui/switch"
 ```
 
 ```tsx showLineNumbers
@@ -51,5 +58,64 @@ import { Switch, SwitchControl, SwitchThumb } from "~/components/ui/switch"
   <SwitchControl>
     <SwitchThumb />
   </SwitchControl>
+  <SwitchLabel>Airplane Mode</SwitchLabel>
 </Switch>
 ```
+
+`SwitchControl` renders a visually hidden `<input type="checkbox">` alongside
+the control. The input's id is the switch's id with an `-input` suffix, so a
+`Label` or `FieldLabel` outside the switch points at `<switch-id>-input`.
+
+```tsx showLineNumbers
+<Field orientation="horizontal">
+  <Switch id="airplane-mode">
+    <SwitchControl>
+      <SwitchThumb />
+    </SwitchControl>
+  </Switch>
+  <FieldLabel for="airplane-mode-input">Airplane Mode</FieldLabel>
+</Field>
+```
+
+## Composition
+
+Use the following composition to build a `Switch`:
+
+```text
+Switch
+├── SwitchControl
+│   └── SwitchThumb
+└── SwitchLabel
+```
+
+## Description
+
+<ComponentPreview name="switch-description" />
+
+## Choice Card
+
+Card-style selection where `FieldLabel` wraps the entire `Field` for a clickable card pattern.
+
+<ComponentPreview name="switch-choice-card" />
+
+## Disabled
+
+Add the `disabled` prop to the `Switch` component to disable the switch. Add the `data-disabled` prop to the `Field` component for styling.
+
+<ComponentPreview name="switch-disabled" />
+
+## Invalid
+
+Add `validationState="invalid"` to the `Switch` component to indicate an invalid state. Add the `data-invalid` prop to the `Field` component for styling.
+
+<ComponentPreview name="switch-invalid" />
+
+## Size
+
+Use the `size` prop on `SwitchControl` to change the size of the switch.
+
+<ComponentPreview name="switch-sizes" />
+
+## API Reference
+
+See the [Kobalte](https://kobalte.dev/docs/core/components/switch) documentation for more information.

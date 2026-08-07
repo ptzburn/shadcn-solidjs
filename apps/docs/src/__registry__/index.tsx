@@ -4510,6 +4510,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "switch-choice-card": {
+    name: "switch-choice-card",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/switch-choice-card.tsx")),
+    files: [{
+      path: "registry/example/switch-choice-card.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "switch-demo": {
     name: "switch-demo",
     description: "",
@@ -4518,6 +4530,54 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/switch-demo.tsx")),
     files: [{
       path: "registry/example/switch-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "switch-description": {
+    name: "switch-description",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/switch-description.tsx")),
+    files: [{
+      path: "registry/example/switch-description.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "switch-disabled": {
+    name: "switch-disabled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/switch-disabled.tsx")),
+    files: [{
+      path: "registry/example/switch-disabled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "switch-invalid": {
+    name: "switch-invalid",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/switch-invalid.tsx")),
+    files: [{
+      path: "registry/example/switch-invalid.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "switch-sizes": {
+    name: "switch-sizes",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/switch-sizes.tsx")),
+    files: [{
+      path: "registry/example/switch-sizes.tsx",
       type: "example",
       target: "",
     }],
