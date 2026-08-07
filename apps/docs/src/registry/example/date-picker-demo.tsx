@@ -1,12 +1,12 @@
-import { Index } from "solid-js";
+import { Index, Show } from "solid-js";
 import { Portal } from "solid-js/web";
 
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import {
   DatePicker,
   DatePickerContent,
   DatePickerContext,
   DatePickerControl,
-  DatePickerInput,
   DatePickerNextTrigger,
   DatePickerPositioner,
   DatePickerPrevTrigger,
@@ -27,24 +27,35 @@ import {
 export default function DatePickerDemo() {
   return (
     <DatePicker
-      startOfWeek={1}
-      format={(e) => {
-        const parsedDate = new Date(Date.parse(e.toString()));
-
-        const normalizedDate = new Date(
-          parsedDate.getUTCFullYear(),
-          parsedDate.getUTCMonth(),
-          parsedDate.getUTCDate(),
-        );
-
-        return new Intl.DateTimeFormat("en-US", {
+      format={(date, details) =>
+        new Intl.DateTimeFormat(details.locale, {
           dateStyle: "long",
-        }).format(normalizedDate);
-      }}
+        }).format(date.toDate(details.timeZone))}
     >
       <DatePickerControl>
-        <DatePickerInput placeholder="Pick a date" />
-        <DatePickerTrigger />
+        <DatePickerContext>
+          {(api) => (
+            <DatePickerTrigger class="w-[212px] justify-between px-3 text-sm font-normal">
+              <Show
+                when={api().valueAsString[0]}
+                fallback={
+                  <span class="text-muted-foreground">Pick a date</span>
+                }
+              >
+                <span>{api().valueAsString[0]}</span>
+              </Show>
+              <IconPlaceholder
+                lucide="chevron-down"
+                tabler="chevron-down"
+                ph="caret-down"
+                ri="arrow-down-s-line"
+                hugeicons="arrow-down-01"
+                class="size-4"
+                aria-hidden="true"
+              />
+            </DatePickerTrigger>
+          )}
+        </DatePickerContext>
       </DatePickerControl>
       <Portal>
         <DatePickerPositioner>

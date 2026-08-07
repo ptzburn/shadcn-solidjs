@@ -48,7 +48,7 @@ const DatePickerTrigger = (props: DatePickerPrimitive.TriggerProps) => {
   return (
     <DatePickerPrimitive.Trigger
       class={cn(
-        "cn-date-picker-trigger flex min-h-9 min-w-9 items-center justify-center focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>svg]:size-4",
+        "cn-date-picker-trigger flex min-h-8 min-w-8 items-center justify-center focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>svg]:size-4",
         local.class,
       )}
       {...others}
@@ -115,9 +115,9 @@ const DatePickerPrevTrigger = (props: DatePickerPrimitive.PrevTriggerProps) => {
     <DatePickerPrimitive.PrevTrigger
       class={cn(
         buttonVariants({
-          variant: "outline",
+          variant: "ghost",
         }),
-        "cn-date-picker-prev-trigger size-7 p-0",
+        "cn-date-picker-prev-trigger size-7 select-none p-0",
         local.class,
       )}
       {...others}
@@ -148,9 +148,9 @@ const DatePickerNextTrigger = (props: DatePickerPrimitive.NextTriggerProps) => {
     <DatePickerPrimitive.NextTrigger
       class={cn(
         buttonVariants({
-          variant: "outline",
+          variant: "ghost",
         }),
-        "cn-date-picker-next-trigger size-7 p-0",
+        "cn-date-picker-next-trigger size-7 select-none p-0",
         local.class,
       )}
       {...others}
@@ -228,7 +228,7 @@ const DatePickerTableCell = (props: DatePickerPrimitive.TableCellProps) => {
   return (
     <DatePickerPrimitive.TableCell
       class={cn(
-        "cn-date-picker-table-cell flex-1 p-0 text-center text-sm has-[[data-range-end]]:rounded-r-md has-[[data-range-start]]:rounded-l-md has-[[data-in-range]]:bg-accent has-[[data-outside-range][data-in-range]]:bg-accent/50 has-[[data-in-range]]:first-of-type:rounded-l-md has-[[data-in-range]]:last-of-type:rounded-r-md",
+        "cn-date-picker-table-cell flex-1 p-0 text-center text-sm has-[[data-range-end]]:rounded-r-md has-[[data-range-start]]:rounded-l-md has-[[data-in-range]]:bg-muted has-[[data-outside-range][data-in-range]]:bg-muted/50 has-[[data-in-range]]:first-of-type:rounded-l-md has-[[data-in-range]]:last-of-type:rounded-r-md",
         local.class,
       )}
       {...others}
@@ -245,12 +245,12 @@ const DatePickerTableCellTrigger = (
       class={cn(
         buttonVariants({ variant: "ghost" }),
         "cn-date-picker-table-cell-trigger size-8 w-full p-0 font-normal data-[selected]:opacity-100",
-        "data-[today]:bg-accent data-[today]:text-accent-foreground",
+        "data-[today]:bg-muted data-[today]:text-foreground",
         "[&:is([data-today][data-selected])]:bg-primary [&:is([data-today][data-selected])]:text-primary-foreground",
         "data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:hover:bg-primary data-[selected]:hover:text-primary-foreground",
         "data-[disabled]:text-muted-foreground data-[disabled]:opacity-50",
-        "data-[outside-range]:text-muted-foreground data-[outside-range]:opacity-50",
-        "[&:is([data-outside-range][data-in-range])]:bg-accent/50 [&:is([data-outside-range][data-in-range])]:text-muted-foreground [&:is([data-outside-range][data-in-range])]:opacity-30",
+        "data-[outside-range]:text-muted-foreground",
+        "[&:is([data-outside-range][data-in-range])]:bg-muted/50 [&:is([data-outside-range][data-in-range])]:text-muted-foreground [&:is([data-outside-range][data-in-range])]:opacity-30",
         local.class,
       )}
       {...others}

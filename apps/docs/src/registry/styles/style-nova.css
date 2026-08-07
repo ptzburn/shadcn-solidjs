@@ -608,33 +608,35 @@
 
   /* MARK: Date Picker */
   .cn-date-picker-input {
-    @apply h-9 rounded-md border border-border bg-background px-3 py-1 text-sm
-      shadow-sm transition-shadow focus-visible:ring-ring
-      focus-visible:ring-[1.5px];
+    @apply h-8 rounded-lg border border-input bg-transparent px-2.5 py-1
+      text-base transition-colors focus-visible:border-ring focus-visible:ring-3
+      focus-visible:ring-ring/50 disabled:bg-input/50 md:text-sm
+      dark:bg-input/30 dark:disabled:bg-input/80
+      dark:aria-invalid:border-destructive/50
+      dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive
+      aria-invalid:ring-3 aria-invalid:ring-destructive/20;
   }
 
   .cn-date-picker-trigger {
-    @apply rounded-md border border-border bg-background
-      transition-[box-shadow,background-color] hover:bg-accent/50
-      focus-visible:ring-ring focus-visible:ring-[1.5px];
+    @apply border-input rounded-lg border bg-background transition-colors
+      hover:bg-muted hover:text-foreground dark:bg-input/30
+      dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-3
+      focus-visible:ring-ring/50;
   }
 
   .cn-date-picker-content {
-    @apply data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95
-      data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 rounded-md border
-      bg-popover p-3 text-popover-foreground shadow-md
-      data-[state=closed]:animate-out data-[state=open]:animate-in;
+    @apply bg-popover text-popover-foreground data-[state=open]:animate-in
+      data-[state=closed]:animate-out data-[state=closed]:fade-out-0
+      data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95
+      data-[state=open]:zoom-in-95 ring-foreground/10 rounded-lg p-3 text-sm
+      shadow-md ring-1 duration-100;
   }
 
   .cn-date-picker-view {}
 
-  .cn-date-picker-prev-trigger {
-    @apply bg-transparent opacity-50 hover:opacity-100;
-  }
+  .cn-date-picker-prev-trigger {}
 
-  .cn-date-picker-next-trigger {
-    @apply bg-transparent opacity-50 hover:opacity-100;
-  }
+  .cn-date-picker-next-trigger {}
 
   .cn-date-picker-range-text {
     @apply font-medium text-sm;

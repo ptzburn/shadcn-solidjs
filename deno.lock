@@ -32,6 +32,7 @@
     "npm:@types/node@^26.1.2": "26.1.2",
     "npm:@types/unist@^3.0.3": "3.0.3",
     "npm:chart.js@^4.5.1": "4.5.1",
+    "npm:chrono-node@^2.8.2": "2.10.1",
     "npm:class-variance-authority@~0.7.1": "0.7.1",
     "npm:clsx@^2.1.1": "2.1.1",
     "npm:cmdk-solid@^1.1.2": "1.1.2_solid-js@1.9.14",
@@ -2214,6 +2215,9 @@
         "@kurkle/color"
       ]
     },
+    "chrono-node@2.10.1": {
+      "integrity": "sha512-tPOsBzYVAK5zth+CiHCgp5NGeqRc4mMD8FPthQ5IxkgjPWWxIFdM5odnmfw//IRAzl6C++Xy8olQW7wn5qBR1g=="
+    },
     "class-variance-authority@0.7.1": {
       "integrity": "sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==",
       "dependencies": [
@@ -4254,6 +4258,7 @@
           "npm:@types/node@^26.1.2",
           "npm:@types/unist@^3.0.3",
           "npm:chart.js@^4.5.1",
+          "npm:chrono-node@^2.8.2",
           "npm:class-variance-authority@~0.7.1",
           "npm:clsx@^2.1.1",
           "npm:cmdk-solid@^1.1.2",

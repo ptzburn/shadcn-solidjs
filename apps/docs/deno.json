@@ -38,6 +38,7 @@
     "@types/unist": "npm:@types/unist@^3.0.3",
     "unist": "npm:@types/unist@^3.0.3",
     "chart.js": "npm:chart.js@^4.5.1",
+    "chrono-node": "npm:chrono-node@^2.8.2",
     "class-variance-authority": "npm:class-variance-authority@^0.7.1",
     "cmdk-solid": "npm:cmdk-solid@^1.1.2",
     "embla-carousel-autoplay": "npm:embla-carousel-autoplay@^8.6.0",

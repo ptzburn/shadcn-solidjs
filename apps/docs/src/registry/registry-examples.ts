@@ -1192,6 +1192,16 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "date-picker-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/date-picker-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "date-picker-demo",
     type: "example",
     files: [
@@ -1202,11 +1212,52 @@ export const examples: Registry = [
     ],
   },
   {
-    name: "date-range-demo",
+    name: "date-picker-dob",
     type: "example",
     files: [
       {
-        path: "example/date-range-demo.tsx",
+        path: "example/date-picker-dob.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "date-picker-input",
+    type: "example",
+    files: [
+      {
+        path: "example/date-picker-input.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "date-picker-natural-language",
+    type: "example",
+    dependencies: ["chrono-node"],
+    files: [
+      {
+        path: "example/date-picker-natural-language.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "date-picker-range",
+    type: "example",
+    files: [
+      {
+        path: "example/date-picker-range.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "date-picker-time",
+    type: "example",
+    files: [
+      {
+        path: "example/date-picker-time.tsx",
         type: "example",
       },
     ],
