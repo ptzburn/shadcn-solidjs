@@ -62,11 +62,6 @@ export const docsConfig: Config = {
       prefix: "/docs/installation",
     },
     {
-      title: "Dark Mode",
-      href: "/docs/dark-mode",
-      prefix: "/docs/dark-mode",
-    },
-    {
       title: "CLI",
       href: "/docs/cli",
     },
