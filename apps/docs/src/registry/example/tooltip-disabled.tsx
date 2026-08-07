@@ -5,14 +5,16 @@ import {
   TooltipTrigger,
 } from "~/registry/ui/tooltip.tsx";
 
-export default function TooltipDemo() {
+export default function TooltipDisabled() {
   return (
     <Tooltip>
-      <TooltipTrigger as={Button<"button">} variant="outline">
-        Hover
+      <TooltipTrigger as="span" class="inline-block w-fit">
+        <Button variant="outline" disabled>
+          Disabled
+        </Button>
       </TooltipTrigger>
       <TooltipContent>
-        <p>Add to library</p>
+        <p>This feature is currently unavailable</p>
       </TooltipContent>
     </Tooltip>
   );

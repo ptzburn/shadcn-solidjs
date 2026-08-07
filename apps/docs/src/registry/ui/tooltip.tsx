@@ -1,4 +1,5 @@
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
+import { usePopperContext } from "@kobalte/core/popper";
 import * as TooltipPrimitive from "@kobalte/core/tooltip";
 
 import { cn } from "~/lib/utils.ts";
@@ -7,7 +8,14 @@ import type { Component, JSX, ValidComponent } from "solid-js";
 import { splitProps } from "solid-js";
 
 const Tooltip: Component<TooltipPrimitive.TooltipRootProps> = (props) => {
-  return <TooltipPrimitive.Root data-slot="tooltip" gutter={4} {...props} />;
+  return (
+    <TooltipPrimitive.Root
+      data-slot="tooltip"
+      gutter={5}
+      openDelay={0}
+      {...props}
+    />
+  );
 };
 
 type TooltipTriggerProps<T extends ValidComponent = "button"> =
@@ -32,6 +40,8 @@ type TooltipContentProps<T extends ValidComponent = "div"> =
 const TooltipContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, TooltipContentProps<T>>,
 ) => {
+  const popper = usePopperContext();
+  const side = () => popper.currentPlacement().split("-")[0];
   const [local, others] = splitProps(props as TooltipContentProps, [
     "class",
     "children",
@@ -40,14 +50,19 @@ const TooltipContent = <T extends ValidComponent = "div">(
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content
         data-slot="tooltip-content"
+        data-side={side()}
         class={cn(
-          "cn-tooltip-content z-50 w-fit max-w-xs origin-(--kb-tooltip-content-transform-origin) bg-foreground text-background duration-100",
+          "cn-tooltip-content z-50 w-fit max-w-xs origin-(--kb-tooltip-content-transform-origin) bg-foreground text-background",
           local.class,
         )}
         {...others}
       >
         {local.children}
-        <TooltipPrimitive.Arrow />
+        <TooltipPrimitive.Arrow
+          data-side={side()}
+          size={10}
+          class="cn-tooltip-arrow z-50 bg-foreground"
+        />
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   );

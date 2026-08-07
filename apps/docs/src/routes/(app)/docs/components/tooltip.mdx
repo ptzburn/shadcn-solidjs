@@ -25,30 +25,87 @@ npx shadcn-solidjs@latest add tooltip
 <TabsContent value="manual">
 <Steps class="mb-0 pt-2">
 
-<Step>Install the following dependencies: </Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @kobalte/core
 ```
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="tooltip" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 </TabsContent>
 
 </CodeTabs>
 
+Kobalte manages the shared open/close timing itself, so there is no provider to
+add to the root of your app.
+
 ## Usage
 
-```tsx
-import { Tooltip, TooltipContent, TooltipTrigger } from "~/components/ui/tooltip"
+```tsx showLineNumbers
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "~/components/ui/tooltip"
 ```
 
 ```tsx showLineNumbers
 <Tooltip>
-  <TooltipTrigger>Hover Me</TooltipTrigger>
-  <TooltipContent>Place content for the Tooltip here.</TooltipContent>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent>
+    <p>Add to library</p>
+  </TooltipContent>
 </Tooltip>
 ```
+
+## Composition
+
+Use the following composition to build a `Tooltip`:
+
+```text
+Tooltip
+├── TooltipTrigger
+└── TooltipContent
+```
+
+## Side
+
+Use the `placement` prop on the `Tooltip` to change the position of the tooltip. It
+accepts `top`, `right`, `bottom` and `left`, each with an optional `-start` or `-end`
+suffix for alignment. Use `gutter` to change the distance from the trigger.
+
+<ComponentPreview name="tooltip-sides" />
+
+## With Keyboard Shortcut
+
+<ComponentPreview name="tooltip-keyboard" />
+
+## Disabled Button
+
+Show a tooltip on a disabled button by wrapping it with a span.
+
+<ComponentPreview name="tooltip-disabled" />
+
+## Delay
+
+Tooltips open as soon as the trigger is hovered or focused. Use `openDelay` and
+`closeDelay` on the `Tooltip` to change that.
+
+```tsx showLineNumbers
+<Tooltip openDelay={700} closeDelay={300}>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent>
+    <p>Add to library</p>
+  </TooltipContent>
+</Tooltip>
+```
+
+## API Reference
+
+See the [Kobalte](https://kobalte.dev/docs/core/components/tooltip) documentation for more information.

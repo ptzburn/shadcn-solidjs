@@ -722,7 +722,7 @@ export const Index: RegistryIndex = {
     name: "toggle-group",
     description: "",
     type: "ui",
-    registryDependencies: undefined,
+    registryDependencies: ["toggle"],
     component: lazy(() => import("~/registry/ui/toggle-group.tsx")),
     files: [{
       path: "registry/ui/toggle-group.tsx",
@@ -5106,6 +5106,42 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/tooltip-demo.tsx")),
     files: [{
       path: "registry/example/tooltip-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "tooltip-disabled": {
+    name: "tooltip-disabled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/tooltip-disabled.tsx")),
+    files: [{
+      path: "registry/example/tooltip-disabled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "tooltip-keyboard": {
+    name: "tooltip-keyboard",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/tooltip-keyboard.tsx")),
+    files: [{
+      path: "registry/example/tooltip-keyboard.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "tooltip-sides": {
+    name: "tooltip-sides",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/tooltip-sides.tsx")),
+    files: [{
+      path: "registry/example/tooltip-sides.tsx",
       type: "example",
       target: "",
     }],

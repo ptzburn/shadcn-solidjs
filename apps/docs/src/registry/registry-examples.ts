@@ -3538,4 +3538,34 @@ export const examples: Registry = [
       },
     ],
   },
+  {
+    name: "tooltip-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/tooltip-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "tooltip-keyboard",
+    type: "example",
+    files: [
+      {
+        path: "example/tooltip-keyboard.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "tooltip-sides",
+    type: "example",
+    files: [
+      {
+        path: "example/tooltip-sides.tsx",
+        type: "example",
+      },
+    ],
+  },
 ];
