@@ -1042,6 +1042,16 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "command-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/command-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "command-demo",
     type: "example",
     files: [
@@ -1052,11 +1062,31 @@ export const examples: Registry = [
     ],
   },
   {
-    name: "command-dialog-demo",
+    name: "command-groups",
     type: "example",
     files: [
       {
-        path: "example/command-dialog-demo.tsx",
+        path: "example/command-groups.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "command-scrollable",
+    type: "example",
+    files: [
+      {
+        path: "example/command-scrollable.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "command-shortcuts",
+    type: "example",
+    files: [
+      {
+        path: "example/command-shortcuts.tsx",
         type: "example",
       },
     ],

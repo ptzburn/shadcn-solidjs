@@ -1,9 +1,13 @@
 ---
 title: Command
-description: Fast, composable, unstyled command menu.
+description: Command menu for search and quick actions.
 ---
 
-<ComponentPreview name="command-demo" />
+<ComponentPreview
+  name="command-demo"
+  align="start"
+  previewClassName="h-[24.5rem]"
+/>
 
 ## About
 
@@ -29,15 +33,17 @@ npx shadcn-solidjs@latest add command
 <TabsContent value="manual">
 <Steps class="mb-0 pt-2">
 
-<Step>Install the following dependencies: </Step>
+<Step>Install the following dependencies:</Step>
 
 ```bash
 npm install @kobalte/core cmdk-solid
 ```
 
-<Step>Copy and paste the following code into your project: </Step>
+<Step>Copy and paste the following code into your project.</Step>
 
 <ComponentSource name="command" />
+
+<Step>Update the import paths to match your project setup.</Step>
 
 </Steps>
 </TabsContent>
@@ -57,11 +63,11 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "@/components/ui/command"
+} from "~/components/ui/command"
 ```
 
 ```tsx showLineNumbers
-<Command>
+<Command class="max-w-sm rounded-lg border">
   <CommandInput placeholder="Type a command or search..." />
   <CommandList>
     <CommandEmpty>No results found.</CommandEmpty>
@@ -80,45 +86,46 @@ import {
 </Command>
 ```
 
-## Examples
+## Composition
 
-### Dialog
+Use the following composition to build a `Command`:
 
-<ComponentPreview name="command-dialog-demo" />
-
-To show the command menu in a dialog, use the `<CommandDialog />` component.
-
-```tsx showLineNumbers
-export function CommandMenu() {
-  const [open, setOpen] = createSignal(false)
-
-  createEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        setOpen((open) => !open)
-      }
-    }
- 
-    document.addEventListener("keydown", down)
- 
-    onCleanup(() => {
-      document.removeEventListener("keydown", down)
-    })
-  })
-
-  return (
-    <CommandDialog open={open()} onOpenChange={setOpen}>
-      <CommandInput placeholder="Type a command or search..." />
-      <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Suggestions">
-          <CommandItem>Calendar</CommandItem>
-          <CommandItem>Search Emoji</CommandItem>
-          <CommandItem>Calculator</CommandItem>
-        </CommandGroup>
-      </CommandList>
-    </CommandDialog>
-  )
-}
+```text
+Command
+├── CommandInput
+└── CommandList
+    ├── CommandEmpty
+    ├── CommandGroup
+    │   ├── CommandItem
+    │   └── CommandItem
+    ├── CommandSeparator
+    └── CommandGroup
+        ├── CommandItem
+        └── CommandItem
 ```
+
+## Basic
+
+A simple command menu in a dialog.
+
+<ComponentPreview name="command-basic" />
+
+## Shortcuts
+
+<ComponentPreview name="command-shortcuts" />
+
+## Groups
+
+A command menu with groups, icons and separators.
+
+<ComponentPreview name="command-groups" />
+
+## Scrollable
+
+Scrollable command menu with multiple items.
+
+<ComponentPreview name="command-scrollable" />
+
+## API Reference
+
+See the [cmdk-solid](https://github.com/create-signal/cmdk-solid) documentation for more information.

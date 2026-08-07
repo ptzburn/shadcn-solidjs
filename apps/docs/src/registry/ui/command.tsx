@@ -120,7 +120,7 @@ const CommandList: Component<ParentProps<CommandPrimitive.CommandListProps>> = (
     <CommandPrimitive.CommandList
       data-slot="command-list"
       class={cn(
-        "cn-command-list overflow-y-auto overflow-x-hidden",
+        "cn-command-list overflow-x-hidden overflow-y-auto",
         local.class,
       )}
       {...others}
@@ -180,7 +180,7 @@ const CommandItem: Component<ParentProps<CommandPrimitive.CommandItemProps>> = (
     <CommandPrimitive.CommandItem
       data-slot="command-item"
       class={cn(
-        "cn-command-item group/command-item [&_svg]:pointer-events-none data-[disabled=true]:pointer-events-none [&_svg]:shrink-0 data-[disabled=true]:opacity-50",
+        "cn-command-item group/command-item data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}

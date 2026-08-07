@@ -160,7 +160,7 @@ export const ui: Registry = [
     name: "command",
     type: "ui",
     dependencies: ["@kobalte/core", "cmdk-solid"],
-    registryDependencies: ["dialog"],
+    registryDependencies: ["dialog", "input-group"],
     files: [
       {
         path: "ui/command.tsx",

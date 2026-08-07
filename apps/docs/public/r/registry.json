@@ -153,7 +153,8 @@
         "@iconify-json/lucide"
       ],
       "registryDependencies": [
-        "dialog"
+        "dialog",
+        "input-group"
       ]
     },
     {

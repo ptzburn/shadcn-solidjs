@@ -178,7 +178,7 @@ export const Index: RegistryIndex = {
     name: "command",
     description: "",
     type: "ui",
-    registryDependencies: ["dialog"],
+    registryDependencies: ["dialog", "input-group"],
     component: lazy(() => import("~/registry/ui/command.tsx")),
     files: [{
       path: "registry/ui/command.tsx",
@@ -1908,6 +1908,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "command-basic": {
+    name: "command-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/command-basic.tsx")),
+    files: [{
+      path: "registry/example/command-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "command-demo": {
     name: "command-demo",
     description: "",
@@ -1920,14 +1932,38 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
-  "command-dialog-demo": {
-    name: "command-dialog-demo",
+  "command-groups": {
+    name: "command-groups",
     description: "",
     type: "example",
     registryDependencies: undefined,
-    component: lazy(() => import("~/registry/example/command-dialog-demo.tsx")),
+    component: lazy(() => import("~/registry/example/command-groups.tsx")),
     files: [{
-      path: "registry/example/command-dialog-demo.tsx",
+      path: "registry/example/command-groups.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "command-scrollable": {
+    name: "command-scrollable",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/command-scrollable.tsx")),
+    files: [{
+      path: "registry/example/command-scrollable.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "command-shortcuts": {
+    name: "command-shortcuts",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/command-shortcuts.tsx")),
+    files: [{
+      path: "registry/example/command-shortcuts.tsx",
       type: "example",
       target: "",
     }],

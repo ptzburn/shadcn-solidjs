@@ -151,7 +151,8 @@
       "cmdk-solid"
     ],
     "registryDependencies": [
-      "dialog"
+      "dialog",
+      "input-group"
     ],
     "files": [
       "ui/command.tsx"

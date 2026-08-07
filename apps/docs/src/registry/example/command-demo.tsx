@@ -1,11 +1,4 @@
-import {
-  IconCalendar,
-  IconMail,
-  IconRocket,
-  IconSettings,
-  IconSmile,
-  IconUser,
-} from "~/components/icons.tsx";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import {
   Command,
   CommandEmpty,
@@ -19,38 +12,74 @@ import {
 
 export default function CommandDemo() {
   return (
-    <Command class="rounded-lg border shadow-md">
+    <Command class="max-w-sm rounded-lg border">
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Suggestions">
           <CommandItem>
-            <IconCalendar class="mr-2 size-4" />
+            <IconPlaceholder
+              lucide="calendar"
+              tabler="calendar"
+              ph="calendar-blank"
+              ri="calendar-line"
+              hugeicons="calendar-03"
+            />
             <span>Calendar</span>
           </CommandItem>
           <CommandItem>
-            <IconSmile class="mr-2 size-4" />
+            <IconPlaceholder
+              lucide="smile"
+              tabler="mood-smile"
+              ph="smiley"
+              ri="emotion-happy-line"
+              hugeicons="smile"
+            />
             <span>Search Emoji</span>
           </CommandItem>
-          <CommandItem>
-            <IconRocket class="mr-2 size-4" />
-            <span>Launch</span>
+          <CommandItem disabled>
+            <IconPlaceholder
+              lucide="calculator"
+              tabler="calculator"
+              ph="calculator"
+              ri="calculator-line"
+              hugeicons="calculator"
+            />
+            <span>Calculator</span>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Settings">
           <CommandItem>
-            <IconUser class="mr-2 size-4" />
+            <IconPlaceholder
+              lucide="user"
+              tabler="user"
+              ph="user"
+              ri="user-line"
+              hugeicons="user"
+            />
             <span>Profile</span>
             <CommandShortcut>⌘P</CommandShortcut>
           </CommandItem>
           <CommandItem>
-            <IconMail class="mr-2 size-4" />
-            <span>Mail</span>
+            <IconPlaceholder
+              lucide="credit-card"
+              tabler="credit-card"
+              ph="credit-card"
+              ri="bank-card-line"
+              hugeicons="credit-card"
+            />
+            <span>Billing</span>
             <CommandShortcut>⌘B</CommandShortcut>
           </CommandItem>
           <CommandItem>
-            <IconSettings class="mr-2 size-4" />
+            <IconPlaceholder
+              lucide="settings"
+              tabler="settings"
+              ph="gear"
+              ri="settings-3-line"
+              hugeicons="settings-01"
+            />
             <span>Settings</span>
             <CommandShortcut>⌘S</CommandShortcut>
           </CommandItem>
