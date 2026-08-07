@@ -58,7 +58,7 @@ export const docsConfig: Config = {
     },
     {
       title: "Installation",
-      href: "/docs/installation/overview",
+      href: "/docs/installation",
       prefix: "/docs/installation",
     },
     {
@@ -291,7 +291,7 @@ export const docsConfig: Config = {
       items: [
         {
           title: "Installation",
-          href: "/docs/installation/overview",
+          href: "/docs/installation",
         },
         {
           title: "Dark Mode",

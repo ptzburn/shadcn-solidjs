@@ -23,7 +23,7 @@ export default function ExamplesLayout(props: RouteProps<string>) {
         <PageHeaderHeading class="max-w-4xl">{title}</PageHeaderHeading>
         <PageHeaderDescription>{description}</PageHeaderDescription>
         <PageActions>
-          <Button as={A} size="sm" href="/docs/installation/overview">
+          <Button as={A} size="sm" href="/docs/installation">
             Get Started
           </Button>
           <Button

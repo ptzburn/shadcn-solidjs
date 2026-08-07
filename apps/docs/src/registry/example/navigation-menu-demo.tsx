@@ -58,7 +58,7 @@ export default function NavigationMenuDemo() {
           <ListItem href="/docs" title="Introduction">
             Re-usable components built with Kobalte and Tailwind CSS.
           </ListItem>
-          <ListItem href="/docs/installation/overview" title="Installation">
+          <ListItem href="/docs/installation" title="Installation">
             How to install dependencies and structure your app.
           </ListItem>
           <ListItem href="/docs/dark-mode" title="Dark Mode">
