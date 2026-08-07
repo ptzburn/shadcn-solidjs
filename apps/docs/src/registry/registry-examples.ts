@@ -3039,6 +3039,76 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "spinner-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/spinner-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "spinner-custom",
+    type: "example",
+    files: [
+      {
+        path: "example/spinner-custom.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "spinner-size",
+    type: "example",
+    files: [
+      {
+        path: "example/spinner-size.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "spinner-button",
+    type: "example",
+    files: [
+      {
+        path: "example/spinner-button.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "spinner-badge",
+    type: "example",
+    files: [
+      {
+        path: "example/spinner-badge.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "spinner-input-group",
+    type: "example",
+    files: [
+      {
+        path: "example/spinner-input-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "spinner-empty",
+    type: "example",
+    files: [
+      {
+        path: "example/spinner-empty.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "switch-demo",
     type: "example",
     files: [

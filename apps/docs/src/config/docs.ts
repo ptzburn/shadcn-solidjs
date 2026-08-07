@@ -275,6 +275,11 @@ export const docsConfig: Config = {
           href: "/docs/components/sonner",
         },
         {
+          title: "Spinner",
+          href: "/docs/components/spinner",
+          status: "new",
+        },
+        {
           title: "Switch",
           href: "/docs/components/switch",
         },
