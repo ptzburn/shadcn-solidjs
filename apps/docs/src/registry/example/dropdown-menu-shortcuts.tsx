@@ -1,4 +1,3 @@
-import { Avatar, AvatarFallback, AvatarImage } from "~/registry/ui/avatar.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import {
   DropdownMenu,
@@ -11,32 +10,15 @@ import {
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
 
-export function UserNav() {
+export default function DropdownMenuShortcuts() {
   return (
-    <DropdownMenu placement="bottom-end">
-      <DropdownMenuTrigger
-        as={Button<"button">}
-        variant="ghost"
-        class="relative size-8 rounded-full"
-      >
-        <Avatar class="size-9">
-          <AvatarImage src="/avatars/03.png" alt="@shadcn" />
-          <AvatarFallback>SC</AvatarFallback>
-        </Avatar>
+    <DropdownMenu>
+      <DropdownMenuTrigger as={Button<"button">} variant="outline">
+        Open
       </DropdownMenuTrigger>
-      <DropdownMenuContent class="w-56">
+      <DropdownMenuContent>
         <DropdownMenuGroup>
-          <DropdownMenuLabel class="font-normal">
-            <div class="flex flex-col space-y-1">
-              <p class="text-sm font-medium leading-none">shadcn</p>
-              <p class="text-xs leading-none text-muted-foreground">
-                m@example.com
-              </p>
-            </div>
-          </DropdownMenuLabel>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuItem>
             Profile
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
@@ -49,7 +31,6 @@ export function UserNav() {
             Settings
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>New Team</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

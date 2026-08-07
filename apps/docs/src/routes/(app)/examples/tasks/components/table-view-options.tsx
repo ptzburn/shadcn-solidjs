@@ -8,6 +8,7 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -34,25 +35,27 @@ export function TableViewOptions<TData extends RowData>(
         View
       </DropdownMenuTrigger>
       <DropdownMenuContent class="w-[150px]">
-        <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <For
-          each={props.table
-            .getAllColumns()
-            .filter((column) =>
-              typeof column.accessorFn !== "undefined" && column.getCanHide()
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <For
+            each={props.table
+              .getAllColumns()
+              .filter((column) =>
+                typeof column.accessorFn !== "undefined" && column.getCanHide()
+              )}
+          >
+            {(column) => (
+              <DropdownMenuCheckboxItem
+                class="capitalize"
+                checked={column.getIsVisible()}
+                onChange={(value) => column.toggleVisibility(!!value)}
+              >
+                {column.id}
+              </DropdownMenuCheckboxItem>
             )}
-        >
-          {(column) => (
-            <DropdownMenuCheckboxItem
-              class="capitalize"
-              checked={column.getIsVisible()}
-              onChange={(value) => column.toggleVisibility(!!value)}
-            >
-              {column.id}
-            </DropdownMenuCheckboxItem>
-          )}
-        </For>
+          </For>
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );

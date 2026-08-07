@@ -2298,6 +2298,74 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "dropdown-menu-avatar": {
+    name: "dropdown-menu-avatar",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dropdown-menu-avatar.tsx")
+    ),
+    files: [{
+      path: "registry/example/dropdown-menu-avatar.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dropdown-menu-basic": {
+    name: "dropdown-menu-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/dropdown-menu-basic.tsx")),
+    files: [{
+      path: "registry/example/dropdown-menu-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dropdown-menu-checkboxes": {
+    name: "dropdown-menu-checkboxes",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dropdown-menu-checkboxes.tsx")
+    ),
+    files: [{
+      path: "registry/example/dropdown-menu-checkboxes.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dropdown-menu-checkboxes-icons": {
+    name: "dropdown-menu-checkboxes-icons",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dropdown-menu-checkboxes-icons.tsx")
+    ),
+    files: [{
+      path: "registry/example/dropdown-menu-checkboxes-icons.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dropdown-menu-complex": {
+    name: "dropdown-menu-complex",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dropdown-menu-complex.tsx")
+    ),
+    files: [{
+      path: "registry/example/dropdown-menu-complex.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "dropdown-menu-demo": {
     name: "dropdown-menu-demo",
     description: "",
@@ -2306,6 +2374,88 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/dropdown-menu-demo.tsx")),
     files: [{
       path: "registry/example/dropdown-menu-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dropdown-menu-destructive": {
+    name: "dropdown-menu-destructive",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dropdown-menu-destructive.tsx")
+    ),
+    files: [{
+      path: "registry/example/dropdown-menu-destructive.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dropdown-menu-icons": {
+    name: "dropdown-menu-icons",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/dropdown-menu-icons.tsx")),
+    files: [{
+      path: "registry/example/dropdown-menu-icons.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dropdown-menu-radio-group": {
+    name: "dropdown-menu-radio-group",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dropdown-menu-radio-group.tsx")
+    ),
+    files: [{
+      path: "registry/example/dropdown-menu-radio-group.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dropdown-menu-radio-icons": {
+    name: "dropdown-menu-radio-icons",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dropdown-menu-radio-icons.tsx")
+    ),
+    files: [{
+      path: "registry/example/dropdown-menu-radio-icons.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dropdown-menu-shortcuts": {
+    name: "dropdown-menu-shortcuts",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dropdown-menu-shortcuts.tsx")
+    ),
+    files: [{
+      path: "registry/example/dropdown-menu-shortcuts.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "dropdown-menu-submenu": {
+    name: "dropdown-menu-submenu",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/dropdown-menu-submenu.tsx")
+    ),
+    files: [{
+      path: "registry/example/dropdown-menu-submenu.tsx",
       type: "example",
       target: "",
     }],

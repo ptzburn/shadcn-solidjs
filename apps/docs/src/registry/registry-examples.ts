@@ -1353,11 +1353,121 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "dropdown-menu-avatar",
+    type: "example",
+    files: [
+      {
+        path: "example/dropdown-menu-avatar.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dropdown-menu-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/dropdown-menu-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dropdown-menu-checkboxes",
+    type: "example",
+    files: [
+      {
+        path: "example/dropdown-menu-checkboxes.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dropdown-menu-checkboxes-icons",
+    type: "example",
+    files: [
+      {
+        path: "example/dropdown-menu-checkboxes-icons.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dropdown-menu-complex",
+    type: "example",
+    files: [
+      {
+        path: "example/dropdown-menu-complex.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "dropdown-menu-demo",
     type: "example",
     files: [
       {
         path: "example/dropdown-menu-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dropdown-menu-destructive",
+    type: "example",
+    files: [
+      {
+        path: "example/dropdown-menu-destructive.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dropdown-menu-icons",
+    type: "example",
+    files: [
+      {
+        path: "example/dropdown-menu-icons.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dropdown-menu-radio-group",
+    type: "example",
+    files: [
+      {
+        path: "example/dropdown-menu-radio-group.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dropdown-menu-radio-icons",
+    type: "example",
+    files: [
+      {
+        path: "example/dropdown-menu-radio-icons.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dropdown-menu-shortcuts",
+    type: "example",
+    files: [
+      {
+        path: "example/dropdown-menu-shortcuts.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "dropdown-menu-submenu",
+    type: "example",
+    files: [
+      {
+        path: "example/dropdown-menu-submenu.tsx",
         type: "example",
       },
     ],

@@ -16,8 +16,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
-  DropdownMenuGroupLabel,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
@@ -51,7 +51,7 @@ export function SolidUI() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuGroup>
-                <DropdownMenuGroupLabel>Suggested Lists</DropdownMenuGroupLabel>
+                <DropdownMenuLabel>Suggested Lists</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuRadioGroup defaultValue="future-ideas">
                   <DropdownMenuRadioItem value="future-ideas">

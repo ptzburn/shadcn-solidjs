@@ -1,16 +1,10 @@
-import { createSignal } from "solid-js";
-
 import { Button } from "~/registry/ui/button.tsx";
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuGroup,
-  DropdownMenuGroupLabel,
   DropdownMenuItem,
-  DropdownMenuPortal,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuSub,
@@ -20,73 +14,58 @@ import {
 } from "~/registry/ui/dropdown-menu.tsx";
 
 export default function DropdownMenuDemo() {
-  const [showGitLog, setShowGitLog] = createSignal(false);
-  const [showHistory, setShowHistory] = createSignal(false);
-  const [branch, setBranch] = createSignal("develop");
-
   return (
-    <div class="flex-col">
-      <DropdownMenu>
-        <DropdownMenuTrigger as={Button<"button">}>
-          Git Settings
-        </DropdownMenuTrigger>
-        <DropdownMenuContent class="w-48">
+    <DropdownMenu>
+      <DropdownMenuTrigger as={Button<"button">} variant="outline">
+        Open
+      </DropdownMenuTrigger>
+      <DropdownMenuContent class="w-40">
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuItem>
-            <span>Commit</span>
-            <DropdownMenuShortcut>⌘+K</DropdownMenuShortcut>
+            Profile
+            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <span>Push</span>
-            <DropdownMenuShortcut>⇧+⌘+K</DropdownMenuShortcut>
+            Billing
+            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <span>Update Project</span>
+            Settings
+            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>Team</DropdownMenuItem>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem>Email</DropdownMenuItem>
+              <DropdownMenuItem>Message</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>More...</DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+          <DropdownMenuItem>
+            New Team
             <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuSub overlap>
-            <DropdownMenuSubTrigger>GitHub</DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem>Create Pull Request…</DropdownMenuItem>
-                <DropdownMenuItem>View Pull Requests</DropdownMenuItem>
-                <DropdownMenuItem>Sync Fork</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Open on GitHub</DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
-          <DropdownMenuSeparator />
-          <DropdownMenuCheckboxItem
-            checked={showGitLog()}
-            onChange={setShowGitLog}
-          >
-            Show Git Log
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem
-            checked={showHistory()}
-            onChange={setShowHistory}
-          >
-            Show History
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuGroupLabel>Branches</DropdownMenuGroupLabel>
-            <DropdownMenuRadioGroup value={branch()} onChange={setBranch}>
-              <DropdownMenuRadioItem value="main">main</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="develop">
-                develop
-              </DropdownMenuRadioItem>
-            </DropdownMenuRadioGroup>
-          </DropdownMenuGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <p class="pt-2 text-sm text-gray-500">
-        Show Git Log: {showGitLog() ? "yes" : "no"}
-      </p>
-      <p class="pt-2 text-sm text-gray-500">
-        Show History: {showHistory() ? "yes" : "no"}
-      </p>
-      <p class="pt-2 text-sm text-gray-500">Selected Branch: {branch()}</p>
-    </div>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>GitHub</DropdownMenuItem>
+          <DropdownMenuItem>Support</DropdownMenuItem>
+          <DropdownMenuItem disabled>API</DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            Log out
+            <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
