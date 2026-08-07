@@ -29,6 +29,9 @@
       "type": "registry:ui",
       "dependencies": [
         "@kobalte/core"
+      ],
+      "registryDependencies": [
+        "button"
       ]
     },
     {
@@ -400,6 +403,9 @@
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"
+      ],
+      "registryDependencies": [
+        "button"
       ]
     },
     {

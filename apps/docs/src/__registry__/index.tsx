@@ -34,7 +34,7 @@ export const Index: RegistryIndex = {
     name: "alert-dialog",
     description: "",
     type: "ui",
-    registryDependencies: undefined,
+    registryDependencies: ["button"],
     component: lazy(() => import("~/registry/ui/alert-dialog.tsx")),
     files: [{
       path: "registry/ui/alert-dialog.tsx",
@@ -466,7 +466,7 @@ export const Index: RegistryIndex = {
     name: "sheet",
     description: "",
     type: "ui",
-    registryDependencies: undefined,
+    registryDependencies: ["button"],
     component: lazy(() => import("~/registry/ui/sheet.tsx")),
     files: [{
       path: "registry/ui/sheet.tsx",

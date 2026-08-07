@@ -5,6 +5,9 @@
   "dependencies": [
     "@kobalte/core"
   ],
+  "registryDependencies": [
+    "button"
+  ],
   "files": [
     {
       "path": "src/registry/ui/alert-dialog.tsx",

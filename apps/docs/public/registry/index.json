@@ -24,6 +24,9 @@
     "dependencies": [
       "@kobalte/core"
     ],
+    "registryDependencies": [
+      "button"
+    ],
     "files": [
       "ui/alert-dialog.tsx"
     ],
@@ -402,6 +405,9 @@
     "name": "sheet",
     "dependencies": [
       "@kobalte/core"
+    ],
+    "registryDependencies": [
+      "button"
     ],
     "files": [
       "ui/sheet.tsx"

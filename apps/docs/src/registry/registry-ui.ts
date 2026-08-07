@@ -27,6 +27,7 @@ export const ui: Registry = [
     name: "alert-dialog",
     type: "ui",
     dependencies: ["@kobalte/core"],
+    registryDependencies: ["button"],
     files: [
       {
         path: "ui/alert-dialog.tsx",
@@ -427,6 +428,7 @@ export const ui: Registry = [
     name: "sheet",
     type: "ui",
     dependencies: ["@kobalte/core"],
+    registryDependencies: ["button"],
     files: [
       {
         path: "ui/sheet.tsx",

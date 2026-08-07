@@ -9,6 +9,9 @@
     "unplugin-icons",
     "@iconify-json/tabler"
   ],
+  "registryDependencies": [
+    "button"
+  ],
   "files": [
     {
       "path": "src/registry/ui/sheet.tsx",
