@@ -125,6 +125,53 @@ const KOBALTE_ONLY: Record<string, Derivation> = {
   "cn-tabs-indicator": () => ["bg-foreground"],
 };
 
+/**
+ * Variant renames that hold everywhere, applied to every marker.
+ *
+ * The learned map below is keyed per marker, so it only adapts markers
+ * our nova happens to adapt. When another style reaches for a state nova
+ * leaves unstyled -- luma's `data-open:bg-muted/50` on an accordion item,
+ * vega's `data-horizontal:h-1.5` on a slider track -- there is nothing to
+ * learn from and the upstream variant passes straight through, dead.
+ *
+ * These entries are the renames the nova diff shows are unconditional
+ * (every occurrence changed, none kept as-is), so applying them globally
+ * is safe. Anything context-dependent (`aria-invalid`, `focus`,
+ * `data-closed`, `data-[side=*]`) stays with the per-marker map, because
+ * Kobalte genuinely uses both spellings depending on the element.
+ */
+const VARIANT_RENAMES: Record<string, string> = {
+  "data-open": "data-expanded",
+  "data-selected": "data-[selected=true]",
+  "data-horizontal": "data-[orientation=horizontal]",
+  "data-vertical": "data-[orientation=vertical]",
+  "data-[vaul-drawer-direction=bottom]": "data-[side=bottom]",
+  "data-[vaul-drawer-direction=left]": "data-[side=left]",
+  "data-[vaul-drawer-direction=right]": "data-[side=right]",
+  "data-[vaul-drawer-direction=top]": "data-[side=top]",
+  "data-[state=on]": "data-[pressed]",
+  // Kobalte marks only the checked state, so "unchecked" is its absence.
+  "data-unchecked": "not-data-checked",
+};
+
+/** Rewrites known-unconditional variant prefixes in a single token. */
+function renameVariants(token: string): string {
+  const segments = token.split(":");
+  const tail = segments.pop()!;
+  const variants = segments.map((variant) => {
+    const direct = VARIANT_RENAMES[variant];
+    if (direct) return direct;
+    // Group/peer forms carry the variant inside: group-data-open/name.
+    const scoped = variant.match(/^(group-|peer-)(.+?)(\/.+)?$/);
+    if (scoped) {
+      const inner = VARIANT_RENAMES[scoped[2]];
+      if (inner) return `${scoped[1]}${inner}${scoped[3] ?? ""}`;
+    }
+    return variant;
+  });
+  return [...variants, tail].join(":");
+}
+
 const args = process.argv.slice(2);
 const targets: string[] = [];
 let upstreamDir = DEFAULT_UPSTREAM;
@@ -262,6 +309,7 @@ for (const style of targets) {
 
   let dropCount = 0;
   let adaptCount = 0;
+  let globalRenames = 0;
   const present = new Set<string>();
 
   root.walkRules((rule) => {
@@ -280,7 +328,6 @@ for (const style of targets) {
     present.add(marker);
 
     const adaptation = adaptations.get(marker);
-    if (!adaptation) return;
 
     let touched = false;
     for (const node of rule.nodes ?? []) {
@@ -288,20 +335,30 @@ for (const style of targets) {
       const tokens = node.params.trim().split(/\s+/).filter(Boolean);
       const next: string[] = [];
       for (const token of tokens) {
-        if (adaptation.drop.has(token)) {
+        if (adaptation?.drop.has(token)) {
           touched = true;
           continue;
         }
-        const rewritten = adaptation.rewrite.get(token);
+        // The per-marker map runs first so markers nova already adapted
+        // reproduce byte for byte; the global pass then catches variants
+        // in markers nova never touched.
+        const rewritten = adaptation?.rewrite.get(token);
         if (rewritten) {
           next.push(rewritten);
           touched = true;
-        } else {
-          next.push(token);
+          continue;
         }
+        const renamed = renameVariants(token);
+        if (renamed !== token) {
+          globalRenames++;
+          touched = true;
+        }
+        next.push(renamed);
       }
       node.params = next.join(" ");
     }
+
+    if (!adaptation) return;
 
     if (adaptation.add.length > 0) {
       const apply = (rule.nodes ?? []).find(
@@ -409,6 +466,7 @@ for (const style of targets) {
 
   console.log(
     `${style}: ${present.size} kept, ${dropCount} dropped, ` +
-      `${adaptCount} adapted, ${composed.size} composed, ${blank.length} blank`,
+      `${adaptCount} adapted (${globalRenames} global variant renames), ` +
+      `${composed.size} composed, ${blank.length} blank`,
   );
 }

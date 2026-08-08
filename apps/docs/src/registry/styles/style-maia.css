@@ -19,7 +19,7 @@
     }
 
     .cn-accordion-item {
-      @apply data-open:bg-muted/50 not-last:border-b;
+      @apply data-expanded:bg-muted/50 not-last:border-b;
     }
 
     .cn-accordion-trigger {
@@ -1430,9 +1430,9 @@
     }
 
     .cn-slider-track {
-      @apply bg-muted rounded-4xl data-horizontal:h-3
+      @apply bg-muted rounded-4xl data-[orientation=horizontal]:h-3
         data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full
-        data-vertical:w-3;
+        data-[orientation=vertical]:w-3;
     }
 
     .cn-slider-range {
@@ -1514,15 +1514,17 @@
     }
 
     .cn-tabs-list {
-      @apply rounded-4xl p-[3px] group-data-horizontal/tabs:h-9
-        group-data-vertical/tabs:rounded-2xl data-[variant=line]:rounded-none;
+      @apply rounded-4xl p-[3px] group-data-[orientation=horizontal]/tabs:h-9
+        group-data-[orientation=vertical]/tabs:rounded-2xl
+        data-[variant=line]:rounded-none;
     }
 
     .cn-tabs-trigger {
       @apply gap-1.5 rounded-xl border border-transparent px-2 py-1 text-sm
-        font-medium group-data-vertical/tabs:px-2.5
-        group-data-vertical/tabs:py-1.5 [&_svg:not([class*='size-'])]:size-4
-        has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5;
+        font-medium group-data-[orientation=vertical]/tabs:px-2.5
+        group-data-[orientation=vertical]/tabs:py-1.5
+        [&_svg:not([class*='size-'])]:size-4 has-data-[icon=inline-end]:pr-1.5
+        has-data-[icon=inline-start]:pl-1.5;
     }
 
     .cn-tabs-content {
@@ -1577,16 +1579,16 @@
     }
 
     .cn-toggle-group-item {
-      @apply data-[state=on]:bg-muted
+      @apply data-[pressed]:bg-muted
         group-data-[spacing=0]/toggle-group:rounded-none
         group-data-[spacing=0]/toggle-group:px-3
         group-data-[spacing=0]/toggle-group:shadow-none
         group-data-[spacing=0]/toggle-group:has-data-[icon=inline-end]:pr-2.5
         group-data-[spacing=0]/toggle-group:has-data-[icon=inline-start]:pl-2.5
-        group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-l-3xl
-        group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-3xl
-        group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-r-3xl
-        group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-3xl;
+        group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:first:rounded-l-3xl
+        group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:first:rounded-t-3xl
+        group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:last:rounded-r-3xl
+        group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:last:rounded-b-3xl;
     }
 
     /* MARK: Tooltip */

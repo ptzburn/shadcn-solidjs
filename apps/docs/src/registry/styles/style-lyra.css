@@ -585,11 +585,10 @@
 
     .cn-drawer-content {
       @apply bg-popover text-popover-foreground flex h-auto flex-col
-        text-xs/relaxed data-[vaul-drawer-direction=bottom]:rounded-none
-        data-[side=bottom]:border-t
-        data-[vaul-drawer-direction=left]:rounded-none data-[side=left]:border-r
-        data-[vaul-drawer-direction=right]:rounded-none
-        data-[side=right]:border-l data-[vaul-drawer-direction=top]:rounded-none
+        text-xs/relaxed data-[side=bottom]:rounded-none
+        data-[side=bottom]:border-t data-[side=left]:rounded-none
+        data-[side=left]:border-r data-[side=right]:rounded-none
+        data-[side=right]:border-l data-[side=top]:rounded-none
         data-[side=top]:border-b;
     }
 
@@ -1509,7 +1508,8 @@
 
     .cn-tabs-trigger {
       @apply gap-1.5 rounded-none border border-transparent px-1.5 py-0.5
-        text-xs font-medium group-data-vertical/tabs:py-[calc(--spacing(1.25))]
+        text-xs font-medium
+        group-data-[orientation=vertical]/tabs:py-[calc(--spacing(1.25))]
         [&_svg:not([class*='size-'])]:size-4 has-data-[icon=inline-end]:pr-1
         has-data-[icon=inline-start]:pl-1;
     }
@@ -1572,10 +1572,10 @@
         group-data-[spacing=0]/toggle-group:px-2
         group-data-[spacing=0]/toggle-group:has-data-[icon=inline-end]:pr-1.5
         group-data-[spacing=0]/toggle-group:has-data-[icon=inline-start]:pl-1.5
-        group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-none
-        group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-none
-        group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-none
-        group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-none;
+        group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:first:rounded-none
+        group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:first:rounded-none
+        group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:last:rounded-none
+        group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:last:rounded-none;
     }
 
     /* MARK: Tooltip */

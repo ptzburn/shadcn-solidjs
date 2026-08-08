@@ -612,12 +612,10 @@
 
     .cn-drawer-content {
       @apply bg-popover text-popover-foreground flex h-auto flex-col text-sm
-        data-[vaul-drawer-direction=bottom]:rounded-none
-        data-[side=bottom]:border-t
-        data-[vaul-drawer-direction=left]:rounded-none data-[side=left]:border-r
-        data-[vaul-drawer-direction=right]:rounded-none
-        data-[side=right]:border-l data-[vaul-drawer-direction=top]:rounded-none
-        data-[side=top]:border-b;
+        data-[side=bottom]:rounded-none data-[side=bottom]:border-t
+        data-[side=left]:rounded-none data-[side=left]:border-r
+        data-[side=right]:rounded-none data-[side=right]:border-l
+        data-[side=top]:rounded-none data-[side=top]:border-b;
     }
 
     .cn-drawer-handle {
@@ -1453,9 +1451,9 @@
     }
 
     .cn-slider-track {
-      @apply bg-input/50 data-horizontal:h-0.5
+      @apply bg-input/50 data-[orientation=horizontal]:h-0.5
         data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full
-        data-vertical:w-0.5;
+        data-[orientation=vertical]:w-0.5;
     }
 
     .cn-slider-range {
@@ -1473,7 +1471,7 @@
     /* MARK: Switch */
     .cn-switch {
       @apply data-checked:bg-primary bg-input data-checked:border-primary border
-        data-unchecked:border-input/50 peer-focus-visible:border-ring
+        not-data-checked:border-input/50 peer-focus-visible:border-ring
         focus-visible:ring-ring/30 data-invalid:ring-destructive/20
         dark:data-invalid:ring-destructive/40 data-invalid:border-destructive
         dark:data-invalid:border-destructive/50 shrink-0 rounded-none
@@ -1488,7 +1486,7 @@
         group-data-[size=default]/switch:size-3.5
         group-data-[size=sm]/switch:size-2.5
         data-checked:translate-x-[calc(100%+2px)]
-        data-unchecked:translate-x-0.25;
+        not-data-checked:translate-x-0.25;
     }
 
     /* MARK: Table */
@@ -1538,12 +1536,13 @@
     }
 
     .cn-tabs-list {
-      @apply p-1 group-data-horizontal/tabs:h-10;
+      @apply p-1 group-data-[orientation=horizontal]/tabs:h-10;
     }
 
     .cn-tabs-trigger {
       @apply gap-2 border border-transparent px-4 py-1.5 text-xs font-semibold
-        group-data-vertical/tabs:px-4 group-data-vertical/tabs:py-2
+        group-data-[orientation=vertical]/tabs:px-4
+        group-data-[orientation=vertical]/tabs:py-2
         [&_svg:not([class*='size-'])]:size-3.5 has-data-[icon=inline-end]:pr-2.5
         has-data-[icon=inline-start]:pl-2.5 uppercase tracking-wider;
     }
@@ -1599,14 +1598,14 @@
     }
 
     .cn-toggle-group-item {
-      @apply data-[state=on]:bg-muted data-[state=on]:text-foreground
+      @apply data-[pressed]:bg-muted data-[pressed]:text-foreground
         group-data-[spacing=0]/toggle-group:rounded-none
         group-data-[spacing=0]/toggle-group:px-6
         group-data-[spacing=0]/toggle-group:shadow-none
-        group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-none
-        group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-none
-        group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-none
-        group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-none
+        group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:first:rounded-none
+        group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:first:rounded-none
+        group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:last:rounded-none
+        group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:last:rounded-none
         group-data-[spacing=0]/toggle-group:has-data-[icon=inline-end]:pr-4
         group-data-[spacing=0]/toggle-group:has-data-[icon=inline-start]:pl-4;
     }

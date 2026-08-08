@@ -19,9 +19,9 @@
     }
 
     .cn-slider-track {
-      @apply bg-input/90 rounded-full data-horizontal:h-2
+      @apply bg-input/90 rounded-full data-[orientation=horizontal]:h-2
         data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full
-        data-vertical:w-2;
+        data-[orientation=vertical]:w-2;
     }
 
     .cn-slider-range {
@@ -33,13 +33,13 @@
         bg-white shadow-md transition-[color,box-shadow,background-color]
         hover:ring-4 hover:ring-ring/30 focus-visible:ring-4
         focus-visible:ring-ring/30 focus-visible:outline-hidden
-        data-vertical:h-6 data-vertical:w-4;
+        data-[orientation=vertical]:h-6 data-[orientation=vertical]:w-4;
     }
 
     /* MARK: Switch */
     .cn-switch {
-      @apply data-checked:bg-primary data-unchecked:bg-input/90
-        data-checked:border-primary border-2 data-unchecked:border-transparent
+      @apply data-checked:bg-primary not-data-checked:bg-input/90
+        data-checked:border-primary border-2 not-data-checked:border-transparent
         peer-focus-visible:border-ring focus-visible:ring-ring/30
         data-invalid:ring-destructive/20 dark:data-invalid:ring-destructive/40
         data-invalid:border-destructive dark:data-invalid:border-destructive/50
@@ -54,7 +54,7 @@
         group-data-[size=default]/switch:h-4
         group-data-[size=default]/switch:w-6 group-data-[size=sm]/switch:h-3
         group-data-[size=sm]/switch:w-4
-        data-checked:translate-x-[calc(100%-8px)] data-unchecked:translate-x-0
+        data-checked:translate-x-[calc(100%-8px)] not-data-checked:translate-x-0
         not-dark:bg-clip-padding;
     }
 
@@ -536,14 +536,16 @@
     }
 
     .cn-tabs-list {
-      @apply rounded-full p-1 group-data-horizontal/tabs:h-9
-        group-data-vertical/tabs:rounded-2xl data-[variant=line]:rounded-none;
+      @apply rounded-full p-1 group-data-[orientation=horizontal]/tabs:h-9
+        group-data-[orientation=vertical]/tabs:rounded-2xl
+        data-[variant=line]:rounded-none;
     }
 
     .cn-tabs-trigger {
       @apply gap-2 rounded-full border border-transparent! px-3 py-1 text-sm
-        font-medium group-data-vertical/tabs:px-3
-        group-data-vertical/tabs:py-1.5 group-data-vertical/tabs:rounded-2xl
+        font-medium group-data-[orientation=vertical]/tabs:px-3
+        group-data-[orientation=vertical]/tabs:py-1.5
+        group-data-[orientation=vertical]/tabs:rounded-2xl
         [&_svg:not([class*='size-'])]:size-4 has-data-[icon=inline-end]:pr-2
         has-data-[icon=inline-start]:pl-2;
     }
@@ -589,7 +591,7 @@
     }
 
     .cn-accordion-item {
-      @apply data-open:bg-muted/50 not-last:border-b;
+      @apply data-expanded:bg-muted/50 not-last:border-b;
     }
 
     .cn-accordion-trigger {
@@ -1618,14 +1620,14 @@
     }
 
     .cn-toggle-group-item {
-      @apply data-[state=on]:bg-muted
+      @apply data-[pressed]:bg-muted
         group-data-[spacing=0]/toggle-group:rounded-none
         group-data-[spacing=0]/toggle-group:px-3
         group-data-[spacing=0]/toggle-group:shadow-none
-        group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-l-3xl
-        group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-3xl
-        group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-r-3xl
-        group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-3xl
+        group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:first:rounded-l-3xl
+        group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:first:rounded-t-3xl
+        group-data-[orientation=horizontal]/toggle-group:data-[spacing=0]:last:rounded-r-3xl
+        group-data-[orientation=vertical]/toggle-group:data-[spacing=0]:last:rounded-b-3xl
         group-data-[spacing=0]/toggle-group:has-data-[icon=inline-end]:pr-2.5
         group-data-[spacing=0]/toggle-group:has-data-[icon=inline-start]:pl-2.5;
     }
