@@ -17,7 +17,7 @@ export function MainNav(props: { class?: string }) {
             href={item.href}
             variant="ghost"
             size="sm"
-            class="relative items-center px-2.5"
+            class="relative h-8 items-center px-2.5 text-sm"
             data-active={location.pathname === item.href}
           >
             {item.title}
