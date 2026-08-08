@@ -18,6 +18,7 @@ import type {
 export interface ResolveOptions {
   registries?: RegistryConfig;
   iconLibrary?: string;
+  style?: string;
 }
 
 interface ResolvedNode {

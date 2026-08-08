@@ -31,13 +31,39 @@ export function isIconLibrary(value: string): value is IconLibrary {
 }
 
 /**
- * Every item — including lib and hook items — is addressable under an icon
- * library prefix, so resolving a ui item's registryDependencies never needs a
- * fallback path. `{iconLibrary}` is this registry's analogue of upstream's
- * `{style}` placeholder.
+ * Styles mirror `apps/docs/src/registry/styles.ts`. Each is a complete set of
+ * visual tokens; the registry inlines one style's tokens into the code it
+ * ships, so a component's classes differ per style.
+ */
+export const STYLES = {
+  nova: { title: "Nova", description: "Reduced padding and margins" },
+  vega: { title: "Vega", description: "Clean, neutral, and familiar" },
+  maia: { title: "Maia", description: "Rounded, with generous spacing." },
+  lyra: { title: "Lyra", description: "Boxy and sharp. For mono fonts." },
+  mira: { title: "Mira", description: "Made for compact interfaces." },
+  luma: { title: "Luma", description: "Fluid, luminous, and soft." },
+  sera: { title: "Sera", description: "Editorial and typographic." },
+  rhea: { title: "Rhea", description: "Like Luma but compact." },
+} as const;
+
+export type Style = keyof typeof STYLES;
+
+export const STYLE_NAMES = Object.keys(STYLES) as Style[];
+
+export const DEFAULT_STYLE: Style = "nova";
+
+export function isStyle(value: string): value is Style {
+  return value in STYLES;
+}
+
+/**
+ * Every item — including lib and hook items — is addressable under both a
+ * style and an icon library prefix, so resolving a ui item's
+ * registryDependencies never needs a fallback path.
  */
 export const BUILTIN_REGISTRIES = {
-  "@shadcn-solid": `${REGISTRY_URL}/icons/{iconLibrary}/{name}.json`,
+  "@shadcn-solid":
+    `${REGISTRY_URL}/styles/{style}/icons/{iconLibrary}/{name}.json`,
 } as const;
 
 export const DEFAULT_REGISTRY = "@shadcn-solid";

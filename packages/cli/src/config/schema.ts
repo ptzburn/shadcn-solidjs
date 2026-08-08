@@ -46,6 +46,7 @@ export const rawConfigSchema = z.object({
     prefix: z.string().default("").optional(),
   }),
   iconLibrary: z.string().optional(),
+  style: z.string().optional(),
   aliases: z.object({
     components: z.string(),
     utils: z.string(),

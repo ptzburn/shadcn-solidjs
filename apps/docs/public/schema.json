@@ -1,24 +1,56 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "shadcn-solid components.json",
   "type": "object",
   "properties": {
+    "$schema": {
+      "type": "string"
+    },
     "tsx": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true,
+      "description": "Only true is supported; emitting JS would need a downlevel pass this CLI does not implement."
     },
     "tailwind": {
       "type": "object",
       "properties": {
         "css": {
+          "type": "string",
+          "description": "Path to the stylesheet importing Tailwind."
+        },
+        "baseColor": {
           "type": "string"
         },
-        "config": {
-          "type": "string"
+        "cssVariables": {
+          "type": "boolean",
+          "default": true
         },
         "prefix": {
-          "type": "string"
+          "type": "string",
+          "default": ""
         }
       },
-      "required": ["css", "config"]
+      "required": ["css", "baseColor"]
+    },
+    "iconLibrary": {
+      "type": "string",
+      "enum": ["lucide", "tabler", "ph", "ri", "hugeicons"],
+      "default": "lucide"
+    },
+    "style": {
+      "type": "string",
+      "enum": [
+        "nova",
+        "vega",
+        "maia",
+        "lyra",
+        "mira",
+        "luma",
+        "sera",
+        "rhea"
+      ],
+      "default": "nova",
+      "description": "The visual style components are installed in."
     },
     "aliases": {
       "type": "object",
@@ -28,10 +60,54 @@
         },
         "utils": {
           "type": "string"
+        },
+        "ui": {
+          "type": "string"
+        },
+        "lib": {
+          "type": "string"
+        },
+        "hooks": {
+          "type": "string"
         }
       },
       "required": ["components", "utils"]
+    },
+    "registries": {
+      "type": "object",
+      "description": "Extra registries, keyed by an @-prefixed name.",
+      "patternProperties": {
+        "^@": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "params": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "headers": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["url"]
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
     }
   },
-  "required": ["tsx", "tailwind", "aliases"]
+  "required": ["tailwind", "aliases"]
 }

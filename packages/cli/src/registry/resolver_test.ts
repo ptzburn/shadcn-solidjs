@@ -14,11 +14,13 @@ const R_DIR = path.resolve(
   "../../../../apps/docs/public/r",
 );
 
-function options(iconLibrary = "lucide") {
+function options(iconLibrary = "lucide", style = "nova") {
   return {
     iconLibrary,
+    style,
     registries: {
-      "@shadcn-solid": `${R_DIR}/icons/{iconLibrary}/{name}.json`,
+      "@shadcn-solid":
+        `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
     },
   };
 }
@@ -97,6 +99,49 @@ Deno.test("the default icon library is lucide", async () => {
   assert(tree.files[0].content?.includes("~icons/lucide/"));
 });
 
+Deno.test("selects the style variant", async () => {
+  clearRegistryCache();
+  const tree = await resolveRegistryTree(["button"], options("lucide", "sera"));
+
+  const content = tree.files[0].content ?? "";
+  // sera sets buttons in uppercase with tracked-out letterforms; nova does
+  // not. Asserting on tokens the styles genuinely disagree about proves the
+  // style reached the emitted code, not just the URL.
+  assert(
+    content.includes("uppercase") && content.includes("tracking-widest"),
+    "expected sera's uppercase button tokens in the emitted content",
+  );
+});
+
+Deno.test("the default style is nova", async () => {
+  clearRegistryCache();
+  const tree = await resolveRegistryTree(["button"], {
+    iconLibrary: "lucide",
+    registries: {
+      "@shadcn-solid":
+        `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
+    },
+  });
+
+  const content = tree.files[0].content ?? "";
+  assert(content.includes("rounded-[min("), "expected nova's button radius");
+  assert(!content.includes("tracking-widest"));
+});
+
+Deno.test("the unprefixed paths still resolve the default style", async () => {
+  clearRegistryCache();
+  // Registries pinned before styles existed address items without a style
+  // segment; the build keeps writing the default style there.
+  const tree = await resolveRegistryTree(["button"], {
+    iconLibrary: "lucide",
+    registries: {
+      "@shadcn-solid": `${R_DIR}/icons/{iconLibrary}/{name}.json`,
+    },
+  });
+
+  assert(tree.files[0].content?.includes("rounded-[min("));
+});
+
 Deno.test("merges dependencies across the resolved tree", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["sidebar"], options());
@@ -126,7 +171,8 @@ Deno.test("sorts theme items to the front", async () => {
   const items = await resolveRegistryItems(["button", "@theme/blue"], {
     ...options(),
     registries: {
-      "@shadcn-solid": `${R_DIR}/icons/{iconLibrary}/{name}.json`,
+      "@shadcn-solid":
+        `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
       "@theme": `${R_DIR}/themes/{name}.json`,
     },
   });

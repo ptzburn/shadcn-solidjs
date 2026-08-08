@@ -53,6 +53,7 @@ export async function addComponents(
   const tree = await resolveRegistryTree(components, {
     registries: config.registries,
     iconLibrary: config.iconLibrary,
+    style: config.style,
   });
 
   const dependencies = await updateDependencies(

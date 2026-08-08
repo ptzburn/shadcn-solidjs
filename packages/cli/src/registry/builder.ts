@@ -6,12 +6,14 @@ import {
   BUILTIN_REGISTRIES,
   DEFAULT_ICON_LIBRARY,
   DEFAULT_REGISTRY,
+  DEFAULT_STYLE,
 } from "./constants.ts";
 import { RegistryNotConfiguredError } from "./errors.ts";
 
 export interface BuildUrlOptions {
   registries?: RegistryConfig;
   iconLibrary?: string;
+  style?: string;
 }
 
 export interface BuiltUrl {
@@ -49,10 +51,12 @@ function applyTemplate(
   template: string,
   item: string,
   iconLibrary: string,
+  style: string,
 ): string {
   return template
     .replaceAll("{name}", item)
-    .replaceAll("{iconLibrary}", iconLibrary);
+    .replaceAll("{iconLibrary}", iconLibrary)
+    .replaceAll("{style}", style);
 }
 
 function appendParams(url: string, params?: Record<string, string>): string {
@@ -81,6 +85,7 @@ export function buildItemUrl(
   }
 
   const iconLibrary = options.iconLibrary ?? DEFAULT_ICON_LIBRARY;
+  const style = options.style ?? DEFAULT_STYLE;
   const registryName = address.kind === "namespace"
     ? address.registry
     : DEFAULT_REGISTRY;
@@ -97,7 +102,9 @@ export function buildItemUrl(
   }
 
   const { url, params, headers } = normalizeRegistryConfigItem(configured);
-  const templated = expandEnvVars(applyTemplate(url, item, iconLibrary));
+  const templated = expandEnvVars(
+    applyTemplate(url, item, iconLibrary, style),
+  );
 
   const resolvedHeaders: Record<string, string> = {};
   for (const [key, value] of Object.entries(headers ?? {})) {

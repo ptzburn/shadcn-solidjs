@@ -5,6 +5,7 @@ import { CONFIG_FILE, resolveConfigPaths } from "../config/get-config.ts";
 import type { RawConfig } from "../config/schema.ts";
 import {
   DEFAULT_ICON_LIBRARY,
+  DEFAULT_STYLE,
   REGISTRY_INDEX_URL,
   REGISTRY_THEME_URL,
 } from "../registry/constants.ts";
@@ -33,6 +34,7 @@ export class InitError extends Error {
 export interface InitOptions {
   baseColor?: string;
   iconLibrary?: string;
+  style?: string;
   cssVariables?: boolean;
   force?: boolean;
   silent?: boolean;
@@ -117,6 +119,7 @@ export async function buildConfig(
         cssVariables: options.cssVariables ?? true,
       },
       iconLibrary: options.iconLibrary ?? DEFAULT_ICON_LIBRARY,
+      style: options.style ?? DEFAULT_STYLE,
       aliases: {
         components: `${prefix}/components`,
         utils: `${prefix}/lib/utils`,
