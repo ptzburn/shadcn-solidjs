@@ -69,7 +69,7 @@ const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
               {(key) => (
                 <TabsTrigger
                   value={key}
-                  class="h-7 border border-transparent pt-0.5 shadow-none! data-[selected]:border-input data-[selected]:bg-background!"
+                  class="border border-transparent pt-0.5 shadow-none! data-[selected]:border-input data-[selected]:bg-background!"
                 >
                   {key}
                 </TabsTrigger>
@@ -96,9 +96,9 @@ const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
       </Tabs>
       <Button
         data-slot="copy-button"
-        size="icon"
+        size="icon-sm"
         variant="ghost"
-        class="absolute top-2 right-2 z-10 size-7 opacity-70 hover:opacity-100 focus-visible:opacity-100"
+        class="absolute top-2 right-2 z-10 opacity-70 hover:opacity-100 focus-visible:opacity-100"
         onClick={copyCommand}
       >
         <span class="sr-only">Copy</span>

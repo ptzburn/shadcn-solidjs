@@ -8,8 +8,8 @@ export function ModeSwitcher() {
   return (
     <Button
       variant="ghost"
-      size="icon"
-      class="group/toggle extend-touch-target size-8"
+      size="icon-sm"
+      class="group/toggle extend-touch-target"
       onClick={() => setColorMode(colorMode() === "dark" ? "light" : "dark")}
     >
       <svg

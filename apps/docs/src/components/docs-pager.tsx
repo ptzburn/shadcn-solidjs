@@ -55,7 +55,7 @@ export function DocsPager() {
             href={page().href}
             variant="secondary"
             size="sm"
-            class="h-8 gap-1.5 px-3 text-sm shadow-none hover:bg-secondary/80 [&_svg:not([class*='size-'])]:size-4"
+            class="shadow-none hover:bg-secondary/80"
           >
             <IconArrowLeft /> {page().title}
           </Button>
@@ -68,7 +68,7 @@ export function DocsPager() {
             href={page().href}
             variant="secondary"
             size="sm"
-            class="ml-auto h-8 gap-1.5 px-3 text-sm shadow-none hover:bg-secondary/80 [&_svg:not([class*='size-'])]:size-4"
+            class="ml-auto shadow-none hover:bg-secondary/80"
           >
             {page().title} <IconArrowRight />
           </Button>

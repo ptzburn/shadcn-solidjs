@@ -15,7 +15,7 @@ export function GitHubLink() {
       rel="noreferrer"
       size="sm"
       variant="ghost"
-      class="h-8 shadow-none"
+      class="shadow-none"
     >
       <IconBrandGithub />
       <StarsCount />

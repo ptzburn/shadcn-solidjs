@@ -18,7 +18,7 @@ export function SiteHeader() {
               <SearchBar />
             </div>
             <Separator orientation="vertical" class="ml-2 hidden lg:block" />
-            <StyleSwitcher class="hidden h-8 shadow-none lg:flex" />
+            <StyleSwitcher class="hidden shadow-none lg:flex" />
             <Separator orientation="vertical" class="hidden lg:block" />
             <GitHubLink />
             <Separator orientation="vertical" />

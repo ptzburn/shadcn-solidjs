@@ -33,7 +33,7 @@ export function CodeCollapsibleWrapper(
           as={Button<"button">}
           variant="ghost"
           size="sm"
-          class="h-7 rounded-md px-2 text-muted-foreground"
+          class="text-muted-foreground"
         >
           {isOpened() ? "Collapse" : "Expand"}
         </CollapsibleTrigger>

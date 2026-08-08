@@ -41,7 +41,8 @@ export default function SearchBar() {
       <Button
         id="search-trigger"
         variant="outline"
-        class="relative h-8 w-full justify-start rounded-lg border-none bg-muted pl-3 font-normal text-foreground shadow-none transition-colors hover:bg-muted/50 md:w-48 lg:w-40 xl:w-64"
+        size="sm"
+        class="relative w-full justify-start border-none bg-muted pl-3 font-normal text-foreground shadow-none transition-colors hover:bg-muted/50 md:w-48 lg:w-40 xl:w-64"
         onClick={() => setOpen(true)}
       >
         <span class="hidden xl:inline-flex">Search documentation...</span>

@@ -35,7 +35,7 @@ export function DocsCopyPage() {
       <Button
         variant="secondary"
         size="sm"
-        class="h-8 shadow-none hover:bg-secondary/80 md:h-7 md:text-[0.8rem]"
+        class="shadow-none hover:bg-secondary/80 max-md:h-8"
         onClick={copyPage}
       >
         <Show when={isCopied()} fallback={<IconCopy />}>
@@ -48,7 +48,7 @@ export function DocsCopyPage() {
           as={Button}
           variant="secondary"
           size="sm"
-          class="peer -ml-0.5 size-8 shadow-none hover:bg-secondary/80 md:size-7 md:text-[0.8rem]"
+          class="peer -ml-0.5 shadow-none hover:bg-secondary/80 max-md:size-8"
         >
           <IconChevronDown />
           <span class="sr-only">More options</span>
