@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-media-query",
+  "type": "registry:hook",
+  "files": [
+    {
+      "path": "src/registry/hook/use-media-query.ts",
+      "content": "import { type Accessor, createEffect, createSignal, onCleanup } from \"solid-js\";\n\nexport function useMediaQuery(query: string): Accessor<boolean> {\n  const [matches, setMatches] = createSignal(false);\n\n  createEffect(() => {\n    if (typeof globalThis.matchMedia !== \"function\") return;\n\n    const mediaQuery = globalThis.matchMedia(query);\n    setMatches(mediaQuery.matches);\n\n    const handler = (event: MediaQueryListEvent) => {\n      setMatches(event.matches);\n    };\n\n    mediaQuery.addEventListener(\"change\", handler);\n\n    onCleanup(() => {\n      mediaQuery.removeEventListener(\"change\", handler);\n    });\n  });\n\n  return matches;\n}\n",
+      "type": "registry:hook"
+    }
+  ]
+}

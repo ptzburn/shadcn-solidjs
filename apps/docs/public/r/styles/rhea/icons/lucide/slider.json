@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "type": "registry:ui",
+  "dependencies": [
+    "@kobalte/core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/ui/slider.tsx",
+      "content": "import type { PolymorphicProps } from \"@kobalte/core/polymorphic\";\nimport * as SliderPrimitive from \"@kobalte/core/slider\";\n\nimport { cn } from \"~/lib/utils.ts\";\n\nimport type { ValidComponent } from \"solid-js\";\nimport { Index, splitProps } from \"solid-js\";\n\ntype SliderProps<T extends ValidComponent = \"div\"> =\n  & SliderPrimitive.SliderRootProps<T>\n  & {\n    class?: string | undefined;\n  };\n\nconst Slider = <T extends ValidComponent = \"div\">(\n  props: PolymorphicProps<T, SliderProps<T>>,\n) => {\n  const [local, others] = splitProps(props as SliderProps, [\"class\"]);\n\n  // one thumb per value, like upstream; reading straight off `props` keeps the\n  // count reactive without splitting the values out of `others`. Upstream falls\n  // back to `[min, max]`, but Kobalte's own uncontrolled default is a single\n  // `[minValue]`, so a second thumb would only ever render as `display: none`.\n  const values = () => {\n    const p = props as SliderProps;\n    return p.value ?? p.defaultValue ?? [p.minValue ?? 0];\n  };\n\n  return (\n    <SliderPrimitive.Root\n      data-slot=\"slider\"\n      class={cn(\n        \"data-[orientation=vertical]:min-h-40 relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col\",\n        local.class,\n      )}\n      {...others}\n    >\n      <SliderPrimitive.Track\n        data-slot=\"slider-track\"\n        class=\"bg-input/90 rounded-2xl data-[orientation=horizontal]:h-1 data-[orientation=vertical]:w-1 relative grow overflow-hidden data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full\"\n      >\n        <SliderPrimitive.Fill\n          data-slot=\"slider-range\"\n          class=\"bg-primary absolute select-none data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full\"\n        />\n      </SliderPrimitive.Track>\n      <Index each={values()}>\n        {() => (\n          // Kobalte pins the thumb with an inline `position: absolute` plus a\n          // single-axis transform, so the cross axis has to be centred here.\n          <SliderPrimitive.Thumb\n            data-slot=\"slider-thumb\"\n            class=\"ring-black/10 not-dark:bg-clip-padding ring-1 size-4 rounded-2xl bg-white shadow-md transition-[color,box-shadow] duration-200 hover:ring-4 hover:ring-ring/30 focus-visible:ring-4 focus-visible:ring-ring/30 focus-visible:outline-hidden block shrink-0 select-none disabled:pointer-events-none disabled:opacity-50\"\n          >\n            <SliderPrimitive.Input />\n          </SliderPrimitive.Thumb>\n        )}\n      </Index>\n    </SliderPrimitive.Root>\n  );\n};\n\nexport { Slider };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

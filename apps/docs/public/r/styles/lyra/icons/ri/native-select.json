@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "native-select",
+  "type": "registry:ui",
+  "devDependencies": [
+    "unplugin-icons",
+    "@iconify-json/ri"
+  ],
+  "files": [
+    {
+      "path": "src/registry/ui/native-select.tsx",
+      "content": "import { cn } from \"~/lib/utils.ts\";\nimport IconArrowDownSLine from \"~icons/ri/arrow-down-s-line\";\n\nimport type { Component, ComponentProps } from \"solid-js\";\n\nimport { splitProps } from \"solid-js\";\n\n// `size` on a native select is the number of visible rows; the design system\n// uses it for the control height instead, so the native attribute is omitted\n// exactly like upstream does.\ntype NativeSelectProps =\n  & Omit<ComponentProps<\"select\">, \"size\">\n  & { size?: \"sm\" | \"default\" };\n\nconst NativeSelect: Component<NativeSelectProps> = (props) => {\n  const [local, others] = splitProps(props, [\"class\", \"size\"]);\n  return (\n    <div\n      class={cn(\n        \"group/native-select relative w-fit has-[select:disabled]:opacity-50\",\n        local.class,\n      )}\n      data-slot=\"native-select-wrapper\"\n      data-size={local.size ?? \"default\"}\n    >\n      <select\n        data-slot=\"native-select\"\n        data-size={local.size ?? \"default\"}\n        class=\"border-input placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 dark:hover:bg-input/50 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 h-8 w-full min-w-0 appearance-none rounded-none border bg-transparent py-1 pr-8 pl-2.5 text-xs transition-colors select-none focus-visible:ring-1 aria-invalid:ring-1 data-[size=sm]:h-7 data-[size=sm]:rounded-none data-[size=sm]:py-0.5 outline-none disabled:pointer-events-none disabled:cursor-not-allowed\"\n        {...others}\n      />\n      <IconArrowDownSLine\n        class=\"text-muted-foreground top-1/2 right-2.5 size-4 -translate-y-1/2 pointer-events-none absolute select-none\"\n        aria-hidden=\"true\"\n        data-slot=\"native-select-icon\"\n      />\n    </div>\n  );\n};\n\nconst NativeSelectOption: Component<ComponentProps<\"option\">> = (props) => {\n  const [local, others] = splitProps(props, [\"class\"]);\n  return (\n    <option\n      data-slot=\"native-select-option\"\n      class={cn(\"bg-[Canvas] text-[CanvasText]\", local.class)}\n      {...others}\n    />\n  );\n};\n\nconst NativeSelectOptGroup: Component<ComponentProps<\"optgroup\">> = (props) => {\n  const [local, others] = splitProps(props, [\"class\"]);\n  return (\n    <optgroup\n      data-slot=\"native-select-optgroup\"\n      class={cn(\"bg-[Canvas] text-[CanvasText]\", local.class)}\n      {...others}\n    />\n  );\n};\n\nexport type { NativeSelectProps };\nexport { NativeSelect, NativeSelectOptGroup, NativeSelectOption };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

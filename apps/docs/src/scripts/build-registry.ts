@@ -3,9 +3,14 @@
  *
  * - `src/__registry__/index.tsx` — lazy component index for the docs site.
  * - `public/r/<name>.json` — registry items in the official shadcn v4
- *   registry-item format, icons resolved to the default library.
+ *   registry-item format, in the default style, icons resolved to the
+ *   default library.
  * - `public/r/icons/<library>/<name>.json` — per-icon-library variants of
- *   every ui item that uses icons.
+ *   every item, in the default style.
+ * - `public/r/styles/<style>/icons/<library>/<name>.json` — the full
+ *   style x icon-library fan-out. The default style is written to the
+ *   unprefixed paths above as well, so registries pinned before styles
+ *   existed keep resolving.
  * - `public/r/themes/<name>.json` — theme items (cssVars only).
  * - `public/r/registry.json` + `public/r/index.json` — item index.
  * - `public/registry/**` — legacy format consumed by the old solidui-cli
@@ -14,9 +19,10 @@
  * Authored components carry two kinds of build-time markers, neither of
  * which ships to consumers:
  *
- * - `cn-*` style markers, inlined from `src/registry/styles/style-nova.css`
- *   (see src/lib/registry/style-map.ts). The docs site instead styles the
- *   markers at runtime by importing that CSS in app.css.
+ * - `cn-*` style markers, inlined per style from
+ *   `src/registry/styles/style-<style>.css` (see
+ *   src/lib/registry/style-map.ts). The docs site instead styles the
+ *   markers at runtime by importing those files in app.css.
  * - IconPlaceholder components, resolved into concrete
  *   `~icons/<library>/<name>` imports (unplugin-icons / @iconify-json on
  *   the consumer side).
@@ -38,6 +44,11 @@ import {
 } from "../registry/icons/icon-libraries.ts";
 import { registry } from "../registry/index.ts";
 import { type RegistryItem, registrySchema } from "../registry/schema.ts";
+import {
+  defaultStyle,
+  type StyleName,
+  styleNames,
+} from "../registry/styles.ts";
 
 const LEGACY_PATH = path.join(process.cwd(), "public/registry");
 const R_PATH = path.join(process.cwd(), "public/r");
@@ -54,27 +65,50 @@ const items = result.output;
 //    Style + icon resolution
 // #######################################
 
-const styleMap = createStyleMap(
-  readFileSync(
-    path.join(process.cwd(), "src", "registry", "styles", "style-nova.css"),
-    "utf8",
-  ),
+const styleMaps = new Map(
+  styleNames.map((style) => [
+    style,
+    createStyleMap(
+      readFileSync(
+        path.join(
+          process.cwd(),
+          "src",
+          "registry",
+          "styles",
+          `style-${style}.css`,
+        ),
+        "utf8",
+      ),
+    ),
+  ]),
 );
 
+/** Authored sources, read once and reused across every style. */
+const sourceCache = new Map<string, string>();
+
+function readSource(filePath: string) {
+  const cached = sourceCache.get(filePath);
+  if (cached !== undefined) {
+    return cached;
+  }
+  const content = readFileSync(
+    path.join(process.cwd(), "src", "registry", filePath),
+    "utf8",
+  ).replaceAll("\r\n", "\n");
+  sourceCache.set(filePath, content);
+  return content;
+}
+
 /**
- * Reads an item's authored files with `cn-*` style markers already
- * inlined; only IconPlaceholder resolution remains per icon library.
+ * Reads an item's authored files with the given style's `cn-*` markers
+ * already inlined; only IconPlaceholder resolution remains per icon
+ * library.
  */
-function readItemFiles(item: RegistryItem) {
+function readItemFiles(item: RegistryItem, style: StyleName) {
+  const styleMap = styleMaps.get(style)!;
   return item.files.map((file) => ({
     ...file,
-    content: inlineStyles(
-      readFileSync(
-        path.join(process.cwd(), "src", "registry", file.path),
-        "utf8",
-      ).replaceAll("\r\n", "\n"),
-      styleMap,
-    ),
+    content: inlineStyles(readSource(file.path), styleMap),
   }));
 }
 
@@ -171,6 +205,8 @@ const indexItems: Record<string, unknown>[] = [];
 
 for (const item of items) {
   if (item.type === "theme") {
+    // Themes carry cssVars rather than files, so nothing in them varies
+    // by style or icon library.
     const payload = toRegistryItem(item, [], []);
     writeJson(path.join(R_PATH, "themes", `${item.name}.json`), payload);
     indexItems.push({ ...payload, files: undefined });
@@ -181,33 +217,52 @@ for (const item of items) {
   // identical variants. That is deliberate: it keeps every item addressable
   // under the same `icons/<library>/` prefix the CLI selects per icon
   // library, so resolving a ui item's registryDependencies never has to fall
-  // back to a different path.
+  // back to a different path. The style fan-out works the same way.
   if (item.type !== "ui" && item.type !== "lib" && item.type !== "hook") {
     continue;
   }
 
-  const files = readItemFiles(item);
+  for (const style of styleNames) {
+    const files = readItemFiles(item, style);
 
-  for (const library of iconLibraryNames) {
-    let usesIcons = false;
-    const resolved = files.map((file) => {
-      const { code, icons } = resolveIcons(file.content, library);
-      if (icons.length > 0) {
-        usesIcons = true;
+    for (const library of iconLibraryNames) {
+      let usesIcons = false;
+      const resolved = files.map((file) => {
+        const { code, icons } = resolveIcons(file.content, library);
+        if (icons.length > 0) {
+          usesIcons = true;
+        }
+        return { ...file, content: code };
+      });
+      const devDependencies = usesIcons
+        ? ["unplugin-icons", iconLibraries[library].package]
+        : [];
+      const payload = toRegistryItem(item, resolved, devDependencies);
+
+      writeJson(
+        path.join(
+          R_PATH,
+          "styles",
+          style,
+          "icons",
+          library,
+          `${item.name}.json`,
+        ),
+        payload,
+      );
+
+      // The default style also lives at the unprefixed paths, so
+      // registries pinned before styles existed keep resolving.
+      if (style === defaultStyle) {
+        writeJson(
+          path.join(R_PATH, "icons", library, `${item.name}.json`),
+          payload,
+        );
+        if (library === defaultIconLibrary) {
+          writeJson(path.join(R_PATH, `${item.name}.json`), payload);
+          indexItems.push({ ...payload, files: undefined });
+        }
       }
-      return { ...file, content: code };
-    });
-    const devDependencies = usesIcons
-      ? ["unplugin-icons", iconLibraries[library].package]
-      : [];
-    const payload = toRegistryItem(item, resolved, devDependencies);
-    writeJson(
-      path.join(R_PATH, "icons", library, `${item.name}.json`),
-      payload,
-    );
-    if (library === defaultIconLibrary) {
-      writeJson(path.join(R_PATH, `${item.name}.json`), payload);
-      indexItems.push({ ...payload, files: undefined });
     }
   }
 }
@@ -230,8 +285,9 @@ for (const item of items) {
     continue;
   }
 
+  // The legacy format predates styles, so it ships the default one.
   let usesIcons = false;
-  const files = readItemFiles(item).map((file) => {
+  const files = readItemFiles(item, defaultStyle).map((file) => {
     const { code, icons } = resolveIcons(file.content, defaultIconLibrary);
     if (icons.length > 0) {
       usesIcons = true;
@@ -263,9 +319,12 @@ const legacyIndex = items
 writeJson(path.join(LEGACY_PATH, "index.json"), legacyIndex);
 
 console.log(
+  `Styles: ${styleNames.join(", ")} (default ${defaultStyle}).`,
+);
+console.log(
   `Built ${items.filter((i) => i.type === "ui").length} ui items, ` +
     `${items.filter((i) => i.type === "lib").length} lib items, ` +
     `${items.filter((i) => i.type === "hook").length} hooks ` +
-    `(x${iconLibraryNames.length} icon libraries), ` +
+    `(x${styleNames.length} styles x${iconLibraryNames.length} icon libraries), ` +
     `${items.filter((i) => i.type === "theme").length} themes.`,
 );

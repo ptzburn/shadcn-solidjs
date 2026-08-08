@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "type": "registry:ui",
+  "dependencies": [
+    "@kobalte/core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/ui/label.tsx",
+      "content": "import type { PolymorphicProps } from \"@kobalte/core\";\nimport { Polymorphic } from \"@kobalte/core\";\n\nimport { cn } from \"~/lib/utils.ts\";\nimport type { ComponentProps, ValidComponent } from \"solid-js\";\n\nimport { splitProps } from \"solid-js\";\n\ntype LabelProps<T extends ValidComponent = \"label\"> = ComponentProps<T> & {\n  class?: string | undefined;\n};\n\nconst Label = <T extends ValidComponent = \"label\">(\n  props: PolymorphicProps<T, LabelProps<T>>,\n) => {\n  const [local, others] = splitProps(props as LabelProps, [\"class\"]);\n\n  return (\n    <Polymorphic<LabelProps>\n      as=\"label\"\n      data-slot=\"label\"\n      class={cn(\n        \"gap-2 text-xs leading-none group-data-[disabled=true]:opacity-50 peer-disabled:opacity-50 peer-data-disabled:opacity-50 flex items-center select-none group-data-[disabled=true]:pointer-events-none peer-disabled:cursor-not-allowed peer-data-disabled:cursor-not-allowed\",\n        local.class,\n      )}\n      {...others}\n    />\n  );\n};\n\nexport { Label };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

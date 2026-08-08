@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sonner",
+  "type": "registry:ui",
+  "dependencies": [
+    "@kobalte/core",
+    "solid-sonner"
+  ],
+  "devDependencies": [
+    "unplugin-icons",
+    "@iconify-json/ph"
+  ],
+  "files": [
+    {
+      "path": "src/registry/ui/sonner.tsx",
+      "content": "import { useColorMode } from \"@kobalte/core\";\nimport type { Component, ComponentProps } from \"solid-js\";\n\nimport { Toaster as Sonner } from \"solid-sonner\";\nimport IconCheckCircle from \"~icons/ph/check-circle\";\nimport IconInfo from \"~icons/ph/info\";\nimport IconSpinner from \"~icons/ph/spinner\";\nimport IconWarning from \"~icons/ph/warning\";\nimport IconXCircle from \"~icons/ph/x-circle\";\n\ntype ToasterProps = ComponentProps<typeof Sonner>;\n\nconst Toaster: Component<ToasterProps> = (props) => {\n  const { colorMode } = useColorMode();\n\n  return (\n    <Sonner\n      theme={colorMode()}\n      class=\"toaster group\"\n      icons={{\n        success: (\n          <IconCheckCircle\n            class=\"size-4\"\n          />\n        ),\n        info: (\n          <IconInfo\n            class=\"size-4\"\n          />\n        ),\n        warning: (\n          <IconWarning\n            class=\"size-4\"\n          />\n        ),\n        error: (\n          <IconXCircle\n            class=\"size-4\"\n          />\n        ),\n        loading: (\n          <IconSpinner\n            class=\"size-4 animate-spin\"\n          />\n        ),\n      }}\n      style={{\n        \"--normal-bg\": \"var(--popover)\",\n        \"--normal-text\": \"var(--popover-foreground)\",\n        \"--normal-border\": \"var(--border)\",\n        \"--border-radius\": \"var(--radius)\",\n      }}\n      toastOptions={{\n        classes: {\n          toast: \"cn-toast\",\n        },\n      }}\n      {...props}\n    />\n  );\n};\n\nexport { Toaster };\n",
+      "type": "registry:ui"
+    }
+  ]
+}
