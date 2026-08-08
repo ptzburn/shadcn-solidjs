@@ -10,12 +10,15 @@ import {
 import { loadDocMarkdown } from "~/lib/docs-raw.ts";
 import { Button } from "~/registry/ui/button.tsx";
 import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+} from "~/registry/ui/button-group.tsx";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
-import { Separator } from "~/registry/ui/separator.tsx";
 
 export function DocsCopyPage() {
   const location = useLocation();
@@ -31,7 +34,11 @@ export function DocsCopyPage() {
   };
 
   return (
-    <div class="group/buttons relative flex rounded-lg bg-secondary *:[[data-slot=button]]:focus-visible:relative *:[[data-slot=button]]:focus-visible:z-10">
+    // ButtonGroup already knows how each style joins adjacent buttons --
+    // flat inner edges, the style's own radius on the outer ones -- and
+    // its separator stretches to the button height, so none of that has
+    // to be hardcoded here.
+    <ButtonGroup>
       <Button
         variant="secondary"
         size="sm"
@@ -43,17 +50,18 @@ export function DocsCopyPage() {
         </Show>
         Copy Page
       </Button>
+      <ButtonGroupSeparator class="bg-foreground/5!" />
       <DropdownMenu placement="bottom-end">
         <DropdownMenuTrigger
           as={Button}
           variant="secondary"
-          size="sm"
-          class="peer -ml-0.5 shadow-none hover:bg-secondary/80 max-md:size-8"
+          size="icon-sm"
+          class="shadow-none hover:bg-secondary/80 max-md:size-8"
         >
           <IconChevronDown />
           <span class="sr-only">More options</span>
         </DropdownMenuTrigger>
-        <DropdownMenuContent class="w-auto animate-none! rounded-lg shadow-none">
+        <DropdownMenuContent class="w-auto animate-none! shadow-none">
           <DropdownMenuItem
             as="a"
             href={markdownUrl()}
@@ -65,10 +73,6 @@ export function DocsCopyPage() {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <Separator
-        orientation="vertical"
-        class="absolute top-1 right-8 z-0 h-6! bg-foreground/5! peer-focus-visible:opacity-0 sm:right-7 sm:h-5!"
-      />
-    </div>
+    </ButtonGroup>
   );
 }
