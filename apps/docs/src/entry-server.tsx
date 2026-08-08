@@ -27,7 +27,7 @@ export default createHandler(() => (
             crossorigin="anonymous"
           />
         </head>
-        <body class="min-h-screen bg-background font-sans antialiased">
+        <body class="style-nova min-h-screen bg-background font-sans antialiased">
           <div id="app">{children}</div>
           {scripts}
         </body>
