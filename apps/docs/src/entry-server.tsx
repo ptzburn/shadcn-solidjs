@@ -1,5 +1,8 @@
 // @refresh reload
 import { createHandler, StartServer } from "@solidjs/start/server";
+import { getRequestEvent } from "solid-js/web";
+
+import { parseStyleCookie } from "~/lib/style-context.tsx";
 
 export default createHandler(() => (
   <StartServer
@@ -27,7 +30,13 @@ export default createHandler(() => (
             crossorigin="anonymous"
           />
         </head>
-        <body class="style-nova min-h-screen bg-background font-sans antialiased">
+        <body
+          class={`style-${
+            parseStyleCookie(
+              getRequestEvent()?.request.headers.get("cookie") ?? undefined,
+            )
+          } min-h-screen bg-background font-sans antialiased`}
+        >
           <div id="app">{children}</div>
           {scripts}
         </body>

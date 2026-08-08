@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+
+/* Every style ships its own `cn-*` tokens, each scoped under
+ * `.style-<name>`. They all load together and the switcher picks one by
+ * setting that class on <body>, so previews can move between styles
+ * without a rebuild. Consumers never see this: the registry build
+ * inlines one style's tokens into the code it ships. */
 @import "../registry/styles/style-nova.css";
+@import "../registry/styles/style-vega.css";
+@import "../registry/styles/style-maia.css";
+@import "../registry/styles/style-lyra.css";
+@import "../registry/styles/style-mira.css";
+@import "../registry/styles/style-luma.css";
+@import "../registry/styles/style-sera.css";
+@import "../registry/styles/style-rhea.css";
 @plugin "@kobalte/tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *, [data-kb-theme=dark],
