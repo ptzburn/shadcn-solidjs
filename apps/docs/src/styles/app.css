@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./kobalte-compat.css";
+@import "./style-docs.css";
 
 /* Every style ships its own `cn-*` tokens, each scoped under
  * `.style-<name>`. They all load together and the switcher picks one by

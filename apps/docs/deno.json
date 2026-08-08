@@ -2,7 +2,7 @@
   "tasks": {
     "dev": "deno run --allow-env --allow-sys --allow-ffi --env-file --allow-net --allow-read --allow-write --allow-run vite --port 3228",
     "build": "deno task build:registry && deno run -A npm:vite build",
-    "build:registry": "deno run -A ./src/scripts/build-icons.ts && deno run -A ./src/scripts/build-registry.ts && deno fmt ./src/__registry__ ./src/registry/icons",
+    "build:registry": "deno run -A ./src/scripts/build-icons.ts && deno run -A ./src/scripts/build-registry.ts && deno run -A ./src/scripts/build-docs-tokens.ts && deno fmt ./src/__registry__ ./src/registry/icons ./src/styles/style-docs.css",
     "start": "deno run --allow-net --allow-read --allow-write --allow-ffi --allow-env --allow-sys ./.output/server/index.mjs",
     "release": "changeset version",
     "check": "deno fmt ./src/ && deno lint ./src/ && deno check ./src/",

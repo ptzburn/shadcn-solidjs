@@ -63,7 +63,7 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
     <Show
       when={local.type !== "block"}
       fallback={
-        <div class="relative aspect-[4/2.5] w-full overflow-hidden rounded-md border">
+        <div class="relative aspect-[4/2.5] w-full overflow-hidden rounded-(--docs-surface-radius) border">
           <div class="absolute inset-0 hidden w-[1600px] bg-background md:block">
             <iframe src={`/blocks/${local.name}`} class="size-full" />
           </div>
@@ -74,7 +74,7 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
         data-slot="component-preview"
         data-not-typeset
         class={cn(
-          "group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-2xl border",
+          "group relative mt-4 mb-12 flex flex-col overflow-hidden rounded-(--docs-surface-radius) border",
           local.class,
         )}
         {...others}

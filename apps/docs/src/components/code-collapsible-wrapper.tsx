@@ -42,7 +42,7 @@ export function CodeCollapsibleWrapper(
       <CollapsibleContent class="relative mt-6 overflow-hidden data-[closed]:max-h-64 data-[closed]:[content-visibility:auto] [&>figure]:mt-0 [&>figure]:md:mx-0!">
         {local.children}
       </CollapsibleContent>
-      <CollapsibleTrigger class="absolute inset-x-0 -bottom-2 flex h-20 items-center justify-center rounded-b-lg bg-gradient-to-b from-code/70 to-code text-sm text-muted-foreground group-data-[expanded]/collapsible:hidden">
+      <CollapsibleTrigger class="absolute inset-x-0 -bottom-2 flex h-20 items-center justify-center rounded-b-(--docs-surface-radius) bg-gradient-to-b from-code/70 to-code text-sm text-muted-foreground group-data-[expanded]/collapsible:hidden">
         {isOpened() ? "Collapse" : "Expand"}
       </CollapsibleTrigger>
     </Collapsible>

@@ -50,7 +50,7 @@ const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
   return (
     <div
       data-not-typeset
-      class="relative -mx-1 mt-6 overflow-hidden rounded-2xl bg-code font-mono text-sm text-code-foreground md:-mx-1"
+      class="relative -mx-1 mt-6 overflow-hidden rounded-(--docs-surface-radius) bg-code font-mono text-sm text-code-foreground md:-mx-1"
     >
       <Tabs
         value={packageManager()}
