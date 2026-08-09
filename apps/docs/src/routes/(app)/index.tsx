@@ -1,6 +1,7 @@
 import { A } from "@solidjs/router";
 
-import { IconBrandGithub } from "~/components/icons.tsx";
+import { CardsDemo } from "~/components/cards/index.tsx";
+import { MetaTags } from "~/components/meta-tags.tsx";
 import {
   PageActions,
   PageHeader,
@@ -9,50 +10,28 @@ import {
 } from "~/components/page-header.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 
+const title = "The Foundation for your Design System";
+const description =
+  "A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code.";
+
 export default function Home() {
   return (
-    <PageHeader>
-      <PageHeaderHeading>Build your component library.</PageHeaderHeading>
-      <PageHeaderDescription>
-        Beautifully designed components that you can copy and paste into your
-        apps.
-      </PageHeaderDescription>
-      <p class="text-sm text-[#4d83c4] dark:text-[#93c4e9]">
-        This is an unofficial port of{" "}
-        <A
-          href="https://github.com/shadcn-ui/ui"
-          target="_blank"
-          rel="noreferrer"
-          class="font-medium underline underline-offset-4"
-        >
-          shadcn/ui
-        </A>{" "}
-        and{" "}
-        <A
-          href="https://github.com/tremorlabs/tremor-raw"
-          target="_blank"
-          rel="noreferrer"
-          class="font-medium underline underline-offset-4"
-        >
-          tremor-raw
-        </A>{" "}
-        to Solid.
-      </p>
-      <PageActions>
-        <Button as={A} size="sm" href="/docs/introduction">
-          Get Started
-        </Button>
-        <Button
-          as={A}
-          variant="ghost"
-          size="sm"
-          href="https://github.com/ptzburn/shadcn-solid"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <IconBrandGithub /> GitHub
-        </Button>
-      </PageActions>
-    </PageHeader>
+    <div class="flex flex-1 flex-col">
+      <MetaTags title={title} description={description} />
+      <PageHeader class="md:**:[.container]:pb-8 lg:**:[.container]:pb-12">
+        <PageHeaderHeading class="max-w-4xl">{title}</PageHeaderHeading>
+        <PageHeaderDescription>{description}</PageHeaderDescription>
+        <PageActions>
+          <Button as={A} size="sm" href="/docs/introduction">
+            Get Started
+          </Button>
+        </PageActions>
+      </PageHeader>
+      <div class="container-wrapper flex-1 p-0">
+        <div class="container overflow-hidden px-0 lg:max-w-none">
+          <CardsDemo />
+        </div>
+      </div>
+    </div>
   );
 }
