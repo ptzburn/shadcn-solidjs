@@ -1,6 +1,6 @@
 {
-  "name": "SolidUI",
-  "short_name": "SolidUI",
+  "name": "shadcn-solid",
+  "short_name": "shadcn-solid",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

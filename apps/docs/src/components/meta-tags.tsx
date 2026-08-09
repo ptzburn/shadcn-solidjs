@@ -1,7 +1,7 @@
 import { mergeProps } from "solid-js";
 import { Link, Meta, Title } from "@solidjs/meta";
 
-const BASE_URL = "https://www.solid-ui.com";
+const BASE_URL = "https://shadcn-solid.com";
 
 export interface HeadProps {
   title?: string;
@@ -11,7 +11,7 @@ export interface HeadProps {
 export function MetaTags(rawProps: HeadProps) {
   const props = mergeProps(
     {
-      title: "solid-ui",
+      title: "shadcn-solid",
       description:
         "Beautifully designed components built with Kobalte and Tailwind CSS.",
     },
@@ -30,7 +30,7 @@ export function MetaTags(rawProps: HeadProps) {
         name="keywords"
         content="shadcn,Solid,SolidJS,SolidStart,UI,Components,TailwindCSS,Kobalte"
       />
-      <Meta name="author" content="Stefan E-K" />
+      <Meta name="author" content="ptzburn" />
 
       <Meta name="twitter:card" content="summary_large_image" />
       <Meta name="twitter:site" content={BASE_URL} />
@@ -38,7 +38,6 @@ export function MetaTags(rawProps: HeadProps) {
       <Meta name="twitter:description" content={props.description} />
       <Meta name="twitter:image" content={`${BASE_URL}/og.png`} />
       <Meta name="twitter:image:alt" content={props.title} />
-      <Meta name="twitter:creator" content="stefan_e_k" />
 
       <Meta name="og:title" content={props.title} />
       <Meta name="og:type" content="article" />

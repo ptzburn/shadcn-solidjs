@@ -1,14 +1,12 @@
 # deno-monorepo
 
-A Deno-native rebuild of [solid-ui](https://github.com/stefan-karger/solid-ui)
-(aceternity-solid), using
-[Deno workspaces](https://docs.deno.com/runtime/fundamentals/workspaces/). The
-structure maps 1:1 to the original pnpm/turbo monorepo:
+A Deno-native monorepo for shadcn-solid, built on
+[Deno workspaces](https://docs.deno.com/runtime/fundamentals/workspaces/):
 
 ```
 deno.json            # workspace root: members, tasks, fmt config
 apps/
-  docs/              # the docs site (SolidStart app in the original)
+  docs/              # the docs site (SolidStart app)
     deno.json        # member deps + "~/" -> "./src/" alias (mirrors tsconfig paths)
     src/lib/         # cn(), clamp(), toggleValue(), use-id hook
 packages/
@@ -23,8 +21,8 @@ single source tree runs under both runtimes: published to JSR for
 [dnt](https://github.com/denoland/dnt) for `npx shadcn-solidjs@latest`.
 `deno pack` cannot build it — it does not emit a `package.json` `bin` field.
 
-Porting happens gradually, file-for-file. Dependencies are added per member as
-code arrives, at their latest versions. Code style follows `deno fmt` defaults.
+Dependencies are added per member as code arrives, at their latest versions.
+Code style follows `deno fmt` defaults.
 
 ## Commands (from the repo root)
 

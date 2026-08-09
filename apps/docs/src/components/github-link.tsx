@@ -4,7 +4,7 @@ import { IconBrandGithub } from "~/components/icons.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import { Skeleton } from "~/registry/ui/skeleton.tsx";
 
-const REPO = "stefan-karger/solid-ui";
+const REPO = "ptzburn/shadcn-solid";
 
 export function GitHubLink() {
   return (

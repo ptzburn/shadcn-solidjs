@@ -46,7 +46,7 @@ export default function Home() {
           as={A}
           variant="ghost"
           size="sm"
-          href="https://github.com/stefan-karger/solid-ui"
+          href="https://github.com/ptzburn/shadcn-solid"
           target="_blank"
           rel="noreferrer"
         >
