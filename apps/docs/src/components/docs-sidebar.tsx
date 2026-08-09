@@ -1,4 +1,4 @@
-import { For, Show } from "solid-js";
+import { For } from "solid-js";
 import { A, useLocation } from "@solidjs/router";
 
 import { docsConfig } from "~/config/docs.ts";
@@ -74,14 +74,6 @@ export function DocsSidebar() {
                         >
                           <span class="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
                           {item.title}
-                          <Show when={item.status}>
-                            {(status) => (
-                              <span
-                                class="flex size-2 rounded-full bg-blue-500"
-                                title={status()}
-                              />
-                            )}
-                          </Show>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                     )}

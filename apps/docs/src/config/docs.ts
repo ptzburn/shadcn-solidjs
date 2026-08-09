@@ -2,7 +2,6 @@ type NavElement = {
   title: string;
   href: string;
   external?: boolean;
-  status?: "new" | "updated";
 };
 
 type NavSection = {
@@ -83,7 +82,6 @@ export const docsConfig: Config = {
         {
           title: "Attachment",
           href: "/docs/components/attachment",
-          status: "new",
         },
         {
           title: "Avatar",
@@ -100,7 +98,6 @@ export const docsConfig: Config = {
         {
           title: "Bubble",
           href: "/docs/components/bubble",
-          status: "new",
         },
         {
           title: "Button",
@@ -109,7 +106,6 @@ export const docsConfig: Config = {
         {
           title: "Button Group",
           href: "/docs/components/button-group",
-          status: "new",
         },
         {
           title: "Card",
@@ -146,12 +142,10 @@ export const docsConfig: Config = {
         {
           title: "Data Table",
           href: "/docs/components/data-table",
-          status: "new",
         },
         {
           title: "Date Picker",
           href: "/docs/components/date-picker",
-          status: "new",
         },
         {
           title: "Dialog",
@@ -168,12 +162,10 @@ export const docsConfig: Config = {
         {
           title: "Empty",
           href: "/docs/components/empty",
-          status: "new",
         },
         {
           title: "Field",
           href: "/docs/components/field",
-          status: "new",
         },
         {
           title: "Hover Card",
@@ -182,22 +174,18 @@ export const docsConfig: Config = {
         {
           title: "Input",
           href: "/docs/components/input",
-          status: "new",
         },
         {
           title: "Input Group",
           href: "/docs/components/input-group",
-          status: "new",
         },
         {
           title: "Item",
           href: "/docs/components/item",
-          status: "new",
         },
         {
           title: "Kbd",
           href: "/docs/components/kbd",
-          status: "new",
         },
         {
           title: "Label",
@@ -206,7 +194,6 @@ export const docsConfig: Config = {
         {
           title: "Marker",
           href: "/docs/components/marker",
-          status: "new",
         },
         {
           title: "Menubar",
@@ -215,17 +202,14 @@ export const docsConfig: Config = {
         {
           title: "Message",
           href: "/docs/components/message",
-          status: "new",
         },
         {
           title: "Message Scroller",
           href: "/docs/components/message-scroller",
-          status: "new",
         },
         {
           title: "Native Select",
           href: "/docs/components/native-select",
-          status: "new",
         },
         {
           title: "Navigation Menu",
@@ -258,7 +242,6 @@ export const docsConfig: Config = {
         {
           title: "Scroll Area",
           href: "/docs/components/scroll-area",
-          status: "new",
         },
         {
           title: "Select",
@@ -275,7 +258,6 @@ export const docsConfig: Config = {
         {
           title: "Sidebar",
           href: "/docs/components/sidebar",
-          status: "new",
         },
         {
           title: "Skeleton",
@@ -292,7 +274,6 @@ export const docsConfig: Config = {
         {
           title: "Spinner",
           href: "/docs/components/spinner",
-          status: "new",
         },
         {
           title: "Switch",
@@ -309,7 +290,6 @@ export const docsConfig: Config = {
         {
           title: "Textarea",
           href: "/docs/components/textarea",
-          status: "new",
         },
         {
           title: "Toggle",
