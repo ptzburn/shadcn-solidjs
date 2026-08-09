@@ -344,10 +344,6 @@ export const docsConfig: Config = {
           title: "Figma",
           href: "/docs/figma",
         },
-        {
-          title: "About",
-          href: "/docs/about",
-        },
       ],
     },
   ],
