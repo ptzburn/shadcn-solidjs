@@ -50,8 +50,8 @@ Running on Deno? Skip the npm build and use the JSR package directly:
 deno run -A jsr:@ptzburn/shadcn-solidjs init
 ```
 
-Installation guides are available for **SolidStart**, **Vite**, **Astro**, and
-**Tauri**, plus a manual setup path.
+Installation guides are available for **SolidStart**, **Vite** and **Astro**,
+plus a manual setup path.
 
 ## What's inside
 
