@@ -1,5 +1,11 @@
 {
-  "workspace": ["./apps/*", "./packages/*"],
+  "workspace": [
+    "./apps/*",
+    "./packages/*"
+  ],
+  "exclude": [
+    "packages/cli/npm"
+  ],
   "nodeModulesDir": "manual",
   "tasks": {
     "dev": "deno task --cwd=apps/docs dev",
@@ -15,7 +21,9 @@
     "@std/assert": "jsr:@std/assert@^1.0.0",
     "lefthook": "npm:lefthook@^2.1.10"
   },
-  "allowScripts": ["npm:lefthook"],
+  "allowScripts": [
+    "npm:lefthook"
+  ],
   "compilerOptions": {
     "paths": {
       "~icons/*": [

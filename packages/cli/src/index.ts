@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+// No shebang here on purpose: dnt writes one into the npm bin, and a second
+// copy in the source lands below it and parses as code. Deno does not need it.
 import process from "node:process";
 
 import { Command } from "commander";

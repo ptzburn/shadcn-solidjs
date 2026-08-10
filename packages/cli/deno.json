@@ -1,14 +1,17 @@
 {
   "name": "@ptzburn/shadcn-solidjs",
   "version": "0.1.0",
+  "license": "MIT",
   "exports": {
     ".": "./src/index.ts"
   },
   "tasks": {
     "dev": "deno run -A ./src/index.ts",
-    "check": "deno fmt ./src/ && deno lint ./src/ && deno check ./src/"
+    "check": "deno fmt ./src/ && deno lint ./src/ && deno check ./src/",
+    "build:npm": "deno run -A ./scripts/build-npm.ts"
   },
   "imports": {
+    "@deno/dnt": "jsr:@deno/dnt@^0.43.2",
     "@types/prompts": "npm:@types/prompts@^2.4.9",
     "commander": "npm:commander@^15.0.0",
     "get-tsconfig": "npm:get-tsconfig@^4.14.1",
@@ -17,7 +20,18 @@
     "zod": "npm:zod@^4.4.3"
   },
   "compilerOptions": {
-    "lib": ["esnext", "deno.ns"],
+    "lib": [
+      "esnext",
+      "deno.ns"
+    ],
     "strict": true
+  },
+  "publish": {
+    "exclude": [
+      "**/*_test.ts",
+      "scripts/",
+      "npm/",
+      "UPSTREAM.md"
+    ]
   }
 }

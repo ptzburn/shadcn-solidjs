@@ -103,6 +103,33 @@ single source tree runs under both runtimes: published to JSR for
 
 Keep new CLI code on `node:` builtins so both targets keep working.
 
+### Releasing
+
+Bump `version` in `packages/cli/deno.json` and `VERSION` in
+`packages/cli/src/version.ts` together — `version_test.ts` fails if they drift,
+and the npm build reads `VERSION`.
+
+```sh
+# JSR
+deno publish --dry-run          # from packages/cli
+deno publish
+
+# npm
+deno task --cwd=packages/cli build:npm
+npm publish                     # from packages/cli/npm
+```
+
+`build:npm` writes to `packages/cli/npm/`, which is gitignored and excluded from
+`deno fmt`/`lint`/`check` in the root `deno.json`. Don't commit it.
+
+Two things the build depends on and would break quietly:
+
+- **No shebang in `src/index.ts`.** dnt writes one into the npm bin; a second
+  copy in the source lands underneath it and parses as code.
+- **`compilerOptions.target` is pinned to ES2022 in the build script.** dnt's
+  default is older than `new Error(msg, { cause })` and `array.at(-1)`, both of
+  which this code uses.
+
 ## Porting from upstream
 
 This project tracks [shadcn/ui](https://ui.shadcn.com). When porting a component
