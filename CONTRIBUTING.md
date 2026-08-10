@@ -46,6 +46,20 @@ deno task check   # type-check everything
 
 Commit `deno.lock` when it changes.
 
+## Git hooks
+
+[lefthook](https://lefthook.dev) runs `deno lint --fix`, `deno fmt` and
+`deno task check` before every commit. `deno install` sets the hooks up — the
+`allowScripts` entry in `deno.json` is what lets lefthook's postinstall write
+them — so there is no separate install step.
+
+Jobs are skipped when nothing is staged, and a failing type check aborts the
+commit. To bypass the hook for one commit:
+
+```sh
+LEFTHOOK=0 git commit -m "..."
+```
+
 ## The registry
 
 `apps/docs/src/registry/` holds the source of truth for every component. The
@@ -101,9 +115,9 @@ that break that compatibility need a good reason.
 
 ## Before opening a PR
 
+The pre-commit hook already covers formatting, linting and type-checking. Tests
+are not in the hook, so run them yourself:
+
 ```sh
-deno task fmt
-deno task lint
-deno task check
 deno task test
 ```

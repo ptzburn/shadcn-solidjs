@@ -1,0 +1,6 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - run: deno lint --fix
+    - run: deno fmt
+    - run: deno task check
