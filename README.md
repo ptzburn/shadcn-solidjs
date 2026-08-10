@@ -6,11 +6,9 @@
 Accessible, customizable components that you copy into your project and own
 outright. Free. Open Source. **Use this to build your own component library.**
 
-> [!IMPORTANT]
-> **Pre-release.** The CLI is not on npm or JSR yet, and
-> [shadcn-solidjs.com](https://shadcn-solidjs.com) is not deployed yet. The
-> commands below describe the intended interface — until the first release, run
-> the CLI from a clone. See [CONTRIBUTING.md](CONTRIBUTING.md).
+> [!NOTE]
+> The npm package is scoped — `@ptzburn/shadcn-solidjs`, not `shadcn-solidjs`.
+> The unscoped name is taken. Once installed, the command is `shadcn-solidjs`.
 
 ## Why
 

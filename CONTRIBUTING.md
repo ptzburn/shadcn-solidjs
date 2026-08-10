@@ -78,8 +78,8 @@ your change.
 
 ## Running the CLI locally
 
-The CLI is unpublished, so run it from source. Point it at a local registry so
-`init` and `add` don't reach for the public one:
+Run the CLI from source rather than the published package, and point it at a
+local registry so `init` and `add` test your changes instead of what is live:
 
 ```sh
 # terminal 1 — serve the registry
