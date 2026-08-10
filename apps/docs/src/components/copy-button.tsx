@@ -1,78 +1,63 @@
 import type { Component } from "solid-js";
-import { createEffect, createSignal, on, Show, splitProps } from "solid-js";
+import { createSignal, Show, splitProps } from "solid-js";
 
 import { cn } from "~/lib/utils.ts";
 import { IconCheck, IconCopy } from "~/components/icons.tsx";
-import type { ToggleProps } from "~/registry/ui/toggle.tsx";
-import { Toggle } from "~/registry/ui/toggle.tsx";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/registry/ui/tooltip.tsx";
+import type { ButtonProps } from "~/registry/ui/button.tsx";
+import { Button } from "~/registry/ui/button.tsx";
 
-export interface CopyButtonProps extends ToggleProps {
+export interface CopyButtonProps extends ButtonProps {
   content: string;
 }
 
-const CopyButton: Component<CopyButtonProps> = (props) => {
-  const [, rest] = splitProps(props, ["class", "content"]);
-  const [isCopied, setCopied] = createSignal(false);
-
-  createEffect(
-    on(
-      isCopied,
-      () => {
-        if (isCopied()) {
-          copyToClipboard(props.content);
-          setTimeout(() => {
-            setCopied(false);
-          }, 2000);
-        }
-      },
-      { defer: true },
-    ),
-  );
-
-  return (
-    <>
-      <Tooltip placement="top">
-        <TooltipTrigger
-          as={Toggle<"button">}
-          data-slot="copy-button"
-          onChange={setCopied}
-          pressed={isCopied()}
-          disabled={isCopied()}
-          class={cn(
-            "z-10 size-6 p-0 text-muted-foreground transition-colors hover:bg-code-highlight hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-            props.class,
-          )}
-          {...rest}
-        >
-          <Show when={isCopied()} fallback={<IconCopy class="size-4" />}>
-            <IconCheck class="size-4" />
-          </Show>
-        </TooltipTrigger>
-        <TooltipContent>
-          {isCopied() ? `Copied!` : `Copy to Clipboard`}
-        </TooltipContent>
-      </Tooltip>
-    </>
-  );
-};
-
-function copyToClipboard(text: string) {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(
-      () => {
-        console.log("Async: Copying to clipboard was successful!");
-      },
-      (err) => {
-        console.log("Async: Could not copy text: ", err);
-      },
-    );
-    return;
+async function copyToClipboard(text: string): Promise<boolean> {
+  if (!navigator.clipboard?.writeText) {
+    return false;
+  }
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    return false;
   }
 }
+
+/**
+ * Matches the copy button in code-block-command: a ghost icon button with an
+ * sr-only label and no tooltip. Positioning lives here rather than at the call
+ * site so mdx.css can override `top` when a figure has a title.
+ */
+const CopyButton: Component<CopyButtonProps> = (props) => {
+  const [, rest] = splitProps(props, ["class", "content"]);
+  const [hasCopied, setHasCopied] = createSignal(false);
+
+  const copy = async () => {
+    if (!await copyToClipboard(props.content)) {
+      return;
+    }
+    setHasCopied(true);
+    setTimeout(() => setHasCopied(false), 2000);
+  };
+
+  return (
+    <Button
+      data-slot="copy-button"
+      data-copied={hasCopied()}
+      size="icon-sm"
+      variant="ghost"
+      class={cn(
+        "absolute top-3 right-2 z-10 opacity-70 hover:opacity-100 focus-visible:opacity-100",
+        props.class,
+      )}
+      onClick={copy}
+      {...rest}
+    >
+      <span class="sr-only">Copy</span>
+      <Show when={hasCopied()} fallback={<IconCopy class="size-4" />}>
+        <IconCheck class="size-4" />
+      </Show>
+    </Button>
+  );
+};
 
 export { CopyButton };

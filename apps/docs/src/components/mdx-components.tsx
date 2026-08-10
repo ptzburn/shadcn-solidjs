@@ -66,10 +66,7 @@ export const MDXComponents = {
         >
           {props.children}
         </pre>
-        <CopyButton
-          class="absolute top-3 right-2"
-          content={preRef?.querySelector("code")?.innerText ?? ""}
-        />
+        <CopyButton content={preRef?.querySelector("code")?.innerText ?? ""} />
       </div>
     );
   },
