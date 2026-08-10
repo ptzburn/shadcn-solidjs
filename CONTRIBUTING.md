@@ -38,6 +38,7 @@ From the repo root:
 ```sh
 deno task dev     # run the docs site (port 3228)
 deno task build   # build the registry, then the docs site
+deno task start   # serve the built site (honours PORT, defaults to 3000)
 deno task test    # run all tests across the workspace
 deno task lint    # lint all members
 deno task fmt     # format all members

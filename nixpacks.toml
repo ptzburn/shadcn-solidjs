@@ -1,0 +1,19 @@
+[variables]
+# lefthook's postinstall skips itself when CI is set. Without this it tries to
+# write .git/hooks during `deno ci`, which has nothing to write to in a build
+# container. It fails soft either way, but this keeps the log clean.
+CI = "1"
+
+[phases.setup]
+nixPkgs = ["curl", "unzip"]
+
+[phases.install]
+cmds = [
+  "curl -fsSL https://deno.land/install.sh | DENO_INSTALL=/usr/local sh -s v2.9.5 && /usr/local/bin/deno ci",
+]
+
+[phases.build]
+cmds = ["/usr/local/bin/deno task build"]
+
+[start]
+cmd = "/usr/local/bin/deno task start"
