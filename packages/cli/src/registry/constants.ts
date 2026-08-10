@@ -1,11 +1,11 @@
 import process from "node:process";
 
-export const SHADCN_SOLID_URL = process.env.SHADCN_SOLID_URL ??
-  "https://shadcn-solid.com";
+export const SHADCN_SOLIDJS_URL = process.env.SHADCN_SOLIDJS_URL ??
+  "https://shadcn-solidjs.com";
 
 /** Overridable so development can point at a local docs server. */
 export const REGISTRY_URL = process.env.REGISTRY_URL ??
-  `${SHADCN_SOLID_URL}/r`;
+  `${SHADCN_SOLIDJS_URL}/r`;
 
 /**
  * Icon libraries mirror `apps/docs/src/registry/icons/icon-libraries.ts`. The
@@ -62,11 +62,11 @@ export function isStyle(value: string): value is Style {
  * registryDependencies never needs a fallback path.
  */
 export const BUILTIN_REGISTRIES = {
-  "@shadcn-solid":
+  "@shadcn-solidjs":
     `${REGISTRY_URL}/styles/{style}/icons/{iconLibrary}/{name}.json`,
 } as const;
 
-export const DEFAULT_REGISTRY = "@shadcn-solid";
+export const DEFAULT_REGISTRY = "@shadcn-solidjs";
 
 /** The item index, listing every item with `files` stripped. */
 export const REGISTRY_INDEX_URL = `${REGISTRY_URL}/registry.json`;

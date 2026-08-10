@@ -52,7 +52,7 @@ import {
 
 const LEGACY_PATH = path.join(process.cwd(), "public/registry");
 const R_PATH = path.join(process.cwd(), "public/r");
-const HOMEPAGE = "https://shadcn-solid.com";
+const HOMEPAGE = "https://shadcn-solidjs.com";
 
 const result = safeParse(registrySchema, registry);
 if (!result.success) {
@@ -269,7 +269,7 @@ for (const item of items) {
 
 const registryIndex = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
-  name: "shadcn-solid",
+  name: "shadcn-solidjs",
   homepage: HOMEPAGE,
   items: indexItems,
 };

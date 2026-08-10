@@ -1,7 +1,7 @@
 import { mergeProps } from "solid-js";
 import { Link, Meta, Title } from "@solidjs/meta";
 
-const BASE_URL = "https://shadcn-solid.com";
+const BASE_URL = "https://shadcn-solidjs.com";
 
 export interface HeadProps {
   title?: string;
@@ -11,7 +11,7 @@ export interface HeadProps {
 export function MetaTags(rawProps: HeadProps) {
   const props = mergeProps(
     {
-      title: "shadcn-solid",
+      title: "shadcn-solidjs",
       description:
         "Beautifully designed components built with Kobalte and Tailwind CSS.",
     },

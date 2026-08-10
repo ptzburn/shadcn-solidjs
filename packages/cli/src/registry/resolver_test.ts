@@ -19,7 +19,7 @@ function options(iconLibrary = "lucide", style = "nova") {
     iconLibrary,
     style,
     registries: {
-      "@shadcn-solid":
+      "@shadcn-solidjs":
         `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
     },
     // Without this the bare-name theme retry falls back to the public
@@ -121,7 +121,7 @@ Deno.test("the default style is nova", async () => {
   const tree = await resolveRegistryTree(["button"], {
     iconLibrary: "lucide",
     registries: {
-      "@shadcn-solid":
+      "@shadcn-solidjs":
         `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
     },
   });
@@ -138,7 +138,7 @@ Deno.test("the unprefixed paths still resolve the default style", async () => {
   const tree = await resolveRegistryTree(["button"], {
     iconLibrary: "lucide",
     registries: {
-      "@shadcn-solid": `${R_DIR}/icons/{iconLibrary}/{name}.json`,
+      "@shadcn-solidjs": `${R_DIR}/icons/{iconLibrary}/{name}.json`,
     },
   });
 
@@ -174,7 +174,7 @@ Deno.test("sorts theme items to the front", async () => {
   const items = await resolveRegistryItems(["button", "@theme/blue"], {
     ...options(),
     registries: {
-      "@shadcn-solid":
+      "@shadcn-solidjs":
         `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
       "@theme": `${R_DIR}/themes/{name}.json`,
     },

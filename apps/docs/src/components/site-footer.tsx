@@ -24,7 +24,7 @@ export function SiteFooter() {
             {" "}
             <FooterLink href="https://vercel.com">Vercel</FooterLink>. The
             source code is available on{" "}
-            <FooterLink href="https://github.com/ptzburn/shadcn-solid">
+            <FooterLink href="https://github.com/ptzburn/shadcn-solidjs">
               GitHub
             </FooterLink>.
           </div>

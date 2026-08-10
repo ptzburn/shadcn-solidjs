@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "shadcn-solid",
-  "homepage": "https://shadcn-solid.com",
+  "name": "shadcn-solidjs",
+  "homepage": "https://shadcn-solidjs.com",
   "items": [
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

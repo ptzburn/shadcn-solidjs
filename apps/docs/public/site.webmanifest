@@ -1,6 +1,6 @@
 {
-  "name": "shadcn-solid",
-  "short_name": "shadcn-solid",
+  "name": "shadcn-solidjs",
+  "short_name": "shadcn-solidjs",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

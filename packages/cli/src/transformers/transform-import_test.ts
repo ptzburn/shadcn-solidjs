@@ -138,7 +138,9 @@ Deno.test("transforms real sidebar source end to end", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["sidebar"], {
     iconLibrary: "lucide",
-    registries: { "@shadcn-solid": `${R_DIR}/icons/{iconLibrary}/{name}.json` },
+    registries: {
+      "@shadcn-solidjs": `${R_DIR}/icons/{iconLibrary}/{name}.json`,
+    },
   });
 
   const sidebar = tree.files.find((file) => file.path.endsWith("sidebar.tsx"))!;
@@ -156,7 +158,9 @@ Deno.test("Deno output keeps every extension it needs", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["sidebar"], {
     iconLibrary: "lucide",
-    registries: { "@shadcn-solid": `${R_DIR}/icons/{iconLibrary}/{name}.json` },
+    registries: {
+      "@shadcn-solidjs": `${R_DIR}/icons/{iconLibrary}/{name}.json`,
+    },
   });
 
   const sidebar = tree.files.find((file) => file.path.endsWith("sidebar.tsx"))!;

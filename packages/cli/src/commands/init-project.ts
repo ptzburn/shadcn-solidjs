@@ -111,7 +111,7 @@ export async function buildConfig(
   return {
     cssPath,
     config: {
-      $schema: "https://shadcn-solid.com/schema.json",
+      $schema: "https://shadcn-solidjs.com/schema.json",
       tsx: true,
       tailwind: {
         css: path.relative(cwd, cssPath).split(path.sep).join("/"),
