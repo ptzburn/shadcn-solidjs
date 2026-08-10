@@ -120,8 +120,13 @@ deno publish
 
 # npm
 deno task build:npm
-cd npm && npm publish
+(cd npm && npm publish)
 ```
+
+The npm publish runs in a subshell so the block leaves you in `packages/cli` and
+can be run again. `packages/cli/npm` has its own generated `package.json`, and
+`deno task` picks that up if you are standing in it — "No tasks found in
+configuration file" means you are one directory too deep.
 
 The `build:npm` task is defined on the `packages/cli` member, so running it from
 the repo root needs `deno task --cwd=packages/cli build:npm` instead.
