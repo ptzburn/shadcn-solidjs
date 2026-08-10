@@ -1,4 +1,4 @@
-import { IconArrowUpRight } from "~/components/icons.tsx";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 import { Button } from "~/registry/ui/button.tsx";
 
@@ -10,7 +10,13 @@ export default function ButtonSize() {
           Extra Small
         </Button>
         <Button size="icon-xs" aria-label="Submit" variant="outline">
-          <IconArrowUpRight />
+          <IconPlaceholder
+            lucide="arrow-up-right"
+            tabler="arrow-up-right"
+            ph="arrow-up-right"
+            ri="arrow-right-up-line"
+            hugeicons="arrow-up-right-01"
+          />
         </Button>
       </div>
       <div class="flex items-start gap-2">
@@ -18,13 +24,25 @@ export default function ButtonSize() {
           Small
         </Button>
         <Button size="icon-sm" aria-label="Submit" variant="outline">
-          <IconArrowUpRight />
+          <IconPlaceholder
+            lucide="arrow-up-right"
+            tabler="arrow-up-right"
+            ph="arrow-up-right"
+            ri="arrow-right-up-line"
+            hugeicons="arrow-up-right-01"
+          />
         </Button>
       </div>
       <div class="flex items-start gap-2">
         <Button variant="outline">Default</Button>
         <Button size="icon" aria-label="Submit" variant="outline">
-          <IconArrowUpRight />
+          <IconPlaceholder
+            lucide="arrow-up-right"
+            tabler="arrow-up-right"
+            ph="arrow-up-right"
+            ri="arrow-right-up-line"
+            hugeicons="arrow-up-right-01"
+          />
         </Button>
       </div>
       <div class="flex items-start gap-2">
@@ -32,7 +50,13 @@ export default function ButtonSize() {
           Large
         </Button>
         <Button size="icon-lg" aria-label="Submit" variant="outline">
-          <IconArrowUpRight />
+          <IconPlaceholder
+            lucide="arrow-up-right"
+            tabler="arrow-up-right"
+            ph="arrow-up-right"
+            ri="arrow-right-up-line"
+            hugeicons="arrow-up-right-01"
+          />
         </Button>
       </div>
     </div>

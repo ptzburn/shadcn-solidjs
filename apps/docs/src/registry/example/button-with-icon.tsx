@@ -1,4 +1,4 @@
-import { IconGitBranch, IconGitFork } from "~/components/icons.tsx";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 import { Button } from "~/registry/ui/button.tsx";
 
@@ -6,11 +6,26 @@ export default function ButtonWithIcon() {
   return (
     <div class="flex gap-2">
       <Button variant="outline">
-        <IconGitBranch data-icon="inline-start" /> New Branch
+        <IconPlaceholder
+          lucide="git-branch"
+          tabler="git-branch"
+          ph="git-branch"
+          ri="git-branch-line"
+          hugeicons="git-branch"
+          data-icon="inline-start"
+        />{" "}
+        New Branch
       </Button>
       <Button variant="outline">
         Fork
-        <IconGitFork data-icon="inline-end" />
+        <IconPlaceholder
+          lucide="git-fork"
+          tabler="git-fork"
+          ph="git-fork"
+          ri="git-fork-line"
+          hugeicons="git-fork"
+          data-icon="inline-end"
+        />
       </Button>
     </div>
   );

@@ -24,11 +24,7 @@ import {
   tableFeatures,
 } from "@tanstack/solid-table";
 
-import {
-  IconChevronDown,
-  IconDots,
-  IconSelector,
-} from "~/components/icons.tsx";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import { Checkbox } from "~/registry/ui/checkbox.tsx";
 import {
@@ -143,7 +139,13 @@ export const columns: ColumnDef<typeof features, Payment>[] = [
             props.column.toggleSorting(props.column.getIsSorted() === "asc")}
         >
           Email
-          <IconSelector />
+          <IconPlaceholder
+            lucide="chevrons-up-down"
+            tabler="selector"
+            ph="caret-up-down"
+            ri="expand-up-down-line"
+            hugeicons="unfold-more"
+          />
         </Button>
       );
     },
@@ -175,7 +177,13 @@ export const columns: ColumnDef<typeof features, Payment>[] = [
             class="size-8 p-0"
           >
             <span class="sr-only">Open menu</span>
-            <IconDots />
+            <IconPlaceholder
+              lucide="ellipsis"
+              tabler="dots"
+              ph="dots-three"
+              ri="more-line"
+              hugeicons="more-horizontal"
+            />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuGroup>
@@ -258,7 +266,14 @@ get data() {
             variant="outline"
             class="ml-auto"
           >
-            Columns <IconChevronDown />
+            Columns{" "}
+            <IconPlaceholder
+              lucide="chevron-down"
+              tabler="chevron-down"
+              ph="caret-down"
+              ri="arrow-down-s-line"
+              hugeicons="arrow-down-01"
+            />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <For
