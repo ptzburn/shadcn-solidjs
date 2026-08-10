@@ -1,6 +1,6 @@
-import * as v from "valibot";
+import { z } from "zod";
 
-export const registryTypeSchema = v.picklist([
+export const registryTypeSchema = z.enum([
   "ui",
   "lib",
   "hook",
@@ -11,39 +11,39 @@ export const registryTypeSchema = v.picklist([
   "theme",
 ]);
 
-export const registryFileSchema = v.object({
-  path: v.string(),
-  content: v.optional(v.string()),
+export const registryFileSchema = z.object({
+  path: z.string(),
+  content: z.string().optional(),
   type: registryTypeSchema,
-  target: v.optional(v.string()),
+  target: z.string().optional(),
 });
 
-export const registryCssVarsSchema = v.object({
-  theme: v.optional(v.record(v.string(), v.string())),
-  light: v.optional(v.record(v.string(), v.string())),
-  dark: v.optional(v.record(v.string(), v.string())),
+export const registryCssVarsSchema = z.object({
+  theme: z.record(z.string(), z.string()).optional(),
+  light: z.record(z.string(), z.string()).optional(),
+  dark: z.record(z.string(), z.string()).optional(),
 });
 
-export const registryItemSchema = v.object({
-  name: v.string(),
-  title: v.optional(v.string()),
-  dependencies: v.optional(v.array(v.string())),
-  registryDependencies: v.optional(v.array(v.string())),
-  files: v.optional(v.array(registryFileSchema), []),
+export const registryItemSchema = z.object({
+  name: z.string(),
+  title: z.string().optional(),
+  dependencies: z.array(z.string()).optional(),
+  registryDependencies: z.array(z.string()).optional(),
+  files: z.array(registryFileSchema).default([]),
   type: registryTypeSchema,
-  description: v.optional(v.string()),
-  cssVars: v.optional(registryCssVarsSchema),
+  description: z.string().optional(),
+  cssVars: registryCssVarsSchema.optional(),
 });
 
-export const registryIndexSchema = v.record(
-  v.string(),
-  v.object({ ...registryItemSchema.entries, component: v.any() }),
+export const registryIndexSchema = z.record(
+  z.string(),
+  registryItemSchema.extend({ component: z.any() }),
 );
 
-export const registrySchema = v.array(registryItemSchema);
+export const registrySchema = z.array(registryItemSchema);
 
-export type RegistryItem = v.InferOutput<typeof registryItemSchema>;
-export type RegistryIndex = v.InferOutput<typeof registryIndexSchema>;
-export type Registry = v.InferOutput<typeof registrySchema>;
+export type RegistryItem = z.infer<typeof registryItemSchema>;
+export type RegistryIndex = z.infer<typeof registryIndexSchema>;
+export type Registry = z.infer<typeof registrySchema>;
 /** Authoring type: `files` may be omitted (themes have none). */
-export type RegistryInput = v.InferInput<typeof registrySchema>;
+export type RegistryInput = z.input<typeof registrySchema>;

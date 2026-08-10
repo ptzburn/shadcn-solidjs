@@ -61,12 +61,12 @@
     "unist-builder": "npm:unist-builder@^4.0.0",
     "unist-util-visit": "npm:unist-util-visit@^5.1.0",
     "unplugin-icons": "npm:unplugin-icons@^23.0.1",
-    "valibot": "npm:valibot@^1.4.2",
     "vite": "npm:vite@^8.2.0",
     "yaml": "npm:yaml@^2.9.0",
     "~/": "./src/",
     "clsx": "npm:clsx@^2.1.1",
-    "tailwind-merge": "npm:tailwind-merge@^3.6.0"
+    "tailwind-merge": "npm:tailwind-merge@^3.6.0",
+    "zod": "npm:zod@^4.4.3"
   },
   "compilerOptions": {
     "module": "esnext",

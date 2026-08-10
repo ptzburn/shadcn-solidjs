@@ -63,7 +63,6 @@
     "npm:unist-builder@4": "4.0.0",
     "npm:unist-util-visit@^5.1.0": "5.1.0",
     "npm:unplugin-icons@^23.0.1": "23.0.1",
-    "npm:valibot@^1.4.2": "1.4.2",
     "npm:vite@^8.2.0": "8.2.0_@types+node@26.1.2_yaml@2.9.0",
     "npm:yaml@^2.9.0": "2.9.0",
     "npm:zod@^4.4.3": "4.4.3"
@@ -4393,9 +4392,9 @@
           "npm:unist-builder@4",
           "npm:unist-util-visit@^5.1.0",
           "npm:unplugin-icons@^23.0.1",
-          "npm:valibot@^1.4.2",
           "npm:vite@^8.2.0",
-          "npm:yaml@^2.9.0"
+          "npm:yaml@^2.9.0",
+          "npm:zod@^4.4.3"
         ]
       },
       "packages/cli": {

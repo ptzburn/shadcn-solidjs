@@ -33,8 +33,6 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path, { basename } from "node:path";
 import process from "node:process";
 
-import { safeParse } from "valibot";
-
 import { resolveIcons } from "../lib/registry/resolve-icons.ts";
 import { createStyleMap, inlineStyles } from "../lib/registry/style-map.ts";
 import {
@@ -54,12 +52,12 @@ const LEGACY_PATH = path.join(process.cwd(), "public/registry");
 const R_PATH = path.join(process.cwd(), "public/r");
 const HOMEPAGE = "https://shadcn-solidjs.com";
 
-const result = safeParse(registrySchema, registry);
+const result = registrySchema.safeParse(registry);
 if (!result.success) {
-  console.error(result.issues);
+  console.error(result.error.issues);
   process.exit(1);
 }
-const items = result.output;
+const items = result.data;
 
 // #######################################
 //    Style + icon resolution
