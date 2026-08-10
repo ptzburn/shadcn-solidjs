@@ -3,7 +3,8 @@
   "name": "item",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core"
+    "@kobalte/core",
+    "class-variance-authority"
   ],
   "registryDependencies": [
     "separator"

@@ -1,7 +1,8 @@
 {
   "name": "input-group",
   "dependencies": [
-    "@kobalte/core"
+    "@kobalte/core",
+    "class-variance-authority"
   ],
   "registryDependencies": [
     "button",

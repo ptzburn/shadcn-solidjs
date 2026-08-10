@@ -2,6 +2,7 @@
   "name": "sidebar",
   "dependencies": [
     "@kobalte/core",
+    "class-variance-authority",
     "unplugin-icons",
     "@iconify-json/lucide"
   ],

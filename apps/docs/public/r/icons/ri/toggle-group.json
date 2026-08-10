@@ -3,7 +3,8 @@
   "name": "toggle-group",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core"
+    "@kobalte/core",
+    "class-variance-authority"
   ],
   "registryDependencies": [
     "toggle"

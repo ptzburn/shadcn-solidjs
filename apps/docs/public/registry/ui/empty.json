@@ -1,5 +1,8 @@
 {
   "name": "empty",
+  "dependencies": [
+    "class-variance-authority"
+  ],
   "files": [
     {
       "name": "empty.tsx",

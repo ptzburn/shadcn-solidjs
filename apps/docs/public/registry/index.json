@@ -12,7 +12,8 @@
   {
     "name": "alert",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "files": [
       "ui/alert.tsx"
@@ -22,7 +23,8 @@
   {
     "name": "alert-dialog",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "registryDependencies": [
       "button"
@@ -42,7 +44,8 @@
   {
     "name": "attachment",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "registryDependencies": [
       "button"
@@ -65,7 +68,8 @@
   {
     "name": "badge",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "files": [
       "ui/badge.tsx"
@@ -85,7 +89,8 @@
   {
     "name": "bubble",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "files": [
       "ui/bubble.tsx"
@@ -95,7 +100,8 @@
   {
     "name": "button",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "files": [
       "ui/button.tsx"
@@ -105,7 +111,8 @@
   {
     "name": "button-group",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "registryDependencies": [
       "separator"
@@ -253,6 +260,9 @@
   },
   {
     "name": "empty",
+    "dependencies": [
+      "class-variance-authority"
+    ],
     "files": [
       "ui/empty.tsx"
     ],
@@ -261,7 +271,8 @@
   {
     "name": "field",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "registryDependencies": [
       "label",
@@ -292,7 +303,8 @@
   {
     "name": "input-group",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "registryDependencies": [
       "button",
@@ -307,7 +319,8 @@
   {
     "name": "item",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "registryDependencies": [
       "separator"
@@ -337,7 +350,8 @@
   {
     "name": "marker",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "files": [
       "ui/marker.tsx"
@@ -390,7 +404,8 @@
   {
     "name": "navigation-menu",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "files": [
       "ui/navigation-menu.tsx"
@@ -503,7 +518,8 @@
   {
     "name": "sidebar",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "registryDependencies": [
       "button",
@@ -574,7 +590,8 @@
   {
     "name": "tabs",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "files": [
       "ui/tabs.tsx"
@@ -591,7 +608,8 @@
   {
     "name": "toggle",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "files": [
       "ui/toggle.tsx"
@@ -601,7 +619,8 @@
   {
     "name": "toggle-group",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core",
+      "class-variance-authority"
     ],
     "registryDependencies": [
       "toggle"

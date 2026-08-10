@@ -2,6 +2,9 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "empty",
   "type": "registry:ui",
+  "dependencies": [
+    "class-variance-authority"
+  ],
   "files": [
     {
       "path": "src/registry/ui/empty.tsx",

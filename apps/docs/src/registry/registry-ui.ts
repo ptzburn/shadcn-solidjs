@@ -15,7 +15,7 @@ export const ui: Registry = [
   {
     name: "alert",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     files: [
       {
         path: "ui/alert.tsx",
@@ -26,7 +26,7 @@ export const ui: Registry = [
   {
     name: "alert-dialog",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     registryDependencies: ["button"],
     files: [
       {
@@ -48,7 +48,7 @@ export const ui: Registry = [
   {
     name: "attachment",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     registryDependencies: ["button"],
     files: [
       {
@@ -71,7 +71,7 @@ export const ui: Registry = [
   {
     name: "badge",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     files: [
       {
         path: "ui/badge.tsx",
@@ -93,7 +93,7 @@ export const ui: Registry = [
   {
     name: "bubble",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     files: [
       {
         path: "ui/bubble.tsx",
@@ -104,7 +104,7 @@ export const ui: Registry = [
   {
     name: "button",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     files: [
       {
         path: "ui/button.tsx",
@@ -115,7 +115,7 @@ export const ui: Registry = [
   {
     name: "button-group",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     registryDependencies: ["separator"],
     files: [
       {
@@ -263,6 +263,7 @@ export const ui: Registry = [
   {
     name: "empty",
     type: "ui",
+    dependencies: ["class-variance-authority"],
     files: [
       {
         path: "ui/empty.tsx",
@@ -273,7 +274,7 @@ export const ui: Registry = [
   {
     name: "field",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     registryDependencies: ["label", "separator"],
     files: [
       {
@@ -306,7 +307,7 @@ export const ui: Registry = [
   {
     name: "input-group",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     registryDependencies: ["button", "input", "textarea"],
     files: [
       {
@@ -318,7 +319,7 @@ export const ui: Registry = [
   {
     name: "item",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     registryDependencies: ["separator"],
     files: [
       {
@@ -351,7 +352,7 @@ export const ui: Registry = [
   {
     name: "marker",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     files: [
       {
         path: "ui/marker.tsx",
@@ -425,7 +426,7 @@ export const ui: Registry = [
   {
     name: "navigation-menu",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     files: [
       {
         path: "ui/navigation-menu.tsx",
@@ -547,7 +548,7 @@ export const ui: Registry = [
   {
     name: "sidebar",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     registryDependencies: [
       "button",
       "input",
@@ -630,7 +631,7 @@ export const ui: Registry = [
   {
     name: "tabs",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     files: [
       {
         path: "ui/tabs.tsx",
@@ -651,7 +652,7 @@ export const ui: Registry = [
   {
     name: "toggle",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     files: [
       {
         path: "ui/toggle.tsx",
@@ -662,7 +663,7 @@ export const ui: Registry = [
   {
     name: "toggle-group",
     type: "ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@kobalte/core", "class-variance-authority"],
     registryDependencies: ["toggle"],
     files: [
       {

@@ -1,7 +1,8 @@
 {
   "name": "button-group",
   "dependencies": [
-    "@kobalte/core"
+    "@kobalte/core",
+    "class-variance-authority"
   ],
   "registryDependencies": [
     "separator"
