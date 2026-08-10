@@ -7,19 +7,82 @@ description: Install and configure SolidStart.
 
 ### Create project
 
-Start by creating a new SolidJS project using `solid-start`:
+Start by creating a new SolidStart project:
 
 ```bash
 npm init solid@latest
 ```
 
-When asked make sure to use the template `with-tailwindcss`:
+Choose **SolidStart** when asked what kind of project to create, and answer yes
+to TypeScript.
 
-```txt showLineNumbers
-Project Name? my-app
-Is this a Solid-Start project? yes
-Which template would you like to use? with-tailwindcss
-Use TypeScript? yes
+### Add Tailwind CSS
+
+If the template you picked already set Tailwind up, skip this step.
+
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
+Create `src/app.css` — or replace it if the template made one — with:
+
+```css title="src/app.css"
+@import "tailwindcss";
+```
+
+Import it from `src/app.tsx`:
+
+```tsx title="src/app.tsx" {3} showLineNumbers
+import { Router } from "@solidjs/router"
+import { FileRoutes } from "@solidjs/start/router"
+import "./app.css"
+```
+
+`init` looks for the stylesheet that imports Tailwind and writes the theme
+variables into it, so this file has to exist before you run the CLI.
+
+### Update vite.config.ts
+
+SolidStart 2 is configured through `vite.config.ts`. Add the Tailwind plugin and
+`unplugin-icons`, which resolves the `~icons/…` imports components use:
+
+```bash
+npm install -D unplugin-icons
+```
+
+```ts title="vite.config.ts" showLineNumbers {2-3,8-9}
+import { solidStart } from "@solidjs/start/config"
+import tailwindcss from "@tailwindcss/vite"
+import Icons from "unplugin-icons/vite"
+import { defineConfig } from "vite"
+
+export default defineConfig({
+  plugins: [
+    tailwindcss(),
+    Icons({ compiler: "solid", autoInstall: true }),
+    solidStart(),
+  ],
+})
+```
+
+### Edit tsconfig.json file
+
+SolidStart's templates already map `~/*` to `./src/*`. If yours does not, add it
+— the CLI reads this alias to decide where components go:
+
+```ts title="tsconfig.json" {4-9} showLineNumbers
+{
+  "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ]
+    }
+    // ...
+  }
+}
 ```
 
 ### Run the CLI
@@ -46,9 +109,7 @@ answers and the detected paths are written to `components.json`.
 
 ### Fonts
 
-I use [Inter](https://rsms.me/inter/) as the default font. Inter is not required. You can replace it with any other font.
-
-Here's how I configure Inter for SolidStart:
+[Inter](https://rsms.me/inter/) is a good default, but any font works.
 
 **1. Install the fontsource package:**
 
@@ -56,58 +117,29 @@ Here's how I configure Inter for SolidStart:
 npm install @fontsource/inter
 ```
 
-**2. Import the font in the `app.tsx`:**
+**2. Import the font in `src/app.tsx`:**
 
-```tsx {8} showLineNumbers
-import { Suspense } from "solid-js"
-
-import { Router } from "@solidjs/router"
-import { FileRoutes } from "@solidjs/start/router"
-
-import Nav from "~/components/Nav"
-
+```tsx title="src/app.tsx" {1} showLineNumbers
 import "@fontsource/inter"
 import "./app.css"
-
-export default function App() {
-  return (
-    <Router
-      root={(props) => (
-        <>
-          <Nav />
-          <Suspense>{props.children}</Suspense>
-        </>
-      )}
-    >
-      <FileRoutes />
-    </Router>
-  )
-}
 ```
 
-**1. Configure `theme.extend.fontFamily` in `tailwind.config.cjs`**
+**3. Point `--font-sans` at it in `src/app.css`:**
 
-```js {9-11} showLineNumbers
-const { fontFamily } = require("tailwindcss/defaultTheme")
+Tailwind v4 is configured in CSS, so this replaces the `theme.extend.fontFamily`
+block a v3 `tailwind.config` would have carried:
 
-/** @type {import('tailwindcss').Config} */
-export default {
-  darkMode: ["variant", [".dark &", '[data-kb-theme="dark"] &']],
-  content: ["./src/**/*.{ts,tsx}"],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ["Inter", ...fontFamily.sans]
-      }
-    }
-  }
-  // ...
+```css title="src/app.css" showLineNumbers
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
 }
 ```
 
 ### App structure
 
-Here's how I structure my Solid apps. You can use this as a reference:
+A typical SolidStart app looks like this:
 
 ```txt {7-11,15-16}
 .
@@ -132,14 +164,13 @@ Here's how I structure my Solid apps. You can use this as a reference:
 │   ├── app.css
 │   ├── app.tsx
 │   └── ...
-├── app.config.ts
-├── tailwind.config.cjs
+├── vite.config.ts
 └── ...
 ```
 
-- I place the UI components in the `components/ui` folder.
-- The rest of the components such as `<PageHeader />` or `<MainNav />` are placed in the `components` folder.
-- The `lib` folder contains all the utility functions. I have a `utils.ts` where I define the `cn` helper.
+- UI components go in `components/ui`.
+- Other components such as `<PageHeader />` or `<MainNav />` go in `components`.
+- `lib` holds utilities, including the `cn` helper in `utils.ts`.
 
 ### That's it
 
@@ -149,14 +180,15 @@ You can now start adding components to your project.
 npx shadcn-solidjs@latest add button
 ```
 
-The command above will add the `Button` component to your project. You can then import it like this:
+The command above will add the `Button` component to your project, along with
+the packages it needs. You can then import it like this:
 
-```tsx {1,6} showLineNumbers
+```tsx title="src/routes/index.tsx" {1,6} showLineNumbers
 import { Button } from "~/components/ui/button"
 
 export default function Home() {
   return (
-    <div>
+    <div class="flex min-h-svh flex-col items-center justify-center">
       <Button>Click me</Button>
     </div>
   )

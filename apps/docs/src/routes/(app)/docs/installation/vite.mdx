@@ -21,20 +21,52 @@ When asked make sure to use Solid:
 ✔ Select a variant: › TypeScript
 ```
 
-### Add Tailwind and its configuration
-
-Install `tailwindcss` and its peer dependencies, then generate your `tailwind.config.js` and `postcss.config.js` files:
+### Add Tailwind CSS
 
 ```bash
-npm install -D tailwindcss@3 postcss autoprefixer
-npx tailwindcss init -p
+npm install tailwindcss @tailwindcss/vite
 ```
+
+Replace everything in `src/index.css` with the following:
+
+```css title="src/index.css"
+@import "tailwindcss";
+```
+
+`init` looks for the stylesheet that imports Tailwind and writes the theme
+variables into it, so this file has to exist before you run the CLI.
 
 ### Edit tsconfig.json file
 
-Add the following code to the `tsconfig.json` file to resolve paths:
+Vite splits its TypeScript configuration across several files, and
+`tsconfig.json` ships with no `compilerOptions` at all. Add the alias there —
+that is the file the CLI reads:
 
-```ts {4-9} showLineNumbers
+```ts title="tsconfig.json" {11-16} showLineNumbers
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  }
+}
+```
+
+### Edit tsconfig.app.json file
+
+Add the same alias to `tsconfig.app.json` so your editor resolves the imports:
+
+```ts title="tsconfig.app.json" {4-9} showLineNumbers
 {
   "compilerOptions": {
     // ...
@@ -51,26 +83,32 @@ Add the following code to the `tsconfig.json` file to resolve paths:
 
 ### Update vite.config.ts
 
-Add the following code to the `vite.config.ts` so your app can resolve paths without error
+Install `@types/node` so you can import `path` without an error, and
+`unplugin-icons`, which resolves the `~icons/…` imports components use:
 
 ```bash
-# (so you can import "path" without error)
-npm i -D @types/node
+npm install -D @types/node unplugin-icons
 ```
 
-```ts showLineNumbers
+```ts title="vite.config.ts" showLineNumbers {1-4,8-10,12-16}
 import path from "path"
 
-import solid from 'vite-plugin-solid';
+import tailwindcss from "@tailwindcss/vite"
+import Icons from "unplugin-icons/vite"
+import solid from "vite-plugin-solid"
 import { defineConfig } from "vite"
 
 export default defineConfig({
-  plugins: [solid()],
+  plugins: [
+    solid(),
+    tailwindcss(),
+    Icons({ compiler: "solid", autoInstall: true }),
+  ],
   resolve: {
     alias: {
-      "~": path.resolve(__dirname, "./src")
-    }
-  }
+      "~": path.resolve(__dirname, "./src"),
+    },
+  },
 })
 ```
 
@@ -104,14 +142,15 @@ You can now start adding components to your project.
 npx shadcn-solidjs@latest add button
 ```
 
-The command above will add the `Button` component to your project. You can then import it like this:
+The command above will add the `Button` component to your project, along with
+the packages it needs. You can then import it like this:
 
-```tsx {1,6} showLineNumbers
+```tsx title="src/App.tsx" {1,6} showLineNumbers
 import { Button } from "~/components/ui/button"
 
-export default function Home() {
+export default function App() {
   return (
-    <div>
+    <div class="flex min-h-svh flex-col items-center justify-center">
       <Button>Click me</Button>
     </div>
   )

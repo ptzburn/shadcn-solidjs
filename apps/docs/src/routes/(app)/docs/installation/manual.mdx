@@ -7,23 +7,32 @@ description: Add dependencies to your project manually.
 
 ### Add Tailwind CSS
 
-Components are styled using Tailwind CSS. You need to install Tailwind CSS in your project.
+Components are styled with Tailwind CSS v4. In a Vite project that means the
+Vite plugin rather than a PostCSS setup:
 
-[Follow the Tailwind CSS installation instructions to get started.](https://tailwindcss.com/docs/installation)
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
+Tailwind v4 has no `tailwind.config.js`. Everything below is configured in CSS.
 
 ### Add dependencies
 
-Add the following dependencies to your project:
-
 ```bash
-npm install tailwindcss-animate class-variance-authority clsx tailwind-merge
+npm install class-variance-authority clsx tailwind-merge
+npm install -D tw-animate-css unplugin-icons
 ```
+
+`unplugin-icons` resolves the `~icons/…` imports components use. Each component
+also brings its own packages — `@kobalte/core` for most of them, and an
+`@iconify-json/*` set for whichever icon library you pick — but the CLI installs
+those when you add a component, so you don't need them up front.
 
 ### Edit tsconfig.json file
 
 Add the following code to the `tsconfig.json` file to resolve paths:
 
-```ts {4-9} showLineNumbers
+```ts title="tsconfig.json" {4-9} showLineNumbers
 {
   "compilerOptions": {
     // ...
@@ -38,263 +47,180 @@ Add the following code to the `tsconfig.json` file to resolve paths:
 }
 ```
 
+If your setup splits its TypeScript config — Vite scaffolds a `tsconfig.app.json`
+— add the alias to both. The root `tsconfig.json` is the one tooling reads.
+
 ### Update vite.config.ts
 
-Add the following code to the `vite.config.ts` so your app can resolve paths without error
+Install `@types/node` so you can import `path` without an error:
 
 ```bash
-# (so you can import "path" without error)
 npm i -D @types/node
 ```
 
-```ts showLineNumbers
+```ts title="vite.config.ts" showLineNumbers
 import path from "path"
 
-import solid from "@vitejs/plugin-solid"
+import tailwindcss from "@tailwindcss/vite"
+import Icons from "unplugin-icons/vite"
+import solid from "vite-plugin-solid"
 import { defineConfig } from "vite"
 
 export default defineConfig({
-  plugins: [solid()],
+  plugins: [
+    solid(),
+    tailwindcss(),
+    Icons({ compiler: "solid", autoInstall: true }),
+  ],
   resolve: {
     alias: {
-      "~": path.resolve(__dirname, "./src")
-    }
-  }
-})
-```
-
-### Configure tailwind.config.js
-
-Here's what my `tailwind.config.js` file looks like:
-
-```js showLineNumbers
-/**@type {import("tailwindcss").Config} */
-module.exports = {
-  darkMode: ["variant", [".dark &", '[data-kb-theme="dark"] &']],
-  content: ["./src/**/*.{ts,tsx}"],
-  theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px"
-      }
+      "~": path.resolve(__dirname, "./src"),
     },
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))"
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))"
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))"
-        },
-        info: {
-          DEFAULT: "hsl(var(--info))",
-          foreground: "hsl(var(--info-foreground))"
-        },
-        success: {
-          DEFAULT: "hsl(var(--success))",
-          foreground: "hsl(var(--success-foreground))"
-        },
-        warning: {
-          DEFAULT: "hsl(var(--warning))",
-          foreground: "hsl(var(--warning-foreground))"
-        },
-        error: {
-          DEFAULT: "hsl(var(--error))",
-          foreground: "hsl(var(--error-foreground))"
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))"
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))"
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))"
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))"
-        }
-      },
-      borderRadius: {
-        "2xl": "calc(var(--radius) * 1.8)",
-        xl: "calc(var(--radius) * 1.4)",
-        lg: "var(--radius)",
-        md: "calc(var(--radius) * 0.8)",
-        sm: "calc(var(--radius) * 0.6)"
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: 0 },
-          to: { height: "var(--kb-accordion-content-height)" }
-        },
-        "accordion-up": {
-          from: { height: "var(--kb-accordion-content-height)" },
-          to: { height: 0 }
-        },
-        "content-show": {
-          from: { opacity: 0, transform: "scale(0.96)" },
-          to: { opacity: 1, transform: "scale(1)" }
-        },
-        "content-hide": {
-          from: { opacity: 1, transform: "scale(1)" },
-          to: { opacity: 0, transform: "scale(0.96)" }
-        }
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "content-show": "content-show 0.2s ease-out",
-        "content-hide": "content-hide 0.2s ease-out"
-      }
-    }
   },
-  plugins: [require("tailwindcss-animate")]
-}
+})
 ```
 
 ### Configure styles
 
-Add the following to your `app.css` file:
+This is what `init` writes, for the `zinc` base color. Put it in the stylesheet
+your app imports:
 
-```css showLineNumbers
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+```css title="src/index.css" showLineNumbers
+@import "tailwindcss";
+@import "tw-animate-css";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+@custom-variant dark (&:where(.dark, .dark *, [data-kb-theme=dark], [data-kb-theme=dark] *));
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.21 0.006 285.885);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.705 0.015 286.067);
+  --chart-1: oklch(0.871 0.006 286.286);
+  --chart-2: oklch(0.552 0.016 285.938);
+  --chart-3: oklch(0.442 0.017 285.786);
+  --chart-4: oklch(0.37 0.013 285.805);
+  --chart-5: oklch(0.274 0.006 286.033);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.141 0.005 285.823);
+  --sidebar-primary: oklch(0.21 0.006 285.885);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-ring: oklch(0.705 0.015 286.067);
+}
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+.dark {
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.92 0.004 286.32);
+  --primary-foreground: oklch(0.21 0.006 285.885);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.552 0.016 285.938);
+  --chart-1: oklch(0.871 0.006 286.286);
+  --chart-2: oklch(0.552 0.016 285.938);
+  --chart-3: oklch(0.442 0.017 285.786);
+  --chart-4: oklch(0.37 0.013 285.805);
+  --chart-5: oklch(0.274 0.006 286.033);
+  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.552 0.016 285.938);
+}
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --info: 204 94% 94%;
-    --info-foreground: 199 89% 48%;
-
-    --success: 149 80% 90%;
-    --success-foreground: 160 84% 39%;
-
-    --warning: 48 96% 89%;
-    --warning-foreground: 25 95% 53%;
-
-    --error: 0 93% 94%;
-    --error-foreground: 0 84% 60%;
-
-    --ring: 240 5.9% 10%;
-
-    --radius: 0.625rem;
-  }
-
-  .dark,
-  [data-kb-theme="dark"] {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --info: 204 94% 94%;
-    --info-foreground: 199 89% 48%;
-
-    --success: 149 80% 90%;
-    --success-foreground: 160 84% 39%;
-
-    --warning: 48 96% 89%;
-    --warning-foreground: 25 95% 53%;
-
-    --error: 0 93% 94%;
-    --error-foreground: 0 84% 60%;
-
-    --ring: 240 4.9% 83.9%;
-
-    --radius: 0.625rem;
-  }
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings:
-      "rlig" 1,
-      "calt" 1;
-  }
-}
-
-@media (max-width: 640px) {
-  .container {
-    @apply px-4;
   }
 }
 ```
 
+The `@custom-variant dark` line is what makes `dark:` respond to both a `.dark`
+class and Kobalte's `data-kb-theme="dark"`. The `--radius-*` scale is derived
+from `--radius`, so changing that one value rounds the whole set.
+
 ### Add a cn helper
 
-I use a `cn` helper to make it easier to conditionally add Tailwind CSS classes. Here's how I define it in `lib/utils.ts`:
+Components use a `cn` helper to merge Tailwind classes. Define it in
+`src/lib/utils.ts`:
 
-```ts showLineNumbers
+```ts title="src/lib/utils.ts" showLineNumbers
 import type { ClassValue } from "clsx"
 import { clsx } from "clsx"
 import { twMerge } from "tailwind-merge"

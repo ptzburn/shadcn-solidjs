@@ -52,11 +52,15 @@ Answer `Yes` to all the question prompted by the CLI when installing Tailwind CS
 
 </Callout>
 
+This registers the `@tailwindcss/vite` plugin in `astro.config.mjs` and creates a
+stylesheet containing `@import "tailwindcss";`. Astro loads it from your layout —
+keep that import in place, since `init` writes the theme variables into that file.
+
 ### Edit tsconfig.json file
 
 Add the following code to the `tsconfig.json` file to resolve paths:
 
-```ts {4-9} showLineNumbers
+```ts title="tsconfig.json" {4-9} showLineNumbers
 {
   "compilerOptions": {
     // ...
@@ -69,6 +73,29 @@ Add the following code to the `tsconfig.json` file to resolve paths:
     // ...
   }
 }
+```
+
+### Register unplugin-icons
+
+Components import their icons from `~icons/…`, which `unplugin-icons` resolves.
+Astro runs on Vite, so the plugin goes in the `vite` block alongside Tailwind:
+
+```bash
+npm install -D unplugin-icons
+```
+
+```js title="astro.config.mjs" showLineNumbers {3,9}
+import solid from "@astrojs/solid-js"
+import tailwindcss from "@tailwindcss/vite"
+import Icons from "unplugin-icons/vite"
+import { defineConfig } from "astro/config"
+
+export default defineConfig({
+  integrations: [solid()],
+  vite: {
+    plugins: [tailwindcss(), Icons({ compiler: "solid", autoInstall: true })],
+  },
+})
 ```
 
 ### Run the CLI
@@ -93,40 +120,6 @@ Which style would you like to use? › Nova
 stylesheet that imports Tailwind, so it does not ask where those live. The
 answers and the detected paths are written to `components.json`.
 
-### Import the globals.css file
-
-Import the `globals.css` file in the `src/pages/index.astro` file:
-
-```ts {2} showLineNumbers
----
-import "~/styles/globals.css"
----
-```
-
-### Update astro tailwind config
-
-To prevent serving the Tailwind base styles twice, we need to tell Astro not to apply the base styles, since we already include them in our own `globals.css` file. To do this, set the `applyBaseStyles` config option for the tailwind plugin in `astro.config.mjs` to `false`.
-
-```ts {3-5} showLineNumbers
-export default defineConfig({
-  integrations: [
-    tailwind({
-      applyBaseStyles: false
-    })
-  ]
-})
-```
-
-### Update tailwind.config.mjs
-
-When running `npx shadcn-solidjs@latest init`, your tailwind config for content will be overwritten. To fix this, change the `module.exports` to `export default` and the `content` section with the code below to your `tailwind.config.mjs` file:
-
-```js {2} showLineNumbers
-export default {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"]
-}
-```
-
 ### That's it
 
 You can now start adding components to your project.
@@ -135,7 +128,8 @@ You can now start adding components to your project.
 npx shadcn-solidjs@latest add button
 ```
 
-The command above will add the `Button` component to your project. You can then import it like this:
+The command above will add the `Button` component to your project, along with
+the packages it needs. You can then import it like this:
 
 ```astro {2,10} showLineNumbers
 ---
@@ -151,5 +145,11 @@ import { Button } from "~/components/ui/button"
 	</body>
 </html>
 ```
+
+<Callout class="mt-4">
+
+Solid components in Astro need a [client directive](https://docs.astro.build/en/reference/directives-reference/#client-directives) to be interactive — `<Button client:load>` for example. Without one Astro renders the markup and ships no JavaScript for it.
+
+</Callout>
 
 </Steps>

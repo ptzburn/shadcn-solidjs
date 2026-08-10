@@ -3,8 +3,6 @@ title: Tauri
 description: Install and configure Tauri.
 ---
 
-import { IconAlertTriangle } from "~/components/icons.tsx"
-
 <Steps>
 
 ### Create project
@@ -24,20 +22,27 @@ When asked make sure to use Solid:
 ✔ Choose your UI flavor · TypeScript
 ```
 
-### Add Tailwind and its configuration
-
-Install `tailwindcss` and its peer dependencies, then generate your `tailwind.config.js` and `postcss.config.js` files:
+### Add Tailwind CSS
 
 ```bash
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+npm install tailwindcss @tailwindcss/vite
 ```
+
+Replace everything in the global stylesheet the template created under `src/`
+with the following:
+
+```css
+@import "tailwindcss";
+```
+
+`init` looks for the stylesheet that imports Tailwind and writes the theme
+variables into it, so this file has to exist before you run the CLI.
 
 ### Edit tsconfig.json file
 
 Add the following code to the `tsconfig.json` file to resolve paths:
 
-```ts {4-9} showLineNumbers
+```ts title="tsconfig.json" {4-9} showLineNumbers
 {
   "compilerOptions": {
     // ...
@@ -52,30 +57,43 @@ Add the following code to the `tsconfig.json` file to resolve paths:
 }
 ```
 
+If your project splits its TypeScript configuration across `tsconfig.app.json`
+and friends, add the alias to the root `tsconfig.json` as well — that is the
+file the CLI reads.
+
 ### Update vite.config.ts
 
-Add the following code to the `vite.config.ts` so your app can resolve paths without error
+Install `@types/node` so you can import `path` without an error, and
+`unplugin-icons`, which resolves the `~icons/…` imports components use:
 
 ```bash
-# (so you can import "path" without error)
-npm i -D @types/node
+npm install -D @types/node unplugin-icons
 ```
 
-```ts showLineNumbers
+```ts title="vite.config.ts" showLineNumbers {1-4,9-11,13-17}
 import path from "path"
 
-import solid from "@vitejs/plugin-solid"
+import tailwindcss from "@tailwindcss/vite"
+import Icons from "unplugin-icons/vite"
+import solid from "vite-plugin-solid"
 import { defineConfig } from "vite"
 
 export default defineConfig({
-  plugins: [solid()],
+  plugins: [
+    solid(),
+    tailwindcss(),
+    Icons({ compiler: "solid", autoInstall: true }),
+  ],
   resolve: {
     alias: {
-      "~": path.resolve(__dirname, "./src")
-    }
-  }
+      "~": path.resolve(__dirname, "./src"),
+    },
+  },
 })
 ```
+
+Keep any Tauri-specific options the template already put in this file, such as
+`clearScreen`, `server` and `envPrefix`.
 
 ### Run the CLI
 
@@ -107,14 +125,15 @@ You can now start adding components to your project.
 npx shadcn-solidjs@latest add button
 ```
 
-The command above will add the `Button` component to your project. You can then import it like this:
+The command above will add the `Button` component to your project, along with
+the packages it needs. You can then import it like this:
 
-```tsx {1,6} showLineNumbers
+```tsx title="src/App.tsx" {1,6} showLineNumbers
 import { Button } from "~/components/ui/button"
 
 export default function App() {
   return (
-    <div>
+    <div class="flex min-h-svh flex-col items-center justify-center">
       <Button>Click me</Button>
     </div>
   )
