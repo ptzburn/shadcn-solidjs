@@ -2,7 +2,7 @@
  * Builds the npm package from this Deno source with dnt.
  *
  * `deno pack` cannot do this job — it emits no `bin` field, which is the whole
- * point of an installer people run as `npx shadcn-solidjs@latest`. dnt does,
+ * point of an installer people run as `npx @ptzburn/shadcn-solidjs@latest`. dnt does,
  * via an entry point of `kind: "bin"`.
  *
  * The source is written against `node:` builtins rather than `Deno.*`, so no
@@ -44,7 +44,7 @@ await build({
   // VERSION is the single source of truth; version_test.ts asserts it matches
   // `version` in deno.json, so the npm and JSR versions cannot drift.
   package: {
-    name: "shadcn-solidjs",
+    name: "@ptzburn/shadcn-solidjs",
     version: VERSION,
     description: "Add SolidJS components to your project.",
     license: "MIT",
@@ -60,6 +60,7 @@ await build({
     },
     keywords: ["solid", "solidjs", "shadcn", "ui", "components", "tailwindcss"],
     engines: { node: ">=20" },
+    publishConfig: { access: "public" },
   },
   async postBuild() {
     await Deno.copyFile(
@@ -73,4 +74,6 @@ await build({
   },
 });
 
-process.stdout.write(`\nBuilt shadcn-solidjs@${VERSION} into ${outDir}\n`);
+process.stdout.write(
+  `\nBuilt @ptzburn/shadcn-solidjs@${VERSION} into ${outDir}\n`,
+);

@@ -9,7 +9,7 @@ Use the `init` command to set up a project. It writes a `components.json`, seeds
 your stylesheet with the base color's tokens, and adds the `cn` util.
 
 ```bash
-npx shadcn-solidjs@latest init
+npx @ptzburn/shadcn-solidjs@latest init
 ```
 
 You will be asked which base color, icon library and style to use:
@@ -48,14 +48,14 @@ To change where components are written, edit the `aliases` in
 Use the `add` command to add components and their dependencies to your project.
 
 ```bash
-npx shadcn-solidjs@latest add button card dialog
+npx @ptzburn/shadcn-solidjs@latest add button card dialog
 ```
 
 Components are named, not picked from a list — pass one or more names, a URL, or
 `--all` to add everything:
 
 ```bash
-npx shadcn-solidjs@latest add --all
+npx @ptzburn/shadcn-solidjs@latest add --all
 ```
 
 Files that already exist and differ are left alone and reported, so a re-run

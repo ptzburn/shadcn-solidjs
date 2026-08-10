@@ -35,13 +35,13 @@ Initialize a project — this writes `components.json`, sets up your stylesheet
 and base color, and adds the `cn` helper:
 
 ```bash
-npx shadcn-solidjs@latest init
+npx @ptzburn/shadcn-solidjs@latest init
 ```
 
 Then add components:
 
 ```bash
-npx shadcn-solidjs@latest add button card dialog
+npx @ptzburn/shadcn-solidjs@latest add button card dialog
 ```
 
 Running on Deno? Skip the npm build and use the JSR package directly:

@@ -98,7 +98,7 @@ REGISTRY_URL=http://localhost:3228/r \
 The CLI is written against `node:` builtins rather than `Deno.*` globals, so a
 single source tree runs under both runtimes: published to JSR for
 `deno run -A jsr:@ptzburn/shadcn-solidjs`, and to npm via
-[dnt](https://github.com/denoland/dnt) for `npx shadcn-solidjs@latest`.
+[dnt](https://github.com/denoland/dnt) for `npx @ptzburn/shadcn-solidjs@latest`.
 `deno pack` cannot build it — it does not emit a `package.json` `bin` field.
 
 Keep new CLI code on `node:` builtins so both targets keep working.

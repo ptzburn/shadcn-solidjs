@@ -70,7 +70,9 @@ function reportNextSteps(result: InitResult, cwd: string): void {
 
   logger.log();
   logger.info(
-    "Now run `shadcn-solidjs add button` to add your first component.",
+    // The npx form rather than the bare binary: the npm package is scoped, so
+    // `shadcn-solidjs` is only on PATH once it is installed as a dependency.
+    "Now run `npx @ptzburn/shadcn-solidjs@latest add button` to add your first component.",
   );
 }
 
