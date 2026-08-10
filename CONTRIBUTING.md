@@ -109,15 +109,22 @@ Bump `version` in `packages/cli/deno.json` and `VERSION` in
 `packages/cli/src/version.ts` together — `version_test.ts` fails if they drift,
 and the npm build reads `VERSION`.
 
+Every command below runs from `packages/cli`:
+
 ```sh
+cd packages/cli
+
 # JSR
-deno publish --dry-run          # from packages/cli
+deno publish --dry-run
 deno publish
 
 # npm
-deno task --cwd=packages/cli build:npm
-npm publish                     # from packages/cli/npm
+deno task build:npm
+cd npm && npm publish
 ```
+
+The `build:npm` task is defined on the `packages/cli` member, so running it from
+the repo root needs `deno task --cwd=packages/cli build:npm` instead.
 
 `build:npm` writes to `packages/cli/npm/`, which is gitignored and excluded from
 `deno fmt`/`lint`/`check` in the root `deno.json`. Don't commit it.
