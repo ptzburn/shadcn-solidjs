@@ -6,10 +6,6 @@
 Accessible, customizable components that you copy into your project and own
 outright. Free. Open Source. **Use this to build your own component library.**
 
-> [!NOTE]
-> The npm package is scoped — `@ptzburn/shadcn-solidjs`, not `shadcn-solidjs`.
-> The unscoped name is taken. Once installed, the command is `shadcn-solidjs`.
-
 ## Why
 
 shadcn/ui isn't a component library you install and import from — it's a
