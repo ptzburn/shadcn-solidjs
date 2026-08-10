@@ -198,7 +198,10 @@ function toRegistryItem(
 
 function writeJson(filePath: string, payload: unknown) {
   mkdirSync(path.dirname(filePath), { recursive: true });
-  writeFileSync(filePath, JSON.stringify(payload, null, 2), "utf8");
+  // Trailing newline so the emitted registry is already `deno fmt` clean.
+  // Without it every build leaves ~2900 files that fmt wants to touch and the
+  // next build reverts, which the pre-commit hook turns into churn.
+  writeFileSync(filePath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
 }
 
 const indexItems: Record<string, unknown>[] = [];
