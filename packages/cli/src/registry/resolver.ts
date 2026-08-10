@@ -19,6 +19,12 @@ export interface ResolveOptions {
   registries?: RegistryConfig;
   iconLibrary?: string;
   style?: string;
+  /**
+   * `{name}` template for the theme retry below. Overridable for the same
+   * reason `registries` is — otherwise a caller pointed at a local or custom
+   * registry still falls back to the public one.
+   */
+  themeUrl?: string;
 }
 
 interface ResolvedNode {
@@ -81,7 +87,8 @@ async function fetchByAddress(
     if (!(error instanceof RegistryNotFoundError) || parsed.kind !== "name") {
       throw error;
     }
-    return await fetchFrom(REGISTRY_THEME_URL.replace("{name}", parsed.name));
+    const themeUrl = options.themeUrl ?? REGISTRY_THEME_URL;
+    return await fetchFrom(themeUrl.replace("{name}", parsed.name));
   }
 }
 

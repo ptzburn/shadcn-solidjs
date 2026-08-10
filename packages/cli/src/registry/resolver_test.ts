@@ -22,6 +22,9 @@ function options(iconLibrary = "lucide", style = "nova") {
       "@shadcn-solid":
         `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
     },
+    // Without this the bare-name theme retry falls back to the public
+    // registry, so a miss becomes a network round-trip instead of a local one.
+    themeUrl: `${R_DIR}/themes/{name}.json`,
   };
 }
 
