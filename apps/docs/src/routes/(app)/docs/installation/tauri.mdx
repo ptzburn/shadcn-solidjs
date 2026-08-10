@@ -85,16 +85,19 @@ Run the `shadcn-solidjs` init command to setup your project:
 npx shadcn-solidjs@latest init
 ```
 
-### Configure ui.config.json
+### Configure components.json
 
-You will be asked a few questions to configure `ui.config.json`:
+You will be asked which base color, icon library and style to use:
 
 ```txt showLineNumbers
-Would you like to use TypeScript? (recommended) yes
-Where is your global CSS file? src/App.css
-Where is your tailwind.config.js located? tailwind.config.js
-Configure the import alias for the src directory: ~/*
+Which base color would you like to use? › zinc
+Which icon library would you like to use? › Lucide
+Which style would you like to use? › Nova
 ```
+
+`init` reads the path alias your project already declares and finds the
+stylesheet that imports Tailwind, so it does not ask where those live. The
+answers and the detected paths are written to `components.json`.
 
 ### That's it
 
