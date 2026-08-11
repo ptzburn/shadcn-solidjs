@@ -66,10 +66,11 @@ export function DocsSidebar() {
                   <For each={category.items}>
                     {(item) => (
                       <SidebarMenuItem>
-                        {/* External entries are not routes, so they need a plain anchor the router will not intercept. */}
+                        {/* External entries are not routes. The router intercepts every same-origin anchor click, and `rel="external"` is its opt-out. */}
                         <SidebarMenuButton
                           as={item.external ? "a" : A}
                           href={item.href}
+                          rel={item.external ? "external" : undefined}
                           isActive={item.href === location.pathname}
                           class={menuButtonClass}
                         >

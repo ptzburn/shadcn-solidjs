@@ -53,7 +53,11 @@ export function MobileNav(props: { class?: string }) {
             <div class="flex flex-col gap-3">
               <For each={docsConfig.mainNav}>
                 {(item) => (
-                  <MobileLink href={item.href} onOpenChange={setOpen}>
+                  <MobileLink
+                    href={item.href}
+                    external={item.external}
+                    onOpenChange={setOpen}
+                  >
                     {item.title}
                   </MobileLink>
                 )}
@@ -84,7 +88,11 @@ export function MobileNav(props: { class?: string }) {
                   <div class="flex flex-col gap-3">
                     <For each={category.items}>
                       {(item) => (
-                        <MobileLink href={item.href} onOpenChange={setOpen}>
+                        <MobileLink
+                          href={item.href}
+                          external={item.external}
+                          onOpenChange={setOpen}
+                        >
                           {item.title}
                         </MobileLink>
                       )}
@@ -102,14 +110,22 @@ export function MobileNav(props: { class?: string }) {
 
 interface MobileLinkProps extends ComponentProps<"a"> {
   onOpenChange?: (open: boolean) => void;
+  /** Not a route. The router intercepts every same-origin anchor click, so
+   * these opt out with `rel="external"` and get a real page load. */
+  external?: boolean;
 }
 
 function MobileLink(props: MobileLinkProps) {
-  const [local, others] = splitProps(props, ["class", "onOpenChange"]);
+  const [local, others] = splitProps(props, [
+    "class",
+    "onOpenChange",
+    "external",
+  ]);
 
   return (
     <a
       {...others}
+      rel={local.external ? "external" : undefined}
       class={cn("flex items-center gap-2 font-medium text-2xl", local.class)}
       onClick={() => local.onOpenChange?.(false)}
     />
