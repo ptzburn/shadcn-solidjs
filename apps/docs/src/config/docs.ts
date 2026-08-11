@@ -116,8 +116,8 @@ export const docsConfig: Config = {
           href: "/docs/components/carousel",
         },
         {
-          title: "Charts",
-          href: "/docs/components/charts",
+          title: "Chart",
+          href: "/docs/components/chart",
         },
         {
           title: "Checkbox",

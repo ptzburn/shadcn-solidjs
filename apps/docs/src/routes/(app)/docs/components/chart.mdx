@@ -1,0 +1,497 @@
+---
+title: Chart
+description: Beautiful charts. Built using chart.js. Copy and paste into your apps.
+---
+
+<ComponentPreview
+  name="chart-demo"
+  class="[&_.preview]:h-auto [&_.preview]:p-0 [&_.preview]:lg:min-h-[404px] [&_.preview>div]:w-full [&_.preview>div]:border-none [&_.preview>div]:shadow-none"
+  hideCode
+/>
+
+Introducing **Charts**. A collection of chart components that you can copy and paste into your apps.
+
+Charts are designed to look great out of the box. They work well with the other components and are fully customizable to fit your project.
+
+## Component
+
+We use [chart.js](https://www.chartjs.org/) under the hood.
+
+We designed the `chart` component with chart.js's options API in mind. **You build your charts using the typed chart components and only bring in chart.js options, such as scales and plugins, when and where you need them**.
+
+```tsx showLineNumbers /ChartContainer/ /BarChart/
+import { BarChart, ChartContainer } from "~/components/ui/chart"
+
+export function MyChart() {
+  return (
+    <ChartContainer config={chartConfig}>
+      <BarChart data={chartData} />
+    </ChartContainer>
+  )
+}
+```
+
+The components are thin wrappers around chart.js. This means you're not locked into an abstraction: everything you can configure in chart.js, you can configure through the `options` prop. When a new chart.js version is released, you can follow the official upgrade path to upgrade your charts.
+
+**The components are yours**.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx @ptzburn/shadcn-solidjs@latest add chart
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+<Steps class="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install chart.js @solid-primitives/refs
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="chart" />
+
+<Step>Add the following colors to your CSS file</Step>
+
+```css title="app.css" showLineNumbers
+@layer base {
+  :root {
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+  }
+
+  .dark {
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+  }
+}
+```
+
+</Steps>
+</TabsContent>
+
+</CodeTabs>
+
+## Your First Chart
+
+Let's build your first chart. We'll build a bar chart, add a grid, axis, tooltip and legend.
+
+<Steps>
+
+<Step>Start by defining your data</Step>
+
+The following data represents the number of desktop and mobile users for each month.
+
+<Callout class="mt-4">
+
+**Note:** chart.js takes a `labels` array plus one dataset per series. If your data lives in a different shape, use chart.js's [parsing options](https://www.chartjs.org/docs/latest/general/data-structures.html) to map it to the chart.
+
+</Callout>
+
+```tsx title="components/example-chart.tsx" showLineNumbers
+const chartData = {
+  labels: ["January", "February", "March", "April", "May", "June"],
+  datasets: [
+    {
+      label: "Desktop",
+      data: [186, 305, 237, 73, 209, 214],
+      backgroundColor: "var(--color-desktop)",
+      borderRadius: 4,
+    },
+    {
+      label: "Mobile",
+      data: [80, 200, 120, 190, 130, 140],
+      backgroundColor: "var(--color-mobile)",
+      borderRadius: 4,
+    },
+  ],
+}
+```
+
+<Step>Define your chart config</Step>
+
+The chart config holds configuration for the chart. This is where you place human-readable strings, such as labels, and color tokens for theming.
+
+```tsx title="components/example-chart.tsx" showLineNumbers
+import type { ChartConfig } from "~/components/ui/chart"
+
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "#2563eb",
+  },
+  mobile: {
+    label: "Mobile",
+    color: "#60a5fa",
+  },
+} satisfies ChartConfig
+```
+
+<Step>Build your chart</Step>
+
+You can now build your chart using the typed chart components.
+
+<Callout class="mt-4">
+
+**Important:** Remember to set a `min-h-[VALUE]` on the `ChartContainer` component. This is required for the chart to be responsive.
+
+</Callout>
+
+<ComponentPreview name="chart-example" previewClassName="h-80" />
+
+</Steps>
+
+### Add a Grid
+
+Let's add a grid to the chart. Grid lines belong to the scales in chart.js, so we enable them through the `options` prop.
+
+<Steps class="mb-0 pt-2">
+
+<Step>Enable the grid on the y-axis of your chart.</Step>
+
+```tsx showLineNumbers {4}
+<ChartContainer config={chartConfig} class="min-h-[200px] w-full">
+  <BarChart
+    data={chartData}
+    options={{ scales: { y: { grid: { display: true } } } }}
+  />
+</ChartContainer>
+```
+
+<ComponentPreview name="chart-example-grid" previewClassName="h-80" />
+
+</Steps>
+
+### Add an Axis
+
+To add an x-axis to the chart, we'll enable the ticks on the `x` scale.
+
+<Steps class="mb-0 pt-2">
+
+<Step>Add the `x` scale options to your chart.</Step>
+
+```tsx showLineNumbers {6-13}
+<ChartContainer config={chartConfig} class="min-h-[200px] w-full">
+  <BarChart
+    data={chartData}
+    options={{
+      scales: {
+        y: { grid: { display: true } },
+        x: {
+          ticks: {
+            display: true,
+            callback: function (value) {
+              return this.getLabelForValue(Number(value)).slice(0, 3)
+            },
+          },
+        },
+      },
+    }}
+  />
+</ChartContainer>
+```
+
+<ComponentPreview name="chart-example-axis" previewClassName="h-80" />
+
+</Steps>
+
+### Add Tooltip
+
+So far we've only toggled chart.js options. The tooltip already looks great out of the box: the `chart` component replaces the chart.js canvas tooltip with a styled HTML tooltip, so there is nothing to add.
+
+<ComponentPreview name="chart-example-tooltip" previewClassName="h-80" />
+
+Hover to see the tooltips. Easy, right? Nothing to wire up, and we've got a beautiful tooltip.
+
+### Add Legend
+
+For the legend, we'll enable the built-in chart.js legend. It comes pre-styled to match the other components.
+
+<Steps class="mb-0 pt-2">
+
+<Step>Add the legend plugin options to your chart.</Step>
+
+```tsx showLineNumbers {5}
+<ChartContainer config={chartConfig} class="min-h-[200px] w-full">
+  <BarChart
+    data={chartData}
+    options={{
+      plugins: { legend: { display: true } },
+    }}
+  />
+</ChartContainer>
+```
+
+<ComponentPreview name="chart-example-legend" previewClassName="h-80" />
+
+</Steps>
+
+Done. You've built your first chart! What's next?
+
+- [Themes and Colors](/docs/components/chart#theming)
+- [Tooltip](/docs/components/chart#tooltip)
+- [Legend](/docs/components/chart#legend)
+
+## Chart Config
+
+The chart config is where you define the labels and colors for a chart.
+
+It is intentionally decoupled from chart data.
+
+This allows you to share config and color tokens between charts. It can also work independently for cases where your data or color tokens live remotely or in a different format.
+
+```tsx showLineNumbers /ChartConfig/
+import type { ChartConfig } from "~/components/ui/chart"
+
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    // A color like 'hsl(220, 98%, 61%)' or 'var(--color-name)'
+    color: "#2563eb",
+    // OR a theme object with 'light' and 'dark' keys
+    theme: {
+      light: "#2563eb",
+      dark: "#dc2626",
+    },
+  },
+} satisfies ChartConfig
+```
+
+## Theming
+
+Charts have built-in support for theming. You can use css variables (recommended) or color values in any color format, such as hex, hsl or oklch.
+
+### CSS Variables
+
+<Steps class="mb-0 pt-2">
+
+<Step>Define your colors in your css file</Step>
+
+```css title="app.css" showLineNumbers
+@layer base {
+  :root {
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+  }
+
+  .dark {
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+  }
+}
+```
+
+<Step>Add the color to your `chartConfig`</Step>
+
+```tsx title="components/example-chart.tsx" showLineNumbers
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "var(--chart-1)",
+  },
+  mobile: {
+    label: "Mobile",
+    color: "var(--chart-2)",
+  },
+} satisfies ChartConfig
+```
+
+</Steps>
+
+### hex, hsl or oklch
+
+You can also define your colors directly in the chart config. Use the color format you prefer.
+
+```tsx title="components/example-chart.tsx" showLineNumbers
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "#2563eb",
+  },
+  mobile: {
+    label: "Mobile",
+    color: "hsl(220, 98%, 61%)",
+  },
+  tablet: {
+    label: "Tablet",
+    color: "oklch(0.5 0.2 240)",
+  },
+  laptop: {
+    label: "Laptop",
+    color: "var(--chart-2)",
+  },
+} satisfies ChartConfig
+```
+
+### Using Colors
+
+To use the theme colors in your chart, reference the colors using the format `var(--color-KEY)`.
+
+A canvas cannot resolve CSS variables on its own, so the `chart` component resolves `var(--…)` and `color-mix(…)` color strings in your data and options before they reach chart.js, and re-resolves them whenever the theme changes.
+
+#### Datasets
+
+```tsx
+datasets: [
+  {
+    label: "Desktop",
+    data: [186, 305, 237],
+    backgroundColor: "var(--color-desktop)",
+  },
+]
+```
+
+#### Per-segment colors
+
+Pass an array of colors to color each bar or slice individually.
+
+```tsx title="components/example-chart.tsx" showLineNumbers
+const chartData = {
+  labels: ["Chrome", "Safari"],
+  datasets: [
+    {
+      data: [275, 200],
+      backgroundColor: ["var(--color-chrome)", "var(--color-safari)"],
+    },
+  ],
+}
+```
+
+## Tooltip
+
+A chart tooltip contains a label, name, indicator and value. You can use a combination of these to customize your tooltip.
+
+<ComponentPreview name="chart-tooltip" hideCode />
+
+The `chart` component ships with a styled HTML tooltip that replaces the chart.js canvas tooltip. It is enabled on every chart out of the box — nothing to import, nothing to wire up.
+
+You can turn on/off any of these using the `hideLabel` and `hideIndicator` options and customize the indicator style using the `indicator` option. Pass them through the `tooltip` prop on any chart component.
+
+```tsx title="components/example-chart.tsx"
+<BarChart data={chartData} tooltip={{ indicator: "line", hideLabel: true }} />
+```
+
+### Options
+
+Use the following options to customize the tooltip.
+
+| Option          | Type                     | Description                          |
+| :-------------- | :----------------------- | :----------------------------------- |
+| `indicator`     | `dot` `line` or `dashed` | The indicator style for the tooltip. |
+| `hideLabel`     | boolean                  | Whether to hide the label.           |
+| `hideIndicator` | boolean                  | Whether to hide the indicator.       |
+
+### Colors
+
+Colors are automatically referenced from the chart datasets.
+
+### Custom
+
+To customize the tooltip label and names, use the chart.js [tooltip callbacks](https://www.chartjs.org/docs/latest/configuration/tooltip.html#tooltip-callbacks) through the `options` prop.
+
+```tsx title="components/example-chart.tsx" showLineNumbers
+<BarChart
+  data={chartData}
+  options={{
+    plugins: {
+      tooltip: {
+        callbacks: {
+          title: () => "Total Visitors",
+        },
+      },
+    },
+  }}
+/>
+```
+
+This will use `Total Visitors` for the tooltip label. The tooltip names come from the dataset `label` (or from the chart `labels` for pie and doughnut charts).
+
+## Legend
+
+The built-in chart.js legend comes pre-styled to match the other components. Enable it through the `options` prop.
+
+```tsx title="components/example-chart.tsx"
+<BarChart
+  data={chartData}
+  options={{ plugins: { legend: { display: true } } }}
+/>
+```
+
+### Colors
+
+Colors are automatically referenced from the chart datasets.
+
+### Custom
+
+Legend names come from the dataset `label` (or from the chart `labels` for pie and doughnut charts). Use the config labels for your datasets to keep them in sync.
+
+```tsx showLineNumbers /label/
+const chartConfig = {
+  chrome: {
+    label: "Chrome",
+    color: "var(--chart-1)",
+  },
+  safari: {
+    label: "Safari",
+    color: "var(--chart-2)",
+  },
+} satisfies ChartConfig
+
+const chartData = {
+  labels: ["January", "February"],
+  datasets: [
+    {
+      label: chartConfig.chrome.label,
+      data: [187, 200],
+      backgroundColor: "var(--color-chrome)",
+    },
+  ],
+}
+```
+
+This will use `Chrome` for the legend name.
+
+## Accessibility
+
+chart.js renders to a `canvas` element, which is invisible to screen readers by default. Pass `role` and `aria-label` to give your chart an accessible name.
+
+```tsx title="components/example-chart.tsx"
+<BarChart
+  data={chartData}
+  role="img"
+  aria-label="Bar chart showing desktop and mobile visitors per month"
+/>
+```
+
+## Chart Types
+
+You can use all chart types provided by [chart.js](https://www.chartjs.org/docs/latest/):
+
+- `BarChart`
+- `BubbleChart`
+- `DonutChart`
+- `LineChart`
+- `PieChart`
+- `PolarAreaChart`
+- `RadarChart`
+- `ScatterChart`

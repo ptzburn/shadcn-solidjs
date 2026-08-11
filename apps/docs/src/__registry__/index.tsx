@@ -162,14 +162,14 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
-  "charts": {
-    name: "charts",
+  "chart": {
+    name: "chart",
     description: "",
     type: "ui",
     registryDependencies: undefined,
-    component: lazy(() => import("~/registry/ui/charts.tsx")),
+    component: lazy(() => import("~/registry/ui/chart.tsx")),
     files: [{
-      path: "registry/ui/charts.tsx",
+      path: "registry/ui/chart.tsx",
       type: "ui",
       target: "",
     }],
@@ -1868,90 +1868,90 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
-  "charts-demo": {
-    name: "charts-demo",
+  "chart-demo": {
+    name: "chart-demo",
     description: "",
     type: "example",
     registryDependencies: undefined,
-    component: lazy(() => import("~/registry/example/charts-demo.tsx")),
+    component: lazy(() => import("~/registry/example/chart-demo.tsx")),
     files: [{
-      path: "registry/example/charts-demo.tsx",
+      path: "registry/example/chart-demo.tsx",
       type: "example",
       target: "",
     }],
   },
-  "charts-example": {
-    name: "charts-example",
+  "chart-example": {
+    name: "chart-example",
     description: "",
     type: "example",
     registryDependencies: undefined,
-    component: lazy(() => import("~/registry/example/charts-example.tsx")),
+    component: lazy(() => import("~/registry/example/chart-example.tsx")),
     files: [{
-      path: "registry/example/charts-example.tsx",
+      path: "registry/example/chart-example.tsx",
       type: "example",
       target: "",
     }],
   },
-  "charts-example-axis": {
-    name: "charts-example-axis",
+  "chart-example-axis": {
+    name: "chart-example-axis",
     description: "",
     type: "example",
     registryDependencies: undefined,
-    component: lazy(() => import("~/registry/example/charts-example-axis.tsx")),
+    component: lazy(() => import("~/registry/example/chart-example-axis.tsx")),
     files: [{
-      path: "registry/example/charts-example-axis.tsx",
+      path: "registry/example/chart-example-axis.tsx",
       type: "example",
       target: "",
     }],
   },
-  "charts-example-grid": {
-    name: "charts-example-grid",
+  "chart-example-grid": {
+    name: "chart-example-grid",
     description: "",
     type: "example",
     registryDependencies: undefined,
-    component: lazy(() => import("~/registry/example/charts-example-grid.tsx")),
+    component: lazy(() => import("~/registry/example/chart-example-grid.tsx")),
     files: [{
-      path: "registry/example/charts-example-grid.tsx",
+      path: "registry/example/chart-example-grid.tsx",
       type: "example",
       target: "",
     }],
   },
-  "charts-example-legend": {
-    name: "charts-example-legend",
+  "chart-example-legend": {
+    name: "chart-example-legend",
     description: "",
     type: "example",
     registryDependencies: undefined,
     component: lazy(() =>
-      import("~/registry/example/charts-example-legend.tsx")
+      import("~/registry/example/chart-example-legend.tsx")
     ),
     files: [{
-      path: "registry/example/charts-example-legend.tsx",
+      path: "registry/example/chart-example-legend.tsx",
       type: "example",
       target: "",
     }],
   },
-  "charts-example-tooltip": {
-    name: "charts-example-tooltip",
+  "chart-example-tooltip": {
+    name: "chart-example-tooltip",
     description: "",
     type: "example",
     registryDependencies: undefined,
     component: lazy(() =>
-      import("~/registry/example/charts-example-tooltip.tsx")
+      import("~/registry/example/chart-example-tooltip.tsx")
     ),
     files: [{
-      path: "registry/example/charts-example-tooltip.tsx",
+      path: "registry/example/chart-example-tooltip.tsx",
       type: "example",
       target: "",
     }],
   },
-  "charts-tooltip": {
-    name: "charts-tooltip",
+  "chart-tooltip": {
+    name: "chart-tooltip",
     description: "",
     type: "example",
     registryDependencies: undefined,
-    component: lazy(() => import("~/registry/example/charts-tooltip.tsx")),
+    component: lazy(() => import("~/registry/example/chart-tooltip.tsx")),
     files: [{
-      path: "registry/example/charts-tooltip.tsx",
+      path: "registry/example/chart-tooltip.tsx",
       type: "example",
       target: "",
     }],

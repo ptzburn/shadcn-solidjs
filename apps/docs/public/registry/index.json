@@ -143,13 +143,13 @@
     "type": "ui"
   },
   {
-    "name": "charts",
+    "name": "chart",
     "dependencies": [
       "chart.js",
       "@solid-primitives/refs"
     ],
     "files": [
-      "ui/charts.tsx"
+      "ui/chart.tsx"
     ],
     "type": "ui"
   },

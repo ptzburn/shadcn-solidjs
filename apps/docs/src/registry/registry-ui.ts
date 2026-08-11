@@ -147,12 +147,12 @@ export const ui: Registry = [
     ],
   },
   {
-    name: "charts",
+    name: "chart",
     type: "ui",
     dependencies: ["chart.js", "@solid-primitives/refs"],
     files: [
       {
-        path: "ui/charts.tsx",
+        path: "ui/chart.tsx",
         type: "ui",
       },
     ],
