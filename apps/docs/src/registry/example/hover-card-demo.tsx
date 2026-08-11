@@ -12,10 +12,10 @@ export default function HoverCardDemo() {
         Hover Here
       </HoverCardTrigger>
       <HoverCardContent class="flex w-64 flex-col gap-0.5">
-        <div class="font-semibold">@nextjs</div>
-        <div>The React Framework – created and maintained by @vercel.</div>
+        <div class="font-semibold">@solidstart</div>
+        <div>The Solid Framework – created and maintained by @solid_js.</div>
         <div class="mt-1 text-muted-foreground text-xs">
-          Joined December 2021
+          Joined November 2022
         </div>
       </HoverCardContent>
     </HoverCard>
