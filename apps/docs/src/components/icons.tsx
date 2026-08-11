@@ -1,9 +1,9 @@
-import { type ComponentProps, splitProps } from "solid-js";
+import { cn } from "~/lib/utils.ts";
 import IconSimpleCss from "~icons/simple-icons/css";
 import IconSimpleJson from "~icons/simple-icons/json";
 import IconSimpleTypescript from "~icons/simple-icons/typescript";
 
-import { cn } from "~/lib/utils.ts";
+import { type ComponentProps, splitProps } from "solid-js";
 
 type IconProps = ComponentProps<"svg">;
 

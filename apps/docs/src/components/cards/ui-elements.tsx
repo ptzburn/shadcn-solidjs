@@ -1,7 +1,3 @@
-import IconArrowRight02 from "~icons/hugeicons/arrow-right-02";
-import IconArrowUp01 from "~icons/hugeicons/arrow-up-01";
-import IconSearch01 from "~icons/hugeicons/search-01";
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,8 +10,9 @@ import {
   AlertDialogTrigger,
 } from "~/registry/ui/alert-dialog.tsx";
 import { Badge } from "~/registry/ui/badge.tsx";
-import { Button } from "~/registry/ui/button.tsx";
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
+
+import { Button } from "~/registry/ui/button.tsx";
 import { Card, CardContent } from "~/registry/ui/card.tsx";
 import { Checkbox } from "~/registry/ui/checkbox.tsx";
 import {
@@ -47,6 +44,9 @@ import {
   SwitchThumb,
 } from "~/registry/ui/switch.tsx";
 import { Textarea } from "~/registry/ui/textarea.tsx";
+import IconArrowRight02 from "~icons/hugeicons/arrow-right-02";
+import IconArrowUp01 from "~icons/hugeicons/arrow-up-01";
+import IconSearch01 from "~icons/hugeicons/search-01";
 
 export function UIElements() {
   return (

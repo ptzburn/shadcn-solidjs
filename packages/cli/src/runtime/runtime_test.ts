@@ -1,7 +1,7 @@
-import { assert, assertEquals, assertThrows } from "@std/assert";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { assert, assertEquals, assertThrows } from "@std/assert";
 
 import { DenoTarget, readNodeModulesDir } from "./deno.ts";
 import { detectProjectTarget } from "./detect.ts";

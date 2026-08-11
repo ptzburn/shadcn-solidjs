@@ -1,8 +1,6 @@
-import type { ComponentProps } from "solid-js";
-import { createSignal, Show } from "solid-js";
-
 import { useMediaQuery } from "~/lib/hooks/use-media-query.ts";
 import { cn } from "~/lib/utils.ts";
+
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Dialog,
@@ -24,6 +22,8 @@ import {
 } from "~/registry/ui/drawer.tsx";
 import { Input } from "~/registry/ui/input.tsx";
 import { Label } from "~/registry/ui/label.tsx";
+import type { ComponentProps } from "solid-js";
+import { createSignal, Show } from "solid-js";
 
 export default function DrawerDialogDemo() {
   const [open, setOpen] = createSignal(false);

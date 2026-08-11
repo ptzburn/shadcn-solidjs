@@ -63,7 +63,7 @@ export default function InputGroupDropdown() {
                 class="size-3"
               />
             </DropdownMenuTrigger>
-            <DropdownMenuContent class="w-auto [--radius:0.95rem]">
+            <DropdownMenuContent class="[--radius:0.95rem] w-auto">
               <DropdownMenuGroup>
                 <DropdownMenuItem>Documentation</DropdownMenuItem>
                 <DropdownMenuItem>Blog Posts</DropdownMenuItem>

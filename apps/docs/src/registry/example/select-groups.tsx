@@ -1,5 +1,3 @@
-import { Show } from "solid-js";
-
 import {
   Select,
   SelectContent,
@@ -9,6 +7,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/registry/ui/select.tsx";
+
+import { Show } from "solid-js";
 
 type Category = {
   label: string;

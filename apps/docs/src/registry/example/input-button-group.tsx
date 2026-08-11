@@ -1,5 +1,5 @@
-import { Button } from "~/registry/ui/button.tsx";
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
+import { Button } from "~/registry/ui/button.tsx";
 import { Field, FieldLabel } from "~/registry/ui/field.tsx";
 import { Input } from "~/registry/ui/input.tsx";
 

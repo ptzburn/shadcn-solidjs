@@ -1,8 +1,8 @@
-import { Button } from "~/registry/ui/button.tsx";
 import {
   ButtonGroup,
   ButtonGroupSeparator,
 } from "~/registry/ui/button-group.tsx";
+import { Button } from "~/registry/ui/button.tsx";
 
 export default function ButtonGroupSeparatorDemo() {
   return (

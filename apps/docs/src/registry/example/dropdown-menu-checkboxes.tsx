@@ -1,6 +1,5 @@
-import { createSignal } from "solid-js";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -9,6 +8,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
+import { createSignal } from "solid-js";
 
 export default function DropdownMenuCheckboxes() {
   const [showStatusBar, setShowStatusBar] = createSignal(true);

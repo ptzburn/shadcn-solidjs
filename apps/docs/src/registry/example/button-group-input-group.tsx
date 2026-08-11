@@ -1,8 +1,7 @@
-import { createSignal } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import { Button } from "~/registry/ui/button.tsx";
+
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
+import { Button } from "~/registry/ui/button.tsx";
 import {
   InputGroup,
   InputGroupAddon,
@@ -14,6 +13,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "~/registry/ui/tooltip.tsx";
+import { createSignal } from "solid-js";
 
 export default function ButtonGroupInputGroup() {
   const [voiceEnabled, setVoiceEnabled] = createSignal(false);
@@ -46,7 +46,7 @@ export default function ButtonGroupInputGroup() {
                 onClick={() => setVoiceEnabled(!voiceEnabled())}
                 size="icon-xs"
                 data-active={voiceEnabled()}
-                class="data-[active=true]:bg-orange-100 data-[active=true]:text-orange-700 dark:data-[active=true]:bg-orange-800 dark:data-[active=true]:text-orange-100"
+                class="dark:data-[active=true]:bg-orange-800 dark:data-[active=true]:text-orange-100 data-[active=true]:bg-orange-100 data-[active=true]:text-orange-700"
                 aria-pressed={voiceEnabled()}
               >
                 <IconPlaceholder

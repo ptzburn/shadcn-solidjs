@@ -1,6 +1,5 @@
-import { createSignal } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Command,
@@ -12,6 +11,7 @@ import {
   CommandList,
   CommandShortcut,
 } from "~/registry/ui/command.tsx";
+import { createSignal } from "solid-js";
 
 export default function CommandWithShortcuts() {
   const [open, setOpen] = createSignal(false);

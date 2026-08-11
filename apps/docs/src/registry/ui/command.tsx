@@ -1,4 +1,16 @@
 import type { DialogRootProps } from "@kobalte/core/dialog";
+import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
+import * as CommandPrimitive from "cmdk-solid";
+import type {
+  Component,
+  ComponentProps,
+  ParentProps,
+  VoidProps,
+} from "solid-js";
+
+import { mergeProps, splitProps } from "solid-js";
 import {
   Dialog,
   DialogContent,
@@ -7,18 +19,6 @@ import {
   DialogTitle,
 } from "./dialog.tsx";
 import { InputGroup, InputGroupAddon } from "./input-group.tsx";
-
-import { cn } from "~/lib/utils.ts";
-import * as CommandPrimitive from "cmdk-solid";
-
-import type {
-  Component,
-  ComponentProps,
-  ParentProps,
-  VoidProps,
-} from "solid-js";
-import { mergeProps, splitProps } from "solid-js";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const Command: Component<ParentProps<CommandPrimitive.CommandRootProps>> = (
   props,
@@ -120,7 +120,7 @@ const CommandList: Component<ParentProps<CommandPrimitive.CommandListProps>> = (
     <CommandPrimitive.CommandList
       data-slot="command-list"
       class={cn(
-        "cn-command-list overflow-x-hidden overflow-y-auto",
+        "cn-command-list overflow-y-auto overflow-x-hidden",
         local.class,
       )}
       {...others}
@@ -180,7 +180,7 @@ const CommandItem: Component<ParentProps<CommandPrimitive.CommandItemProps>> = (
     <CommandPrimitive.CommandItem
       data-slot="command-item"
       class={cn(
-        "cn-command-item group/command-item data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-command-item group/command-item [&_svg]:pointer-events-none data-[disabled=true]:pointer-events-none [&_svg]:shrink-0 data-[disabled=true]:opacity-50",
         local.class,
       )}
       {...others}

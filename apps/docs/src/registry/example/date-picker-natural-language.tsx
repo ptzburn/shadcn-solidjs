@@ -1,10 +1,4 @@
-import { Index } from "solid-js";
-import { Portal } from "solid-js/web";
-
 import { parseDate } from "@ark-ui/solid";
-import { parseDate as chronoParseDate } from "chrono-node";
-
-import { Field, FieldLabel } from "~/registry/ui/field.tsx";
 import {
   DatePicker,
   DatePickerContent,
@@ -27,6 +21,12 @@ import {
   DatePickerViewControl,
   DatePickerYearSelect,
 } from "~/registry/ui/date-picker.tsx";
+
+import { Field, FieldLabel } from "~/registry/ui/field.tsx";
+import { parseDate as chronoParseDate } from "chrono-node";
+
+import { Index } from "solid-js";
+import { Portal } from "solid-js/web";
 
 const selectClass =
   "h-7 rounded-md border border-input bg-transparent px-1.5 text-sm font-medium focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none dark:bg-input/30";

@@ -922,71 +922,71 @@ export const examples: Registry = [
     ],
   },
   {
-    name: "charts-demo",
+    name: "chart-demo",
     type: "example",
     files: [
       {
-        path: "example/charts-demo.tsx",
+        path: "example/chart-demo.tsx",
         type: "example",
       },
     ],
   },
   {
-    name: "charts-example",
+    name: "chart-example",
     type: "example",
     files: [
       {
-        path: "example/charts-example.tsx",
+        path: "example/chart-example.tsx",
         type: "example",
       },
     ],
   },
   {
-    name: "charts-example-axis",
+    name: "chart-example-axis",
     type: "example",
     files: [
       {
-        path: "example/charts-example-axis.tsx",
+        path: "example/chart-example-axis.tsx",
         type: "example",
       },
     ],
   },
   {
-    name: "charts-example-grid",
+    name: "chart-example-grid",
     type: "example",
     files: [
       {
-        path: "example/charts-example-grid.tsx",
+        path: "example/chart-example-grid.tsx",
         type: "example",
       },
     ],
   },
   {
-    name: "charts-example-legend",
+    name: "chart-example-legend",
     type: "example",
     files: [
       {
-        path: "example/charts-example-legend.tsx",
+        path: "example/chart-example-legend.tsx",
         type: "example",
       },
     ],
   },
   {
-    name: "charts-example-tooltip",
+    name: "chart-example-tooltip",
     type: "example",
     files: [
       {
-        path: "example/charts-example-tooltip.tsx",
+        path: "example/chart-example-tooltip.tsx",
         type: "example",
       },
     ],
   },
   {
-    name: "charts-tooltip",
+    name: "chart-tooltip",
     type: "example",
     files: [
       {
-        path: "example/charts-tooltip.tsx",
+        path: "example/chart-tooltip.tsx",
         type: "example",
       },
     ],
@@ -2093,6 +2093,96 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "input-otp-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/input-otp-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-otp-pattern",
+    type: "example",
+    files: [
+      {
+        path: "example/input-otp-pattern.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-otp-separator",
+    type: "example",
+    files: [
+      {
+        path: "example/input-otp-separator.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-otp-disabled",
+    type: "example",
+    files: [
+      {
+        path: "example/input-otp-disabled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-otp-controlled",
+    type: "example",
+    files: [
+      {
+        path: "example/input-otp-controlled.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-otp-invalid",
+    type: "example",
+    files: [
+      {
+        path: "example/input-otp-invalid.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-otp-four-digits",
+    type: "example",
+    files: [
+      {
+        path: "example/input-otp-four-digits.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-otp-alphanumeric",
+    type: "example",
+    files: [
+      {
+        path: "example/input-otp-alphanumeric.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "input-otp-form",
+    type: "example",
+    files: [
+      {
+        path: "example/input-otp-form.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "item-demo",
     type: "example",
     files: [
@@ -2548,96 +2638,6 @@ export const examples: Registry = [
     files: [
       {
         path: "example/navigation-menu-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "otp-field-demo",
-    type: "example",
-    files: [
-      {
-        path: "example/otp-field-demo.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "otp-field-pattern",
-    type: "example",
-    files: [
-      {
-        path: "example/otp-field-pattern.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "otp-field-separator",
-    type: "example",
-    files: [
-      {
-        path: "example/otp-field-separator.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "otp-field-disabled",
-    type: "example",
-    files: [
-      {
-        path: "example/otp-field-disabled.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "otp-field-controlled",
-    type: "example",
-    files: [
-      {
-        path: "example/otp-field-controlled.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "otp-field-invalid",
-    type: "example",
-    files: [
-      {
-        path: "example/otp-field-invalid.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "otp-field-four-digits",
-    type: "example",
-    files: [
-      {
-        path: "example/otp-field-four-digits.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "otp-field-alphanumeric",
-    type: "example",
-    files: [
-      {
-        path: "example/otp-field-alphanumeric.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
-    name: "otp-field-form",
-    type: "example",
-    files: [
-      {
-        path: "example/otp-field-form.tsx",
         type: "example",
       },
     ],

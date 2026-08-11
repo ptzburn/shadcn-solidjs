@@ -1,8 +1,8 @@
-import type { Component, ComponentProps, JSX } from "solid-js";
-import { Show, splitProps } from "solid-js";
-
 import { cn } from "~/lib/utils.ts";
 import { Alert, AlertDescription, AlertTitle } from "~/registry/ui/alert.tsx";
+
+import type { Component, ComponentProps, JSX } from "solid-js";
+import { Show, splitProps } from "solid-js";
 
 type CalloutProps = ComponentProps<"div"> & {
   icon?: JSX.Element;
@@ -21,7 +21,7 @@ export const Callout: Component<CalloutProps> = (props) => {
     <Alert
       data-variant={local.variant ?? "default"}
       class={cn(
-        "not-typeset border-surface bg-surface text-surface-foreground mt-6 w-auto rounded-2xl md:-mx-1 **:[code]:border",
+        "not-typeset mt-6 w-auto rounded-2xl border-surface bg-surface text-surface-foreground md:-mx-1 **:[code]:border",
         local.class,
       )}
       {...others}

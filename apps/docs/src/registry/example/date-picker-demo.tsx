@@ -1,6 +1,3 @@
-import { Index, Show } from "solid-js";
-import { Portal } from "solid-js/web";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import {
   DatePicker,
@@ -24,6 +21,9 @@ import {
   DatePickerViewTrigger,
 } from "~/registry/ui/date-picker.tsx";
 
+import { Index, Show } from "solid-js";
+import { Portal } from "solid-js/web";
+
 export default function DatePickerDemo() {
   return (
     <DatePicker
@@ -35,7 +35,7 @@ export default function DatePickerDemo() {
       <DatePickerControl>
         <DatePickerContext>
           {(api) => (
-            <DatePickerTrigger class="w-[212px] justify-between px-3 text-sm font-normal">
+            <DatePickerTrigger class="w-[212px] justify-between px-3 font-normal text-sm">
               <Show
                 when={api().valueAsString[0]}
                 fallback={

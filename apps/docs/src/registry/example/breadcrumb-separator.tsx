@@ -1,3 +1,4 @@
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,7 +7,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "~/registry/ui/breadcrumb.tsx";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 export default function BreadcrumbSeparatorDemo() {
   return (

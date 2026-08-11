@@ -1,6 +1,5 @@
-import { createSignal, Show } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Card,
@@ -16,6 +15,7 @@ import {
 } from "~/registry/ui/collapsible.tsx";
 import { Field, FieldGroup, FieldLabel } from "~/registry/ui/field.tsx";
 import { Input } from "~/registry/ui/input.tsx";
+import { createSignal, Show } from "solid-js";
 
 export default function CollapsibleSettings() {
   const [isOpen, setIsOpen] = createSignal(false);

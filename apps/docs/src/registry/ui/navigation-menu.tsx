@@ -2,9 +2,10 @@ import type { PolymorphicProps } from "@kobalte/core";
 import * as NavigationMenuPrimitive from "@kobalte/core/navigation-menu";
 
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { cva } from "class-variance-authority";
-import type { JSX, ValidComponent } from "solid-js";
 
+import type { JSX, ValidComponent } from "solid-js";
 import {
   createContext,
   createEffect,
@@ -14,7 +15,6 @@ import {
   splitProps,
   useContext,
 } from "solid-js";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 // Kobalte folds Radix's `Root` and `List` into a single primitive: the root
 // renders the `<nav>` wrapper and the `<ul>` itself, so there is no separate
@@ -193,7 +193,7 @@ const NavigationMenuContent = <T extends ValidComponent = "ul">(
     <NavigationMenuPrimitive.Content
       data-slot="navigation-menu-content"
       class={cn(
-        "cn-navigation-menu-content absolute top-0 left-0 group-data-[viewport=true]/navigation-menu:max-w-(--kb-popper-content-available-width) group-data-[viewport=false]/navigation-menu:top-full group-data-[viewport=false]/navigation-menu:z-50 group-data-[viewport=false]/navigation-menu:mt-1.5 group-data-[viewport=false]/navigation-menu:overflow-hidden group-data-[viewport=false]/navigation-menu:max-md:max-w-full **:data-[slot=navigation-menu-link]:focus:ring-0 **:data-[slot=navigation-menu-link]:focus:outline-none",
+        "cn-navigation-menu-content absolute top-0 left-0 group-data-[viewport=false]/navigation-menu:top-full group-data-[viewport=false]/navigation-menu:z-50 group-data-[viewport=false]/navigation-menu:mt-1.5 group-data-[viewport=true]/navigation-menu:max-w-(--kb-popper-content-available-width) group-data-[viewport=false]/navigation-menu:overflow-hidden group-data-[viewport=false]/navigation-menu:max-md:max-w-full **:data-[slot=navigation-menu-link]:focus:outline-none **:data-[slot=navigation-menu-link]:focus:ring-0",
         local.class,
       )}
       {...others}

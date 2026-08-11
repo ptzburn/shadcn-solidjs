@@ -1,3 +1,4 @@
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -6,7 +7,6 @@ import {
   ContextMenuSeparator,
   ContextMenuTrigger,
 } from "~/registry/ui/context-menu.tsx";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 export default function ContextMenuDestructive() {
   return (

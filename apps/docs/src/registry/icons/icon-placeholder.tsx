@@ -1,10 +1,10 @@
-import { type ComponentProps, splitProps } from "solid-js";
-import { Dynamic } from "solid-js/web";
-
 import {
   type LucideIconName,
   lucideIcons,
 } from "~/registry/icons/__lucide__/index.tsx";
+import { type ComponentProps, splitProps } from "solid-js";
+
+import { Dynamic } from "solid-js/web";
 
 export interface IconPlaceholderProps extends ComponentProps<"svg"> {
   lucide: LucideIconName;

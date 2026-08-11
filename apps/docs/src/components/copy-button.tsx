@@ -1,10 +1,10 @@
-import type { Component } from "solid-js";
-import { createSignal, Show, splitProps } from "solid-js";
-
-import { cn } from "~/lib/utils.ts";
 import { IconCheck, IconCopy } from "~/components/icons.tsx";
+import { cn } from "~/lib/utils.ts";
+
 import type { ButtonProps } from "~/registry/ui/button.tsx";
 import { Button } from "~/registry/ui/button.tsx";
+import type { Component } from "solid-js";
+import { createSignal, Show, splitProps } from "solid-js";
 
 export interface CopyButtonProps extends ButtonProps {
   content: string;

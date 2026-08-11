@@ -1,6 +1,5 @@
-import { createSignal } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import { Button } from "~/registry/ui/button.tsx";
 import {
   DropdownMenu,
@@ -10,6 +9,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
+import { createSignal } from "solid-js";
 
 export default function DropdownMenuCheckboxesIcons() {
   const [notifications, setNotifications] = createSignal({

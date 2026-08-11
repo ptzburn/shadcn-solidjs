@@ -9,7 +9,7 @@ export function ModeSwitcher() {
     <Button
       variant="ghost"
       size="icon-sm"
-      class="group/toggle extend-touch-target"
+      class="extend-touch-target group/toggle"
       onClick={() => setColorMode(colorMode() === "dark" ? "light" : "dark")}
     >
       <svg

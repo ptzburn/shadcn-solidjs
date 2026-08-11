@@ -1,7 +1,7 @@
-import { createSignal } from "solid-js";
-
 import { Label } from "~/registry/ui/label.tsx";
+
 import { Slider } from "~/registry/ui/slider.tsx";
+import { createSignal } from "solid-js";
 
 export default function SliderControlled() {
   const [value, setValue] = createSignal([0.3, 0.7]);

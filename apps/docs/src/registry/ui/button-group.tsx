@@ -2,13 +2,13 @@ import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { Polymorphic } from "@kobalte/core/polymorphic";
 
 import type * as SeparatorPrimitive from "@kobalte/core/separator";
-import { Separator } from "./separator.tsx";
 import { cn } from "~/lib/utils.ts";
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import type { Component, ComponentProps, ValidComponent } from "solid-js";
-
 import { mergeProps, splitProps } from "solid-js";
+
+import { Separator } from "./separator.tsx";
 
 // Kobalte's Select root wraps its trigger in a `<div role="group">`, so
 // unlike radix the trigger is never a direct child of the group — the
@@ -86,7 +86,7 @@ const ButtonGroupSeparator = <T extends ValidComponent = "div">(
       data-slot="button-group-separator"
       orientation={local.orientation}
       class={cn(
-        "cn-button-group-separator relative self-stretch bg-input data-[orientation=horizontal]:mx-px data-[orientation=horizontal]:w-auto data-[orientation=vertical]:my-px data-[orientation=vertical]:h-auto",
+        "cn-button-group-separator relative self-stretch bg-input data-[orientation=horizontal]:mx-px data-[orientation=vertical]:my-px data-[orientation=vertical]:h-auto data-[orientation=horizontal]:w-auto",
         local.class,
       )}
       {...others}

@@ -1,4 +1,12 @@
 import {
+  createEffect,
+  createRenderEffect,
+  createSignal,
+  on,
+  onCleanup,
+  untrack,
+} from "solid-js";
+import {
   getContentBottom,
   getElementScrollTop,
   getElementTop,
@@ -31,14 +39,6 @@ import type {
   MessageScrollerVisibilityState,
   Ref,
 } from "./message-scroller-types.ts";
-import {
-  createEffect,
-  createRenderEffect,
-  createSignal,
-  on,
-  onCleanup,
-  untrack,
-} from "solid-js";
 
 function areScrollStatesEqual(
   current: MessageScrollerScrollable,

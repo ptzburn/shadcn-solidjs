@@ -1,12 +1,12 @@
-import { type ComponentProps } from "solid-js";
+import { Callout } from "~/components/callout.tsx";
 
+import { CodeBlockCommand } from "~/components/code-block-command.tsx";
+import { CodeTabs } from "~/components/code-tabs.tsx";
 import { ComponentPreview } from "~/components/component-preview.tsx";
 import { ComponentSource } from "~/components/component-source.tsx";
 import { ComponentsList } from "~/components/components-list.tsx";
-import { getIconForLanguageExtension } from "~/components/icons.tsx";
-import { CodeBlockCommand } from "~/components/code-block-command.tsx";
-import { CodeTabs } from "~/components/code-tabs.tsx";
 import { CopyButton } from "~/components/copy-button.tsx";
+import { getIconForLanguageExtension } from "~/components/icons.tsx";
 import { MDXHeader } from "~/components/mdx-header.tsx";
 import { cn } from "~/lib/utils.ts";
 import {
@@ -16,13 +16,13 @@ import {
   AccordionTrigger,
 } from "~/registry/ui/accordion.tsx";
 import { Alert, AlertDescription, AlertTitle } from "~/registry/ui/alert.tsx";
-import { Callout } from "~/components/callout.tsx";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "~/registry/ui/tabs.tsx";
+import { type ComponentProps } from "solid-js";
 
 export const MDXComponents = {
   h1: (props: ComponentProps<"h1">) => {
@@ -92,7 +92,7 @@ export const MDXComponents = {
     <div
       {...props}
       class={cn(
-        "steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8 [&>h3]:step",
+        "[&>h3]:step [counter-reset:step] steps mb-12 md:ml-4 md:border-l md:pl-8",
         props.class,
       )}
     />
@@ -108,13 +108,13 @@ export const MDXComponents = {
   ),
   TabsTrigger: (props: ComponentProps<typeof TabsTrigger>) => (
     <TabsTrigger
-      class="rounded-none border-0 border-b-2 border-transparent bg-transparent px-0 pb-3 text-base text-muted-foreground hover:text-primary dark:hover:text-primary data-selected:border-primary data-selected:bg-transparent data-selected:text-foreground data-selected:shadow-none! dark:data-selected:border-primary dark:data-selected:bg-transparent"
+      class="rounded-none border-0 border-b-2 border-transparent bg-transparent px-0 pb-3 text-base text-muted-foreground hover:text-primary dark:hover:text-primary dark:data-selected:border-primary dark:data-selected:bg-transparent data-selected:border-primary data-selected:bg-transparent data-selected:text-foreground data-selected:shadow-none!"
       {...props}
     />
   ),
   TabsContent: (props: ComponentProps<typeof TabsContent>) => (
     <TabsContent
-      class="relative [&_h3.font-heading]:text-base [&_h3.font-heading]:font-medium [&>.steps]:mt-6"
+      class="relative [&>.steps]:mt-6 [&_h3.font-heading]:font-medium [&_h3.font-heading]:text-base"
       {...props}
     />
   ),

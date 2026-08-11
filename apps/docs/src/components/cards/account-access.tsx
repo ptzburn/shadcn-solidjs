@@ -1,7 +1,3 @@
-import IconAlertCircle from "~icons/hugeicons/alert-circle";
-import IconArrowRight01 from "~icons/hugeicons/arrow-right-01";
-import IconSquareLock02 from "~icons/hugeicons/square-lock-02";
-
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Card,
@@ -12,6 +8,7 @@ import {
   CardTitle,
 } from "~/registry/ui/card.tsx";
 import { Field, FieldGroup, FieldLabel } from "~/registry/ui/field.tsx";
+
 import { Input } from "~/registry/ui/input.tsx";
 import {
   Item,
@@ -20,6 +17,9 @@ import {
   ItemMedia,
   ItemTitle,
 } from "~/registry/ui/item.tsx";
+import IconAlertCircle from "~icons/hugeicons/alert-circle";
+import IconArrowRight01 from "~icons/hugeicons/arrow-right-01";
+import IconSquareLock02 from "~icons/hugeicons/square-lock-02";
 
 export function AccountAccess() {
   return (
@@ -45,7 +45,7 @@ export function AccountAccess() {
               <FieldLabel for="current-password">Current Password</FieldLabel>
               <a
                 href="#"
-                class="text-xs font-medium tracking-wider text-muted-foreground uppercase hover:text-foreground"
+                class="font-medium text-muted-foreground text-xs uppercase tracking-wider hover:text-foreground"
               >
                 Forgot?
               </a>

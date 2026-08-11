@@ -1,11 +1,11 @@
-import type { ComponentProps } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarInput,
 } from "~/registry/ui/sidebar.tsx";
+import type { ComponentProps } from "solid-js";
 
 export function SearchForm(props: ComponentProps<"form">) {
   return (
@@ -26,7 +26,7 @@ export function SearchForm(props: ComponentProps<"form">) {
             ph="magnifying-glass"
             ri="search-line"
             hugeicons="search-01"
-            class="pointer-events-none absolute left-2 top-1/2 size-4 -translate-y-1/2 select-none opacity-50"
+            class="pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2 select-none opacity-50"
           />
         </SidebarGroupContent>
       </SidebarGroup>

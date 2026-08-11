@@ -1,6 +1,5 @@
-import { For, type JSX } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import { Button } from "~/registry/ui/button.tsx";
 import { Card, CardContent, CardHeader } from "~/registry/ui/card.tsx";
 import {
@@ -9,6 +8,7 @@ import {
   CollapsibleTrigger,
 } from "~/registry/ui/collapsible.tsx";
 import { Tabs, TabsList, TabsTrigger } from "~/registry/ui/tabs.tsx";
+import { For, type JSX } from "solid-js";
 
 type FileTreeItem = { name: string } | { name: string; items: FileTreeItem[] };
 

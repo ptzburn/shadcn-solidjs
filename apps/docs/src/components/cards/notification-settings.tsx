@@ -1,6 +1,5 @@
-import { For } from "solid-js";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import {
   Card,
   CardContent,
@@ -17,6 +16,7 @@ import {
   FieldGroup,
   FieldLabel,
 } from "~/registry/ui/field.tsx";
+import { For } from "solid-js";
 
 const NOTIFICATIONS = [
   {

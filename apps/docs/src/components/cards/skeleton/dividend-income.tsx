@@ -1,12 +1,12 @@
-import { For } from "solid-js";
-
 import {
   Card,
   CardAction,
   CardContent,
   CardHeader,
 } from "~/registry/ui/card.tsx";
+
 import { Skeleton } from "~/registry/ui/skeleton.tsx";
+import { For } from "solid-js";
 
 const rows = [0, 1, 2, 3];
 const miniBars = [40, 60, 80, 50];
@@ -34,7 +34,7 @@ export function DividendIncome() {
                   <For each={miniBars}>
                     {(h) => (
                       <Skeleton
-                        class="flex-1 rounded-t-sm rounded-b-none bg-muted-foreground/15"
+                        class="flex-1 rounded-b-none rounded-t-sm bg-muted-foreground/15"
                         style={{ height: `${h}%` }}
                       />
                     )}

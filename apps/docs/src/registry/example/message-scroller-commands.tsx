@@ -1,6 +1,5 @@
-import { For } from "solid-js";
-
 import { Bubble, BubbleContent } from "~/registry/ui/bubble.tsx";
+
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Card,
@@ -17,7 +16,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
-import { Message, MessageContent } from "~/registry/ui/message.tsx";
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -27,6 +25,8 @@ import {
   MessageScrollerViewport,
   useMessageScroller,
 } from "~/registry/ui/message-scroller.tsx";
+import { Message, MessageContent } from "~/registry/ui/message.tsx";
+import { For } from "solid-js";
 
 interface ChatMessage {
   id: string;
@@ -173,7 +173,7 @@ export default function MessageScrollerCommands() {
             </MessageScroller>
           </CardContent>
         </Card>
-        <div class="mx-auto max-w-sm px-0.5 text-center text-xs text-balance text-muted-foreground">
+        <div class="mx-auto max-w-sm text-balance px-0.5 text-center text-muted-foreground text-xs">
           Use the controls to jump to any message in the conversation.
         </div>
       </div>

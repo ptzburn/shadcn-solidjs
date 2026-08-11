@@ -1,6 +1,5 @@
-import IconAdd01 from "~icons/hugeicons/add-01";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import { Card, CardContent } from "~/registry/ui/card.tsx";
 import {
   Empty,
@@ -10,6 +9,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "~/registry/ui/empty.tsx";
+import IconAdd01 from "~icons/hugeicons/add-01";
 
 export function EmptyDistributeTrack() {
   return (

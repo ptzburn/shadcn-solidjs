@@ -1,7 +1,7 @@
-import type { ComponentProps } from "solid-js";
-import { splitProps } from "solid-js";
-
 import { cn } from "~/lib/utils.ts";
+import type { ComponentProps } from "solid-js";
+
+import { splitProps } from "solid-js";
 
 export function PageHeader(props: ComponentProps<"section">) {
   const [local, others] = splitProps(props, ["class", "children"]);
@@ -21,7 +21,7 @@ export function PageHeaderHeading(props: ComponentProps<"h1">) {
   return (
     <h1
       class={cn(
-        "leading-tighter max-w-3xl text-3xl font-semibold tracking-tight text-balance text-primary lg:leading-[1.1] lg:font-semibold xl:text-5xl xl:tracking-tighter",
+        "max-w-3xl text-balance font-semibold text-3xl text-primary leading-tighter tracking-tight lg:font-semibold lg:leading-[1.1] xl:text-5xl xl:tracking-tighter",
         local.class,
       )}
       {...others}
@@ -34,7 +34,7 @@ export function PageHeaderDescription(props: ComponentProps<"p">) {
   return (
     <p
       class={cn(
-        "max-w-4xl text-base text-balance text-foreground sm:text-lg",
+        "max-w-4xl text-balance text-base text-foreground sm:text-lg",
         local.class,
       )}
       {...others}

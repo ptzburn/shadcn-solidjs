@@ -1,5 +1,3 @@
-import { createSignal } from "solid-js";
-
 import {
   ContextMenu,
   ContextMenuContent,
@@ -10,6 +8,8 @@ import {
   ContextMenuSeparator,
   ContextMenuTrigger,
 } from "~/registry/ui/context-menu.tsx";
+
+import { createSignal } from "solid-js";
 
 export default function ContextMenuRadio() {
   const [user, setUser] = createSignal("pedro");

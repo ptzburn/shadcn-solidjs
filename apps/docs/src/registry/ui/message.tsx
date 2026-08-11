@@ -52,7 +52,7 @@ const MessageContent: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="message-content"
       class={cn(
-        "cn-message-content flex w-full min-w-0 flex-col wrap-break-word",
+        "cn-message-content wrap-break-word flex w-full min-w-0 flex-col",
         local.class,
       )}
       {...others}
@@ -66,7 +66,7 @@ const MessageHeader: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="message-header"
       class={cn(
-        "cn-message-header flex max-w-full min-w-0 items-center",
+        "cn-message-header flex min-w-0 max-w-full items-center",
         local.class,
       )}
       {...others}
@@ -80,7 +80,7 @@ const MessageFooter: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="message-footer"
       class={cn(
-        "cn-message-footer flex max-w-full min-w-0 items-center group-data-[align=end]/message:justify-end",
+        "cn-message-footer flex min-w-0 max-w-full items-center group-data-[align=end]/message:justify-end",
         local.class,
       )}
       {...others}

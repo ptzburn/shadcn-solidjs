@@ -1,9 +1,4 @@
-import { Index } from "solid-js";
-import { Portal } from "solid-js/web";
-
 import { parseDate } from "@ark-ui/solid";
-
-import { Field, FieldLabel } from "~/registry/ui/field.tsx";
 import {
   DatePicker,
   DatePickerContent,
@@ -25,6 +20,11 @@ import {
   DatePickerView,
   DatePickerViewControl,
 } from "~/registry/ui/date-picker.tsx";
+
+import { Field, FieldLabel } from "~/registry/ui/field.tsx";
+
+import { Index } from "solid-js";
+import { Portal } from "solid-js/web";
 
 export default function DatePickerWithInput() {
   return (

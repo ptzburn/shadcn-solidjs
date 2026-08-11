@@ -1,6 +1,3 @@
-import type { JSX } from "solid-js";
-import { For } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import {
   Attachment,
@@ -12,6 +9,9 @@ import {
   AttachmentMedia,
   AttachmentTitle,
 } from "~/registry/ui/attachment.tsx";
+
+import type { JSX } from "solid-js";
+import { For } from "solid-js";
 
 interface Item {
   name: string;

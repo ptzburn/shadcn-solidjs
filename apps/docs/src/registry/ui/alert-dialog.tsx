@@ -1,12 +1,12 @@
 import * as AlertDialogPrimitive from "@kobalte/core/alert-dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
-import { buttonVariants } from "./button.tsx";
 import { cn } from "~/lib/utils.ts";
 import type { VariantProps } from "class-variance-authority";
-
 import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
+
 import { splitProps } from "solid-js";
+import { buttonVariants } from "./button.tsx";
 
 const AlertDialog = AlertDialogPrimitive.Root;
 const AlertDialogPortal = AlertDialogPrimitive.Portal;
@@ -102,7 +102,7 @@ const AlertDialogFooter: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="alert-dialog-footer"
       class={cn(
-        "cn-alert-dialog-footer flex flex-col-reverse gap-2 group-data-[size=sm]/alert-dialog-content:grid group-data-[size=sm]/alert-dialog-content:grid-cols-2 sm:flex-row sm:justify-end",
+        "cn-alert-dialog-footer flex flex-col-reverse gap-2 sm:flex-row sm:justify-end group-data-[size=sm]/alert-dialog-content:grid group-data-[size=sm]/alert-dialog-content:grid-cols-2",
         local.class,
       )}
       {...others}

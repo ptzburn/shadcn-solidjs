@@ -1,3 +1,4 @@
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import {
   Combobox,
   ComboboxContent,
@@ -8,7 +9,6 @@ import {
   ComboboxSection,
 } from "~/registry/ui/combobox.tsx";
 import { InputGroupAddon } from "~/registry/ui/input-group.tsx";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 interface Timezone {
   value: string;

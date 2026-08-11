@@ -1,6 +1,3 @@
-import type { JSX } from "solid-js";
-import { For } from "solid-js";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,6 +7,9 @@ import {
   NavigationMenuLink,
   NavigationMenuTrigger,
 } from "~/registry/ui/navigation-menu.tsx";
+import type { JSX } from "solid-js";
+
+import { For } from "solid-js";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -95,7 +95,7 @@ function ListItem(props: {
   return (
     <NavigationMenuLink href={props.href}>
       <div class="flex flex-col gap-1 text-sm">
-        <NavigationMenuLabel class="leading-none font-medium">
+        <NavigationMenuLabel class="font-medium leading-none">
           {props.title}
         </NavigationMenuLabel>
         <NavigationMenuDescription class="line-clamp-2 text-muted-foreground">

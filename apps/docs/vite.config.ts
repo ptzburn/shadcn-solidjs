@@ -1,8 +1,8 @@
 import deno from "@deno/vite-plugin";
 import mdx from "@mdx-js/rollup";
 import { solidStart } from "@solidjs/start/config";
-import { nitro } from "nitro/vite";
 import tailwindcss from "@tailwindcss/vite";
+import { nitro } from "nitro/vite";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkFrontmatter from "remark-frontmatter";
@@ -11,9 +11,9 @@ import Icons from "unplugin-icons/vite";
 import { defineConfig, type Rollup } from "vite";
 
 import rehypeComponent from "./src/lib/mdx/component.tsx";
-import rehypePrettyCodeSecondPass from "./src/lib/mdx/pretty-code.ts";
 import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
 import remarkNpmCommand from "./src/lib/mdx/npm-command.ts";
+import rehypePrettyCodeSecondPass from "./src/lib/mdx/pretty-code.ts";
 
 const mdxPlugin = mdx({
   jsx: true,

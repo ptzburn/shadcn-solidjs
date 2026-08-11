@@ -10,7 +10,7 @@ export function SiteHeader() {
   return (
     <header class="sticky top-0 z-50 w-full bg-background">
       <div class="container-wrapper px-6">
-        <div class="flex h-(--header-height) items-center **:data-[slot=separator]:self-center! **:data-[slot=separator]:!h-4">
+        <div class="**:data-[slot=separator]:self-center! flex h-(--header-height) items-center **:data-[slot=separator]:!h-4">
           <MobileNav class="flex lg:hidden" />
           <MainNav class="hidden lg:flex" />
           <div class="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">

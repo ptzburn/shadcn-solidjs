@@ -65,7 +65,7 @@ const MarkerContent: Component<ComponentProps<"span">> = (props) => {
   return (
     <span
       data-slot="marker-content"
-      class={cn("cn-marker-content min-w-0 wrap-break-word", local.class)}
+      class={cn("cn-marker-content wrap-break-word min-w-0", local.class)}
       {...others}
     />
   );

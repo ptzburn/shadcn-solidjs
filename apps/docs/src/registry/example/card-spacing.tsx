@@ -1,6 +1,5 @@
-import { createSignal, For } from "solid-js";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import {
   Card,
   CardAction,
@@ -13,6 +12,7 @@ import {
 import { Input } from "~/registry/ui/input.tsx";
 import { Label } from "~/registry/ui/label.tsx";
 import { ToggleGroup, ToggleGroupItem } from "~/registry/ui/toggle-group.tsx";
+import { createSignal, For } from "solid-js";
 
 const spacingOptions = [
   {

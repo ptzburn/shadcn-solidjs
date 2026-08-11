@@ -37,23 +37,23 @@ export function ClaimableBalance() {
         <Item variant="muted" class="flex-col items-stretch">
           <ItemContent class="gap-3">
             <div class="flex items-center justify-between">
-              <span class="text-sm text-muted-foreground">Net Royalties</span>
-              <span class="text-sm font-medium tabular-nums">
+              <span class="text-muted-foreground text-sm">Net Royalties</span>
+              <span class="font-medium text-sm tabular-nums">
                 ${formatCurrency(netRoyalties)}
               </span>
             </div>
             <div class="flex items-center justify-between">
-              <span class="text-sm text-muted-foreground">Processing Fee</span>
-              <span class="text-sm font-medium tabular-nums">
+              <span class="text-muted-foreground text-sm">Processing Fee</span>
+              <span class="font-medium text-sm tabular-nums">
                 -${formatCurrency(processingFee)}
               </span>
             </div>
             <Separator />
             <div class="flex items-center justify-between">
-              <span class="text-sm text-muted-foreground">
+              <span class="text-muted-foreground text-sm">
                 Total Ready to Claim
               </span>
-              <span class="text-sm font-semibold tabular-nums">
+              <span class="font-semibold text-sm tabular-nums">
                 ${formatCurrency(totalClaimable)} USD
               </span>
             </div>

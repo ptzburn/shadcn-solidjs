@@ -1,12 +1,12 @@
 import * as SheetPrimitive from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
-import { buttonVariants } from "./button.tsx";
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
 
 import { mergeProps, Show, splitProps } from "solid-js";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+import { buttonVariants } from "./button.tsx";
 
 const Sheet = SheetPrimitive.Root;
 const SheetPortal = SheetPrimitive.Portal;
@@ -53,7 +53,7 @@ const SheetOverlay = <T extends ValidComponent = "div">(
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
       class={cn(
-        "cn-sheet-overlay fixed inset-0 z-50 duration-100 data-expanded:animate-in data-expanded:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
+        "cn-sheet-overlay data-closed:fade-out-0 data-expanded:fade-in-0 fixed inset-0 z-50 duration-100 data-closed:animate-out data-expanded:animate-in",
         local.class,
       )}
       {...others}
@@ -90,7 +90,7 @@ const SheetContent = <T extends ValidComponent = "div">(
         data-slot="sheet-content"
         data-side={local.side}
         class={cn(
-          "cn-sheet-content data-expanded:animate-in data-expanded:fade-in-0 data-[side=bottom]:data-expanded:slide-in-from-bottom-10 data-[side=left]:data-expanded:slide-in-from-left-10 data-[side=right]:data-expanded:slide-in-from-right-10 data-[side=top]:data-expanded:slide-in-from-top-10 data-closed:animate-out data-closed:fade-out-0 data-[side=bottom]:data-closed:slide-out-to-bottom-10 data-[side=left]:data-closed:slide-out-to-left-10 data-[side=right]:data-closed:slide-out-to-right-10 data-[side=top]:data-closed:slide-out-to-top-10",
+          "cn-sheet-content data-[side=bottom]:data-closed:slide-out-to-bottom-10 data-[side=bottom]:data-expanded:slide-in-from-bottom-10 data-[side=left]:data-closed:slide-out-to-left-10 data-[side=left]:data-expanded:slide-in-from-left-10 data-[side=right]:data-closed:slide-out-to-right-10 data-[side=right]:data-expanded:slide-in-from-right-10 data-[side=top]:data-closed:slide-out-to-top-10 data-[side=top]:data-expanded:slide-in-from-top-10 data-closed:fade-out-0 data-expanded:fade-in-0 data-closed:animate-out data-expanded:animate-in",
           local.class,
         )}
         {...others}

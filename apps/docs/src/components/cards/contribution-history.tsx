@@ -1,6 +1,5 @@
-import { For } from "solid-js";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import {
   Card,
   CardContent,
@@ -10,6 +9,7 @@ import {
   CardTitle,
 } from "~/registry/ui/card.tsx";
 import { Item, ItemContent, ItemDescription } from "~/registry/ui/item.tsx";
+import { For } from "solid-js";
 
 const chartData = [
   { month: "Dec", amount: 800 },
@@ -39,10 +39,10 @@ export function ContributionHistory() {
               <div class="flex h-full flex-1 flex-col justify-end gap-2">
                 <div
                   data-index={index()}
-                  class="data-[index=5]:bg-chart-6 min-h-2 rounded-lg data-[index=0]:bg-chart-1 data-[index=1]:bg-chart-2 data-[index=2]:bg-chart-3 data-[index=3]:bg-chart-4 data-[index=4]:bg-chart-5"
+                  class="min-h-2 rounded-lg data-[index=0]:bg-chart-1 data-[index=1]:bg-chart-2 data-[index=2]:bg-chart-3 data-[index=3]:bg-chart-4 data-[index=4]:bg-chart-5 data-[index=5]:bg-chart-6"
                   style={{ height: `${(item.amount / maxAmount) * 100}%` }}
                 />
-                <span class="text-center text-xs text-muted-foreground">
+                <span class="text-center text-muted-foreground text-xs">
                   {item.month}
                 </span>
               </div>
@@ -54,24 +54,24 @@ export function ContributionHistory() {
         <div class="grid w-full grid-cols-1 gap-3 xl:grid-cols-2">
           <Item variant="muted" class="flex-col items-stretch">
             <ItemContent class="gap-1">
-              <ItemDescription class="text-xs font-medium tracking-wider text-muted-foreground uppercase">
+              <ItemDescription class="font-medium text-muted-foreground text-xs uppercase tracking-wider">
                 Upcoming
               </ItemDescription>
-              <span class="cn-font-heading text-base font-semibold">
+              <span class="cn-font-heading font-semibold text-base">
                 May 2024
               </span>
-              <span class="text-sm text-muted-foreground">Scheduled</span>
+              <span class="text-muted-foreground text-sm">Scheduled</span>
             </ItemContent>
           </Item>
           <Item variant="muted" class="hidden flex-col items-stretch xl:flex">
             <ItemContent class="gap-1">
-              <ItemDescription class="text-xs font-medium tracking-wider text-muted-foreground uppercase">
+              <ItemDescription class="font-medium text-muted-foreground text-xs uppercase tracking-wider">
                 Savings Plan
               </ItemDescription>
-              <span class="cn-font-heading text-base font-semibold">
+              <span class="cn-font-heading font-semibold text-base">
                 Accelerated
               </span>
-              <span class="text-sm text-muted-foreground">Recurring</span>
+              <span class="text-muted-foreground text-sm">Recurring</span>
             </ItemContent>
           </Item>
         </div>

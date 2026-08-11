@@ -1,13 +1,13 @@
 import type { PolymorphicProps } from "@kobalte/core";
 import { Polymorphic } from "@kobalte/core";
 
-import { Label } from "./label.tsx";
-import { Separator } from "./separator.tsx";
 import { cn } from "~/lib/utils.ts";
-
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps, JSX, ValidComponent } from "solid-js";
+
 import { children, createMemo, For, Show, splitProps } from "solid-js";
+import { Label } from "./label.tsx";
+import { Separator } from "./separator.tsx";
 
 type FieldSetProps<T extends ValidComponent = "fieldset"> =
   & ComponentProps<T>
@@ -76,7 +76,7 @@ const FieldGroup = <T extends ValidComponent = "div">(
       as="div"
       data-slot="field-group"
       class={cn(
-        "cn-field-group group/field-group @container/field-group flex w-full flex-col",
+        "@container/field-group cn-field-group group/field-group flex w-full flex-col",
         local.class,
       )}
       {...others}
@@ -222,7 +222,7 @@ const FieldDescription = <T extends ValidComponent = "p">(
       as="p"
       data-slot="field-description"
       class={cn(
-        "cn-field-description leading-normal font-normal group-has-[[data-orientation=horizontal]]/field:text-balance",
+        "cn-field-description font-normal leading-normal group-has-[[data-orientation=horizontal]]/field:text-balance",
         "last:mt-0 nth-last-2:-mt-1",
         "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
         local.class,
@@ -318,7 +318,7 @@ const FieldError = <T extends ValidComponent = "div">(
     }
 
     return (
-      <ul class="ml-4 flex list-disc flex-col gap-1">
+      <ul class="ml-4 flex flex-col list-disc gap-1">
         <For each={uniqueErrors}>
           {(error) => <li>{error.message}</li>}
         </For>

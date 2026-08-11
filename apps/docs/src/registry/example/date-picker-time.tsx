@@ -1,9 +1,4 @@
-import { Index, Show } from "solid-js";
-import { Portal } from "solid-js/web";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import { Field, FieldGroup, FieldLabel } from "~/registry/ui/field.tsx";
-import { Input } from "~/registry/ui/input.tsx";
 import {
   DatePicker,
   DatePickerContent,
@@ -26,6 +21,11 @@ import {
   DatePickerYearSelect,
 } from "~/registry/ui/date-picker.tsx";
 
+import { Field, FieldGroup, FieldLabel } from "~/registry/ui/field.tsx";
+import { Input } from "~/registry/ui/input.tsx";
+import { Index, Show } from "solid-js";
+import { Portal } from "solid-js/web";
+
 const selectClass =
   "h-7 rounded-md border border-input bg-transparent px-1.5 text-sm font-medium focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none dark:bg-input/30";
 
@@ -45,7 +45,7 @@ export default function DatePickerTime() {
               {(api) => (
                 <DatePickerTrigger
                   id="date-picker-time-date"
-                  class="w-40 justify-between px-3 text-sm font-normal"
+                  class="w-40 justify-between px-3 font-normal text-sm"
                 >
                   <Show
                     when={api().valueAsString[0]}

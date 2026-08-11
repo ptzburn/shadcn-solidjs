@@ -1,11 +1,10 @@
-import { createSignal, For } from "solid-js";
-
 import type {
   ColumnFiltersState,
   ColumnVisibilityState,
   RowSelectionState,
   SortingState,
 } from "@tanstack/solid-table";
+
 import {
   type ColumnDef,
   columnFilteringFeature,
@@ -23,8 +22,8 @@ import {
   sortFns,
   tableFeatures,
 } from "@tanstack/solid-table";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import { Button } from "~/registry/ui/button.tsx";
 import { Checkbox } from "~/registry/ui/checkbox.tsx";
 import {
@@ -37,6 +36,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
+import { Input } from "~/registry/ui/input.tsx";
 import {
   Table,
   TableBody,
@@ -45,7 +45,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/registry/ui/table.tsx";
-import { Input } from "~/registry/ui/input.tsx";
+import { createSignal, For } from "solid-js";
 
 const data: Payment[] = [
   {
@@ -347,7 +347,7 @@ get data() {
         </Table>
       </div>
       <div class="flex items-center justify-end space-x-2 py-4">
-        <div class="flex-1 text-sm text-muted-foreground">
+        <div class="flex-1 text-muted-foreground text-sm">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>

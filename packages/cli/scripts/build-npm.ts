@@ -10,9 +10,9 @@
  *
  * Run with `deno task build:npm`, then publish from `npm/`.
  */
-import { build, emptyDir } from "@deno/dnt";
 import path from "node:path";
 import process from "node:process";
+import { build, emptyDir } from "@deno/dnt";
 
 import { VERSION } from "../src/version.ts";
 

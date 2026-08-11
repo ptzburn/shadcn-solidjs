@@ -1,11 +1,11 @@
-import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
-import { splitProps } from "solid-js";
-
 import * as DropdownMenuPrimitive from "@kobalte/core/dropdown-menu";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
+import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
+import { splitProps } from "solid-js";
 
 // Kobalte's DropdownMenuRoot, Portal and Sub render no DOM node, so unlike
 // upstream there is no element to stamp a data-slot attribute on. The
@@ -53,7 +53,7 @@ const DropdownMenuContent = <T extends ValidComponent = "div">(
       <DropdownMenuPrimitive.Content
         data-slot="dropdown-menu-content"
         class={cn(
-          "cn-dropdown-menu-content z-50 max-h-(--kb-popper-content-available-height) w-(--kb-popper-anchor-width) origin-(--kb-menu-content-transform-origin) overflow-x-hidden overflow-y-auto data-closed:overflow-hidden",
+          "cn-dropdown-menu-content z-50 max-h-(--kb-popper-content-available-height) w-(--kb-popper-anchor-width) origin-(--kb-menu-content-transform-origin) overflow-y-auto overflow-x-hidden data-closed:overflow-hidden",
           local.class,
         )}
         {...others}
@@ -95,7 +95,7 @@ const DropdownMenuItem = <T extends ValidComponent = "div">(
       data-inset={local.inset}
       data-variant={local.variant ?? "default"}
       class={cn(
-        "cn-dropdown-menu-item group/dropdown-menu-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-dropdown-menu-item group/dropdown-menu-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -124,7 +124,7 @@ const DropdownMenuCheckboxItem = <T extends ValidComponent = "div">(
       data-slot="dropdown-menu-checkbox-item"
       data-inset={local.inset}
       class={cn(
-        "cn-dropdown-menu-checkbox-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-dropdown-menu-checkbox-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -183,7 +183,7 @@ const DropdownMenuRadioItem = <T extends ValidComponent = "div">(
       data-slot="dropdown-menu-radio-item"
       data-inset={local.inset}
       class={cn(
-        "cn-dropdown-menu-radio-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-dropdown-menu-radio-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -292,7 +292,7 @@ const DropdownMenuSubTrigger = <T extends ValidComponent = "div">(
       data-slot="dropdown-menu-sub-trigger"
       data-inset={local.inset}
       class={cn(
-        "cn-dropdown-menu-sub-trigger flex cursor-default items-center outline-hidden select-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-dropdown-menu-sub-trigger flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}

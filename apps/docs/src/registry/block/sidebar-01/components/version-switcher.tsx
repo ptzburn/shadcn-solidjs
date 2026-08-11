@@ -1,6 +1,5 @@
-import { createSignal, For } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "~/registry/ui/sidebar.tsx";
+import { createSignal, For } from "solid-js";
 
 export function VersionSwitcher(
   props: { versions: string[]; defaultVersion: string },

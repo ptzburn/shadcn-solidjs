@@ -30,7 +30,7 @@ export default function InputGroupTextareaExample() {
           </InputGroupButton>
         </InputGroupAddon>
         <InputGroupAddon align="block-start" class="border-b">
-          <InputGroupText class="font-mono font-medium">
+          <InputGroupText class="font-medium font-mono">
             <IconPlaceholder
               lucide="file-code"
               tabler="file-code"

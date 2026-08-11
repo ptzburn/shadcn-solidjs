@@ -1,4 +1,16 @@
-import { For, type JSX } from "solid-js";
+import { cn } from "~/lib/utils.ts";
+import { Card } from "~/registry/ui/card.tsx";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+} from "~/registry/ui/sidebar.tsx";
 import IconActivity01 from "~icons/hugeicons/activity-01";
 import IconAnalytics01 from "~icons/hugeicons/analytics-01";
 import IconAnalyticsUp from "~icons/hugeicons/analytics-up";
@@ -17,22 +29,10 @@ import IconPaintBoard from "~icons/hugeicons/paint-board";
 import IconPieChart from "~icons/hugeicons/pie-chart";
 import IconShield01 from "~icons/hugeicons/shield-01";
 import IconTarget02 from "~icons/hugeicons/target-02";
+
 import IconUser from "~icons/hugeicons/user";
 import IconWallet01 from "~icons/hugeicons/wallet-01";
-
-import { cn } from "~/lib/utils.ts";
-import { Card } from "~/registry/ui/card.tsx";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarProvider,
-} from "~/registry/ui/sidebar.tsx";
+import { For, type JSX } from "solid-js";
 
 type NavEntry = {
   label: string;

@@ -1,6 +1,5 @@
-import { createSignal, Index } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Drawer,
@@ -12,6 +11,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "~/registry/ui/drawer.tsx";
+import { createSignal, Index } from "solid-js";
 
 const data = [
   {
@@ -92,8 +92,8 @@ export default function DrawerDemo() {
                 <span class="sr-only">Decrease</span>
               </Button>
               <div class="flex-1 text-center">
-                <div class="text-7xl font-bold tracking-tighter">{goal()}</div>
-                <div class="text-[0.70rem] text-muted-foreground uppercase">
+                <div class="font-bold text-7xl tracking-tighter">{goal()}</div>
+                <div class="text-muted-foreground text-[0.70rem] uppercase">
                   Calories/day
                 </div>
               </div>

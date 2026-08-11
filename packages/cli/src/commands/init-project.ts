@@ -3,6 +3,7 @@ import path from "node:path";
 
 import { CONFIG_FILE, resolveConfigPaths } from "../config/get-config.ts";
 import type { RawConfig } from "../config/schema.ts";
+import { isUrl } from "../registry/address.ts";
 import {
   DEFAULT_ICON_LIBRARY,
   DEFAULT_STYLE,
@@ -10,15 +11,14 @@ import {
   REGISTRY_THEME_URL,
 } from "../registry/constants.ts";
 import { fetchRegistryIndex, fetchRegistryItem } from "../registry/fetcher.ts";
-import { isUrl } from "../registry/address.ts";
-import type { ProjectTarget } from "../runtime/target.ts";
 import { readNodeModulesDir } from "../runtime/deno.ts";
+import type { ProjectTarget } from "../runtime/target.ts";
 import {
   BASE_DEPENDENCIES,
   BASE_DEV_DEPENDENCIES,
 } from "../updaters/css-conventions.ts";
-import { updateDependencies } from "../updaters/update-dependencies.ts";
 import { transformCssVars } from "../updaters/update-css-vars.ts";
+import { updateDependencies } from "../updaters/update-dependencies.ts";
 import { findTailwindCss, findViteConfig } from "../utils/find-css.ts";
 import { addComponents } from "./add-components.ts";
 

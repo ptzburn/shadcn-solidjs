@@ -1,6 +1,5 @@
-import { createSignal } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import { Button } from "~/registry/ui/button.tsx";
 import {
   DropdownMenu,
@@ -11,6 +10,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
+import { createSignal } from "solid-js";
 
 export default function DropdownMenuRadioIcons() {
   const [paymentMethod, setPaymentMethod] = createSignal("card");

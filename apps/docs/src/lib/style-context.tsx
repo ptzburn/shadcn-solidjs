@@ -10,6 +10,7 @@
  * the same cookie. localStorage would only be readable after hydration,
  * which means a flash of the default style on every navigation.
  */
+import { defaultStyle, isStyle, type StyleName } from "~/registry/styles.ts";
 import {
   type Accessor,
   createContext,
@@ -17,9 +18,8 @@ import {
   type JSX,
   useContext,
 } from "solid-js";
-import { isServer } from "solid-js/web";
 
-import { defaultStyle, isStyle, type StyleName } from "~/registry/styles.ts";
+import { isServer } from "solid-js/web";
 
 export const STYLE_COOKIE = "style";
 

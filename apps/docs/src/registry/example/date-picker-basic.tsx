@@ -1,7 +1,3 @@
-import { Index, Show } from "solid-js";
-import { Portal } from "solid-js/web";
-
-import { Field, FieldLabel } from "~/registry/ui/field.tsx";
 import {
   DatePicker,
   DatePickerContent,
@@ -22,6 +18,10 @@ import {
   DatePickerView,
   DatePickerViewControl,
 } from "~/registry/ui/date-picker.tsx";
+import { Field, FieldLabel } from "~/registry/ui/field.tsx";
+
+import { Index, Show } from "solid-js";
+import { Portal } from "solid-js/web";
 
 export default function DatePickerBasic() {
   return (
@@ -38,7 +38,7 @@ export default function DatePickerBasic() {
             {(api) => (
               <DatePickerTrigger
                 id="date-picker-basic"
-                class="w-full justify-start px-3 text-sm font-normal"
+                class="w-full justify-start px-3 font-normal text-sm"
               >
                 <Show
                   when={api().valueAsString[0]}

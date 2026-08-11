@@ -1,4 +1,3 @@
-import { assert, assertEquals, assertThrows } from "@std/assert";
 import {
   existsSync,
   mkdtempSync,
@@ -9,6 +8,7 @@ import {
 import { mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { assert, assertEquals, assertThrows } from "@std/assert";
 
 import type { Config } from "../config/schema.ts";
 import type { RegistryItemFile } from "../registry/schema.ts";

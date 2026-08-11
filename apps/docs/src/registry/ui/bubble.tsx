@@ -68,7 +68,7 @@ const BubbleContent = <T extends ValidComponent = "div">(
       as="div"
       data-slot="bubble-content"
       class={cn(
-        "cn-bubble-content w-fit max-w-full min-w-0 overflow-hidden wrap-break-word [button]:text-left [button,a]:transition-colors",
+        "cn-bubble-content wrap-break-word w-fit min-w-0 max-w-full overflow-hidden [button]:text-left [button,a]:transition-colors",
         local.class,
       )}
       {...others}

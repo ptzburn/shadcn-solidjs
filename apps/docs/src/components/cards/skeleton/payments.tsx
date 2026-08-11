@@ -1,7 +1,7 @@
-import { For } from "solid-js";
-
 import { Card, CardContent, CardHeader } from "~/registry/ui/card.tsx";
+
 import { Skeleton } from "~/registry/ui/skeleton.tsx";
+import { For } from "solid-js";
 
 const rows = [0, 1, 2];
 

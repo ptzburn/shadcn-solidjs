@@ -1,14 +1,14 @@
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
-import { Button, type ButtonProps } from "./button.tsx";
-import { Input } from "./input.tsx";
-import { Textarea } from "./textarea.tsx";
 import { cn } from "~/lib/utils.ts";
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
-
 import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
 import { mergeProps, splitProps } from "solid-js";
+import { Button, type ButtonProps } from "./button.tsx";
+
+import { Input } from "./input.tsx";
+import { Textarea } from "./textarea.tsx";
 
 const InputGroup: Component<ComponentProps<"div">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
@@ -17,7 +17,7 @@ const InputGroup: Component<ComponentProps<"div">> = (props) => {
       data-slot="input-group"
       role="group"
       class={cn(
-        "group/input-group cn-input-group relative flex w-full min-w-0 items-center outline-none has-[>textarea]:h-auto",
+        "cn-input-group group/input-group relative flex w-full min-w-0 items-center outline-none has-[>textarea]:h-auto",
         local.class,
       )}
       {...others}

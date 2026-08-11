@@ -1,6 +1,6 @@
-import { assertEquals } from "@std/assert";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { assertEquals } from "@std/assert";
 
 import { VERSION } from "./version.ts";
 

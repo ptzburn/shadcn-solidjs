@@ -1,7 +1,7 @@
-import { createSignal } from "solid-js";
-
 import { Progress } from "~/registry/ui/progress.tsx";
+
 import { Slider } from "~/registry/ui/slider.tsx";
+import { createSignal } from "solid-js";
 
 export default function ProgressControlled() {
   const [value, setValue] = createSignal([50]);

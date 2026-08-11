@@ -1,6 +1,11 @@
 import * as ComboboxPrimitive from "@kobalte/core/combobox";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
+import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
+import { Show, splitProps } from "solid-js";
+
 import { Button } from "./button.tsx";
 import {
   InputGroup,
@@ -8,11 +13,6 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "./input-group.tsx";
-import { cn } from "~/lib/utils.ts";
-import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
-
-import { Show, splitProps } from "solid-js";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 // Kobalte's default triggerMode="input" only opens the popup once the
 // user types; upstream's base-ui combobox opens it when the input is
@@ -300,7 +300,7 @@ const ComboboxItem = <T extends ValidComponent = "li">(
     <ComboboxPrimitive.Item
       data-slot="combobox-item"
       class={cn(
-        "cn-combobox-item relative flex w-full cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-combobox-item relative flex w-full cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -342,7 +342,7 @@ const ComboboxContent = <T extends ValidComponent = "div">(
           // control (input + addons), so the +28 is already included:
           // min-w-(--kb-popper-anchor-width) computes the same width, and
           // upstream's data-chips exact-width exception collapses into it.
-          "cn-combobox-content group/combobox-content relative z-50 max-h-(--kb-popper-content-available-height) max-w-(--kb-popper-content-available-width) min-w-(--kb-popper-anchor-width) origin-(--kb-combobox-content-transform-origin)",
+          "cn-combobox-content group/combobox-content relative z-50 max-h-(--kb-popper-content-available-height) min-w-(--kb-popper-anchor-width) max-w-(--kb-popper-content-available-width) origin-(--kb-combobox-content-transform-origin)",
           local.class,
         )}
         {...others}

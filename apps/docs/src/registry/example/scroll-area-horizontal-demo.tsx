@@ -1,6 +1,6 @@
-import { For } from "solid-js";
-
 import { ScrollArea } from "~/registry/ui/scroll-area.tsx";
+
+import { For } from "solid-js";
 
 interface Artwork {
   artist: string;
@@ -15,7 +15,7 @@ const works: Artwork[] = [
 
 export default function ScrollAreaHorizontalDemo() {
   return (
-    <ScrollArea class="w-96 rounded-md border whitespace-nowrap">
+    <ScrollArea class="w-96 whitespace-nowrap rounded-md border">
       <div class="flex w-max space-x-4 p-4">
         <For each={works}>
           {(artwork) => (
@@ -29,7 +29,7 @@ export default function ScrollAreaHorizontalDemo() {
                   height={400}
                 />
               </div>
-              <figcaption class="pt-2 text-xs text-muted-foreground">
+              <figcaption class="pt-2 text-muted-foreground text-xs">
                 Photo by{" "}
                 <span class="font-semibold text-foreground">
                   {artwork.artist}

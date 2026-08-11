@@ -1,6 +1,5 @@
-import { For } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import { Avatar, AvatarFallback, AvatarImage } from "~/registry/ui/avatar.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import {
@@ -17,6 +16,7 @@ import {
   ItemMedia,
   ItemTitle,
 } from "~/registry/ui/item.tsx";
+import { For } from "solid-js";
 
 const people = [
   {

@@ -1,8 +1,8 @@
-import { createSignal, onMount, Show } from "solid-js";
-
 import { IconBrandGithub } from "~/components/icons.tsx";
+
 import { Button } from "~/registry/ui/button.tsx";
 import { Skeleton } from "~/registry/ui/skeleton.tsx";
+import { createSignal, onMount, Show } from "solid-js";
 
 const REPO = "ptzburn/shadcn-solidjs";
 
@@ -45,7 +45,7 @@ function StarsCount() {
 
   return (
     <Show when={stars()} fallback={<Skeleton class="h-4 w-8" />}>
-      <span class="w-fit text-xs text-muted-foreground tabular-nums">
+      <span class="w-fit text-muted-foreground text-xs tabular-nums">
         {stars()}
       </span>
     </Show>

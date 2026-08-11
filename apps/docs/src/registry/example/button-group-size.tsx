@@ -1,6 +1,6 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import { Button } from "~/registry/ui/button.tsx";
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
+import { Button } from "~/registry/ui/button.tsx";
 
 export default function ButtonGroupSize() {
   return (

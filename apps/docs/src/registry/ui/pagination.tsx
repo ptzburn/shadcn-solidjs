@@ -1,13 +1,13 @@
 import * as PaginationPrimitive from "@kobalte/core/pagination";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
+import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+import type { JSX, ValidComponent } from "solid-js";
+
+import { children, Show, splitProps } from "solid-js";
 import type { ButtonProps } from "./button.tsx";
 import { buttonVariants } from "./button.tsx";
-import { cn } from "~/lib/utils.ts";
-
-import type { JSX, ValidComponent } from "solid-js";
-import { children, Show, splitProps } from "solid-js";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 const PaginationItems = PaginationPrimitive.Items;
 
@@ -60,7 +60,7 @@ const PaginationItem = <T extends ValidComponent = "button">(
         }),
         // Kobalte marks the current page with `data-current`, so the outline
         // variant is applied from here instead of swapping variants.
-        "cn-pagination-link data-[current]:border-border data-[current]:bg-background data-[current]:hover:bg-muted dark:data-[current]:border-input dark:data-[current]:bg-input/30 dark:data-[current]:hover:bg-input/50",
+        "cn-pagination-link dark:data-[current]:border-input dark:data-[current]:bg-input/30 dark:data-[current]:hover:bg-input/50 data-[current]:border-border data-[current]:bg-background data-[current]:hover:bg-muted",
         local.class,
       )}
       {...others}

@@ -1,5 +1,3 @@
-import { For } from "solid-js";
-
 import {
   Combobox,
   ComboboxChip,
@@ -10,6 +8,8 @@ import {
   ComboboxItem,
   ComboboxList,
 } from "~/registry/ui/combobox.tsx";
+
+import { For } from "solid-js";
 
 const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 

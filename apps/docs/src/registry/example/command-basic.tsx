@@ -1,6 +1,5 @@
-import { createSignal } from "solid-js";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import {
   Command,
   CommandDialog,
@@ -10,6 +9,7 @@ import {
   CommandItem,
   CommandList,
 } from "~/registry/ui/command.tsx";
+import { createSignal } from "solid-js";
 
 export default function CommandBasic() {
   const [open, setOpen] = createSignal(false);

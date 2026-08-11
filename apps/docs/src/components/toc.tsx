@@ -1,3 +1,4 @@
+import { useLocation } from "@solidjs/router";
 import type { Accessor, Setter } from "solid-js";
 import {
   createEffect,
@@ -7,9 +8,8 @@ import {
   onCleanup,
   Suspense,
 } from "solid-js";
-import { isServer } from "solid-js/web";
 
-import { useLocation } from "@solidjs/router";
+import { isServer } from "solid-js/web";
 
 type TocItem = {
   depth: number;
@@ -144,7 +144,7 @@ export function TableOfContents() {
       <Suspense>
         <p
           id="on-this-page-title"
-          class="h-6 bg-background text-xs font-medium text-muted-foreground"
+          class="h-6 bg-background font-medium text-muted-foreground text-xs"
         >
           On This Page
         </p>
@@ -154,7 +154,7 @@ export function TableOfContents() {
               data-toc-slug={section.slug}
               data-active={section.slug === currentSection()}
               data-depth={section.depth}
-              class="text-[0.8rem] text-muted-foreground no-underline transition-colors hover:text-foreground data-[active=true]:font-medium data-[active=true]:text-foreground data-[depth=3]:pl-4 data-[depth=4]:pl-6"
+              class="text-muted-foreground text-[0.8rem] no-underline transition-colors hover:text-foreground data-[depth=3]:pl-4 data-[depth=4]:pl-6 data-[active=true]:font-medium data-[active=true]:text-foreground"
               href={`${location.pathname}#${section.slug}`}
             >
               {section.text}

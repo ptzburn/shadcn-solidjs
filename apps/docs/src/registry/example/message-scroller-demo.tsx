@@ -1,6 +1,5 @@
-import { createSignal, For, onCleanup, Show } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import { Bubble, BubbleContent } from "~/registry/ui/bubble.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import {
@@ -31,7 +30,6 @@ import {
   InputGroupAddon,
   InputGroupButton,
 } from "~/registry/ui/input-group.tsx";
-import { Message, MessageContent } from "~/registry/ui/message.tsx";
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -40,11 +38,13 @@ import {
   MessageScrollerProvider,
   MessageScrollerViewport,
 } from "~/registry/ui/message-scroller.tsx";
+import { Message, MessageContent } from "~/registry/ui/message.tsx";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "~/registry/ui/tooltip.tsx";
+import { createSignal, For, onCleanup, Show } from "solid-js";
 
 interface ChatMessage {
   id: string;
@@ -358,7 +358,7 @@ export default function MessageScrollerDemo() {
             </form>
           </CardFooter>
         </Card>
-        <div class="px-0.5 text-center text-xs text-muted-foreground">
+        <div class="px-0.5 text-center text-muted-foreground text-xs">
           Demo is read only. Press send to send messages.
         </div>
       </div>

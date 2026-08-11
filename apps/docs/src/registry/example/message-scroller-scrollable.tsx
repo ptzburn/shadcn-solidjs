@@ -1,6 +1,5 @@
-import { For } from "solid-js";
-
 import { Bubble, BubbleContent } from "~/registry/ui/bubble.tsx";
+
 import {
   Card,
   CardContent,
@@ -9,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
-import { Message, MessageContent } from "~/registry/ui/message.tsx";
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -19,6 +17,8 @@ import {
   MessageScrollerViewport,
   useMessageScrollerScrollable,
 } from "~/registry/ui/message-scroller.tsx";
+import { Message, MessageContent } from "~/registry/ui/message.tsx";
+import { For } from "solid-js";
 
 const messages = Array.from({ length: 12 }, (_, index) => ({
   id: `scrollable-${index + 1}`,
@@ -44,7 +44,7 @@ function ScrollStateFooter() {
   const scrollable = useMessageScrollerScrollable();
 
   return (
-    <CardFooter class="justify-center border-t text-center text-sm text-muted-foreground">
+    <CardFooter class="justify-center border-t text-center text-muted-foreground text-sm">
       {getScrollStatus(scrollable().start, scrollable().end)}
     </CardFooter>
   );
@@ -100,7 +100,7 @@ export default function MessageScrollerScrollable() {
           <ScrollStateFooter />
         </MessageScrollerProvider>
       </Card>
-      <div class="px-0.5 text-center text-xs text-muted-foreground">
+      <div class="px-0.5 text-center text-muted-foreground text-xs">
         Scroll the transcript to see the footer update.
       </div>
     </div>

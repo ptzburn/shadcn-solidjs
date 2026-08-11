@@ -1,24 +1,24 @@
-import { createSignal, Show } from "solid-js";
 import { useLocation } from "@solidjs/router";
-
 import {
   IconCheck,
   IconChevronDown,
   IconCopy,
   IconMarkdown,
 } from "~/components/icons.tsx";
+
 import { loadDocMarkdown } from "~/lib/docs-raw.ts";
-import { Button } from "~/registry/ui/button.tsx";
 import {
   ButtonGroup,
   ButtonGroupSeparator,
 } from "~/registry/ui/button-group.tsx";
+import { Button } from "~/registry/ui/button.tsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
+import { createSignal, Show } from "solid-js";
 
 export function DocsCopyPage() {
   const location = useLocation();

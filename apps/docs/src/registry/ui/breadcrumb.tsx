@@ -2,10 +2,10 @@ import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { Polymorphic } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
-import type { Component, ComponentProps, ValidComponent } from "solid-js";
-
-import { children, Show, splitProps } from "solid-js";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
+import type { Component, ComponentProps, ValidComponent } from "solid-js";
+import { children, Show, splitProps } from "solid-js";
 
 const Breadcrumb: Component<ComponentProps<"nav">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);
@@ -25,7 +25,7 @@ const BreadcrumbList: Component<ComponentProps<"ol">> = (props) => {
     <ol
       data-slot="breadcrumb-list"
       class={cn(
-        "cn-breadcrumb-list flex flex-wrap items-center wrap-break-word",
+        "cn-breadcrumb-list wrap-break-word flex flex-wrap items-center",
         local.class,
       )}
       {...others}

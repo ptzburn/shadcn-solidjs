@@ -1,7 +1,6 @@
-import { createEffect, createSignal, For, onCleanup } from "solid-js";
 import { useNavigate } from "@solidjs/router";
-
 import { docsConfig } from "~/config/docs.ts";
+
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Command,
@@ -12,6 +11,7 @@ import {
   CommandItem,
   CommandList,
 } from "~/registry/ui/command.tsx";
+import { createEffect, createSignal, For, onCleanup } from "solid-js";
 
 import { IconFile } from "./icons.tsx";
 

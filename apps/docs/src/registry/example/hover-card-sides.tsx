@@ -1,11 +1,11 @@
-import { For } from "solid-js";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "~/registry/ui/hover-card.tsx";
+import { For } from "solid-js";
 
 const HOVER_CARD_SIDES = ["left", "top", "bottom", "right"] as const;
 

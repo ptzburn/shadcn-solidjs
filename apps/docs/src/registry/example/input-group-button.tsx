@@ -1,6 +1,5 @@
-import { createSignal, Show } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import {
   InputGroup,
   InputGroupAddon,
@@ -12,6 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "~/registry/ui/popover.tsx";
+import { createSignal, Show } from "solid-js";
 
 export default function InputGroupButtonExample() {
   const [isCopied, setIsCopied] = createSignal(false);

@@ -1,7 +1,4 @@
-import { For } from "solid-js";
-import type { ComponentProps } from "solid-js";
 import { A } from "@solidjs/router";
-
 import {
   Sidebar,
   SidebarContent,
@@ -14,6 +11,9 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "~/registry/ui/sidebar.tsx";
+import { For } from "solid-js";
+
+import type { ComponentProps } from "solid-js";
 
 import { SearchForm } from "./search-form.tsx";
 import { VersionSwitcher } from "./version-switcher.tsx";

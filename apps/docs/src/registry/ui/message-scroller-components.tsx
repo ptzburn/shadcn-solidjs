@@ -2,17 +2,6 @@ import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { Polymorphic } from "@kobalte/core/polymorphic";
 
 import { mergeRefs } from "@solid-primitives/refs";
-import { createMessageScrollerController } from "./message-scroller-controller.ts";
-import { USER_SCROLL_KEYS } from "./message-scroller-types.ts";
-import type {
-  MessageScrollerButtonDirection,
-  MessageScrollerContextValue,
-  MessageScrollerProviderProps,
-  MessageScrollerRegisterMessage,
-  MessageScrollerScrollable,
-  MessageScrollerScrollOptions,
-  MessageScrollerVisibilityState,
-} from "./message-scroller-types.ts";
 import type { Accessor, ComponentProps, JSX, ValidComponent } from "solid-js";
 import {
   createContext,
@@ -26,6 +15,17 @@ import {
   untrack,
   useContext,
 } from "solid-js";
+import { createMessageScrollerController } from "./message-scroller-controller.ts";
+import { USER_SCROLL_KEYS } from "./message-scroller-types.ts";
+import type {
+  MessageScrollerButtonDirection,
+  MessageScrollerContextValue,
+  MessageScrollerProviderProps,
+  MessageScrollerRegisterMessage,
+  MessageScrollerScrollable,
+  MessageScrollerScrollOptions,
+  MessageScrollerVisibilityState,
+} from "./message-scroller-types.ts";
 
 // Invokes a Solid event-handler prop, supporting both the bare-function and the
 // bound-array form that JSX.EventHandlerUnion allows.

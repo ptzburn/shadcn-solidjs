@@ -1,3 +1,4 @@
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,7 +14,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 export default function BreadcrumbDropdown() {
   return (

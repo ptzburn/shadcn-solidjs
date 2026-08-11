@@ -1,9 +1,3 @@
-import IconArrowRight01 from "~icons/hugeicons/arrow-right-01";
-import IconCalendar03 from "~icons/hugeicons/calendar-03";
-import IconMoreHorizontalCircle01 from "~icons/hugeicons/more-horizontal-circle-01";
-import IconRefresh from "~icons/hugeicons/refresh";
-import IconSettings01 from "~icons/hugeicons/settings-01";
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -29,6 +23,12 @@ import {
   ItemMedia,
   ItemTitle,
 } from "~/registry/ui/item.tsx";
+
+import IconArrowRight01 from "~icons/hugeicons/arrow-right-01";
+import IconCalendar03 from "~icons/hugeicons/calendar-03";
+import IconMoreHorizontalCircle01 from "~icons/hugeicons/more-horizontal-circle-01";
+import IconRefresh from "~icons/hugeicons/refresh";
+import IconSettings01 from "~icons/hugeicons/settings-01";
 
 export function Payments() {
   return (

@@ -1,14 +1,14 @@
-import type { ComponentProps } from "solid-js";
-import { createSignal, For, splitProps } from "solid-js";
-
 import { docsConfig } from "~/config/docs.ts";
 import { cn } from "~/lib/utils.ts";
+
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "~/registry/ui/popover.tsx";
+import type { ComponentProps } from "solid-js";
+import { createSignal, For, splitProps } from "solid-js";
 
 export function MobileNav(props: { class?: string }) {
   const [open, setOpen] = createSignal(false);
@@ -40,14 +40,14 @@ export function MobileNav(props: { class?: string }) {
           </div>
           <span class="sr-only">Toggle Menu</span>
         </div>
-        <span class="flex h-8 items-center text-lg font-medium leading-none">
+        <span class="flex h-8 items-center font-medium text-lg leading-none">
           Menu
         </span>
       </PopoverTrigger>
       <PopoverContent class="no-scrollbar h-[calc(100svh-var(--header-height))] w-svw max-w-none overflow-y-auto rounded-none border-none bg-background/90 p-0 shadow-none backdrop-blur duration-100">
         <div class="flex flex-col gap-12 overflow-auto px-6 py-6">
           <div class="flex flex-col gap-4">
-            <div class="text-sm font-medium text-muted-foreground">Menu</div>
+            <div class="font-medium text-muted-foreground text-sm">Menu</div>
             <div class="flex flex-col gap-3">
               <For each={docsConfig.mainNav}>
                 {(item) => (
@@ -59,7 +59,7 @@ export function MobileNav(props: { class?: string }) {
             </div>
           </div>
           <div class="flex flex-col gap-4">
-            <div class="text-sm font-medium text-muted-foreground">
+            <div class="font-medium text-muted-foreground text-sm">
               Sections
             </div>
             <div class="flex flex-col gap-3">
@@ -76,7 +76,7 @@ export function MobileNav(props: { class?: string }) {
             <For each={docsConfig.sidebarNav}>
               {(category) => (
                 <div class="flex flex-col gap-4">
-                  <div class="text-sm font-medium text-muted-foreground">
+                  <div class="font-medium text-muted-foreground text-sm">
                     {category.title}
                   </div>
                   <div class="flex flex-col gap-3">
@@ -108,7 +108,7 @@ function MobileLink(props: MobileLinkProps) {
   return (
     <a
       {...others}
-      class={cn("flex items-center gap-2 text-2xl font-medium", local.class)}
+      class={cn("flex items-center gap-2 font-medium text-2xl", local.class)}
       onClick={() => local.onOpenChange?.(false)}
     />
   );

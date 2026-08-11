@@ -1,6 +1,5 @@
-import { For, Show } from "solid-js";
-
 import { IconCheck } from "~/components/icons.tsx";
+
 import { useStyle } from "~/lib/style-context.tsx";
 import { styles } from "~/registry/styles.ts";
 import { Button } from "~/registry/ui/button.tsx";
@@ -10,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
+import { For, Show } from "solid-js";
 
 /**
  * Switches the style the whole docs site renders in.
@@ -42,7 +42,7 @@ export function StyleSwitcher(props: { class?: string }) {
             >
               <div class="flex flex-1 flex-col">
                 <span class="font-medium">{entry.title}</span>
-                <span class="text-xs text-muted-foreground">
+                <span class="text-muted-foreground text-xs">
                   {entry.description}
                 </span>
               </div>

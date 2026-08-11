@@ -1,6 +1,6 @@
-import { Index } from "solid-js";
-
 import { Skeleton } from "~/registry/ui/skeleton.tsx";
+
+import { Index } from "solid-js";
 
 export default function SkeletonTable() {
   return (

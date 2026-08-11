@@ -30,14 +30,14 @@ const Slider = <T extends ValidComponent = "div">(
     <SliderPrimitive.Root
       data-slot="slider"
       class={cn(
-        "cn-slider relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
+        "cn-slider relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col data-disabled:opacity-50",
         local.class,
       )}
       {...others}
     >
       <SliderPrimitive.Track
         data-slot="slider-track"
-        class="cn-slider-track relative grow overflow-hidden data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full"
+        class="cn-slider-track relative grow overflow-hidden data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full"
       >
         <SliderPrimitive.Fill
           data-slot="slider-range"

@@ -1,6 +1,5 @@
-import { For } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import {
   Attachment,
   AttachmentAction,
@@ -12,6 +11,7 @@ import {
   AttachmentTitle,
   AttachmentTrigger,
 } from "~/registry/ui/attachment.tsx";
+import { For } from "solid-js";
 
 const images = [
   { name: "workspace.png", meta: "PNG · 820 KB", seed: "workspace" },
