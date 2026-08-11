@@ -32,7 +32,7 @@ export const docsConfig: Config = {
     },
     {
       title: "Docs",
-      href: "/docs/introduction",
+      href: "/docs/installation",
     },
     {
       title: "Components",
@@ -323,6 +323,11 @@ export const docsConfig: Config = {
         {
           title: "Figma",
           href: "/docs/figma",
+        },
+        {
+          title: "llms.txt",
+          href: "/llms.txt",
+          external: true,
         },
       ],
     },

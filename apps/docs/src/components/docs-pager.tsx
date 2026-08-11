@@ -5,7 +5,10 @@ import { componentPages, COMPONENTS_INDEX, docsConfig } from "~/config/docs.ts";
 import { Button } from "~/registry/ui/button.tsx";
 import { Show } from "solid-js";
 
-const categories = docsConfig.sidebarNav.map((category) => category.items);
+// External entries are not docs pages, so they sit outside the prev/next chain.
+const categories = docsConfig.sidebarNav.map((category) =>
+  category.items.filter((item) => !item.external)
+);
 
 /**
  * Neighbours wrap within their sidebar category, like the upstream page

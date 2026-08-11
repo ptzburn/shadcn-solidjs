@@ -12,7 +12,6 @@ export default function PaginationDemo() {
     <Pagination
       count={10}
       defaultPage={2}
-      fixedItems
       itemComponent={(props) => (
         <PaginationItem page={props.page}>{props.page}</PaginationItem>
       )}

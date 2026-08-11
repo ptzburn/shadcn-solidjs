@@ -13,17 +13,23 @@ const models = [
   {
     name: "v0-1.5-sm",
     description: "Everyday tasks and UI generation.",
-    image: "https://avatar.vercel.sh/v0-1.5-sm",
+    image:
+      "https://images.unsplash.com/photo-1650804068570-7fb2e3dbf888?q=80&w=640&auto=format&fit=crop",
+    credit: "Valeria Reverdo on Unsplash",
   },
   {
     name: "v0-1.5-lg",
     description: "Advanced thinking or reasoning.",
-    image: "https://avatar.vercel.sh/v0-1.5-lg",
+    image:
+      "https://images.unsplash.com/photo-1610280777472-54133d004c8c?q=80&w=640&auto=format&fit=crop",
+    credit: "Michael Oeser on Unsplash",
   },
   {
     name: "v0-2.0-mini",
     description: "Open Source model for everyone.",
-    image: "https://avatar.vercel.sh/v0-2.0-mini",
+    image:
+      "https://images.unsplash.com/photo-1602146057681-08560aee8cde?q=80&w=640&auto=format&fit=crop",
+    credit: "Cherry Laithang on Unsplash",
   },
 ];
 
@@ -40,7 +46,7 @@ export default function ItemHeaderExample() {
                   alt={model.name}
                   width={128}
                   height={128}
-                  class="aspect-square w-full rounded-sm object-cover grayscale"
+                  class="aspect-square w-full rounded-sm object-cover"
                 />
               </ItemHeader>
               <ItemContent>

@@ -15,11 +15,12 @@ export function MobileNav(props: { class?: string }) {
 
   return (
     <Popover open={open()} onOpenChange={setOpen} placement="bottom-start">
+      {/* `aria-expanded:bg-transparent` because the ghost button highlights itself while its popover is open. */}
       <PopoverTrigger
         as={Button<"button">}
         variant="ghost"
         class={cn(
-          "extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent",
+          "extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent aria-expanded:bg-transparent dark:hover:bg-transparent",
           props.class,
         )}
       >
@@ -44,14 +45,19 @@ export function MobileNav(props: { class?: string }) {
           Menu
         </span>
       </PopoverTrigger>
-      <PopoverContent class="no-scrollbar h-[calc(100svh-var(--header-height))] w-svw max-w-none overflow-y-auto rounded-none border-none bg-background/90 p-0 shadow-none backdrop-blur duration-100">
+      {/* `ring-0` because `cn-popover-content` outlines with a ring, not a border. */}
+      <PopoverContent class="no-scrollbar h-[calc(100svh-var(--header-height))] w-svw max-w-none overflow-y-auto rounded-none border-none bg-background/90 p-0 shadow-none ring-0 backdrop-blur duration-100">
         <div class="flex flex-col gap-12 overflow-auto px-6 py-6">
           <div class="flex flex-col gap-4">
             <div class="font-medium text-muted-foreground text-sm">Menu</div>
             <div class="flex flex-col gap-3">
               <For each={docsConfig.mainNav}>
                 {(item) => (
-                  <MobileLink href={item.href} onOpenChange={setOpen}>
+                  <MobileLink
+                    href={item.href}
+                    external={item.external}
+                    onOpenChange={setOpen}
+                  >
                     {item.title}
                   </MobileLink>
                 )}
@@ -82,7 +88,11 @@ export function MobileNav(props: { class?: string }) {
                   <div class="flex flex-col gap-3">
                     <For each={category.items}>
                       {(item) => (
-                        <MobileLink href={item.href} onOpenChange={setOpen}>
+                        <MobileLink
+                          href={item.href}
+                          external={item.external}
+                          onOpenChange={setOpen}
+                        >
                           {item.title}
                         </MobileLink>
                       )}
@@ -100,14 +110,22 @@ export function MobileNav(props: { class?: string }) {
 
 interface MobileLinkProps extends ComponentProps<"a"> {
   onOpenChange?: (open: boolean) => void;
+  /** Not a route. The router intercepts every same-origin anchor click, so
+   * these opt out with `rel="external"` and get a real page load. */
+  external?: boolean;
 }
 
 function MobileLink(props: MobileLinkProps) {
-  const [local, others] = splitProps(props, ["class", "onOpenChange"]);
+  const [local, others] = splitProps(props, [
+    "class",
+    "onOpenChange",
+    "external",
+  ]);
 
   return (
     <a
       {...others}
+      rel={local.external ? "external" : undefined}
       class={cn("flex items-center gap-2 font-medium text-2xl", local.class)}
       onClick={() => local.onOpenChange?.(false)}
     />

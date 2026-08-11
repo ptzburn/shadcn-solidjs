@@ -16,7 +16,6 @@
 @import "../registry/styles/style-luma.css";
 @import "../registry/styles/style-sera.css";
 @import "../registry/styles/style-rhea.css";
-@plugin "@kobalte/tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *, [data-kb-theme=dark],
   [data-kb-theme=dark] *));
