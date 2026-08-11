@@ -22,7 +22,6 @@
     "@iconify-json/ri": "npm:@iconify-json/ri@^1.2.10",
     "@iconify-json/hugeicons": "npm:@iconify-json/hugeicons@^1.2.32",
     "@kobalte/core": "npm:@kobalte/core@^0.13.12",
-    "@kobalte/tailwindcss": "npm:@kobalte/tailwindcss@^0.9.0",
     "@mdx-js/mdx": "npm:@mdx-js/mdx@^3.1.1",
     "@mdx-js/rollup": "npm:@mdx-js/rollup@^3.1.1",
     "@modular-forms/solid": "npm:@modular-forms/solid@^0.25.1",
