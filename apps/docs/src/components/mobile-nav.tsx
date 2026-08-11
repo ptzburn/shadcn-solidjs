@@ -15,11 +15,12 @@ export function MobileNav(props: { class?: string }) {
 
   return (
     <Popover open={open()} onOpenChange={setOpen} placement="bottom-start">
+      {/* `aria-expanded:bg-transparent` because the ghost button highlights itself while its popover is open. */}
       <PopoverTrigger
         as={Button<"button">}
         variant="ghost"
         class={cn(
-          "extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent",
+          "extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent aria-expanded:bg-transparent dark:hover:bg-transparent",
           props.class,
         )}
       >
@@ -44,7 +45,8 @@ export function MobileNav(props: { class?: string }) {
           Menu
         </span>
       </PopoverTrigger>
-      <PopoverContent class="no-scrollbar h-[calc(100svh-var(--header-height))] w-svw max-w-none overflow-y-auto rounded-none border-none bg-background/90 p-0 shadow-none backdrop-blur duration-100">
+      {/* `ring-0` because `cn-popover-content` outlines with a ring, not a border. */}
+      <PopoverContent class="no-scrollbar h-[calc(100svh-var(--header-height))] w-svw max-w-none overflow-y-auto rounded-none border-none bg-background/90 p-0 shadow-none ring-0 backdrop-blur duration-100">
         <div class="flex flex-col gap-12 overflow-auto px-6 py-6">
           <div class="flex flex-col gap-4">
             <div class="font-medium text-muted-foreground text-sm">Menu</div>
