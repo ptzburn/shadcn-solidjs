@@ -32,7 +32,7 @@ export const docsConfig: Config = {
     },
     {
       title: "Docs",
-      href: "/docs/introduction",
+      href: "/docs/installation",
     },
     {
       title: "Components",
