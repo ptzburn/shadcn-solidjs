@@ -180,6 +180,10 @@ export const docsConfig: Config = {
           href: "/docs/components/input-group",
         },
         {
+          title: "Input OTP",
+          href: "/docs/components/input-otp",
+        },
+        {
           title: "Item",
           href: "/docs/components/item",
         },
@@ -214,10 +218,6 @@ export const docsConfig: Config = {
         {
           title: "Navigation Menu",
           href: "/docs/components/navigation-menu",
-        },
-        {
-          title: "OTP Field",
-          href: "/docs/components/otp-field",
         },
         {
           title: "Pagination",

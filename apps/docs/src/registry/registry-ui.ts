@@ -317,6 +317,17 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "input-otp",
+    type: "ui",
+    dependencies: ["@corvu/otp-field"],
+    files: [
+      {
+        path: "ui/input-otp.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "item",
     type: "ui",
     dependencies: ["@kobalte/core", "class-variance-authority"],
@@ -430,17 +441,6 @@ export const ui: Registry = [
     files: [
       {
         path: "ui/navigation-menu.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
-    name: "otp-field",
-    type: "ui",
-    dependencies: ["@corvu/otp-field"],
-    files: [
-      {
-        path: "ui/otp-field.tsx",
         type: "ui",
       },
     ],

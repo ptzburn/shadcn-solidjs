@@ -317,6 +317,16 @@
     "type": "ui"
   },
   {
+    "name": "input-otp",
+    "dependencies": [
+      "@corvu/otp-field"
+    ],
+    "files": [
+      "ui/input-otp.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "item",
     "dependencies": [
       "@kobalte/core",
@@ -409,16 +419,6 @@
     ],
     "files": [
       "ui/navigation-menu.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "otp-field",
-    "dependencies": [
-      "@corvu/otp-field"
-    ],
-    "files": [
-      "ui/otp-field.tsx"
     ],
     "type": "ui"
   },
