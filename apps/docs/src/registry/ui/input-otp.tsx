@@ -1,5 +1,5 @@
 import type { Component, ComponentProps, ValidComponent } from "solid-js";
-import { Show, splitProps } from "solid-js";
+import { mergeProps, Show, splitProps } from "solid-js";
 
 import type { DynamicProps, InputProps, RootProps } from "@corvu/otp-field";
 import OtpField from "@corvu/otp-field";
@@ -35,9 +35,12 @@ type InputOTPInputProps<T extends ValidComponent = "input"> = InputProps<T> & {
 };
 
 const InputOTPInput = <T extends ValidComponent = "input">(
-  props: DynamicProps<T, InputOTPInputProps<T>>,
+  rawProps: DynamicProps<T, InputOTPInputProps<T>>,
 ) => {
-  const [local, others] = splitProps(props as InputOTPInputProps, ["class"]);
+  // corvu defaults `pattern` to digits-only; shadcn accepts any character
+  // unless a pattern is given, so opt out of the primitive's default.
+  const props = mergeProps({ pattern: null }, rawProps as InputOTPInputProps);
+  const [local, others] = splitProps(props, ["class"]);
   return (
     <OtpField.Input
       data-slot="input-otp"

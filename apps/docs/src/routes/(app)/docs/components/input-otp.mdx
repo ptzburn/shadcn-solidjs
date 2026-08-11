@@ -99,7 +99,8 @@ InputOTP
 
 ## Pattern
 
-Use the `pattern` prop to define a custom pattern for the OTP input.
+The input accepts any character by default. Use the `pattern` prop to restrict
+what can be entered.
 
 ```tsx showLineNumbers {1,4}
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "~/components/ui/input-otp"
@@ -174,10 +175,13 @@ provides the context to the slots.
 The `InputOTPInput` component renders the hidden `input` element and accepts
 every native input attribute, including `id`, `disabled` and `required`.
 
-| Prop      | Type             | Default    |
-| --------- | ---------------- | ---------- |
-| `pattern` | `string \| null` | `"^\\d*$"` |
-| `class`   | `string`         | -          |
+| Prop      | Type             | Default |
+| --------- | ---------------- | ------- |
+| `pattern` | `string \| null` | `null`  |
+| `class`   | `string`         | -       |
+
+By default any character is accepted. Pass a `pattern` to restrict input, or
+`null` to explicitly allow everything.
 
 ### InputOTPGroup
 
