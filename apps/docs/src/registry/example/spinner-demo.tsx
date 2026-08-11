@@ -8,7 +8,7 @@ import { Spinner } from "~/registry/ui/spinner.tsx";
 
 export default function SpinnerDemo() {
   return (
-    <div class="flex w-full max-w-xs flex-col gap-4 [--radius:1rem]">
+    <div class="[--radius:1rem] flex w-full max-w-xs flex-col gap-4">
       <Item variant="muted">
         <ItemMedia>
           <Spinner />

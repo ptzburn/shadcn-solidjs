@@ -1,7 +1,6 @@
-import { For } from "solid-js";
 import { A, useLocation } from "@solidjs/router";
-
 import { docsConfig } from "~/config/docs.ts";
+
 import {
   Sidebar,
   SidebarContent,
@@ -12,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "~/registry/ui/sidebar.tsx";
+import { For } from "solid-js";
 
 const menuButtonClass =
   "relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md data-[active=true]:border-accent data-[active=true]:bg-accent";
@@ -22,12 +22,12 @@ export function DocsSidebar() {
   return (
     <Sidebar
       collapsible="none"
-      class="sticky top-[calc(var(--header-height)+0.6rem)] z-30 hidden h-[calc(100svh-10rem)] overflow-hidden overscroll-none bg-transparent [--sidebar-menu-width:--spacing(56)] lg:flex"
+      class="[--sidebar-menu-width:--spacing(56)] sticky top-[calc(var(--header-height)+0.6rem)] z-30 hidden h-[calc(100svh-10rem)] overflow-hidden overscroll-none bg-transparent lg:flex"
     >
       <div class="absolute top-12 right-2 bottom-0 hidden h-full w-px bg-[linear-gradient(to_bottom,transparent_0%,var(--border)_10%,var(--border)_90%,transparent_100%)] lg:flex" />
       <SidebarContent
         data-docs-sidebar-content=""
-        class="scroll-fade no-scrollbar w-(--sidebar-menu-width) overflow-x-hidden pl-2.5"
+        class="no-scrollbar scroll-fade w-(--sidebar-menu-width) overflow-x-hidden pl-2.5"
       >
         <SidebarGroup class="pt-12">
           <SidebarGroupLabel class="font-medium text-muted-foreground">

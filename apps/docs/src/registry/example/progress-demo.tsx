@@ -1,6 +1,6 @@
-import { createSignal, onCleanup, onMount } from "solid-js";
-
 import { Progress } from "~/registry/ui/progress.tsx";
+
+import { createSignal, onCleanup, onMount } from "solid-js";
 
 export default function ProgressDemo() {
   const [progress, setProgress] = createSignal(13);

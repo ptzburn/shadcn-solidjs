@@ -1,10 +1,9 @@
 // deno-lint-ignore-file no-non-null-assertion
-import type { ButtonProps } from "./button.tsx";
-import { Button } from "./button.tsx";
-
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 import type { CreateEmblaCarouselType } from "embla-carousel-solid";
+
 import createEmblaCarousel from "embla-carousel-solid";
 import type { Accessor, Component, ComponentProps, VoidProps } from "solid-js";
 import {
@@ -17,7 +16,8 @@ import {
   splitProps,
   useContext,
 } from "solid-js";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+import type { ButtonProps } from "./button.tsx";
+import { Button } from "./button.tsx";
 
 export type CarouselApi = CreateEmblaCarouselType[1];
 

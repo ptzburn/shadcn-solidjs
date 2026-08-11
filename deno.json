@@ -7,6 +7,16 @@
     "packages/cli/npm"
   ],
   "nodeModulesDir": "manual",
+  "fmt": {
+    "sortNamedImports": "caseInsensitive",
+    "sortNamedExports": "caseInsensitive"
+  },
+  "lint": {
+    "plugins": [
+      "jsr:@ayk/lint-import-order",
+      "jsr:@ryu/deno-lint-plugin-tailwindcss"
+    ]
+  },
   "tasks": {
     "dev": "deno task --cwd=apps/docs dev",
     "build": "deno task --cwd=apps/docs build",

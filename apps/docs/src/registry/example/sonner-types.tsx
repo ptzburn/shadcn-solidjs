@@ -1,6 +1,6 @@
-import { toast } from "solid-sonner";
-
 import { Button } from "~/registry/ui/button.tsx";
+
+import { toast } from "solid-sonner";
 
 export default function SonnerTypes() {
   return (

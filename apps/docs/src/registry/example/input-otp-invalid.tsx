@@ -1,5 +1,3 @@
-import { createSignal } from "solid-js";
-
 import {
   InputOTP,
   InputOTPGroup,
@@ -7,6 +5,8 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "~/registry/ui/input-otp.tsx";
+
+import { createSignal } from "solid-js";
 
 export default function InputOTPInvalid() {
   const [value, setValue] = createSignal("000000");

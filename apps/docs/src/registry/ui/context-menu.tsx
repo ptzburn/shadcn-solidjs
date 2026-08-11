@@ -1,11 +1,11 @@
-import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
-import { splitProps } from "solid-js";
-
 import * as ContextMenuPrimitive from "@kobalte/core/context-menu";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
+import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
+import { splitProps } from "solid-js";
 
 // Kobalte's ContextMenuRoot and Portal render no DOM node, so unlike
 // upstream there is no element to stamp a data-slot attribute on.
@@ -81,7 +81,7 @@ const ContextMenuContent = <T extends ValidComponent = "div">(
       <ContextMenuPrimitive.Content
         data-slot="context-menu-content"
         class={cn(
-          "cn-context-menu-content z-50 max-h-(--kb-popper-content-available-height) origin-(--kb-menu-content-transform-origin) overflow-x-hidden overflow-y-auto",
+          "cn-context-menu-content z-50 max-h-(--kb-popper-content-available-height) origin-(--kb-menu-content-transform-origin) overflow-y-auto overflow-x-hidden",
           local.class,
         )}
         {...others}
@@ -112,7 +112,7 @@ const ContextMenuItem = <T extends ValidComponent = "div">(
       data-inset={local.inset}
       data-variant={local.variant ?? "default"}
       class={cn(
-        "cn-context-menu-item group/context-menu-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-context-menu-item group/context-menu-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -141,7 +141,7 @@ const ContextMenuSubTrigger = <T extends ValidComponent = "div">(
       data-slot="context-menu-sub-trigger"
       data-inset={local.inset}
       class={cn(
-        "cn-context-menu-sub-trigger flex cursor-default items-center outline-hidden select-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-context-menu-sub-trigger flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}
@@ -208,7 +208,7 @@ const ContextMenuCheckboxItem = <T extends ValidComponent = "div">(
       data-slot="context-menu-checkbox-item"
       data-inset={local.inset}
       class={cn(
-        "cn-context-menu-checkbox-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-context-menu-checkbox-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -250,7 +250,7 @@ const ContextMenuRadioItem = <T extends ValidComponent = "div">(
       data-slot="context-menu-radio-item"
       data-inset={local.inset}
       class={cn(
-        "cn-context-menu-radio-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-context-menu-radio-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...others}

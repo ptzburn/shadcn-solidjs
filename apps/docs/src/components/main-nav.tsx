@@ -1,9 +1,9 @@
-import { For } from "solid-js";
 import { A, useLocation } from "@solidjs/router";
-
 import { docsConfig } from "~/config/docs.ts";
+
 import { cn } from "~/lib/utils.ts";
 import { Button } from "~/registry/ui/button.tsx";
+import { For } from "solid-js";
 
 export function MainNav(props: { class?: string }) {
   const location = useLocation();

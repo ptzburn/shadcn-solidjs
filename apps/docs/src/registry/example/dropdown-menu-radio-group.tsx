@@ -1,6 +1,5 @@
-import { createSignal } from "solid-js";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +9,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
+import { createSignal } from "solid-js";
 
 export default function DropdownMenuRadioGroupDemo() {
   const [position, setPosition] = createSignal("bottom");

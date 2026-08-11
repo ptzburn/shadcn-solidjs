@@ -1,7 +1,3 @@
-import type { Component, ComponentProps } from "solid-js";
-import { createSignal, For, Show } from "solid-js";
-import { Dynamic } from "solid-js/web";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Avatar, AvatarFallback, AvatarImage } from "~/registry/ui/avatar.tsx";
 import {
@@ -9,6 +5,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "~/registry/ui/collapsible.tsx";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -39,6 +36,9 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "~/registry/ui/sidebar.tsx";
+import type { Component, ComponentProps } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
+import { Dynamic } from "solid-js/web";
 
 type IconProps = ComponentProps<"svg">;
 
@@ -282,7 +282,7 @@ function TeamSwitcher(props: { teams: Team[] }) {
               </SidebarMenuButton>
               <DropdownMenuContent class="min-w-56 rounded-lg">
                 <DropdownMenuGroup>
-                  <DropdownMenuLabel class="text-xs text-muted-foreground">
+                  <DropdownMenuLabel class="text-muted-foreground text-xs">
                     Teams
                   </DropdownMenuLabel>
                   <For each={props.teams}>

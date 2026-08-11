@@ -1,12 +1,12 @@
-import { For } from "solid-js";
-
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
 } from "~/registry/ui/card.tsx";
+
 import { Skeleton } from "~/registry/ui/skeleton.tsx";
+import { For } from "solid-js";
 
 const bars = [60, 80, 65, 95, 50, 100];
 
@@ -23,7 +23,7 @@ export function ContributionHistory() {
             {(height) => (
               <div class="flex h-full flex-1 flex-col justify-end gap-2">
                 <Skeleton
-                  class="w-full rounded-t-md rounded-b-none"
+                  class="w-full rounded-b-none rounded-t-md"
                   style={{ height: `${height}%` }}
                 />
                 <Skeleton class="mx-auto h-3 w-6 rounded-md" />

@@ -1,5 +1,3 @@
-import { For } from "solid-js";
-
 import {
   Item,
   ItemContent,
@@ -8,6 +6,8 @@ import {
   ItemHeader,
   ItemTitle,
 } from "~/registry/ui/item.tsx";
+
+import { For } from "solid-js";
 
 const models = [
   {

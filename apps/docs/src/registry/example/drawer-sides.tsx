@@ -1,6 +1,5 @@
-import { For, Index } from "solid-js";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import {
   Drawer,
   DrawerClose,
@@ -11,6 +10,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "~/registry/ui/drawer.tsx";
+import { For, Index } from "solid-js";
 
 const DRAWER_SIDES = ["top", "right", "bottom", "left"] as const;
 

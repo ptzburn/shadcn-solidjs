@@ -1,7 +1,7 @@
-import { For, Show } from "solid-js";
 import { A } from "@solidjs/router";
-
 import { componentPages } from "~/config/docs.ts";
+
+import { For, Show } from "solid-js";
 
 export function ComponentsList() {
   return (
@@ -14,7 +14,7 @@ export function ComponentsList() {
           {(component) => (
             <A
               href={component.href}
-              class="inline-flex items-center gap-2 text-lg font-medium underline-offset-4 hover:underline md:text-base"
+              class="inline-flex items-center gap-2 font-medium text-lg underline-offset-4 hover:underline md:text-base"
             >
               {component.title}
             </A>

@@ -29,28 +29,28 @@ export function SavingsTargets() {
         <ItemGroup class="gap-3">
           <Item role="listitem" variant="muted" class="flex-col items-stretch">
             <ItemContent class="gap-3">
-              <ItemDescription class="cn-font-heading text-xs font-medium tracking-wider text-muted-foreground uppercase">
+              <ItemDescription class="cn-font-heading font-medium text-muted-foreground text-xs uppercase tracking-wider">
                 Retirement
               </ItemDescription>
-              <span class="text-3xl font-semibold tabular-nums">$420,000</span>
+              <span class="font-semibold text-3xl tabular-nums">$420,000</span>
               <Progress value={65} aria-label="Retirement savings progress" />
             </ItemContent>
             <ItemFooter>
-              <span class="text-sm text-muted-foreground">65% achieved</span>
-              <span class="text-sm font-medium tabular-nums">$273,000</span>
+              <span class="text-muted-foreground text-sm">65% achieved</span>
+              <span class="font-medium text-sm tabular-nums">$273,000</span>
             </ItemFooter>
           </Item>
           <Item role="listitem" variant="muted" class="flex-col items-stretch">
             <ItemContent class="gap-3">
-              <ItemDescription class="cn-font-heading text-xs font-medium tracking-wider text-muted-foreground uppercase">
+              <ItemDescription class="cn-font-heading font-medium text-muted-foreground text-xs uppercase tracking-wider">
                 Real Estate
               </ItemDescription>
-              <span class="text-3xl font-semibold tabular-nums">$85,000</span>
+              <span class="font-semibold text-3xl tabular-nums">$85,000</span>
               <Progress value={32} aria-label="Real estate savings progress" />
             </ItemContent>
             <ItemFooter>
-              <span class="text-sm text-muted-foreground">32% achieved</span>
-              <span class="text-sm font-medium tabular-nums">$27,200</span>
+              <span class="text-muted-foreground text-sm">32% achieved</span>
+              <span class="font-medium text-sm tabular-nums">$27,200</span>
             </ItemFooter>
           </Item>
         </ItemGroup>

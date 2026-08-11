@@ -66,7 +66,7 @@ export default function InputOTPForm() {
           <Button type="submit" class="w-full">
             Verify
           </Button>
-          <div class="text-sm text-muted-foreground">
+          <div class="text-muted-foreground text-sm">
             Having trouble signing in?{" "}
             <a
               href="#"

@@ -1,11 +1,11 @@
-import { Show } from "solid-js";
 import { A } from "@solidjs/router";
-
 import { DocsCopyPage } from "~/components/docs-copy-page.tsx";
+
 import { useDocsNeighbours } from "~/components/docs-pager.tsx";
-import { MetaTags } from "~/components/meta-tags.tsx";
 import { IconArrowLeft, IconArrowRight } from "~/components/icons.tsx";
+import { MetaTags } from "~/components/meta-tags.tsx";
 import { Button } from "~/registry/ui/button.tsx";
+import { Show } from "solid-js";
 
 type HeaderProps = {
   title: string;
@@ -19,7 +19,7 @@ export function MDXHeader(props: HeaderProps) {
     <div data-not-typeset="" class="flex flex-col gap-2 pb-8">
       <MetaTags title={props.title} description={props.description} />
       <div class="flex items-center justify-between md:items-start">
-        <h1 class="scroll-m-24 text-3xl font-semibold tracking-tight">
+        <h1 class="scroll-m-24 font-semibold text-3xl tracking-tight">
           {props.title}
         </h1>
         <div class="docs-nav flex items-center gap-2">
@@ -58,7 +58,7 @@ export function MDXHeader(props: HeaderProps) {
           </div>
         </div>
       </div>
-      <p class="text-balance text-[1.05rem] text-muted-foreground sm:text-base md:max-w-[80%]">
+      <p class="text-balance text-muted-foreground text-[1.05rem] sm:text-base md:max-w-[80%]">
         {props.description}
       </p>
     </div>

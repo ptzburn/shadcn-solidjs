@@ -1,23 +1,23 @@
 // @refresh reload
-import { Suspense } from "solid-js";
-import { isServer } from "solid-js/web";
-import { MetaProvider } from "@solidjs/meta";
-import { Router } from "@solidjs/router";
-import { FileRoutes } from "@solidjs/start/router";
-
 import {
   ColorModeProvider,
   ColorModeScript,
   cookieStorageManagerSSR,
 } from "@kobalte/core";
+import { MetaProvider } from "@solidjs/meta";
+import { Router } from "@solidjs/router";
 import { getCookie } from "@solidjs/start/http";
+import { FileRoutes } from "@solidjs/start/router";
 
 import { MetaTags } from "~/components/meta-tags.tsx";
 import { parseStyleCookie, StyleProvider } from "~/lib/style-context.tsx";
-import { Toaster } from "~/registry/ui/sonner.tsx";
 
+import { Toaster } from "~/registry/ui/sonner.tsx";
 import "~/styles/app.css";
 import "~/styles/typeset.css";
+
+import { Suspense } from "solid-js";
+import { isServer } from "solid-js/web";
 
 function getServerCookies() {
   "use server";

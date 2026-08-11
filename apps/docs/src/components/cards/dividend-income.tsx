@@ -1,6 +1,3 @@
-import { For } from "solid-js";
-import IconCancel01 from "~icons/hugeicons/cancel-01";
-
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Card,
@@ -10,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
+
 import {
   Item,
   ItemContent,
@@ -17,6 +15,8 @@ import {
   ItemGroup,
   ItemTitle,
 } from "~/registry/ui/item.tsx";
+import IconCancel01 from "~icons/hugeicons/cancel-01";
+import { For } from "solid-js";
 
 const HOLDINGS = [
   {

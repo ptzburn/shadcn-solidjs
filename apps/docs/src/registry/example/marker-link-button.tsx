@@ -1,7 +1,7 @@
-import { toast } from "solid-sonner";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import { Marker, MarkerContent, MarkerIcon } from "~/registry/ui/marker.tsx";
+import { toast } from "solid-sonner";
 
 export default function MarkerLinkButtonDemo() {
   return (

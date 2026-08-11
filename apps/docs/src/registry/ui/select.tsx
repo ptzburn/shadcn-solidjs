@@ -3,9 +3,9 @@ import * as SelectPrimitive from "@kobalte/core/select";
 
 import { cn } from "~/lib/utils.ts";
 
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
 import { mergeProps, splitProps } from "solid-js";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 // Unlike radix, Kobalte's Root renders a real <div> wrapping the
 // trigger, so the slot marks the element grouped containers (e.g.
@@ -57,7 +57,7 @@ const SelectTrigger = <T extends ValidComponent = "button">(
       data-slot="select-trigger"
       data-size={local.size}
       class={cn(
-        "cn-select-trigger flex w-fit items-center justify-between whitespace-nowrap outline-none data-disabled:cursor-not-allowed data-disabled:opacity-50 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-select-trigger flex w-fit items-center justify-between whitespace-nowrap outline-none *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center [&_svg]:pointer-events-none [&_svg]:shrink-0 data-disabled:cursor-not-allowed data-disabled:opacity-50",
         local.class,
       )}
       {...others}
@@ -163,7 +163,7 @@ const SelectItem = <T extends ValidComponent = "li">(
     <SelectPrimitive.Item
       data-slot="select-item"
       class={cn(
-        "cn-select-item relative flex w-full cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-select-item relative flex w-full cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50",
         local.class,
       )}
       {...others}

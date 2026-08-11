@@ -2,13 +2,13 @@ import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { Polymorphic } from "@kobalte/core/polymorphic";
 
 import type * as SeparatorPrimitive from "@kobalte/core/separator";
-import { Separator } from "./separator.tsx";
 import { cn } from "~/lib/utils.ts";
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import type { Component, ComponentProps, ValidComponent } from "solid-js";
-
 import { mergeProps, splitProps } from "solid-js";
+
+import { Separator } from "./separator.tsx";
 
 const ItemGroup: Component<ComponentProps<"div">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);

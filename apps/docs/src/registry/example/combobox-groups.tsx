@@ -1,5 +1,3 @@
-import { Show } from "solid-js";
-
 import {
   Combobox,
   ComboboxContent,
@@ -10,6 +8,8 @@ import {
   ComboboxSection,
   ComboboxSeparator,
 } from "~/registry/ui/combobox.tsx";
+
+import { Show } from "solid-js";
 
 interface Timezone {
   value: string;

@@ -1,3 +1,7 @@
+import { Index } from "~/__registry__/index.tsx";
+
+import { cn } from "~/lib/utils.ts";
+import { Button } from "~/registry/ui/button.tsx";
 import {
   type Component,
   type ComponentProps,
@@ -7,10 +11,6 @@ import {
   Show,
   splitProps,
 } from "solid-js";
-
-import { Index } from "~/__registry__/index.tsx";
-import { cn } from "~/lib/utils.ts";
-import { Button } from "~/registry/ui/button.tsx";
 
 interface ComponentPreviewProps extends ComponentProps<"div"> {
   name: string;
@@ -46,7 +46,7 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
 
     if (!Component) {
       return (
-        <p class="text-sm text-muted-foreground">
+        <p class="text-muted-foreground text-sm">
           Component{" "}
           <code class="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
             {local.name}
@@ -97,7 +97,7 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
           <div
             data-slot="code"
             data-code-visible={isCodeVisible()}
-            class="relative overflow-hidden **:data-[slot=copy-button]:right-4 **:data-[slot=copy-button]:hidden data-[code-visible=true]:**:data-[slot=copy-button]:flex [&_[data-rehype-pretty-code-figure]]:m-0! [&_[data-rehype-pretty-code-figure]]:rounded-t-none [&_[data-rehype-pretty-code-figure]]:border-t [&_pre]:max-h-72 data-[code-visible=false]:[&_pre]:max-h-28 data-[code-visible=false]:[&_pre]:overflow-hidden"
+            class="relative overflow-hidden [&_[data-rehype-pretty-code-figure]]:m-0! [&_pre]:max-h-72 [&_[data-rehype-pretty-code-figure]]:rounded-t-none [&_[data-rehype-pretty-code-figure]]:border-t **:data-[slot=copy-button]:right-4 **:data-[slot=copy-button]:hidden data-[code-visible=false]:[&_pre]:max-h-28 data-[code-visible=false]:[&_pre]:overflow-hidden data-[code-visible=true]:**:data-[slot=copy-button]:flex"
           >
             {local.children}
             <Show when={!isCodeVisible()}>

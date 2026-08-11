@@ -1,6 +1,6 @@
-import { toast } from "solid-sonner";
-
 import { Bubble, BubbleContent, BubbleGroup } from "~/registry/ui/bubble.tsx";
+
+import { toast } from "solid-sonner";
 
 export default function BubbleLinkButtonDemo() {
   return (

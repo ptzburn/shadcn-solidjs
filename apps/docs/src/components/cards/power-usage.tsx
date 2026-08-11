@@ -1,5 +1,3 @@
-import { For } from "solid-js";
-
 import {
   Card,
   CardContent,
@@ -7,7 +5,9 @@ import {
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
+
 import { Separator } from "~/registry/ui/separator.tsx";
+import { For } from "solid-js";
 
 const chartData = [
   { hour: "6a", usage: 1.2 },
@@ -42,7 +42,7 @@ export function PowerUsage() {
                   class="min-h-2 rounded-t bg-chart-2"
                   style={{ height: `${(item.usage / maxUsage) * 100}%` }}
                 />
-                <span class="text-center text-xs text-muted-foreground">
+                <span class="text-center text-muted-foreground text-xs">
                   {item.hour}
                 </span>
               </div>
@@ -52,12 +52,12 @@ export function PowerUsage() {
         <Separator />
         <div class="grid grid-cols-2 gap-4">
           <div class="flex flex-col gap-0.5">
-            <span class="text-sm text-muted-foreground">Currently Using</span>
-            <span class="text-lg font-semibold tabular-nums">3.4 kW</span>
+            <span class="text-muted-foreground text-sm">Currently Using</span>
+            <span class="font-semibold text-lg tabular-nums">3.4 kW</span>
           </div>
           <div class="flex flex-col gap-0.5">
-            <span class="text-sm text-muted-foreground">Solar Gen</span>
-            <span class="text-lg font-semibold tabular-nums">+1.2 kW</span>
+            <span class="text-muted-foreground text-sm">Solar Gen</span>
+            <span class="font-semibold text-lg tabular-nums">+1.2 kW</span>
           </div>
         </div>
       </CardContent>

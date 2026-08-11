@@ -1,5 +1,3 @@
-import { createMemo, createSignal, For } from "solid-js";
-
 import {
   Card,
   CardContent,
@@ -7,8 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
+
 import type { ChartConfig } from "~/registry/ui/charts.tsx";
 import { BarChart, ChartContainer } from "~/registry/ui/charts.tsx";
+import { createMemo, createSignal, For } from "solid-js";
 
 const chartData = [
   { date: "2024-04-01", desktop: 222, mobile: 150 },
@@ -93,13 +93,13 @@ export default function ChartsDemo() {
               <button
                 type="button"
                 data-active={activeChart() === chart}
-                class="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-t-0 sm:border-l sm:px-8 sm:py-6"
+                class="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l sm:border-l sm:border-t-0 sm:px-8 sm:py-6 data-[active=true]:bg-muted/50"
                 onClick={() => setActiveChart(chart)}
               >
-                <span class="text-xs text-muted-foreground">
+                <span class="text-muted-foreground text-xs">
                   {chartConfig[chart].label}
                 </span>
-                <span class="text-lg leading-none font-bold sm:text-3xl">
+                <span class="font-bold text-lg leading-none sm:text-3xl">
                   {total[chart].toLocaleString()}
                 </span>
               </button>

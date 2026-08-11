@@ -1,9 +1,9 @@
-import { Show } from "solid-js";
 import { A, useLocation } from "@solidjs/router";
-
 import { IconArrowLeft, IconArrowRight } from "~/components/icons.tsx";
+
 import { componentPages, COMPONENTS_INDEX, docsConfig } from "~/config/docs.ts";
 import { Button } from "~/registry/ui/button.tsx";
+import { Show } from "solid-js";
 
 const categories = docsConfig.sidebarNav.map((category) => category.items);
 

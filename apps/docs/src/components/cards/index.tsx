@@ -37,7 +37,7 @@ function CardsSkeletonRails() {
       aria-hidden="true"
       class="pointer-events-none absolute inset-x-0 top-12 z-10 hidden min-[2200px]:block [&_[data-slot=skeleton]:nth-child(even)]:hidden"
     >
-      <div class="absolute top-0 left-[calc(50%-950px-var(--rail-width)-var(--gap))] grid w-(--rail-width) grid-cols-[repeat(2,var(--rail-column))] gap-(--gap) opacity-50 [--rail-column:20rem] [--rail-width:calc(var(--rail-column)*2+var(--gap))]">
+      <div class="[--rail-column:20rem] [--rail-width:calc(var(--rail-column)*2+var(--gap))] absolute top-0 left-[calc(50%-950px-var(--rail-width)-var(--gap))] grid w-(--rail-width) grid-cols-[repeat(2,var(--rail-column))] gap-(--gap) opacity-50">
         <div class="flex flex-col gap-(--gap)">
           <SkeletonContributionHistory />
           <SkeletonClaimableBalance />
@@ -52,7 +52,7 @@ function CardsSkeletonRails() {
           <SkeletonAccountAccess />
         </div>
       </div>
-      <div class="absolute top-0 right-[calc(50%-950px-var(--rail-width)-var(--gap))] grid w-(--rail-width) grid-cols-[repeat(2,var(--rail-column))] gap-(--gap) opacity-50 [--rail-column:20rem] [--rail-width:calc(var(--rail-column)*2+var(--gap))]">
+      <div class="[--rail-column:20rem] [--rail-width:calc(var(--rail-column)*2+var(--gap))] absolute top-0 right-[calc(50%-950px-var(--rail-width)-var(--gap))] grid w-(--rail-width) grid-cols-[repeat(2,var(--rail-column))] gap-(--gap) opacity-50">
         <div class="flex flex-col gap-(--gap)">
           <SkeletonNewMilestone />
           <SkeletonPayoutThreshold />
@@ -82,10 +82,10 @@ export function CardsDemo() {
   return (
     <div
       data-slot="demo"
-      class="theme-neutral relative flex w-full max-w-none flex-col gap-(--gap) overflow-hidden bg-muted p-12 pb-0! [--gap:--spacing(8)] 3xl:[--gap:--spacing(8)] max-md:p-4 max-md:[--gap:--spacing(4)] min-[1900px]:p-12 min-[1900px]:[--gap:--spacing(10)]! lg:p-6 lg:[--gap:--spacing(6)] dark:bg-background"
+      class="[--gap:--spacing(8)] 3xl:[--gap:--spacing(8)] lg:[--gap:--spacing(6)] max-md:[--gap:--spacing(4)] min-[1900px]:[--gap:--spacing(10)]! theme-neutral relative flex w-full max-w-none flex-col gap-(--gap) overflow-hidden bg-muted p-12 pb-0! max-md:p-4 lg:p-6 dark:bg-background min-[1900px]:p-12"
     >
       <CardsSkeletonRails />
-      <div class="relative z-10 mx-auto grid gap-(--gap) **:data-[slot=card]:w-full min-[1400px]:grid-cols-4! min-[1900px]:grid-cols-5! md:max-w-3xl md:grid-cols-2 lg:max-w-none lg:grid-cols-3 xl:max-w-[1600px] 2xl:max-w-[1900px]">
+      <div class="relative z-10 mx-auto grid gap-(--gap) md:max-w-3xl md:grid-cols-2 lg:max-w-none lg:grid-cols-3 xl:max-w-[1600px] 2xl:max-w-[1900px] min-[1400px]:grid-cols-4! min-[1900px]:grid-cols-5! **:data-[slot=card]:w-full">
         <div class="flex flex-col items-start gap-(--gap)">
           <UIElements />
           <SidebarNav />

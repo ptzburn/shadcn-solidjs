@@ -1,6 +1,5 @@
-import { createEffect, createSignal, Index } from "solid-js";
-
 import { Card, CardContent } from "~/registry/ui/card.tsx";
+
 import {
   Carousel,
   type CarouselApi,
@@ -9,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "~/registry/ui/carousel.tsx";
+import { createEffect, createSignal, Index } from "solid-js";
 
 export default function CarouselApiDemo() {
   const [api, setApi] = createSignal<ReturnType<CarouselApi>>();
@@ -37,7 +37,7 @@ export default function CarouselApiDemo() {
               <CarouselItem>
                 <Card class="m-px">
                   <CardContent class="flex aspect-square items-center justify-center p-6">
-                    <span class="text-4xl font-semibold">{index + 1}</span>
+                    <span class="font-semibold text-4xl">{index + 1}</span>
                   </CardContent>
                 </Card>
               </CarouselItem>
@@ -47,7 +47,7 @@ export default function CarouselApiDemo() {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-      <div class="text-muted-foreground py-2 text-center text-sm">
+      <div class="py-2 text-center text-muted-foreground text-sm">
         Slide {current()} of {count()}
       </div>
     </div>

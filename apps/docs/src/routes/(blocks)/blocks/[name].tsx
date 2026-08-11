@@ -1,7 +1,7 @@
-import { Show } from "solid-js";
 import { useParams } from "@solidjs/router";
-
 import { Index } from "~/__registry__/index.tsx";
+
+import { Show } from "solid-js";
 
 export default function Block() {
   const params = useParams();

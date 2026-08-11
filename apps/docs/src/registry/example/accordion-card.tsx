@@ -1,11 +1,10 @@
-import { For } from "solid-js";
-
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "~/registry/ui/accordion.tsx";
+
 import {
   Card,
   CardContent,
@@ -13,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
+import { For } from "solid-js";
 
 const items = [
   {

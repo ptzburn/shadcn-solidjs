@@ -1,12 +1,12 @@
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import * as ToggleGroupPrimitive from "@kobalte/core/toggle-group";
 
-import { toggleVariants } from "./toggle.tsx";
 import { cn } from "~/lib/utils.ts";
 import type { VariantProps } from "class-variance-authority";
-
 import type { JSX, ValidComponent } from "solid-js";
+
 import { createContext, mergeProps, splitProps, useContext } from "solid-js";
+import { toggleVariants } from "./toggle.tsx";
 
 type ToggleGroupContextValue = VariantProps<typeof toggleVariants> & {
   spacing?: number;

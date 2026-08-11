@@ -1,5 +1,3 @@
-import { For } from "solid-js";
-
 import {
   Table,
   TableBody,
@@ -10,6 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from "~/registry/ui/table.tsx";
+
+import { For } from "solid-js";
 
 const invoices = [
   {

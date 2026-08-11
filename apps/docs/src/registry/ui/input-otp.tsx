@@ -1,11 +1,11 @@
-import type { Component, ComponentProps, ValidComponent } from "solid-js";
-import { mergeProps, Show, splitProps } from "solid-js";
-
 import type { DynamicProps, InputProps, RootProps } from "@corvu/otp-field";
 import OtpField from "@corvu/otp-field";
 
 import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
+import type { Component, ComponentProps, ValidComponent } from "solid-js";
+import { mergeProps, Show, splitProps } from "solid-js";
 
 export const REGEXP_ONLY_DIGITS = "^\\d*$";
 export const REGEXP_ONLY_CHARS = "^[a-zA-Z]*$";

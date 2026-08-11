@@ -1,8 +1,7 @@
-import { createSignal } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import { Button } from "~/registry/ui/button.tsx";
+
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
+import { Button } from "~/registry/ui/button.tsx";
 import { Input } from "~/registry/ui/input.tsx";
 import {
   Select,
@@ -11,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/registry/ui/select.tsx";
+import { createSignal } from "solid-js";
 
 type Currency = {
   value: string;

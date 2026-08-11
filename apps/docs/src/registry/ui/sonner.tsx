@@ -1,8 +1,8 @@
 import { useColorMode } from "@kobalte/core";
-import type { Component, ComponentProps } from "solid-js";
-
-import { Toaster as Sonner } from "solid-sonner";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
+import type { Component, ComponentProps } from "solid-js";
+import { Toaster as Sonner } from "solid-sonner";
 
 type ToasterProps = ComponentProps<typeof Sonner>;
 
@@ -12,7 +12,7 @@ const Toaster: Component<ToasterProps> = (props) => {
   return (
     <Sonner
       theme={colorMode()}
-      class="toaster group"
+      class="group toaster"
       icons={{
         success: (
           <IconPlaceholder

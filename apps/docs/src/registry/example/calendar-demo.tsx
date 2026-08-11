@@ -1,5 +1,3 @@
-import { Index } from "solid-js";
-
 import {
   DatePicker,
   DatePickerContent,
@@ -18,6 +16,8 @@ import {
   DatePickerViewControl,
   DatePickerViewTrigger,
 } from "~/registry/ui/date-picker.tsx";
+
+import { Index } from "solid-js";
 
 export default function CalendarDemo() {
   return (

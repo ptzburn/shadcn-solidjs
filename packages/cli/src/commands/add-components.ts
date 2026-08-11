@@ -5,11 +5,11 @@ import { REGISTRY_INDEX_URL } from "../registry/constants.ts";
 import { fetchRegistryIndex } from "../registry/fetcher.ts";
 import { resolveRegistryTree } from "../registry/resolver.ts";
 import type { ProjectTarget } from "../runtime/target.ts";
+import { transformCssVars } from "../updaters/update-css-vars.ts";
 import {
   updateDependencies,
   type UpdateDependenciesResult,
 } from "../updaters/update-dependencies.ts";
-import { transformCssVars } from "../updaters/update-css-vars.ts";
 import {
   updateFiles,
   type UpdateFilesResult,

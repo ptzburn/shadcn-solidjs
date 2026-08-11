@@ -1,12 +1,12 @@
-import { For } from "solid-js";
-
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
 } from "~/registry/ui/card.tsx";
+
 import { Skeleton } from "~/registry/ui/skeleton.tsx";
+import { For } from "solid-js";
 
 const bars = [30, 70, 80, 60, 90, 75, 100, 85];
 
@@ -23,7 +23,7 @@ export function PowerUsage() {
             {(height) => (
               <div class="flex h-full flex-1 flex-col justify-end gap-1.5">
                 <Skeleton
-                  class="w-full rounded-t rounded-b-none"
+                  class="w-full rounded-b-none rounded-t"
                   style={{ height: `${height}%` }}
                 />
                 <Skeleton class="mx-auto h-3 w-5 rounded-md" />

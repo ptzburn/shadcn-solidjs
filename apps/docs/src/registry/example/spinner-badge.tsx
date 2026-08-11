@@ -3,7 +3,7 @@ import { Spinner } from "~/registry/ui/spinner.tsx";
 
 export default function SpinnerBadge() {
   return (
-    <div class="flex items-center gap-4 [--radius:1.2rem]">
+    <div class="[--radius:1.2rem] flex items-center gap-4">
       <Badge>
         <Spinner data-icon="inline-start" />
         Syncing

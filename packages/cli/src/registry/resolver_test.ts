@@ -1,9 +1,9 @@
-import { assert, assertEquals, assertRejects } from "@std/assert";
 import path from "node:path";
+import { assert, assertEquals, assertRejects } from "@std/assert";
 
+import { RegistryNotFoundError } from "./errors.ts";
 import { clearRegistryCache } from "./fetcher.ts";
 import { resolveRegistryItems, resolveRegistryTree } from "./resolver.ts";
-import { RegistryNotFoundError } from "./errors.ts";
 
 /**
  * Resolves against the registry this repo actually builds, so the tests break

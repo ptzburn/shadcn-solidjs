@@ -1,11 +1,11 @@
-import { createSignal, Show } from "solid-js";
-
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPInput,
   InputOTPSlot,
 } from "~/registry/ui/input-otp.tsx";
+
+import { createSignal, Show } from "solid-js";
 
 export default function InputOTPControlled() {
   const [value, setValue] = createSignal("");

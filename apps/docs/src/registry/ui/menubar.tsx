@@ -1,11 +1,11 @@
-import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
-import { splitProps } from "solid-js";
-
 import * as MenubarPrimitive from "@kobalte/core/menubar";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
+import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
+import { splitProps } from "solid-js";
 
 // Kobalte's Portal and Sub render no DOM node, so unlike upstream there is
 // no element to stamp a data-slot attribute on.
@@ -75,7 +75,7 @@ const MenubarTrigger = <T extends ValidComponent = "button">(
     <MenubarPrimitive.Trigger
       data-slot="menubar-trigger"
       class={cn(
-        "cn-menubar-trigger flex items-center outline-hidden select-none",
+        "cn-menubar-trigger flex select-none items-center outline-hidden",
         local.class,
       )}
       {...others}
@@ -129,7 +129,7 @@ const MenubarItem = <T extends ValidComponent = "div">(
       data-inset={local.inset}
       data-variant={local.variant ?? "default"}
       class={cn(
-        "cn-menubar-item group/menubar-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-menubar-item group/menubar-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}
@@ -158,7 +158,7 @@ const MenubarCheckboxItem = <T extends ValidComponent = "div">(
       data-slot="menubar-checkbox-item"
       data-inset={local.inset}
       class={cn(
-        "cn-menubar-checkbox-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-menubar-checkbox-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}
@@ -200,7 +200,7 @@ const MenubarRadioItem = <T extends ValidComponent = "div">(
       data-slot="menubar-radio-item"
       data-inset={local.inset}
       class={cn(
-        "cn-menubar-radio-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "cn-menubar-radio-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}
@@ -304,7 +304,7 @@ const MenubarSubTrigger = <T extends ValidComponent = "div">(
       data-slot="menubar-sub-trigger"
       data-inset={local.inset}
       class={cn(
-        "cn-menubar-sub-trigger flex cursor-default items-center outline-none select-none",
+        "cn-menubar-sub-trigger flex cursor-default select-none items-center outline-none",
         local.class,
       )}
       {...others}

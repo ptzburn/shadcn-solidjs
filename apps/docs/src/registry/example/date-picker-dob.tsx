@@ -1,7 +1,3 @@
-import { Index, Show } from "solid-js";
-import { Portal } from "solid-js/web";
-
-import { Field, FieldLabel } from "~/registry/ui/field.tsx";
 import {
   DatePicker,
   DatePickerContent,
@@ -23,6 +19,10 @@ import {
   DatePickerViewControl,
   DatePickerYearSelect,
 } from "~/registry/ui/date-picker.tsx";
+import { Field, FieldLabel } from "~/registry/ui/field.tsx";
+
+import { Index, Show } from "solid-js";
+import { Portal } from "solid-js/web";
 
 const selectClass =
   "h-7 rounded-md border border-input bg-transparent px-1.5 text-sm font-medium focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none dark:bg-input/30";
@@ -37,7 +37,7 @@ export default function DatePickerDob() {
             {(api) => (
               <DatePickerTrigger
                 id="date-picker-dob"
-                class="w-full justify-start px-3 text-sm font-normal"
+                class="w-full justify-start px-3 font-normal text-sm"
               >
                 <Show
                   when={api().valueAsString[0]}

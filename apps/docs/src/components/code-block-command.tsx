@@ -1,8 +1,6 @@
-import type { Component } from "solid-js";
-import { createSignal, For, Show } from "solid-js";
-
 import { IconCheck, IconCopy, IconTerminal } from "~/components/icons.tsx";
 import { type Config, useConfig } from "~/lib/hooks/use-config.ts";
+
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Tabs,
@@ -10,6 +8,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "~/registry/ui/tabs.tsx";
+import type { Component } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 
 interface CodeBlockCommandProps {
   npm: string;
@@ -50,7 +50,7 @@ const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
   return (
     <div
       data-not-typeset
-      class="relative -mx-1 mt-6 overflow-hidden rounded-(--docs-surface-radius) bg-code font-mono text-sm text-code-foreground md:-mx-1"
+      class="relative -mx-1 mt-6 overflow-hidden rounded-(--docs-surface-radius) bg-code font-mono text-code-foreground text-sm md:-mx-1"
     >
       <Tabs
         value={packageManager()}

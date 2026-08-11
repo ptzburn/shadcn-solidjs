@@ -1,9 +1,9 @@
-import { assert, assertEquals, assertStringIncludes } from "@std/assert";
 import path from "node:path";
+import { assert, assertEquals, assertStringIncludes } from "@std/assert";
 
 import type { Config } from "../config/schema.ts";
-import { resolveRegistryTree } from "../registry/resolver.ts";
 import { clearRegistryCache } from "../registry/fetcher.ts";
+import { resolveRegistryTree } from "../registry/resolver.ts";
 import type { ProjectTarget } from "../runtime/target.ts";
 import { transformImports } from "./transform-import.ts";
 

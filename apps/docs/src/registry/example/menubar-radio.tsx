@@ -1,5 +1,3 @@
-import { createSignal } from "solid-js";
-
 import {
   Menubar,
   MenubarContent,
@@ -10,6 +8,8 @@ import {
   MenubarSeparator,
   MenubarTrigger,
 } from "~/registry/ui/menubar.tsx";
+
+import { createSignal } from "solid-js";
 
 export default function MenubarRadio() {
   const [user, setUser] = createSignal("benoit");

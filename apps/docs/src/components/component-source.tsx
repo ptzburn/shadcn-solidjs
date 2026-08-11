@@ -1,6 +1,6 @@
-import type { Component, ComponentProps } from "solid-js";
-
 import { CodeCollapsibleWrapper } from "~/components/code-collapsible-wrapper.tsx";
+
+import type { Component, ComponentProps } from "solid-js";
 
 interface ComponentSourceProps extends ComponentProps<"div"> {
   name?: string;

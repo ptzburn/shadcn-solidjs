@@ -1,6 +1,6 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import { Button } from "~/registry/ui/button.tsx";
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
+import { Button } from "~/registry/ui/button.tsx";
 import { Input } from "~/registry/ui/input.tsx";
 
 export default function ButtonGroupInput() {

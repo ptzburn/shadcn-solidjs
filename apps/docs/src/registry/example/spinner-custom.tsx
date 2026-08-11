@@ -1,7 +1,7 @@
-import { type Component, type ComponentProps, splitProps } from "solid-js";
-
 import { cn } from "~/lib/utils.ts";
+
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+import { type Component, type ComponentProps, splitProps } from "solid-js";
 
 const Spinner: Component<ComponentProps<"svg">> = (props) => {
   const [local, others] = splitProps(props, ["class"]);

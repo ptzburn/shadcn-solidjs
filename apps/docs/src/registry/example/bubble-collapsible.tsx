@@ -1,9 +1,9 @@
-import { createSignal } from "solid-js";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+
 import { Bubble, BubbleContent } from "~/registry/ui/bubble.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import { Collapsible, CollapsibleTrigger } from "~/registry/ui/collapsible.tsx";
+import { createSignal } from "solid-js";
 
 const text =
   `The accessibility review found two focus states that were visually too subtle in dark mode.

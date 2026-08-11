@@ -1,6 +1,5 @@
-import { For, Index } from "solid-js";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import {
   Sheet,
   SheetClose,
@@ -11,6 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "~/registry/ui/sheet.tsx";
+import { For, Index } from "solid-js";
 
 const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 

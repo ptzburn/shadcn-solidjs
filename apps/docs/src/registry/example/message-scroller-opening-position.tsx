@@ -1,6 +1,5 @@
-import { createEffect, createSignal, For, onCleanup } from "solid-js";
-
 import { Bubble, BubbleContent } from "~/registry/ui/bubble.tsx";
+
 import {
   Card,
   CardContent,
@@ -9,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
-import { Message, MessageContent } from "~/registry/ui/message.tsx";
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -19,7 +17,9 @@ import {
   MessageScrollerViewport,
   useMessageScroller,
 } from "~/registry/ui/message-scroller.tsx";
+import { Message, MessageContent } from "~/registry/ui/message.tsx";
 import { Tabs, TabsList, TabsTrigger } from "~/registry/ui/tabs.tsx";
+import { createEffect, createSignal, For, onCleanup } from "solid-js";
 
 type Position = "start" | "end" | "last-anchor";
 
@@ -151,7 +151,7 @@ export default function MessageScrollerOpeningPosition() {
           </Tabs>
         </CardFooter>
       </Card>
-      <div class="mx-auto max-w-sm px-0.5 text-center text-xs text-muted-foreground">
+      <div class="mx-auto max-w-sm px-0.5 text-center text-muted-foreground text-xs">
         Toggle the defaultScrollPosition to see where the transcript starts when
         you open the thread
       </div>

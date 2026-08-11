@@ -1,6 +1,5 @@
-import { For } from "solid-js";
-
 import { Bubble, BubbleContent } from "~/registry/ui/bubble.tsx";
+
 import {
   Card,
   CardContent,
@@ -13,7 +12,6 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "~/registry/ui/hover-card.tsx";
-import { Message, MessageContent } from "~/registry/ui/message.tsx";
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -24,6 +22,8 @@ import {
   useMessageScroller,
   useMessageScrollerVisibility,
 } from "~/registry/ui/message-scroller.tsx";
+import { Message, MessageContent } from "~/registry/ui/message.tsx";
+import { For } from "solid-js";
 
 interface ChatMessage {
   id: string;
@@ -88,7 +88,7 @@ function TranscriptOutline() {
         as="button"
         type="button"
         aria-label="Open transcript outline"
-        class="flex h-9 w-9 flex-col items-center justify-center gap-1 rounded-md transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+        class="flex h-9 w-9 flex-col items-center justify-center gap-1 rounded-md outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50"
       >
         <For each={userMessages}>
           {(message) => (
@@ -107,7 +107,7 @@ function TranscriptOutline() {
               aria-current={visibility().currentAnchorId === message.id
                 ? "location"
                 : undefined}
-              class="flex min-h-7 items-center rounded-xl px-2 py-1.5 text-left text-sm transition-colors outline-none hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground aria-current:bg-accent aria-current:text-accent-foreground"
+              class="flex min-h-7 items-center rounded-xl px-2 py-1.5 text-left text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground aria-current:bg-accent aria-current:text-accent-foreground"
               onClick={() =>
                 scrollToMessage(message.id, {
                   align: "start",
@@ -176,7 +176,7 @@ export default function MessageScrollerVisibility() {
             <TranscriptOutline />
           </div>
         </div>
-        <div class="mx-auto max-w-sm px-0.5 text-center text-xs text-muted-foreground">
+        <div class="mx-auto max-w-sm px-0.5 text-center text-muted-foreground text-xs">
           Open the outline to jump between anchored turns as you read.
         </div>
       </div>

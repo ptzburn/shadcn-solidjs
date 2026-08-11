@@ -2,13 +2,13 @@ import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import { Polymorphic } from "@kobalte/core/polymorphic";
 
 import { cn } from "~/lib/utils.ts";
-import type { ButtonProps } from "./button.tsx";
-import { Button } from "./button.tsx";
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import type { Component, ComponentProps, ValidComponent } from "solid-js";
-
 import { splitProps } from "solid-js";
+import type { ButtonProps } from "./button.tsx";
+
+import { Button } from "./button.tsx";
 
 const attachmentVariants = cva(
   "cn-attachment group/attachment relative flex max-w-full min-w-0 shrink-0 flex-wrap border bg-card text-card-foreground transition-colors has-[>a,>button]:hover:bg-muted/50 data-[state=error]:border-destructive/30 data-[state=idle]:border-dashed",
@@ -103,7 +103,7 @@ const AttachmentContent: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="attachment-content"
-      class={cn("cn-attachment-content max-w-full min-w-0 flex-1", local.class)}
+      class={cn("cn-attachment-content min-w-0 max-w-full flex-1", local.class)}
       {...others}
     />
   );
@@ -115,7 +115,7 @@ const AttachmentTitle: Component<ComponentProps<"span">> = (props) => {
     <span
       data-slot="attachment-title"
       class={cn(
-        "cn-attachment-title block max-w-full min-w-0 truncate group-data-[state=processing]/attachment:shimmer group-data-[state=uploading]/attachment:shimmer",
+        "cn-attachment-title group-data-[state=processing]/attachment:shimmer group-data-[state=uploading]/attachment:shimmer block min-w-0 max-w-full truncate",
         local.class,
       )}
       {...others}
@@ -207,7 +207,7 @@ const AttachmentGroup: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="attachment-group"
       class={cn(
-        "cn-attachment-group flex min-w-0 scroll-fade-x snap-x snap-mandatory no-scrollbar overflow-x-auto overscroll-x-contain *:data-[slot=attachment]:flex-none *:data-[slot=attachment]:snap-start",
+        "cn-attachment-group no-scrollbar scroll-fade-x flex min-w-0 snap-x snap-mandatory overflow-x-auto overscroll-x-contain *:data-[slot=attachment]:flex-none *:data-[slot=attachment]:snap-start",
         local.class,
       )}
       {...others}

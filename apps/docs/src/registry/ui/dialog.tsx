@@ -1,12 +1,12 @@
 import * as DialogPrimitive from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 
-import { buttonVariants } from "./button.tsx";
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import type { Component, ComponentProps, JSX, ValidComponent } from "solid-js";
 
 import { Show, splitProps } from "solid-js";
-import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+import { buttonVariants } from "./button.tsx";
 
 const Dialog = DialogPrimitive.Root;
 const DialogPortal = DialogPrimitive.Portal;

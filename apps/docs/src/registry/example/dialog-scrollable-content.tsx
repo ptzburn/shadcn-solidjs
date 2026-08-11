@@ -1,4 +1,3 @@
-import { Index } from "solid-js";
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Dialog,
@@ -8,6 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/registry/ui/dialog.tsx";
+import { Index } from "solid-js";
 
 export default function DialogScrollableContent() {
   return (

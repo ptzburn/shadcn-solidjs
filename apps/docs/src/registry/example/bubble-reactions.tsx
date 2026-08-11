@@ -1,11 +1,11 @@
-import { toast } from "solid-sonner";
-
 import {
   Bubble,
   BubbleContent,
   BubbleReactions,
 } from "~/registry/ui/bubble.tsx";
+
 import { Button } from "~/registry/ui/button.tsx";
+import { toast } from "solid-sonner";
 
 export default function BubbleReactionsDemo() {
   return (

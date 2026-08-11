@@ -1,6 +1,5 @@
-import IconCancel01 from "~icons/hugeicons/cancel-01";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import {
   Card,
   CardAction,
@@ -25,6 +24,7 @@ import {
   SelectValue,
 } from "~/registry/ui/select.tsx";
 import { Textarea } from "~/registry/ui/textarea.tsx";
+import IconCancel01 from "~icons/hugeicons/cancel-01";
 
 type Currency = { label: string; value: string };
 
@@ -83,7 +83,7 @@ export function PayoutThreshold() {
               <FieldLabel id="min-payout-label">
                 Minimum Payout Amount
               </FieldLabel>
-              <span class="text-2xl font-semibold tabular-nums">$2500.00</span>
+              <span class="font-semibold text-2xl tabular-nums">$2500.00</span>
             </div>
             <Progress
               value={25}

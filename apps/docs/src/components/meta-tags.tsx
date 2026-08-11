@@ -1,5 +1,5 @@
-import { mergeProps } from "solid-js";
 import { Link, Meta, Title } from "@solidjs/meta";
+import { mergeProps } from "solid-js";
 
 const BASE_URL = "https://shadcn-solidjs.com";
 

@@ -1,7 +1,7 @@
-import type { ComponentProps } from "solid-js";
-
 import { type Config, useConfig } from "~/lib/hooks/use-config.ts";
+
 import { Tabs } from "~/registry/ui/tabs.tsx";
+import type { ComponentProps } from "solid-js";
 
 /**
  * Port of the upstream CodeTabs: installation tabs whose Command/Manual

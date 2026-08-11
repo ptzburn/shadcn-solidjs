@@ -1,10 +1,6 @@
-import { createMemo, Index, Show } from "solid-js";
-import { Portal } from "solid-js/web";
-
 import { parseDate } from "@ark-ui/solid";
-
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import { Field, FieldLabel } from "~/registry/ui/field.tsx";
+
 import {
   DatePicker,
   DatePickerContent,
@@ -25,6 +21,10 @@ import {
   DatePickerView,
   DatePickerViewControl,
 } from "~/registry/ui/date-picker.tsx";
+
+import { Field, FieldLabel } from "~/registry/ui/field.tsx";
+import { createMemo, Index, Show } from "solid-js";
+import { Portal } from "solid-js/web";
 
 export default function DatePickerRange() {
   const year = new Date().getFullYear();
@@ -51,7 +51,7 @@ export default function DatePickerRange() {
             {(api) => (
               <DatePickerTrigger
                 id="date-picker-range"
-                class="w-full justify-start gap-2 px-2.5 text-sm font-normal"
+                class="w-full justify-start gap-2 px-2.5 font-normal text-sm"
               >
                 <IconPlaceholder
                   lucide="calendar"

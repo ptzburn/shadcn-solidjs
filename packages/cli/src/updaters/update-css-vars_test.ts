@@ -1,6 +1,6 @@
-import { assert, assertEquals, assertStringIncludes } from "@std/assert";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { assert, assertEquals, assertStringIncludes } from "@std/assert";
 
 import type { RegistryItemCssVars } from "../registry/schema.ts";
 import { transformCssVars } from "./update-css-vars.ts";

@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "src/registry/ui/spinner.tsx",
-      "content": "import { cn } from \"~/lib/utils.ts\";\n\nimport { type Component, type ComponentProps, splitProps } from \"solid-js\";\nimport IconLoader from \"~icons/tabler/loader\";\n\nconst Spinner: Component<ComponentProps<\"svg\">> = (props) => {\n  const [local, others] = splitProps(props, [\"class\"]);\n\n  return (\n    <IconLoader\n      data-slot=\"spinner\"\n      role=\"status\"\n      aria-label=\"Loading\"\n      class={cn(\"size-4 animate-spin\", local.class)}\n      {...others}\n    />\n  );\n};\n\nexport { Spinner };\n",
+      "content": "import { cn } from \"~/lib/utils.ts\";\n\nimport IconLoader from \"~icons/tabler/loader\";\nimport { type Component, type ComponentProps, splitProps } from \"solid-js\";\n\nconst Spinner: Component<ComponentProps<\"svg\">> = (props) => {\n  const [local, others] = splitProps(props, [\"class\"]);\n\n  return (\n    <IconLoader\n      data-slot=\"spinner\"\n      role=\"status\"\n      aria-label=\"Loading\"\n      class={cn(\"size-4 animate-spin\", local.class)}\n      {...others}\n    />\n  );\n};\n\nexport { Spinner };\n",
       "type": "registry:ui"
     }
   ]

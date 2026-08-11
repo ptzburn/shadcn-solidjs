@@ -1,6 +1,5 @@
-import { Index } from "solid-js";
-
 import { Card, CardContent } from "~/registry/ui/card.tsx";
+
 import {
   Carousel,
   CarouselContent,
@@ -8,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "~/registry/ui/carousel.tsx";
+import { Index } from "solid-js";
 
 export default function CarouselSize() {
   return (
@@ -24,7 +24,7 @@ export default function CarouselSize() {
               <div class="p-1">
                 <Card>
                   <CardContent class="flex aspect-square items-center justify-center p-6">
-                    <span class="text-3xl font-semibold">{index + 1}</span>
+                    <span class="font-semibold text-3xl">{index + 1}</span>
                   </CardContent>
                 </Card>
               </div>

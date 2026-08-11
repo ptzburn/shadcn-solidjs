@@ -1,11 +1,11 @@
-import { For } from "solid-js";
-
 import { Button } from "~/registry/ui/button.tsx";
+
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "~/registry/ui/tooltip.tsx";
+import { For } from "solid-js";
 
 const TOOLTIP_SIDES = ["left", "top", "bottom", "right"] as const;
 

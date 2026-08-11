@@ -1,5 +1,3 @@
-import { For, Show } from "solid-js";
-
 import {
   Card,
   CardContent,
@@ -7,6 +5,8 @@ import {
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
+
+import { For, Show } from "solid-js";
 
 const qrCells = [
   "111111100101101111111",

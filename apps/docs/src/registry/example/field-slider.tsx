@@ -1,7 +1,7 @@
-import { createSignal } from "solid-js";
-
 import { Field, FieldDescription, FieldTitle } from "~/registry/ui/field.tsx";
+
 import { Slider } from "~/registry/ui/slider.tsx";
+import { createSignal } from "solid-js";
 
 export default function FieldSlider() {
   const [value, setValue] = createSignal([200, 800]);

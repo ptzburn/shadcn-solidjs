@@ -1,6 +1,5 @@
-import { createSignal, For } from "solid-js";
-
 import { Checkbox } from "~/registry/ui/checkbox.tsx";
+
 import {
   Table,
   TableBody,
@@ -9,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/registry/ui/table.tsx";
+import { createSignal, For } from "solid-js";
 
 const tableData = [
   {

@@ -1,19 +1,7 @@
-import { cn } from "~/lib/utils.ts";
-import type { Component, ComponentProps } from "solid-js";
-import {
-  createEffect,
-  createSignal,
-  createUniqueId,
-  mergeProps,
-  on,
-  onCleanup,
-  onMount,
-  Show,
-  splitProps,
-} from "solid-js";
-
 import type { Ref } from "@solid-primitives/refs";
 import { mergeRefs } from "@solid-primitives/refs";
+import { cn } from "~/lib/utils.ts";
+
 import type {
   ChartComponent,
   ChartData,
@@ -47,6 +35,18 @@ import {
   Tooltip,
 } from "chart.js";
 import { merge } from "chart.js/helpers";
+import type { Component, ComponentProps } from "solid-js";
+import {
+  createEffect,
+  createSignal,
+  createUniqueId,
+  mergeProps,
+  on,
+  onCleanup,
+  onMount,
+  Show,
+  splitProps,
+} from "solid-js";
 
 // Format: { THEME_NAME: CSS_SELECTOR }. Kobalte's color mode sets
 // `data-kb-theme` on the root element instead of radix's `.dark` class,
@@ -391,7 +391,7 @@ function showTooltip(context: ChartContext, options?: ChartTooltipOptions) {
         {
           "h-2.5 w-2.5": indicator === "dot",
           "w-1": indicator === "line",
-          "w-0 border-[1.5px] border-dashed bg-transparent":
+          "w-0 border-dashed border-[1.5px] bg-transparent":
             indicator === "dashed",
           "my-0.5": nestLabel && indicator === "dashed",
         },

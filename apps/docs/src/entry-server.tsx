@@ -1,8 +1,8 @@
 // @refresh reload
 import { createHandler, StartServer } from "@solidjs/start/server";
-import { getRequestEvent } from "solid-js/web";
-
 import { parseStyleCookie } from "~/lib/style-context.tsx";
+
+import { getRequestEvent } from "solid-js/web";
 
 export default createHandler(() => (
   <StartServer
