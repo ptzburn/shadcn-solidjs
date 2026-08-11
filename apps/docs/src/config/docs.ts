@@ -324,6 +324,11 @@ export const docsConfig: Config = {
           title: "Figma",
           href: "/docs/figma",
         },
+        {
+          title: "llms.txt",
+          href: "/llms.txt",
+          external: true,
+        },
       ],
     },
   ],

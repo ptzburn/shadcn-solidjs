@@ -66,8 +66,9 @@ export function DocsSidebar() {
                   <For each={category.items}>
                     {(item) => (
                       <SidebarMenuItem>
+                        {/* External entries are not routes, so they need a plain anchor the router will not intercept. */}
                         <SidebarMenuButton
-                          as={A}
+                          as={item.external ? "a" : A}
                           href={item.href}
                           isActive={item.href === location.pathname}
                           class={menuButtonClass}
