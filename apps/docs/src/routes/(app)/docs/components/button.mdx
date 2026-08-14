@@ -1,0 +1,83 @@
+---
+title: Button
+description: Displays a button or a component that looks like a button.
+---
+
+import { Button } from "~/registry/ui/button.tsx";
+
+export function Demo(props) {
+  return (
+    <div
+      data-not-typeset=""
+      class="my-6 flex min-h-24 flex-wrap items-center justify-center gap-3 rounded-xl border p-8"
+    >
+      {props.children}
+    </div>
+  );
+}
+
+<Demo>
+  <Button>Default</Button>
+  <Button variant="secondary">Secondary</Button>
+  <Button variant="outline">Outline</Button>
+  <Button variant="ghost">Ghost</Button>
+  <Button variant="destructive">Destructive</Button>
+  <Button variant="link">Link</Button>
+</Demo>
+
+## Installation
+
+```bash
+npx @ptzburn/shadcn-solidjs@latest add button
+```
+
+Or install the only dependency manually and copy `src/registry/ui/button.tsx`
+into your project:
+
+```bash
+npm install @kobalte/core@alpha
+```
+
+## Usage
+
+```tsx
+import { Button } from "~/components/ui/button.tsx";
+```
+
+```tsx
+<Button variant="outline">Button</Button>
+```
+
+## Size
+
+Use the `size` prop to change the size of the button.
+
+<Demo>
+  <Button size="xs">Extra small</Button>
+  <Button size="sm">Small</Button>
+  <Button size="default">Default</Button>
+  <Button size="lg">Large</Button>
+</Demo>
+
+## Disabled
+
+<Demo>
+  <Button disabled>Disabled</Button>
+  <Button variant="outline" disabled>Disabled outline</Button>
+</Demo>
+
+## As
+
+Use the `as` prop to change the rendered element.
+
+<Demo>
+  <Button as="a" href="https://kobalte.dev" target="_blank">
+    Rendered as an anchor
+  </Button>
+</Demo>
+
+## API Reference
+
+The Button accepts every prop of Kobalte's Button primitive plus `variant`
+(default, secondary, outline, ghost, destructive, link) and `size` (xs, sm,
+default, lg, icon, icon-xs, icon-sm, icon-lg).
