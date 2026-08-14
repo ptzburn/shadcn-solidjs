@@ -25,6 +25,40 @@ export const MDXComponents = {
   h6: (props: ComponentProps<"h6">) => {
     return <h6 data-toc="" {...props} />;
   },
+  // Static passthroughs for every tag markdown emits. The provider's default
+  // map renders unmapped tags through Dynamic, and a hydration-keyed Dynamic
+  // child inside a Kobalte primitive (e.g. a <p> wrapped inside <Button>)
+  // computes a mismatched hydration key under Solid 2 RC and crashes
+  // hydration. Plain elements hydrate structurally and dodge that entirely.
+  p: (props: ComponentProps<"p">) => <p {...props} />,
+  em: (props: ComponentProps<"em">) => <em {...props} />,
+  strong: (props: ComponentProps<"strong">) => <strong {...props} />,
+  del: (props: ComponentProps<"del">) => <del {...props} />,
+  code: (props: ComponentProps<"code">) => <code {...props} />,
+  span: (props: ComponentProps<"span">) => <span {...props} />,
+  div: (props: ComponentProps<"div">) => <div {...props} />,
+  blockquote: (props: ComponentProps<"blockquote">) => (
+    <blockquote
+      {...props}
+    />
+  ),
+  ul: (props: ComponentProps<"ul">) => <ul {...props} />,
+  ol: (props: ComponentProps<"ol">) => <ol {...props} />,
+  li: (props: ComponentProps<"li">) => <li {...props} />,
+  table: (props: ComponentProps<"table">) => <table {...props} />,
+  thead: (props: ComponentProps<"thead">) => <thead {...props} />,
+  tbody: (props: ComponentProps<"tbody">) => <tbody {...props} />,
+  tr: (props: ComponentProps<"tr">) => <tr {...props} />,
+  th: (props: ComponentProps<"th">) => <th {...props} />,
+  td: (props: ComponentProps<"td">) => <td {...props} />,
+  figure: (props: ComponentProps<"figure">) => <figure {...props} />,
+  img: (props: ComponentProps<"img">) => <img {...props} />,
+  hr: (props: ComponentProps<"hr">) => <hr {...props} />,
+  br: (props: ComponentProps<"br">) => <br {...props} />,
+  input: (props: ComponentProps<"input">) => <input {...props} />,
+  section: (props: ComponentProps<"section">) => <section {...props} />,
+  sup: (props: ComponentProps<"sup">) => <sup {...props} />,
+  sub: (props: ComponentProps<"sub">) => <sub {...props} />,
   a: (props: ComponentProps<"a">) => {
     return (
       <a
