@@ -56,10 +56,7 @@ export default defineConfig({
     },
     tailwindcss(),
     solid({
-      // Client-only until Solid 2 RC's hydration-key divergence for
-      // Dynamic children under Kobalte-style polymorphic components is
-      // fixed upstream; flipping this back on is the whole revert.
-      ssr: false,
+      ssr: true,
       start: true,
       extensions: [".mdx", ".md"],
     }),
