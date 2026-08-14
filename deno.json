@@ -4,7 +4,8 @@
     "./packages/*"
   ],
   "exclude": [
-    "packages/cli/npm"
+    "packages/cli/npm",
+    "apps/docs/dist"
   ],
   "nodeModulesDir": "manual",
   "fmt": {
@@ -27,7 +28,6 @@
     "check": "deno check ."
   },
   "imports": {
-    "@solidjs/start": "npm:@solidjs/start@2.0.0",
     "@std/assert": "jsr:@std/assert@^1.0.0",
     "lefthook": "npm:lefthook@^2.1.10"
   },

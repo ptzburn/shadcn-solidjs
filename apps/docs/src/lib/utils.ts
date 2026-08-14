@@ -1,14 +1,7 @@
-// `cn` is authored in the registry so consumers and the docs site share one
-// definition; re-exported here to keep the `~/lib/utils.ts` import path that
-// registry components use.
-export { cn } from "~/registry/lib/utils.ts";
+import type { ClassValue } from "clsx";
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
-export function clamp(val: number, min: number, max: number) {
-  return val > max ? max : val < min ? min : val;
-}
-
-export function toggleValue<T>(array: T[], value: T): T[] {
-  return array.includes(value)
-    ? array.filter((item) => item !== value)
-    : [...array, value];
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }

@@ -1,24 +1,23 @@
-import { MDXComponents } from "~/components/mdx-components.tsx";
+import { Title } from "@solidjs/meta";
 
-import { SiteFooter } from "~/components/site-footer.tsx";
-
-import { SiteHeader } from "~/components/site-header.tsx";
-import { type ParentProps, Suspense } from "solid-js";
-import { MDXProvider } from "solid-mdx";
+import type { ParentProps } from "solid-js";
 
 export default function AppLayout(props: ParentProps) {
   return (
-    <MDXProvider components={MDXComponents}>
-      <div
-        data-slot="layout"
-        class="group/body group/layout relative z-10 flex min-h-svh flex-col overscroll-none bg-background"
-      >
-        <SiteHeader />
-        <main class="flex min-h-0 flex-1 flex-col">
-          <Suspense>{props.children}</Suspense>
-        </main>
-        <SiteFooter />
-      </div>
-    </MDXProvider>
+    <>
+      <Title>shadcn-solidjs</Title>
+      <header class="border-b">
+        <div class="mx-auto flex h-14 max-w-3xl items-center gap-6 px-6">
+          <a href="/" class="font-semibold">shadcn-solidjs</a>
+          <a
+            href="/docs/components/button"
+            class="text-muted-foreground text-sm hover:text-foreground"
+          >
+            Docs
+          </a>
+        </div>
+      </header>
+      <main class="mx-auto max-w-3xl px-6 py-10">{props.children}</main>
+    </>
   );
 }
