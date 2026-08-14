@@ -1,5 +1,7 @@
 import { Title } from "@solidjs/meta";
 
+import { ModeSwitcher } from "~/components/mode-switcher.tsx";
+
 import type { ParentProps } from "solid-js";
 
 export default function AppLayout(props: ParentProps) {
@@ -15,6 +17,9 @@ export default function AppLayout(props: ParentProps) {
           >
             Docs
           </a>
+          <div class="ml-auto">
+            <ModeSwitcher />
+          </div>
         </div>
       </header>
       <main class="mx-auto max-w-3xl px-6 py-10">{props.children}</main>

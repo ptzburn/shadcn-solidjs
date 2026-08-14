@@ -44,6 +44,11 @@ export default defineConfig({
   build: {
     target: "esnext",
   },
+  ssr: {
+    // Kobalte's prebuilt dist is client-only (top-level template() calls);
+    // bundling it lets the solid plugin compile the .jsx source for SSR.
+    noExternal: ["@kobalte/core"],
+  },
   plugins: [
     {
       ...mdxPlugin,
