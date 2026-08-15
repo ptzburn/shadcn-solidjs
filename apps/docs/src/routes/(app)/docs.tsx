@@ -1,5 +1,7 @@
+import { DocsPager } from "~/components/docs-pager.tsx";
 import { DocsSidebar } from "~/components/docs-sidebar.tsx";
 import { MDXComponents } from "~/components/mdx-components.tsx";
+import { TableOfContents } from "~/components/toc.tsx";
 import { MDXProvider } from "~/lib/mdx/provider.tsx";
 import { SidebarProvider } from "~/registry/ui/sidebar.tsx";
 
@@ -7,8 +9,6 @@ import "~/styles/mdx.css";
 
 import type { ParentProps } from "solid-js";
 
-// Reduced from main: DocsPager and the TableOfContents column return with
-// the remaining chrome.
 export default function DocsLayout(props: ParentProps) {
   return (
     <div class="container-wrapper flex flex-1 flex-col px-2">
@@ -30,6 +30,13 @@ export default function DocsLayout(props: ParentProps) {
                     {props.children}
                   </article>
                 </MDXProvider>
+                <DocsPager />
+              </div>
+            </div>
+            <div class="sticky top-[calc(var(--header-height)+1px)] z-30 ml-auto hidden h-[90svh] w-(--sidebar-width) flex-col gap-4 overflow-hidden overscroll-none pb-8 xl:flex">
+              <div class="h-(--top-spacing) shrink-0" />
+              <div class="no-scrollbar scroll-fade flex flex-col gap-8 overflow-y-auto px-8">
+                <TableOfContents />
               </div>
             </div>
           </div>
