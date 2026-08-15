@@ -18,6 +18,7 @@
     "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.3.3",
     "@types/unist": "npm:@types/unist@^3.0.3",
     "unist": "npm:@types/unist@^3.0.3",
+    "unist-util-visit": "npm:unist-util-visit@^5.1.0",
     "class-variance-authority": "npm:class-variance-authority@^0.7.1",
     "clsx": "npm:clsx@^2.1.1",
     "estree-util-value-to-estree": "npm:estree-util-value-to-estree@^3.5.0",

@@ -1,4 +1,6 @@
 import type { ComponentProps } from "@solidjs/web";
+import { CodeBlockCommand } from "~/components/code-block-command.tsx";
+import { CodeTabs } from "~/components/code-tabs.tsx";
 import { ComponentPreview } from "~/components/component-preview.tsx";
 import { CopyButton } from "~/components/copy-button.tsx";
 import { MDXHeader } from "~/components/mdx-header.tsx";
@@ -121,6 +123,8 @@ export const MDXComponents = {
       {...props}
     />
   ),
+  CodeBlockCommand,
+  CodeTabs,
   ComponentPreview,
   MDXHeader,
 };

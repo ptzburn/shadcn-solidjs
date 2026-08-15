@@ -10,6 +10,7 @@ import Icons from "unplugin-icons/vite";
 import { defineConfig } from "vite";
 
 import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
+import remarkNpmCommand from "./src/lib/mdx/npm-command.ts";
 
 const mdxPlugin = mdx({
   jsx: true,
@@ -20,6 +21,7 @@ const mdxPlugin = mdx({
     remarkGfm,
     remarkFrontmatter,
     remarkSolidFrontmatter,
+    remarkNpmCommand,
   ],
   rehypePlugins: [
     rehypeSlug,
