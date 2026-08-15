@@ -21,6 +21,16 @@
     "type": "ui"
   },
   {
+    "name": "avatar",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "files": [
+      "ui/avatar.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "badge",
     "dependencies": [
       "@kobalte/core",
@@ -53,6 +63,13 @@
     ],
     "files": [
       "ui/button-group.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "card",
+    "files": [
+      "ui/card.tsx"
     ],
     "type": "ui"
   },
@@ -90,6 +107,21 @@
     "type": "ui"
   },
   {
+    "name": "field",
+    "dependencies": [
+      "@kobalte/core",
+      "class-variance-authority"
+    ],
+    "registryDependencies": [
+      "label",
+      "separator"
+    ],
+    "files": [
+      "ui/field.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "input",
     "files": [
       "ui/input.tsx"
@@ -113,12 +145,39 @@
     "type": "ui"
   },
   {
+    "name": "kbd",
+    "files": [
+      "ui/kbd.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "label",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "files": [
+      "ui/label.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "popover",
     "dependencies": [
       "@kobalte/core"
     ],
     "files": [
       "ui/popover.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "select",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "files": [
+      "ui/select.tsx"
     ],
     "type": "ui"
   },
@@ -169,6 +228,13 @@
     "name": "skeleton",
     "files": [
       "ui/skeleton.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "spinner",
+    "files": [
+      "ui/spinner.tsx"
     ],
     "type": "ui"
   },

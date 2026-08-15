@@ -1,0 +1,13 @@
+{
+  "name": "label",
+  "dependencies": [
+    "@kobalte/core"
+  ],
+  "files": [
+    {
+      "name": "label.tsx",
+      "content": "import type { PolymorphicProps } from \"@kobalte/core/polymorphic\";\nimport { Polymorphic } from \"@kobalte/core/polymorphic\";\nimport type { ComponentProps, ValidComponent } from \"@solidjs/web\";\nimport { cn } from \"~/lib/utils.ts\";\n\nimport { omit } from \"solid-js\";\n\ntype LabelProps<T extends ValidComponent = \"label\"> = ComponentProps<T> & {\n  class?: string | undefined;\n};\n\nconst Label = <T extends ValidComponent = \"label\">(\n  props: PolymorphicProps<T, LabelProps<T>>,\n) => {\n  const local = props as LabelProps;\n  const others = omit(local, \"class\");\n\n  return (\n    <Polymorphic<LabelProps>\n      as=\"label\"\n      data-slot=\"label\"\n      class={cn(\n        \"flex select-none items-center gap-2 font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none peer-data-disabled:cursor-not-allowed group-data-[disabled=true]:opacity-50 peer-data-disabled:opacity-50\",\n        local.class,\n      )}\n      {...others}\n    />\n  );\n};\n\nexport { Label };\n"
+    }
+  ],
+  "type": "ui"
+}

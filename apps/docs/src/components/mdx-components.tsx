@@ -9,6 +9,19 @@ import { ComponentsList } from "~/components/components-list.tsx";
 import { CopyButton } from "~/components/copy-button.tsx";
 import { MDXHeader } from "~/components/mdx-header.tsx";
 import { cn } from "~/lib/utils.ts";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "~/registry/ui/accordion.tsx";
+import { Alert, AlertDescription, AlertTitle } from "~/registry/ui/alert.tsx";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "~/registry/ui/tabs.tsx";
 
 // Reduced from main: the remaining registry-backed entries
 // (ComponentSource, CodeTabs, Tabs, Accordion, Alert, Callout, ...) return
@@ -127,6 +140,34 @@ export const MDXComponents = {
       {...props}
     />
   ),
+  Tabs: (props: ComponentProps<typeof Tabs>) => (
+    <Tabs class="relative mt-6 w-full" {...props} />
+  ),
+  TabsList: (props: ComponentProps<typeof TabsList>) => (
+    <TabsList
+      class="justify-start gap-4 rounded-none bg-transparent px-0"
+      {...props}
+    />
+  ),
+  TabsTrigger: (props: ComponentProps<typeof TabsTrigger>) => (
+    <TabsTrigger
+      class="rounded-none border-0 border-b-2 border-transparent bg-transparent px-0 pb-3 text-base text-muted-foreground hover:text-primary dark:hover:text-primary dark:data-selected:border-primary dark:data-selected:bg-transparent data-selected:border-primary data-selected:bg-transparent data-selected:text-foreground data-selected:shadow-none!"
+      {...props}
+    />
+  ),
+  TabsContent: (props: ComponentProps<typeof TabsContent>) => (
+    <TabsContent
+      class="relative [&>.steps]:mt-6 [&_h3.font-heading]:font-medium [&_h3.font-heading]:text-base"
+      {...props}
+    />
+  ),
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Alert,
+  AlertTitle,
+  AlertDescription,
   Callout,
   CodeBlockCommand,
   CodeCollapsibleWrapper,

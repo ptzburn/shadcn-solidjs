@@ -1,0 +1,14 @@
+{
+  "name": "spinner",
+  "files": [
+    {
+      "name": "spinner.tsx",
+      "content": "import type { ComponentProps } from \"@solidjs/web\";\nimport { cn } from \"~/lib/utils.ts\";\n\nimport IconLoaderCircle from \"~icons/lucide/loader-circle\";\nimport type { Component } from \"solid-js\";\nimport { omit } from \"solid-js\";\n\nconst Spinner: Component<ComponentProps<\"svg\">> = (props) => {\n  const others = omit(props, \"class\");\n\n  return (\n    <IconLoaderCircle\n      data-slot=\"spinner\"\n      role=\"status\"\n      aria-label=\"Loading\"\n      class={cn(\"size-4 animate-spin\", props.class)}\n      {...others}\n    />\n  );\n};\n\nexport { Spinner };\n"
+    }
+  ],
+  "type": "ui",
+  "dependencies": [
+    "unplugin-icons",
+    "@iconify-json/lucide"
+  ]
+}

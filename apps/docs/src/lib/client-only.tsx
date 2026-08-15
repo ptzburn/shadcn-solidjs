@@ -1,5 +1,5 @@
 import type { JSX } from "@solidjs/web";
-import { createEffect, createSignal, Show } from "solid-js";
+import { createSignal, onSettled, Show } from "solid-js";
 
 /**
  * Renders children on the client only, after hydration.
@@ -14,7 +14,11 @@ import { createEffect, createSignal, Show } from "solid-js";
  */
 export function ClientOnly(props: { children?: JSX.Element }): JSX.Element {
   const [mounted, setMounted] = createSignal(false);
-  createEffect(() => {}, () => {
+  // onSettled rather than an effect: hydration loads route modules
+  // asynchronously, and an effect can fire while later siblings are still
+  // claiming server nodes — mounting then shifts their hydration keys and
+  // halts the page. onSettled waits for all pending async to settle first.
+  onSettled(() => {
     setMounted(true);
   });
   return <Show when={mounted()}>{props.children}</Show>;

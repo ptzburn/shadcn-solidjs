@@ -3,81 +3,138 @@ title: Button
 description: Displays a button or a component that looks like a button.
 ---
 
-import { Button } from "~/registry/ui/button.tsx";
-
-export function Demo(props) {
-  return (
-    <div
-      data-not-typeset=""
-      class="my-6 flex min-h-24 flex-wrap items-center justify-center gap-3 rounded-xl border p-8"
-    >
-      {props.children}
-    </div>
-  );
-}
-
-<Demo>
-  <Button>Default</Button>
-  <Button variant="secondary">Secondary</Button>
-  <Button variant="outline">Outline</Button>
-  <Button variant="ghost">Ghost</Button>
-  <Button variant="destructive">Destructive</Button>
-  <Button variant="link">Link</Button>
-</Demo>
+<ComponentPreview name="button-demo" />
 
 ## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
 
 ```bash
 npx @ptzburn/shadcn-solidjs@latest add button
 ```
 
-Or install the only dependency manually and copy `src/registry/ui/button.tsx`
-into your project:
+</TabsContent>
+
+<TabsContent value="manual">
+<Steps class="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
 
 ```bash
-npm install @kobalte/core@alpha
+npm install @kobalte/core
 ```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="button" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+</TabsContent>
+
+</CodeTabs>
 
 ## Usage
 
 ```tsx
-import { Button } from "~/components/ui/button.tsx";
+import { Button } from "~/components/ui/button"
 ```
 
 ```tsx
 <Button variant="outline">Button</Button>
 ```
 
+## Cursor
+
+Tailwind v4 [switched](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor) from `cursor: pointer` to `cursor: default` for the button component.
+
+If you want to keep the `cursor: pointer` behavior, add the following code to your CSS file:
+
+You can also enable this during project setup with `npx @ptzburn/shadcn-solidjs@latest init --pointer`.
+
+```css showLineNumbers title="app.css"
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+```
+
 ## Size
 
 Use the `size` prop to change the size of the button.
 
-<Demo>
-  <Button size="xs">Extra small</Button>
-  <Button size="sm">Small</Button>
-  <Button size="default">Default</Button>
-  <Button size="lg">Large</Button>
-</Demo>
+<ComponentPreview name="button-size" />
 
-## Disabled
+## Default
 
-<Demo>
-  <Button disabled>Disabled</Button>
-  <Button variant="outline" disabled>Disabled outline</Button>
-</Demo>
+<ComponentPreview name="button-default" />
+
+## Outline
+
+<ComponentPreview name="button-outline" />
+
+## Secondary
+
+<ComponentPreview name="button-secondary" />
+
+## Ghost
+
+<ComponentPreview name="button-ghost" />
+
+## Destructive
+
+<ComponentPreview name="button-destructive" />
+
+## Link
+
+<ComponentPreview name="button-link" />
+
+## Icon
+
+<ComponentPreview name="button-icon" />
+
+## With Icon
+
+Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the icon for the correct spacing.
+
+<ComponentPreview name="button-with-icon" />
+
+## Rounded
+
+Use the `rounded-full` class to make the button rounded.
+
+<ComponentPreview name="button-rounded" />
+
+## Spinner
+
+Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
+
+<ComponentPreview name="button-spinner" />
 
 ## As
 
-Use the `as` prop to change the rendered element.
+You can use the `as` prop on `<Button />` to make another component look like a button. Here's an example of a link that looks like a button.
 
-<Demo>
-  <Button as="a" href="https://kobalte.dev" target="_blank">
-    Rendered as an anchor
-  </Button>
-</Demo>
+<ComponentPreview name="button-as" />
 
 ## API Reference
 
-The Button accepts every prop of Kobalte's Button primitive plus `variant`
-(default, secondary, outline, ghost, destructive, link) and `size` (xs, sm,
-default, lg, icon, icon-xs, icon-sm, icon-lg).
+### Button
+
+The `Button` component is a wrapper around the `button` element that adds a variety of styles and functionality.
+
+| Prop      | Type                                                                                 | Default     |
+| --------- | ------------------------------------------------------------------------------------ | ----------- |
+| `variant` | `"default" \| "outline" \| "ghost" \| "destructive" \| "secondary" \| "link"`        | `"default"` |
+| `size`    | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` |
+| `as`      | `ValidComponent`                                                                     | `"button"`  |
