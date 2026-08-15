@@ -2,6 +2,7 @@ import * as SheetPrimitive from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import type { ComponentProps, JSX, ValidComponent } from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import type { Component } from "solid-js";
 
 import { merge, omit, Show } from "solid-js";
@@ -9,24 +10,6 @@ import { buttonVariants } from "./button.tsx";
 
 const Sheet = SheetPrimitive.Root;
 const SheetPortal = SheetPrimitive.Portal;
-
-// Inline icon until the icon library machinery returns.
-function IconX() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
-  );
-}
 
 type SheetTriggerProps<T extends ValidComponent = "button"> =
   & SheetPrimitive.DialogTriggerProps<T>
@@ -117,7 +100,13 @@ const SheetContent = <T extends ValidComponent = "div">(
               "absolute top-3 right-3",
             )}
           >
-            <IconX />
+            <IconPlaceholder
+              lucide="x"
+              tabler="x"
+              ph="x"
+              ri="close-line"
+              hugeicons="cancel-01"
+            />
             <span class="sr-only">Close</span>
           </SheetPrimitive.CloseButton>
         </Show>

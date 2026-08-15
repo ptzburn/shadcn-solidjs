@@ -6,6 +6,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
+import Icons from "unplugin-icons/vite";
 import { defineConfig } from "vite";
 
 import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
@@ -62,6 +63,10 @@ export default defineConfig({
     }),
     fileRoutes({
       extensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+    }),
+    Icons({
+      compiler: "solid",
+      autoInstall: true,
     }),
   ],
 });
