@@ -9,8 +9,10 @@ import remarkGfm from "remark-gfm";
 import Icons from "unplugin-icons/vite";
 import { defineConfig } from "vite";
 
+import rehypeComponent from "./src/lib/mdx/component.tsx";
 import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
 import remarkNpmCommand from "./src/lib/mdx/npm-command.ts";
+import rehypePrettyCodeSecondPass from "./src/lib/mdx/pretty-code.ts";
 
 const mdxPlugin = mdx({
   jsx: true,
@@ -23,12 +25,23 @@ const mdxPlugin = mdx({
     remarkSolidFrontmatter,
     remarkNpmCommand,
   ],
+  // Two highlighting passes like main: authored fences use the docs
+  // themes, while the registry sources rehypeComponent injects afterwards
+  // keep the github themes.
   rehypePlugins: [
     rehypeSlug,
     [rehypePrettyCode, {
       theme: {
         dark: "vesper",
         light: "github-light-default",
+      },
+      keepBackground: false,
+    }],
+    rehypeComponent,
+    [rehypePrettyCodeSecondPass, {
+      theme: {
+        dark: "github-dark",
+        light: "github-light",
       },
       keepBackground: false,
     }],
