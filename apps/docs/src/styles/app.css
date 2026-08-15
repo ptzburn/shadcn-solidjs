@@ -6,6 +6,10 @@
 
 :root {
   --radius: 0.625rem;
+  --header-height: calc(var(--spacing) * 14);
+  --footer-height: calc(var(--spacing) * 14);
+  /* From main's style-docs.css; the docs shell rounds its surfaces with it. */
+  --docs-surface-radius: var(--radius-xl);
 
   --background: oklch(1 0 0);
   --foreground: oklch(0% 0 0);
@@ -130,6 +134,16 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@utility container-wrapper {
+  @apply mx-auto w-full px-2;
+}
+
+@utility extend-touch-target {
+  @media (pointer: coarse) {
+    @apply relative touch-manipulation after:absolute after:-inset-2;
+  }
 }
 
 @utility no-scrollbar {

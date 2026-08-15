@@ -1,11 +1,12 @@
 import type { ComponentProps } from "@solidjs/web";
+import { ComponentPreview } from "~/components/component-preview.tsx";
 import { CopyButton } from "~/components/copy-button.tsx";
 import { MDXHeader } from "~/components/mdx-header.tsx";
 import { cn } from "~/lib/utils.ts";
 
-// Reduced from main: the registry-backed entries (ComponentPreview,
-// ComponentSource, CodeTabs, Tabs, Accordion, Alert, Callout, ...) return
-// together with their components.
+// Reduced from main: the remaining registry-backed entries
+// (ComponentSource, CodeTabs, Tabs, Accordion, Alert, Callout, ...) return
+// together with their chrome components.
 export const MDXComponents = {
   h1: (props: ComponentProps<"h1">) => {
     return <h1 data-toc="" {...props} />;
@@ -120,5 +121,6 @@ export const MDXComponents = {
       {...props}
     />
   ),
+  ComponentPreview,
   MDXHeader,
 };
