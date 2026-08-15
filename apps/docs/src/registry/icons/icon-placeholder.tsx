@@ -1,5 +1,4 @@
 import type { ComponentProps } from "@solidjs/web";
-import { Dynamic } from "@solidjs/web";
 import {
   type LucideIconName,
   lucideIcons,
@@ -24,7 +23,12 @@ export interface IconPlaceholderProps extends ComponentProps<"svg"> {
  */
 const IconPlaceholder = (props: IconPlaceholderProps) => {
   const rest = omit(props, "lucide", "tabler", "ph", "ri", "hugeicons");
-  return <Dynamic component={lucideIcons[props.lucide]} {...rest} />;
+  // Direct call instead of <Dynamic>: a Dynamic child inside a Kobalte
+  // primitive computes divergent server/client hydration keys under the
+  // Solid 2 RC and crashes hydration (see the mdx-components note and
+  // kobaltedev/kobalte#717). The marker's icon name is static by design,
+  // so the lost reactivity on `lucide` is irrelevant.
+  return lucideIcons[props.lucide](rest);
 };
 
 export { IconPlaceholder };
