@@ -5,7 +5,7 @@
   "files": [
     {
       "path": "src/registry/ui/skeleton.tsx",
-      "content": "import { cn } from \"~/lib/utils.ts\";\nimport type { Component, ComponentProps } from \"solid-js\";\n\nimport { splitProps } from \"solid-js\";\n\nconst Skeleton: Component<ComponentProps<\"div\">> = (props) => {\n  const [local, others] = splitProps(props, [\"class\"]);\n  return (\n    <div\n      data-slot=\"skeleton\"\n      class={cn(\n        \"bg-muted rounded-md animate-pulse\",\n        local.class,\n      )}\n      {...others}\n    />\n  );\n};\n\nexport { Skeleton };\n",
+      "content": "import type { ComponentProps } from \"@solidjs/web\";\nimport { cn } from \"~/lib/utils.ts\";\nimport type { Component } from \"solid-js\";\n\nimport { omit } from \"solid-js\";\n\nconst Skeleton: Component<ComponentProps<\"div\">> = (props) => {\n  const others = omit(props, \"class\");\n  return (\n    <div\n      data-slot=\"skeleton\"\n      class={cn(\n        \"animate-pulse rounded-md bg-muted\",\n        props.class,\n      )}\n      {...others}\n    />\n  );\n};\n\nexport { Skeleton };\n",
       "type": "registry:ui"
     }
   ]

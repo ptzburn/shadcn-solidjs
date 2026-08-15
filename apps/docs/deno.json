@@ -4,11 +4,17 @@
     "build": "deno run -A npm:vite build",
     "start": "deno run -A npm:vite preview --port 3228",
     "release": "changeset version",
+    "build:registry": "deno run -A ./src/scripts/build-icons.ts && deno run -A ./src/scripts/build-registry.ts && deno fmt ./src/__registry__ ./src/registry/icons",
     "check": "deno fmt ./src/ && deno lint ./src/ && deno check ./src/",
     "lint": "deno lint ./src/"
   },
   "imports": {
+    "@iconify-json/hugeicons": "npm:@iconify-json/hugeicons@^1.2.32",
+    "@iconify-json/lucide": "npm:@iconify-json/lucide@^1.2.121",
+    "@iconify-json/ph": "npm:@iconify-json/ph@^1.2.2",
+    "@iconify-json/ri": "npm:@iconify-json/ri@^1.2.10",
     "@iconify-json/simple-icons": "npm:@iconify-json/simple-icons@^1.2.93",
+    "@iconify-json/tabler": "npm:@iconify-json/tabler@^1.2.38",
     "@kobalte/core": "npm:@kobalte/core@2.0.0-alpha.0",
     "@mdx-js/rollup": "npm:@mdx-js/rollup@^3.1.1",
     "@solidjs/meta": "npm:@solidjs/meta@1.0.0-next.2",
@@ -35,6 +41,7 @@
     "unplugin-icons": "npm:unplugin-icons@^23.0.1",
     "vite": "npm:vite@^8.2.0",
     "yaml": "npm:yaml@^2.9.0",
+    "zod": "npm:zod@^4.4.3",
     "~/": "./src/"
   },
   "compilerOptions": {

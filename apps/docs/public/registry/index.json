@@ -21,51 +21,6 @@
     "type": "ui"
   },
   {
-    "name": "alert-dialog",
-    "dependencies": [
-      "@kobalte/core",
-      "class-variance-authority"
-    ],
-    "registryDependencies": [
-      "button"
-    ],
-    "files": [
-      "ui/alert-dialog.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "aspect-ratio",
-    "files": [
-      "ui/aspect-ratio.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "attachment",
-    "dependencies": [
-      "@kobalte/core",
-      "class-variance-authority"
-    ],
-    "registryDependencies": [
-      "button"
-    ],
-    "files": [
-      "ui/attachment.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "avatar",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/avatar.tsx"
-    ],
-    "type": "ui"
-  },
-  {
     "name": "badge",
     "dependencies": [
       "@kobalte/core",
@@ -73,27 +28,6 @@
     ],
     "files": [
       "ui/badge.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "breadcrumb",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/breadcrumb.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "bubble",
-    "dependencies": [
-      "@kobalte/core",
-      "class-variance-authority"
-    ],
-    "files": [
-      "ui/bubble.tsx"
     ],
     "type": "ui"
   },
@@ -123,105 +57,12 @@
     "type": "ui"
   },
   {
-    "name": "card",
-    "files": [
-      "ui/card.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "carousel",
-    "dependencies": [
-      "embla-carousel-solid"
-    ],
-    "registryDependencies": [
-      "button"
-    ],
-    "files": [
-      "ui/carousel.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "chart",
-    "dependencies": [
-      "chart.js",
-      "@solid-primitives/refs"
-    ],
-    "files": [
-      "ui/chart.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "checkbox",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/checkbox.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "combobox",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "registryDependencies": [
-      "button",
-      "input-group"
-    ],
-    "files": [
-      "ui/combobox.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "command",
-    "dependencies": [
-      "@kobalte/core",
-      "cmdk-solid"
-    ],
-    "registryDependencies": [
-      "dialog",
-      "input-group"
-    ],
-    "files": [
-      "ui/command.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "context-menu",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/context-menu.tsx"
-    ],
-    "type": "ui"
-  },
-  {
     "name": "collapsible",
     "dependencies": [
       "@kobalte/core"
     ],
     "files": [
       "ui/collapsible.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "date-picker",
-    "dependencies": [
-      "@ark-ui/solid"
-    ],
-    "registryDependencies": [
-      "button"
-    ],
-    "files": [
-      "ui/date-picker.tsx"
     ],
     "type": "ui"
   },
@@ -239,57 +80,12 @@
     "type": "ui"
   },
   {
-    "name": "drawer",
-    "dependencies": [
-      "@corvu/drawer"
-    ],
-    "files": [
-      "ui/drawer.tsx"
-    ],
-    "type": "ui"
-  },
-  {
     "name": "dropdown-menu",
     "dependencies": [
       "@kobalte/core"
     ],
     "files": [
       "ui/dropdown-menu.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "empty",
-    "dependencies": [
-      "class-variance-authority"
-    ],
-    "files": [
-      "ui/empty.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "field",
-    "dependencies": [
-      "@kobalte/core",
-      "class-variance-authority"
-    ],
-    "registryDependencies": [
-      "label",
-      "separator"
-    ],
-    "files": [
-      "ui/field.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "hover-card",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/hover-card.tsx"
     ],
     "type": "ui"
   },
@@ -317,178 +113,12 @@
     "type": "ui"
   },
   {
-    "name": "input-otp",
-    "dependencies": [
-      "@corvu/otp-field"
-    ],
-    "files": [
-      "ui/input-otp.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "item",
-    "dependencies": [
-      "@kobalte/core",
-      "class-variance-authority"
-    ],
-    "registryDependencies": [
-      "separator"
-    ],
-    "files": [
-      "ui/item.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "kbd",
-    "files": [
-      "ui/kbd.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "label",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/label.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "marker",
-    "dependencies": [
-      "@kobalte/core",
-      "class-variance-authority"
-    ],
-    "files": [
-      "ui/marker.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "menubar",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/menubar.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "message",
-    "files": [
-      "ui/message.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "message-scroller",
-    "dependencies": [
-      "@kobalte/core",
-      "@solid-primitives/refs"
-    ],
-    "registryDependencies": [
-      "button"
-    ],
-    "files": [
-      "ui/message-scroller.tsx",
-      "ui/message-scroller-primitive.ts",
-      "ui/message-scroller-components.tsx",
-      "ui/message-scroller-controller.ts",
-      "ui/message-scroller-geometry.ts",
-      "ui/message-scroller-types.ts"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "native-select",
-    "files": [
-      "ui/native-select.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "navigation-menu",
-    "dependencies": [
-      "@kobalte/core",
-      "class-variance-authority"
-    ],
-    "files": [
-      "ui/navigation-menu.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "pagination",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "registryDependencies": [
-      "button"
-    ],
-    "files": [
-      "ui/pagination.tsx"
-    ],
-    "type": "ui"
-  },
-  {
     "name": "popover",
     "dependencies": [
       "@kobalte/core"
     ],
     "files": [
       "ui/popover.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "progress",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/progress.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "radio-group",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/radio-group.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "resizable",
-    "dependencies": [
-      "@corvu/resizable"
-    ],
-    "files": [
-      "ui/resizable.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "scroll-area",
-    "files": [
-      "ui/scroll-area.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "select",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/select.tsx"
     ],
     "type": "ui"
   },
@@ -543,51 +173,6 @@
     "type": "ui"
   },
   {
-    "name": "slider",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/slider.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "sonner",
-    "dependencies": [
-      "@kobalte/core",
-      "solid-sonner"
-    ],
-    "files": [
-      "ui/sonner.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "spinner",
-    "files": [
-      "ui/spinner.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "switch",
-    "dependencies": [
-      "@kobalte/core"
-    ],
-    "files": [
-      "ui/switch.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "table",
-    "files": [
-      "ui/table.tsx"
-    ],
-    "type": "ui"
-  },
-  {
     "name": "tabs",
     "dependencies": [
       "@kobalte/core",
@@ -602,31 +187,6 @@
     "name": "textarea",
     "files": [
       "ui/textarea.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "toggle",
-    "dependencies": [
-      "@kobalte/core",
-      "class-variance-authority"
-    ],
-    "files": [
-      "ui/toggle.tsx"
-    ],
-    "type": "ui"
-  },
-  {
-    "name": "toggle-group",
-    "dependencies": [
-      "@kobalte/core",
-      "class-variance-authority"
-    ],
-    "registryDependencies": [
-      "toggle"
-    ],
-    "files": [
-      "ui/toggle-group.tsx"
     ],
     "type": "ui"
   },
