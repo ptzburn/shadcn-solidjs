@@ -13,6 +13,7 @@ import rehypeComponent from "./src/lib/mdx/component.tsx";
 import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
 import remarkNpmCommand from "./src/lib/mdx/npm-command.ts";
 import rehypePrettyCodeSecondPass from "./src/lib/mdx/pretty-code.ts";
+import { solidjsSignalsOmitFix } from "./src/lib/vite/solidjs-signals-omit-fix.ts";
 
 const mdxPlugin = mdx({
   jsx: true,
@@ -65,7 +66,15 @@ export default defineConfig({
     // bundling it lets the solid plugin compile the .jsx source for SSR.
     noExternal: ["@kobalte/core"],
   },
+  optimizeDeps: {
+    // The dev prebundle bypasses regular plugin transforms, so the omit fix
+    // must also run inside the dep optimizer.
+    rolldownOptions: {
+      plugins: [solidjsSignalsOmitFix()],
+    },
+  },
   plugins: [
+    solidjsSignalsOmitFix(),
     {
       ...mdxPlugin,
       enforce: "pre",
