@@ -24,7 +24,11 @@ type Config = {
 
 export const COMPONENTS_INDEX = "/docs/components";
 
-export const docsConfig: Config = {
+// The authored list below mirrors main in full. Components whose docs page
+// has not landed yet are hidden from the nav by the filter at the bottom of
+// this file, keyed off the pages that actually exist — adding the .mdx page
+// brings its entry back.
+const fullConfig: Config = {
   mainNav: [
     {
       title: "Home",
@@ -332,6 +336,26 @@ export const docsConfig: Config = {
       ],
     },
   ],
+};
+
+const componentDocs = new Set(
+  Object.keys(
+    // The parens in the route-group directory are glob metacharacters and
+    // need escaping to match literally.
+    import.meta.glob("../routes/\\(app\\)/docs/components/*.mdx"),
+  ).map((path) => path.split("/").pop()!.replace(/\.mdx$/, "")),
+);
+
+const isPorted = (item: NavElement) =>
+  item.external || componentDocs.has(item.href.split("/").pop()!);
+
+export const docsConfig: Config = {
+  ...fullConfig,
+  sidebarNav: fullConfig.sidebarNav.map((category) =>
+    category.title === "Components"
+      ? { ...category, items: category.items.filter(isPorted) }
+      : category
+  ),
 };
 
 export const componentPages =
