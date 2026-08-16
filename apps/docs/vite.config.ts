@@ -61,6 +61,11 @@ export default defineConfig({
   build: {
     target: "esnext",
   },
+  preview: {
+    // vite preview 403s Host headers it does not recognize; the leading
+    // dot covers the apex domain and any subdomain (v2., www., ...).
+    allowedHosts: [".shadcn-solidjs.com"],
+  },
   ssr: {
     // Kobalte's prebuilt dist is client-only (top-level template() calls);
     // bundling it lets the solid plugin compile the .jsx source for SSR.
