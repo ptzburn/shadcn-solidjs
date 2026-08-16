@@ -26,6 +26,11 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "aspect-ratio",
+      "type": "registry:ui"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "avatar",
       "type": "registry:ui",
       "dependencies": [
@@ -39,6 +44,18 @@
       "dependencies": [
         "@kobalte/core",
         "class-variance-authority"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ],
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
       ]
     },
     {
@@ -66,6 +83,18 @@
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "card",
       "type": "registry:ui"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "checkbox",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ],
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -104,6 +133,14 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "empty",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "field",
       "type": "registry:ui",
       "dependencies": [
@@ -136,6 +173,18 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "item",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "separator"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "kbd",
       "type": "registry:ui"
     },
@@ -149,7 +198,32 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "native-select",
+      "type": "registry:ui",
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "popover",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "progress",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "radio-group",
       "type": "registry:ui",
       "dependencies": [
         "@kobalte/core"
@@ -219,12 +293,33 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "slider",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "spinner",
       "type": "registry:ui",
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "switch",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "table",
+      "type": "registry:ui"
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -239,6 +334,27 @@
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "textarea",
       "type": "registry:ui"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toggle",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core",
+        "class-variance-authority"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "toggle"
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

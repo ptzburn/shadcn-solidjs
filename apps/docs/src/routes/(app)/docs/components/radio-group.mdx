@@ -1,0 +1,128 @@
+---
+title: Radio Group
+description: A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
+---
+
+<ComponentPreview name="radio-group-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx @ptzburn/shadcn-solidjs@latest add radio-group
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+<Steps class="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @kobalte/core
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="radio-group" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Label } from "~/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "~/components/ui/radio-group"
+```
+
+```tsx showLineNumbers
+<RadioGroup defaultValue="option-one">
+  <div class="flex items-center gap-3">
+    <RadioGroupItem value="option-one" id="option-one" />
+    <Label for="option-one-input">Option One</Label>
+  </div>
+  <div class="flex items-center gap-3">
+    <RadioGroupItem value="option-two" id="option-two" />
+    <Label for="option-two-input">Option Two</Label>
+  </div>
+</RadioGroup>
+```
+
+`RadioGroupItem` renders a visually hidden `<input type="radio">` alongside the
+control. The input's id is the item's id with an `-input` suffix, so a `Label`
+or `FieldLabel` points at `<item-id>-input`.
+
+Alternatively, pass a `RadioGroupItemLabel` as a child of `RadioGroupItem` and
+Kobalte wires the label to the input for you.
+
+```tsx showLineNumbers
+<RadioGroup defaultValue="option-one">
+  <RadioGroupItem value="option-one">
+    <RadioGroupItemLabel>Option One</RadioGroupItemLabel>
+  </RadioGroupItem>
+  <RadioGroupItem value="option-two">
+    <RadioGroupItemLabel>Option Two</RadioGroupItemLabel>
+  </RadioGroupItem>
+</RadioGroup>
+```
+
+## Composition
+
+Use the following composition to build a `RadioGroup`:
+
+```text
+RadioGroup
+├── RadioGroupItem
+│   └── RadioGroupItemLabel
+└── RadioGroupItem
+    └── RadioGroupItemLabel
+```
+
+## Description
+
+Radio group items with a description using the `Field` component.
+
+<ComponentPreview name="radio-group-description" />
+
+## Choice Card
+
+Use `FieldLabel` to wrap the entire `Field` for a clickable card-style selection.
+
+<ComponentPreview name="radio-group-choice-card" />
+
+## Fieldset
+
+Use `FieldSet` and `FieldLegend` to group radio items with a label and description.
+
+<ComponentPreview name="radio-group-fieldset" />
+
+## Disabled
+
+Use the `disabled` prop on `RadioGroupItem` to disable individual items.
+
+<ComponentPreview name="radio-group-disabled" />
+
+## Invalid
+
+Use `validationState="invalid"` on `RadioGroup` and `data-invalid` on `Field` to
+show validation errors.
+
+<ComponentPreview name="radio-group-invalid" />
+
+## API Reference
+
+See the [Kobalte](https://kobalte.dev/docs/core/components/radio-group) documentation for more information.

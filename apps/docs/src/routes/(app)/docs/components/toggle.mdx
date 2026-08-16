@@ -1,0 +1,109 @@
+---
+title: Toggle
+description: A two-state button that can be either on or off.
+---
+
+<ComponentPreview name="toggle-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx @ptzburn/shadcn-solidjs@latest add toggle
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+<Steps class="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @kobalte/core
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="toggle" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { Toggle } from "~/components/ui/toggle"
+```
+
+```tsx
+<Toggle>Toggle</Toggle>
+```
+
+## Outline
+
+Use `variant="outline"` for an outline style.
+
+<ComponentPreview name="toggle-outline" />
+
+## With Text
+
+<ComponentPreview name="toggle-text" />
+
+## Size
+
+Use the `size` prop to change the size of the toggle.
+
+<ComponentPreview name="toggle-sizes" />
+
+## Disabled
+
+<ComponentPreview name="toggle-disabled" />
+
+## Controlled
+
+Use the `pressed` and `onChange` props to control the toggle.
+
+```tsx showLineNumbers
+import { createSignal } from "solid-js"
+
+import { Toggle } from "~/components/ui/toggle"
+
+export function ToggleControlled() {
+  const [pressed, setPressed] = createSignal(false)
+
+  return (
+    <Toggle pressed={pressed()} onChange={setPressed} aria-label="Toggle bold">
+      Bold
+    </Toggle>
+  )
+}
+```
+
+The children can also be a render prop that receives the toggle state.
+
+```tsx showLineNumbers
+<Toggle aria-label="Toggle bold">
+  {(state) => (
+    <Show when={state.pressed()} fallback={<IconOff />}>
+      <IconOn />
+    </Show>
+  )}
+</Toggle>
+```
+
+## API Reference
+
+See the [Kobalte](https://kobalte.dev/docs/core/components/toggle-button) documentation for more information.

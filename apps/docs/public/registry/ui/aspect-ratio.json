@@ -1,0 +1,10 @@
+{
+  "name": "aspect-ratio",
+  "files": [
+    {
+      "name": "aspect-ratio.tsx",
+      "content": "import type { ComponentProps, JSX } from \"@solidjs/web\";\nimport type { Component } from \"solid-js\";\nimport { merge, omit } from \"solid-js\";\n\ntype AspectRatioProps = ComponentProps<\"div\"> & { ratio?: number };\n\nconst AspectRatio: Component<AspectRatioProps> = (rawProps) => {\n  const props = merge({ ratio: 1 / 1 }, rawProps);\n  const others = omit(props, \"ratio\", \"style\");\n  const style = (): JSX.CSSProperties => ({\n    ...(typeof props.style === \"object\" ? props.style : {}),\n    position: \"absolute\",\n    top: 0,\n    right: 0,\n    bottom: 0,\n    left: 0,\n  });\n  return (\n    <div\n      style={{\n        position: \"relative\",\n        width: \"100%\",\n        \"padding-bottom\": `${100 / props.ratio}%`,\n      }}\n    >\n      <div data-slot=\"aspect-ratio\" style={style()} {...others} />\n    </div>\n  );\n};\n\nexport { AspectRatio };\n"
+    }
+  ],
+  "type": "ui"
+}
