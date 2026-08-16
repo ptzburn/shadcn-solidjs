@@ -30,6 +30,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "alert-dialog": {
+    name: "alert-dialog",
+    description: "",
+    type: "ui",
+    registryDependencies: ["button"],
+    component: lazy(() => import("~/registry/ui/alert-dialog.tsx")),
+    files: [{
+      path: "registry/ui/alert-dialog.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "aspect-ratio": {
     name: "aspect-ratio",
     description: "",
@@ -126,6 +138,30 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "combobox": {
+    name: "combobox",
+    description: "",
+    type: "ui",
+    registryDependencies: ["button", "input-group"],
+    component: lazy(() => import("~/registry/ui/combobox.tsx")),
+    files: [{
+      path: "registry/ui/combobox.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
+  "context-menu": {
+    name: "context-menu",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/context-menu.tsx")),
+    files: [{
+      path: "registry/ui/context-menu.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "collapsible": {
     name: "collapsible",
     description: "",
@@ -182,6 +218,18 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/ui/field.tsx")),
     files: [{
       path: "registry/ui/field.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
+  "hover-card": {
+    name: "hover-card",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/hover-card.tsx")),
+    files: [{
+      path: "registry/ui/hover-card.tsx",
       type: "ui",
       target: "",
     }],
@@ -246,6 +294,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "menubar": {
+    name: "menubar",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/menubar.tsx")),
+    files: [{
+      path: "registry/ui/menubar.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "native-select": {
     name: "native-select",
     description: "",
@@ -254,6 +314,30 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/ui/native-select.tsx")),
     files: [{
       path: "registry/ui/native-select.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
+  "navigation-menu": {
+    name: "navigation-menu",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/navigation-menu.tsx")),
+    files: [{
+      path: "registry/ui/navigation-menu.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
+  "pagination": {
+    name: "pagination",
+    description: "",
+    type: "ui",
+    registryDependencies: ["button"],
+    component: lazy(() => import("~/registry/ui/pagination.tsx")),
+    files: [{
+      path: "registry/ui/pagination.tsx",
       type: "ui",
       target: "",
     }],
@@ -598,6 +682,82 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/alert-destructive.tsx")),
     files: [{
       path: "registry/example/alert-destructive.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-dialog-basic": {
+    name: "alert-dialog-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/alert-dialog-basic.tsx")),
+    files: [{
+      path: "registry/example/alert-dialog-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-dialog-demo": {
+    name: "alert-dialog-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/alert-dialog-demo.tsx")),
+    files: [{
+      path: "registry/example/alert-dialog-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-dialog-destructive": {
+    name: "alert-dialog-destructive",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/alert-dialog-destructive.tsx")
+    ),
+    files: [{
+      path: "registry/example/alert-dialog-destructive.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-dialog-media": {
+    name: "alert-dialog-media",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/alert-dialog-media.tsx")),
+    files: [{
+      path: "registry/example/alert-dialog-media.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-dialog-small": {
+    name: "alert-dialog-small",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/alert-dialog-small.tsx")),
+    files: [{
+      path: "registry/example/alert-dialog-small.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "alert-dialog-small-media": {
+    name: "alert-dialog-small-media",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/alert-dialog-small-media.tsx")
+    ),
+    files: [{
+      path: "registry/example/alert-dialog-small-media.tsx",
       type: "example",
       target: "",
     }],
@@ -1392,6 +1552,232 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "combobox-basic": {
+    name: "combobox-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-basic.tsx")),
+    files: [{
+      path: "registry/example/combobox-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-clear": {
+    name: "combobox-clear",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-clear.tsx")),
+    files: [{
+      path: "registry/example/combobox-clear.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-custom": {
+    name: "combobox-custom",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-custom.tsx")),
+    files: [{
+      path: "registry/example/combobox-custom.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-demo": {
+    name: "combobox-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-demo.tsx")),
+    files: [{
+      path: "registry/example/combobox-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-disabled": {
+    name: "combobox-disabled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-disabled.tsx")),
+    files: [{
+      path: "registry/example/combobox-disabled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-groups": {
+    name: "combobox-groups",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-groups.tsx")),
+    files: [{
+      path: "registry/example/combobox-groups.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-input-group": {
+    name: "combobox-input-group",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/combobox-input-group.tsx")
+    ),
+    files: [{
+      path: "registry/example/combobox-input-group.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-invalid": {
+    name: "combobox-invalid",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-invalid.tsx")),
+    files: [{
+      path: "registry/example/combobox-invalid.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "combobox-multiple": {
+    name: "combobox-multiple",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/combobox-multiple.tsx")),
+    files: [{
+      path: "registry/example/combobox-multiple.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-basic": {
+    name: "context-menu-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/context-menu-basic.tsx")),
+    files: [{
+      path: "registry/example/context-menu-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-checkboxes": {
+    name: "context-menu-checkboxes",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/context-menu-checkboxes.tsx")
+    ),
+    files: [{
+      path: "registry/example/context-menu-checkboxes.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-demo": {
+    name: "context-menu-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/context-menu-demo.tsx")),
+    files: [{
+      path: "registry/example/context-menu-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-destructive": {
+    name: "context-menu-destructive",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/context-menu-destructive.tsx")
+    ),
+    files: [{
+      path: "registry/example/context-menu-destructive.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-groups": {
+    name: "context-menu-groups",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/context-menu-groups.tsx")),
+    files: [{
+      path: "registry/example/context-menu-groups.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-icons": {
+    name: "context-menu-icons",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/context-menu-icons.tsx")),
+    files: [{
+      path: "registry/example/context-menu-icons.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-radio": {
+    name: "context-menu-radio",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/context-menu-radio.tsx")),
+    files: [{
+      path: "registry/example/context-menu-radio.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-shortcuts": {
+    name: "context-menu-shortcuts",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/context-menu-shortcuts.tsx")
+    ),
+    files: [{
+      path: "registry/example/context-menu-shortcuts.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "context-menu-submenu": {
+    name: "context-menu-submenu",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/context-menu-submenu.tsx")
+    ),
+    files: [{
+      path: "registry/example/context-menu-submenu.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "dialog-close-button": {
     name: "dialog-close-button",
     description: "",
@@ -1832,6 +2218,30 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/field-responsive.tsx")),
     files: [{
       path: "registry/example/field-responsive.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "hover-card-demo": {
+    name: "hover-card-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/hover-card-demo.tsx")),
+    files: [{
+      path: "registry/example/hover-card-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "hover-card-sides": {
+    name: "hover-card-sides",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/hover-card-sides.tsx")),
+    files: [{
+      path: "registry/example/hover-card-sides.tsx",
       type: "example",
       target: "",
     }],
@@ -2364,6 +2774,66 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "menubar-checkbox": {
+    name: "menubar-checkbox",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/menubar-checkbox.tsx")),
+    files: [{
+      path: "registry/example/menubar-checkbox.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "menubar-demo": {
+    name: "menubar-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/menubar-demo.tsx")),
+    files: [{
+      path: "registry/example/menubar-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "menubar-icons": {
+    name: "menubar-icons",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/menubar-icons.tsx")),
+    files: [{
+      path: "registry/example/menubar-icons.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "menubar-radio": {
+    name: "menubar-radio",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/menubar-radio.tsx")),
+    files: [{
+      path: "registry/example/menubar-radio.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "menubar-submenu": {
+    name: "menubar-submenu",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/menubar-submenu.tsx")),
+    files: [{
+      path: "registry/example/menubar-submenu.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "native-select-demo": {
     name: "native-select-demo",
     description: "",
@@ -2414,6 +2884,58 @@ export const Index: RegistryIndex = {
     ),
     files: [{
       path: "registry/example/native-select-invalid.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "navigation-menu-demo": {
+    name: "navigation-menu-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/navigation-menu-demo.tsx")
+    ),
+    files: [{
+      path: "registry/example/navigation-menu-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "pagination-demo": {
+    name: "pagination-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/pagination-demo.tsx")),
+    files: [{
+      path: "registry/example/pagination-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "pagination-simple": {
+    name: "pagination-simple",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/pagination-simple.tsx")),
+    files: [{
+      path: "registry/example/pagination-simple.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "pagination-icons-only": {
+    name: "pagination-icons-only",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/pagination-icons-only.tsx")
+    ),
+    files: [{
+      path: "registry/example/pagination-icons-only.tsx",
       type: "example",
       target: "",
     }],

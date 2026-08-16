@@ -21,6 +21,20 @@
     "type": "ui"
   },
   {
+    "name": "alert-dialog",
+    "dependencies": [
+      "@kobalte/core",
+      "class-variance-authority"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "files": [
+      "ui/alert-dialog.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "aspect-ratio",
     "files": [
       "ui/aspect-ratio.tsx"
@@ -101,6 +115,30 @@
     "type": "ui"
   },
   {
+    "name": "combobox",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "registryDependencies": [
+      "button",
+      "input-group"
+    ],
+    "files": [
+      "ui/combobox.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "context-menu",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "files": [
+      "ui/context-menu.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "collapsible",
     "dependencies": [
       "@kobalte/core"
@@ -159,6 +197,16 @@
     "type": "ui"
   },
   {
+    "name": "hover-card",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "files": [
+      "ui/hover-card.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "input",
     "files": [
       "ui/input.tsx"
@@ -213,9 +261,43 @@
     "type": "ui"
   },
   {
+    "name": "menubar",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "files": [
+      "ui/menubar.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "native-select",
     "files": [
       "ui/native-select.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "navigation-menu",
+    "dependencies": [
+      "@kobalte/core",
+      "class-variance-authority"
+    ],
+    "files": [
+      "ui/navigation-menu.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "pagination",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "files": [
+      "ui/pagination.tsx"
     ],
     "type": "ui"
   },
