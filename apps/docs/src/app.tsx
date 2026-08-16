@@ -3,6 +3,7 @@ import { createRouter } from "@solidjs/router";
 import { fileRoutes } from "@solidjs/router/fs";
 import { getRequestEvent, isServer } from "@solidjs/web";
 
+import { MetaTags } from "~/components/meta-tags.tsx";
 import {
   ColorModeProvider,
   ColorModeScript,
@@ -26,6 +27,7 @@ export default function App() {
 
   return (
     <>
+      <MetaTags />
       <ColorModeScript storageType={storageManager.type} />
       <ColorModeProvider storageManager={storageManager}>
         <Router>

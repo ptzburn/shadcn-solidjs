@@ -1,5 +1,3 @@
-import { Title } from "@solidjs/meta";
-
 import { SiteFooter } from "~/components/site-footer.tsx";
 import { SiteHeader } from "~/components/site-header.tsx";
 
@@ -8,7 +6,6 @@ import type { ParentProps } from "solid-js";
 export default function AppLayout(props: ParentProps) {
   return (
     <>
-      <Title>shadcn-solidjs</Title>
       <div
         data-slot="layout"
         class="group/body group/layout relative z-10 flex min-h-svh flex-col overscroll-none bg-background"
