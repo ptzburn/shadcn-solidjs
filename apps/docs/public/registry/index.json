@@ -164,7 +164,7 @@
   {
     "name": "drawer",
     "dependencies": [
-      "@corvu/drawer"
+      "@kobalte/core"
     ],
     "files": [
       "ui/drawer.tsx"
@@ -236,6 +236,16 @@
     ],
     "files": [
       "ui/input-group.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "input-otp",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "files": [
+      "ui/input-otp.tsx"
     ],
     "type": "ui"
   },
@@ -338,6 +348,16 @@
     ],
     "files": [
       "ui/radio-group.tsx"
+    ],
+    "type": "ui"
+  },
+  {
+    "name": "resizable",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "files": [
+      "ui/resizable.tsx"
     ],
     "type": "ui"
   },

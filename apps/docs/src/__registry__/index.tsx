@@ -270,6 +270,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "input-otp": {
+    name: "input-otp",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/input-otp.tsx")),
+    files: [{
+      path: "registry/ui/input-otp.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "item": {
     name: "item",
     description: "",
@@ -386,6 +398,18 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/ui/radio-group.tsx")),
     files: [{
       path: "registry/ui/radio-group.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
+  "resizable": {
+    name: "resizable",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/resizable.tsx")),
+    files: [{
+      path: "registry/ui/resizable.tsx",
       type: "ui",
       target: "",
     }],
@@ -2644,6 +2668,120 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "input-otp-demo": {
+    name: "input-otp-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-otp-demo.tsx")),
+    files: [{
+      path: "registry/example/input-otp-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-otp-pattern": {
+    name: "input-otp-pattern",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-otp-pattern.tsx")),
+    files: [{
+      path: "registry/example/input-otp-pattern.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-otp-separator": {
+    name: "input-otp-separator",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-otp-separator.tsx")),
+    files: [{
+      path: "registry/example/input-otp-separator.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-otp-disabled": {
+    name: "input-otp-disabled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-otp-disabled.tsx")),
+    files: [{
+      path: "registry/example/input-otp-disabled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-otp-controlled": {
+    name: "input-otp-controlled",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/input-otp-controlled.tsx")
+    ),
+    files: [{
+      path: "registry/example/input-otp-controlled.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-otp-invalid": {
+    name: "input-otp-invalid",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-otp-invalid.tsx")),
+    files: [{
+      path: "registry/example/input-otp-invalid.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-otp-four-digits": {
+    name: "input-otp-four-digits",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/input-otp-four-digits.tsx")
+    ),
+    files: [{
+      path: "registry/example/input-otp-four-digits.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-otp-alphanumeric": {
+    name: "input-otp-alphanumeric",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/input-otp-alphanumeric.tsx")
+    ),
+    files: [{
+      path: "registry/example/input-otp-alphanumeric.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "input-otp-form": {
+    name: "input-otp-form",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/input-otp-form.tsx")),
+    files: [{
+      path: "registry/example/input-otp-form.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "item-demo": {
     name: "item-demo",
     description: "",
@@ -3162,6 +3300,42 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/radio-group-invalid.tsx")),
     files: [{
       path: "registry/example/radio-group-invalid.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "resizable-demo": {
+    name: "resizable-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/resizable-demo.tsx")),
+    files: [{
+      path: "registry/example/resizable-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "resizable-vertical": {
+    name: "resizable-vertical",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/resizable-vertical.tsx")),
+    files: [{
+      path: "registry/example/resizable-vertical.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "resizable-handle": {
+    name: "resizable-handle",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/resizable-handle.tsx")),
+    files: [{
+      path: "registry/example/resizable-handle.tsx",
       type: "example",
       target: "",
     }],

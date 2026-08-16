@@ -164,7 +164,7 @@
       "name": "drawer",
       "type": "registry:ui",
       "dependencies": [
-        "@corvu/drawer"
+        "@kobalte/core"
       ]
     },
     {
@@ -225,6 +225,18 @@
         "button",
         "input",
         "textarea"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input-otp",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ],
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
       ]
     },
     {
@@ -320,6 +332,14 @@
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "radio-group",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "resizable",
       "type": "registry:ui",
       "dependencies": [
         "@kobalte/core"

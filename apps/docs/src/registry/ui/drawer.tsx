@@ -48,8 +48,8 @@ const DrawerOverlay = <T extends ValidComponent = "div">(
 ) => {
   const local = props as DrawerOverlayProps;
   const rest = omit(local, "class");
-  // Unlike the corvu port on main, opacity needs no manual style merge —
-  // the primitive drives it from openPercentage during drag and close.
+  // Opacity needs no manual style merge — the primitive drives it from
+  // openPercentage during drag and close.
   return (
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"

@@ -241,7 +241,7 @@ export const ui: Registry = [
   {
     name: "drawer",
     type: "ui",
-    dependencies: ["@corvu/drawer"],
+    dependencies: ["@kobalte/core"],
     files: [
       {
         path: "ui/drawer.tsx",
@@ -319,7 +319,7 @@ export const ui: Registry = [
   {
     name: "input-otp",
     type: "ui",
-    dependencies: ["@corvu/otp-field"],
+    dependencies: ["@kobalte/core"],
     files: [
       {
         path: "ui/input-otp.tsx",
@@ -493,7 +493,7 @@ export const ui: Registry = [
   {
     name: "resizable",
     type: "ui",
-    dependencies: ["@corvu/resizable"],
+    dependencies: ["@kobalte/core"],
     files: [
       {
         path: "ui/resizable.tsx",
