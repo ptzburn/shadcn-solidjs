@@ -1,4 +1,3 @@
-import { useLocation } from "@solidjs/router";
 import { docsConfig } from "~/config/docs.ts";
 
 import {
@@ -13,15 +12,17 @@ import {
 } from "~/registry/ui/sidebar.tsx";
 import { For } from "solid-js";
 
+// The next-branch router stamps `data-active` (exact-or-prefix match, as a
+// bare attribute) on every same-origin anchor itself and strips manual
+// values on its sweeps, so the styles select on presence and no isActive
+// bookkeeping is needed here.
 const menuButtonClass =
-  "relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md data-[active=true]:border-accent data-[active=true]:bg-accent";
+  "relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md data-active:border-accent data-active:bg-accent";
 
 // Plain anchors instead of main's `A`: the next-branch router has no A
 // component and intercepts every same-origin anchor click itself; external
 // entries opt out with `rel="external"`.
 export function DocsSidebar() {
-  const location = useLocation();
-
   return (
     <Sidebar
       collapsible="none"
@@ -44,9 +45,6 @@ export function DocsSidebar() {
                     <SidebarMenuButton
                       as="a"
                       href={section.href}
-                      isActive={location.pathname.startsWith(
-                        section.prefix ?? section.href,
-                      )}
                       class={menuButtonClass}
                     >
                       <span class="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
@@ -73,7 +71,6 @@ export function DocsSidebar() {
                           as="a"
                           href={item.href}
                           rel={item.external ? "external" : undefined}
-                          isActive={item.href === location.pathname}
                           class={menuButtonClass}
                         >
                           <span class="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />

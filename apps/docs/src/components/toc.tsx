@@ -125,15 +125,21 @@ export function TableOfContents() {
         >
           On This Page
         </p>
+        {
+          /* data-current rather than main's data-active: the next-branch
+            router stamps data-active on every same-origin anchor itself
+            (these hash links all match the page path), clobbering a manual
+            value on its sweeps. */
+        }
         <For each={toc()}>
           {(section) => (
             <a
               data-toc-slug={section.slug}
-              data-active={section.slug === currentSection()
+              data-current={section.slug === currentSection()
                 ? "true"
                 : undefined}
               data-depth={section.depth}
-              class="text-muted-foreground text-[0.8rem] no-underline transition-colors hover:text-foreground data-[depth=3]:pl-4 data-[depth=4]:pl-6 data-[active=true]:font-medium data-[active=true]:text-foreground"
+              class="text-muted-foreground text-[0.8rem] no-underline transition-colors hover:text-foreground data-[depth=3]:pl-4 data-[depth=4]:pl-6 data-[current=true]:font-medium data-[current=true]:text-foreground"
               href={`${location.pathname}#${section.slug}`}
             >
               {section.text}
