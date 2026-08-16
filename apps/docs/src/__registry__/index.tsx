@@ -554,6 +554,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "toast": {
+    name: "toast",
+    description: "",
+    type: "ui",
+    registryDependencies: ["button"],
+    component: lazy(() => import("~/registry/ui/toast.tsx")),
+    files: [{
+      path: "registry/ui/toast.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "toggle": {
     name: "toggle",
     description: "",
@@ -3950,6 +3962,42 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/textarea-button.tsx")),
     files: [{
       path: "registry/example/textarea-button.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "toast-demo": {
+    name: "toast-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/toast-demo.tsx")),
+    files: [{
+      path: "registry/example/toast-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "toast-promise": {
+    name: "toast-promise",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/toast-promise.tsx")),
+    files: [{
+      path: "registry/example/toast-promise.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "toast-types": {
+    name: "toast-types",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/toast-types.tsx")),
+    files: [{
+      path: "registry/example/toast-types.tsx",
       type: "example",
       target: "",
     }],

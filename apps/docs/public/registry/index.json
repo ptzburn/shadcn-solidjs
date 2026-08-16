@@ -474,6 +474,19 @@
     "type": "ui"
   },
   {
+    "name": "toast",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "files": [
+      "ui/toast.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "toggle",
     "dependencies": [
       "@kobalte/core",

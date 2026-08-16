@@ -9,6 +9,7 @@ import {
   ColorModeScript,
   cookieStorageManagerSSR,
 } from "~/lib/color-mode.tsx";
+import { Toaster } from "~/registry/ui/toast.tsx";
 
 import "~/styles/app.css";
 
@@ -33,6 +34,7 @@ export default function App() {
         <Router>
           {(props) => <Loading>{props.children}</Loading>}
         </Router>
+        <Toaster />
       </ColorModeProvider>
     </>
   );

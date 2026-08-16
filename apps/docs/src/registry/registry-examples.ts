@@ -3409,6 +3409,36 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "toast-demo",
+    type: "example",
+    files: [
+      {
+        path: "example/toast-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "toast-promise",
+    type: "example",
+    files: [
+      {
+        path: "example/toast-promise.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "toast-types",
+    type: "example",
+    files: [
+      {
+        path: "example/toast-types.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "toggle-demo",
     type: "example",
     files: [

@@ -650,6 +650,18 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "toast",
+    type: "ui",
+    dependencies: ["@kobalte/core"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "ui/toast.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "toggle",
     type: "ui",
     dependencies: ["@kobalte/core", "class-variance-authority"],

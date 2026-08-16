@@ -1,0 +1,94 @@
+---
+title: Toast
+description: A succinct message that is displayed temporarily.
+---
+
+<ComponentPreview name="toast-demo" />
+
+## About
+
+Toast is built on top of [Kobalte Toast](https://kobalte.dev/docs/core/components/toast).
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx @ptzburn/shadcn-solidjs@latest add toast
+```
+
+</TabsContent>
+<TabsContent value="manual">
+
+<Steps class="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @kobalte/core
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="toast" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+</CodeTabs>
+
+## Usage
+
+Add the `Toaster` component once at the root of your app. It renders the
+toast region every toast appears in.
+
+```tsx showLineNumbers
+import { Toaster } from "~/components/ui/toast.tsx";
+
+export default function App() {
+  return (
+    <>
+      <Main />
+      <Toaster />
+    </>
+  );
+}
+```
+
+Then show toasts from anywhere with the `toast` helper.
+
+```tsx showLineNumbers
+import { toast } from "~/components/ui/toast.tsx";
+
+const id = toast.add({
+  title: "Event created",
+  description: "Sunday, December 3 at 9:00 AM",
+});
+
+toast.close(id);
+```
+
+## Types
+
+Pass a `type` to show an icon that matches the tone of the message.
+
+<ComponentPreview name="toast-types" />
+
+## Promise
+
+`toast.promise` tracks a promise through its loading, success, and error
+states, updating a single toast in place.
+
+<ComponentPreview name="toast-promise" />
+
+## API Reference
+
+See the [Kobalte Toast documentation](https://kobalte.dev/docs/core/components/toast) for the full API reference.
