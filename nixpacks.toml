@@ -16,4 +16,7 @@ cmds = [
 cmds = ["/usr/local/bin/deno task build"]
 
 [start]
-cmd = "/usr/local/bin/deno task start"
+# Dokploy's Traefik routes to the container at 0.0.0.0:3000; vite preview
+# defaults to localhost only, so both flags are required here. The local
+# `deno task start` keeps its own port.
+cmd = "cd apps/docs && /usr/local/bin/deno run -A npm:vite preview --host 0.0.0.0 --port 3000"
