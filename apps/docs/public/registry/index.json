@@ -162,6 +162,16 @@
     "type": "ui"
   },
   {
+    "name": "drawer",
+    "dependencies": [
+      "@corvu/drawer"
+    ],
+    "files": [
+      "ui/drawer.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "dropdown-menu",
     "dependencies": [
       "@kobalte/core"

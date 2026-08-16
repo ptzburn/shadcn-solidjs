@@ -186,6 +186,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "drawer": {
+    name: "drawer",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/drawer.tsx")),
+    files: [{
+      path: "registry/ui/drawer.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "dropdown-menu": {
     name: "dropdown-menu",
     description: "",
@@ -1840,6 +1852,56 @@ export const Index: RegistryIndex = {
     ),
     files: [{
       path: "registry/example/dialog-sticky-footer.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "drawer-demo": {
+    name: "drawer-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/drawer-demo.tsx")),
+    files: [{
+      path: "registry/example/drawer-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "drawer-dialog": {
+    name: "drawer-dialog",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/drawer-dialog.tsx")),
+    files: [{
+      path: "registry/example/drawer-dialog.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "drawer-scrollable-content": {
+    name: "drawer-scrollable-content",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/drawer-scrollable-content.tsx")
+    ),
+    files: [{
+      path: "registry/example/drawer-scrollable-content.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "drawer-sides": {
+    name: "drawer-sides",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/drawer-sides.tsx")),
+    files: [{
+      path: "registry/example/drawer-sides.tsx",
       type: "example",
       target: "",
     }],
