@@ -1,11 +1,10 @@
 import type { ComponentProps } from "@solidjs/web";
 
 import { Index } from "~/__registry__/index.tsx";
-import { ClientOnly } from "~/lib/client-only.tsx";
 import { cn } from "~/lib/utils.ts";
 import { Button } from "~/registry/ui/button.tsx";
 import type { Component } from "solid-js";
-import { createSignal, merge, omit, Show } from "solid-js";
+import { createMemo, createSignal, merge, omit, Show } from "solid-js";
 
 interface ComponentPreviewProps extends ComponentProps<"div"> {
   name: string;
@@ -30,11 +29,10 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
   );
   const [isCodeVisible, setIsCodeVisible] = createSignal(false);
 
-  // A plain component rather than main's memo: a memo computes during
-  // hydration, and instantiating the lazy() demo there claims hydration
-  // keys for a subtree that is discarded — halting the whole page. As a
-  // child of ClientOnly below, this only ever runs after mount.
-  const Preview = () => {
+  const Preview = createMemo(() => {
+    // Blocks render inside an iframe, so never instantiate the registry
+    // component here — a lazy() component created for a discarded subtree
+    // still costs work even without hydration in play.
     if (props.type === "block") {
       return null;
     }
@@ -54,7 +52,7 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
     }
 
     return <Component />;
-  };
+  });
 
   return (
     <Show
@@ -87,17 +85,7 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
               props.previewClassName,
             )}
           >
-            {
-              /* ClientOnly: demos freely nest Kobalte primitives, and under
-                the Solid 2 RC deep primitive compositions compute divergent
-                server/client hydration keys that halt the whole page (see
-                lib/client-only.tsx). Skipping SSR for the demo subtree
-                keeps every docs page immune; the page text and code blocks
-                stay server-rendered. */
-            }
-            <ClientOnly>
-              <Preview />
-            </ClientOnly>
+            <Preview />
           </div>
         </div>
         <Show when={!props.hideCode}>

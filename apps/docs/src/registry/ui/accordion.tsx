@@ -1,7 +1,6 @@
 import * as AccordionPrimitive from "@kobalte/core/accordion";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import type { JSX, ValidComponent } from "@solidjs/web";
-import { ClientOnly } from "~/lib/client-only.tsx";
 import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
@@ -18,17 +17,12 @@ const Accordion = <T extends ValidComponent = "div">(
 ) => {
   const local = props as AccordionProps;
   const others = omit(local, "class");
-  // ClientOnly: Kobalte's accordion internals hydration-crash under the
-  // Solid 2 RC (divergent server/client hydration keys); see
-  // lib/client-only.tsx.
   return (
-    <ClientOnly>
-      <AccordionPrimitive.Root
-        data-slot="accordion"
-        class={cn("flex w-full flex-col", local.class)}
-        {...others}
-      />
-    </ClientOnly>
+    <AccordionPrimitive.Root
+      data-slot="accordion"
+      class={cn("flex w-full flex-col", local.class)}
+      {...others}
+    />
   );
 };
 

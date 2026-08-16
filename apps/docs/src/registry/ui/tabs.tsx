@@ -1,7 +1,6 @@
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
 import * as TabsPrimitive from "@kobalte/core/tabs";
 import type { ValidComponent } from "@solidjs/web";
-import { ClientOnly } from "~/lib/client-only.tsx";
 import { cn } from "~/lib/utils.ts";
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -16,19 +15,15 @@ const Tabs = <T extends ValidComponent = "div">(
 ) => {
   const local = props as TabsProps;
   const others = omit(local, "class");
-  // ClientOnly: Kobalte's tabs internals hydration-crash under the Solid 2
-  // RC (divergent server/client hydration keys); see lib/client-only.tsx.
   return (
-    <ClientOnly>
-      <TabsPrimitive.Root
-        data-slot="tabs"
-        class={cn(
-          "group/tabs flex gap-2 data-[orientation=horizontal]:flex-col",
-          local.class,
-        )}
-        {...others}
-      />
-    </ClientOnly>
+    <TabsPrimitive.Root
+      data-slot="tabs"
+      class={cn(
+        "group/tabs flex gap-2 data-[orientation=horizontal]:flex-col",
+        local.class,
+      )}
+      {...others}
+    />
   );
 };
 
