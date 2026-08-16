@@ -129,6 +129,19 @@
     "type": "ui"
   },
   {
+    "name": "command",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "registryDependencies": [
+      "dialog"
+    ],
+    "files": [
+      "ui/command.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "context-menu",
     "dependencies": [
       "@kobalte/core"

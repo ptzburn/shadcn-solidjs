@@ -1,0 +1,122 @@
+---
+title: Command
+description: Fast, composable command palette for Solid.
+---
+
+<ComponentPreview name="command-demo" />
+
+## About
+
+Command is built on top of [Kobalte Search](https://kobalte.dev/docs/core/components/search).
+
+Unlike the cmdk-based upstream component, items are passed as data through
+the `options` prop rather than composed as JSX children: the Kobalte
+collection supplies filtering, keyboard navigation, and combobox
+semantics from that data.
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx @ptzburn/shadcn-solidjs@latest add command
+```
+
+</TabsContent>
+<TabsContent value="manual">
+
+<Steps class="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @kobalte/core
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="command" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+</CodeTabs>
+
+## Usage
+
+```tsx showLineNumbers
+import { Command } from "~/components/ui/command.tsx";
+
+<Command
+  placeholder="Type a command or search..."
+  options={[
+    {
+      heading: "Suggestions",
+      options: [
+        { value: "calendar", label: "Calendar" },
+        { value: "billing", label: "Billing", shortcut: "⌘B" },
+        { value: "calculator", label: "Calculator", disabled: true },
+      ],
+    },
+  ]}
+  onSelect={(option) => console.log(option.value)}
+/>;
+```
+
+Each option can carry an `icon` (a function returning JSX), a `shortcut`
+label, extra `keywords` for filtering, and its own `onSelect` handler.
+
+## Dialog
+
+Wrap the palette in a dialog with `CommandDialog` and control it with
+`open`/`onOpenChange` — for example from a ⌘K shortcut.
+
+```tsx showLineNumbers
+import { CommandDialog } from "~/components/ui/command.tsx";
+import { createSignal } from "solid-js";
+
+function CommandMenu() {
+  const [open, setOpen] = createSignal(false);
+
+  createEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((open) => !open);
+      }
+    };
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  });
+
+  return <CommandDialog open={open()} onOpenChange={setOpen} options={[]} />;
+}
+```
+
+## Basic
+
+<ComponentPreview name="command-basic" />
+
+## Groups
+
+<ComponentPreview name="command-groups" />
+
+## Scrollable
+
+<ComponentPreview name="command-scrollable" />
+
+## Shortcuts
+
+<ComponentPreview name="command-shortcuts" />
+
+## API Reference
+
+See the [Kobalte Search documentation](https://kobalte.dev/docs/core/components/search) for the underlying primitive's API.

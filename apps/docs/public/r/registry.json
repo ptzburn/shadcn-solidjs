@@ -126,6 +126,21 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "command",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ],
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
+      ],
+      "registryDependencies": [
+        "dialog"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "context-menu",
       "type": "registry:ui",
       "dependencies": [
