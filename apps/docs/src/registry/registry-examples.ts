@@ -2633,6 +2633,26 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "message-scroller-group-chat",
+    type: "example",
+    files: [
+      {
+        path: "example/message-scroller-group-chat.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-scroller-load-history",
+    type: "example",
+    files: [
+      {
+        path: "example/message-scroller-load-history.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "native-select-demo",
     type: "example",
     files: [

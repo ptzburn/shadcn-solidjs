@@ -3702,6 +3702,20 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "message-scroller-opening-position": {
+    name: "message-scroller-opening-position",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-opening-position.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-opening-position.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "message-scroller-scrollable": {
     name: "message-scroller-scrollable",
     description: "",
@@ -3726,6 +3740,34 @@ export const Index: RegistryIndex = {
     ),
     files: [{
       path: "registry/example/message-scroller-anchoring.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-group-chat": {
+    name: "message-scroller-group-chat",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-group-chat.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-group-chat.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-load-history": {
+    name: "message-scroller-load-history",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-load-history.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-load-history.tsx",
       type: "example",
       target: "",
     }],
