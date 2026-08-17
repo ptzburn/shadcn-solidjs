@@ -10,7 +10,6 @@ import {
   omit,
   onCleanup,
   onSettled,
-  untrack,
   useContext,
 } from "solid-js";
 import { createMessageScrollerController } from "./message-scroller-controller.ts";
@@ -195,6 +194,9 @@ function MessageScrollerViewport(
     );
   };
 
+  // Deliberately never removed: the listener dies with the element when it
+  // is disconnected, and onCleanup cannot run inside a ref (refs run under a
+  // null owner).
   const attachWheelListener = (element: HTMLDivElement): void => {
     element.addEventListener("wheel", handleWheel, { passive: true });
   };
@@ -338,6 +340,7 @@ function MessageScrollerContent(
 
   onCleanup((): void => {
     contentNode = undefined;
+    spacerNode = undefined;
     context.setContentElement(null);
     context.setSpacerElement(null);
   });
@@ -367,20 +370,24 @@ function MessageScrollerItem(props: MessageScrollerItemProps): JSX.Element {
   const others = omit(props, "ref", "messageId", "scrollAnchor");
 
   let itemNode: HTMLDivElement | undefined;
+  // The id currently registered with the controller (what onCleanup must
+  // release). Tracked explicitly: a `defer: true` effect receives no
+  // previous value on its first run, so it cannot tell us the old id.
+  let registeredMessageId: string | undefined;
 
-  // Register at ref time — Solid refs run during render, mirroring React's
-  // commit-time ref attach, so the message map is already populated when
-  // Content's onSettled runs the first handleContentChange (which may flush a
-  // queued scrollToMessage synchronously).
+  // Register at ref time — Solid refs run during render (untracked, under a
+  // null owner), mirroring React's commit-time ref attach, so the message
+  // map is already populated when Content's onSettled runs the first
+  // handleContentChange (which may flush a queued scrollToMessage
+  // synchronously).
   const setItem = (element: HTMLDivElement): void => {
-    const previousElement = itemNode ?? null;
-
     itemNode = element;
 
-    const messageId = untrack((): string | undefined => props.messageId);
+    const messageId = props.messageId;
 
     if (messageId) {
-      registerMessage(messageId, element, previousElement);
+      registerMessage(messageId, element, null);
+      registeredMessageId = messageId;
     }
   };
 
@@ -388,29 +395,29 @@ function MessageScrollerItem(props: MessageScrollerItemProps): JSX.Element {
   // this from React re-invoking the recreated ref callback).
   createEffect(
     (): string | undefined => props.messageId,
-    (messageId, previousMessageId): void => {
+    (messageId): void => {
       const element = itemNode;
 
-      if (!element) {
+      if (!element || messageId === registeredMessageId) {
         return;
       }
 
-      if (previousMessageId) {
-        registerMessage(previousMessageId, null, element);
+      if (registeredMessageId) {
+        registerMessage(registeredMessageId, null, element);
       }
 
       if (messageId) {
         registerMessage(messageId, element, null);
       }
+
+      registeredMessageId = messageId;
     },
     { defer: true },
   );
 
   onCleanup((): void => {
-    const messageId = untrack((): string | undefined => props.messageId);
-
-    if (messageId && itemNode) {
-      registerMessage(messageId, null, itemNode);
+    if (registeredMessageId && itemNode) {
+      registerMessage(registeredMessageId, null, itemNode);
     }
   });
 
