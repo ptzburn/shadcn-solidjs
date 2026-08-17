@@ -43,6 +43,18 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "attachment",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "avatar",
       "type": "registry:ui",
       "dependencies": [
@@ -72,6 +84,15 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "bubble",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core",
+        "class-variance-authority"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "button",
       "type": "registry:ui",
       "dependencies": [
@@ -95,6 +116,22 @@
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "card",
       "type": "registry:ui"
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "carousel",
+      "type": "registry:ui",
+      "dependencies": [
+        "embla-carousel",
+        "embla-carousel-reactive-utils"
+      ],
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
@@ -281,6 +318,15 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "marker",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core",
+        "class-variance-authority"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "menubar",
       "type": "registry:ui",
       "dependencies": [
@@ -290,6 +336,11 @@
         "unplugin-icons",
         "@iconify-json/lucide"
       ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "message",
+      "type": "registry:ui"
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",

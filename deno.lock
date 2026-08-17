@@ -32,6 +32,9 @@
     "npm:class-variance-authority@~0.7.1": "0.7.1",
     "npm:clsx@^2.1.1": "2.1.1",
     "npm:commander@15": "15.0.0",
+    "npm:embla-carousel-autoplay@^8.6.0": "8.6.0_embla-carousel@8.6.0",
+    "npm:embla-carousel-reactive-utils@^8.6.0": "8.6.0_embla-carousel@8.6.0",
+    "npm:embla-carousel@^8.6.0": "8.6.0",
     "npm:estree-util-value-to-estree@^3.5.0": "3.5.0",
     "npm:filesystem-routing@~0.2.1": "0.2.1_vite@8.2.1__yaml@2.9.0_yaml@2.9.0",
     "npm:get-tsconfig@^4.14.1": "4.14.2",
@@ -1488,6 +1491,21 @@
     },
     "electron-to-chromium@1.5.405": {
       "integrity": "sha512-bNglH7lPH5l+yHOes7Zr4VqxhOy4BQ9ZBUX4VdoFgxMpzJk7W1ZoO3Vgd9Pxa9PyjQ76sfm2aKH/nzEcCNRlew=="
+    },
+    "embla-carousel-autoplay@8.6.0_embla-carousel@8.6.0": {
+      "integrity": "sha512-OBu5G3nwaSXkZCo1A6LTaFMZ8EpkYbwIaH+bPqdBnDGQ2fh4+NbzjXjs2SktoPNKCtflfVMc75njaDHOYXcrsA==",
+      "dependencies": [
+        "embla-carousel"
+      ]
+    },
+    "embla-carousel-reactive-utils@8.6.0_embla-carousel@8.6.0": {
+      "integrity": "sha512-fMVUDUEx0/uIEDM0Mz3dHznDhfX+znCCDCeIophYb1QGVM7YThSWX+wz11zlYwWFOr74b4QLGg0hrGPJeG2s4A==",
+      "dependencies": [
+        "embla-carousel"
+      ]
+    },
+    "embla-carousel@8.6.0": {
+      "integrity": "sha512-SjWyZBHJPbqxHOzckOfo8lHisEaJWmwd23XppYFYVh10bU66/Pn5tkVkbkCMZVdbUE5eTCI2nD8OyIP4Z+uwkA=="
     },
     "enhanced-resolve@5.24.5": {
       "integrity": "sha512-L1l8TNvomm6UVW5B253AGxQagSQr+vGwhMlrrfRS2qmhx46AMpMVJKQYLvWYbysTMY8VoicOvzHzoHMbyzB+4A==",
@@ -3274,6 +3292,9 @@
           "npm:@types/unist@^3.0.3",
           "npm:class-variance-authority@~0.7.1",
           "npm:clsx@^2.1.1",
+          "npm:embla-carousel-autoplay@^8.6.0",
+          "npm:embla-carousel-reactive-utils@^8.6.0",
+          "npm:embla-carousel@^8.6.0",
           "npm:estree-util-value-to-estree@^3.5.0",
           "npm:filesystem-routing@~0.2.1",
           "npm:rehype-pretty-code@~0.14.5",

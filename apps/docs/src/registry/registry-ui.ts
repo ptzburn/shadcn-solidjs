@@ -137,7 +137,7 @@ export const ui: Registry = [
   {
     name: "carousel",
     type: "ui",
-    dependencies: ["embla-carousel-solid"],
+    dependencies: ["embla-carousel", "embla-carousel-reactive-utils"],
     registryDependencies: ["button"],
     files: [
       {
