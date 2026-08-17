@@ -1078,8 +1078,18 @@ function createMessageScrollerController(
     writeStateAttributes(scrollableSnapshot.current);
 
   // Stores the node and mirrors the current state attributes once it attaches —
-  // the React useElementRef ref-callback pattern.
-  const setRootElement = (element: HTMLDivElement | null): void => {
+  // the React useElementRef ref-callback pattern. A cleanup (element === null)
+  // passes the element it is releasing: Solid 2 mounts a replacement branch
+  // before disposing the old one, so a stale cleanup must not null a ref that
+  // already points at the new instance's node.
+  const setRootElement = (
+    element: HTMLDivElement | null,
+    removedElement?: HTMLDivElement | null,
+  ): void => {
+    if (!element && removedElement && rootRef.current !== removedElement) {
+      return;
+    }
+
     rootRef.current = element;
 
     if (element) {
@@ -1087,7 +1097,14 @@ function createMessageScrollerController(
     }
   };
 
-  const setViewportElement = (element: HTMLDivElement | null): void => {
+  const setViewportElement = (
+    element: HTMLDivElement | null,
+    removedElement?: HTMLDivElement | null,
+  ): void => {
+    if (!element && removedElement && viewportRef.current !== removedElement) {
+      return;
+    }
+
     viewportRef.current = element;
 
     if (element) {
@@ -1095,11 +1112,25 @@ function createMessageScrollerController(
     }
   };
 
-  const setContentElement = (element: HTMLDivElement | null): void => {
+  const setContentElement = (
+    element: HTMLDivElement | null,
+    removedElement?: HTMLDivElement | null,
+  ): void => {
+    if (!element && removedElement && contentRef.current !== removedElement) {
+      return;
+    }
+
     contentRef.current = element;
   };
 
-  const setSpacerElement = (element: HTMLDivElement | null): void => {
+  const setSpacerElement = (
+    element: HTMLDivElement | null,
+    removedElement?: HTMLDivElement | null,
+  ): void => {
+    if (!element && removedElement && spacerRef.current !== removedElement) {
+      return;
+    }
+
     spacerRef.current = element;
     spacerGapRef.current = getFlexGap(element?.parentElement ?? null);
   };

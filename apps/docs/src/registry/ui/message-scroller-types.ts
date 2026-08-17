@@ -153,10 +153,25 @@ type MessageScrollerContextValue = {
     options?: MessageScrollerScrollOptions,
   ) => boolean;
   scrollToStart: (options?: MessageScrollerScrollOptions) => boolean;
-  setContentElement: (element: HTMLDivElement | null) => void;
-  setRootElement: (element: HTMLDivElement | null) => void;
-  setSpacerElement: (element: HTMLDivElement | null) => void;
-  setViewportElement: (element: HTMLDivElement | null) => void;
+  // removedElement: on cleanup, only null the ref if it still points at this
+  // instance's element — Solid 2 mounts a replacement branch before disposing
+  // the old one.
+  setContentElement: (
+    element: HTMLDivElement | null,
+    removedElement?: HTMLDivElement | null,
+  ) => void;
+  setRootElement: (
+    element: HTMLDivElement | null,
+    removedElement?: HTMLDivElement | null,
+  ) => void;
+  setSpacerElement: (
+    element: HTMLDivElement | null,
+    removedElement?: HTMLDivElement | null,
+  ) => void;
+  setViewportElement: (
+    element: HTMLDivElement | null,
+    removedElement?: HTMLDivElement | null,
+  ) => void;
   scrollableState: Accessor<MessageScrollerScrollable>;
   visibilityState: Accessor<MessageScrollerVisibilityState>;
   syncAfterScroll: () => void;

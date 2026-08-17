@@ -143,10 +143,18 @@ function MessageScroller(props: MessageScrollerProps): JSX.Element {
   const context = useMessageScrollerContext();
   const others = omit(props, "ref", "children");
 
-  onCleanup((): void => context.setRootElement(null));
+  let rootNode: HTMLDivElement | undefined;
+
+  const setRoot = (element: HTMLDivElement): void => {
+    rootNode = element;
+    context.setRootElement(element);
+  };
+
+  // Pass the node so a replaced instance cannot null a ref the new frame owns.
+  onCleanup((): void => context.setRootElement(null, rootNode));
 
   return (
-    <div ref={[context.setRootElement, props.ref]} {...others}>
+    <div ref={[setRoot, props.ref]} {...others}>
       {props.children}
     </div>
   );
@@ -202,6 +210,13 @@ function MessageScrollerViewport(
     element.addEventListener("wheel", handleWheel, { passive: true });
   };
 
+  let viewportNode: HTMLDivElement | undefined;
+
+  const setViewport = (element: HTMLDivElement): void => {
+    viewportNode = element;
+    context.setViewportElement(element);
+  };
+
   const handleTouchMove: JSX.EventHandler<HTMLDivElement, TouchEvent> = (
     event,
   ) => {
@@ -220,7 +235,9 @@ function MessageScrollerViewport(
   };
 
   onSettled(() => {
-    const viewport = context.viewportRef.current;
+    // This instance's own node: the shared ref may already belong to a
+    // replacement frame mounted before this one is disposed.
+    const viewport = viewportNode;
 
     if (!viewport || typeof ResizeObserver === "undefined") {
       return;
@@ -244,11 +261,12 @@ function MessageScrollerViewport(
     };
   });
 
-  onCleanup((): void => context.setViewportElement(null));
+  // Pass the node so a replaced instance cannot null a ref the new frame owns.
+  onCleanup((): void => context.setViewportElement(null, viewportNode));
 
   return (
     <div
-      ref={[context.setViewportElement, attachWheelListener, props.ref]}
+      ref={[setViewport, attachWheelListener, props.ref]}
       role={props.role ?? "region"}
       aria-label={props["aria-label"] ?? "Messages"}
       tabindex={props.tabindex ?? 0}
@@ -340,10 +358,12 @@ function MessageScrollerContent(
   });
 
   onCleanup((): void => {
+    // Pass the nodes so a replaced instance cannot null refs the new frame
+    // owns (Solid 2 mounts the replacement before disposing this one).
+    context.setContentElement(null, contentNode);
+    context.setSpacerElement(null, spacerNode);
     contentNode = undefined;
     spacerNode = undefined;
-    context.setContentElement(null);
-    context.setSpacerElement(null);
   });
 
   return (
