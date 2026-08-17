@@ -361,6 +361,24 @@
     "type": "ui"
   },
   {
+    "name": "message-scroller",
+    "dependencies": [
+      "@kobalte/core"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "files": [
+      "ui/message-scroller.tsx",
+      "ui/message-scroller-primitive.ts",
+      "ui/message-scroller-components.tsx",
+      "ui/message-scroller-controller.ts",
+      "ui/message-scroller-geometry.ts",
+      "ui/message-scroller-types.ts"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "native-select",
     "files": [
       "ui/native-select.tsx"

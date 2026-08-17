@@ -395,7 +395,7 @@ export const ui: Registry = [
   {
     name: "message-scroller",
     type: "ui",
-    dependencies: ["@kobalte/core", "@solid-primitives/refs"],
+    dependencies: ["@kobalte/core"],
     registryDependencies: ["button"],
     files: [
       {

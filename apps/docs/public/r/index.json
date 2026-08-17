@@ -344,6 +344,21 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "message-scroller",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core"
+      ],
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "native-select",
       "type": "registry:ui",
       "devDependencies": [

@@ -402,6 +402,38 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "message-scroller": {
+    name: "message-scroller",
+    description: "",
+    type: "ui",
+    registryDependencies: ["button"],
+    component: lazy(() => import("~/registry/ui/message-scroller.tsx")),
+    files: [{
+      path: "registry/ui/message-scroller.tsx",
+      type: "ui",
+      target: "",
+    }, {
+      path: "registry/ui/message-scroller-primitive.ts",
+      type: "ui",
+      target: "",
+    }, {
+      path: "registry/ui/message-scroller-components.tsx",
+      type: "ui",
+      target: "",
+    }, {
+      path: "registry/ui/message-scroller-controller.ts",
+      type: "ui",
+      target: "",
+    }, {
+      path: "registry/ui/message-scroller-geometry.ts",
+      type: "ui",
+      target: "",
+    }, {
+      path: "registry/ui/message-scroller-types.ts",
+      type: "ui",
+      target: "",
+    }],
+  },
   "native-select": {
     name: "native-select",
     description: "",
