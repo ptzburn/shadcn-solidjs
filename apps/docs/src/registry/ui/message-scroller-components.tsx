@@ -10,6 +10,7 @@ import {
   omit,
   onCleanup,
   onSettled,
+  untrack,
   useContext,
 } from "solid-js";
 import { createMessageScrollerController } from "./message-scroller-controller.ts";
@@ -383,7 +384,10 @@ function MessageScrollerItem(props: MessageScrollerItemProps): JSX.Element {
   const setItem = (element: HTMLDivElement): void => {
     itemNode = element;
 
-    const messageId = props.messageId;
+    // The one-shot read is deliberate (the effect below handles later id
+    // changes); untrack keeps Solid's dev STRICT_READ_UNTRACKED warning quiet
+    // for a reactive messageId, which every real transcript passes.
+    const messageId = untrack(() => props.messageId);
 
     if (messageId) {
       registerMessage(messageId, element, null);
