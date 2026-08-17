@@ -2623,6 +2623,16 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "message-scroller-anchoring",
+    type: "example",
+    files: [
+      {
+        path: "example/message-scroller-anchoring.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "native-select-demo",
     type: "example",
     files: [

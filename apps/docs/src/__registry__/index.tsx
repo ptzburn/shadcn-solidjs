@@ -3702,6 +3702,34 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "message-scroller-scrollable": {
+    name: "message-scroller-scrollable",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-scrollable.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-scrollable.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-anchoring": {
+    name: "message-scroller-anchoring",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-anchoring.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-anchoring.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "native-select-demo": {
     name: "native-select-demo",
     description: "",
