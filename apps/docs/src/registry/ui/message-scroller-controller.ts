@@ -137,6 +137,8 @@ function createMessageScrollerRefs(
     autoScrollRef: { current: autoScroll },
     autoscrollingRef: { current: false },
     autoscrollingTimeoutRef: { current: null },
+    // The turn held at the reading line so a reply streaming in below it can re-pin
+    // it instead of letting scrollTop clamp it loose.
     streamingTurnRef: { current: null },
     contentRef: { current: null },
     defaultScrollPositionAppliedRef: { current: false },
@@ -1021,7 +1023,7 @@ function createMessageScrollerController(
   };
 
   const removeVisibilitySubscriber = (): void => {
-    visibilitySubscriberCount -= 1;
+    visibilitySubscriberCount = Math.max(0, visibilitySubscriberCount - 1);
 
     if (visibilitySubscriberCount === 0) {
       unobserveVisibility();

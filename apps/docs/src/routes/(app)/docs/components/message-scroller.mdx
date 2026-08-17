@@ -328,9 +328,8 @@ at the viewport edge.
 
 ### Animating New Messages
 
-`MessageScrollerItem` can be animated directly. Create a motion version of the
-item, keep `messageId` and `scrollAnchor` on it, and use transform and opacity
-for the entrance.
+`MessageScrollerItem` can be animated directly. Keep `messageId` and
+`scrollAnchor` on it, and use transform and opacity for the entrance.
 
 A common chat pattern is to animate the user's message when it is sent, then let
 the assistant reply stream into a regular row below it. Keep `messageId` and
