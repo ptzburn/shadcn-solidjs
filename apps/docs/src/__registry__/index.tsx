@@ -3730,6 +3730,34 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "message-scroller-commands": {
+    name: "message-scroller-commands",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-commands.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-commands.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-visibility": {
+    name: "message-scroller-visibility",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-visibility.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-visibility.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "message-scroller-anchoring": {
     name: "message-scroller-anchoring",
     description: "",
