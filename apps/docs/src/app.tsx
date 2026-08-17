@@ -12,6 +12,7 @@ import {
 import { Toaster } from "~/registry/ui/toast.tsx";
 
 import "~/styles/app.css";
+import "~/styles/typeset.css";
 
 import { Loading } from "solid-js";
 

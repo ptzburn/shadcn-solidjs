@@ -124,8 +124,10 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* No Geist on this branch yet; headings share the sans stack. */
-  --font-heading: var(--font-sans);
+  --font-*: initial;
+  --font-sans: "Geist Sans", sans-serif;
+  --font-heading: "Geist Sans", sans-serif;
+  --font-mono: "Geist Mono", monospace;
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -235,7 +237,57 @@
   }
 }
 
+@utility step {
+  counter-increment: step;
+
+  &:before {
+    @apply mr-2 inline-flex size-6 items-center justify-center rounded-full
+      border-background bg-muted text-center -indent-px font-mono text-sm
+      font-medium md:absolute md:mt-[-4px] md:ml-[-50px] md:size-9
+      md:border-4;
+    content: counter(step);
+  }
+}
+
+@layer components {
+  .steps {
+    &:first-child {
+      @apply !mt-0;
+    }
+
+    &:first-child > h3:first-child {
+      @apply !mt-0;
+    }
+
+    > h3 {
+      @apply !mt-8;
+    }
+
+    > h3 + p {
+      @apply !mt-2;
+    }
+  }
+}
+
 @layer base {
+  @font-face {
+    font-family: "Geist Sans";
+    src: url("/fonts/Geist.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  /*
+   * Upstream registers Geist Mono at weight 400 only, so its font-medium
+   * mono text (e.g. the package manager tabs) still renders 400 glyphs.
+   * Pin the variable font the same way to match.
+   */
+  @font-face {
+    font-family: "Geist Mono";
+    src: url("/fonts/GeistMono.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+  }
+
   * {
     @apply border-border;
   }
@@ -246,6 +298,12 @@
 
   ::selection {
     @apply bg-selection text-selection-foreground;
+  }
+
+  html {
+    /* Anchor jumps clear the sticky header. */
+    scroll-padding-top: var(--header-height);
+    @apply overscroll-y-none;
   }
 
   button:not(:disabled),

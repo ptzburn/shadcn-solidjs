@@ -7,6 +7,7 @@ import { ComponentPreview } from "~/components/component-preview.tsx";
 import { ComponentSource } from "~/components/component-source.tsx";
 import { ComponentsList } from "~/components/components-list.tsx";
 import { CopyButton } from "~/components/copy-button.tsx";
+import { getIconForLanguageExtension } from "~/components/icons.tsx";
 import { MDXHeader } from "~/components/mdx-header.tsx";
 import { cn } from "~/lib/utils.ts";
 import {
@@ -120,6 +121,8 @@ export const MDXComponents = {
         props.class,
       )}
     >
+      {props["data-language"] &&
+        getIconForLanguageExtension(props["data-language"])}
       {props.children}
     </figcaption>
   ),

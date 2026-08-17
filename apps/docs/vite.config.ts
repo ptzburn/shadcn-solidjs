@@ -90,7 +90,11 @@ export default defineConfig({
       // Dynamic children under Kobalte-style polymorphic components is
       // fixed upstream; flipping this back on is the whole revert.
       ssr: false,
-      start: true,
+      // Explicit so the module graph keys the root by its real casing: the
+      // plugin's default probes `src/App.*` first, which macOS's
+      // case-insensitive FS resolves to app.tsx, and edits to app.tsx then
+      // never invalidate the entry the browser loaded (stale HMR).
+      start: { app: "src/app.tsx" },
       extensions: [".mdx", ".md"],
     }),
     fileRoutes({
