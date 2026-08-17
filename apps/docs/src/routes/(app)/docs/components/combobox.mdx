@@ -269,13 +269,13 @@ You can render a custom component inside `ComboboxItem`.
 
 ## Invalid
 
-Use the `aria-invalid` prop to make the combobox invalid.
+Set `validationState="invalid"` on the `Combobox` to mark it invalid. Kobalte marks the input `aria-invalid` and stamps `data-invalid` on the control, so the field styles follow.
 
 <ComponentPreview name="combobox-invalid" />
 
 ## Disabled
 
-Use the `disabled` prop to disable the combobox.
+Set `disabled` on the `Combobox` to disable it. Kobalte disables the input, the trigger and the clear button from the root.
 
 <ComponentPreview name="combobox-disabled" />
 

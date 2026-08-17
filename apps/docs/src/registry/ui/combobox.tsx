@@ -81,6 +81,7 @@ type ComboboxClearProps =
   };
 
 const ComboboxClear: Component<ComboboxClearProps> = (props) => {
+  const context = ComboboxPrimitive.useComboboxContext();
   const others = omit(props, "class");
   return (
     <InputGroupButton
@@ -88,6 +89,7 @@ const ComboboxClear: Component<ComboboxClearProps> = (props) => {
       variant="ghost"
       size="icon-xs"
       aria-label="Clear"
+      disabled={context.isDisabled()}
       class={cn(props.class)}
       {...others}
     >
@@ -118,14 +120,11 @@ const ComboboxInput = <T extends ValidComponent = "input">(
   props: PolymorphicProps<T, ComboboxInputProps<T>>,
 ) => {
   const local = props as ComboboxInputProps;
-  const others = omit(
-    local,
-    "class",
-    "children",
-    "disabled",
-    "showTrigger",
-    "showClear",
-  );
+  const others = omit(local, "class", "children", "showTrigger", "showClear");
+  // `disabled` and `validationState` live on the Combobox root: Kobalte's
+  // Input, Trigger and Control read them from context (a `disabled` passed
+  // to the Input alone only mutes its handlers and leaves the element
+  // focusable, so it is deliberately not plumbed here).
   return (
     <ComboboxPrimitive.Control
       as={InputGroup}
@@ -133,11 +132,7 @@ const ComboboxInput = <T extends ValidComponent = "input">(
     >
       {(state) => (
         <>
-          <ComboboxPrimitive.Input
-            as={InputGroupInput}
-            disabled={local.disabled}
-            {...others}
-          />
+          <ComboboxPrimitive.Input as={InputGroupInput} {...others} />
           <InputGroupAddon align="inline-end">
             <Show when={local.showTrigger ?? true}>
               <ComboboxTrigger
@@ -145,14 +140,10 @@ const ComboboxInput = <T extends ValidComponent = "input">(
                 size="icon-xs"
                 variant="ghost"
                 class="group-has-data-[slot=combobox-clear]/input-group:hidden"
-                disabled={local.disabled}
               />
             </Show>
             <Show when={local.showClear && state.selectedOptions().length > 0}>
-              <ComboboxClear
-                disabled={local.disabled}
-                onClick={() => state.clear()}
-              />
+              <ComboboxClear onClick={() => state.clear()} />
             </Show>
           </InputGroupAddon>
           {local.children}
@@ -189,6 +180,7 @@ type ComboboxChipProps = ComponentProps<"span"> & {
 };
 
 const ComboboxChip: Component<ComboboxChipProps> = (props) => {
+  const context = ComboboxPrimitive.useComboboxContext();
   const others = omit(props, "class", "children", "showRemove", "onRemove");
   return (
     <span
@@ -206,6 +198,7 @@ const ComboboxChip: Component<ComboboxChipProps> = (props) => {
           type="button"
           variant="ghost"
           size="icon-xs"
+          disabled={context.isDisabled()}
           class="-ml-1 opacity-50 hover:opacity-100"
           onClick={() => props.onRemove?.()}
         >
