@@ -3646,6 +3646,62 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "message-scroller-demo": {
+    name: "message-scroller-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-demo.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-streaming": {
+    name: "message-scroller-streaming",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-streaming.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-streaming.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-previous-context": {
+    name: "message-scroller-previous-context",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-previous-context.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-previous-context.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "message-scroller-animation": {
+    name: "message-scroller-animation",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/message-scroller-animation.tsx")
+    ),
+    files: [{
+      path: "registry/example/message-scroller-animation.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "native-select-demo": {
     name: "native-select-demo",
     description: "",

@@ -2553,6 +2553,36 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "message-scroller-streaming",
+    type: "example",
+    files: [
+      {
+        path: "example/message-scroller-streaming.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-scroller-previous-context",
+    type: "example",
+    files: [
+      {
+        path: "example/message-scroller-previous-context.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "message-scroller-animation",
+    type: "example",
+    files: [
+      {
+        path: "example/message-scroller-animation.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "message-scroller-opening-position",
     type: "example",
     files: [
