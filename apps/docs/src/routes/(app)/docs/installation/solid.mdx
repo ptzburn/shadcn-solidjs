@@ -7,18 +7,20 @@ description: Install and configure a Solid 2.0 project.
 
 ### Create project
 
-Start from one of the official Solid 2.0 templates. The `with-tailwindcss`
-template already has Tailwind CSS wired up:
+Start by creating a new project with the Solid CLI:
 
 ```bash
-npx degit solidjs/templates/solid-v2/with-tailwindcss my-app
+npm init solid@latest
 ```
 
-Then move into the project and install its dependencies:
+When asked, pick **Solid 2.0** and a template. The `with-tailwindcss` template
+already has Tailwind CSS wired up:
 
-```bash
-cd my-app
-npm install
+```txt showLineNumbers
+✔ Project Name … my-app
+✔ What type of project would you like to create? › Solid 2.0 (RC)
+✔ Use Typescript? … yes
+✔ Which template would you like to use? › with-tailwindcss
 ```
 
 The `basic` and `fullstack` templates work just as well — add Tailwind CSS

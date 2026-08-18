@@ -23,7 +23,8 @@ function denoAdd(command: string): string {
 /**
  * Port of the upstream package manager derivation (lib/highlight-code.ts
  * transformers), plus branches upstream never encounters: npm init x is
- * npm create x, and deno commands are derived per shape.
+ * npm create x, and deno commands are derived per shape (`deno create`
+ * adds the create- prefix itself, like npm create; `dx` is Deno's npx).
  */
 function packageManagerVariants(command: string): CommandVariants | undefined {
   if (command.startsWith("npm install")) {
@@ -41,7 +42,7 @@ function packageManagerVariants(command: string): CommandVariants | undefined {
       yarn: command.replace("npx create-", "yarn create "),
       pnpm: command.replace("npx create-", "pnpm create "),
       bun: command.replace("npx", "bunx --bun"),
-      deno: command.replace("npx create-", "deno run -A npm:create-"),
+      deno: command.replace("npx create-", "deno create npm:"),
     };
   }
   if (command.startsWith("npm create") || command.startsWith("npm init")) {
@@ -51,7 +52,7 @@ function packageManagerVariants(command: string): CommandVariants | undefined {
       yarn: create.replace("npm create", "yarn create"),
       pnpm: create.replace("npm create", "pnpm create"),
       bun: create.replace("npm create", "bun create"),
-      deno: create.replace("npm create ", "deno run -A npm:create-"),
+      deno: create.replace("npm create ", "deno create npm:"),
     };
   }
   if (command.startsWith("npx")) {
@@ -60,7 +61,7 @@ function packageManagerVariants(command: string): CommandVariants | undefined {
       yarn: command.replace("npx", "yarn dlx"),
       pnpm: command.replace("npx", "pnpm dlx"),
       bun: command.replace("npx", "bunx --bun"),
-      deno: command.replace("npx ", "deno run -A npm:"),
+      deno: command.replace("npx ", "dx -A npm:"),
     };
   }
   if (command.startsWith("npm run")) {
