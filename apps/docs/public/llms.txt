@@ -1,116 +1,108 @@
 # shadcn-solidjs
 
-> shadcn-solidjs is an unofficial, community-led SolidJS port of shadcn/ui: a collection of beautifully-designed, accessible components and a code distribution platform. It is built with TypeScript, Tailwind CSS v4, and headless primitives from Kobalte, corvu, and Ark UI. It supports SolidStart, Vite, and Astro. Open Source. Open Code. AI-Ready. It also comes with a command-line tool to install and manage components and a registry system to publish and distribute code.
+> shadcn-solidjs is an unofficial, community-led SolidJS port of shadcn/ui: a collection of beautifully-designed, accessible components and a code distribution platform. This version is built for Solid 2.0 with TypeScript, Tailwind CSS v4, and headless primitives from Kobalte. Open Source. Open Code. AI-Ready. It also comes with a command-line tool to install and manage components and a registry system to publish and distribute code.
 
 ## Overview
 
-- [Introduction](https://shadcn-solidjs.com/docs/introduction): Core principles—Open Code, Composition, Distribution, Beautiful Defaults, and AI-Ready design.
-- [Components](https://shadcn-solidjs.com/docs/components): Index of every component available in the library.
-- [CLI](https://shadcn-solidjs.com/docs/cli): Command-line tool for installing and managing components.
-- [Figma](https://shadcn-solidjs.com/docs/figma): Figma design resources.
+- [Introduction](https://v2.shadcn-solidjs.com/docs/introduction): Core principles—Open Code, Composition, Distribution, Beautiful Defaults, and AI-Ready design.
+- [Components](https://v2.shadcn-solidjs.com/docs/components): Index of every component available in the library.
+- [CLI](https://v2.shadcn-solidjs.com/docs/cli): Command-line tool for installing and managing components.
+- [Figma](https://v2.shadcn-solidjs.com/docs/figma): Figma design resources.
 
 ## Installation
 
-- [Installation](https://shadcn-solidjs.com/docs/installation): How to install dependencies and structure your app.
-- [SolidStart](https://shadcn-solidjs.com/docs/installation/solid-start): Install and configure SolidStart.
-- [Vite](https://shadcn-solidjs.com/docs/installation/vite): Install and configure Vite.
-- [Astro](https://shadcn-solidjs.com/docs/installation/astro): Install and configure Astro.
-- [Manual Installation](https://shadcn-solidjs.com/docs/installation/manual): Add dependencies to your project manually.
+- [Installation](https://v2.shadcn-solidjs.com/docs/installation): How to install dependencies and structure your app.
+- [Solid](https://v2.shadcn-solidjs.com/docs/installation/solid): Install and configure a Solid 2.0 project.
 
 ## Components
 
 ### Form & Input
 
-- [Field](https://shadcn-solidjs.com/docs/components/field): Combine labels, controls, and help text to compose accessible form fields and grouped inputs.
-- [Button](https://shadcn-solidjs.com/docs/components/button): Displays a button or a component that looks like a button.
-- [Button Group](https://shadcn-solidjs.com/docs/components/button-group): A container that groups related buttons together with consistent styling.
-- [Input](https://shadcn-solidjs.com/docs/components/input): A text input component for forms and user data entry.
-- [Input Group](https://shadcn-solidjs.com/docs/components/input-group): Add addons, buttons, and helper content to inputs.
-- [Input OTP](https://shadcn-solidjs.com/docs/components/input-otp): Accessible one-time password component with copy-paste functionality.
-- [Textarea](https://shadcn-solidjs.com/docs/components/textarea): Displays a form textarea or a component that looks like a textarea.
-- [Checkbox](https://shadcn-solidjs.com/docs/components/checkbox): A control that allows the user to toggle between checked and not checked.
-- [Radio Group](https://shadcn-solidjs.com/docs/components/radio-group): A set of checkable buttons where no more than one can be checked at a time.
-- [Select](https://shadcn-solidjs.com/docs/components/select): Displays a list of options for the user to pick from—triggered by a button.
-- [Native Select](https://shadcn-solidjs.com/docs/components/native-select): A styled native HTML select element.
-- [Switch](https://shadcn-solidjs.com/docs/components/switch): A control that allows the user to toggle between checked and not checked.
-- [Slider](https://shadcn-solidjs.com/docs/components/slider): An input where the user selects a value from within a given range.
-- [Date Picker](https://shadcn-solidjs.com/docs/components/date-picker): A date picker component with range and presets.
-- [Combobox](https://shadcn-solidjs.com/docs/components/combobox): Autocomplete input with a list of suggestions.
-- [Label](https://shadcn-solidjs.com/docs/components/label): Renders an accessible label associated with controls.
+- [Field](https://v2.shadcn-solidjs.com/docs/components/field): Combine labels, controls, and help text to compose accessible form fields and grouped inputs.
+- [Button](https://v2.shadcn-solidjs.com/docs/components/button): Displays a button or a component that looks like a button.
+- [Button Group](https://v2.shadcn-solidjs.com/docs/components/button-group): A container that groups related buttons together with consistent styling.
+- [Input](https://v2.shadcn-solidjs.com/docs/components/input): A text input component for forms and user data entry with built-in styling and accessibility features.
+- [Input Group](https://v2.shadcn-solidjs.com/docs/components/input-group): Add addons, buttons, and helper content to inputs.
+- [Input OTP](https://v2.shadcn-solidjs.com/docs/components/input-otp): Accessible one-time password component with copy-paste functionality.
+- [Textarea](https://v2.shadcn-solidjs.com/docs/components/textarea): Displays a form textarea or a component that looks like a textarea.
+- [Checkbox](https://v2.shadcn-solidjs.com/docs/components/checkbox): A control that allows the user to toggle between checked and not checked.
+- [Radio Group](https://v2.shadcn-solidjs.com/docs/components/radio-group): A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
+- [Select](https://v2.shadcn-solidjs.com/docs/components/select): Displays a list of options for the user to pick from—triggered by a button.
+- [Native Select](https://v2.shadcn-solidjs.com/docs/components/native-select): A styled native HTML select element with consistent design system integration.
+- [Switch](https://v2.shadcn-solidjs.com/docs/components/switch): A control that allows the user to toggle between checked and not checked.
+- [Slider](https://v2.shadcn-solidjs.com/docs/components/slider): An input where the user selects a value from within a given range.
+- [Combobox](https://v2.shadcn-solidjs.com/docs/components/combobox): Autocomplete input with a list of suggestions.
+- [Label](https://v2.shadcn-solidjs.com/docs/components/label): Renders an accessible label associated with controls.
 
 ### Layout & Navigation
 
-- [Accordion](https://shadcn-solidjs.com/docs/components/accordion): A vertically stacked set of interactive headings that each reveal a section of content.
-- [Breadcrumb](https://shadcn-solidjs.com/docs/components/breadcrumb): Displays the path to the current resource using a hierarchy of links.
-- [Navigation Menu](https://shadcn-solidjs.com/docs/components/navigation-menu): A collection of links for navigating websites.
-- [Sidebar](https://shadcn-solidjs.com/docs/components/sidebar): A composable, themeable and customizable sidebar component.
-- [Tabs](https://shadcn-solidjs.com/docs/components/tabs): A set of layered sections of content that are displayed one at a time.
-- [Separator](https://shadcn-solidjs.com/docs/components/separator): Visually or semantically separates content.
-- [Scroll Area](https://shadcn-solidjs.com/docs/components/scroll-area): Augments native scroll functionality for custom, cross-browser styling.
-- [Resizable](https://shadcn-solidjs.com/docs/components/resizable): Accessible resizable panel groups and layouts with keyboard support.
+- [Accordion](https://v2.shadcn-solidjs.com/docs/components/accordion): A vertically stacked set of interactive headings that each reveal a section of content.
+- [Breadcrumb](https://v2.shadcn-solidjs.com/docs/components/breadcrumb): Displays the path to the current resource using a hierarchy of links.
+- [Navigation Menu](https://v2.shadcn-solidjs.com/docs/components/navigation-menu): A collection of links for navigating websites.
+- [Sidebar](https://v2.shadcn-solidjs.com/docs/components/sidebar): A composable, themeable and customizable sidebar component.
+- [Tabs](https://v2.shadcn-solidjs.com/docs/components/tabs): A set of layered sections of content—known as tab panels—that are displayed one at a time.
+- [Separator](https://v2.shadcn-solidjs.com/docs/components/separator): Visually or semantically separates content.
+- [Scroll Area](https://v2.shadcn-solidjs.com/docs/components/scroll-area): Augments native scroll functionality for custom, cross-browser styling.
+- [Resizable](https://v2.shadcn-solidjs.com/docs/components/resizable): Accessible resizable panel groups and layouts with keyboard support.
 
 ### Overlays & Dialogs
 
-- [Dialog](https://shadcn-solidjs.com/docs/components/dialog): A window overlaid on the primary window, rendering the content underneath inert.
-- [Alert Dialog](https://shadcn-solidjs.com/docs/components/alert-dialog): A modal dialog that interrupts the user with important content and expects a response.
-- [Sheet](https://shadcn-solidjs.com/docs/components/sheet): Extends the Dialog component to display content that complements the main content of the screen.
-- [Drawer](https://shadcn-solidjs.com/docs/components/drawer): A drawer component for Solid, built with corvu.
-- [Popover](https://shadcn-solidjs.com/docs/components/popover): Displays rich content in a portal, triggered by a button.
-- [Tooltip](https://shadcn-solidjs.com/docs/components/tooltip): A popup that displays information related to an element on focus or hover.
-- [Hover Card](https://shadcn-solidjs.com/docs/components/hover-card): For sighted users to preview content available behind a link.
-- [Context Menu](https://shadcn-solidjs.com/docs/components/context-menu): Displays a menu of actions triggered by a right click.
-- [Dropdown Menu](https://shadcn-solidjs.com/docs/components/dropdown-menu): Displays a menu to the user—such as a set of actions or functions—triggered by a button.
-- [Menubar](https://shadcn-solidjs.com/docs/components/menubar): A visually persistent menu common in desktop applications.
-- [Command](https://shadcn-solidjs.com/docs/components/command): Command menu for search and quick actions.
+- [Dialog](https://v2.shadcn-solidjs.com/docs/components/dialog): A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
+- [Alert Dialog](https://v2.shadcn-solidjs.com/docs/components/alert-dialog): A modal dialog that interrupts the user with important content and expects a response.
+- [Sheet](https://v2.shadcn-solidjs.com/docs/components/sheet): Extends the Dialog component to display content that complements the main content of the screen.
+- [Drawer](https://v2.shadcn-solidjs.com/docs/components/drawer): A drawer component for Solid.
+- [Popover](https://v2.shadcn-solidjs.com/docs/components/popover): Displays rich content in a portal, triggered by a button.
+- [Tooltip](https://v2.shadcn-solidjs.com/docs/components/tooltip): A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+- [Hover Card](https://v2.shadcn-solidjs.com/docs/components/hover-card): For sighted users to preview content available behind a link.
+- [Context Menu](https://v2.shadcn-solidjs.com/docs/components/context-menu): Displays a menu of actions triggered by a right click.
+- [Dropdown Menu](https://v2.shadcn-solidjs.com/docs/components/dropdown-menu): Displays a menu to the user — such as a set of actions or functions — triggered by a button.
+- [Menubar](https://v2.shadcn-solidjs.com/docs/components/menubar): A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
+- [Command](https://v2.shadcn-solidjs.com/docs/components/command): Command menu for search and quick actions.
 
 ### Feedback & Status
 
-- [Alert](https://shadcn-solidjs.com/docs/components/alert): Displays a callout for user attention.
-- [Sonner](https://shadcn-solidjs.com/docs/components/sonner): An opinionated toast component for Solid.
-- [Progress](https://shadcn-solidjs.com/docs/components/progress): Displays an indicator showing the completion progress of a task.
-- [Spinner](https://shadcn-solidjs.com/docs/components/spinner): An indicator that can be used to show a loading state.
-- [Skeleton](https://shadcn-solidjs.com/docs/components/skeleton): Use to show a placeholder while content is loading.
-- [Badge](https://shadcn-solidjs.com/docs/components/badge): Displays a badge or a component that looks like a badge.
-- [Empty](https://shadcn-solidjs.com/docs/components/empty): Use the Empty component to display an empty state.
+- [Alert](https://v2.shadcn-solidjs.com/docs/components/alert): Displays a callout for user attention.
+- [Toast](https://v2.shadcn-solidjs.com/docs/components/toast): A succinct message that is displayed temporarily.
+- [Progress](https://v2.shadcn-solidjs.com/docs/components/progress): Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
+- [Spinner](https://v2.shadcn-solidjs.com/docs/components/spinner): An indicator that can be used to show a loading state.
+- [Skeleton](https://v2.shadcn-solidjs.com/docs/components/skeleton): Use to show a placeholder while content is loading.
+- [Badge](https://v2.shadcn-solidjs.com/docs/components/badge): Displays a badge or a component that looks like a badge.
+- [Empty](https://v2.shadcn-solidjs.com/docs/components/empty): Use the Empty component to display an empty state.
 
 ### Display & Media
 
-- [Avatar](https://shadcn-solidjs.com/docs/components/avatar): An image element with a fallback for representing the user.
-- [Card](https://shadcn-solidjs.com/docs/components/card): Displays a card with header, content, and footer.
-- [Table](https://shadcn-solidjs.com/docs/components/table): A responsive table component.
-- [Data Table](https://shadcn-solidjs.com/docs/components/data-table): Powerful table and datagrids built using TanStack Table.
-- [Chart](https://shadcn-solidjs.com/docs/components/chart): Beautiful charts built using chart.js.
-- [Carousel](https://shadcn-solidjs.com/docs/components/carousel): A carousel with motion and swipe built using Embla.
-- [Aspect Ratio](https://shadcn-solidjs.com/docs/components/aspect-ratio): Displays content within a desired ratio.
-- [Item](https://shadcn-solidjs.com/docs/components/item): A versatile component for displaying content with media, title, description, and actions.
-- [Kbd](https://shadcn-solidjs.com/docs/components/kbd): Used to display textual user input from keyboard.
+- [Avatar](https://v2.shadcn-solidjs.com/docs/components/avatar): An image element with a fallback for representing the user.
+- [Card](https://v2.shadcn-solidjs.com/docs/components/card): Displays a card with header, content, and footer.
+- [Table](https://v2.shadcn-solidjs.com/docs/components/table): A responsive table component.
+- [Carousel](https://v2.shadcn-solidjs.com/docs/components/carousel): A carousel with motion and swipe built using Embla.
+- [Aspect Ratio](https://v2.shadcn-solidjs.com/docs/components/aspect-ratio): Displays content within a desired ratio.
+- [Item](https://v2.shadcn-solidjs.com/docs/components/item): A versatile component for displaying content with media, title, description, and actions.
+- [Kbd](https://v2.shadcn-solidjs.com/docs/components/kbd): Used to display textual user input from keyboard.
 
 ### Chat & Messaging
 
-- [Message](https://shadcn-solidjs.com/docs/components/message): Displays a message in a conversation, with optional avatar, header, footer, and alignment.
-- [Message Scroller](https://shadcn-solidjs.com/docs/components/message-scroller): A chat scroll container that anchors turns, follows streamed responses, and loads history without jumping.
-- [Bubble](https://shadcn-solidjs.com/docs/components/bubble): Displays conversational content in a message bubble, with variants, grouping, and reactions.
-- [Marker](https://shadcn-solidjs.com/docs/components/marker): Displays an inline status, system note, bordered row, or labeled separator in a conversation.
-- [Attachment](https://shadcn-solidjs.com/docs/components/attachment): Displays a file or image attachment with media, metadata, upload state, and actions.
+- [Message](https://v2.shadcn-solidjs.com/docs/components/message): Displays a message in a conversation, with optional avatar, header, footer, and alignment.
+- [Message Scroller](https://v2.shadcn-solidjs.com/docs/components/message-scroller): A chat scroll container that anchors turns, opens saved transcripts, follows streamed responses, loads history without jumping, and jumps to any message.
+- [Bubble](https://v2.shadcn-solidjs.com/docs/components/bubble): Displays conversational content in a message bubble. Supports variants, alignment, grouping, reactions, and collapsible content.
+- [Marker](https://v2.shadcn-solidjs.com/docs/components/marker): Displays an inline status, system note, bordered row, or labeled separator in a conversation.
+- [Attachment](https://v2.shadcn-solidjs.com/docs/components/attachment): Displays a file or image attachment with media, metadata, upload state, and actions.
 
 ### Misc
 
-- [Collapsible](https://shadcn-solidjs.com/docs/components/collapsible): An interactive component which expands/collapses a panel.
-- [Toggle](https://shadcn-solidjs.com/docs/components/toggle): A two-state button that can be either on or off.
-- [Toggle Group](https://shadcn-solidjs.com/docs/components/toggle-group): A set of two-state buttons that can be toggled on or off.
-- [Pagination](https://shadcn-solidjs.com/docs/components/pagination): Pagination with page navigation, next and previous links.
+- [Collapsible](https://v2.shadcn-solidjs.com/docs/components/collapsible): An interactive component which expands/collapses a panel.
+- [Toggle](https://v2.shadcn-solidjs.com/docs/components/toggle): A two-state button that can be either on or off.
+- [Toggle Group](https://v2.shadcn-solidjs.com/docs/components/toggle-group): A set of two-state buttons that can be toggled on or off.
+- [Pagination](https://v2.shadcn-solidjs.com/docs/components/pagination): Pagination with page navigation, next and previous links.
 
 ## Dark Mode
 
-- [Dark Mode](https://shadcn-solidjs.com/docs/dark-mode): Adding dark mode to your site.
-- [Dark Mode - SolidStart](https://shadcn-solidjs.com/docs/dark-mode/solid-start): Dark mode setup for SolidStart.
-- [Dark Mode - Vite](https://shadcn-solidjs.com/docs/dark-mode/vite): Dark mode setup for Vite.
-- [Dark Mode - Astro](https://shadcn-solidjs.com/docs/dark-mode/astro): Dark mode setup for Astro.
+- [Dark Mode](https://v2.shadcn-solidjs.com/docs/dark-mode): Adding dark mode to your site.
+- [Dark Mode - Solid](https://v2.shadcn-solidjs.com/docs/dark-mode/solid): Dark mode setup for a Solid app.
 
 ## Registry
 
-- [Component Registry](https://shadcn-solidjs.com/r/button.json): Every component is served as a registry item at `/r/{name}.json`, installable with `npx @ptzburn/shadcn-solidjs@latest add {name}`.
+- [Component Registry](https://v2.shadcn-solidjs.com/r/button.json): Every component is served as a registry item at `/r/{name}.json`, installable with `npx @ptzburn/shadcn-solidjs@beta add {name}`.
 
 ### Schemas
 
-- [components.json Schema](https://shadcn-solidjs.com/schema.json): JSON Schema for `components.json`. Defines the Tailwind stylesheet and base color, the icon library, the style, path aliases, and additional registries. Diverges from upstream: no `rsc` (Solid has no React Server Components), no `tailwind.config` (Tailwind v4 only), and only `"tsx": true` is supported.
+- [components.json Schema](https://v2.shadcn-solidjs.com/schema.json): JSON Schema for `components.json`. Defines the Tailwind stylesheet and base color, the icon library, path aliases, and additional registries. There is no `rsc` field (Solid has no React Server Components), no `tailwind.config` (Tailwind v4 only), and only `"tsx": true` is supported.
