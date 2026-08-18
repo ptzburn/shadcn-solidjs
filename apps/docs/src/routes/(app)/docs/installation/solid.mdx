@@ -26,6 +26,17 @@ already has Tailwind CSS wired up:
 The `basic` and `fullstack` templates work just as well — add Tailwind CSS
 in the next step.
 
+<Callout title="Server-side rendering">
+  With `solid-js@2.0.0-rc.0` and `@kobalte/core@2.0.0-alpha.0` — the versions
+  the components are built and tested against — the library does not yet work
+  reliably with server-side rendering enabled. Stay client-rendered for now:
+  answer no if the CLI offers to enable SSR, and leave `ssr` off in the
+  `solid()` options of `vite.config.ts` (the `fullstack` template ships with
+  `ssr: true` — set it to `false`). Newer releases of either package may
+  resolve this, so if you are on later versions it is worth trying with SSR
+  on.
+</Callout>
+
 ### Add Tailwind CSS
 
 If your project already has Tailwind CSS configured, skip this step.
