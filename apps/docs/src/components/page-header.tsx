@@ -1,0 +1,55 @@
+import type { ComponentProps } from "@solidjs/web";
+import { cn } from "~/lib/utils.ts";
+import { omit } from "solid-js";
+
+export function PageHeader(props: ComponentProps<"section">) {
+  const others = omit(props, "class", "children");
+  return (
+    <section class={cn("border-grid", props.class)} {...others}>
+      <div class="container-wrapper">
+        <div class="container flex flex-col items-center gap-2 px-6 py-8 text-center md:py-16 lg:py-20 xl:gap-4">
+          {props.children}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function PageHeaderHeading(props: ComponentProps<"h1">) {
+  const others = omit(props, "class");
+  return (
+    <h1
+      class={cn(
+        "max-w-3xl text-balance font-semibold text-3xl text-primary leading-tighter tracking-tight lg:font-semibold lg:leading-[1.1] xl:text-5xl xl:tracking-tighter",
+        props.class,
+      )}
+      {...others}
+    />
+  );
+}
+
+export function PageHeaderDescription(props: ComponentProps<"p">) {
+  const others = omit(props, "class");
+  return (
+    <p
+      class={cn(
+        "max-w-4xl text-balance text-base text-foreground sm:text-lg",
+        props.class,
+      )}
+      {...others}
+    />
+  );
+}
+
+export function PageActions(props: ComponentProps<"div">) {
+  const others = omit(props, "class");
+  return (
+    <div
+      class={cn(
+        "flex w-full items-center justify-center gap-2 pt-2 **:data-[slot=button]:shadow-none",
+        props.class,
+      )}
+      {...others}
+    />
+  );
+}
