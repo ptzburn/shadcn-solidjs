@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:ui",
+  "devDependencies": [
+    "unplugin-icons",
+    "@iconify-json/tabler"
+  ],
+  "files": [
+    {
+      "path": "src/registry/ui/spinner.tsx",
+      "content": "import type { ComponentProps } from \"@solidjs/web\";\nimport { cn } from \"~/lib/utils.ts\";\n\nimport IconLoader from \"~icons/tabler/loader\";\nimport type { Component } from \"solid-js\";\nimport { omit } from \"solid-js\";\n\nconst Spinner: Component<ComponentProps<\"svg\">> = (props) => {\n  const others = omit(props, \"class\");\n\n  return (\n    <IconLoader\n      data-slot=\"spinner\"\n      role=\"status\"\n      aria-label=\"Loading\"\n      class={cn(\"size-4 animate-spin\", props.class)}\n      {...others}\n    />\n  );\n};\n\nexport { Spinner };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -76,7 +76,7 @@ const NavigationMenu = <T extends ValidComponent = "ul">(
       value={viewport() ? undefined : value()}
       onValueChange={onValueChange}
       class={cn(
-        "group/navigation-menu relative flex max-w-max flex-1 list-none items-center justify-center gap-0 data-[orientation=vertical]:flex-col",
+        "cn-navigation-menu group/navigation-menu relative flex max-w-max flex-1 list-none items-center justify-center data-[orientation=vertical]:flex-col",
         local.class,
       )}
       {...others}
@@ -92,7 +92,7 @@ const NavigationMenu = <T extends ValidComponent = "ul">(
 };
 
 const navigationMenuTriggerStyle = cva(
-  "hover:bg-muted focus:bg-muted data-expanded:hover:bg-muted data-expanded:focus:bg-muted data-expanded:bg-muted/50 focus-visible:ring-ring/50 rounded-lg px-2.5 py-1.5 text-sm font-medium transition-all focus-visible:ring-3 focus-visible:outline-1 disabled:opacity-50 group/navigation-menu-trigger inline-flex h-9 w-max items-center justify-center outline-none disabled:pointer-events-none",
+  "cn-navigation-menu-trigger group/navigation-menu-trigger inline-flex h-9 w-max items-center justify-center outline-none disabled:pointer-events-none",
 );
 
 type NavigationMenuTriggerProps<T extends ValidComponent = "button"> =
@@ -131,7 +131,7 @@ const NavigationMenuTrigger = <T extends ValidComponent = "button">(
           ph="caret-down"
           ri="arrow-down-s-line"
           hugeicons="arrow-down-01"
-          class="relative top-px ml-1 size-3 transition duration-300 group-data-expanded/navigation-menu-trigger:rotate-180"
+          class="cn-navigation-menu-trigger-icon"
           aria-hidden="true"
         />
       </Show>
@@ -155,7 +155,7 @@ const NavigationMenuContent = <T extends ValidComponent = "ul">(
     <NavigationMenuPrimitive.Content
       data-slot="navigation-menu-content"
       class={cn(
-        "data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 group-data-[viewport=false]/navigation-menu:data-closed:fade-out-0 group-data-[viewport=false]/navigation-menu:data-closed:zoom-out-95 group-data-[viewport=false]/navigation-menu:data-expanded:fade-in-0 group-data-[viewport=false]/navigation-menu:data-expanded:zoom-in-95 absolute top-0 left-0 p-1 ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[viewport=false]/navigation-menu:top-full group-data-[viewport=false]/navigation-menu:z-50 group-data-[viewport=false]/navigation-menu:mt-1.5 group-data-[viewport=true]/navigation-menu:max-w-(--kb-popper-content-available-width) data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out group-data-[viewport=false]/navigation-menu:overflow-hidden group-data-[viewport=false]/navigation-menu:rounded-lg group-data-[viewport=false]/navigation-menu:bg-popover group-data-[viewport=false]/navigation-menu:text-popover-foreground group-data-[viewport=false]/navigation-menu:shadow group-data-[viewport=false]/navigation-menu:ring-1 group-data-[viewport=false]/navigation-menu:ring-foreground/10 group-data-[viewport=false]/navigation-menu:duration-300 group-data-[viewport=false]/navigation-menu:max-md:max-w-full group-data-[viewport=false]/navigation-menu:data-closed:animate-out group-data-[viewport=false]/navigation-menu:data-expanded:animate-in **:data-[slot=navigation-menu-link]:focus:outline-none **:data-[slot=navigation-menu-link]:focus:ring-0",
+        "cn-navigation-menu-content absolute top-0 left-0 group-data-[viewport=false]/navigation-menu:top-full group-data-[viewport=false]/navigation-menu:z-50 group-data-[viewport=false]/navigation-menu:mt-1.5 group-data-[viewport=true]/navigation-menu:max-w-(--kb-popper-content-available-width) group-data-[viewport=false]/navigation-menu:overflow-hidden group-data-[viewport=false]/navigation-menu:max-md:max-w-full **:data-[slot=navigation-menu-link]:focus:outline-none **:data-[slot=navigation-menu-link]:focus:ring-0",
         local.class,
       )}
       {...others}
@@ -183,7 +183,7 @@ const NavigationMenuViewport = <T extends ValidComponent = "li">(
     <NavigationMenuPrimitive.Viewport
       data-slot="navigation-menu-viewport"
       class={cn(
-        "data-closed:zoom-out-90 data-expanded:zoom-in-90 relative z-50 h-(--kb-navigation-menu-viewport-height) w-(--kb-navigation-menu-viewport-width) origin-(--kb-menu-content-transform-origin) overflow-hidden rounded-lg bg-popover text-popover-foreground shadow ring-1 ring-foreground/10 duration-100 data-closed:animate-out data-expanded:animate-in",
+        "cn-navigation-menu-viewport relative z-50 h-(--kb-navigation-menu-viewport-height) w-(--kb-navigation-menu-viewport-width) origin-(--kb-menu-content-transform-origin) overflow-hidden",
         local.class,
       )}
       {...others}
@@ -204,7 +204,7 @@ const NavigationMenuLink = <T extends ValidComponent = "a">(
     <NavigationMenuPrimitive.Item
       data-slot="navigation-menu-link"
       class={cn(
-        "flex items-center gap-2 rounded-lg p-2 text-sm outline-none transition-all hover:bg-muted focus:bg-muted focus-visible:outline-1 focus-visible:ring-3 focus-visible:ring-ring/50 in-data-[slot=navigation-menu-content]:rounded-md data-active:bg-muted/50 data-active:hover:bg-muted data-active:focus:bg-muted [&_svg:not([class*='size-'])]:size-4",
+        "cn-navigation-menu-link",
         local.class,
       )}
       {...others}
@@ -224,7 +224,7 @@ const NavigationMenuLabel = <T extends ValidComponent = "div">(
   return (
     <NavigationMenuPrimitive.ItemLabel
       data-slot="navigation-menu-label"
-      class={cn(local.class)}
+      class={cn("cn-navigation-menu-label", local.class)}
       {...others}
     />
   );
@@ -242,7 +242,7 @@ const NavigationMenuDescription = <T extends ValidComponent = "div">(
   return (
     <NavigationMenuPrimitive.ItemDescription
       data-slot="navigation-menu-description"
-      class={cn(local.class)}
+      class={cn("cn-navigation-menu-description", local.class)}
       {...others}
     />
   );

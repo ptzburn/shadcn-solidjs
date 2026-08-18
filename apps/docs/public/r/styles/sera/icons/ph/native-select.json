@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "native-select",
+  "type": "registry:ui",
+  "devDependencies": [
+    "unplugin-icons",
+    "@iconify-json/ph"
+  ],
+  "files": [
+    {
+      "path": "src/registry/ui/native-select.tsx",
+      "content": "import type { ComponentProps } from \"@solidjs/web\";\nimport { cn } from \"~/lib/utils.ts\";\nimport IconCaretDown from \"~icons/ph/caret-down\";\nimport type { Component } from \"solid-js\";\n\nimport { omit } from \"solid-js\";\n\ntype NativeSelectProps =\n  & Omit<ComponentProps<\"select\">, \"size\">\n  & { size?: \"sm\" | \"default\" };\n\nconst NativeSelect: Component<NativeSelectProps> = (props) => {\n  const others = omit(props, \"class\", \"size\");\n  return (\n    <div\n      class={cn(\n        \"group/native-select relative w-fit has-[select:disabled]:opacity-50\",\n        props.class,\n      )}\n      data-slot=\"native-select-wrapper\"\n      data-size={props.size ?? \"default\"}\n    >\n      <select\n        data-slot=\"native-select\"\n        data-size={props.size ?? \"default\"}\n        class=\"border-transparent border-b-input bg-transparent placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground focus-visible:border-b-ring aria-invalid:border-b-destructive dark:aria-invalid:border-b-destructive/50 h-10 w-full min-w-0 appearance-none rounded-none border py-2 pr-8 pl-0 text-sm transition-[color,border-color] select-none data-[size=sm]:h-9 outline-none disabled:pointer-events-none disabled:cursor-not-allowed\"\n        {...others}\n      />\n      <IconCaretDown\n        class=\"text-muted-foreground top-1/2 right-0 size-3.5 -translate-y-1/2 pointer-events-none absolute select-none\"\n        aria-hidden=\"true\"\n        data-slot=\"native-select-icon\"\n      />\n    </div>\n  );\n};\n\nconst NativeSelectOption: Component<ComponentProps<\"option\">> = (props) => {\n  const others = omit(props, \"class\");\n  return (\n    <option\n      data-slot=\"native-select-option\"\n      class={cn(\"bg-[Canvas] text-[CanvasText]\", props.class)}\n      {...others}\n    />\n  );\n};\n\nconst NativeSelectOptGroup: Component<ComponentProps<\"optgroup\">> = (props) => {\n  const others = omit(props, \"class\");\n  return (\n    <optgroup\n      data-slot=\"native-select-optgroup\"\n      class={cn(\"bg-[Canvas] text-[CanvasText]\", props.class)}\n      {...others}\n    />\n  );\n};\n\nexport type { NativeSelectProps };\nexport { NativeSelect, NativeSelectOptGroup, NativeSelectOption };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,9 +1,10 @@
 import { HydrationScript, type JSX } from "@solidjs/web";
 import { ColorModeScript } from "~/lib/color-mode.tsx";
+import { StyleScript } from "~/lib/style-context.tsx";
 
 export default function Document(props: { children: JSX.Element }) {
   return (
-    <html lang="en">
+    <html lang="en" class="style-nova">
       <head>
         {
           /* Static rather than @solidjs/meta: with ssr off, managed meta
@@ -20,6 +21,7 @@ export default function Document(props: { children: JSX.Element }) {
             stored mode is applied before first paint from here. */
         }
         <ColorModeScript storageType="cookie" />
+        <StyleScript />
         <HydrationScript />
       </head>
       <body>

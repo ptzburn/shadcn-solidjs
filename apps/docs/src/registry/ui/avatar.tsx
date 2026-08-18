@@ -23,7 +23,7 @@ const Avatar = <T extends ValidComponent = "span">(
       data-slot="avatar"
       data-size={local.size ?? "default"}
       class={cn(
-        "group/avatar relative flex size-8 shrink-0 select-none rounded-full after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten data-[size=lg]:size-10 data-[size=sm]:size-6",
+        "cn-avatar group/avatar relative flex shrink-0 select-none after:absolute after:inset-0 after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten",
         local.class,
       )}
       {...others}
@@ -46,7 +46,7 @@ const AvatarImage = <T extends ValidComponent = "img">(
     <ImagePrimitive.Img
       data-slot="avatar-image"
       class={cn(
-        "aspect-square size-full rounded-full object-cover",
+        "cn-avatar-image aspect-square size-full object-cover",
         local.class,
       )}
       {...others}
@@ -67,7 +67,7 @@ const AvatarFallback = <T extends ValidComponent = "span">(
     <ImagePrimitive.Fallback
       data-slot="avatar-fallback"
       class={cn(
-        "flex size-full items-center justify-center rounded-full bg-muted text-muted-foreground text-sm group-data-[size=sm]/avatar:text-xs",
+        "cn-avatar-fallback flex size-full items-center justify-center text-sm group-data-[size=sm]/avatar:text-xs",
         local.class,
       )}
       {...others}
@@ -81,7 +81,7 @@ const AvatarBadge: Component<ComponentProps<"span">> = (props) => {
     <span
       data-slot="avatar-badge"
       class={cn(
-        "absolute right-0 bottom-0 z-10 inline-flex select-none items-center justify-center rounded-full bg-blend-color bg-primary text-primary-foreground ring-2 ring-background",
+        "cn-avatar-badge absolute right-0 bottom-0 z-10 inline-flex select-none items-center justify-center rounded-full bg-blend-color ring-2",
         "group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden",
         "group-data-[size=default]/avatar:size-2.5 group-data-[size=default]/avatar:[&>svg]:size-2",
         "group-data-[size=lg]/avatar:size-3 group-data-[size=lg]/avatar:[&>svg]:size-2",
@@ -98,7 +98,7 @@ const AvatarGroup: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="avatar-group"
       class={cn(
-        "group/avatar-group flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background",
+        "cn-avatar-group group/avatar-group flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background",
         props.class,
       )}
       {...others}
@@ -112,7 +112,7 @@ const AvatarGroupCount: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="avatar-group-count"
       class={cn(
-        "relative flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground text-sm ring-2 ring-background [&>svg]:size-4 group-has-data-[size=lg]/avatar-group:size-10 group-has-data-[size=sm]/avatar-group:size-6 group-has-data-[size=lg]/avatar-group:[&>svg]:size-5 group-has-data-[size=sm]/avatar-group:[&>svg]:size-3",
+        "cn-avatar-group-count relative flex shrink-0 items-center justify-center ring-2 ring-background",
         props.class,
       )}
       {...others}

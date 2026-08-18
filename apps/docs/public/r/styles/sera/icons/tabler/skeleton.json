@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/registry/ui/skeleton.tsx",
+      "content": "import type { ComponentProps } from \"@solidjs/web\";\nimport { cn } from \"~/lib/utils.ts\";\nimport type { Component } from \"solid-js\";\n\nimport { omit } from \"solid-js\";\n\nconst Skeleton: Component<ComponentProps<\"div\">> = (props) => {\n  const others = omit(props, \"class\");\n  return (\n    <div\n      data-slot=\"skeleton\"\n      class={cn(\n        \"bg-muted animate-pulse\",\n        props.class,\n      )}\n      {...others}\n    />\n  );\n};\n\nexport { Skeleton };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -54,7 +54,7 @@ const DialogOverlay = <T extends ValidComponent = "div">(
     <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
       class={cn(
-        "data-closed:fade-out-0 data-expanded:fade-in-0 fixed inset-0 isolate z-50 bg-black/10 duration-100 data-closed:animate-out data-expanded:animate-in supports-backdrop-filter:backdrop-blur-xs",
+        "cn-dialog-overlay fixed inset-0 isolate z-50",
         local.class,
       )}
       {...rest}
@@ -81,7 +81,7 @@ const DialogContent = <T extends ValidComponent = "div">(
       <DialogPrimitive.Content
         data-slot="dialog-content"
         class={cn(
-          "data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl bg-popover p-4 text-popover-foreground text-sm outline-none ring-1 ring-foreground/10 duration-100 sm:max-w-sm data-closed:animate-out data-expanded:animate-in",
+          "cn-dialog-content fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 outline-none",
           local.class,
         )}
         {...rest}
@@ -92,7 +92,7 @@ const DialogContent = <T extends ValidComponent = "div">(
             data-slot="dialog-close"
             class={cn(
               buttonVariants({ variant: "ghost", size: "icon-sm" }),
-              "absolute top-2 right-2",
+              "cn-dialog-close",
             )}
           >
             <IconPlaceholder
@@ -115,7 +115,7 @@ const DialogHeader: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="dialog-header"
-      class={cn("flex flex-col gap-2", props.class)}
+      class={cn("cn-dialog-header flex flex-col", props.class)}
       {...rest}
     />
   );
@@ -132,7 +132,7 @@ const DialogFooter: Component<DialogFooterProps> = (props) => {
     <div
       data-slot="dialog-footer"
       class={cn(
-        "-mx-4 -mb-4 flex flex-col-reverse gap-2 rounded-b-xl border-t bg-muted/50 p-4 sm:flex-row sm:justify-end",
+        "cn-dialog-footer flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
         props.class,
       )}
       {...rest}
@@ -162,7 +162,7 @@ const DialogTitle = <T extends ValidComponent = "h2">(
     <DialogPrimitive.Title
       data-slot="dialog-title"
       class={cn(
-        "font-heading font-medium text-base leading-none",
+        "cn-dialog-title font-heading",
         local.class,
       )}
       {...rest}
@@ -183,7 +183,7 @@ const DialogDescription = <T extends ValidComponent = "p">(
     <DialogPrimitive.Description
       data-slot="dialog-description"
       class={cn(
-        "text-muted-foreground text-sm *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
+        "cn-dialog-description",
         local.class,
       )}
       {...rest}

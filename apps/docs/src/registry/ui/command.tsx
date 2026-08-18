@@ -45,7 +45,7 @@ const CommandItem: Component<
     <SearchPrimitive.Item
       item={props.item}
       data-slot="command-item"
-      class="group/command-item relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden data-highlighted:*:[svg]:text-foreground [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 in-data-[slot=dialog-content]:rounded-lg! data-highlighted:bg-muted data-highlighted:text-foreground data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4"
+      class="cn-command-item group/command-item [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-disabled:opacity-50"
     >
       {props.item.rawValue.icon?.()}
       <SearchPrimitive.ItemLabel>
@@ -55,7 +55,7 @@ const CommandItem: Component<
         <SearchPrimitive.ItemDescription
           as="span"
           data-slot="command-shortcut"
-          class="ml-auto text-muted-foreground text-xs tracking-widest group-data-highlighted/command-item:text-foreground"
+          class="cn-command-shortcut"
         >
           {props.item.rawValue.shortcut}
         </SearchPrimitive.ItemDescription>
@@ -74,14 +74,14 @@ const CommandSection: Component<
           role="separator"
           aria-orientation="horizontal"
           data-slot="command-separator"
-          class="-mx-1 my-1 h-px bg-border"
+          class="cn-command-separator my-1"
           onMouseDown={keepInputFocus}
         />
       </Show>
       <Show when={props.section.rawValue.heading}>
         <SearchPrimitive.Section
           data-slot="command-group-heading"
-          class="px-2 py-1.5 font-medium text-muted-foreground text-xs"
+          cmdk-group-heading=""
           onMouseDown={keepInputFocus}
         >
           {props.section.rawValue.heading}
@@ -141,19 +141,19 @@ const Command: Component<CommandProps> = (props) => {
       optionDisabled="disabled"
       optionGroupChildren="options"
       class={cn(
-        "flex size-full flex-col overflow-hidden rounded-xl! bg-popover p-1 text-popover-foreground",
+        "cn-command flex size-full flex-col overflow-hidden",
         props.class,
       )}
     >
       <SearchPrimitive.Control
         data-slot="command-input-wrapper"
-        class="p-1 pb-0"
+        class="cn-command-input-wrapper"
       >
-        <InputGroup class="h-8! rounded-lg! border-input/30 bg-input/30 shadow-none! *:data-[slot=input-group-addon]:pl-2!">
+        <InputGroup class="cn-command-input-group">
           <SearchPrimitive.Input
             data-slot="command-input"
             placeholder={props.placeholder ?? "Type a command or search..."}
-            class="w-full text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
+            class="cn-command-input outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
           />
           <InputGroupAddon>
             <IconPlaceholder
@@ -162,18 +162,18 @@ const Command: Component<CommandProps> = (props) => {
               ph="magnifying-glass"
               ri="search-line"
               hugeicons="search-01"
-              class="size-4 shrink-0 opacity-50"
+              class="cn-command-input-icon"
             />
           </InputGroupAddon>
         </InputGroup>
       </SearchPrimitive.Control>
       <SearchPrimitive.Listbox
         data-slot="command-list"
-        class="no-scrollbar max-h-72 scroll-py-1 overflow-y-auto overflow-x-hidden p-1 text-foreground outline-none empty:p-0"
+        class="cn-command-group cn-command-list overflow-y-auto overflow-x-hidden empty:p-0"
       />
       <SearchPrimitive.NoResult
         data-slot="command-empty"
-        class="py-6 text-center text-sm"
+        class="cn-command-empty"
         onMouseDown={keepInputFocus}
       >
         {props.emptyMessage ?? "No results found."}
@@ -201,7 +201,7 @@ const CommandDialogContent: Component<
     <DialogContent
       showCloseButton={props.showCloseButton ?? false}
       class={cn(
-        "top-1/3 translate-y-0 overflow-hidden rounded-xl! p-0",
+        "cn-command-dialog top-1/3 translate-y-0 overflow-hidden p-0",
         props.class,
       )}
       onEscapeKeyDown={(event) => {

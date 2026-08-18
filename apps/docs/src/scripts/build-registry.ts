@@ -13,10 +13,11 @@
  *
  * Two deviations from main while this branch tracks Solid 2:
  *
- * - No style dimension. Main's authored sources carry `cn-*` markers that
- *   the build inlines per style; this branch's sources are authored with
- *   the nova style already inlined, so there is nothing to expand and the
- *   `public/r/styles/<style>/…` fan-out is not emitted.
+ * - `cn-*` style markers, inlined per style from
+ *   `src/registry/styles/style-<style>.css` (see
+ *   src/lib/registry/style-map.ts). The docs site instead styles the
+ *   markers at runtime by loading every style CSS scoped under
+ *   `.style-<name>`.
  * - Registry definitions are copied from main in full, but items whose
  *   authored files are not ported yet are skipped (and counted below), so
  *   entries activate as their files land.
@@ -38,6 +39,7 @@ import path, { basename } from "node:path";
 import process from "node:process";
 
 import { resolveIcons } from "../lib/registry/resolve-icons.ts";
+import { createStyleMap, inlineStyles } from "../lib/registry/style-map.ts";
 import {
   defaultIconLibrary,
   iconLibraries,
@@ -45,6 +47,11 @@ import {
 } from "../registry/icons/icon-libraries.ts";
 import { registry } from "../registry/index.ts";
 import { type RegistryItem, registrySchema } from "../registry/schema.ts";
+import {
+  defaultStyle,
+  type StyleName,
+  styleNames,
+} from "../registry/styles.ts";
 
 const LEGACY_PATH = path.join(process.cwd(), "public/registry");
 const R_PATH = path.join(process.cwd(), "public/r");
@@ -59,6 +66,18 @@ if (!result.success) {
 function sourcePath(filePath: string) {
   return path.join(process.cwd(), "src", "registry", filePath);
 }
+
+const styleMaps = new Map(
+  styleNames.map((style) => [
+    style,
+    createStyleMap(
+      readFileSync(
+        sourcePath(path.join("styles", `style-${style}.css`)),
+        "utf8",
+      ),
+    ),
+  ]),
+);
 
 // Regenerate from scratch: with items skipped until their files land, a
 // stale payload left behind (from main's Solid 1 build, or a renamed item)
@@ -91,10 +110,11 @@ function readSource(filePath: string) {
   return content;
 }
 
-function readItemFiles(item: RegistryItem) {
+function readItemFiles(item: RegistryItem, style: StyleName) {
+  const styleMap = styleMaps.get(style)!;
   return item.files.map((file) => ({
     ...file,
-    content: readSource(file.path),
+    content: inlineStyles(readSource(file.path), styleMap),
   }));
 }
 
@@ -211,30 +231,47 @@ for (const item of items) {
     continue;
   }
 
-  const files = readItemFiles(item);
+  for (const style of styleNames) {
+    const files = readItemFiles(item, style);
 
-  for (const library of iconLibraryNames) {
-    let usesIcons = false;
-    const resolved = files.map((file) => {
-      const { code, icons } = resolveIcons(file.content, library);
-      if (icons.length > 0) {
-        usesIcons = true;
+    for (const library of iconLibraryNames) {
+      let usesIcons = false;
+      const resolved = files.map((file) => {
+        const { code, icons } = resolveIcons(file.content, library);
+        if (icons.length > 0) {
+          usesIcons = true;
+        }
+        return { ...file, content: code };
+      });
+      const devDependencies = usesIcons
+        ? ["unplugin-icons", iconLibraries[library].package]
+        : [];
+      const payload = toRegistryItem(item, resolved, devDependencies);
+
+      writeJson(
+        path.join(
+          R_PATH,
+          "styles",
+          style,
+          "icons",
+          library,
+          `${item.name}.json`,
+        ),
+        payload,
+      );
+
+      // The default style also lives at the unprefixed paths, so
+      // registries pinned before styles existed keep resolving.
+      if (style === defaultStyle) {
+        writeJson(
+          path.join(R_PATH, "icons", library, `${item.name}.json`),
+          payload,
+        );
+        if (library === defaultIconLibrary) {
+          writeJson(path.join(R_PATH, `${item.name}.json`), payload);
+          indexItems.push({ ...payload, files: undefined });
+        }
       }
-      return { ...file, content: code };
-    });
-    const devDependencies = usesIcons
-      ? ["unplugin-icons", iconLibraries[library].package]
-      : [];
-    const payload = toRegistryItem(item, resolved, devDependencies);
-
-    writeJson(
-      path.join(R_PATH, "icons", library, `${item.name}.json`),
-      payload,
-    );
-
-    if (library === defaultIconLibrary) {
-      writeJson(path.join(R_PATH, `${item.name}.json`), payload);
-      indexItems.push({ ...payload, files: undefined });
     }
   }
 }
@@ -257,8 +294,9 @@ for (const item of items) {
     continue;
   }
 
+  // The legacy format predates styles, so it ships the default one.
   let usesIcons = false;
-  const files = readItemFiles(item).map((file) => {
+  const files = readItemFiles(item, defaultStyle).map((file) => {
     const { code, icons } = resolveIcons(file.content, defaultIconLibrary);
     if (icons.length > 0) {
       usesIcons = true;

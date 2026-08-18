@@ -10,7 +10,7 @@ const Skeleton: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="skeleton"
       class={cn(
-        "animate-pulse rounded-md bg-muted",
+        "cn-skeleton animate-pulse",
         props.class,
       )}
       {...others}

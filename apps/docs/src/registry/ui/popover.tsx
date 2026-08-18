@@ -39,7 +39,7 @@ const PopoverContent = <T extends ValidComponent = "div">(
       <PopoverPrimitive.Content
         data-slot="popover-content"
         class={cn(
-          "data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 z-50 flex w-72 flex-col origin-(--kb-popover-content-transform-origin) gap-2.5 rounded-lg bg-popover p-2.5 text-popover-foreground text-sm shadow-md outline-hidden ring-1 ring-foreground/10 duration-100 data-closed:animate-out data-expanded:animate-in",
+          "cn-popover-content z-50 w-72 origin-(--kb-popover-content-transform-origin) outline-hidden",
           local.class,
         )}
         {...others}
@@ -67,7 +67,7 @@ const PopoverHeader: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="popover-header"
-      class={cn("flex flex-col gap-0.5 text-sm", props.class)}
+      class={cn("cn-popover-header", props.class)}
       {...others}
     />
   );
@@ -85,7 +85,7 @@ const PopoverTitle = <T extends ValidComponent = "h2">(
   return (
     <PopoverPrimitive.Title
       data-slot="popover-title"
-      class={cn("font-medium", local.class)}
+      class={cn("cn-popover-title", local.class)}
       {...others}
     />
   );
@@ -103,7 +103,7 @@ const PopoverDescription = <T extends ValidComponent = "p">(
   return (
     <PopoverPrimitive.Description
       data-slot="popover-description"
-      class={cn("text-muted-foreground", local.class)}
+      class={cn("cn-popover-description", local.class)}
       {...others}
     />
   );

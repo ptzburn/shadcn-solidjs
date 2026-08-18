@@ -8,14 +8,13 @@ import type { Component } from "solid-js";
 import { omit } from "solid-js";
 
 const markerVariants = cva(
-  "group/marker relative flex min-h-4 w-full items-center gap-2 text-left text-sm text-muted-foreground [a]:underline [a]:underline-offset-3 [a]:hover:text-foreground [&_svg:not([class*='size-'])]:size-4",
+  "cn-marker group/marker relative flex w-full items-center",
   {
     variants: {
       variant: {
-        default: "",
-        separator:
-          "before:mr-1 before:h-px before:min-w-0 before:flex-1 before:bg-border after:ml-1 after:h-px after:min-w-0 after:flex-1 after:bg-border",
-        border: "border-b border-border pb-2",
+        default: "cn-marker-variant-default",
+        separator: "cn-marker-variant-separator",
+        border: "cn-marker-variant-border",
       },
     },
     defaultVariants: {
@@ -53,7 +52,7 @@ const MarkerIcon: Component<ComponentProps<"span">> = (props) => {
       data-slot="marker-icon"
       aria-hidden="true"
       class={cn(
-        "size-4 shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "cn-marker-icon shrink-0",
         props.class,
       )}
       {...others}
@@ -67,7 +66,7 @@ const MarkerContent: Component<ComponentProps<"span">> = (props) => {
     <span
       data-slot="marker-content"
       class={cn(
-        "wrap-break-word min-w-0 *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground group-data-[variant=separator]/marker:flex-none group-data-[variant=separator]/marker:text-center",
+        "cn-marker-content wrap-break-word min-w-0",
         props.class,
       )}
       {...others}

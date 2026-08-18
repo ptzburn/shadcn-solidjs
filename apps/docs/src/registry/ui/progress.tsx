@@ -17,7 +17,7 @@ const Progress = <T extends ValidComponent = "div">(
   return (
     <ProgressPrimitive.Root
       data-slot="progress"
-      class={cn("flex flex-wrap gap-3", local.class)}
+      class={cn("cn-progress-root flex flex-wrap gap-3", local.class)}
       {...others}
     >
       {local.children}
@@ -41,7 +41,7 @@ const ProgressTrack = <T extends ValidComponent = "div">(
     <ProgressPrimitive.Track
       data-slot="progress-track"
       class={cn(
-        "relative flex h-1 w-full items-center overflow-x-hidden rounded-full bg-muted",
+        "cn-progress-track relative flex w-full items-center overflow-x-hidden",
         local.class,
       )}
       {...others}
@@ -63,7 +63,10 @@ const ProgressIndicator = <T extends ValidComponent = "div">(
   return (
     <ProgressPrimitive.Fill
       data-slot="progress-indicator"
-      class={cn("size-full flex-1 bg-primary transition-all", local.class)}
+      class={cn(
+        "cn-progress-indicator size-full flex-1 transition-all",
+        local.class,
+      )}
       style={typeof local.style === "string"
         ? `transform:${transform};${local.style}`
         : { transform, ...local.style }}
@@ -84,7 +87,7 @@ const ProgressLabel = <T extends ValidComponent = "span">(
   return (
     <ProgressPrimitive.Label
       data-slot="progress-label"
-      class={cn("font-medium text-sm", local.class)}
+      class={cn("cn-progress-label", local.class)}
       {...others}
     />
   );
@@ -103,7 +106,7 @@ const ProgressValueLabel = <T extends ValidComponent = "div">(
     <ProgressPrimitive.ValueLabel
       data-slot="progress-value"
       class={cn(
-        "ml-auto text-muted-foreground text-sm tabular-nums",
+        "cn-progress-value",
         local.class,
       )}
       {...others}

@@ -8,6 +8,7 @@ import {
   ColorModeProvider,
   cookieStorageManagerSSR,
 } from "~/lib/color-mode.tsx";
+import { parseStyleCookie, StyleProvider } from "~/lib/style-context.tsx";
 import { Toaster } from "~/registry/ui/toast.tsx";
 
 import "~/styles/app.css";
@@ -20,20 +21,22 @@ import { pageRoutes } from "virtual:file-routes";
 const Router = createRouter({ routes: fileRoutes(pageRoutes) });
 
 export default function App() {
-  const storageManager = cookieStorageManagerSSR(
-    isServer
-      ? getRequestEvent()?.request.headers.get("cookie") ?? ""
-      : document.cookie,
-  );
+  const cookie = isServer
+    ? getRequestEvent()?.request.headers.get("cookie") ?? ""
+    : document.cookie;
+  const storageManager = cookieStorageManagerSSR(cookie);
+  const initialStyle = parseStyleCookie(cookie);
 
   return (
     <>
       <MetaTags />
       <ColorModeProvider storageManager={storageManager}>
-        <Router>
-          {(props) => <Loading>{props.children}</Loading>}
-        </Router>
-        <Toaster />
+        <StyleProvider initial={initialStyle}>
+          <Router>
+            {(props) => <Loading>{props.children}</Loading>}
+          </Router>
+          <Toaster />
+        </StyleProvider>
       </ColorModeProvider>
     </>
   );

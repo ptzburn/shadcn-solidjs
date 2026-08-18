@@ -26,7 +26,7 @@ const MessageScroller: Component<ComponentProps<"div">> = (props) => {
     <MessageScrollerPrimitive.Root
       data-slot="message-scroller"
       class={cn(
-        "group/message-scroller relative flex size-full min-h-0 flex-col overflow-hidden",
+        "cn-message-scroller group/message-scroller relative flex size-full min-h-0 flex-col overflow-hidden",
         props.class,
       )}
       {...others}
@@ -42,7 +42,7 @@ const MessageScrollerViewport: Component<MessageScrollerViewportProps> = (
     <MessageScrollerPrimitive.Viewport
       data-slot="message-scroller-viewport"
       class={cn(
-        "data-autoscrolling:scrollbar-thumb-transparent data-autoscrolling:scrollbar-track-transparent scroll-fade-b scrollbar-gutter-stable scrollbar-thin size-full min-h-0 min-w-0 overflow-y-auto overscroll-contain contain-content",
+        "cn-message-scroller-viewport data-autoscrolling:scrollbar-thumb-transparent data-autoscrolling:scrollbar-track-transparent scroll-fade-b scrollbar-gutter-stable scrollbar-thin size-full min-h-0 min-w-0 overflow-y-auto overscroll-contain contain-content",
         props.class,
       )}
       {...others}
@@ -57,7 +57,10 @@ const MessageScrollerContent: Component<MessageScrollerContentProps> = (
   return (
     <MessageScrollerPrimitive.Content
       data-slot="message-scroller-content"
-      class={cn("flex h-max min-h-full flex-col gap-6", props.class)}
+      class={cn(
+        "cn-message-scroller-content flex h-max min-h-full flex-col",
+        props.class,
+      )}
       {...others}
     />
   );
@@ -70,7 +73,7 @@ const MessageScrollerItem: Component<MessageScrollerItemProps> = (props) => {
       data-slot="message-scroller-item"
       scrollAnchor={props.scrollAnchor ?? false}
       class={cn(
-        "[contain-intrinsic-size:auto_10rem] [content-visibility:auto] min-w-0 shrink-0",
+        "[contain-intrinsic-size:auto_10rem] [content-visibility:auto] cn-message-scroller-item min-w-0 shrink-0",
         props.class,
       )}
       {...others}
@@ -115,7 +118,7 @@ const MessageScrollerButton: Component<MessageScrollerButtonProps> = (
       variant={variant()}
       size={size()}
       class={cn(
-        "absolute inset-s-1/2 -translate-x-1/2 border-border bg-background text-foreground transition-[translate,scale,opacity] duration-200 hover:bg-muted hover:text-foreground rtl:translate-x-1/2 data-[active=false]:pointer-events-none data-[direction=start]:top-4 data-[direction=end]:bottom-4 data-[active=true]:translate-y-0 data-[active=false]:scale-95 data-[active=true]:scale-100 data-[active=false]:opacity-0 data-[active=true]:opacity-100 data-[active=false]:duration-400 data-[active=false]:ease-[cubic-bezier(0.7,0,0.84,0)] data-[active=true]:ease-[cubic-bezier(0.23,1,0.32,1)] data-[direction=start]:data-[active=false]:-translate-y-full data-[direction=end]:data-[active=false]:translate-y-full data-[direction=start]:[&_svg]:rotate-180",
+        "cn-message-scroller-button absolute inset-s-1/2 -translate-x-1/2 border-border bg-background text-foreground transition-[translate,scale,opacity] duration-200 hover:bg-muted hover:text-foreground rtl:translate-x-1/2 data-[active=false]:pointer-events-none data-[direction=start]:top-4 data-[direction=end]:bottom-4 data-[active=true]:translate-y-0 data-[active=false]:scale-95 data-[active=true]:scale-100 data-[active=false]:opacity-0 data-[active=true]:opacity-100 data-[active=false]:duration-400 data-[active=false]:ease-[cubic-bezier(0.7,0,0.84,0)] data-[active=true]:ease-[cubic-bezier(0.23,1,0.32,1)] data-[direction=start]:data-[active=false]:-translate-y-full data-[direction=end]:data-[active=false]:translate-y-full data-[direction=start]:[&_svg]:rotate-180",
         props.class,
       )}
       {...others}

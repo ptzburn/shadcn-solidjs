@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/registry/ui/kbd.tsx",
+      "content": "import type { ComponentProps } from \"@solidjs/web\";\nimport { cn } from \"~/lib/utils.ts\";\nimport type { Component } from \"solid-js\";\n\nimport { omit } from \"solid-js\";\n\nconst Kbd: Component<ComponentProps<\"kbd\">> = (props) => {\n  const others = omit(props, \"class\");\n  return (\n    <kbd\n      data-slot=\"kbd\"\n      class={cn(\n        \"bg-muted text-muted-foreground in-data-[slot=tooltip-content]:bg-background/20 in-data-[slot=tooltip-content]:text-background dark:in-data-[slot=tooltip-content]:bg-background/10 h-5 w-fit min-w-5 gap-1 rounded-none px-1 font-sans text-xs font-medium [&_svg:not([class*='size-'])]:size-3 pointer-events-none inline-flex select-none items-center justify-center\",\n        props.class,\n      )}\n      {...others}\n    />\n  );\n};\n\nconst KbdGroup: Component<ComponentProps<\"kbd\">> = (props) => {\n  const others = omit(props, \"class\");\n  return (\n    <kbd\n      data-slot=\"kbd-group\"\n      class={cn(\"gap-1 inline-flex items-center\", props.class)}\n      {...others}\n    />\n  );\n};\n\nexport { Kbd, KbdGroup };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

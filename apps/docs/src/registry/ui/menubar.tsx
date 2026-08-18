@@ -25,7 +25,7 @@ const Menubar = <T extends ValidComponent = "div">(
     <MenubarPrimitive.Root
       data-slot="menubar"
       class={cn(
-        "flex h-8 items-center gap-0.5 rounded-lg border p-[3px]",
+        "cn-menubar flex items-center",
         local.class,
       )}
       {...others}
@@ -75,7 +75,7 @@ const MenubarTrigger = <T extends ValidComponent = "button">(
     <MenubarPrimitive.Trigger
       data-slot="menubar-trigger"
       class={cn(
-        "flex select-none items-center rounded-sm px-1.5 py-[2px] font-medium text-sm outline-hidden hover:bg-muted data-expanded:bg-muted",
+        "cn-menubar-trigger flex select-none items-center outline-hidden",
         local.class,
       )}
       {...others}
@@ -99,7 +99,7 @@ const MenubarContent = <T extends ValidComponent = "div">(
       <MenubarPrimitive.Content
         data-slot="menubar-content"
         class={cn(
-          "data-expanded:fade-in-0 data-expanded:zoom-in-95 z-50 min-w-36 origin-(--kb-menu-content-transform-origin) overflow-hidden rounded-lg bg-popover p-1 text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 data-expanded:animate-in",
+          "cn-menubar-content z-50 origin-(--kb-menu-content-transform-origin) overflow-hidden",
           local.class,
         )}
         {...others}
@@ -127,7 +127,7 @@ const MenubarItem = <T extends ValidComponent = "div">(
       data-inset={local.inset}
       data-variant={local.variant ?? "default"}
       class={cn(
-        "group/menubar-item relative flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden dark:data-[variant=destructive]:data-highlighted:bg-destructive/20 data-[variant=destructive]:*:[svg]:text-destructive! [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-highlighted:bg-accent data-inset:pl-7 data-[variant=destructive]:text-destructive data-highlighted:text-accent-foreground data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 data-[variant=destructive]:data-highlighted:bg-destructive/10 data-[variant=destructive]:data-highlighted:text-destructive not-data-[variant=destructive]:data-highlighted:**:text-accent-foreground",
+        "cn-menubar-item group/menubar-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}
@@ -153,12 +153,12 @@ const MenubarCheckboxItem = <T extends ValidComponent = "div">(
       data-slot="menubar-checkbox-item"
       data-inset={local.inset}
       class={cn(
-        "relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pr-1.5 pl-7 text-sm outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-highlighted:bg-accent data-inset:pl-7 data-highlighted:text-accent-foreground data-highlighted:**:text-accent-foreground",
+        "cn-menubar-checkbox-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}
     >
-      <span class="pointer-events-none absolute left-1.5 flex size-4 items-center justify-center [&_svg:not([class*='size-'])]:size-4">
+      <span class="cn-menubar-checkbox-item-indicator pointer-events-none absolute flex items-center justify-center">
         <MenubarPrimitive.ItemIndicator>
           <IconPlaceholder
             lucide="check"
@@ -192,12 +192,12 @@ const MenubarRadioItem = <T extends ValidComponent = "div">(
       data-slot="menubar-radio-item"
       data-inset={local.inset}
       class={cn(
-        "relative flex cursor-default select-none items-center gap-1.5 rounded-md py-1 pr-1.5 pl-7 text-sm outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 data-highlighted:bg-accent data-inset:pl-7 data-highlighted:text-accent-foreground data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 data-highlighted:**:text-accent-foreground",
+        "cn-menubar-radio-item relative flex cursor-default select-none items-center outline-hidden [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0",
         local.class,
       )}
       {...others}
     >
-      <span class="pointer-events-none absolute left-1.5 flex size-4 items-center justify-center [&_svg:not([class*='size-'])]:size-4">
+      <span class="cn-menubar-radio-item-indicator pointer-events-none absolute flex items-center justify-center">
         <MenubarPrimitive.ItemIndicator>
           <IconPlaceholder
             lucide="check"
@@ -230,7 +230,7 @@ const MenubarLabel = <T extends ValidComponent = "div">(
       as="div"
       data-slot="menubar-label"
       data-inset={local.inset}
-      class={cn("px-1.5 py-1 font-medium text-sm data-inset:pl-7", local.class)}
+      class={cn("cn-menubar-label", local.class)}
       {...others}
     />
   );
@@ -251,7 +251,7 @@ const MenubarSeparator = <T extends ValidComponent = "div">(
     <MenubarPrimitive.Separator
       as="div"
       data-slot="menubar-separator"
-      class={cn("-mx-1 my-1 h-px bg-border", local.class)}
+      class={cn("cn-menubar-separator -mx-1 my-1 h-px", local.class)}
       {...others}
     />
   );
@@ -263,7 +263,7 @@ const MenubarShortcut: Component<ComponentProps<"span">> = (props) => {
     <span
       data-slot="menubar-shortcut"
       class={cn(
-        "ml-auto text-muted-foreground text-xs tracking-widest group-data-[highlighted]/menubar-item:text-accent-foreground",
+        "cn-menubar-shortcut ml-auto",
         props.class,
       )}
       {...others}
@@ -289,7 +289,7 @@ const MenubarSubTrigger = <T extends ValidComponent = "div">(
       data-slot="menubar-sub-trigger"
       data-inset={local.inset}
       class={cn(
-        "flex cursor-default select-none items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-none data-expanded:bg-accent data-highlighted:bg-accent data-inset:pl-7 data-expanded:text-accent-foreground data-highlighted:text-accent-foreground [&_svg:not([class*='size-'])]:size-4",
+        "cn-menubar-sub-trigger flex cursor-default select-none items-center outline-none",
         local.class,
       )}
       {...others}
@@ -323,7 +323,7 @@ const MenubarSubContent = <T extends ValidComponent = "div">(
       <MenubarPrimitive.SubContent
         data-slot="menubar-sub-content"
         class={cn(
-          "data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 z-50 min-w-32 origin-(--kb-menu-content-transform-origin) overflow-hidden rounded-lg bg-popover p-1 text-popover-foreground shadow-lg ring-1 ring-foreground/10 duration-100 data-closed:animate-out data-expanded:animate-in",
+          "cn-menubar-sub-content z-50 origin-(--kb-menu-content-transform-origin) overflow-hidden",
           local.class,
         )}
         {...others}

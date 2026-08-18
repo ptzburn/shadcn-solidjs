@@ -22,7 +22,7 @@ const Toast = <T extends ValidComponent = "li">(
     <ToastPrimitive.Root
       data-slot="toast"
       class={cn(
-        "group/toast pointer-events-auto relative flex w-full select-none rounded-2xl border bg-popover text-popover-foreground shadow-lg outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+        "cn-toast group/toast pointer-events-auto relative flex w-full select-none border bg-popover text-popover-foreground shadow-lg outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
         "data-opened:fade-in-0 data-opened:slide-in-from-bottom-full data-opened:animate-in",
         "data-closed:fade-out-80 data-closed:slide-out-to-right-full data-closed:animate-out",
         "data-[swipe=end]:fade-out-80 data-[swipe=end]:slide-out-to-right-full data-[swipe=cancel]:translate-x-0 data-[swipe=move]:translate-x-(--kb-toast-swipe-move-x) data-[swipe=end]:animate-out data-[swipe=cancel]:transition-transform data-[swipe=move]:transition-none",

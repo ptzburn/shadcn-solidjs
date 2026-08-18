@@ -1,0 +1,101 @@
+/*
+ * Compatibility variants for upstream's attribute conventions.
+ *
+ * Upstream authors its style CSS against Radix, Base UI and React Aria,
+ * which mark state differently than Kobalte: `data-open` vs
+ * `data-expanded`, `data-vertical` vs `data-orientation="vertical"`,
+ * `aria-invalid` vs `data-invalid`. `src/scripts/port-style.ts` rewrites
+ * the ones it knows about when porting a style, so the code we ship to
+ * consumers is Kobalte-native and needs none of this file.
+ *
+ * This is the safety net for the ones it does not know about yet. When
+ * upstream introduces a state on a marker our port has no mapping for,
+ * the upstream spelling passes through into the style CSS -- and without
+ * these variants it would silently match nothing, which is how four
+ * styles shipped an accordion whose open state had no background.
+ *
+ * Every definition is additive: it keeps upstream's selector and adds
+ * Kobalte's, so nothing that already worked stops working. Loaded by the
+ * docs only (app.css); it never reaches consumers.
+ */
+
+@custom-variant data-open {
+  &:where([data-expanded]),
+  &:where([data-state="open"]),
+  &:where([data-open]:not([data-open="false"])) {
+    @slot;
+  }
+}
+
+@custom-variant data-closed {
+  &:where([data-closed]),
+  &:where([data-state="closed"]) {
+    @slot;
+  }
+}
+
+@custom-variant data-checked {
+  &:where([data-checked]:not([data-checked="false"])),
+  &:where([data-state="checked"]),
+  &:where([aria-checked="true"]) {
+    @slot;
+  }
+}
+
+@custom-variant data-unchecked {
+  &:where([data-state="unchecked"]),
+  &:where([data-unchecked]:not([data-unchecked="false"])) {
+    @slot;
+  }
+}
+
+@custom-variant data-selected {
+  &:where([data-selected]:not([data-selected="false"])) {
+    @slot;
+  }
+}
+
+@custom-variant data-active {
+  &:where([data-active]:not([data-active="false"])),
+  &:where([data-state="active"]) {
+    @slot;
+  }
+}
+
+@custom-variant data-disabled {
+  &:where([data-disabled]:not([data-disabled="false"])) {
+    @slot;
+  }
+}
+
+@custom-variant data-horizontal {
+  &:where([data-orientation="horizontal"]),
+  &:where([data-horizontal]) {
+    @slot;
+  }
+}
+
+@custom-variant data-vertical {
+  &:where([data-orientation="vertical"]),
+  &:where([data-vertical]) {
+    @slot;
+  }
+}
+
+/* Kobalte marks form controls invalid with data-invalid on some elements
+ * and aria-invalid on others, so accept either spelling. */
+@custom-variant aria-invalid {
+  &:where([aria-invalid]:not([aria-invalid="false"])),
+  &:where([data-invalid]) {
+    @slot;
+  }
+}
+
+/* Upstream styles menu item highlight with `focus:`; Kobalte moves
+ * highlight to data-highlighted and never focuses the item itself. */
+@custom-variant focus {
+  &:focus,
+  &:where([data-highlighted]) {
+    @slot;
+  }
+}

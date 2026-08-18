@@ -44,7 +44,7 @@ const HoverCardContent = <T extends ValidComponent = "div">(
       <HoverCardPrimitive.Content
         data-slot="hover-card-content"
         class={cn(
-          "data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 z-50 w-64 origin-(--kb-hovercard-content-transform-origin) rounded-lg bg-popover p-2.5 text-popover-foreground text-sm shadow-md outline-hidden ring-1 ring-foreground/10 duration-100 data-closed:animate-out data-expanded:animate-in",
+          "cn-hover-card-content z-50 origin-(--kb-hovercard-content-transform-origin) outline-hidden",
           local.class,
         )}
         {...others}

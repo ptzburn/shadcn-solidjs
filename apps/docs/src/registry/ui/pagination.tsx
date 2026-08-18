@@ -25,8 +25,8 @@ const Pagination = <T extends ValidComponent = "nav">(
       aria-label="pagination"
       data-slot="pagination"
       class={cn(
-        "mx-auto flex w-full justify-center",
-        "[&>ul]:flex [&>ul]:items-center [&>ul]:gap-0.5",
+        "cn-pagination mx-auto flex w-full justify-center",
+        "cn-pagination [&>ul]:flex [&>ul]:items-center",
         local.class,
       )}
       {...others}
@@ -54,7 +54,7 @@ const PaginationItem = <T extends ValidComponent = "button">(
           variant: "ghost",
           size: local.size ?? "icon",
         }),
-        "dark:data-[current]:border-input dark:data-[current]:bg-input/30 dark:data-[current]:hover:bg-input/50 data-[current]:border-border data-[current]:bg-background data-[current]:hover:bg-muted",
+        "cn-pagination-link dark:data-[current]:border-input dark:data-[current]:bg-input/30 dark:data-[current]:hover:bg-input/50 data-[current]:border-border data-[current]:bg-background data-[current]:hover:bg-muted",
         local.class,
       )}
       {...others}
@@ -78,7 +78,7 @@ const PaginationEllipsis = <T extends ValidComponent = "div">(
       aria-hidden="true"
       data-slot="pagination-ellipsis"
       class={cn(
-        "flex size-8 items-center justify-center [&_svg:not([class*='size-'])]:size-4",
+        "cn-pagination-ellipsis flex items-center justify-center",
         local.class,
       )}
       {...others}
@@ -121,7 +121,7 @@ const PaginationPrevious = <T extends ValidComponent = "button">(
           variant: "ghost",
           size: "default",
         }),
-        "pl-1.5!",
+        "cn-pagination-link cn-pagination-previous",
         local.class,
       )}
       {...others}
@@ -136,7 +136,7 @@ const PaginationPrevious = <T extends ValidComponent = "button">(
           data-icon="inline-start"
           class="cn-rtl-flip"
         />
-        <span class="hidden sm:block">
+        <span class="cn-pagination-previous-text hidden sm:block">
           {local.text ?? "Previous"}
         </span>
       </Show>
@@ -170,13 +170,13 @@ const PaginationNext = <T extends ValidComponent = "button">(
           variant: "ghost",
           size: "default",
         }),
-        "pr-1.5!",
+        "cn-pagination-link cn-pagination-next",
         local.class,
       )}
       {...others}
     >
       <Show when={!hasChildren()} fallback={resolvedChildren()}>
-        <span class="hidden sm:block">
+        <span class="cn-pagination-next-text hidden sm:block">
           {local.text ?? "Next"}
         </span>
         <IconPlaceholder

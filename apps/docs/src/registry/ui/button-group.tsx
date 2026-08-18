@@ -11,14 +11,14 @@ import { merge, omit } from "solid-js";
 import { Separator } from "./separator.tsx";
 
 const buttonGroupVariants = cva(
-  "group/button-group flex w-fit items-stretch has-[>[data-slot=button-group]]:gap-2 *:focus-visible:relative *:focus-visible:z-10 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-lg [&>*>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
+  "cn-button-group group/button-group flex w-fit items-stretch *:focus-visible:relative *:focus-visible:z-10 [&>*>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
   {
     variants: {
       orientation: {
         horizontal:
-          "[&>[data-slot]:not(:has(~[data-slot]))]:rounded-r-lg! [&>*:not(:first-child)]:rounded-l-none [&>*:not(:first-child)]:border-l-0 [&>*:not(:last-child)]:rounded-r-none [&>*:not(:first-child)>[data-slot=select-trigger]]:rounded-l-none [&>*:not(:first-child)>[data-slot=select-trigger]]:border-l-0 [&>*:not(:last-child)>[data-slot=select-trigger]]:rounded-r-none",
+          "cn-button-group-orientation-horizontal [&>*:not(:first-child)]:rounded-l-none [&>*:not(:first-child)]:border-l-0 [&>*:not(:last-child)]:rounded-r-none [&>*:not(:first-child)>[data-slot=select-trigger]]:rounded-l-none [&>*:not(:first-child)>[data-slot=select-trigger]]:border-l-0 [&>*:not(:last-child)>[data-slot=select-trigger]]:rounded-r-none",
         vertical:
-          "flex-col [&>[data-slot]:not(:has(~[data-slot]))]:rounded-b-lg! [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none [&>*:not(:first-child)>[data-slot=select-trigger]]:rounded-t-none [&>*:not(:first-child)>[data-slot=select-trigger]]:border-t-0 [&>*:not(:last-child)>[data-slot=select-trigger]]:rounded-b-none",
+          "cn-button-group-orientation-vertical flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none [&>*:not(:first-child)>[data-slot=select-trigger]]:rounded-t-none [&>*:not(:first-child)>[data-slot=select-trigger]]:border-t-0 [&>*:not(:last-child)>[data-slot=select-trigger]]:rounded-b-none",
       },
     },
     defaultVariants: {
@@ -58,7 +58,7 @@ const ButtonGroupText = <T extends ValidComponent = "div">(
     <Polymorphic
       as="div"
       class={cn(
-        "flex items-center gap-2 rounded-lg border bg-muted px-2.5 font-medium text-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+        "cn-button-group-text flex items-center [&_svg]:pointer-events-none",
         local.class,
       )}
       {...others}
@@ -83,7 +83,7 @@ const ButtonGroupSeparator = <T extends ValidComponent = "div">(
       data-slot="button-group-separator"
       orientation={props.orientation}
       class={cn(
-        "relative self-stretch bg-input data-[orientation=horizontal]:mx-px data-[orientation=vertical]:my-px data-[orientation=vertical]:h-auto data-[orientation=horizontal]:w-auto",
+        "cn-button-group-separator relative self-stretch bg-input data-[orientation=horizontal]:mx-px data-[orientation=vertical]:my-px data-[orientation=vertical]:h-auto data-[orientation=horizontal]:w-auto",
         props.class,
       )}
       {...others}

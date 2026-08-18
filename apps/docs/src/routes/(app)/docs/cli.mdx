@@ -12,11 +12,12 @@ your stylesheet with the base color's tokens, and adds the `cn` util.
 npx @ptzburn/shadcn-solidjs@beta init
 ```
 
-You will be asked which base color and icon library to use:
+You will be asked which base color, icon library and style to use:
 
 ```txt
 Which base color would you like to use? › zinc
 Which icon library would you like to use? › Lucide
+Which style would you like to use? › Nova
 ```
 
 Paths are not asked for. `init` reads the alias your project already declares —
@@ -37,6 +38,7 @@ To change where components are written, edit the `aliases` in
 -f, --force                force overwrite of existing configuration.
 -s, --silent               mute output.
 -b, --base-color <color>   the base color to use.
+    --style <style>        the style to use.
     --css-variables        use css variables for theming. (default)
     --no-css-variables     use utility classes for theming.
 ```

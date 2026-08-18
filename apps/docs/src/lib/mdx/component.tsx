@@ -8,16 +8,21 @@ import { visit } from "unist-util-visit";
 import { Index } from "../../__registry__/index.tsx";
 import { defaultIconLibrary } from "../../registry/icons/icon-libraries.ts";
 import { resolveIcons } from "../registry/resolve-icons.ts";
+import { createStyleMap, inlineStyles } from "../registry/style-map.ts";
+
+const styleMap = createStyleMap(
+  fs.readFileSync(
+    path.join(process.cwd(), "src/registry/styles/style-nova.css"),
+    "utf-8",
+  ),
+);
 
 /**
- * Docs code blocks show the consumer form of registry files: icons
- * resolved to the default library, matching what the CLI installs. Main
- * also inlines `cn-*` style markers here; this branch authors its
- * sources with the nova style already inlined, so only icon resolution
- * remains.
+ * Docs code blocks show the consumer form of registry files: style
+ * markers inlined and icons resolved, matching what the CLI installs.
  */
 function toConsumerSource(source: string): string {
-  return resolveIcons(source, defaultIconLibrary).code;
+  return resolveIcons(inlineStyles(source, styleMap), defaultIconLibrary).code;
 }
 
 interface ComponentNode extends Node, Parent {

@@ -23,7 +23,7 @@ const InputOTP = <T extends ValidComponent = "div">(
   return (
     <OTPFieldPrimitive.Root
       class={cn(
-        "flex items-center gap-2 has-disabled:opacity-50",
+        "cn-input-otp flex items-center has-disabled:opacity-50",
         local.class,
       )}
       {...rest}
@@ -52,7 +52,10 @@ const InputOTPInput = <T extends ValidComponent = "input">(
     <OTPFieldPrimitive.Input
       onFocus={onFocus}
       data-slot="input-otp"
-      class={cn("z-20 disabled:cursor-not-allowed", props.class)}
+      class={cn(
+        "cn-input-otp-input z-20 disabled:cursor-not-allowed",
+        props.class,
+      )}
       {...rest}
     />
   );
@@ -64,7 +67,7 @@ const InputOTPGroup: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="input-otp-group"
       class={cn(
-        "flex items-center rounded-lg dark:has-aria-invalid:ring-destructive/40 has-aria-invalid:border-destructive has-aria-invalid:ring-3 has-aria-invalid:ring-destructive/20",
+        "cn-input-otp-group flex items-center",
         props.class,
       )}
       {...rest}
@@ -87,15 +90,15 @@ const InputOTPSlot: Component<ComponentProps<"div"> & { index: number }> = (
       data-slot="input-otp-slot"
       data-active={isActive() ? "true" : undefined}
       class={cn(
-        "relative flex size-8 items-center justify-center border-input border-r border-y text-sm outline-none transition-all first:rounded-l-lg first:border-l last:rounded-r-lg dark:bg-input/30 dark:data-[active=true]:aria-invalid:ring-destructive/40 data-[active=true]:z-10 aria-invalid:border-destructive data-[active=true]:border-ring data-[active=true]:ring-3 data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/20",
+        "cn-input-otp-slot relative flex items-center justify-center data-[active=true]:z-10",
         props.class,
       )}
       {...rest}
     >
       {char()}
       <Show when={showFakeCaret()}>
-        <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div class="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
+        <div class="cn-input-otp-caret pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div class="cn-input-otp-caret-line" />
         </div>
       </Show>
     </div>
@@ -108,7 +111,7 @@ const InputOTPSeparator: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="input-otp-separator"
       class={cn(
-        "flex items-center [&_svg:not([class*='size-'])]:size-4",
+        "cn-input-otp-separator flex items-center",
         props.class,
       )}
       role="separator"

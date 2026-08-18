@@ -51,7 +51,7 @@ const TooltipContent = <T extends ValidComponent = "div">(
         data-slot="tooltip-content"
         data-side={side()}
         class={cn(
-          "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 z-50 inline-flex w-fit max-w-xs origin-(--kb-tooltip-content-transform-origin) items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-background text-xs data-closed:animate-out data-expanded:animate-in has-data-[slot=kbd]:pr-1.5 **:data-[slot=kbd]:relative **:data-[slot=kbd]:isolate **:data-[slot=kbd]:z-50 **:data-[slot=kbd]:rounded-sm",
+          "cn-tooltip-content z-50 w-fit max-w-xs origin-(--kb-tooltip-content-transform-origin) bg-foreground text-background",
           local.class,
         )}
         {...others}
@@ -60,7 +60,7 @@ const TooltipContent = <T extends ValidComponent = "div">(
         <TooltipPrimitive.Arrow
           data-side={side()}
           size={10}
-          class="z-50 size-2.5 rotate-45 rounded-[2px] bg-foreground *:hidden data-[side=left]:translate-x-[calc(-50%_-_2px)] data-[side=right]:translate-x-[calc(50%_+_2px)] data-[side=bottom]:translate-y-[calc(50%_+_2px)] data-[side=top]:translate-y-[calc(-50%_-_2px)]"
+          class="cn-tooltip-arrow z-50 bg-foreground"
         />
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>

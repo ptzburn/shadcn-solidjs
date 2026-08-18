@@ -11,7 +11,7 @@ const ScrollArea: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="scroll-area"
       class={cn(
-        "[scrollbar-color:var(--color-border)_transparent] [scrollbar-width:thin] relative overflow-auto outline-none focus-visible:outline-1 focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+        "[scrollbar-color:var(--color-border)_transparent] [scrollbar-width:thin] cn-scroll-area relative overflow-auto outline-none focus-visible:outline-1 focus-visible:ring-ring/50 focus-visible:ring-[3px]",
         props.class,
       )}
       {...rest}

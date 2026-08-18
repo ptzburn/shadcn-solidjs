@@ -39,7 +39,7 @@ const AlertDialogOverlay = <T extends ValidComponent = "div">(
     <AlertDialogPrimitive.Overlay
       data-slot="alert-dialog-overlay"
       class={cn(
-        "data-closed:fade-out-0 data-expanded:fade-in-0 fixed inset-0 z-50 bg-black/10 duration-100 data-closed:animate-out data-expanded:animate-in supports-backdrop-filter:backdrop-blur-xs",
+        "cn-alert-dialog-overlay fixed inset-0 z-50",
         local.class,
       )}
       {...rest}
@@ -67,7 +67,7 @@ const AlertDialogContent = <T extends ValidComponent = "div">(
         data-slot="alert-dialog-content"
         data-size={local.size ?? "default"}
         class={cn(
-          "data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 group/alert-dialog-content fixed top-1/2 left-1/2 z-50 grid w-full -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl bg-popover p-4 text-popover-foreground outline-none ring-1 ring-foreground/10 duration-100 data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-closed:animate-out data-expanded:animate-in data-[size=default]:sm:max-w-sm",
+          "cn-alert-dialog-content group/alert-dialog-content fixed top-1/2 left-1/2 z-50 grid w-full -translate-x-1/2 -translate-y-1/2 outline-none",
           local.class,
         )}
         {...rest}
@@ -84,7 +84,7 @@ const AlertDialogHeader: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="alert-dialog-header"
       class={cn(
-        "grid grid-rows-[auto_1fr] place-items-center gap-1.5 text-center sm:group-data-[size=default]/alert-dialog-content:place-items-start sm:group-data-[size=default]/alert-dialog-content:text-left sm:group-data-[size=default]/alert-dialog-content:has-data-[slot=alert-dialog-media]:grid-rows-[auto_1fr] has-data-[slot=alert-dialog-media]:grid-rows-[auto_auto_1fr] has-data-[slot=alert-dialog-media]:gap-x-4",
+        "cn-alert-dialog-header",
         props.class,
       )}
       {...rest}
@@ -98,7 +98,7 @@ const AlertDialogFooter: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="alert-dialog-footer"
       class={cn(
-        "-mx-4 -mb-4 flex flex-col-reverse gap-2 rounded-b-xl border-t bg-muted/50 p-4 sm:flex-row sm:justify-end group-data-[size=sm]/alert-dialog-content:grid group-data-[size=sm]/alert-dialog-content:grid-cols-2",
+        "cn-alert-dialog-footer flex flex-col-reverse gap-2 sm:flex-row sm:justify-end group-data-[size=sm]/alert-dialog-content:grid group-data-[size=sm]/alert-dialog-content:grid-cols-2",
         props.class,
       )}
       {...rest}
@@ -112,7 +112,7 @@ const AlertDialogMedia: Component<ComponentProps<"div">> = (props) => {
     <div
       data-slot="alert-dialog-media"
       class={cn(
-        "mb-2 inline-flex size-10 items-center justify-center rounded-md bg-muted *:[svg:not([class*='size-'])]:size-6 sm:group-data-[size=default]/alert-dialog-content:row-span-2",
+        "cn-alert-dialog-media",
         props.class,
       )}
       {...rest}
@@ -133,7 +133,7 @@ const AlertDialogTitle = <T extends ValidComponent = "h2">(
     <AlertDialogPrimitive.Title
       data-slot="alert-dialog-title"
       class={cn(
-        "font-heading font-medium text-base sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2",
+        "cn-alert-dialog-title font-heading",
         local.class,
       )}
       {...rest}
@@ -154,7 +154,7 @@ const AlertDialogDescription = <T extends ValidComponent = "p">(
     <AlertDialogPrimitive.Description
       data-slot="alert-dialog-description"
       class={cn(
-        "text-balance text-muted-foreground text-sm *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground md:text-pretty",
+        "cn-alert-dialog-description",
         local.class,
       )}
       {...rest}
@@ -180,6 +180,7 @@ const AlertDialogAction = <T extends ValidComponent = "button">(
     <AlertDialogPrimitive.CloseButton
       data-slot="alert-dialog-action"
       class={cn(
+        "cn-alert-dialog-action",
         buttonVariants({
           variant: local.variant ?? "default",
           size: local.size ?? "default",
@@ -211,6 +212,7 @@ const AlertDialogCancel = <T extends ValidComponent = "button">(
     <AlertDialogPrimitive.CloseButton
       data-slot="alert-dialog-cancel"
       class={cn(
+        "cn-alert-dialog-cancel",
         buttonVariants({
           variant: local.variant ?? "outline",
           size: local.size ?? "default",

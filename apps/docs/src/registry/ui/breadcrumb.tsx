@@ -25,7 +25,7 @@ const BreadcrumbList: Component<ComponentProps<"ol">> = (props) => {
     <ol
       data-slot="breadcrumb-list"
       class={cn(
-        "wrap-break-word flex flex-wrap items-center gap-1.5 text-muted-foreground text-sm",
+        "cn-breadcrumb-list wrap-break-word flex flex-wrap items-center",
         props.class,
       )}
       {...others}
@@ -38,7 +38,7 @@ const BreadcrumbItem: Component<ComponentProps<"li">> = (props) => {
   return (
     <li
       data-slot="breadcrumb-item"
-      class={cn("inline-flex items-center gap-1", props.class)}
+      class={cn("cn-breadcrumb-item inline-flex items-center", props.class)}
       {...others}
     />
   );
@@ -57,7 +57,7 @@ const BreadcrumbLink = <T extends ValidComponent = "a">(
     <Polymorphic
       as="a"
       data-slot="breadcrumb-link"
-      class={cn("transition-colors hover:text-foreground", local.class)}
+      class={cn("cn-breadcrumb-link", local.class)}
       {...others}
     />
   );
@@ -71,7 +71,7 @@ const BreadcrumbPage: Component<ComponentProps<"span">> = (props) => {
       role="link"
       aria-disabled="true"
       aria-current="page"
-      class={cn("font-normal text-foreground", props.class)}
+      class={cn("cn-breadcrumb-page", props.class)}
       {...others}
     />
   );
@@ -88,7 +88,7 @@ const BreadcrumbSeparator: Component<ComponentProps<"li">> = (props) => {
       data-slot="breadcrumb-separator"
       role="presentation"
       aria-hidden="true"
-      class={cn("[&>svg]:size-3.5", props.class)}
+      class={cn("cn-breadcrumb-separator", props.class)}
       {...others}
     >
       <Show when={!hasChildren()} fallback={resolvedChildren()}>
@@ -113,7 +113,7 @@ const BreadcrumbEllipsis: Component<ComponentProps<"span">> = (props) => {
       role="presentation"
       aria-hidden="true"
       class={cn(
-        "flex size-5 items-center justify-center [&>svg]:size-4",
+        "cn-breadcrumb-ellipsis flex items-center justify-center",
         props.class,
       )}
       {...others}

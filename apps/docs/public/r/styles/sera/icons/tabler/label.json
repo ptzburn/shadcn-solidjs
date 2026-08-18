@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "type": "registry:ui",
+  "dependencies": [
+    "@kobalte/core"
+  ],
+  "files": [
+    {
+      "path": "src/registry/ui/label.tsx",
+      "content": "import type { PolymorphicProps } from \"@kobalte/core/polymorphic\";\nimport { Polymorphic } from \"@kobalte/core/polymorphic\";\nimport type { ComponentProps, ValidComponent } from \"@solidjs/web\";\nimport { cn } from \"~/lib/utils.ts\";\n\nimport { omit } from \"solid-js\";\n\ntype LabelProps<T extends ValidComponent = \"label\"> = ComponentProps<T> & {\n  class?: string | undefined;\n};\n\nconst Label = <T extends ValidComponent = \"label\">(\n  props: PolymorphicProps<T, LabelProps<T>>,\n) => {\n  const local = props as LabelProps;\n  const others = omit(local, \"class\");\n\n  return (\n    <Polymorphic<LabelProps>\n      as=\"label\"\n      data-slot=\"label\"\n      class={cn(\n        \"gap-2 font-semibold peer-data-[slot=checkbox]:text-sm peer-data-[slot=radio-group-item]:text-sm peer-data-[slot=switch]:text-sm group-data-[disabled=true]:opacity-50 peer-disabled:opacity-50 peer-data-[slot=checkbox]:font-normal peer-data-[slot=radio-group-item]:font-normal peer-data-[slot=switch]:font-normal uppercase text-xs tracking-wide peer-data-[slot=checkbox]:normal-case peer-data-[slot=checkbox]:tracking-normal peer-data-[slot=radio-group-item]:normal-case peer-data-[slot=radio-group-item]:tracking-normal peer-data-[slot=switch]:normal-case peer-data-[slot=switch]:tracking-normal peer-data-disabled:opacity-50 flex select-none items-center peer-disabled:cursor-not-allowed group-data-[disabled=true]:pointer-events-none peer-data-disabled:cursor-not-allowed\",\n        local.class,\n      )}\n      {...others}\n    />\n  );\n};\n\nexport { Label };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

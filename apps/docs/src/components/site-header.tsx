@@ -3,11 +3,10 @@ import { MainNav } from "~/components/main-nav.tsx";
 import { MobileNav } from "~/components/mobile-nav.tsx";
 import { ModeSwitcher } from "~/components/mode-switcher.tsx";
 import SearchBar from "~/components/search-bar.tsx";
+import { StyleSwitcher } from "~/components/style-switcher.tsx";
 import { VersionSwitcher } from "~/components/version-switcher.tsx";
 import { Separator } from "~/registry/ui/separator.tsx";
 
-// Reduced from main: StyleSwitcher returns once the multi-style system is
-// ported (this branch inlines the nova style only).
 export function SiteHeader() {
   return (
     <header class="sticky top-0 z-50 w-full bg-background">
@@ -20,6 +19,8 @@ export function SiteHeader() {
               <SearchBar />
             </div>
             <Separator orientation="vertical" class="ml-2 hidden lg:block" />
+            <StyleSwitcher class="hidden shadow-none lg:flex" />
+            <Separator orientation="vertical" class="hidden lg:block" />
             <VersionSwitcher />
             <Separator orientation="vertical" />
             <GitHubLink />
