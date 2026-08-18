@@ -190,7 +190,7 @@ export const Index: RegistryIndex = {
     name: "command",
     description: "",
     type: "ui",
-    registryDependencies: ["dialog"],
+    registryDependencies: ["dialog", "input-group"],
     component: lazy(() => import("~/registry/ui/command.tsx")),
     files: [{
       path: "registry/ui/command.tsx",

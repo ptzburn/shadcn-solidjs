@@ -1,18 +1,24 @@
 ---
 title: Command
-description: Fast, composable command palette for Solid.
+description: Command menu for search and quick actions.
 ---
 
-<ComponentPreview name="command-demo" />
+<ComponentPreview
+  name="command-demo"
+  align="start"
+  previewClassName="h-[24.5rem]"
+/>
 
 ## About
 
-Command is built on top of [Kobalte Search](https://kobalte.dev/docs/core/components/search).
+Command is built on top of [Kobalte Search](https://kobalte.dev/docs/core/components/search),
+using its inline "command menu" layout: the listbox is mounted directly
+below the input instead of in a popover.
 
 Unlike the cmdk-based upstream component, items are passed as data through
 the `options` prop rather than composed as JSX children: the Kobalte
-collection supplies filtering, keyboard navigation, and combobox
-semantics from that data.
+collection supplies keyboard navigation and combobox semantics from that
+data, and the palette filters the options itself.
 
 ## Installation
 
@@ -73,20 +79,31 @@ import { Command } from "~/components/ui/command.tsx";
 
 Each option can carry an `icon` (a function returning JSX), a `shortcut`
 label, extra `keywords` for filtering, and its own `onSelect` handler.
+`value` must be unique across all groups — it identifies the row for
+keyboard navigation and selection. Pass `emptyMessage` to replace the
+default "No results found." text, and `filter`
+(`(option, inputValue) => boolean`) to override the built-in label and
+keywords match.
 
 ## Dialog
 
 Wrap the palette in a dialog with `CommandDialog` and control it with
-`open`/`onOpenChange` — for example from a ⌘K shortcut.
+`open`/`onOpenChange` — for example from a ⌘K shortcut. `title` and
+`description` set the visually hidden dialog title and description read
+by screen readers, and `showCloseButton` renders the dialog's close
+button. `CommandDialog` also closes on Escape: the always-open Kobalte
+Search consumes that key, so a bare `Command` placed inside another
+Kobalte overlay needs the same `onEscapeKeyDown` treatment (see the
+component source).
 
 ```tsx showLineNumbers
 import { CommandDialog } from "~/components/ui/command.tsx";
-import { createSignal } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 
 function CommandMenu() {
   const [open, setOpen] = createSignal(false);
 
-  createEffect(() => {
+  createEffect(() => {}, () => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
@@ -103,19 +120,25 @@ function CommandMenu() {
 
 ## Basic
 
+A simple command menu in a dialog.
+
 <ComponentPreview name="command-basic" />
 
+## Shortcuts
+
+<ComponentPreview name="command-shortcuts" />
+
 ## Groups
+
+A command menu with groups, icons and separators.
 
 <ComponentPreview name="command-groups" />
 
 ## Scrollable
 
+Scrollable command menu with multiple items.
+
 <ComponentPreview name="command-scrollable" />
-
-## Shortcuts
-
-<ComponentPreview name="command-shortcuts" />
 
 ## API Reference
 

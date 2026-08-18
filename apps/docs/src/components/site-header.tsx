@@ -4,9 +4,10 @@ import { MobileNav } from "~/components/mobile-nav.tsx";
 import { ModeSwitcher } from "~/components/mode-switcher.tsx";
 import { Separator } from "~/registry/ui/separator.tsx";
 
-// Reduced from main: SearchBar returns once cmdk-solid supports Solid 2,
-// and StyleSwitcher once the multi-style system is ported (this branch
-// inlines the nova style only).
+// Reduced from main: SearchBar returns once it is re-ported onto the
+// data-driven CommandDialog (main's version composed the old cmdk-solid
+// API), and StyleSwitcher once the multi-style system is ported (this
+// branch inlines the nova style only).
 export function SiteHeader() {
   return (
     <header class="sticky top-0 z-50 w-full bg-background">
