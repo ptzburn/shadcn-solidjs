@@ -44,8 +44,6 @@ import type {
   Ref,
 } from "./message-scroller-types.ts";
 
-// --- stores.ts: equality for the two reactive snapshots ----------------------
-
 function areScrollStatesEqual(
   current: MessageScrollerScrollable,
   next: MessageScrollerScrollable,
@@ -70,14 +68,6 @@ function areVisibilityStatesEqual(
   );
 }
 
-// --- use-message-scroller-refs.ts ------------------------------------------
-
-// Shared mutable ref bag for one MessageScroller, closed over by both the
-// controller and the commands so writes are visible across them without prop
-// threading. scrollableState / visibilityState fan out reactively (the React
-// useSyncExternalStore stores); scrollableSnapshot is the synchronous mirror
-// (Solid 2 signal reads lag until flush, and mirrorStateAttributes needs the
-// value now).
 type MessageScrollerRefs = {
   autoScrollRef: Ref<boolean>;
   autoscrollingRef: Ref<boolean>;
@@ -117,9 +107,6 @@ type MessageScrollerRefs = {
   handledScrollAnchorsRef: Ref<WeakSet<HTMLElement>>;
 };
 
-// Builds the per-instance ref bag once. Prop-derived fields start from the
-// current prop values (one-time untracked reads); the controller keeps them
-// fresh with render effects (the useLatest pattern).
 function createMessageScrollerRefs(
   props: MessageScrollerProviderProps,
 ): MessageScrollerRefs {
@@ -137,8 +124,6 @@ function createMessageScrollerRefs(
     autoScrollRef: { current: autoScroll },
     autoscrollingRef: { current: false },
     autoscrollingTimeoutRef: { current: null },
-    // The turn held at the reading line so a reply streaming in below it can re-pin
-    // it instead of letting scrollTop clamp it loose.
     streamingTurnRef: { current: null },
     contentRef: { current: null },
     defaultScrollPositionAppliedRef: { current: false },
@@ -147,16 +132,11 @@ function createMessageScrollerRefs(
     },
     firstItemRef: { current: null },
     itemCountRef: { current: 0 },
-    // The scrollTop seen by the previous state commit, so follow-release can
-    // tell a reader scrolling up from content growing past the live edge.
     lastScrollTopRef: { current: 0 },
     messageElementsRef: { current: new Map() },
     modeRef: { current: autoScroll ? "following-bottom" : "free-scrolling" },
     pendingScrollFrameRef: { current: null },
     pendingScrollToMessageRef: { current: null },
-    // The row to hold steady on the next prepend: the first visible row, or a
-    // jump target seeded by scrollToElement. restorePrependedAnchor reads only
-    // this.
     prependRestoreRef: { current: null },
     preserveScrollOnPrependRef: { current: true },
     rootRef: { current: null },
@@ -190,11 +170,6 @@ function createMessageScrollerRefs(
   };
 }
 
-// --- use-message-scroller-commands.ts --------------------------------------
-
-// Imperative scroll primitives, split from the controller so the move mechanics
-// live apart from the policy that decides when to run them. Each command resolves
-// a target scrollTop and returns false when the viewport is not mounted yet.
 function createMessageScrollerCommands({
   refs,
   commitScrollState,
@@ -386,10 +361,6 @@ function createMessageScrollerCommands({
     });
 
     setTailSpacerHeight(nextSpacerHeight);
-    // Seed the prepend anchor with the jump target so a prepend that lands
-    // before this scroll settles still preserves the jumped-to row; once it
-    // settles, syncAfterScroll's capturePrependAnchor re-captures it from the
-    // first visible row.
     prependRestoreRef.current = {
       element,
       viewportTop: getElementViewportTop(element, viewport),
@@ -417,18 +388,11 @@ function createMessageScrollerCommands({
       return false;
     }
 
-    // Re-run the placement so the tail spacer is recomputed for the new content
-    // height and the turn is held at the reading line.
     return scrollToElement(element, { align: "start" }, {
       keepPreviousPeek: true,
     });
   };
 
-  // The target row may not be mounted yet (e.g. an async-loaded transcript).
-  // When it is missing the request is queued in pendingScrollToMessageRef and
-  // flushed later — on registerMessage for that id, or on the next content
-  // change. An explicit jump also marks the mount default as applied, so
-  // defaultScrollPosition does not override it.
   const scrollToMessage = (
     messageId: string,
     options?: MessageScrollerScrollOptions,
@@ -493,12 +457,6 @@ function createMessageScrollerCommands({
   };
 }
 
-// --- use-message-scroller-controller.ts --------------------------------------
-
-// Orchestrator. Decides when to scroll and delegates the moves to the commands;
-// state and visibility commits are coalesced on a requestAnimationFrame and torn
-// down on cleanup. Called from the provider's setup so the effects and
-// onCleanup bind to its owner.
 function createMessageScrollerController(
   props: MessageScrollerProviderProps,
 ): {
@@ -544,9 +502,6 @@ function createMessageScrollerController(
     handledScrollAnchorsRef,
   } = refs;
 
-  // Reference count for visibility tracking so the observer stays lazy: it only
-  // runs while at least one useMessageScrollerVisibility consumer is mounted
-  // (the store's onFirstSubscribe/onLastUnsubscribe in the React original).
   let visibilitySubscriberCount = 0;
   const hasVisibilityListeners = (): boolean => visibilitySubscriberCount > 0;
 
@@ -573,19 +528,8 @@ function createMessageScrollerController(
     }
   };
 
-  // Owns the one follow-bottom transition: arm at the bottom, release on any
-  // scroll away (including a scrollbar drag), suppressed during a programmatic
-  // scroll so the auto-scroll animation cannot release itself. Arming also
-  // skips the anchored-to-message hold: the tail spacer makes a freshly
-  // anchored turn read as "at the end", and re-arming there would let the
-  // first streamed chunk yank the reader off the anchor. The hold hands back
-  // to following in handleResize, once the reply consumes the tail spacer.
   const reconcileFollowMode = (scrollable: MessageScrollerScrollable): void => {
     const scrollTop = viewportRef.current?.scrollTop ?? 0;
-    // Content growing past the live edge also reads as "not at the end", but
-    // only a scrollbar drag moves scrollTop up. Growth must not release
-    // follow-output: the resize handler is coalesced onto a frame, so a state
-    // commit can observe the grown content before follow catches up.
     const scrolledUp =
       scrollTop < lastScrollTopRef.current - SCROLL_POSITION_EPSILON;
 
@@ -618,11 +562,6 @@ function createMessageScrollerController(
 
     reconcileFollowMode(nextState);
 
-    // While follow-output is engaged the scroller is already closing any gap a
-    // streamed chunk just opened, so publishing it as scrollable toward the
-    // end would strobe the scroll button once per chunk. Reconcile runs on the
-    // raw geometry first, so a commit that releases follow still publishes the
-    // gap it released over.
     const publishedState = modeRef.current === "following-bottom"
       ? { ...nextState, end: false }
       : nextState;
@@ -655,9 +594,6 @@ function createMessageScrollerController(
     visibilityFrameRef.current = globalThis.requestAnimationFrame(() => {
       visibilityFrameRef.current = null;
 
-      // A frame can outlive the last unsubscribe. Recomputing here would
-      // overwrite the EMPTY snapshot that teardown just wrote, leaving a stale
-      // value for the next subscriber to read.
       if (!hasVisibilityListeners()) {
         return;
       }
@@ -697,11 +633,6 @@ function createMessageScrollerController(
       return false;
     }
 
-    // Compare the anchor relative to the viewport, not to the content. Native
-    // scroll anchoring leaves the viewport-relative position unchanged, so this
-    // is a no-op where the browser already handled the prepend and only corrects
-    // the scroll where it did not (e.g. Safari) — without trusting a capability
-    // flag, which some engines report incorrectly.
     const nextViewportTop = getElementViewportTop(anchor.element, viewport);
     const delta = nextViewportTop - anchor.viewportTop;
 
@@ -785,8 +716,6 @@ function createMessageScrollerController(
           spacer: spacerRef.current,
           viewport,
         });
-        // A short last turn already fits below the anchor, so opening at the end
-        // shows the whole turn without leaving a blank gap beneath it.
         const lastTurnFits = contentBottom - anchorTop <= viewport.clientHeight;
 
         handled = lastTurnFits
@@ -824,10 +753,6 @@ function createMessageScrollerController(
     itemCountRef.current = items.length;
     firstItemRef.current = items[0] ?? null;
 
-    // Reconcile the scroll position with the new content. Every path re-captures
-    // the prepend anchor afterward, so each branch just returns.
-    //
-    // Branch order is load-bearing: first-content, prepended, appended, updated.
     const reconcileScrollPosition = (): void => {
       if (flushPendingScrollToMessage()) {
         return;
@@ -858,8 +783,6 @@ function createMessageScrollerController(
         previousFirstItemIndex > 0;
 
       if (didPrepend) {
-        // Prepended rows are not new appends. Restore the prior scroll position.
-        // The restore is a no-op where native scroll anchoring already did it.
         restorePrependedAnchor();
         return;
       }
@@ -868,10 +791,6 @@ function createMessageScrollerController(
         const anchor = getNewScrollAnchor(items, previousItemCount);
 
         if (anchor) {
-          // While the reader is following the live end, a batch of several
-          // anchored turns arriving at once should keep following the end — not
-          // yank back to anchor the first turn of the batch. A single new anchor
-          // still moves to the top as usual.
           if (
             autoScrollRef.current &&
             modeRef.current === "following-bottom" &&
@@ -904,8 +823,6 @@ function createMessageScrollerController(
         }
       }
 
-      // Appends with no new anchor (and content-only updates) fall through here:
-      // keep following the end if we still are, otherwise just recommit state.
       if (modeRef.current === "following-bottom" && autoScrollRef.current) {
         scrollToEnd({ behavior: "auto" });
       } else {
@@ -924,18 +841,9 @@ function createMessageScrollerController(
       return;
     }
 
-    // Hold the anchored turn in place as content below it resizes (a reply
-    // streaming in, or a transient marker collapsing) — otherwise the shrinking
-    // content lets the browser clamp scrollTop and the turn drops.
     const previousSpacerHeight = spacerHeightRef.current;
 
     if (reanchorToAnchoredMessage()) {
-      // The reply streaming below the anchor consumes the tail spacer as it
-      // grows. Once the last of it is gone the reply has filled the viewport
-      // and the reader is genuinely at the live edge, so autoScroll hands off
-      // from the anchor hold to following the bottom. Requiring the >0 → 0
-      // transition keeps a turn taller than the viewport (placed with no
-      // spacer) held instead of yanked to the end.
       if (
         autoScrollRef.current &&
         previousSpacerHeight > 0 &&
@@ -984,10 +892,6 @@ function createMessageScrollerController(
         },
         {
           root: viewport,
-          // Shrink the root's top edge to the anchoring line so a previous turn
-          // peeking in the scrollMargin + peek band is not reported as visible,
-          // keeping visibleMessageIds consistent with currentAnchorId. Captured
-          // at observe time; a prop change rebuilds the observer on resubscribe.
           rootMargin: `${-(
             scrollMarginRef.current + scrollPreviousItemPeekRef.current
           )}px 0px 0px 0px`,
@@ -1064,24 +968,14 @@ function createMessageScrollerController(
       modeRef.current === "anchored-to-message" ||
       modeRef.current === "settling-jump"
     ) {
-      // A deliberate gesture releases auto-follow, turn-anchoring, and an
-      // in-flight programmatic jump so re-pinning (and re-arming) never fights
-      // the reader.
       streamingTurnRef.current = null;
       modeRef.current = "free-scrolling";
     }
   };
 
-  // Reads the synchronous mirror, not the signal: a commit in the same task may
-  // not have flushed yet.
   const mirrorStateAttributes = (): void =>
     writeStateAttributes(scrollableSnapshot.current);
 
-  // Stores the node and mirrors the current state attributes once it attaches —
-  // the React useElementRef ref-callback pattern. A cleanup (element === null)
-  // passes the element it is releasing: Solid 2 mounts a replacement branch
-  // before disposing the old one, so a stale cleanup must not null a ref that
-  // already points at the new instance's node.
   const setRootElement = (
     element: HTMLDivElement | null,
     removedElement?: HTMLDivElement | null,
@@ -1141,8 +1035,6 @@ function createMessageScrollerController(
     capturePrependAnchor();
   };
 
-  // Mirror the latest prop values onto refs during render so the closures above
-  // read fresh values without being recreated (the React useLatest pattern).
   createRenderEffect(
     () => props.autoScroll ?? false,
     (autoScroll) => {
@@ -1168,9 +1060,6 @@ function createMessageScrollerController(
     },
   );
 
-  // A defaultScrollPosition change re-arms the one-shot opening position (the
-  // React render-time reset of the applied flag). Render effect so it lands
-  // before the apply effect below in the same flush.
   createRenderEffect(
     () => props.defaultScrollPosition ?? "end",
     (next, previous) => {
@@ -1182,10 +1071,6 @@ function createMessageScrollerController(
     },
   );
 
-  // Apply the opening position on mount and whenever defaultScrollPosition
-  // changes (React's applyDefaultScrollPosition layout effect). Before the
-  // first content change itemCountRef is 0 and this is a no-op; the content
-  // change then applies it.
   createEffect(
     () => props.defaultScrollPosition ?? "end",
     () => {
@@ -1193,8 +1078,6 @@ function createMessageScrollerController(
     },
   );
 
-  // Follow the live end (or recommit) when autoScroll flips, matching the React
-  // autoScroll layout effect.
   createEffect(
     () => props.autoScroll ?? false,
     (autoScroll) => {

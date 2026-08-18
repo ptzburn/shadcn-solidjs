@@ -255,21 +255,17 @@ interface ToastPromiseMessages<T, U = unknown> {
 }
 
 const toast = {
-  /** Show a toast and return its id. */
   add(options: ToastAddOptions): number {
     return ToastPrimitive.toaster.show((props) => (
       <ToastTemplate toastId={props.toastId} {...options} />
     ));
   },
-  /** Close a toast by id. */
   close(id: number) {
     ToastPrimitive.toaster.dismiss(id);
   },
-  /** Close all toasts. */
   clear() {
     ToastPrimitive.toaster.clear();
   },
-  /** Track a promise with loading, success, and error toasts. */
   promise<T, U = unknown>(
     promise: Promise<T>,
     messages: ToastPromiseMessages<T, U>,

@@ -17,10 +17,6 @@ const Slider = <T extends ValidComponent = "div">(
   const local = props as SliderProps;
   const others = omit(local, "class");
 
-  // one thumb per value, like upstream; reading straight off `props` keeps the
-  // count reactive without splitting the values out of `others`. Upstream falls
-  // back to `[min, max]`, but Kobalte's own uncontrolled default is a single
-  // `[minValue]`, so a second thumb would only ever render as `display: none`.
   const values = () => {
     const p = props as SliderProps;
     return p.value ?? p.defaultValue ?? [p.minValue ?? 0];
@@ -46,8 +42,6 @@ const Slider = <T extends ValidComponent = "div">(
       </SliderPrimitive.Track>
       <Repeat count={values().length}>
         {() => (
-          // Kobalte pins the thumb with an inline `position: absolute` plus a
-          // single-axis transform, so the cross axis has to be centred here.
           <SliderPrimitive.Thumb
             data-slot="slider-thumb"
             class="relative block size-3 shrink-0 select-none rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] after:absolute after:-inset-2 hover:ring-3 focus-visible:outline-hidden focus-visible:ring-3 active:ring-3 disabled:pointer-events-none disabled:opacity-50"

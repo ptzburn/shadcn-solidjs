@@ -97,9 +97,6 @@ export default function InputGroupButtonExample() {
               ri="star-line"
               hugeicons="star"
               data-favorite={isFavorite()}
-              // Registry icons carry `fill`/`stroke` on their inner paths, not
-              // on the root `svg` the way lucide-react does, so upstream's
-              // `fill-*`/`stroke-*` classes have to reach one level deeper.
               class="data-[favorite=true]:*:fill-blue-600 data-[favorite=true]:*:stroke-blue-600"
             />
           </InputGroupButton>

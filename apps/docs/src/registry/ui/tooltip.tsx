@@ -11,8 +11,6 @@ const Tooltip: Component<TooltipPrimitive.TooltipRootProps> = (props) => {
   return (
     <TooltipPrimitive.Root
       data-slot="tooltip"
-      // radix defaults its content to the top; Kobalte's popper defaults to
-      // the bottom, so an unpositioned tooltip would sit on the wrong side
       placement="top"
       gutter={5}
       openDelay={0}

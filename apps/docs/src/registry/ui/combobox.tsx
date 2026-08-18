@@ -15,13 +15,6 @@ import {
   InputGroupInput,
 } from "./input-group.tsx";
 
-// Kobalte's default triggerMode="input" only opens the popup once the
-// user types; upstream's base-ui combobox opens it when the input is
-// clicked. triggerMode="focus" is the closest match: clicking the input
-// opens the popup (it also opens on keyboard focus, which upstream does
-// not do — the smaller mismatch). placement="bottom-start" mirrors
-// upstream ComboboxContent's side/align defaults; Kobalte only accepts
-// it on the root. Consumers can override both.
 const Combobox = <Option, OptGroup = never, T extends ValidComponent = "div">(
   props: PolymorphicProps<
     T,
@@ -68,10 +61,6 @@ const ComboboxTrigger = <T extends ValidComponent = "button">(
   );
 };
 
-// Solid 2's intrinsic button attrs allow bare/removal values (e.g.
-// disabled={""}, type={false}) that Kobalte's Button — which
-// InputGroupButton wraps — declares more narrowly; re-declare the
-// overlapping attrs with Kobalte's types so the spread type-checks.
 type ComboboxClearProps =
   & Omit<ComponentProps<"button">, "disabled" | "type" | "tabindex">
   & {
@@ -121,10 +110,6 @@ const ComboboxInput = <T extends ValidComponent = "input">(
 ) => {
   const local = props as ComboboxInputProps;
   const others = omit(local, "class", "children", "showTrigger", "showClear");
-  // `disabled` and `validationState` live on the Combobox root: Kobalte's
-  // Input, Trigger and Control read them from context (a `disabled` passed
-  // to the Input alone only mutes its handlers and leaves the element
-  // focusable, so it is deliberately not plumbed here).
   return (
     <ComboboxPrimitive.Control
       as={InputGroup}
@@ -269,7 +254,6 @@ const ComboboxSection = <T extends ValidComponent = "li">(
   );
 };
 
-// an li, not a div: the listbox is a ul, which may only own list items
 const ComboboxSeparator: Component<ComponentProps<"li">> = (props) => {
   const others = omit(props, "class");
   return (
@@ -336,12 +320,6 @@ const ComboboxContent = <T extends ValidComponent = "div">(
       <ComboboxPrimitive.Content
         data-slot="combobox-content"
         class={cn(
-          // Upstream's min-w-[calc(var(--anchor-width)+--spacing(7))]
-          // widens the popup past its anchor (the inner input element) by
-          // the 28px trailing chevron addon. Kobalte anchors to the whole
-          // control (input + addons), so the +28 is already included:
-          // min-w-(--kb-popper-anchor-width) computes the same width, and
-          // upstream's data-chips exact-width exception collapses into it.
           "data-closed:fade-out-0 data-closed:zoom-out-95 data-expanded:fade-in-0 data-expanded:zoom-in-95 group/combobox-content relative z-50 max-h-(--kb-popper-content-available-height) min-w-(--kb-popper-anchor-width) max-w-(--kb-popper-content-available-width) origin-(--kb-combobox-content-transform-origin) overflow-hidden rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10 duration-100 *:data-[slot=input-group]:m-1 *:data-[slot=input-group]:mb-0 *:data-[slot=input-group]:h-8 *:data-[slot=input-group]:border-input/30 *:data-[slot=input-group]:bg-input/30 *:data-[slot=input-group]:shadow-none data-closed:animate-out data-expanded:animate-in",
           local.class,
         )}

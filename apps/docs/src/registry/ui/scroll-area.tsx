@@ -4,10 +4,6 @@ import type { Component } from "solid-js";
 
 import { omit } from "solid-js";
 
-// Kobalte ships no scroll-area primitive, so this follows upstream's
-// react-aria base rather than the radix one: the native scrollbar is styled
-// with scrollbar-width and scrollbar-color instead of a rendered viewport,
-// scrollbar and thumb. There is no ScrollBar export for the same reason.
 const ScrollArea: Component<ComponentProps<"div">> = (props) => {
   const rest = omit(props, "class");
 

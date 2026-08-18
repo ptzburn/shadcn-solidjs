@@ -48,8 +48,6 @@ const DrawerOverlay = <T extends ValidComponent = "div">(
 ) => {
   const local = props as DrawerOverlayProps;
   const rest = omit(local, "class");
-  // Opacity needs no manual style merge — the primitive drives it from
-  // openPercentage during drag and close.
   return (
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"

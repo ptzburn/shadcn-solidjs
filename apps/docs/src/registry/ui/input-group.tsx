@@ -92,9 +92,6 @@ const inputGroupButtonVariants = cva(
   },
 );
 
-// Kobalte's ButtonRootProps carries only the primitive's own options, so the
-// intrinsic element props upstream gets from `ComponentProps<typeof Button>`
-// (onClick, title, …) arrive through PolymorphicProps instead.
 type InputGroupButtonProps<T extends ValidComponent = "button"> =
   & Omit<ButtonProps<T>, "size">
   & VariantProps<typeof inputGroupButtonVariants>;

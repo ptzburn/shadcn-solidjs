@@ -26,8 +26,6 @@ const Pagination = <T extends ValidComponent = "nav">(
       data-slot="pagination"
       class={cn(
         "mx-auto flex w-full justify-center",
-        // Kobalte renders the list itself, so the `pagination-content` styles
-        // are applied from here.
         "[&>ul]:flex [&>ul]:items-center [&>ul]:gap-0.5",
         local.class,
       )}
@@ -56,8 +54,6 @@ const PaginationItem = <T extends ValidComponent = "button">(
           variant: "ghost",
           size: local.size ?? "icon",
         }),
-        // Kobalte marks the current page with `data-current`, so the outline
-        // variant is applied from here instead of swapping variants.
         "dark:data-[current]:border-input dark:data-[current]:bg-input/30 dark:data-[current]:hover:bg-input/50 data-[current]:border-border data-[current]:bg-background data-[current]:hover:bg-muted",
         local.class,
       )}
@@ -113,7 +109,6 @@ const PaginationPrevious = <T extends ValidComponent = "button">(
   const local = props as PaginationPreviousProps;
   const others = omit(local, "class", "text", "children");
 
-  // prevents rendering children twice
   const resolvedChildren = children(() => local.children);
   const hasChildren = () => resolvedChildren.toArray().length !== 0;
 
@@ -163,7 +158,6 @@ const PaginationNext = <T extends ValidComponent = "button">(
   const local = props as PaginationNextProps;
   const others = omit(local, "class", "text", "children");
 
-  // prevents rendering children twice
   const resolvedChildren = children(() => local.children);
   const hasChildren = () => resolvedChildren.toArray().length !== 0;
 

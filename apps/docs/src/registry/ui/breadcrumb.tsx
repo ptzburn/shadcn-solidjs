@@ -80,7 +80,6 @@ const BreadcrumbPage: Component<ComponentProps<"span">> = (props) => {
 const BreadcrumbSeparator: Component<ComponentProps<"li">> = (props) => {
   const others = omit(props, "class", "children");
 
-  // prevents rendering children twice
   const resolvedChildren = children(() => props.children);
   const hasChildren = () => resolvedChildren.toArray().length !== 0;
 

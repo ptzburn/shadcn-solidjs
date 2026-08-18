@@ -82,9 +82,7 @@ type MessageScrollerButtonProps =
   & ComponentProps<"button">
   & Pick<ButtonProps, "variant" | "size">
   & {
-    // Native scroll behavior when clicked. Defaults to "smooth".
     behavior?: ScrollBehavior;
-    // Transcript edge to scroll toward. Defaults to "end".
     direction?: MessageScrollerButtonDirection;
   };
 

@@ -5,7 +5,7 @@
   "files": [
     {
       "path": "src/registry/ui/scroll-area.tsx",
-      "content": "import type { ComponentProps } from \"@solidjs/web\";\nimport { cn } from \"~/lib/utils.ts\";\nimport type { Component } from \"solid-js\";\n\nimport { omit } from \"solid-js\";\n\n// Kobalte ships no scroll-area primitive, so this follows upstream's\n// react-aria base rather than the radix one: the native scrollbar is styled\n// with scrollbar-width and scrollbar-color instead of a rendered viewport,\n// scrollbar and thumb. There is no ScrollBar export for the same reason.\nconst ScrollArea: Component<ComponentProps<\"div\">> = (props) => {\n  const rest = omit(props, \"class\");\n\n  return (\n    <div\n      data-slot=\"scroll-area\"\n      class={cn(\n        \"[scrollbar-color:var(--color-border)_transparent] [scrollbar-width:thin] relative overflow-auto outline-none focus-visible:outline-1 focus-visible:ring-ring/50 focus-visible:ring-[3px]\",\n        props.class,\n      )}\n      {...rest}\n    />\n  );\n};\n\nexport { ScrollArea };\n",
+      "content": "import type { ComponentProps } from \"@solidjs/web\";\nimport { cn } from \"~/lib/utils.ts\";\nimport type { Component } from \"solid-js\";\n\nimport { omit } from \"solid-js\";\n\nconst ScrollArea: Component<ComponentProps<\"div\">> = (props) => {\n  const rest = omit(props, \"class\");\n\n  return (\n    <div\n      data-slot=\"scroll-area\"\n      class={cn(\n        \"[scrollbar-color:var(--color-border)_transparent] [scrollbar-width:thin] relative overflow-auto outline-none focus-visible:outline-1 focus-visible:ring-ring/50 focus-visible:ring-[3px]\",\n        props.class,\n      )}\n      {...rest}\n    />\n  );\n};\n\nexport { ScrollArea };\n",
       "type": "registry:ui"
     }
   ]

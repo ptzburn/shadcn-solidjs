@@ -43,9 +43,6 @@ import { createSignal, For, Show } from "solid-js";
 
 type IconProps = ComponentProps<"svg">;
 
-// The registry build rewrites every IconPlaceholder marker into a concrete
-// icon import, so a marker has to be a literal tag. Wrapping each one in a
-// tiny component is what lets the sample data below reference icons.
 const GalleryVerticalEndIcon: Component<IconProps> = (props) => (
   <IconPlaceholder
     lucide="gallery-vertical-end"

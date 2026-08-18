@@ -44,17 +44,11 @@ const SwitchControl = <T extends ValidComponent = "input">(
             currentTarget: HTMLElement;
             target: Element;
           };
-          // accept both of Solid's handler forms, like Kobalte's callHandler
           if (typeof handler === "function") {
             handler(clickEvent);
           } else if (handler) {
             handler[0](handler[1], clickEvent);
           }
-          // Kobalte toggles from this handler. An enclosing <label> — the
-          // choice card pattern — would then forward a second activation to
-          // the hidden input and undo it, so cancel the label's default.
-          // Only the label case needs cancelling; anything else keeps its
-          // own default action.
           if ((event.currentTarget as HTMLElement | null)?.closest("label")) {
             event.preventDefault();
           }

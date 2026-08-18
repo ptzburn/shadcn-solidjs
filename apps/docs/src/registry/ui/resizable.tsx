@@ -39,10 +39,6 @@ const ResizablePanel = <T extends ValidComponent = "div">(
   return (
     <ResizablePrimitive.Panel
       data-slot="resizable-panel"
-      // Panels are sized with `flex-basis`, so without clipping the
-      // automatic minimum size of the flex item would keep a panel from
-      // shrinking past its content. Kobalte already sets `overflow: hidden`
-      // inline; the class keeps the behaviour explicit in the styles.
       class={cn("overflow-hidden", local.class)}
       {...rest}
     />

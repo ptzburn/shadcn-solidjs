@@ -63,9 +63,6 @@ function useSidebar(): SidebarContextProps {
   return context;
 }
 
-// Reads the persisted state so the sidebar renders the same way on the server
-// and on the client. React's version of this component leaves the read to the
-// consumer's server component, which SolidStart has no equivalent for.
 function readSidebarOpenCookie(): boolean | undefined {
   const cookieString = isServer
     ? getRequestEvent()?.request.headers.get("cookie") ?? ""
@@ -101,8 +98,6 @@ const SidebarProvider: Component<SidebarProviderProps> = (rawProps) => {
   const isMobile = useMediaQuery(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
   const [openMobile, setOpenMobile] = createSignal(false);
 
-  // This is the internal state of the sidebar.
-  // We use open and onOpenChange for control from outside the component.
   const [_open, _setOpen] = createSignal(
     readSidebarOpenCookie() ?? props.defaultOpen,
   );
@@ -115,21 +110,18 @@ const SidebarProvider: Component<SidebarProviderProps> = (rawProps) => {
       _setOpen(openState);
     }
 
-    // This sets the cookie to keep the sidebar state.
     if (typeof document !== "undefined") {
       document.cookie =
         `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
     }
   };
 
-  // Helper to toggle the sidebar.
   const toggleSidebar = () => {
     return isMobile()
       ? setOpenMobile((open) => !open)
       : setOpen((open) => !open);
   };
 
-  // Adds a keyboard shortcut to toggle the sidebar.
   createEffect(() => {}, () => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (
@@ -145,8 +137,6 @@ const SidebarProvider: Component<SidebarProviderProps> = (rawProps) => {
     return () => globalThis.removeEventListener("keydown", handleKeyDown);
   });
 
-  // We add a state so that we can do data-state="expanded" or "collapsed".
-  // This makes it easier to style the sidebar with Tailwind classes.
   const state = () => (open() ? "expanded" : "collapsed");
 
   const contextValue: SidebarContextProps = {
@@ -254,7 +244,6 @@ const Sidebar: Component<SidebarProps> = (rawProps) => {
           data-side={props.side}
           data-slot="sidebar"
         >
-          {/* This is what handles the sidebar gap on desktop */}
           <div
             data-slot="sidebar-gap"
             class={cn(
@@ -271,7 +260,6 @@ const Sidebar: Component<SidebarProps> = (rawProps) => {
             data-side={props.side}
             class={cn(
               "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex data-[side=right]:right-0 data-[side=left]:left-0 data-[side=right]:group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)] data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]",
-              // Adjust the padding for floating and inset variants.
               props.variant === "floating" || props.variant === "inset"
                 ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
                 : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
@@ -581,16 +569,12 @@ const SidebarMenuButton = <T extends ValidComponent = "button">(
   const others = omit(props, "isActive", "tooltip", "variant", "size", "class");
   const { isMobile, state } = useSidebar();
 
-  // Shared as getters so the same attributes stay reactive whether the button
-  // renders on its own or as the tooltip trigger.
   const buttonProps = {
     "data-slot": "sidebar-menu-button",
     "data-sidebar": "menu-button",
     get "data-size"() {
       return props.size;
     },
-    // Solid 2 serializes boolean attribute values as bare presence attrs;
-    // the styles select data-[active=true], so render the string explicitly.
     get "data-active"() {
       return props.isActive ? "true" : undefined;
     },
@@ -618,12 +602,6 @@ const SidebarMenuButton = <T extends ValidComponent = "button">(
         />
       }
     >
-      {
-        /* The content is hidden unless the desktop sidebar is collapsed, so
-          disable the tooltip everywhere else: an invisible open tooltip
-          still registers a dismissable layer above the mobile sheet dialog
-          and blocks its outside-click and Escape dismissal. */
-      }
       <Tooltip
         placement="right"
         disabled={state() !== "collapsed" || isMobile()}
@@ -692,7 +670,6 @@ const SidebarMenuSkeleton: Component<SidebarMenuSkeletonProps> = (rawProps) => {
   const props = merge({ showIcon: false }, rawProps);
   const others = omit(props, "class", "showIcon");
 
-  // Random width between 50 to 90%.
   const width = `${Math.floor(Math.random() * 40) + 50}%`;
 
   return (

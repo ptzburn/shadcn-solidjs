@@ -10,10 +10,6 @@ import { merge, omit } from "solid-js";
 
 import { Separator } from "./separator.tsx";
 
-// Kobalte's Select root wraps its trigger in a `<div role="group">`, so
-// unlike radix the trigger is never a direct child of the group — the
-// `[&>*>[data-slot=select-trigger]]` selectors reach one level deeper to
-// keep the joined rounding and collapsed borders working.
 const buttonGroupVariants = cva(
   "group/button-group flex w-fit items-stretch has-[>[data-slot=button-group]]:gap-2 *:focus-visible:relative *:focus-visible:z-10 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-lg [&>*>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
   {

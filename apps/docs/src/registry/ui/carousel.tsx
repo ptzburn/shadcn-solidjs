@@ -28,9 +28,6 @@ import {
 import type { ButtonProps } from "./button.tsx";
 import { Button } from "./button.tsx";
 
-// Local port of embla-carousel-solid's hook (which pins Solid 1) over the
-// framework-agnostic embla core: the viewport ref feeds a signal, and the
-// embla instance lives for as long as that element does.
 type CreateEmblaCarouselType = [
   (elementRef: HTMLElement | undefined) => void,
   Accessor<EmblaCarouselType | undefined>,
@@ -118,9 +115,6 @@ const useCarousel = () => {
     throw new Error("useCarousel must be used within a <Carousel />");
   }
 
-  // Deliberately a one-time read: the parts destructure it in their setup
-  // (orientation is static), so untrack keeps Solid 2's dev strict-read
-  // warning quiet without changing behaviour.
   return untrack(context);
 };
 
@@ -178,9 +172,6 @@ const Carousel: Component<CarouselProps & ComponentProps<"div">> = (
       if (!setApi) {
         return;
       }
-      // The consumer usually hands us a signal setter, which unwraps the
-      // accessor by calling it; untrack keeps that read out of the effect's
-      // strict-read check.
       untrack(() => setApi(api));
     },
   );
@@ -217,8 +208,6 @@ const Carousel: Component<CarouselProps & ComponentProps<"div">> = (
   return (
     <CarouselContext value={value}>
       <div
-        // capture phase like upstream's onKeyDownCapture; Solid's
-        // oncapture: namespace needs module augmentation to type-check
         ref={(el) =>
           el.addEventListener("keydown", handleKeyDown, { capture: true })}
         class={cn("relative", props.class)}

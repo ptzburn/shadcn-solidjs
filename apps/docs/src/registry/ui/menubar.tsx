@@ -7,8 +7,6 @@ import type { Component } from "solid-js";
 
 import { omit } from "solid-js";
 
-// Kobalte's Portal and Sub render no DOM node, so unlike upstream there is
-// no element to stamp a data-slot attribute on.
 const MenubarPortal = MenubarPrimitive.Portal;
 const MenubarSub = MenubarPrimitive.Sub;
 
@@ -35,9 +33,6 @@ const Menubar = <T extends ValidComponent = "div">(
   );
 };
 
-// Kobalte's MenubarMenu renders no DOM node either; the popper offsets live
-// here instead of on the content, matching upstream's sideOffset={8} and
-// alignOffset={-4} (Kobalte's popper defaults to gutter 0, shift 0).
 const MenubarMenu: Component<MenubarPrimitive.MenubarMenuProps> = (props) => {
   return <MenubarPrimitive.Menu gutter={8} shift={-4} {...props} />;
 };
@@ -225,9 +220,6 @@ type MenubarLabelProps<T extends ValidComponent = "div"> =
     inset?: boolean;
   };
 
-// Rendered as a div like the upstream radix label: Kobalte's GroupLabel
-// defaults to an inline span, which would collapse the label's vertical
-// padding. Unlike radix, it must live inside a Group or RadioGroup.
 const MenubarLabel = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, MenubarLabelProps<T>>,
 ) => {
@@ -250,9 +242,6 @@ type MenubarSeparatorProps<T extends ValidComponent = "div"> =
     class?: string | undefined;
   };
 
-// Rendered as a div like the upstream radix separator: tailwind's
-// preflight and typeset both style hr (stray top border, height: 0,
-// prose margins), which Kobalte's Separator renders by default.
 const MenubarSeparator = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, MenubarSeparatorProps<T>>,
 ) => {
@@ -324,8 +313,6 @@ type MenubarSubContentProps<T extends ValidComponent = "div"> =
     class?: string | undefined;
   };
 
-// Unlike upstream, the sub content is portalled: Kobalte renders it
-// inside the parent menu content, whose overflow-hidden would clip it.
 const MenubarSubContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, MenubarSubContentProps<T>>,
 ) => {

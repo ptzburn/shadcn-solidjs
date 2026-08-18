@@ -53,17 +53,12 @@ function getMessageScrollerVisibilityState({
   }
 
   const viewportRect = viewport.getBoundingClientRect();
-  // The reading line sits scrollPreviousItemPeek below scrollMargin: anchored
-  // turns land there with the previous turn peeking above. A row only peeking in
-  // that band has not been read down to yet, so it counts as neither visible nor
-  // current.
   const lineTop = viewportRect.top + scrollMargin + scrollPreviousItemPeek;
   const trackByLayout = typeof IntersectionObserver === "undefined";
 
   const visible: string[] = [];
   let currentAnchorId: string | null = null;
 
-  // Walk rows in document order so visible ids come out top-to-bottom.
   for (const item of getMessageScrollerItems(content, spacer)) {
     const messageId = item.dataset.messageId;
 
@@ -72,8 +67,6 @@ function getMessageScrollerVisibilityState({
     }
 
     const isAnchor = item.dataset.scrollAnchor === "true";
-    // Anchors need a rect to place the current line; non-anchors lean on the
-    // observer set (or a rect in the no-observer fallback).
     const rect = isAnchor || trackByLayout
       ? item.getBoundingClientRect()
       : null;
@@ -86,10 +79,6 @@ function getMessageScrollerVisibilityState({
       visible.push(messageId);
     }
 
-    // Current is the last anchor to have reached the reading line: the turn you
-    // scrolled to (placed at the line) wins over newer turns lower down, the
-    // previous turn peeking above the line has been passed, and it stays current
-    // even after its header scrolls above the viewport.
     if (isAnchor && rect && rect.top <= lineTop + SCROLL_POSITION_EPSILON) {
       currentAnchorId = messageId;
     }

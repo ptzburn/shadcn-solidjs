@@ -124,7 +124,6 @@ function OpeningPositionScroller(
 ) {
   const { scrollToEnd, scrollToMessage, scrollToStart } = useMessageScroller();
 
-  // Re-run on every position/positionKey change (React's layout effect deps).
   createEffect(
     () => [props.position, props.positionKey] as const,
     ([position]) => {

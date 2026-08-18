@@ -14,15 +14,8 @@ import {
   useContext,
 } from "solid-js";
 
-// Kobalte folds Radix's `Root` and `List` into a single primitive: the root
-// renders the `<nav>` wrapper and the `<ul>` itself, so there is no separate
-// `NavigationMenuList`. It also has no `Item` element — `NavigationMenu.Menu`
-// only provides context, and the `<li>` wrappers come from `Trigger`/`Link`.
 const NavigationMenuItem = NavigationMenuPrimitive.Menu;
 
-// Kobalte's `Portal` mounts a content into the viewport, so with
-// `viewport={false}` the content has to render in place instead. The root
-// publishes the flag for `NavigationMenuContent` to read.
 const NavigationMenuViewportContext = createContext<() => boolean>(() => true);
 
 type NavigationMenuProps<T extends ValidComponent = "ul"> =
@@ -33,18 +26,6 @@ type NavigationMenuProps<T extends ValidComponent = "ul"> =
     viewport?: boolean;
   };
 
-// Kobalte's popper centres the viewport on the menu bar; upstream's wrapper is
-// `left-0`, so the placement is pinned to the start edge — on the axis Kobalte
-// itself would pick for the orientation, so a vertical menu still opens sideways
-// the way its `data-[orientation=vertical]:flex-col` bar expects.
-//
-// `viewport={false}` also has to be given its own dismissal. Kobalte wires
-// `onEscapeKeyDown` only into the viewport's `DismissableLayer` and into the
-// `Popper.Positioner` branch of `MenuContentBase`; with no viewport neither of
-// them renders, so nothing but an outside click can close the menu. The root
-// therefore takes over the open menu's value and closes it from a document-level
-// `keydown` listener — the same place Kobalte's own dismissable layer listens —
-// attached only while such a menu is open.
 const NavigationMenu = <T extends ValidComponent = "ul">(
   props: PolymorphicProps<T, NavigationMenuProps<T>>,
 ) => {
@@ -121,11 +102,6 @@ type NavigationMenuTriggerProps<T extends ValidComponent = "button"> =
     children?: JSX.Element;
   };
 
-// Kobalte turns a trigger that carries an `href` into a plain menubar link —
-// the keyboard-reachable stand-in for upstream's top-level `NavigationMenuLink`
-// styled with `navigationMenuTriggerStyle()`. Such a trigger opens nothing, so
-// it does not get the chevron, and the popup ARIA Kobalte puts on every trigger
-// is cleared: Kobalte spreads incoming props last, so `null` wins over it.
 const NavigationMenuTrigger = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, NavigationMenuTriggerProps<T>>,
 ) => {
@@ -169,20 +145,6 @@ type NavigationMenuContentProps<T extends ValidComponent = "ul"> =
     class?: string | undefined;
   };
 
-// Kobalte portals the content into the viewport, which sizes itself from the
-// content's measured box, so the content is absolutely positioned at every width
-// rather than only from `md` up the way upstream's is. Upstream's in-flow
-// `w-full` below `md` cannot come with it: the viewport is absolutely positioned
-// and shrink-to-fits, so a percentage width resolves against the content's own
-// max-content size and the viewport then locks in at exactly that width —
-// measured at 375px, a 404px content, a 404px
-// `--kb-navigation-menu-viewport-width` and 37px of page overflow. A cap at the
-// popper's own available width narrows the panel instead. With `viewport={false}`
-// there is no viewport to portal into, so the content renders in place: `z-50`
-// gives it the elevation the shared viewport carries here (neither port renders
-// the viewport's wrapper in this mode), and `max-md:max-w-full` holds it to the
-// width of the menu bar, which is its positioning container, since the popper
-// variable is not published outside the popper.
 const NavigationMenuContent = <T extends ValidComponent = "ul">(
   props: PolymorphicProps<T, NavigationMenuContentProps<T>>,
 ) => {
@@ -212,9 +174,6 @@ type NavigationMenuViewportProps<T extends ValidComponent = "li"> =
   & NavigationMenuPrimitive.NavigationMenuViewportProps<T>
   & { class?: string | undefined };
 
-// Kobalte positions the viewport with its own popper, so upstream's absolutely
-// positioned wrapper element is not needed; the offset comes from `gutter` and
-// the wrapper's `z-50` moves onto the viewport itself.
 const NavigationMenuViewport = <T extends ValidComponent = "li">(
   props: PolymorphicProps<T, NavigationMenuViewportProps<T>>,
 ) => {
@@ -236,8 +195,6 @@ type NavigationMenuLinkProps<T extends ValidComponent = "a"> =
   & NavigationMenuPrimitive.NavigationMenuItemProps<T>
   & { class?: string | undefined };
 
-// Kobalte's `Item` renders the `<li>` wrapper and the `<a>` for us, so the link
-// is not wrapped in a list item by hand the way upstream does it.
 const NavigationMenuLink = <T extends ValidComponent = "a">(
   props: PolymorphicProps<T, NavigationMenuLinkProps<T>>,
 ) => {
@@ -259,8 +216,6 @@ type NavigationMenuLabelProps<T extends ValidComponent = "div"> =
   & NavigationMenuPrimitive.NavigationMenuItemLabelProps<T>
   & { class?: string | undefined };
 
-// Solid-only: Kobalte wires `ItemLabel`/`ItemDescription` to the link's
-// `aria-labelledby`/`aria-describedby`. Upstream uses plain `div`s instead.
 const NavigationMenuLabel = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, NavigationMenuLabelProps<T>>,
 ) => {

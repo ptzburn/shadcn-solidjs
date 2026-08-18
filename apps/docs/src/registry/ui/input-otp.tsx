@@ -38,18 +38,12 @@ type InputOTPInputProps<T extends ValidComponent = "input"> =
 const InputOTPInput = <T extends ValidComponent = "input">(
   rawProps: PolymorphicProps<T, InputOTPInputProps<T>>,
 ) => {
-  // Kobalte defaults `pattern` to digits-only; shadcn accepts any character
-  // unless a pattern is given, so opt out of the primitive's default.
   const props = merge({ pattern: null }, rawProps as InputOTPInputProps);
   const rest = omit(props, "class", "onFocus");
   const onFocus: InputOTPInputProps["onFocus"] = (event) => {
     const handler = props.onFocus;
     if (typeof handler === "function") handler(event);
     else if (handler) handler[0](handler[1], event);
-    // Kobalte's focus handler reads its isFocused signal before the write
-    // has flushed and discards the initial selection sync, so the active
-    // ring and caret only appear on a later selectionchange. Re-run its
-    // document-level sync once the signal has settled.
     requestAnimationFrame(() =>
       document.dispatchEvent(new Event("selectionchange"))
     );
@@ -58,9 +52,6 @@ const InputOTPInput = <T extends ValidComponent = "input">(
     <OTPFieldPrimitive.Input
       onFocus={onFocus}
       data-slot="input-otp"
-      // z-20 keeps the invisible input above the slot divs, which follow it
-      // in the DOM (the active slot's ring uses z-10) — clicks must land on
-      // the input for focus to work.
       class={cn("z-20 disabled:cursor-not-allowed", props.class)}
       {...rest}
     />
@@ -94,8 +85,6 @@ const InputOTPSlot: Component<ComponentProps<"div"> & { index: number }> = (
   return (
     <div
       data-slot="input-otp-slot"
-      // Solid 2 renders boolean data attrs as bare presence — the string is
-      // required for the data-[active=true] variants to match.
       data-active={isActive() ? "true" : undefined}
       class={cn(
         "relative flex size-8 items-center justify-center border-input border-r border-y text-sm outline-none transition-all first:rounded-l-lg first:border-l last:rounded-r-lg dark:bg-input/30 dark:data-[active=true]:aria-invalid:ring-destructive/40 data-[active=true]:z-10 aria-invalid:border-destructive data-[active=true]:border-ring data-[active=true]:ring-3 data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/20",

@@ -88,14 +88,8 @@ const fieldVariants = cva(
   {
     variants: {
       orientation: {
-        // Kobalte's Select.Root renders a real wrapper div (radix's renders
-        // nothing), so `*:w-full` lands on the wrapper instead of the
-        // trigger; the extra selector reaches one level deeper.
         vertical:
           "flex-col *:w-full [&>.sr-only]:w-auto [&>[data-slot=select]>[data-slot=select-trigger]]:w-full",
-        // Kobalte renders no element carrying an explicit checkbox/radio
-        // role, so upstream's [role=checkbox]/[role=radio] selectors never
-        // match here; the data-slot selectors alongside them do the same job.
         horizontal:
           "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px has-[>[data-slot=field-content]]:[&>[data-slot=checkbox]]:mt-px has-[>[data-slot=field-content]]:[&>[data-slot=radio-group-item]]:mt-px",
         responsive:
@@ -245,7 +239,6 @@ const FieldSeparator = <T extends ValidComponent = "div">(
   const local = props as FieldSeparatorProps;
   const others = omit(local, "class", "children");
 
-  // prevents rendering children twice
   const resolvedChildren = children(() => local.children);
   const hasChildren = () => resolvedChildren.toArray().length !== 0;
 
@@ -287,10 +280,8 @@ const FieldError = <T extends ValidComponent = "div">(
   const local = props as FieldErrorProps;
   const others = omit(local, "class", "children", "errors");
 
-  // prevents rendering children twice
   const resolvedChildren = children(() => local.children);
 
-  // Reactive memo: computes content only when children or errors change
   const content = createMemo(() => {
     const kids = resolvedChildren.toArray();
     if (kids.length !== 0) {

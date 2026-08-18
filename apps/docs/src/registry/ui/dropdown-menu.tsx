@@ -7,9 +7,6 @@ import type { Component } from "solid-js";
 
 import { omit } from "solid-js";
 
-// Kobalte's DropdownMenuRoot, Portal and Sub render no DOM node, so unlike
-// upstream there is no element to stamp a data-slot attribute on. The
-// gutter matches upstream's sideOffset={4} (Kobalte's popper defaults to 0).
 const DropdownMenu: Component<DropdownMenuPrimitive.DropdownMenuRootProps> = (
   props,
 ) => {
@@ -204,9 +201,6 @@ type DropdownMenuLabelProps<T extends ValidComponent = "div"> =
     inset?: boolean;
   };
 
-// Rendered as a div like the upstream radix label: Kobalte's GroupLabel
-// defaults to an inline span, which would collapse the label's vertical
-// padding. Unlike radix, it must live inside a Group or RadioGroup.
 const DropdownMenuLabel = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, DropdownMenuLabelProps<T>>,
 ) => {
@@ -232,9 +226,6 @@ type DropdownMenuSeparatorProps<T extends ValidComponent = "div"> =
     class?: string | undefined;
   };
 
-// Rendered as a div like the upstream radix separator: tailwind's
-// preflight and typeset both style hr (stray top border, height: 0,
-// prose margins), which Kobalte's Separator renders by default.
 const DropdownMenuSeparator = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, DropdownMenuSeparatorProps<T>>,
 ) => {
@@ -306,8 +297,6 @@ type DropdownMenuSubContentProps<T extends ValidComponent = "div"> =
     class?: string | undefined;
   };
 
-// Unlike upstream, the sub content is portalled: Kobalte renders it
-// inside the parent menu content, whose overflow-hidden would clip it.
 const DropdownMenuSubContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, DropdownMenuSubContentProps<T>>,
 ) => {

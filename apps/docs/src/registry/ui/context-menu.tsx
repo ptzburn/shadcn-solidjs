@@ -7,8 +7,6 @@ import type { Component } from "solid-js";
 
 import { omit } from "solid-js";
 
-// Kobalte's ContextMenuRoot and Portal render no DOM node, so unlike
-// upstream there is no element to stamp a data-slot attribute on.
 const ContextMenu: Component<ContextMenuPrimitive.ContextMenuRootProps> = (
   props,
 ) => {
@@ -157,8 +155,6 @@ type ContextMenuSubContentProps<T extends ValidComponent = "div"> =
     class?: string | undefined;
   };
 
-// Unlike upstream, the sub content is portalled: Kobalte renders it
-// inside the parent menu content, whose overflow-hidden would clip it.
 const ContextMenuSubContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ContextMenuSubContentProps<T>>,
 ) => {
@@ -263,9 +259,6 @@ type ContextMenuLabelProps<T extends ValidComponent = "div"> =
     inset?: boolean;
   };
 
-// Rendered as a div like the upstream radix label: Kobalte's GroupLabel
-// defaults to an inline span, which would collapse the label's vertical
-// padding. Unlike radix, it must live inside a Group or RadioGroup.
 const ContextMenuLabel = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ContextMenuLabelProps<T>>,
 ) => {
@@ -291,9 +284,6 @@ type ContextMenuSeparatorProps<T extends ValidComponent = "div"> =
     class?: string | undefined;
   };
 
-// Rendered as a div like the upstream radix separator: tailwind's
-// preflight and typeset both style hr (stray top border, height: 0,
-// prose margins), which Kobalte's Separator renders by default.
 const ContextMenuSeparator = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ContextMenuSeparatorProps<T>>,
 ) => {

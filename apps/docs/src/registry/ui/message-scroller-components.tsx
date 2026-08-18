@@ -30,8 +30,6 @@ import type {
   MessageScrollerVisibilityState,
 } from "./message-scroller-types.ts";
 
-// Invokes a Solid event-handler prop, supporting both the bare-function and the
-// bound-array form that JSX.EventHandlerUnion allows.
 function callEventHandler<T, E extends Event>(
   handler: JSX.EventHandlerUnion<T, E> | undefined,
   event: E & { currentTarget: T; target: Element },
@@ -78,8 +76,6 @@ function useMessageScrollerItemContext(): MessageScrollerRegisterMessage {
   return context;
 }
 
-// Scroll commands usable from outside the message list. Plain stable functions
-// — call them directly (e.g. onClick={() => scrollToEnd()}).
 function useMessageScroller(): {
   scrollToEnd: (options?: MessageScrollerScrollOptions) => boolean;
   scrollToMessage: (
@@ -97,15 +93,10 @@ function useMessageScroller(): {
   };
 }
 
-// Which edges the viewport can still scroll toward. Returns an accessor: read
-// it in a tracked scope, e.g. useMessageScrollerScrollable()().end.
 function useMessageScrollerScrollable(): Accessor<MessageScrollerScrollable> {
   return useMessageScrollerContext().scrollableState;
 }
 
-// The anchored turn and visible message ids. Returns an accessor; calling the
-// hook lazily starts visibility tracking once the caller settles and stops it
-// when the caller is disposed (the store's ref-counted subscribe upstream).
 function useMessageScrollerVisibility(): Accessor<
   MessageScrollerVisibilityState
 > {
@@ -120,8 +111,6 @@ function useMessageScrollerVisibility(): Accessor<
   return context.visibilityState;
 }
 
-// Headless root. Owns scroll state, anchoring, auto-follow, and visibility;
-// renders no DOM of its own.
 function MessageScrollerProvider(
   props: MessageScrollerProviderProps,
 ): JSX.Element {
@@ -136,9 +125,6 @@ function MessageScrollerProvider(
   );
 }
 
-// Frame container. Must render inside a MessageScrollerProvider. A consumer ref
-// is composed with the root registration (upstream lets a spread ref replace
-// it, which silently drops the state attributes on the frame).
 function MessageScroller(props: MessageScrollerProps): JSX.Element {
   const context = useMessageScrollerContext();
   const others = omit(props, "ref", "children");
@@ -150,7 +136,6 @@ function MessageScroller(props: MessageScrollerProps): JSX.Element {
     context.setRootElement(element);
   };
 
-  // Pass the node so a replaced instance cannot null a ref the new frame owns.
   onCleanup((): void => context.setRootElement(null, rootNode));
 
   return (
@@ -160,7 +145,6 @@ function MessageScroller(props: MessageScrollerProps): JSX.Element {
   );
 }
 
-// Scrollable frame. Owns native scroll events and prepend preservation.
 function MessageScrollerViewport(
   props: MessageScrollerViewportProps,
 ): JSX.Element {
@@ -191,10 +175,6 @@ function MessageScrollerViewport(
     callEventHandler(props.onScroll, event);
   };
 
-  // React attaches wheel listeners passively at the root, so upstream never
-  // blocks scrolling on this handler (a consumer preventDefault is inert).
-  // Solid 2 has no on: namespace, so the passive native listener is attached
-  // through the ref below.
   const handleWheel = (event: WheelEvent): void => {
     context.userScrollIntent();
     callEventHandler(
@@ -203,9 +183,6 @@ function MessageScrollerViewport(
     );
   };
 
-  // Deliberately never removed: the listener dies with the element when it
-  // is disconnected, and onCleanup cannot run inside a ref (refs run under a
-  // null owner).
   const attachWheelListener = (element: HTMLDivElement): void => {
     element.addEventListener("wheel", handleWheel, { passive: true });
   };
@@ -235,17 +212,12 @@ function MessageScrollerViewport(
   };
 
   onSettled(() => {
-    // This instance's own node: the shared ref may already belong to a
-    // replacement frame mounted before this one is disposed.
     const viewport = viewportNode;
 
     if (!viewport || typeof ResizeObserver === "undefined") {
       return;
     }
 
-    // Coalesce into rAF: handleResize mutates the spacer inside the observed
-    // content, and resizing an observed element during delivery fires
-    // "ResizeObserver loop completed with undelivered notifications".
     let frame = 0;
 
     const observer = new ResizeObserver(() => {
@@ -261,7 +233,6 @@ function MessageScrollerViewport(
     };
   });
 
-  // Pass the node so a replaced instance cannot null a ref the new frame owns.
   onCleanup((): void => context.setViewportElement(null, viewportNode));
 
   return (
@@ -280,7 +251,6 @@ function MessageScrollerViewport(
   );
 }
 
-// Transcript container. Defaults role="log" + aria-relevant="additions".
 function MessageScrollerContent(
   props: MessageScrollerContentProps,
 ): JSX.Element {
@@ -314,9 +284,6 @@ function MessageScrollerContent(
       return;
     }
 
-    // Solid refs fire before the subtree is attached, where computed styles
-    // read empty; re-register the spacer once connected so its flex gap is
-    // captured (React refs run at commit time, on a connected node).
     context.setSpacerElement(spacerNode ?? null);
 
     context.handleContentChange();
@@ -333,9 +300,6 @@ function MessageScrollerContent(
     }
 
     if (typeof ResizeObserver !== "undefined") {
-      // Coalesce into rAF: handleResize mutates the spacer inside this observed
-      // element, and resizing an observed element during delivery fires
-      // "ResizeObserver loop completed with undelivered notifications".
       let frame = 0;
 
       const resizeObserver = new ResizeObserver(() => {
@@ -358,8 +322,6 @@ function MessageScrollerContent(
   });
 
   onCleanup((): void => {
-    // Pass the nodes so a replaced instance cannot null refs the new frame
-    // owns (Solid 2 mounts the replacement before disposing this one).
     context.setContentElement(null, contentNode);
     context.setSpacerElement(null, spacerNode);
     contentNode = undefined;
@@ -385,28 +347,16 @@ function MessageScrollerContent(
   );
 }
 
-// One transcript row: a message, marker, typing row, separator, or load-more row.
 function MessageScrollerItem(props: MessageScrollerItemProps): JSX.Element {
   const registerMessage = useMessageScrollerItemContext();
   const others = omit(props, "ref", "messageId", "scrollAnchor");
 
   let itemNode: HTMLDivElement | undefined;
-  // The id currently registered with the controller (what onCleanup must
-  // release). Tracked explicitly: a `defer: true` effect receives no
-  // previous value on its first run, so it cannot tell us the old id.
   let registeredMessageId: string | undefined;
 
-  // Register at ref time — Solid refs run during render (untracked, under a
-  // null owner), mirroring React's commit-time ref attach, so the message
-  // map is already populated when Content's onSettled runs the first
-  // handleContentChange (which may flush a queued scrollToMessage
-  // synchronously).
   const setItem = (element: HTMLDivElement): void => {
     itemNode = element;
 
-    // The one-shot read is deliberate (the effect below handles later id
-    // changes); untrack keeps Solid's dev STRICT_READ_UNTRACKED warning quiet
-    // for a reactive messageId, which every real transcript passes.
     const messageId = untrack(() => props.messageId);
 
     if (messageId) {
@@ -415,8 +365,6 @@ function MessageScrollerItem(props: MessageScrollerItemProps): JSX.Element {
     }
   };
 
-  // A messageId change re-registers the row under the new id (upstream gets
-  // this from React re-invoking the recreated ref callback).
   createEffect(
     (): string | undefined => props.messageId,
     (messageId): void => {
@@ -455,8 +403,6 @@ function MessageScrollerItem(props: MessageScrollerItemProps): JSX.Element {
   );
 }
 
-// Scroll-to-end/start control. Inert until there is content in its direction.
-// Polymorphic via Kobalte's `as` (upstream: Base UI `render`).
 function MessageScrollerButton<T extends ValidComponent = "button">(
   props: PolymorphicProps<T, MessageScrollerButtonProps>,
 ): JSX.Element {

@@ -19,20 +19,6 @@ const Separator = <T extends ValidComponent = "div">(
   const others = omit(local, "class", "orientation", "decorative");
   const orientation = () => local.orientation ?? "horizontal";
   const decorative = () => local.decorative ?? true;
-  // Rendered as a div like the upstream radix separator: tailwind's
-  // preflight and typeset both style hr (stray top border, height: 0,
-  // prose margins).
-  //
-  // Note that a vertical separator stretches instead of taking h-full: a
-  // percentage height collapses to 0 inside a flex row that has no definite
-  // height. Setting an explicit height on it defeats align-self: stretch
-  // (the item falls back to flex-start), so pair a forced height with
-  // self-center.
-  //
-  // Kobalte has no `decorative` prop and always announces the separator, so
-  // the semantics are authored here instead of being derived from the
-  // primitive's `orientation`: a decorative separator gets `role="none"` and
-  // no `aria-orientation`, exactly like the radix one.
   return (
     <SeparatorPrimitive.Root
       as="div"

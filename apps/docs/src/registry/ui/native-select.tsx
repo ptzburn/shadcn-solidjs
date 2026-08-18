@@ -5,9 +5,6 @@ import type { Component } from "solid-js";
 
 import { omit } from "solid-js";
 
-// `size` on a native select is the number of visible rows; the design system
-// uses it for the control height instead, so the native attribute is omitted
-// exactly like upstream does.
 type NativeSelectProps =
   & Omit<ComponentProps<"select">, "size">
   & { size?: "sm" | "default" };

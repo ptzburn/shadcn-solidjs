@@ -7,9 +7,6 @@ import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import type { Component } from "solid-js";
 import { merge, omit } from "solid-js";
 
-// Unlike radix, Kobalte's Root renders a real <div> wrapping the
-// trigger, so the slot marks the element grouped containers (e.g.
-// button-group) match on.
 const Select = <Option, OptGroup = never, T extends ValidComponent = "div">(
   props: PolymorphicProps<
     T,
@@ -81,9 +78,6 @@ type SelectContentProps<T extends ValidComponent = "div"> =
   & SelectPrimitive.SelectContentProps<T>
   & { class?: string | undefined };
 
-// Kobalte builds the list from the `options` collection instead of
-// children, so the listbox (radix's Viewport) is rendered here rather
-// than composed by the consumer.
 const SelectContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, SelectContentProps<T>>,
 ) => {
@@ -108,8 +102,6 @@ const SelectContent = <T extends ValidComponent = "div">(
   );
 };
 
-// Kobalte's Section is the group heading itself (the listbox is flat),
-// so it carries radix SelectLabel's slot and marker.
 type SelectSectionProps<T extends ValidComponent = "li"> =
   & SelectPrimitive.SelectSectionProps<T>
   & { class?: string | undefined };
@@ -128,10 +120,6 @@ const SelectSection = <T extends ValidComponent = "li">(
   );
 };
 
-// Kobalte has no Select.Separator; the listbox renders from the
-// collection, so a separator is a plain presentational element emitted
-// from `sectionComponent`.
-// an li, not a div: the listbox is a ul, which may only own list items
 const SelectSeparator: Component<ComponentProps<"li">> = (props) => {
   const others = omit(props, "class");
   return (
@@ -152,8 +140,6 @@ type SelectItemProps<T extends ValidComponent = "li"> =
     children?: JSX.Element;
   };
 
-// Kobalte's ItemLabel defaults to a div; radix's ItemText is a span and
-// the nova item block targets the last span child, so it renders as one.
 const SelectItem = <T extends ValidComponent = "li">(
   props: PolymorphicProps<T, SelectItemProps<T>>,
 ) => {

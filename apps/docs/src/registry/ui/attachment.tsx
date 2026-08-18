@@ -182,9 +182,6 @@ const AttachmentTrigger = <T extends ValidComponent = "button">(
     <Polymorphic
       as="button"
       data-slot="attachment-trigger"
-      // Default the button type, but never stamp `type` onto a polymorphic
-      // element that has no such attribute (an anchor, say). Upstream makes
-      // the same distinction with `asChild`.
       type={(props.as ?? "button") === "button"
         ? local.type ?? "button"
         : local.type}
