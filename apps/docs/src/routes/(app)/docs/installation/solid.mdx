@@ -1,0 +1,138 @@
+---
+title: Solid
+description: Install and configure a Solid 2.0 project.
+---
+
+<Steps>
+
+### Create project
+
+Start from one of the official Solid 2.0 templates. The `with-tailwindcss`
+template already has Tailwind CSS wired up:
+
+```bash
+npx degit solidjs/templates/solid-v2/with-tailwindcss my-app
+```
+
+Then move into the project and install its dependencies:
+
+```bash
+cd my-app
+npm install
+```
+
+The `basic` and `fullstack` templates work just as well — add Tailwind CSS
+in the next step.
+
+### Add Tailwind CSS
+
+If your project already has Tailwind CSS configured, skip this step.
+
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
+Replace everything in `src/App.css` with the following:
+
+```css title="src/App.css"
+@import "tailwindcss";
+```
+
+`init` looks for the stylesheet that imports Tailwind and writes the theme
+variables into it, so this file has to exist before you run the CLI.
+
+### Edit tsconfig.json file
+
+Add the `~` alias to `compilerOptions` — that is the file the CLI reads, and
+it is what makes `~/components/ui/...` resolve in your editor:
+
+```ts title="tsconfig.json" {4-7} showLineNumbers
+{
+  "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+    // ...
+  }
+}
+```
+
+### Update vite.config.ts
+
+Install `@types/node` so you can import `path` without an error, and
+`unplugin-icons`, which resolves the `~icons/…` imports components use:
+
+```bash
+npm install -D @types/node unplugin-icons
+```
+
+```ts title="vite.config.ts" showLineNumbers {1,4,12,15-19}
+import path from "node:path"
+import tailwindcss from "@tailwindcss/vite"
+import { fileRoutes } from "filesystem-routing/vite"
+import Icons from "unplugin-icons/vite"
+import solid from "@solidjs/vite-plugin"
+import { defineConfig } from "vite"
+
+export default defineConfig({
+  plugins: [
+    solid({ start: true, extensions: [".jsx", ".tsx"] }),
+    fileRoutes({ types: true }),
+    Icons({ compiler: "solid", autoInstall: true }),
+    tailwindcss(),
+  ],
+  resolve: {
+    alias: {
+      "~": path.resolve(__dirname, "./src"),
+    },
+  },
+})
+```
+
+### Run the CLI
+
+Run the `shadcn-solidjs` init command to setup your project:
+
+```bash
+npx @ptzburn/shadcn-solidjs@latest init
+```
+
+### Configure components.json
+
+You will be asked which base color and icon library to use:
+
+```txt showLineNumbers
+Which base color would you like to use? › zinc
+Which icon library would you like to use? › Lucide
+```
+
+`init` reads the path alias your project already declares and finds the
+stylesheet that imports Tailwind, so it does not ask where those live. The
+answers and the detected paths are written to `components.json`.
+
+### That's it
+
+You can now start adding components to your project.
+
+```bash
+npx @ptzburn/shadcn-solidjs@latest add button
+```
+
+The command above will add the `Button` component to your project, along with
+the packages it needs. You can then import it in any route:
+
+```tsx title="src/routes/index.tsx" {1,6} showLineNumbers
+import { Button } from "~/components/ui/button"
+
+export default function Home() {
+  return (
+    <div class="flex min-h-svh flex-col items-center justify-center">
+      <Button>Click me</Button>
+    </div>
+  )
+}
+```
+
+</Steps>
