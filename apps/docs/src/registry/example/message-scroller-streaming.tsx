@@ -178,13 +178,14 @@ export default function MessageScrollerStreaming() {
                   >
                     <Show
                       when={nextMessage()}
+                      keyed
                       fallback={
                         <span class="text-muted-foreground">
                           No messages queued. Reset the stream.
                         </span>
                       }
                     >
-                      {(message) => getMessageText(message())}
+                      {(message) => getMessageText(message)}
                     </Show>
                   </span>
                 </div>
