@@ -14,14 +14,10 @@ type CommandVariants = {
   deno: string;
 };
 
-/** deno add needs the npm: prefix on every package, but not on flags. */
+/** Bare package names resolve to npm, so `deno add` takes them as-is. */
 function denoAdd(command: string): string {
   const args = command.replace("npm install", "").trim();
-  if (!args) return "deno install";
-  const mapped = args
-    .split(/\s+/)
-    .map((token) => (token.startsWith("-") ? token : `npm:${token}`));
-  return `deno add ${mapped.join(" ")}`;
+  return args ? `deno add ${args}` : "deno install";
 }
 
 /**

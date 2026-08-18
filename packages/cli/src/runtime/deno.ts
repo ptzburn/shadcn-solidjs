@@ -132,11 +132,10 @@ export class DenoTarget implements ProjectTarget {
     if (specs.length === 0) return;
     assertSafeSpecs(specs);
 
-    await exec(
-      "deno",
-      ["add", ...specs.map((spec) => `npm:${spec}`)],
-      { cwd: this.cwd, silent: options.silent },
-    );
+    await exec("deno", ["add", ...specs], {
+      cwd: this.cwd,
+      silent: options.silent,
+    });
   }
 
   /** Deno resolves by exact path, so the extension is load-bearing. */
