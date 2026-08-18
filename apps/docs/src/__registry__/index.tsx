@@ -3572,6 +3572,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "mode-toggle": {
+    name: "mode-toggle",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/mode-toggle.tsx")),
+    files: [{
+      path: "registry/example/mode-toggle.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "message-demo": {
     name: "message-demo",
     description: "",

@@ -17,6 +17,16 @@ export const lib: Registry = [
     ],
   },
   {
+    name: "color-mode",
+    type: "lib",
+    files: [
+      {
+        path: "lib/color-mode.tsx",
+        type: "lib",
+      },
+    ],
+  },
+  {
     name: "use-media-query",
     type: "hook",
     files: [

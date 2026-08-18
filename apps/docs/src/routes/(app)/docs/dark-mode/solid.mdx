@@ -1,0 +1,82 @@
+---
+title: Solid
+description: Adding dark mode to your Solid app.
+---
+
+<Steps>
+
+### Add the color mode helper
+
+Start by adding `color-mode` to your project. It provides the provider,
+the pre-paint script and the `useColorMode` hook, and it mirrors the API of
+Kobalte's `color-mode` module.
+
+```bash
+npx @ptzburn/shadcn-solidjs@beta add color-mode
+```
+
+### Add the script
+
+Add the `ColorModeScript` to the `<head>` of your `Document.tsx`. It runs
+before the first paint and applies the stored mode, so the page never
+flashes the wrong theme.
+
+```tsx title="src/Document.tsx" {2,10} showLineNumbers
+import { HydrationScript, type JSX } from "@solidjs/web"
+import { ColorModeScript } from "~/lib/color-mode"
+
+export default function Document(props: { children: JSX.Element }) {
+  return (
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <ColorModeScript storageKey="ui-theme" />
+        <HydrationScript />
+      </head>
+      <body>{props.children}</body>
+    </html>
+  )
+}
+```
+
+The script has to live in `Document.tsx`: a `<script>` rendered from `App.tsx`
+is created on the client and never runs.
+
+### Wrap your app
+
+Add the `ColorModeProvider` to your `App.tsx`, using the same storage key.
+
+```tsx title="src/App.tsx" {2,6,9,13} showLineNumbers
+import { Loading } from "solid-js"
+import { ColorModeProvider, createLocalStorageManager } from "~/lib/color-mode"
+import { Router } from "./router"
+
+export default function App() {
+  const storageManager = createLocalStorageManager("ui-theme")
+
+  return (
+    <ColorModeProvider storageManager={storageManager}>
+      <Router>
+        {(props) => <Loading>{props.children}</Loading>}
+      </Router>
+    </ColorModeProvider>
+  )
+}
+```
+
+### Add needed components
+
+Make sure you have the `button` and `dropdown-menu` components installed.
+
+```bash
+npx @ptzburn/shadcn-solidjs@beta add button dropdown-menu
+```
+
+### Add a mode toggle
+
+Place a mode toggle on your site to toggle between light and dark mode.
+
+<ComponentPreview name="mode-toggle" />
+
+</Steps>
