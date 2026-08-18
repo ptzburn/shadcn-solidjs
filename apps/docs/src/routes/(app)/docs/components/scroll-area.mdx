@@ -54,10 +54,9 @@ import { ScrollArea } from "~/components/ui/scroll-area"
 
 ## Native Scrollbars
 
-Kobalte has no scroll-area primitive, so this component takes upstream's
-react-aria approach rather than its radix one: it is a single scrollable
-`div` that restyles the browser's own scrollbar with `scrollbar-width` and
-`scrollbar-color`.
+Kobalte has no scroll-area primitive, so this component is a single
+scrollable `div` that restyles the browser's own scrollbar with
+`scrollbar-width` and `scrollbar-color`.
 
 That means there is no `ScrollBar` component to render and no viewport
 wrapper — set the size on `ScrollArea` itself and put your content directly

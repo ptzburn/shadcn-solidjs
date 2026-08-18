@@ -15,13 +15,7 @@ import {
 } from "./dialog.tsx";
 import { InputGroup, InputGroupAddon } from "./input-group.tsx";
 
-// Unlike upstream shadcn's compositional cmdk-based Command, this component
-// is data-driven: items are passed as options and rendered by the Kobalte
-// Search collection, which supplies keyboard navigation and combobox
-// semantics. Filtering is external by design (Search targets async
-// suggestions), so the palette filters its own options.
 interface CommandOption {
-  /** Unique across all groups: it keys the Kobalte collection. */
   value: string;
   label?: string;
   icon?: () => JSX.Element;
@@ -36,8 +30,6 @@ interface CommandOptionGroup {
   options: CommandOption[];
 }
 
-// The listbox uses virtual focus, so pressing on a non-option row would move
-// DOM focus off the input and stall keyboard navigation.
 const keepInputFocus = (event: MouseEvent) => event.preventDefault();
 
 const commandFilter = (option: CommandOption, input: string) => {
@@ -53,8 +45,6 @@ const CommandItem: Component<
     <SearchPrimitive.Item
       item={props.item}
       data-slot="command-item"
-      // Kobalte marks the active row with `data-highlighted` (cmdk's
-      // data-selected) and disabled rows with a bare `data-disabled`.
       class="group/command-item relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden data-highlighted:*:[svg]:text-foreground [&_svg]:pointer-events-none data-disabled:pointer-events-none [&_svg]:shrink-0 in-data-[slot=dialog-content]:rounded-lg! data-highlighted:bg-muted data-highlighted:text-foreground data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4"
     >
       {props.item.rawValue.icon?.()}
@@ -79,12 +69,6 @@ const CommandSection: Component<
 > = (props) => {
   return (
     <>
-      {
-        /* Kobalte renders sections flat inside the listbox, so the divider
-          upstream places between groups is emitted ahead of every group that
-          is not the first node of the collection. (Section nodes all share
-          the empty key, so `index` is the reliable position marker.) */
-      }
       <Show when={props.section.index > 0}>
         <li
           role="separator"
@@ -118,10 +102,6 @@ interface CommandProps {
 
 const Command: Component<CommandProps> = (props) => {
   const [query, setQuery] = createSignal("");
-  // Kobalte's collection treats every top-level entry as a group once
-  // `optionGroupChildren` is set, so runs of bare options become heading-less
-  // groups here. Empty groups are dropped so `Search.NoResult` stays in
-  // step with what the listbox shows.
   const filtered = createMemo<CommandOptionGroup[]>(() => {
     const needle = query().trim();
     const matches = props.filter ?? commandFilter;
@@ -143,11 +123,6 @@ const Command: Component<CommandProps> = (props) => {
   return (
     <SearchPrimitive.Root<CommandOption, CommandOptionGroup>
       data-slot="command"
-      // Kobalte's inline "command menu" recipe: keep the search permanently
-      // open and mount the listbox directly under the input instead of in
-      // Search.Portal/Search.Content. Selection executes the item rather
-      // than persisting, so the value stays pinned empty; keeping the search
-      // "open" across selections preserves the highlighted row.
       open
       closeOnSelection={false}
       value={null}
@@ -229,9 +204,6 @@ const CommandDialogContent: Component<
         "top-1/3 translate-y-0 overflow-hidden rounded-xl! p-0",
         props.class,
       )}
-      // The always-open search consumes Escape (Kobalte uses it to close the
-      // listbox and marks the event handled), so the dialog's own dismissal
-      // never runs. Close the dialog when the palette has consumed the key.
       onEscapeKeyDown={(event) => {
         if (event.defaultPrevented) dialog.close();
       }}

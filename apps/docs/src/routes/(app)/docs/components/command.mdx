@@ -11,14 +11,10 @@ description: Command menu for search and quick actions.
 
 ## About
 
-Command is built on top of [Kobalte Search](https://kobalte.dev/docs/core/components/search),
-using its inline "command menu" layout: the listbox is mounted directly
-below the input instead of in a popover.
-
-Unlike the cmdk-based upstream component, items are passed as data through
-the `options` prop rather than composed as JSX children: the Kobalte
-collection supplies keyboard navigation and combobox semantics from that
-data, and the palette filters the options itself.
+Command is built on top of [Kobalte Search](https://kobalte.dev/docs/core/components/search).
+Items are passed as data through the `options` prop; the Kobalte collection
+provides keyboard navigation and combobox semantics, and the palette filters
+the options as you type.
 
 ## Installation
 
@@ -59,8 +55,10 @@ npm install @kobalte/core
 ## Usage
 
 ```tsx showLineNumbers
-import { Command } from "~/components/ui/command.tsx";
+import { Command, CommandDialog } from "~/components/ui/command.tsx"
+```
 
+```tsx showLineNumbers
 <Command
   placeholder="Type a command or search..."
   options={[
@@ -74,49 +72,18 @@ import { Command } from "~/components/ui/command.tsx";
     },
   ]}
   onSelect={(option) => console.log(option.value)}
-/>;
+/>
 ```
 
 Each option can carry an `icon` (a function returning JSX), a `shortcut`
 label, extra `keywords` for filtering, and its own `onSelect` handler.
-`value` must be unique across all groups — it identifies the row for
-keyboard navigation and selection. Pass `emptyMessage` to replace the
+`value` must be unique across all groups. Pass `emptyMessage` to replace the
 default "No results found." text, and `filter`
-(`(option, inputValue) => boolean`) to override the built-in label and
-keywords match.
+(`(option, inputValue) => boolean`) to replace the label and keywords match.
 
-## Dialog
-
-Wrap the palette in a dialog with `CommandDialog` and control it with
-`open`/`onOpenChange` — for example from a ⌘K shortcut. `title` and
-`description` set the visually hidden dialog title and description read
-by screen readers, and `showCloseButton` renders the dialog's close
-button. `CommandDialog` also closes on Escape: the always-open Kobalte
-Search consumes that key, so a bare `Command` placed inside another
-Kobalte overlay needs the same `onEscapeKeyDown` treatment (see the
-component source).
-
-```tsx showLineNumbers
-import { CommandDialog } from "~/components/ui/command.tsx";
-import { createEffect, createSignal } from "solid-js";
-
-function CommandMenu() {
-  const [open, setOpen] = createSignal(false);
-
-  createEffect(() => {}, () => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setOpen((open) => !open);
-      }
-    };
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  });
-
-  return <CommandDialog open={open()} onOpenChange={setOpen} options={[]} />;
-}
-```
+`CommandDialog` takes the same props and renders the palette in a dialog
+controlled with `open` and `onOpenChange`; `title` and `description` set its
+visually hidden heading, and `showCloseButton` renders the close button.
 
 ## Basic
 
