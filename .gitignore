@@ -17,3 +17,6 @@ coverage/
 
 # dnt output
 packages/cli/npm/
+
+# superpowers plugin state
+.superpowers/
