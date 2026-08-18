@@ -14,7 +14,7 @@ import path from "node:path";
 import process from "node:process";
 import { build, emptyDir } from "@deno/dnt";
 
-import { VERSION } from "../src/version.ts";
+import { DIST_TAG, VERSION } from "../src/version.ts";
 
 const packageRoot = path.resolve(import.meta.dirname!, "..");
 const repoRoot = path.resolve(packageRoot, "../..");
@@ -46,7 +46,7 @@ await build({
   package: {
     name: "@ptzburn/shadcn-solidjs",
     version: VERSION,
-    description: "Add SolidJS components to your project.",
+    description: "A CLI for adding SolidJS components to your project.",
     license: "MIT",
     author: "ptzburn",
     homepage: "https://v2.shadcn-solidjs.com",
@@ -58,17 +58,31 @@ await build({
     bugs: {
       url: "https://github.com/ptzburn/shadcn-solidjs/issues",
     },
-    keywords: ["solid", "solidjs", "shadcn", "ui", "components", "tailwindcss"],
+    keywords: [
+      "components",
+      "ui",
+      "tailwind",
+      "tailwindcss",
+      "solid",
+      "solidjs",
+      "kobalte",
+      "shadcn",
+      "cli",
+    ],
     engines: { node: ">=20" },
-    publishConfig: { access: "public" },
+    // DIST_TAG derives from VERSION, so `npm publish` sends a pre-release to
+    // `beta` and a stable version to `latest` without a --tag flag.
+    publishConfig: { access: "public", tag: DIST_TAG },
   },
   async postBuild() {
     await Deno.copyFile(
       path.join(repoRoot, "LICENSE"),
       path.join(outDir, "LICENSE"),
     );
+    // The package README, not the repo one: it is the same file JSR renders,
+    // so both registries show the CLI-focused page.
     await Deno.copyFile(
-      path.join(repoRoot, "README.md"),
+      path.join(packageRoot, "README.md"),
       path.join(outDir, "README.md"),
     );
   },

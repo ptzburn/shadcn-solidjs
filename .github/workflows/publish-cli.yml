@@ -1,0 +1,65 @@
+# Publishes packages/cli to JSR.
+#
+# On a push to main or solid2 that touches the CLI, `deno publish` uploads the
+# version in packages/cli/deno.json — and skips, exiting 0, when that version is
+# already on JSR. So a release is: bump the version, push, done. The OIDC token
+# below is what lets the run publish without a stored secret and is what makes
+# JSR attach a provenance attestation to the version.
+#
+# Pull requests get the same checks plus a `--dry-run`, so a package that would
+# fail to publish is caught before it merges.
+#
+# One-time setup on jsr.io: link this repository to the package under
+# Settings → GitHub repository, or the OIDC publish is rejected.
+name: Publish CLI
+
+on:
+  push:
+    branches: [main, solid2]
+    paths:
+      - packages/cli/**
+      - deno.json
+      - deno.lock
+      - .github/workflows/publish-cli.yml
+  pull_request:
+    paths:
+      - packages/cli/**
+      - deno.json
+      - deno.lock
+      - .github/workflows/publish-cli.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cli:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # tokenless JSR publish + provenance
+    defaults:
+      run:
+        working-directory: packages/cli
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      # The workspace pins nodeModulesDir to "manual", so npm dependencies only
+      # resolve after an install; --frozen fails the run if deno.lock is stale.
+      - name: Install dependencies
+        run: deno install --frozen
+
+      - name: Test
+        run: deno test -A
+
+      - name: Verify the package publishes
+        if: github.event_name == 'pull_request'
+        run: deno publish --dry-run
+
+      - name: Publish to JSR
+        if: github.event_name != 'pull_request'
+        run: deno publish
