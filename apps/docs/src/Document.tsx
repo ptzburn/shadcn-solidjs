@@ -1,4 +1,5 @@
 import { HydrationScript, type JSX } from "@solidjs/web";
+import { ColorModeScript } from "~/lib/color-mode.tsx";
 
 export default function Document(props: { children: JSX.Element }) {
   return (
@@ -12,6 +13,13 @@ export default function Document(props: { children: JSX.Element }) {
         }
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {
+          /* Inline scripts only run when they arrive as HTML: rendered from the
+            client bundle, Solid builds them through a template clone, which
+            the browser never executes. The shell is server-rendered, so the
+            stored mode is applied before first paint from here. */
+        }
+        <ColorModeScript storageType="cookie" />
         <HydrationScript />
       </head>
       <body>

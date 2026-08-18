@@ -89,18 +89,21 @@ export function ColorModeProvider(
   const initialConfig = manager().get() ??
     props.initialColorMode ?? FALLBACK_COLOR_MODE;
 
-  const [colorMode, rawSetColorMode] = createSignal(
-    resolveColorMode(initialConfig),
-  );
+  const initialMode = resolveColorMode(initialConfig);
+  const [colorMode, rawSetColorMode] = createSignal(initialMode);
 
   let cleanupSystemListener: (() => void) | undefined;
   onCleanup(() => cleanupSystemListener?.());
 
-  const applyColorMode = (value: ColorMode) => {
-    rawSetColorMode(value);
+  const stampDocument = (value: ColorMode) => {
     if (isServer) return;
     document.documentElement.dataset.kbTheme = value;
     document.documentElement.style.colorScheme = value;
+  };
+
+  const applyColorMode = (value: ColorMode) => {
+    rawSetColorMode(value);
+    stampDocument(value);
   };
 
   const listenToSystem = () => {
@@ -121,7 +124,10 @@ export function ColorModeProvider(
     manager().set(value);
   };
 
-  // Follow OS preference changes when the stored choice is "system".
+  // Stamp the stored mode on the document as soon as the provider runs in
+  // the browser, so state and DOM agree even before (or without) the inline
+  // script; follow OS preference changes when the stored choice is "system".
+  stampDocument(initialMode);
   if (initialConfig === "system") listenToSystem();
 
   const context: ColorModeContextType = {

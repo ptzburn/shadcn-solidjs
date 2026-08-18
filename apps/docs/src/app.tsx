@@ -6,7 +6,6 @@ import { getRequestEvent, isServer } from "@solidjs/web";
 import { MetaTags } from "~/components/meta-tags.tsx";
 import {
   ColorModeProvider,
-  ColorModeScript,
   cookieStorageManagerSSR,
 } from "~/lib/color-mode.tsx";
 import { Toaster } from "~/registry/ui/toast.tsx";
@@ -30,7 +29,6 @@ export default function App() {
   return (
     <>
       <MetaTags />
-      <ColorModeScript storageType={storageManager.type} />
       <ColorModeProvider storageManager={storageManager}>
         <Router>
           {(props) => <Loading>{props.children}</Loading>}
