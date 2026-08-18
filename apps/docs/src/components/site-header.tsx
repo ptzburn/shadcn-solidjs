@@ -2,12 +2,11 @@ import { GitHubLink } from "~/components/github-link.tsx";
 import { MainNav } from "~/components/main-nav.tsx";
 import { MobileNav } from "~/components/mobile-nav.tsx";
 import { ModeSwitcher } from "~/components/mode-switcher.tsx";
+import SearchBar from "~/components/search-bar.tsx";
 import { Separator } from "~/registry/ui/separator.tsx";
 
-// Reduced from main: SearchBar returns once it is re-ported onto the
-// data-driven CommandDialog (main's version composed the old cmdk-solid
-// API), and StyleSwitcher once the multi-style system is ported (this
-// branch inlines the nova style only).
+// Reduced from main: StyleSwitcher returns once the multi-style system is
+// ported (this branch inlines the nova style only).
 export function SiteHeader() {
   return (
     <header class="sticky top-0 z-50 w-full bg-background">
@@ -16,6 +15,10 @@ export function SiteHeader() {
           <MobileNav class="flex lg:hidden" />
           <MainNav class="hidden lg:flex" />
           <div class="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
+            <div class="hidden w-full flex-1 md:flex md:w-auto md:flex-none">
+              <SearchBar />
+            </div>
+            <Separator orientation="vertical" class="ml-2 hidden lg:block" />
             <GitHubLink />
             <Separator orientation="vertical" />
             <ModeSwitcher />
