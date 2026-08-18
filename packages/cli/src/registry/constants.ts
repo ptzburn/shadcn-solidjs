@@ -1,7 +1,7 @@
 import process from "node:process";
 
 export const SHADCN_SOLIDJS_URL = process.env.SHADCN_SOLIDJS_URL ??
-  "https://shadcn-solidjs.com";
+  "https://v2.shadcn-solidjs.com";
 
 /** Overridable so development can point at a local docs server. */
 export const REGISTRY_URL = process.env.REGISTRY_URL ??

@@ -49,7 +49,7 @@ await build({
     description: "Add SolidJS components to your project.",
     license: "MIT",
     author: "ptzburn",
-    homepage: "https://shadcn-solidjs.com",
+    homepage: "https://v2.shadcn-solidjs.com",
     repository: {
       type: "git",
       url: "git+https://github.com/ptzburn/shadcn-solidjs.git",

@@ -15,13 +15,17 @@ edit the button.
 
 shadcn-solidjs brings that model to SolidJS. Same components, same design
 tokens, rebuilt on Solid's reactivity and on headless primitives from
-[Kobalte](https://kobalte.dev), [corvu](https://corvu.dev), and
-[Ark UI](https://ark-ui.com).
+[Kobalte](https://kobalte.dev).
+
+> [!NOTE]
+> This is the **Solid 2.0** line, published under the `beta` tag while Solid 2.0
+> and Kobalte 2.0 are pre-release. The Solid 1.x line stays on `latest` at
+> [shadcn-solidjs.com](https://shadcn-solidjs.com).
 
 ## Documentation
 
-Visit [shadcn-solidjs.com/docs](https://shadcn-solidjs.com/docs) to view the
-documentation.
+Visit [v2.shadcn-solidjs.com/docs](https://v2.shadcn-solidjs.com/docs) to view
+the documentation.
 
 ## Quick start
 
@@ -29,35 +33,35 @@ Initialize a project — this writes `components.json`, sets up your stylesheet
 and base color, and adds the `cn` helper:
 
 ```bash
-npx @ptzburn/shadcn-solidjs@latest init
+npx @ptzburn/shadcn-solidjs@beta init
 ```
 
 Then add components:
 
 ```bash
-npx @ptzburn/shadcn-solidjs@latest add button card dialog
+npx @ptzburn/shadcn-solidjs@beta add button card dialog
 ```
 
-Running on Deno? Skip the npm build and use the JSR package directly:
+Running on Deno? `dx` is Deno's `npx`:
 
 ```bash
-deno run -A jsr:@ptzburn/shadcn-solidjs init
+dx -A npm:@ptzburn/shadcn-solidjs@beta init
 ```
 
-Installation guides are available for **SolidStart**, **Vite** and **Astro**,
-plus a manual setup path.
+The installation guide walks through a project created from the official Solid
+2.0 templates.
 
 ## What's inside
 
-- **59 components**, Accordion through Tooltip.
+- **57 components**, Accordion through Tooltip.
 - **8 styles** — Nova, Vega, Maia, Lyra, Mira, Luma, Sera and Rhea. These mirror
-  upstream's, so a component looks here the way it looks on ui.shadcn.com.
+  shadcn/ui's, so a component looks here the way it looks on ui.shadcn.com.
 - **5 icon libraries** — [Lucide](https://lucide.dev),
   [Tabler](https://tabler.io/icons), [Phosphor](https://phosphoricons.com),
   [Remix Icon](https://remixicon.com) and [Hugeicons](https://hugeicons.com).
   You pick one at `init` and it's baked into the code you receive.
 - **24 themes**, installable like any other registry item.
-- **Dark mode** guides for SolidStart, Vite and Astro.
+- **Dark mode** guide, with a `color-mode` helper that mirrors Kobalte's.
 
 Every item is addressable under both a style and an icon-library prefix, so
 adding a component never pulls in an icon set you didn't choose.
@@ -85,11 +89,9 @@ mapping and the reasoning behind each divergence.
 
 ## Built with
 
-[Solid](https://www.solidjs.com) · [Tailwind CSS v4](https://tailwindcss.com) ·
-[Kobalte](https://kobalte.dev) · [corvu](https://corvu.dev) ·
-[Ark UI](https://ark-ui.com) · [TanStack Table](https://tanstack.com/table) ·
-[Embla Carousel](https://www.embla-carousel.com) ·
-[Modular Forms](https://modularforms.dev) · [Chart.js](https://www.chartjs.org)
+[Solid 2.0](https://www.solidjs.com) ·
+[Tailwind CSS v4](https://tailwindcss.com) · [Kobalte](https://kobalte.dev) ·
+[Embla Carousel](https://www.embla-carousel.com)
 
 ## Contributing
 
@@ -104,8 +106,8 @@ locally.
 - [huntabyte/shadcn-svelte](https://github.com/huntabyte/shadcn-svelte) and
   [unovue/shadcn-vue](https://github.com/unovue/shadcn-vue) for showing what a
   good port of it looks like.
-- [Kobalte](https://kobalte.dev) and [corvu](https://corvu.dev) for the
-  accessible Solid primitives that most of these components are built on.
+- [Kobalte](https://kobalte.dev) for the accessible Solid primitives these
+  components are built on.
 
 ## License
 

@@ -9,6 +9,7 @@ import {
   DEFAULT_STYLE,
   REGISTRY_INDEX_URL,
   REGISTRY_THEME_URL,
+  SHADCN_SOLIDJS_URL,
 } from "../registry/constants.ts";
 import { fetchRegistryIndex, fetchRegistryItem } from "../registry/fetcher.ts";
 import { readNodeModulesDir } from "../runtime/deno.ts";
@@ -111,7 +112,7 @@ export async function buildConfig(
   return {
     cssPath,
     config: {
-      $schema: "https://shadcn-solidjs.com/schema.json",
+      $schema: `${SHADCN_SOLIDJS_URL}/schema.json`,
       tsx: true,
       tailwind: {
         css: path.relative(cwd, cssPath).split(path.sep).join("/"),

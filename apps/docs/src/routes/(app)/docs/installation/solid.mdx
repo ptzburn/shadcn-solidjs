@@ -24,7 +24,9 @@ already has Tailwind CSS wired up:
 ```
 
 The `basic` and `fullstack` templates work just as well — add Tailwind CSS
-in the next step.
+in the next step. If you use npm, the template's test tooling currently needs
+`legacy-peer-deps=true` in an `.npmrc` (its peer range does not accept the
+Solid 2.0 release candidate); pnpm, bun and deno install it as is.
 
 <Callout title="Server-side rendering">
   With `solid-js@2.0.0-rc.0` and `@kobalte/core@2.0.0-alpha.0` — the versions
@@ -102,6 +104,24 @@ export default defineConfig({
     },
   },
 })
+```
+
+### Declare the icon module types
+
+The `~icons/…` imports need a module declaration for TypeScript. Add it to
+`src/vite-env.d.ts` (unplugin-icons ships one for Solid, but its types still
+import from `solid-js` where Solid 2.0 moved them to `@solidjs/web`):
+
+```ts title="src/vite-env.d.ts" showLineNumbers {4-9}
+/// <reference types="vite/client" />
+/// <reference types="../file-routes.d.ts" />
+
+declare module "~icons/*" {
+  import type { ComponentProps, JSX } from "@solidjs/web"
+
+  const component: (props: ComponentProps<"svg">) => JSX.Element
+  export default component
+}
 ```
 
 ### Run the CLI

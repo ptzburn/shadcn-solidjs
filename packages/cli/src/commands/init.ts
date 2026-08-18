@@ -16,6 +16,7 @@ import {
 import { detectProjectTarget } from "../runtime/detect.ts";
 import { handleError } from "../utils/handle-error.ts";
 import { logger, setSilent } from "../utils/logger.ts";
+import { DIST_TAG } from "../version.ts";
 import {
   DEFAULT_BASE_COLOR,
   InitError,
@@ -72,7 +73,7 @@ function reportNextSteps(result: InitResult, cwd: string): void {
   logger.info(
     // The npx form rather than the bare binary: the npm package is scoped, so
     // `shadcn-solidjs` is only on PATH once it is installed as a dependency.
-    "Now run `npx @ptzburn/shadcn-solidjs@latest add button` to add your first component.",
+    `Now run \`npx @ptzburn/shadcn-solidjs@${DIST_TAG} add button\` to add your first component.`,
   );
 }
 

@@ -216,6 +216,7 @@ Deno.test("yarn spells the dev flag differently", () => {
   assertEquals(installArgs("yarn", ["clsx"], true), ["add", "--dev", "clsx"]);
   assertEquals(installArgs("pnpm", ["clsx"], true), ["add", "-D", "clsx"]);
   assertEquals(installArgs("npm", ["clsx"], false), ["add", "clsx"]);
+  assertEquals(installArgs("deno", ["clsx"], true), ["add", "-D", "clsx"]);
 });
 
 // -------------------------------------------------------- package managers
@@ -233,6 +234,18 @@ Deno.test("the packageManager field wins over a lockfile", () =>
       "package-lock.json": "{}",
     },
     (dir) => assertEquals(detectPackageManager(dir), "yarn"),
+  ));
+
+Deno.test("a deno.lock means deno manages the package.json project", () =>
+  withProject(
+    { "package.json": "{}", "deno.lock": "{}" },
+    (dir) => assertEquals(detectPackageManager(dir), "deno"),
+  ));
+
+Deno.test("a Deno-laid-out node_modules means deno even without a lockfile", () =>
+  withProject(
+    { "package.json": "{}", "node_modules/.deno/.keep": "" },
+    (dir) => assertEquals(detectPackageManager(dir), "deno"),
   ));
 
 Deno.test("inherits a lockfile from the repository root", () =>

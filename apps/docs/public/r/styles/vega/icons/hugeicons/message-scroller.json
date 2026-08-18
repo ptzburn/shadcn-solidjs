@@ -3,7 +3,7 @@
   "name": "message-scroller",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core"
+    "@kobalte/core@2.0.0-alpha.0"
   ],
   "devDependencies": [
     "unplugin-icons",

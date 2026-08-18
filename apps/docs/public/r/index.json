@@ -8,7 +8,7 @@
       "name": "accordion",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -20,7 +20,7 @@
       "name": "alert",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ]
     },
@@ -29,7 +29,7 @@
       "name": "alert-dialog",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -46,7 +46,7 @@
       "name": "attachment",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -58,7 +58,7 @@
       "name": "avatar",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -66,7 +66,7 @@
       "name": "badge",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ]
     },
@@ -75,7 +75,7 @@
       "name": "breadcrumb",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -87,7 +87,7 @@
       "name": "bubble",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ]
     },
@@ -96,7 +96,7 @@
       "name": "button",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ]
     },
@@ -105,7 +105,7 @@
       "name": "button-group",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -138,7 +138,7 @@
       "name": "checkbox",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -150,7 +150,7 @@
       "name": "combobox",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -166,7 +166,7 @@
       "name": "command",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -182,7 +182,7 @@
       "name": "context-menu",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -194,7 +194,7 @@
       "name": "collapsible",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -202,7 +202,7 @@
       "name": "dialog",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -217,7 +217,7 @@
       "name": "drawer",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -225,7 +225,7 @@
       "name": "dropdown-menu",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -245,7 +245,7 @@
       "name": "field",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -258,7 +258,7 @@
       "name": "hover-card",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -271,7 +271,7 @@
       "name": "input-group",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -285,7 +285,7 @@
       "name": "input-otp",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -297,7 +297,7 @@
       "name": "item",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -314,7 +314,7 @@
       "name": "label",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -322,7 +322,7 @@
       "name": "marker",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ]
     },
@@ -331,7 +331,7 @@
       "name": "menubar",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -348,7 +348,7 @@
       "name": "message-scroller",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -372,7 +372,7 @@
       "name": "navigation-menu",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ],
       "devDependencies": [
@@ -385,7 +385,7 @@
       "name": "pagination",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -400,7 +400,7 @@
       "name": "popover",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -408,7 +408,7 @@
       "name": "progress",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -416,7 +416,7 @@
       "name": "radio-group",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -424,7 +424,7 @@
       "name": "resizable",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -437,7 +437,7 @@
       "name": "select",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -449,7 +449,7 @@
       "name": "separator",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -457,7 +457,7 @@
       "name": "sheet",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -472,7 +472,7 @@
       "name": "sidebar",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ],
       "devDependencies": [
@@ -499,7 +499,7 @@
       "name": "slider",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -516,7 +516,7 @@
       "name": "switch",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {
@@ -529,7 +529,7 @@
       "name": "tabs",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ]
     },
@@ -543,7 +543,7 @@
       "name": "toast",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -558,7 +558,7 @@
       "name": "toggle",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ]
     },
@@ -567,7 +567,7 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core",
+        "@kobalte/core@2.0.0-alpha.0",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -579,7 +579,7 @@
       "name": "tooltip",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core"
+        "@kobalte/core@2.0.0-alpha.0"
       ]
     },
     {

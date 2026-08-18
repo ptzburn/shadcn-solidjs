@@ -149,7 +149,10 @@ Deno.test("merges dependencies across the resolved tree", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["sidebar"], options());
 
-  assert(tree.dependencies.includes("@kobalte/core"));
+  assert(
+    tree.dependencies.some((dep) => dep.startsWith("@kobalte/core")),
+    "should carry the Kobalte dependency (possibly pinned)",
+  );
   assertEquals(
     tree.dependencies.length,
     new Set(tree.dependencies).size,

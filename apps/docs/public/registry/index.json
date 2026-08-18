@@ -2,7 +2,7 @@
   {
     "name": "accordion",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/accordion.tsx"
@@ -12,7 +12,7 @@
   {
     "name": "alert",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "files": [
@@ -23,7 +23,7 @@
   {
     "name": "alert-dialog",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "registryDependencies": [
@@ -44,7 +44,7 @@
   {
     "name": "attachment",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "registryDependencies": [
@@ -58,7 +58,7 @@
   {
     "name": "avatar",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/avatar.tsx"
@@ -68,7 +68,7 @@
   {
     "name": "badge",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "files": [
@@ -79,7 +79,7 @@
   {
     "name": "breadcrumb",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/breadcrumb.tsx"
@@ -89,7 +89,7 @@
   {
     "name": "bubble",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "files": [
@@ -100,7 +100,7 @@
   {
     "name": "button",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "files": [
@@ -111,7 +111,7 @@
   {
     "name": "button-group",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "registryDependencies": [
@@ -146,7 +146,7 @@
   {
     "name": "checkbox",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/checkbox.tsx"
@@ -156,7 +156,7 @@
   {
     "name": "combobox",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "registryDependencies": [
       "button",
@@ -170,7 +170,7 @@
   {
     "name": "command",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "registryDependencies": [
       "dialog",
@@ -184,7 +184,7 @@
   {
     "name": "context-menu",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/context-menu.tsx"
@@ -194,7 +194,7 @@
   {
     "name": "collapsible",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/collapsible.tsx"
@@ -204,7 +204,7 @@
   {
     "name": "dialog",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "registryDependencies": [
       "button"
@@ -217,7 +217,7 @@
   {
     "name": "drawer",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/drawer.tsx"
@@ -227,7 +227,7 @@
   {
     "name": "dropdown-menu",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/dropdown-menu.tsx"
@@ -247,7 +247,7 @@
   {
     "name": "field",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "registryDependencies": [
@@ -262,7 +262,7 @@
   {
     "name": "hover-card",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/hover-card.tsx"
@@ -279,7 +279,7 @@
   {
     "name": "input-group",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "registryDependencies": [
@@ -295,7 +295,7 @@
   {
     "name": "input-otp",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/input-otp.tsx"
@@ -305,7 +305,7 @@
   {
     "name": "item",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "registryDependencies": [
@@ -326,7 +326,7 @@
   {
     "name": "label",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/label.tsx"
@@ -336,7 +336,7 @@
   {
     "name": "marker",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "files": [
@@ -347,7 +347,7 @@
   {
     "name": "menubar",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/menubar.tsx"
@@ -364,7 +364,7 @@
   {
     "name": "message-scroller",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "registryDependencies": [
       "button"
@@ -389,7 +389,7 @@
   {
     "name": "navigation-menu",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "files": [
@@ -400,7 +400,7 @@
   {
     "name": "pagination",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "registryDependencies": [
       "button"
@@ -413,7 +413,7 @@
   {
     "name": "popover",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/popover.tsx"
@@ -423,7 +423,7 @@
   {
     "name": "progress",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/progress.tsx"
@@ -433,7 +433,7 @@
   {
     "name": "radio-group",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/radio-group.tsx"
@@ -443,7 +443,7 @@
   {
     "name": "resizable",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/resizable.tsx"
@@ -460,7 +460,7 @@
   {
     "name": "select",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/select.tsx"
@@ -470,7 +470,7 @@
   {
     "name": "separator",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/separator.tsx"
@@ -480,7 +480,7 @@
   {
     "name": "sheet",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "registryDependencies": [
       "button"
@@ -493,7 +493,7 @@
   {
     "name": "sidebar",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "registryDependencies": [
@@ -520,7 +520,7 @@
   {
     "name": "slider",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/slider.tsx"
@@ -537,7 +537,7 @@
   {
     "name": "switch",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/switch.tsx"
@@ -554,7 +554,7 @@
   {
     "name": "tabs",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "files": [
@@ -572,7 +572,7 @@
   {
     "name": "toast",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "registryDependencies": [
       "button"
@@ -585,7 +585,7 @@
   {
     "name": "toggle",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "files": [
@@ -596,7 +596,7 @@
   {
     "name": "toggle-group",
     "dependencies": [
-      "@kobalte/core",
+      "@kobalte/core@2.0.0-alpha.0",
       "class-variance-authority"
     ],
     "registryDependencies": [
@@ -610,7 +610,7 @@
   {
     "name": "tooltip",
     "dependencies": [
-      "@kobalte/core"
+      "@kobalte/core@2.0.0-alpha.0"
     ],
     "files": [
       "ui/tooltip.tsx"

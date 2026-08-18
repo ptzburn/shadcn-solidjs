@@ -2,9 +2,10 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 
-export type PackageManager = "npm" | "pnpm" | "yarn" | "bun";
+export type PackageManager = "npm" | "pnpm" | "yarn" | "bun" | "deno";
 
 const LOCKFILES: Array<[string, PackageManager]> = [
+  ["deno.lock", "deno"],
   ["bun.lock", "bun"],
   ["bun.lockb", "bun"],
   ["pnpm-lock.yaml", "pnpm"],
@@ -34,7 +35,16 @@ function fromUserAgent(): PackageManager | null {
 
 function isPackageManager(value: string): value is PackageManager {
   return value === "npm" || value === "pnpm" || value === "yarn" ||
-    value === "bun";
+    value === "bun" || value === "deno";
+}
+
+/**
+ * `deno install` in a package.json project leaves no lockfile of its own
+ * name only when locking is off, but it always lays out node_modules with a
+ * `.deno` store — npm's arborist cannot read that tree, so it has to be Deno.
+ */
+function hasDenoNodeModules(dir: string): boolean {
+  return existsSync(path.join(dir, "node_modules", ".deno"));
 }
 
 /**
@@ -51,6 +61,7 @@ export function detectPackageManager(cwd: string): PackageManager {
     for (const [lockfile, manager] of LOCKFILES) {
       if (existsSync(path.join(dir, lockfile))) return manager;
     }
+    if (hasDenoNodeModules(dir)) return "deno";
     const parent = path.dirname(dir);
     if (parent === dir) break;
     dir = parent;

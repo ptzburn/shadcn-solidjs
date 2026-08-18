@@ -1,7 +1,7 @@
 {
   "name": "hover-card",
   "dependencies": [
-    "@kobalte/core"
+    "@kobalte/core@2.0.0-alpha.0"
   ],
   "files": [
     {
