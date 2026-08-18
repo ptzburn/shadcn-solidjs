@@ -20,3 +20,6 @@ packages/cli/npm/
 
 # superpowers plugin state
 .superpowers/
+
+# superpowers specs and plans (local working notes)
+/docs/
