@@ -123,6 +123,19 @@
     "type": "ui"
   },
   {
+    "name": "calendar",
+    "dependencies": [
+      "@corvu/calendar"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "files": [
+      "ui/calendar.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "card",
     "files": [
       "ui/card.tsx"

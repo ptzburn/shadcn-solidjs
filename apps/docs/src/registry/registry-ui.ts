@@ -125,6 +125,18 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "calendar",
+    type: "ui",
+    dependencies: ["@corvu/calendar"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "ui/calendar.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "card",
     type: "ui",
     files: [

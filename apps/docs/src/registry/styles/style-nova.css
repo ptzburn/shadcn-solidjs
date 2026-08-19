@@ -496,6 +496,24 @@
       @apply bg-input;
     }
 
+    /* MARK: Calendar */
+    .cn-calendar {
+      @apply p-2 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(7)];
+    }
+
+    .cn-calendar-dropdown-root {
+      @apply has-focus:border-ring border-input has-focus:ring-ring/50 border
+        has-focus:ring-3;
+    }
+
+    .cn-calendar-caption {}
+
+    .cn-calendar-caption-label {
+      @apply h-6 pr-1 pl-1.5;
+    }
+
+    .cn-calendar-day-button {}
+
     /* MARK: Card */
     .cn-card {
       @apply ring-foreground/10 bg-card text-card-foreground
