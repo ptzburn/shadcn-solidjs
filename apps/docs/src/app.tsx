@@ -1,13 +1,13 @@
 /// <reference types="filesystem-routing/types" />
 import { createRouter } from "@solidjs/router";
-import { fileRoutes } from "@solidjs/router/fs";
 import { getRequestEvent, isServer } from "@solidjs/web";
-
 import { MetaTags } from "~/components/meta-tags.tsx";
+
 import {
   ColorModeProvider,
   cookieStorageManagerSSR,
 } from "~/lib/color-mode.tsx";
+import { fileRoutes } from "~/lib/file-routes.ts";
 import { parseStyleCookie, StyleProvider } from "~/lib/style-context.tsx";
 import { Toaster } from "~/registry/ui/toast.tsx";
 

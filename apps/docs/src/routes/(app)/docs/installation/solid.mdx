@@ -24,12 +24,15 @@ already has Tailwind CSS wired up:
 ```
 
 The `basic` and `fullstack` templates work just as well — add Tailwind CSS
-in the next step. If you use npm, the template's test tooling currently needs
-`legacy-peer-deps=true` in an `.npmrc` (its peer range does not accept the
-Solid 2.0 release candidate); pnpm, bun and deno install it as is.
+in the next step. If you use npm, add `legacy-peer-deps=true` to an `.npmrc`
+before installing anything else: the template's test tooling does not accept
+the Solid 2.0 release candidate in its peer range, and `@kobalte/core`
+2.0.0-alpha.0 pins its `solid-js` peer to exactly `2.0.0-rc.0` while the
+templates resolve to `2.0.0-rc.1`. pnpm and bun install both as is; so does
+deno, with one addition to `vite.config.ts` noted below.
 
 <Callout title="Server-side rendering">
-  With `solid-js@2.0.0-rc.0` and `@kobalte/core@2.0.0-alpha.0` — the versions
+  With `solid-js@2.0.0-rc.1` and `@kobalte/core@2.0.0-alpha.0` — the versions
   the components are built and tested against — the library does not yet work
   reliably with server-side rendering enabled. Stay client-rendered for now:
   answer no if the CLI offers to enable SSR, and leave `ssr` off in the
@@ -105,6 +108,13 @@ export default defineConfig({
   },
 })
 ```
+
+Using deno? Its installer satisfies the exact `solid-js@2.0.0-rc.0` peer of
+`@kobalte/core` 2.0.0-alpha.0 with a private copy next to your project's
+`2.0.0-rc.1`, and two reactive runtimes never share a context. Add
+`dedupe: ["solid-js", "@solidjs/web", "@solidjs/signals"]` to `resolve` in
+the config above so the bundle keeps a single copy, and drop it once Kobalte
+releases against the current release candidate.
 
 ### Declare the icon module types
 

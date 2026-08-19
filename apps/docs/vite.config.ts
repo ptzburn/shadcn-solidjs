@@ -13,7 +13,6 @@ import rehypeComponent from "./src/lib/mdx/component.tsx";
 import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
 import remarkNpmCommand from "./src/lib/mdx/npm-command.ts";
 import rehypePrettyCodeSecondPass from "./src/lib/mdx/pretty-code.ts";
-import { solidjsSignalsOmitFix } from "./src/lib/vite/solidjs-signals-omit-fix.ts";
 
 const mdxPlugin = mdx({
   jsx: true,
@@ -57,6 +56,11 @@ export default defineConfig({
       // SolidStart used to provide this alias; the vite plugin does not.
       "~": new URL("./src", import.meta.url).pathname,
     },
+    // @kobalte/core@2.0.0-alpha.0 pins its solid-js and @solidjs/web peers to
+    // exactly 2.0.0-rc.0, so Deno installs it a private rc.0 copy next to the
+    // rc.1 the app uses. Two reactive runtimes would never share a context;
+    // dedupe resolves every import of the Solid packages to the app's copy.
+    dedupe: ["solid-js", "@solidjs/web", "@solidjs/signals"],
   },
   build: {
     target: "esnext",
@@ -71,15 +75,7 @@ export default defineConfig({
     // bundling it lets the solid plugin compile the .jsx source for SSR.
     noExternal: ["@kobalte/core"],
   },
-  optimizeDeps: {
-    // The dev prebundle bypasses regular plugin transforms, so the omit fix
-    // must also run inside the dep optimizer.
-    rolldownOptions: {
-      plugins: [solidjsSignalsOmitFix()],
-    },
-  },
   plugins: [
-    solidjsSignalsOmitFix(),
     {
       ...mdxPlugin,
       enforce: "pre",
@@ -88,7 +84,14 @@ export default defineConfig({
     solid({
       // Client-only until Solid 2 RC's hydration-key divergence for
       // Dynamic children under Kobalte-style polymorphic components is
-      // fixed upstream; flipping this back on is the whole revert.
+      // fixed upstream. Still reproduces on solid-js 2.0.0-rc.1: every
+      // element child of a Kobalte button (its own, or any trigger built on
+      // one) is emitted with a server hydration id three slots ahead of the
+      // id the client computes, so the children are never claimed and the
+      // miss cascades through the rest of the document. Enabling SSR also
+      // needs `ssr.noExternal: true`, without which the server loads
+      // Kobalte's pinned solid-js copy and hydration cannot align at all.
+      // Flipping this back on is the whole revert (kobaltedev/kobalte#717).
       ssr: false,
       // Explicit so the module graph keys the root by its real casing: the
       // plugin's default probes `src/App.*` first, which macOS's
