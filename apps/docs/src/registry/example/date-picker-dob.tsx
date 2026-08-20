@@ -24,7 +24,7 @@ export default function DatePickerDob() {
           class="justify-start font-normal"
         >
           <Show when={date()} fallback="Select date">
-            {(value) => value().toLocaleDateString()}
+            {(value) => value().toLocaleDateString("en-US")}
           </Show>
         </PopoverTrigger>
         <PopoverContent class="w-auto overflow-hidden p-0">

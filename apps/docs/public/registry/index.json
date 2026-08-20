@@ -226,19 +226,6 @@
     "type": "ui"
   },
   {
-    "name": "date-picker",
-    "dependencies": [
-      "@ark-ui/solid"
-    ],
-    "registryDependencies": [
-      "button"
-    ],
-    "files": [
-      "ui/date-picker.tsx"
-    ],
-    "type": "ui"
-  },
-  {
     "name": "dialog",
     "dependencies": [
       "@kobalte/core"

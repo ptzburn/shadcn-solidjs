@@ -223,21 +223,6 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-      "name": "date-picker",
-      "type": "registry:ui",
-      "dependencies": [
-        "@ark-ui/solid"
-      ],
-      "devDependencies": [
-        "unplugin-icons",
-        "@iconify-json/lucide"
-      ],
-      "registryDependencies": [
-        "button"
-      ]
-    },
-    {
-      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "dialog",
       "type": "registry:ui",
       "dependencies": [

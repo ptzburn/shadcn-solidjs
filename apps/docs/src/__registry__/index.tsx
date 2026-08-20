@@ -246,18 +246,6 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
-  "date-picker": {
-    name: "date-picker",
-    description: "",
-    type: "ui",
-    registryDependencies: ["button"],
-    component: lazy(() => import("~/registry/ui/date-picker.tsx")),
-    files: [{
-      path: "registry/ui/date-picker.tsx",
-      type: "ui",
-      target: "",
-    }],
-  },
   "dialog": {
     name: "dialog",
     description: "",
@@ -2538,18 +2526,6 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/date-picker-dob.tsx")),
     files: [{
       path: "registry/example/date-picker-dob.tsx",
-      type: "example",
-      target: "",
-    }],
-  },
-  "date-picker-inline": {
-    name: "date-picker-inline",
-    description: "",
-    type: "example",
-    registryDependencies: undefined,
-    component: lazy(() => import("~/registry/example/date-picker-inline.tsx")),
-    files: [{
-      path: "registry/example/date-picker-inline.tsx",
       type: "example",
       target: "",
     }],
