@@ -45,9 +45,9 @@ export default function ButtonGroupInputGroup() {
                 as={InputGroupButton}
                 onClick={() => setVoiceEnabled(!voiceEnabled())}
                 size="icon-xs"
-                data-active={voiceEnabled()}
+                data-active={voiceEnabled() ? "true" : undefined}
                 class="dark:data-[active=true]:bg-orange-800 dark:data-[active=true]:text-orange-100 data-[active=true]:bg-orange-100 data-[active=true]:text-orange-700"
-                aria-pressed={voiceEnabled()}
+                aria-pressed={voiceEnabled() ? "true" : "false"}
               >
                 <IconPlaceholder
                   lucide="audio-lines"

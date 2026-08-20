@@ -96,7 +96,7 @@ export default function InputGroupButtonExample() {
               ph="star"
               ri="star-line"
               hugeicons="star"
-              data-favorite={isFavorite()}
+              data-favorite={isFavorite() ? "true" : undefined}
               class="data-[favorite=true]:*:fill-blue-600 data-[favorite=true]:*:stroke-blue-600"
             />
           </InputGroupButton>
