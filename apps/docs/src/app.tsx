@@ -4,6 +4,10 @@ import { getRequestEvent, isServer } from "@solidjs/web";
 import { MetaTags } from "~/components/meta-tags.tsx";
 
 import {
+  BaseColorProvider,
+  parseBaseColorCookie,
+} from "~/lib/base-color-context.tsx";
+import {
   ColorModeProvider,
   cookieStorageManagerSSR,
 } from "~/lib/color-mode.tsx";
@@ -26,16 +30,19 @@ export default function App() {
     : document.cookie;
   const storageManager = cookieStorageManagerSSR(cookie);
   const initialStyle = parseStyleCookie(cookie);
+  const initialBaseColor = parseBaseColorCookie(cookie);
 
   return (
     <>
       <MetaTags />
       <ColorModeProvider storageManager={storageManager}>
         <StyleProvider initial={initialStyle}>
-          <Router>
-            {(props) => <Loading>{props.children}</Loading>}
-          </Router>
-          <Toaster />
+          <BaseColorProvider initial={initialBaseColor}>
+            <Router>
+              {(props) => <Loading>{props.children}</Loading>}
+            </Router>
+            <Toaster />
+          </BaseColorProvider>
         </StyleProvider>
       </ColorModeProvider>
     </>

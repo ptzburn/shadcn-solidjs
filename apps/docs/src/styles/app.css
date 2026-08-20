@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "./kobalte-compat.css";
 @import "./style-docs.css";
+@import "./base-colors.css";
 
 /*
  * Every style's tokens for the registry's cn-* markers, each scoped under
