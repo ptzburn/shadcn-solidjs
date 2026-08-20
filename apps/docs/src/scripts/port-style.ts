@@ -49,8 +49,8 @@ const DEFAULT_UPSTREAM = path.resolve(
 
 /**
  * Markers with no upstream counterpart in any style, because they cover
- * surfaces our primitives have and upstream's do not: an Ark UI date
- * picker, a Kobalte listbox, a Kobalte tabs indicator.
+ * surfaces our primitives have and upstream's do not: a Kobalte listbox,
+ * a Kobalte tabs indicator.
  *
  * None of them is a free invention -- each is composed from the closest
  * upstream marker in the *same* style, so a ported style expresses them
@@ -58,9 +58,7 @@ const DEFAULT_UPSTREAM = path.resolve(
  * lyra's square corners) instead of inheriting nova's.
  *
  * Verified against our hand-authored nova: replaying these derivations
- * onto nova reproduces its values exactly, except `cn-date-picker-content`
- * padding (nova was hand-tuned to p-3; the derivation follows the style's
- * own popover padding).
+ * onto nova reproduces its values exactly.
  */
 type Derivation = (tokensOf: (marker: string) => string[]) => string[];
 
@@ -71,37 +69,6 @@ function pick(tokens: string[], re: RegExp): string[] {
 }
 
 const KOBALTE_ONLY: Record<string, Derivation> = {
-  // Ark UI's date picker trigger is a button: the style's outline
-  // variant, plus the radius and focus ring from its button base.
-  "cn-date-picker-trigger": (t) => [
-    ...t("cn-button-variant-outline"),
-    ...pick(t("cn-button"), /^rounded-/),
-    "border",
-    ...t("cn-button").filter((token) => token.startsWith("focus-visible:")),
-  ],
-
-  // The same input the style ships, minus the file-input affordances a
-  // date field has no use for.
-  "cn-date-picker-input": (t) =>
-    t("cn-input").filter((token) => !/(^|:)file:/.test(token)),
-
-  // The style's popover surface without its flex layout (a calendar grid
-  // lays itself out). Ark UI drives open state through `data-state`
-  // rather than the `data-expanded` Kobalte uses elsewhere.
-  "cn-date-picker-content": (t) =>
-    t("cn-popover-content")
-      .filter((token) => !/^(flex|flex-col|gap-)/.test(token))
-      .map((token) =>
-        token
-          .replace(/(^|:)data-open:/, "$1data-[state=open]:")
-          .replace(/(^|:)data-closed:/, "$1data-[state=closed]:")
-      ),
-
-  "cn-date-picker-range-text": (t) => [
-    "font-medium",
-    ...pick(t("cn-button"), /^text-/),
-  ],
-
   // Our pagination root spaces the list; upstream spaces the list
   // element directly via cn-pagination-content.
   "cn-pagination": (t) =>

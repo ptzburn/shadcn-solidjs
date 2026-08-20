@@ -2001,20 +2001,6 @@
 
     .cn-context-menu-trigger {}
 
-    .cn-date-picker-next-trigger {}
-
-    .cn-date-picker-prev-trigger {}
-
-    .cn-date-picker-table-cell {}
-
-    .cn-date-picker-table-cell-trigger {}
-
-    .cn-date-picker-table-header {}
-
-    .cn-date-picker-table-row {}
-
-    .cn-date-picker-view {}
-
     .cn-field-orientation-horizontal {}
 
     .cn-field-orientation-responsive {}
@@ -2074,36 +2060,6 @@
     /* MARK: Surfaces upstream does not have
        Composed from this style's own analogues by port-style.ts;
        see KOBALTE_ONLY there for each derivation. */
-
-    .cn-date-picker-content {
-      @apply bg-popover text-popover-foreground data-[state=open]:animate-in
-        data-[state=closed]:animate-out data-[state=closed]:fade-out-0
-        data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95
-        data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2
-        data-[side=left]:slide-in-from-right-2
-        data-[side=right]:slide-in-from-left-2
-        data-[side=top]:slide-in-from-bottom-2 ring-foreground/10 rounded-none
-        p-4 text-sm shadow-md ring-1 duration-100;
-    }
-
-    .cn-date-picker-input {
-      @apply border-transparent border-b-input bg-transparent
-        focus-visible:border-b-ring aria-invalid:border-b-destructive
-        dark:aria-invalid:border-b-destructive/50 h-10 border px-0 py-1
-        text-base transition-[color,border-color] md:text-sm;
-    }
-
-    .cn-date-picker-range-text {
-      @apply font-medium text-xs;
-    }
-
-    .cn-date-picker-trigger {
-      @apply border-border bg-transparent hover:bg-muted hover:text-foreground
-        dark:hover:bg-input/30 aria-expanded:bg-muted
-        aria-expanded:text-foreground rounded-none border
-        focus-visible:border-ring focus-visible:ring-ring/30
-        focus-visible:ring-2;
-    }
 
     .cn-pagination {
       @apply [&>ul]:gap-1;

@@ -9,7 +9,6 @@
     "lint": "deno lint ./src/"
   },
   "imports": {
-    "@ark-ui/solid": "npm:@ark-ui/solid@^5.38.0",
     "@corvu/calendar": "npm:@corvu/calendar@^0.1.2",
     "@corvu/drawer": "npm:@corvu/drawer@^0.2.4",
     "@corvu/otp-field": "npm:@corvu/otp-field@^0.1.4",

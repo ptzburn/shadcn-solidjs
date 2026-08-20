@@ -1978,20 +1978,6 @@
 
     .cn-context-menu-trigger {}
 
-    .cn-date-picker-next-trigger {}
-
-    .cn-date-picker-prev-trigger {}
-
-    .cn-date-picker-table-cell {}
-
-    .cn-date-picker-table-cell-trigger {}
-
-    .cn-date-picker-table-header {}
-
-    .cn-date-picker-table-row {}
-
-    .cn-date-picker-view {}
-
     .cn-dialog-footer {}
 
     .cn-field-orientation-horizontal {}
@@ -2047,39 +2033,6 @@
     /* MARK: Surfaces upstream does not have
        Composed from this style's own analogues by port-style.ts;
        see KOBALTE_ONLY there for each derivation. */
-
-    .cn-date-picker-content {
-      @apply bg-popover text-popover-foreground data-[state=open]:animate-in
-        data-[state=closed]:animate-out data-[state=closed]:fade-out-0
-        data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95
-        data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2
-        data-[side=left]:slide-in-from-right-2
-        data-[side=right]:slide-in-from-left-2
-        data-[side=top]:slide-in-from-bottom-2 ring-foreground/10 rounded-none
-        p-2.5 text-xs shadow-md ring-1 duration-100;
-    }
-
-    .cn-date-picker-input {
-      @apply dark:bg-input/30 border-input focus-visible:border-ring
-        focus-visible:ring-ring/50 aria-invalid:ring-destructive/20
-        dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive
-        dark:aria-invalid:border-destructive/50 disabled:bg-input/50
-        dark:disabled:bg-input/80 h-8 rounded-none border bg-transparent px-2.5
-        py-1 text-xs transition-colors focus-visible:ring-1 aria-invalid:ring-1
-        md:text-xs;
-    }
-
-    .cn-date-picker-range-text {
-      @apply font-medium text-xs;
-    }
-
-    .cn-date-picker-trigger {
-      @apply border-border bg-background hover:bg-muted hover:text-foreground
-        dark:bg-input/30 dark:border-input dark:hover:bg-input/50
-        aria-expanded:bg-muted aria-expanded:text-foreground rounded-none border
-        focus-visible:border-ring focus-visible:ring-ring/50
-        focus-visible:ring-1;
-    }
 
     .cn-pagination {
       @apply [&>ul]:gap-0.5;

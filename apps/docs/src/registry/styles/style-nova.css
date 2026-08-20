@@ -2,9 +2,8 @@
  * Style tokens for the registry's `cn-*` marker classes, ported from the
  * upstream shadcn "nova" style (registry/styles/style-nova.css) and
  * adapted for Kobalte/SolidJS (data-expanded/data-closed attributes,
- * --kb-* CSS variables). Solid-only markers (cn-date-picker-content,
- * cn-date-picker-input, ...) use solid-namespace names following the
- * same conventions.
+ * --kb-* CSS variables). Markers with no upstream counterpart
+ * (cn-select-list, cn-tabs-indicator, ...) follow the same conventions.
  *
  * The registry build inlines these tokens into shipped component code
  * (src/lib/registry/style-map.ts); the docs site imports this file at
@@ -803,55 +802,6 @@
         data-expanded:zoom-in-95 bg-popover text-popover-foreground min-w-32
         rounded-lg border p-1 shadow-lg duration-100;
     }
-
-    /* MARK: Date Picker */
-    .cn-date-picker-input {
-      @apply h-8 rounded-lg border border-input bg-transparent px-2.5 py-1
-        text-base transition-colors focus-visible:border-ring
-        focus-visible:ring-3
-        focus-visible:ring-ring/50 disabled:bg-input/50 md:text-sm
-        dark:bg-input/30 dark:disabled:bg-input/80
-        dark:aria-invalid:border-destructive/50
-        dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive
-        aria-invalid:ring-3 aria-invalid:ring-destructive/20;
-    }
-
-    .cn-date-picker-trigger {
-      @apply border-border rounded-lg border bg-background hover:bg-muted
-        hover:text-foreground dark:bg-input/30 dark:border-input
-        dark:hover:bg-input/50 aria-expanded:bg-muted
-        aria-expanded:text-foreground focus-visible:border-ring
-        focus-visible:ring-3 focus-visible:ring-ring/50;
-    }
-
-    .cn-date-picker-content {
-      @apply bg-popover text-popover-foreground data-[state=open]:animate-in
-        data-[state=closed]:animate-out data-[state=closed]:fade-out-0
-        data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95
-        data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2
-        data-[side=left]:slide-in-from-right-2
-        data-[side=right]:slide-in-from-left-2
-        data-[side=top]:slide-in-from-bottom-2 ring-foreground/10 rounded-lg p-3
-        text-sm shadow-md ring-1 duration-100;
-    }
-
-    .cn-date-picker-view {}
-
-    .cn-date-picker-prev-trigger {}
-
-    .cn-date-picker-next-trigger {}
-
-    .cn-date-picker-range-text {
-      @apply font-medium text-sm;
-    }
-
-    .cn-date-picker-table-row {}
-
-    .cn-date-picker-table-header {}
-
-    .cn-date-picker-table-cell {}
-
-    .cn-date-picker-table-cell-trigger {}
 
     /* MARK: Dialog */
     .cn-dialog-overlay {

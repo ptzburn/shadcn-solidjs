@@ -227,18 +227,6 @@ export const ui: Registry = [
     ],
   },
   {
-    name: "date-picker",
-    type: "ui",
-    dependencies: ["@ark-ui/solid"],
-    registryDependencies: ["button"],
-    files: [
-      {
-        path: "ui/date-picker.tsx",
-        type: "ui",
-      },
-    ],
-  },
-  {
     name: "dialog",
     type: "ui",
     dependencies: ["@kobalte/core"],
