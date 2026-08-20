@@ -79,7 +79,7 @@ npx @ptzburn/shadcn-solidjs@beta add message-scroller
 <Step>Install the following dependencies:</Step>
 
 ```bash
-npm install @kobalte/core@2.0.0-alpha.0
+npm install @ptzburn/shadcn-solid @kobalte/core@2.0.0-alpha.0
 ```
 
 <Step>Install the following components:</Step>
@@ -101,9 +101,8 @@ npx @ptzburn/shadcn-solidjs@beta add button
 </CodeTabs>
 
 <Callout>
-  The scroll engine is copied into your project alongside the styled parts:
-  `message-scroller.tsx` plus five `message-scroller-*` modules. The CLI
-  installs all six.
+  The scroll engine ships in the `@ptzburn/shadcn-solid` package. The CLI
+  installs it together with the styled parts in `message-scroller.tsx`.
 </Callout>
 
 ## Usage
@@ -560,15 +559,16 @@ so inactive scroll controls do not create extra focus stops.
 
 ## Unstyled
 
-The behavior in `MessageScroller` lives in `message-scroller-primitive.ts`,
-installed next to the styled component. To use it directly with your own markup
-and styles, import the namespace object instead of the flat styled parts.
+The behavior in `MessageScroller` comes from the `@ptzburn/shadcn-solid`
+package, installed alongside the styled component. To use it directly with
+your own markup and styles, import the namespace object instead of the flat
+styled parts.
 
 ```tsx
 import {
   MessageScroller,
   useMessageScroller,
-} from "~/components/ui/message-scroller-primitive";
+} from "@ptzburn/shadcn-solid/message-scroller";
 ```
 
 ```tsx
