@@ -5,6 +5,7 @@
   ],
   "exclude": [
     "packages/cli/npm",
+    "packages/solid/dist",
     "apps/docs/dist"
   ],
   "nodeModulesDir": "manual",

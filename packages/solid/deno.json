@@ -1,0 +1,19 @@
+{
+  "tasks": {
+    "build": "npx tsdown",
+    "check": "deno fmt ./src/ && deno lint ./src/ && deno check ./src/",
+    "test": "deno test -A ./src/"
+  },
+  "compilerOptions": {
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.asynciterable",
+      "dom.iterable",
+      "deno.ns"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "@solidjs/web",
+    "strict": true
+  }
+}

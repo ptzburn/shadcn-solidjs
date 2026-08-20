@@ -1,0 +1,56 @@
+{
+  "name": "@ptzburn/shadcn-solid",
+  "version": "0.1.0",
+  "description": "Unstyled components for Solid.",
+  "license": "MIT",
+  "author": "ptzburn",
+  "homepage": "https://v2.shadcn-solidjs.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ptzburn/shadcn-solidjs.git",
+    "directory": "packages/solid"
+  },
+  "bugs": {
+    "url": "https://github.com/ptzburn/shadcn-solidjs/issues"
+  },
+  "keywords": [
+    "solid",
+    "solidjs",
+    "headless",
+    "unstyled",
+    "primitives",
+    "accessible",
+    "ui",
+    "shadcn"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    "./message-scroller": {
+      "types": "./dist/message-scroller/index.d.ts",
+      "solid": "./dist/message-scroller/index.jsx",
+      "default": "./dist/message-scroller/index.js"
+    }
+  },
+  "peerDependencies": {
+    "@kobalte/core": "^2.0.0-alpha.0",
+    "@solidjs/web": "^2.0.0-rc.1",
+    "solid-js": "^2.0.0-rc.1"
+  },
+  "devDependencies": {
+    "@kobalte/core": "2.0.0-alpha.0",
+    "@solidjs/web": "2.0.0-rc.1",
+    "@types/jsdom": "^21.1.7",
+    "jsdom": "^28.1.0",
+    "solid-js": "2.0.0-rc.1",
+    "tsdown": "0.22.7",
+    "typescript": "^5.9.2",
+    "unplugin-solid": "1.0.0"
+  }
+}
