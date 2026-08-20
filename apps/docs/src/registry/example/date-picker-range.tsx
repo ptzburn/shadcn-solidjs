@@ -1,169 +1,71 @@
-import { parseDate } from "@ark-ui/solid";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-
-import {
-  DatePicker,
-  DatePickerContent,
-  DatePickerContext,
-  DatePickerControl,
-  DatePickerNextTrigger,
-  DatePickerPositioner,
-  DatePickerPrevTrigger,
-  DatePickerRangeText,
-  DatePickerTable,
-  DatePickerTableBody,
-  DatePickerTableCell,
-  DatePickerTableCellTrigger,
-  DatePickerTableHead,
-  DatePickerTableHeader,
-  DatePickerTableRow,
-  DatePickerTrigger,
-  DatePickerView,
-  DatePickerViewControl,
-} from "~/registry/ui/date-picker.tsx";
-
+import { Button } from "~/registry/ui/button.tsx";
+import { Calendar } from "~/registry/ui/calendar.tsx";
 import { Field, FieldLabel } from "~/registry/ui/field.tsx";
-import { createMemo, Index, Show } from "solid-js";
-import { Portal } from "solid-js/web";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "~/registry/ui/popover.tsx";
+
+import { createSignal, Show } from "solid-js";
+
+type DateRange = { from: Date | null; to: Date | null };
+
+const addDays = (date: Date, days: number) =>
+  new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+
+const formatRange = (range: DateRange) => {
+  if (!range.from) return null;
+  if (!range.to) return formatDate(range.from);
+  return `${formatDate(range.from)} - ${formatDate(range.to)}`;
+};
 
 export default function DatePickerRange() {
-  const year = new Date().getFullYear();
+  const from = new Date(new Date().getFullYear(), 0, 20);
+  const [range, setRange] = createSignal<DateRange>({
+    from,
+    to: addDays(from, 20),
+  });
 
   return (
     <Field class="mx-auto w-60">
       <FieldLabel for="date-picker-range">Date Picker Range</FieldLabel>
-      <DatePicker
-        selectionMode="range"
-        numOfMonths={2}
-        defaultValue={[
-          parseDate(new Date(year, 0, 20)),
-          parseDate(new Date(year, 1, 9)),
-        ]}
-        format={(date, details) =>
-          new Intl.DateTimeFormat(details.locale, {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          }).format(date.toDate(details.timeZone))}
-      >
-        <DatePickerControl class="w-full">
-          <DatePickerContext>
-            {(api) => (
-              <DatePickerTrigger
-                id="date-picker-range"
-                class="w-full justify-start gap-2 px-2.5 font-normal text-sm"
-              >
-                <IconPlaceholder
-                  lucide="calendar"
-                  tabler="calendar"
-                  ph="calendar-blank"
-                  ri="calendar-line"
-                  hugeicons="calendar-03"
-                  class="size-4"
-                  aria-hidden="true"
-                />
-                <Show
-                  when={api().valueAsString.length > 0}
-                  fallback={<span>Pick a date</span>}
-                >
-                  <span class="truncate">
-                    {api().valueAsString.join(" - ")}
-                  </span>
-                </Show>
-              </DatePickerTrigger>
-            )}
-          </DatePickerContext>
-        </DatePickerControl>
-        <Portal>
-          <DatePickerPositioner>
-            <DatePickerContent>
-              <DatePickerView view="day">
-                <DatePickerContext>
-                  {(api) => {
-                    const offset = createMemo(() =>
-                      api().getOffset({ months: 1 })
-                    );
-                    return (
-                      <>
-                        <DatePickerViewControl>
-                          <DatePickerPrevTrigger />
-                          <DatePickerRangeText />
-                          <DatePickerNextTrigger />
-                        </DatePickerViewControl>
-                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-                          <DatePickerTable>
-                            <DatePickerTableHead>
-                              <DatePickerTableRow>
-                                <Index each={api().weekDays}>
-                                  {(weekDay) => (
-                                    <DatePickerTableHeader>
-                                      {weekDay().short}
-                                    </DatePickerTableHeader>
-                                  )}
-                                </Index>
-                              </DatePickerTableRow>
-                            </DatePickerTableHead>
-                            <DatePickerTableBody>
-                              <Index each={api().weeks}>
-                                {(week) => (
-                                  <DatePickerTableRow>
-                                    <Index each={week()}>
-                                      {(day) => (
-                                        <DatePickerTableCell value={day()}>
-                                          <DatePickerTableCellTrigger>
-                                            {day().day}
-                                          </DatePickerTableCellTrigger>
-                                        </DatePickerTableCell>
-                                      )}
-                                    </Index>
-                                  </DatePickerTableRow>
-                                )}
-                              </Index>
-                            </DatePickerTableBody>
-                          </DatePickerTable>
-                          <DatePickerTable>
-                            <DatePickerTableHead>
-                              <DatePickerTableRow>
-                                <Index each={api().weekDays}>
-                                  {(weekDay) => (
-                                    <DatePickerTableHeader>
-                                      {weekDay().short}
-                                    </DatePickerTableHeader>
-                                  )}
-                                </Index>
-                              </DatePickerTableRow>
-                            </DatePickerTableHead>
-                            <DatePickerTableBody>
-                              <Index each={offset().weeks}>
-                                {(week) => (
-                                  <DatePickerTableRow>
-                                    <Index each={week()}>
-                                      {(day) => (
-                                        <DatePickerTableCell
-                                          value={day()}
-                                          visibleRange={offset().visibleRange}
-                                        >
-                                          <DatePickerTableCellTrigger>
-                                            {day().day}
-                                          </DatePickerTableCellTrigger>
-                                        </DatePickerTableCell>
-                                      )}
-                                    </Index>
-                                  </DatePickerTableRow>
-                                )}
-                              </Index>
-                            </DatePickerTableBody>
-                          </DatePickerTable>
-                        </div>
-                      </>
-                    );
-                  }}
-                </DatePickerContext>
-              </DatePickerView>
-            </DatePickerContent>
-          </DatePickerPositioner>
-        </Portal>
-      </DatePicker>
+      <Popover placement="bottom-start">
+        <PopoverTrigger
+          as={Button<"button">}
+          variant="outline"
+          id="date-picker-range"
+          class="justify-start px-2.5 font-normal"
+        >
+          <IconPlaceholder
+            lucide="calendar"
+            tabler="calendar"
+            ph="calendar-blank"
+            ri="calendar-line"
+            hugeicons="calendar-03"
+          />
+          <Show when={formatRange(range())} fallback={<span>Pick a date</span>}>
+            {(label) => label()}
+          </Show>
+        </PopoverTrigger>
+        <PopoverContent class="w-auto p-0">
+          <Calendar
+            mode="range"
+            value={range()}
+            onValueChange={setRange}
+            initialMonth={range().from ?? undefined}
+            numberOfMonths={2}
+          />
+        </PopoverContent>
+      </Popover>
     </Field>
   );
 }

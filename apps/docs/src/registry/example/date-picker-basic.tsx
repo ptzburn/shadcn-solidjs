@@ -1,105 +1,47 @@
-import {
-  DatePicker,
-  DatePickerContent,
-  DatePickerContext,
-  DatePickerControl,
-  DatePickerNextTrigger,
-  DatePickerPositioner,
-  DatePickerPrevTrigger,
-  DatePickerRangeText,
-  DatePickerTable,
-  DatePickerTableBody,
-  DatePickerTableCell,
-  DatePickerTableCellTrigger,
-  DatePickerTableHead,
-  DatePickerTableHeader,
-  DatePickerTableRow,
-  DatePickerTrigger,
-  DatePickerView,
-  DatePickerViewControl,
-} from "~/registry/ui/date-picker.tsx";
+import { Button } from "~/registry/ui/button.tsx";
+import { Calendar } from "~/registry/ui/calendar.tsx";
 import { Field, FieldLabel } from "~/registry/ui/field.tsx";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "~/registry/ui/popover.tsx";
 
-import { Index, Show } from "solid-js";
-import { Portal } from "solid-js/web";
+import { createSignal, Show } from "solid-js";
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
 export default function DatePickerBasic() {
+  const [date, setDate] = createSignal<Date | null>(null);
+
   return (
     <Field class="mx-auto w-44">
       <FieldLabel for="date-picker-basic">Date</FieldLabel>
-      <DatePicker
-        format={(date, details) =>
-          new Intl.DateTimeFormat(details.locale, {
-            dateStyle: "long",
-          }).format(date.toDate(details.timeZone))}
-      >
-        <DatePickerControl class="w-full">
-          <DatePickerContext>
-            {(api) => (
-              <DatePickerTrigger
-                id="date-picker-basic"
-                class="w-full justify-start px-3 font-normal text-sm"
-              >
-                <Show
-                  when={api().valueAsString[0]}
-                  fallback={<span>Pick a date</span>}
-                >
-                  <span>{api().valueAsString[0]}</span>
-                </Show>
-              </DatePickerTrigger>
-            )}
-          </DatePickerContext>
-        </DatePickerControl>
-        <Portal>
-          <DatePickerPositioner>
-            <DatePickerContent>
-              <DatePickerView view="day">
-                <DatePickerContext>
-                  {(api) => (
-                    <>
-                      <DatePickerViewControl>
-                        <DatePickerPrevTrigger />
-                        <DatePickerRangeText />
-                        <DatePickerNextTrigger />
-                      </DatePickerViewControl>
-                      <DatePickerTable>
-                        <DatePickerTableHead>
-                          <DatePickerTableRow>
-                            <Index each={api().weekDays}>
-                              {(weekDay) => (
-                                <DatePickerTableHeader>
-                                  {weekDay().short}
-                                </DatePickerTableHeader>
-                              )}
-                            </Index>
-                          </DatePickerTableRow>
-                        </DatePickerTableHead>
-                        <DatePickerTableBody>
-                          <Index each={api().weeks}>
-                            {(week) => (
-                              <DatePickerTableRow>
-                                <Index each={week()}>
-                                  {(day) => (
-                                    <DatePickerTableCell value={day()}>
-                                      <DatePickerTableCellTrigger>
-                                        {day().day}
-                                      </DatePickerTableCellTrigger>
-                                    </DatePickerTableCell>
-                                  )}
-                                </Index>
-                              </DatePickerTableRow>
-                            )}
-                          </Index>
-                        </DatePickerTableBody>
-                      </DatePickerTable>
-                    </>
-                  )}
-                </DatePickerContext>
-              </DatePickerView>
-            </DatePickerContent>
-          </DatePickerPositioner>
-        </Portal>
-      </DatePicker>
+      <Popover placement="bottom-start">
+        <PopoverTrigger
+          as={Button<"button">}
+          variant="outline"
+          id="date-picker-basic"
+          class="justify-start font-normal"
+        >
+          <Show when={date()} fallback={<span>Pick a date</span>}>
+            {(value) => formatDate(value())}
+          </Show>
+        </PopoverTrigger>
+        <PopoverContent class="w-auto p-0">
+          <Calendar
+            mode="single"
+            value={date()}
+            onValueChange={setDate}
+            initialMonth={date() ?? undefined}
+          />
+        </PopoverContent>
+      </Popover>
     </Field>
   );
 }

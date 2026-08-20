@@ -1,130 +1,98 @@
-import { parseDate } from "@ark-ui/solid";
-import {
-  DatePicker,
-  DatePickerContent,
-  DatePickerContext,
-  DatePickerControl,
-  DatePickerInput,
-  DatePickerMonthSelect,
-  DatePickerNextTrigger,
-  DatePickerPositioner,
-  DatePickerPrevTrigger,
-  DatePickerTable,
-  DatePickerTableBody,
-  DatePickerTableCell,
-  DatePickerTableCellTrigger,
-  DatePickerTableHead,
-  DatePickerTableHeader,
-  DatePickerTableRow,
-  DatePickerTrigger,
-  DatePickerView,
-  DatePickerViewControl,
-  DatePickerYearSelect,
-} from "~/registry/ui/date-picker.tsx";
-
+import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
+import { Calendar } from "~/registry/ui/calendar.tsx";
 import { Field, FieldLabel } from "~/registry/ui/field.tsx";
-import { parseDate as chronoParseDate } from "chrono-node";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "~/registry/ui/input-group.tsx";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "~/registry/ui/popover.tsx";
+import { parseDate } from "chrono-node";
 
-import { Index } from "solid-js";
-import { Portal } from "solid-js/web";
+import { createSignal } from "solid-js";
 
-const selectClass =
-  "h-7 rounded-md border border-input bg-transparent px-1.5 text-sm font-medium focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none dark:bg-input/30";
+const formatDate = (date: Date | null) =>
+  date
+    ? date.toLocaleDateString("en-US", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    })
+    : "";
 
 export default function DatePickerNaturalLanguage() {
-  const initialDate = chronoParseDate("In 2 days");
+  const initial = parseDate("In 2 days");
+  const [open, setOpen] = createSignal(false);
+  const [value, setValue] = createSignal("In 2 days");
+  const [date, setDate] = createSignal<Date | null>(initial);
+  const [month, setMonth] = createSignal(initial ?? new Date());
 
   return (
-    <Field class="mx-auto w-full max-w-xs">
+    <Field class="mx-auto max-w-xs">
       <FieldLabel for="date-picker-natural-language">Schedule Date</FieldLabel>
-      <DatePicker
-        class="flex w-full flex-col gap-2.5"
-        defaultValue={initialDate ? [parseDate(initialDate)] : []}
-        format={(date, details) =>
-          new Intl.DateTimeFormat(details.locale, {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          }).format(date.toDate(details.timeZone))}
-        parse={(value) => {
-          const parsed = chronoParseDate(value);
-          return parsed ? parseDate(parsed) : undefined;
-        }}
-      >
-        <DatePickerControl class="w-full">
-          <DatePickerInput
-            id="date-picker-natural-language"
-            placeholder="Tomorrow or next week"
-          />
-          <DatePickerTrigger aria-label="Select date" />
-        </DatePickerControl>
-        <DatePickerContext>
-          {(api) => (
-            <div class="px-1 text-muted-foreground text-sm">
-              Your post will be published on{" "}
-              <span class="font-medium">{api().valueAsString[0] ?? "…"}</span>.
-            </div>
-          )}
-        </DatePickerContext>
-        <Portal>
-          <DatePickerPositioner>
-            <DatePickerContent>
-              <DatePickerView view="day">
-                <DatePickerContext>
-                  {(api) => (
-                    <>
-                      <DatePickerViewControl>
-                        <DatePickerPrevTrigger />
-                        <div class="flex items-center gap-1.5">
-                          <DatePickerMonthSelect
-                            class={selectClass}
-                            aria-label="Select month"
-                          />
-                          <DatePickerYearSelect
-                            class={selectClass}
-                            aria-label="Select year"
-                          />
-                        </div>
-                        <DatePickerNextTrigger />
-                      </DatePickerViewControl>
-                      <DatePickerTable>
-                        <DatePickerTableHead>
-                          <DatePickerTableRow>
-                            <Index each={api().weekDays}>
-                              {(weekDay) => (
-                                <DatePickerTableHeader>
-                                  {weekDay().short}
-                                </DatePickerTableHeader>
-                              )}
-                            </Index>
-                          </DatePickerTableRow>
-                        </DatePickerTableHead>
-                        <DatePickerTableBody>
-                          <Index each={api().weeks}>
-                            {(week) => (
-                              <DatePickerTableRow>
-                                <Index each={week()}>
-                                  {(day) => (
-                                    <DatePickerTableCell value={day()}>
-                                      <DatePickerTableCellTrigger>
-                                        {day().day}
-                                      </DatePickerTableCellTrigger>
-                                    </DatePickerTableCell>
-                                  )}
-                                </Index>
-                              </DatePickerTableRow>
-                            )}
-                          </Index>
-                        </DatePickerTableBody>
-                      </DatePickerTable>
-                    </>
-                  )}
-                </DatePickerContext>
-              </DatePickerView>
-            </DatePickerContent>
-          </DatePickerPositioner>
-        </Portal>
-      </DatePicker>
+      <InputGroup>
+        <InputGroupInput
+          id="date-picker-natural-language"
+          value={value()}
+          placeholder="Tomorrow or next week"
+          onInput={(event) => {
+            setValue(event.currentTarget.value);
+            const parsed = parseDate(event.currentTarget.value);
+            if (parsed) {
+              setDate(parsed);
+              setMonth(parsed);
+            }
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowDown") {
+              event.preventDefault();
+              setOpen(true);
+            }
+          }}
+        />
+        <InputGroupAddon align="inline-end">
+          <Popover open={open()} onOpenChange={setOpen} placement="bottom-end">
+            <PopoverTrigger
+              as={InputGroupButton<"button">}
+              variant="ghost"
+              size="icon-xs"
+              aria-label="Select date"
+            >
+              <IconPlaceholder
+                lucide="calendar"
+                tabler="calendar"
+                ph="calendar-blank"
+                ri="calendar-line"
+                hugeicons="calendar-03"
+              />
+            </PopoverTrigger>
+            <PopoverContent class="w-auto overflow-hidden p-0">
+              <Calendar
+                mode="single"
+                value={date()}
+                month={month()}
+                onMonthChange={setMonth}
+                captionLayout="dropdown"
+                onValueChange={(next) => {
+                  setDate(next);
+                  setValue(formatDate(next));
+                  if (next) setMonth(next);
+                  setOpen(false);
+                }}
+              />
+            </PopoverContent>
+          </Popover>
+        </InputGroupAddon>
+      </InputGroup>
+      <p class="px-1 text-muted-foreground text-sm">
+        Your post will be published on{" "}
+        <span class="font-medium">{formatDate(date())}</span>.
+      </p>
     </Field>
   );
 }
