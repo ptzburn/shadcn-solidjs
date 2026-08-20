@@ -1,3 +1,5 @@
+import { promises as fs } from "node:fs";
+import { join, normalize, relative, sep } from "node:path";
 import mdx from "@mdx-js/rollup";
 import solid from "@solidjs/vite-plugin";
 import tailwindcss from "@tailwindcss/vite";
@@ -7,12 +9,73 @@ import rehypeSlug from "rehype-slug";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import Icons from "unplugin-icons/vite";
+import type { Plugin } from "vite";
 import { defineConfig } from "vite";
 
 import rehypeComponent from "./src/lib/mdx/component.tsx";
 import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
 import remarkNpmCommand from "./src/lib/mdx/npm-command.ts";
 import rehypePrettyCodeSecondPass from "./src/lib/mdx/pretty-code.ts";
+
+// Serves /docs/<page>.md as the page's raw MDX source. Main answers these
+// URLs from server middleware, but this build is a static client bundle:
+// the dev server reads the routes tree on demand, and the build emits one
+// .md asset per docs page so vite preview (or any static host) serves them.
+function docsMarkdownPages(): Plugin {
+  const routesDir = new URL("./src/routes/(app)/", import.meta.url).pathname;
+
+  const sourceFor = async (pathname: string) => {
+    const clean = normalize(pathname);
+    if (!clean.startsWith("/docs/")) return undefined;
+    for (const candidate of [`${clean}.mdx`, `${clean}/index.mdx`]) {
+      try {
+        return await fs.readFile(join(routesDir, candidate), "utf8");
+      } catch {
+        // fall through to the index candidate
+      }
+    }
+    return undefined;
+  };
+
+  const collect = async (dir: string): Promise<string[]> => {
+    const entries = await fs.readdir(dir, { withFileTypes: true });
+    const nested = await Promise.all(entries.map((entry) => {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) return collect(full);
+      return Promise.resolve(entry.name.endsWith(".mdx") ? [full] : []);
+    }));
+    return nested.flat();
+  };
+
+  return {
+    name: "docs-markdown-pages",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const match = req.url?.match(/^(\/docs\/[^?]+)\.md(\?.*)?$/);
+        if (!match) return next();
+        sourceFor(match[1]).then((source) => {
+          if (source === undefined) return next();
+          res.setHeader("content-type", "text/markdown; charset=utf-8");
+          res.end(source);
+        }, next);
+      });
+    },
+    async generateBundle() {
+      if (this.environment?.config.build.ssr) return;
+      for (const file of await collect(join(routesDir, "docs"))) {
+        const route = relative(routesDir, file)
+          .split(sep).join("/")
+          .replace(/\.mdx$/, "")
+          .replace(/\/index$/, "");
+        this.emitFile({
+          type: "asset",
+          fileName: `${route}.md`,
+          source: await fs.readFile(file, "utf8"),
+        });
+      }
+    },
+  };
+}
 
 const mdxPlugin = mdx({
   jsx: true,
@@ -107,5 +170,6 @@ export default defineConfig({
       compiler: "solid",
       autoInstall: true,
     }),
+    docsMarkdownPages(),
   ],
 });
