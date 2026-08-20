@@ -17,6 +17,32 @@ import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
 import remarkNpmCommand from "./src/lib/mdx/npm-command.ts";
 import rehypePrettyCodeSecondPass from "./src/lib/mdx/pretty-code.ts";
 
+// @kobalte/core@2.0.0-alpha.0 was built against solid-js rc.0, where a
+// signal write was visible to onSettled callbacks in the same flush. rc.1
+// gives those callbacks committed visibility (solidjs/signals #3006), so
+// the dismissable layer's settle-time registration reads its just-written
+// ref as undefined and never joins the layer stack — dialogs and popovers
+// then ignore Escape and outside clicks. Every consumer of that ref reads
+// it imperatively, so a plain box restores the rc.0 behavior. Remove when
+// Kobalte releases a build for rc.1.
+function kobalteDismissableLayerFix(): Plugin {
+  const broken =
+    "const [ref, setRef] = createSignal(void 0, { ownedWrite: true });";
+  const fixed =
+    "let refBox; const ref = () => refBox; const setRef = (el) => { refBox = el; };";
+  return {
+    name: "kobalte-dismissable-layer-rc1-fix",
+    enforce: "pre",
+    transform(code, id) {
+      if (!id.includes("@kobalte/core") || !id.includes("dismissable-layer")) {
+        return;
+      }
+      if (!code.includes(broken)) return;
+      return code.replace(broken, fixed);
+    },
+  };
+}
+
 // Serves /docs/<page>.md as the page's raw MDX source. Main answers these
 // URLs from server middleware, but this build is a static client bundle:
 // the dev server reads the routes tree on demand, and the build emits one
@@ -171,5 +197,6 @@ export default defineConfig({
       autoInstall: true,
     }),
     docsMarkdownPages(),
+    kobalteDismissableLayerFix(),
   ],
 });
