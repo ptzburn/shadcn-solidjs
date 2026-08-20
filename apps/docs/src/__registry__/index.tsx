@@ -424,26 +424,6 @@ export const Index: RegistryIndex = {
       path: "registry/ui/message-scroller.tsx",
       type: "ui",
       target: "",
-    }, {
-      path: "registry/ui/message-scroller-primitive.ts",
-      type: "ui",
-      target: "",
-    }, {
-      path: "registry/ui/message-scroller-components.tsx",
-      type: "ui",
-      target: "",
-    }, {
-      path: "registry/ui/message-scroller-controller.ts",
-      type: "ui",
-      target: "",
-    }, {
-      path: "registry/ui/message-scroller-geometry.ts",
-      type: "ui",
-      target: "",
-    }, {
-      path: "registry/ui/message-scroller-types.ts",
-      type: "ui",
-      target: "",
     }],
   },
   "native-select": {

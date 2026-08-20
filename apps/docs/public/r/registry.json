@@ -356,6 +356,7 @@
       "name": "message-scroller",
       "type": "registry:ui",
       "dependencies": [
+        "@ptzburn/shadcn-solid",
         "@kobalte/core@2.0.0-alpha.0"
       ],
       "devDependencies": [

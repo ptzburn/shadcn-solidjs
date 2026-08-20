@@ -144,6 +144,12 @@ export default defineConfig({
     alias: {
       // SolidStart used to provide this alias; the vite plugin does not.
       "~": new URL("./src", import.meta.url).pathname,
+      // The registry wrapper imports the published package specifier; docs
+      // compile the engine straight from the workspace source.
+      "@ptzburn/shadcn-solid/message-scroller": new URL(
+        "../../packages/solid/src/message-scroller/index.ts",
+        import.meta.url,
+      ).pathname,
     },
     // @kobalte/core@2.0.0-alpha.0 pins its solid-js and @solidjs/web peers to
     // exactly 2.0.0-rc.0, so Deno installs it a private rc.0 copy next to the

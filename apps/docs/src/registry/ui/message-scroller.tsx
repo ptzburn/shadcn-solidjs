@@ -1,3 +1,15 @@
+import type {
+  MessageScrollerButtonDirection,
+  MessageScrollerContentProps,
+  MessageScrollerItemProps,
+  MessageScrollerViewportProps,
+} from "@ptzburn/shadcn-solid/message-scroller";
+import {
+  MessageScroller as MessageScrollerPrimitive,
+  useMessageScroller,
+  useMessageScrollerScrollable,
+  useMessageScrollerVisibility,
+} from "@ptzburn/shadcn-solid/message-scroller";
 import type { ComponentProps } from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
@@ -5,18 +17,6 @@ import type { Component } from "solid-js";
 import { omit } from "solid-js";
 import type { ButtonProps } from "./button.tsx";
 import { Button } from "./button.tsx";
-import type {
-  MessageScrollerButtonDirection,
-  MessageScrollerContentProps,
-  MessageScrollerItemProps,
-  MessageScrollerViewportProps,
-} from "./message-scroller-primitive.ts";
-import {
-  MessageScroller as MessageScrollerPrimitive,
-  useMessageScroller,
-  useMessageScrollerScrollable,
-  useMessageScrollerVisibility,
-} from "./message-scroller-primitive.ts";
 
 const MessageScrollerProvider = MessageScrollerPrimitive.Provider;
 

@@ -374,18 +374,14 @@
   {
     "name": "message-scroller",
     "dependencies": [
+      "@ptzburn/shadcn-solid",
       "@kobalte/core@2.0.0-alpha.0"
     ],
     "registryDependencies": [
       "button"
     ],
     "files": [
-      "ui/message-scroller.tsx",
-      "ui/message-scroller-primitive.ts",
-      "ui/message-scroller-components.tsx",
-      "ui/message-scroller-controller.ts",
-      "ui/message-scroller-geometry.ts",
-      "ui/message-scroller-types.ts"
+      "ui/message-scroller.tsx"
     ],
     "type": "ui"
   },
