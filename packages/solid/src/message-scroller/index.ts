@@ -22,7 +22,14 @@ import {
   MessageScrollerViewport as Viewport,
 } from "./components.tsx";
 
-const MessageScroller = {
+const MessageScroller: {
+  Provider: typeof Provider;
+  Root: typeof Root;
+  Viewport: typeof Viewport;
+  Content: typeof Content;
+  Item: typeof Item;
+  Button: typeof Button;
+} = {
   Provider,
   Root,
   Viewport,
