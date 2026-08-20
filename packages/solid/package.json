@@ -1,6 +1,6 @@
 {
   "name": "@ptzburn/shadcn-solid",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.0",
   "description": "Unstyled components for Solid.",
   "license": "MIT",
   "author": "ptzburn",
@@ -29,7 +29,8 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "beta"
   },
   "exports": {
     "./message-scroller": {

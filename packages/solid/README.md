@@ -5,7 +5,7 @@ Unstyled components for Solid.
 ## Installation
 
 ```bash
-npm install @ptzburn/shadcn-solid
+npm install @ptzburn/shadcn-solid@beta
 ```
 
 ## Documentation
