@@ -1,0 +1,11 @@
+{
+  "name": "date-picker",
+  "registryDependencies": [
+    "button",
+    "calendar",
+    "popover"
+  ],
+  "files": [],
+  "type": "ui",
+  "description": "A date picker is a composition of Popover and Calendar. This installs both, plus the Button its trigger uses."
+}

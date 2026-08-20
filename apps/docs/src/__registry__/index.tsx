@@ -246,6 +246,15 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "date-picker": {
+    name: "date-picker",
+    description:
+      "A date picker is a composition of Popover and Calendar. This installs both, plus the Button its trigger uses.",
+    type: "ui",
+    registryDependencies: ["button", "calendar", "popover"],
+    component: lazy(() => import("~/registry/ui/date-picker.tsx")),
+    files: [],
+  },
   "dialog": {
     name: "dialog",
     description: "",

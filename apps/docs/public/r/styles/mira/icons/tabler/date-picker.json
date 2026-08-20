@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker",
+  "type": "registry:ui",
+  "description": "A date picker is a composition of Popover and Calendar. This installs both, plus the Button its trigger uses.",
+  "registryDependencies": [
+    "button",
+    "calendar",
+    "popover"
+  ]
+}

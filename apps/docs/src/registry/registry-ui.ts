@@ -1,6 +1,6 @@
-import type { Registry } from "~/registry/schema.ts";
+import type { RegistryInput } from "~/registry/schema.ts";
 
-export const ui: Registry = [
+export const ui: RegistryInput = [
   {
     name: "accordion",
     type: "ui",
@@ -225,6 +225,13 @@ export const ui: Registry = [
         type: "ui",
       },
     ],
+  },
+  {
+    name: "date-picker",
+    type: "ui",
+    description:
+      "A date picker is a composition of Popover and Calendar. This installs both, plus the Button its trigger uses.",
+    registryDependencies: ["button", "calendar", "popover"],
   },
   {
     name: "dialog",
