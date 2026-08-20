@@ -396,7 +396,7 @@ export const ui: Registry = [
     name: "message-scroller",
     type: "ui",
     dependencies: [
-      "@ptzburn/shadcn-solid@^0.1.0-beta.0",
+      "@ptzburn/shadcn-solid@^0.2.0-beta.0",
       "@kobalte/core@2.0.0-alpha.0",
     ],
     registryDependencies: ["button"],
