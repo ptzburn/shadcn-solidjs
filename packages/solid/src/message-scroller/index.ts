@@ -1,8 +1,8 @@
 // Solid 2 port of @shadcn/react/message-scroller (upstream commit 607e8a9,
 // packages/react/src/message-scroller). Deliberate divergences from upstream:
-// - Distributed as six registry files (message-scroller-{types,geometry,
-//   controller,components,primitive}.ts(x) + the styled message-scroller.tsx),
-//   not as an npm package.
+// - Ships as the @ptzburn/shadcn-solid npm package (this directory); the
+//   styled message-scroller.tsx is distributed through the registry and
+//   imports from @ptzburn/shadcn-solid/message-scroller.
 // - useMessageScrollerScrollable / useMessageScrollerVisibility return Solid
 //   accessors (read them in a tracked scope: scrollable().end).
 // - MessageScrollerButton is polymorphic through Kobalte's `as`, not Base UI's
