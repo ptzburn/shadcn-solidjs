@@ -1453,16 +1453,6 @@ export const examples: Registry = [
     ],
   },
   {
-    name: "date-picker-inline",
-    type: "example",
-    files: [
-      {
-        path: "example/date-picker-inline.tsx",
-        type: "example",
-      },
-    ],
-  },
-  {
     name: "date-picker-input",
     type: "example",
     files: [

@@ -7,94 +7,59 @@ description: A date picker component with range and presets.
 
 ## About
 
-The Date Picker component is built using [Ark UI](https://ark-ui.com/docs/components/date-picker). Unlike the original shadcn/ui, where the date picker is a composition of the `<Popover />` and the `<Calendar />` components, this component ships as a single `DatePicker` primitive with its own trigger, input, and calendar parts.
+A date picker is a composition of the [Popover](/docs/components/popover) and
+[Calendar](/docs/components/calendar) components. There is no `DatePicker`
+component to install: you build the picker you need from those two.
 
 ## Installation
 
-<CodeTabs>
-
-<TabsList>
-  <TabsTrigger value="cli">Command</TabsTrigger>
-  <TabsTrigger value="manual">Manual</TabsTrigger>
-</TabsList>
-
-<TabsContent value="cli">
-
-```bash
-npx @ptzburn/shadcn-solidjs@latest add date-picker
-```
-
-</TabsContent>
-
-<TabsContent value="manual">
-<Steps class="mb-0 pt-2">
-
-<Step>Install the following dependencies:</Step>
-
-```bash
-npm install @ark-ui/solid
-```
-
-<Step>Copy and paste the following code into your project.</Step>
-
-<ComponentSource name="date-picker" />
-
-<Step>Update the import paths to match your project setup.</Step>
-
-</Steps>
-</TabsContent>
-
-</CodeTabs>
+See the installation instructions for the
+[Popover](/docs/components/popover#installation) and
+[Calendar](/docs/components/calendar#installation) components.
 
 ## Usage
 
 ```tsx showLineNumbers
-import { Portal } from "solid-js/web"
-
+import { Button } from "~/components/ui/button"
+import { Calendar } from "~/components/ui/calendar"
 import {
-  DatePicker,
-  DatePickerContent,
-  DatePickerControl,
-  DatePickerInput,
-  DatePickerPositioner,
-  DatePickerTrigger,
-} from "~/components/ui/date-picker"
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "~/components/ui/popover"
 ```
 
 ```tsx showLineNumbers
-<DatePicker>
-  <DatePickerControl>
-    <DatePickerInput placeholder="Pick a date" />
-    <DatePickerTrigger />
-  </DatePickerControl>
-  <Portal>
-    <DatePickerPositioner>
-      <DatePickerContent>{/* views */}</DatePickerContent>
-    </DatePickerPositioner>
-  </Portal>
-</DatePicker>
-```
+const [date, setDate] = createSignal<Date | null>(null)
 
-See the [Ark UI Date Picker](https://ark-ui.com/docs/components/date-picker) documentation for more information.
+return (
+  <Popover placement="bottom-start">
+    <PopoverTrigger as={Button<"button">} variant="outline">
+      {date() ? formatDate(date()) : "Pick a date"}
+    </PopoverTrigger>
+    <PopoverContent class="w-auto p-0">
+      <Calendar mode="single" value={date()} onValueChange={setDate} />
+    </PopoverContent>
+  </Popover>
+)
+```
 
 ## Composition
 
-A date picker is composed from control, view, and table parts:
+A date picker is built from `Popover` and `Calendar`:
 
 ```text
-DatePicker
-├── DatePickerControl
-│   ├── DatePickerInput
-│   └── DatePickerTrigger
-└── DatePickerPositioner
-    └── DatePickerContent
-        └── DatePickerView
-            ├── DatePickerViewControl
-            │   ├── DatePickerPrevTrigger
-            │   ├── DatePickerViewTrigger or DatePickerRangeText
-            │   └── DatePickerNextTrigger
-            └── DatePickerTable
+Popover
+├── PopoverTrigger
+└── PopoverContent
+    └── Calendar
 ```
+
+The trigger is whatever you want the field to look like — a `Button`, or an
+`InputGroup` with a button in its addon when the date can also be typed.
+
+Kobalte positions a popover from its root, so alignment goes on `Popover` as
+`placement`, not on `PopoverContent`.
 
 ## Basic
 
@@ -104,36 +69,40 @@ A basic date picker component.
 
 ## Range Picker
 
-A date picker component for selecting a range of dates. Set the `selectionMode` prop to `range` and use `numOfMonths` to show more than one month.
+A date picker component for selecting a range of dates. Set `mode="range"` and
+use `numberOfMonths` to show more than one month.
 
-<ComponentPreview name="date-picker-range" />
+<ComponentPreview name="date-picker-range" previewClassName="h-[30rem] md:h-96" />
 
 ## Date of Birth
 
-A date picker component for selecting a date of birth. This component uses the `DatePickerMonthSelect` and `DatePickerYearSelect` dropdowns for month and year selection.
+A date picker component for selecting a date of birth. This component uses the
+`captionLayout="dropdown"` prop for month and year selection, and closes the
+popover once a day is picked.
 
-<ComponentPreview name="date-picker-dob" />
+<ComponentPreview name="date-picker-dob" previewClassName="h-96" />
 
 ## Input
 
-A date picker component with an input field for selecting a date. The `DatePickerInput` component parses typed dates on blur or `Enter`.
+A date picker component with an input field for selecting a date. The input
+parses what is typed, and `ArrowDown` opens the calendar.
 
-<ComponentPreview name="date-picker-input" />
+<ComponentPreview name="date-picker-input" previewClassName="h-[30rem]" />
 
 ## Time Picker
 
 A date picker component with a time input field for selecting a time.
 
-<ComponentPreview name="date-picker-time" />
+<ComponentPreview name="date-picker-time" previewClassName="h-96" />
 
 ## Natural Language Picker
 
-This component uses the `chrono-node` library to parse natural language dates via the `parse` prop.
+This component uses the `chrono-node` library to parse natural language dates.
 
-<ComponentPreview name="date-picker-natural-language" />
+<ComponentPreview name="date-picker-natural-language" previewClassName="h-[30rem]" />
 
-## Inline
+## API Reference
 
-Set the `open` prop and render the content inline, without `Portal` and `DatePickerPositioner`, to show the picker's calendar standalone. For a calendar on its own, see the [Calendar](/docs/components/calendar) component.
-
-<ComponentPreview name="date-picker-inline" />
+See the [Calendar](/docs/components/calendar#api-reference) and
+[Popover](/docs/components/popover) pages for the props of the two components
+a date picker is built from.
