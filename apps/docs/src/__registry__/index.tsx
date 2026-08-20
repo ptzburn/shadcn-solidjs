@@ -162,6 +162,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "chart": {
+    name: "chart",
+    description: "",
+    type: "ui",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/ui/chart.tsx")),
+    files: [{
+      path: "registry/ui/chart.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "checkbox": {
     name: "checkbox",
     description: "",
@@ -1828,6 +1840,94 @@ export const Index: RegistryIndex = {
     component: lazy(() => import("~/registry/example/carousel-spacing.tsx")),
     files: [{
       path: "registry/example/carousel-spacing.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "chart-demo": {
+    name: "chart-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/chart-demo.tsx")),
+    files: [{
+      path: "registry/example/chart-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "chart-example": {
+    name: "chart-example",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/chart-example.tsx")),
+    files: [{
+      path: "registry/example/chart-example.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "chart-example-axis": {
+    name: "chart-example-axis",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/chart-example-axis.tsx")),
+    files: [{
+      path: "registry/example/chart-example-axis.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "chart-example-grid": {
+    name: "chart-example-grid",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/chart-example-grid.tsx")),
+    files: [{
+      path: "registry/example/chart-example-grid.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "chart-example-legend": {
+    name: "chart-example-legend",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/chart-example-legend.tsx")
+    ),
+    files: [{
+      path: "registry/example/chart-example-legend.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "chart-example-tooltip": {
+    name: "chart-example-tooltip",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/chart-example-tooltip.tsx")
+    ),
+    files: [{
+      path: "registry/example/chart-example-tooltip.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "chart-tooltip": {
+    name: "chart-tooltip",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/chart-tooltip.tsx")),
+    files: [{
+      path: "registry/example/chart-tooltip.tsx",
       type: "example",
       target: "",
     }],

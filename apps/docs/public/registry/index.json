@@ -144,6 +144,16 @@
     "type": "ui"
   },
   {
+    "name": "chart",
+    "dependencies": [
+      "chart.js"
+    ],
+    "files": [
+      "ui/chart.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "checkbox",
     "dependencies": [
       "@kobalte/core@2.0.0-alpha.0"

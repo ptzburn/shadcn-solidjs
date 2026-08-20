@@ -135,6 +135,14 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chart",
+      "type": "registry:ui",
+      "dependencies": [
+        "chart.js"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "checkbox",
       "type": "registry:ui",
       "dependencies": [
