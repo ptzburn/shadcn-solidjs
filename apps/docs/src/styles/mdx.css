@@ -4,7 +4,7 @@
   [data-rehype-pretty-code-figure] {
     background-color: var(--color-code);
     color: var(--color-code-foreground);
-    border-radius: var(--radius-2xl);
+    border-radius: var(--docs-surface-radius);
     border-width: 0px;
     border-color: var(--border);
     margin-top: calc(var(--spacing) * 6);

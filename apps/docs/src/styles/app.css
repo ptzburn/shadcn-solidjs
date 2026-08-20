@@ -24,8 +24,6 @@
   --radius: 0.625rem;
   --header-height: calc(var(--spacing) * 14);
   --footer-height: calc(var(--spacing) * 14);
-  /* From main's style-docs.css; the docs shell rounds its surfaces with it. */
-  --docs-surface-radius: var(--radius-xl);
 
   --background: oklch(1 0 0);
   --foreground: oklch(0% 0 0);
@@ -68,6 +66,17 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+/*
+ * Fallback for markup without a .style-* class. Layered so the per-style
+ * values in style-docs.css (@layer components) win: an unlayered :root
+ * declaration would beat every layer and pin all styles to this value.
+ */
+@layer base {
+  :root {
+    --docs-surface-radius: var(--radius-xl);
+  }
 }
 
 .dark,
