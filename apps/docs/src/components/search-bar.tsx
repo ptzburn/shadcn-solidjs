@@ -78,7 +78,7 @@ export default function SearchBar() {
     <>
       <Button
         variant="outline"
-        class="relative h-8 w-full justify-start rounded-lg border-none bg-muted pl-3 text-foreground shadow-none transition-colors hover:bg-muted/50 md:w-48 lg:w-40 xl:w-64 dark:bg-card"
+        class="relative h-8 w-full justify-start border-none bg-muted pl-3 text-foreground shadow-none transition-colors hover:bg-muted/50 md:w-48 lg:w-40 xl:w-64 dark:bg-card"
         onClick={() => setOpen(true)}
       >
         <span class="hidden xl:inline-flex">Search documentation...</span>
