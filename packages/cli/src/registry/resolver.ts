@@ -88,7 +88,15 @@ async function fetchByAddress(
       throw error;
     }
     const themeUrl = options.themeUrl ?? REGISTRY_THEME_URL;
-    return await fetchFrom(themeUrl.replace("{name}", parsed.name));
+    try {
+      return await fetchFrom(themeUrl.replace("{name}", parsed.name));
+    } catch (themeError) {
+      // The theme retry is an implementation detail. When it misses too,
+      // report the item the caller actually asked for rather than the theme
+      // URL they have never heard of.
+      if (themeError instanceof RegistryNotFoundError) throw error;
+      throw themeError;
+    }
   }
 }
 

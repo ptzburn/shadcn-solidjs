@@ -189,3 +189,19 @@ Deno.test("reports a missing item rather than failing silently", async () => {
     RegistryNotFoundError,
   );
 });
+
+Deno.test("a missing item names itself, not the theme it fell back to", async () => {
+  clearRegistryCache();
+  const error = await assertRejects(
+    () => resolveRegistryItems(["does-not-exist"], options()),
+    RegistryNotFoundError,
+  );
+  assert(
+    !error.url.includes("/themes/"),
+    `expected the item url, got ${error.url}`,
+  );
+  assert(
+    error.url.includes("does-not-exist"),
+    `expected the item name in ${error.url}`,
+  );
+});

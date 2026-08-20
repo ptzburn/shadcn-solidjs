@@ -52,7 +52,23 @@ async function readJsonFromUrl(
     }
   }
 
-  return await response.json();
+  const body = await response.text();
+  const contentType = response.headers.get("content-type") ?? "";
+
+  // A registry served from a single-page app answers an unknown path with its
+  // HTML shell and a 200, so the 404 branch above never fires and the item
+  // reads as a parse failure ("Unexpected token '<'"). Report the miss it
+  // actually is. The content-type is not enough on its own: registries do
+  // serve JSON as text/plain, so the body has to look like markup too.
+  if (!/\bjson\b/i.test(contentType) && /^\s*</.test(body)) {
+    throw new RegistryNotFoundError(url);
+  }
+
+  try {
+    return JSON.parse(body);
+  } catch (cause) {
+    throw new RegistryFetchError(url, response.status, { cause });
+  }
 }
 
 async function readJsonFromFile(filePath: string): Promise<unknown> {
