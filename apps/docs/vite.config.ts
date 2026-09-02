@@ -105,6 +105,56 @@ function docsMarkdownPages(): Plugin {
   };
 }
 
+// The solid plugin bakes the client manifest into the shell bundle and,
+// while doing so, unflags every chunk that some other chunk dynamically
+// imports (lazy facades are emitted as entries). The registry index lazy-
+// loads every ui component, and the site chrome imports a few of them
+// statically, so Rollup folds those into the client entry and the registry's
+// import() of them resolves to the entry chunk itself. The normalization then
+// leaves no entry at all, the handler finds no client script to inject, and
+// the prerendered shell is an empty document. Keep the real entry flagged by
+// dropping it from every dynamicImports list before the shell build reads
+// the manifest, and refuse to finish a build whose shell has no script.
+function keepClientEntryInShell(): Plugin {
+  const outDir = join(import.meta.dirname ?? ".", "dist/client");
+  return {
+    name: "docs-keep-client-entry-in-shell",
+    apply: "build",
+    async writeBundle() {
+      if (this.environment.name !== "client") return;
+      const file = join(outDir, ".vite/manifest.json");
+      const manifest = JSON.parse(await fs.readFile(file, "utf8")) as Record<
+        string,
+        { isEntry?: boolean; dynamicImports?: string[] }
+      >;
+      const entries = Object.keys(manifest).filter((key) =>
+        key.startsWith("virtual:solid-ssr-entry-client") &&
+        manifest[key].isEntry
+      );
+      if (entries.length !== 1) {
+        throw new Error(
+          `expected one client entry in the manifest, found ${entries.length}`,
+        );
+      }
+      for (const chunk of Object.values(manifest)) {
+        chunk.dynamicImports = chunk.dynamicImports?.filter((key) =>
+          key !== entries[0]
+        );
+      }
+      await fs.writeFile(file, JSON.stringify(manifest, null, 2));
+    },
+    buildApp: {
+      order: "post",
+      async handler() {
+        const shell = await fs.readFile(join(outDir, "index.html"), "utf8");
+        if (!shell.includes('<script type="module"')) {
+          throw new Error("prerendered shell has no client entry script");
+        }
+      },
+    },
+  };
+}
+
 const mdxPlugin = mdx({
   jsx: true,
   jsxImportSource: "@solidjs/web",
@@ -220,5 +270,6 @@ export default defineConfig({
     }),
     docsMarkdownPages(),
     kobalteDismissableLayerFix(),
+    keepClientEntryInShell(),
   ],
 });
