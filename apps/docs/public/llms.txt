@@ -33,6 +33,8 @@
 - [Slider](https://v2.shadcn-solidjs.com/docs/components/slider.md): An input where the user selects a value from within a given range.
 - [Combobox](https://v2.shadcn-solidjs.com/docs/components/combobox.md): Autocomplete input with a list of suggestions.
 - [Label](https://v2.shadcn-solidjs.com/docs/components/label.md): Renders an accessible label associated with controls.
+- [Calendar](https://v2.shadcn-solidjs.com/docs/components/calendar.md): Select a date or a range of dates.
+- [Date Picker](https://v2.shadcn-solidjs.com/docs/components/date-picker.md): A date picker composed from Popover and Calendar.
 
 ### Layout & Navigation
 

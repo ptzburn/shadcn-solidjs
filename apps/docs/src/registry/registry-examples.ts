@@ -802,11 +802,92 @@ export const examples: Registry = [
     ],
   },
   {
+    name: "calendar-basic",
+    type: "example",
+    files: [
+      {
+        path: "example/calendar-basic.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "calendar-booked-dates",
+    type: "example",
+    files: [
+      {
+        path: "example/calendar-booked-dates.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "calendar-caption",
+    type: "example",
+    files: [
+      {
+        path: "example/calendar-caption.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "calendar-custom-days",
+    type: "example",
+    files: [
+      {
+        path: "example/calendar-custom-days.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
     name: "calendar-demo",
     type: "example",
     files: [
       {
         path: "example/calendar-demo.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "calendar-presets",
+    type: "example",
+    registryDependencies: ["button", "calendar", "card"],
+    files: [
+      {
+        path: "example/calendar-presets.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "calendar-range",
+    type: "example",
+    files: [
+      {
+        path: "example/calendar-range.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "calendar-time",
+    type: "example",
+    files: [
+      {
+        path: "example/calendar-time.tsx",
+        type: "example",
+      },
+    ],
+  },
+  {
+    name: "calendar-week-numbers",
+    type: "example",
+    files: [
+      {
+        path: "example/calendar-week-numbers.tsx",
         type: "example",
       },
     ],

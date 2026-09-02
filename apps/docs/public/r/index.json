@@ -114,6 +114,21 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "calendar",
+      "type": "registry:ui",
+      "dependencies": [
+        "@kobalte/core@2.0.0-alpha.1"
+      ],
+      "devDependencies": [
+        "unplugin-icons",
+        "@iconify-json/lucide"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "card",
       "type": "registry:ui"
     },
@@ -203,6 +218,17 @@
       "type": "registry:ui",
       "dependencies": [
         "@kobalte/core@2.0.0-alpha.1"
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "date-picker",
+      "type": "registry:ui",
+      "description": "A date picker is a composition of Popover and Calendar. This installs both, plus the Button its trigger uses.",
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "popover"
       ]
     },
     {

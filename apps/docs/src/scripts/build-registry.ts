@@ -138,15 +138,18 @@ for (const item of items) {
   if (item.type === "theme" || item.type === "lib" || item.type === "hook") {
     continue;
   }
-  const componentPath = item.files[0]?.path ??
-    `${item.type}/${item.name}.tsx`;
+  const componentPath = item.files[0]?.path;
+  const component = componentPath
+    ? `\n    component: lazy(() => import("~/registry/${componentPath}")),`
+    : "";
   index += `
   "${item.name}": {
     name: "${item.name}",
     description: "${item.description ?? ""}",
     type: "${item.type}",
-    registryDependencies: ${JSON.stringify(item.registryDependencies)},
-    component: lazy(() => import("~/registry/${componentPath}")),
+    registryDependencies: ${
+    JSON.stringify(item.registryDependencies)
+  },${component}
     files: [${
     item.files.map(
       (file) =>

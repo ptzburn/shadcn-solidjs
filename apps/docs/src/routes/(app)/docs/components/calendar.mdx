@@ -1,0 +1,220 @@
+---
+title: Calendar
+description: A calendar component that allows users to select a date or a range of dates.
+---
+
+<ComponentPreview name="calendar-demo" previewClassName="h-96" />
+
+## About
+
+Calendar is built on top of [Kobalte Calendar](https://kobalte.dev/docs/core/components/calendar).
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx @ptzburn/shadcn-solidjs@beta add calendar
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps class="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @kobalte/core@2.0.0-alpha.1
+```
+
+<Step>Add the `Button` component to your project.</Step>
+
+The `Calendar` component uses the `Button` component. Make sure you have it installed in your project.
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="calendar" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx showLineNumbers
+import { Calendar } from "~/components/ui/calendar"
+```
+
+```tsx showLineNumbers
+const [date, setDate] = createSignal<Date | null>(new Date())
+
+return (
+  <Calendar
+    selectionMode="single"
+    value={date()}
+    onChange={setDate}
+    class="rounded-lg border"
+  />
+)
+```
+
+See the [Kobalte Calendar](https://kobalte.dev/docs/core/components/calendar) documentation for more information.
+
+## Date Picker
+
+You can use the `<Calendar>` component to build a date picker. Render it inside a `<PopoverContent>`, or see the [Date Picker](/docs/components/date-picker) page for a dedicated picker with an input.
+
+## Basic
+
+A basic calendar component. We used `class="rounded-lg border"` to style the calendar.
+
+<ComponentPreview name="calendar-basic" previewClassName="h-96" />
+
+## Range Calendar
+
+Use the `selectionMode="range"` prop to enable range selection. The value is an object with `start` and `end` dates. The first click sets the start of the range and the second click sets the end.
+
+<ComponentPreview
+  name="calendar-range"
+  previewClassName="h-[36rem] md:h-96"
+/>
+
+## Month and Year Selector
+
+Use `captionLayout="dropdown"` to show month and year dropdowns. The years run from `startMonth` to `endMonth`, which default to a hundred years ago through the current year.
+
+<ComponentPreview name="calendar-caption" previewClassName="h-96" />
+
+## Presets
+
+Control the focused date with the `focusedValue` and `onFocusChange` props to jump to a date from outside the calendar.
+
+<ComponentPreview name="calendar-presets" previewClassName="h-[650px]" />
+
+## Date and Time Picker
+
+<ComponentPreview name="calendar-time" previewClassName="h-[600px]" />
+
+## Booked dates
+
+Use the `isDateUnavailable` prop to block days, and `modifiers` with `modifiersClassNames` to style them.
+
+<ComponentPreview name="calendar-booked-dates" previewClassName="h-96" />
+
+## Custom Cell Size
+
+<ComponentPreview name="calendar-custom-days" previewClassName="h-[560px]" />
+
+You can customize the size of calendar cells using the `--cell-size` CSS variable. You can also make it responsive by using breakpoint-specific values:
+
+```tsx showLineNumbers
+<Calendar
+  selectionMode="single"
+  value={date()}
+  onChange={setDate}
+  class="rounded-lg border [--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]"
+/>
+```
+
+Or use fixed values:
+
+```tsx showLineNumbers
+<Calendar
+  selectionMode="single"
+  value={date()}
+  onChange={setDate}
+  class="rounded-lg border [--cell-size:2.75rem] md:[--cell-size:3rem]"
+/>
+```
+
+The example above also passes a custom `DayButton` through the `components` prop to render a price under every day.
+
+## Week Numbers
+
+Use `showWeekNumber` to show ISO week numbers.
+
+<ComponentPreview name="calendar-week-numbers" previewClassName="h-96" />
+
+## API Reference
+
+See the [Kobalte Calendar documentation](https://kobalte.dev/docs/core/components/calendar) for the full API reference.
+
+### Calendar
+
+The `Calendar` component renders the navigation, caption and month grids. It
+accepts every prop of the Kobalte `Calendar` root, plus the ones below.
+
+| Prop                        | Type                                                                   | Default   |
+| --------------------------- | ---------------------------------------------------------------------- | --------- |
+| `selectionMode`             | `"single" \| "multiple" \| "range"`                                     | -         |
+| `value`                     | `Date \| null` · `Date[] \| null` · `{ start: Date; end: Date } \| null`  | -         |
+| `defaultValue`              | same as `value`                                                        | -         |
+| `onChange`                  | `(value) => void`                                                      | -         |
+| `focusedValue`              | `Date`                                                                 | -         |
+| `defaultFocusedValue`       | `Date`                                                                 | today     |
+| `onFocusChange`             | `(date: Date) => void`                                                 | -         |
+| `numberOfMonths`            | `number`                                                               | `1`       |
+| `minValue`                  | `Date`                                                                 | -         |
+| `maxValue`                  | `Date`                                                                 | -         |
+| `isDateUnavailable`         | `(date: Date) => boolean`                                              | -         |
+| `allowsNonContiguousRanges` | `boolean`                                                              | `false`   |
+| `disabled`                  | `boolean`                                                              | `false`   |
+| `readOnly`                  | `boolean`                                                              | `false`   |
+| `locale`                    | `string`                                                               | `"en-US"` |
+| `showOutsideDays`           | `boolean`                                                              | `true`    |
+| `showWeekNumber`            | `boolean`                                                              | `false`   |
+| `captionLayout`             | `"label" \| "dropdown" \| "dropdown-months" \| "dropdown-years"`         | `"label"` |
+| `buttonVariant`             | `ButtonProps["variant"]`                                               | `"ghost"` |
+| `startMonth`                | `Date`                                                                 | -         |
+| `endMonth`                  | `Date`                                                                 | -         |
+| `formatters`                | `Partial<CalendarFormatters>`                                          | -         |
+| `modifiers`                 | `Record<string, (day: Date) => boolean>`                               | -         |
+| `modifiersClassNames`       | `Record<string, string>`                                               | -         |
+| `components`                | `{ DayButton?: Component<CalendarDayButtonProps> }`                    | -         |
+| `class`                     | `string`                                                               | -         |
+
+The visible month follows the focused date: the navigation buttons, the
+keyboard and the caption dropdowns all move it, and `focusedValue` controls it
+from outside. Outside days, the ones that belong to the previous or next
+month, are shown but not selectable; pass `showOutsideDays={false}` to hide
+them.
+
+`startMonth` and `endMonth` bound the navigation and the dropdown ranges,
+like `minValue` and `maxValue` do. Without them, the year dropdown lists the
+past hundred years.
+
+Dates and weekday names are formatted with `Intl` using `locale`. Override
+any of `formatCaption`, `formatMonthDropdown`, `formatYearDropdown`,
+`formatWeekdayName` and `formatWeekNumber` through `formatters`; each receives
+the value and the locale.
+
+### CalendarDayButton
+
+The `CalendarDayButton` component renders a single day. It is the default
+`DayButton` and the one to wrap when you pass your own through `components`.
+Its children render below the day number.
+
+| Prop        | Type                | Default |
+| ----------- | ------------------- | ------- |
+| `day`       | `Date`              | -       |
+| `month`     | `Date`              | -       |
+| `modifiers` | `CalendarModifiers` | -       |
+| `class`     | `string`            | -       |
+
+`modifiers` carries `today` and `outside`, plus any custom modifier you
+declared on the calendar. Selection state lives on the element as data
+attributes: `data-selected`, `data-selection-start`, `data-selection-end`,
+`data-today`, `data-outside-month`, `data-unavailable` and `data-disabled`.

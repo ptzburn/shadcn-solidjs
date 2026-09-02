@@ -125,6 +125,18 @@ export const ui: Registry = [
     ],
   },
   {
+    name: "calendar",
+    type: "ui",
+    dependencies: ["@kobalte/core@2.0.0-alpha.1"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "ui/calendar.tsx",
+        type: "ui",
+      },
+    ],
+  },
+  {
     name: "card",
     type: "ui",
     files: [
@@ -225,6 +237,14 @@ export const ui: Registry = [
         type: "ui",
       },
     ],
+  },
+  {
+    name: "date-picker",
+    type: "ui",
+    description:
+      "A date picker is a composition of Popover and Calendar. This installs both, plus the Button its trigger uses.",
+    registryDependencies: ["button", "calendar", "popover"],
+    files: [],
   },
   {
     name: "dialog",

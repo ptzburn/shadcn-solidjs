@@ -4,6 +4,7 @@
     "jsr:@ayk/lint-import-order@*": "0.1.0",
     "jsr:@david/code-block-writer@^13.0.3": "13.0.3",
     "jsr:@deno/dnt@~0.43.2": "0.43.2",
+    "jsr:@ptzburn/shadcn-solidjs@*": "0.1.1",
     "jsr:@ryu/deno-lint-plugin-tailwindcss@*": "0.2.0",
     "jsr:@std/assert@^1.0.19": "1.0.19",
     "jsr:@std/fmt@1": "1.0.10",
@@ -32,6 +33,7 @@
     "npm:@types/prompts@^2.4.9": "2.4.9",
     "npm:@types/unist@^3.0.3": "3.0.3",
     "npm:chart.js@^4.5.1": "4.5.1",
+    "npm:chrono-node@^2.9.0": "2.10.1",
     "npm:class-variance-authority@~0.7.1": "0.7.1",
     "npm:clsx@^2.1.1": "2.1.1",
     "npm:commander@15": "15.0.0",
@@ -86,6 +88,9 @@
         "jsr:@std/path@1",
         "jsr:@ts-morph/bootstrap"
       ]
+    },
+    "@ptzburn/shadcn-solidjs@0.1.1": {
+      "integrity": "caac5f3a6f7e1c648df6fd39d75b7782d91623e2b7d3657e2ada611a12663383"
     },
     "@ryu/deno-lint-plugin-tailwindcss@0.2.0": {
       "integrity": "1522555fefd6c6f7e6722b15201a7d76ee0e4fc273d4fc28892d587be132ba13"
@@ -571,8 +576,6 @@
     "@napi-rs/wasm-runtime@1.2.3_@emnapi+core@1.11.1_@emnapi+runtime@1.11.1": {
       "integrity": "sha512-UMduMbqO5s5zF2NkNacMT/yK5Y5QiKvWr2+50bzIIxFDwVJ2h49b+oyjaCGPhJxd2/gC2x39EHv/gHVuu36x2Q==",
       "dependencies": [
-        "@emnapi/core@1.11.1",
-        "@emnapi/runtime@1.11.1",
         "@tybys/wasm-util"
       ]
     },
@@ -1794,6 +1797,9 @@
       "dependencies": [
         "@kurkle/color"
       ]
+    },
+    "chrono-node@2.10.1": {
+      "integrity": "sha512-tPOsBzYVAK5zth+CiHCgp5NGeqRc4mMD8FPthQ5IxkgjPWWxIFdM5odnmfw//IRAzl6C++Xy8olQW7wn5qBR1g=="
     },
     "class-variance-authority@0.7.1": {
       "integrity": "sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==",
@@ -3998,6 +4004,7 @@
             "npm:@types/mdast@^4.0.4",
             "npm:@types/unist@^3.0.3",
             "npm:chart.js@^4.5.1",
+            "npm:chrono-node@^2.9.0",
             "npm:class-variance-authority@~0.7.1",
             "npm:clsx@^2.1.1",
             "npm:embla-carousel-autoplay@^8.6.0",

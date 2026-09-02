@@ -138,6 +138,18 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "calendar": {
+    name: "calendar",
+    description: "",
+    type: "ui",
+    registryDependencies: ["button"],
+    component: lazy(() => import("~/registry/ui/calendar.tsx")),
+    files: [{
+      path: "registry/ui/calendar.tsx",
+      type: "ui",
+      target: "",
+    }],
+  },
   "card": {
     name: "card",
     description: "",
@@ -233,6 +245,14 @@ export const Index: RegistryIndex = {
       type: "ui",
       target: "",
     }],
+  },
+  "date-picker": {
+    name: "date-picker",
+    description:
+      "A date picker is a composition of Popover and Calendar. This installs both, plus the Button its trigger uses.",
+    type: "ui",
+    registryDependencies: ["button", "calendar", "popover"],
+    files: [],
   },
   "dialog": {
     name: "dialog",
@@ -1690,6 +1710,120 @@ export const Index: RegistryIndex = {
       target: "",
     }],
   },
+  "calendar-basic": {
+    name: "calendar-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/calendar-basic.tsx")),
+    files: [{
+      path: "registry/example/calendar-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "calendar-booked-dates": {
+    name: "calendar-booked-dates",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/calendar-booked-dates.tsx")
+    ),
+    files: [{
+      path: "registry/example/calendar-booked-dates.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "calendar-caption": {
+    name: "calendar-caption",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/calendar-caption.tsx")),
+    files: [{
+      path: "registry/example/calendar-caption.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "calendar-custom-days": {
+    name: "calendar-custom-days",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/calendar-custom-days.tsx")
+    ),
+    files: [{
+      path: "registry/example/calendar-custom-days.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "calendar-demo": {
+    name: "calendar-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/calendar-demo.tsx")),
+    files: [{
+      path: "registry/example/calendar-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "calendar-presets": {
+    name: "calendar-presets",
+    description: "",
+    type: "example",
+    registryDependencies: ["button", "calendar", "card"],
+    component: lazy(() => import("~/registry/example/calendar-presets.tsx")),
+    files: [{
+      path: "registry/example/calendar-presets.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "calendar-range": {
+    name: "calendar-range",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/calendar-range.tsx")),
+    files: [{
+      path: "registry/example/calendar-range.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "calendar-time": {
+    name: "calendar-time",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/calendar-time.tsx")),
+    files: [{
+      path: "registry/example/calendar-time.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "calendar-week-numbers": {
+    name: "calendar-week-numbers",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/calendar-week-numbers.tsx")
+    ),
+    files: [{
+      path: "registry/example/calendar-week-numbers.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
   "card-demo": {
     name: "card-demo",
     description: "",
@@ -2332,6 +2466,92 @@ export const Index: RegistryIndex = {
     ),
     files: [{
       path: "registry/example/context-menu-submenu.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "date-picker-basic": {
+    name: "date-picker-basic",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/date-picker-basic.tsx")),
+    files: [{
+      path: "registry/example/date-picker-basic.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "date-picker-demo": {
+    name: "date-picker-demo",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/date-picker-demo.tsx")),
+    files: [{
+      path: "registry/example/date-picker-demo.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "date-picker-dob": {
+    name: "date-picker-dob",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/date-picker-dob.tsx")),
+    files: [{
+      path: "registry/example/date-picker-dob.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "date-picker-input": {
+    name: "date-picker-input",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/date-picker-input.tsx")),
+    files: [{
+      path: "registry/example/date-picker-input.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "date-picker-natural-language": {
+    name: "date-picker-natural-language",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() =>
+      import("~/registry/example/date-picker-natural-language.tsx")
+    ),
+    files: [{
+      path: "registry/example/date-picker-natural-language.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "date-picker-range": {
+    name: "date-picker-range",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/date-picker-range.tsx")),
+    files: [{
+      path: "registry/example/date-picker-range.tsx",
+      type: "example",
+      target: "",
+    }],
+  },
+  "date-picker-time": {
+    name: "date-picker-time",
+    description: "",
+    type: "example",
+    registryDependencies: undefined,
+    component: lazy(() => import("~/registry/example/date-picker-time.tsx")),
+    files: [{
+      path: "registry/example/date-picker-time.tsx",
       type: "example",
       target: "",
     }],

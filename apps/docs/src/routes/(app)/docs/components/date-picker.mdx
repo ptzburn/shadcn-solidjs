@@ -1,0 +1,117 @@
+---
+title: Date Picker
+description: A date picker component with range and presets.
+---
+
+<ComponentPreview name="date-picker-demo" />
+
+## About
+
+A date picker is a composition of the [Popover](/docs/components/popover) and
+[Calendar](/docs/components/calendar) components. There is no `DatePicker`
+component to install: you build the picker you need from those two.
+
+## Installation
+
+A date picker is composed rather than installed, so there is no file to copy.
+This command adds the two components it is built from, plus the `Button` its
+trigger uses:
+
+```bash
+npx @ptzburn/shadcn-solidjs@beta add date-picker
+```
+
+You can also add them individually — see the
+[Popover](/docs/components/popover#installation) and
+[Calendar](/docs/components/calendar#installation) installation sections.
+
+## Usage
+
+```tsx showLineNumbers
+import { Button } from "~/components/ui/button"
+import { Calendar } from "~/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "~/components/ui/popover"
+```
+
+```tsx showLineNumbers
+const [date, setDate] = createSignal<Date | null>(null)
+
+return (
+  <Popover placement="bottom-start">
+    <PopoverTrigger as={Button<"button">} variant="outline">
+      {date() ? formatDate(date()) : "Pick a date"}
+    </PopoverTrigger>
+    <PopoverContent class="w-auto p-0">
+      <Calendar selectionMode="single" value={date()} onChange={setDate} />
+    </PopoverContent>
+  </Popover>
+)
+```
+
+## Composition
+
+A date picker is built from `Popover` and `Calendar`:
+
+```text
+Popover
+├── PopoverTrigger
+└── PopoverContent
+    └── Calendar
+```
+
+The trigger is whatever you want the field to look like — a `Button`, or an
+`InputGroup` with a button in its addon when the date can also be typed.
+
+Kobalte positions a popover from its root, so alignment goes on `Popover` as
+`placement`, not on `PopoverContent`.
+
+## Basic
+
+A basic date picker component.
+
+<ComponentPreview name="date-picker-basic" />
+
+## Range Picker
+
+A date picker component for selecting a range of dates. Set
+`selectionMode="range"` and use `numberOfMonths` to show more than one month.
+
+<ComponentPreview name="date-picker-range" previewClassName="h-[30rem] md:h-96" />
+
+## Date of Birth
+
+A date picker component for selecting a date of birth. This component uses the
+`captionLayout="dropdown"` prop for month and year selection, and closes the
+popover once a day is picked.
+
+<ComponentPreview name="date-picker-dob" previewClassName="h-96" />
+
+## Input
+
+A date picker component with an input field for selecting a date. The input
+parses what is typed, moves the calendar with `focusedValue`, and `ArrowDown`
+opens it.
+
+<ComponentPreview name="date-picker-input" previewClassName="h-[30rem]" />
+
+## Time Picker
+
+A date picker component with a time input field for selecting a time.
+
+<ComponentPreview name="date-picker-time" previewClassName="h-96" />
+
+## Natural Language Picker
+
+This component uses the `chrono-node` library to parse natural language dates.
+
+<ComponentPreview name="date-picker-natural-language" previewClassName="h-[30rem]" />
+
+## API Reference
+
+See the [Calendar](/docs/components/calendar#api-reference) and
+[Popover](/docs/components/popover) pages for the props of the two components
+a date picker is built from.

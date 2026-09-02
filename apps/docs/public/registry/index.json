@@ -123,6 +123,19 @@
     "type": "ui"
   },
   {
+    "name": "calendar",
+    "dependencies": [
+      "@kobalte/core@2.0.0-alpha.1"
+    ],
+    "registryDependencies": [
+      "button"
+    ],
+    "files": [
+      "ui/calendar.tsx"
+    ],
+    "type": "ui"
+  },
+  {
     "name": "card",
     "files": [
       "ui/card.tsx"
@@ -210,6 +223,17 @@
       "ui/collapsible.tsx"
     ],
     "type": "ui"
+  },
+  {
+    "name": "date-picker",
+    "registryDependencies": [
+      "button",
+      "calendar",
+      "popover"
+    ],
+    "files": [],
+    "type": "ui",
+    "description": "A date picker is a composition of Popover and Calendar. This installs both, plus the Button its trigger uses."
   },
   {
     "name": "dialog",
