@@ -1,6 +1,11 @@
 import * as DialogPrimitive from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import type { ComponentProps, JSX, ValidComponent } from "@solidjs/web";
+import {
+  type ComponentProps,
+  type JSX,
+  Portal,
+  type ValidComponent,
+} from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import type { Component } from "solid-js";
@@ -9,7 +14,7 @@ import { omit, Show } from "solid-js";
 import { buttonVariants } from "./button.tsx";
 
 const Dialog = DialogPrimitive.Root;
-const DialogPortal = DialogPrimitive.Portal;
+const DialogPortal = Portal;
 
 type DialogTriggerProps<T extends ValidComponent = "button"> =
   & DialogPrimitive.DialogTriggerProps<T>

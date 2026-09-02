@@ -1,6 +1,11 @@
 import * as SheetPrimitive from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import type { ComponentProps, JSX, ValidComponent } from "@solidjs/web";
+import {
+  type ComponentProps,
+  type JSX,
+  Portal,
+  type ValidComponent,
+} from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import type { Component } from "solid-js";
@@ -9,7 +14,7 @@ import { merge, omit, Show } from "solid-js";
 import { buttonVariants } from "./button.tsx";
 
 const Sheet = SheetPrimitive.Root;
-const SheetPortal = SheetPrimitive.Portal;
+const SheetPortal = Portal;
 
 type SheetTriggerProps<T extends ValidComponent = "button"> =
   & SheetPrimitive.DialogTriggerProps<T>

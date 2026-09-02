@@ -1,13 +1,18 @@
 import * as DrawerPrimitive from "@kobalte/core/drawer";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import type { ComponentProps, JSX, ValidComponent } from "@solidjs/web";
+import {
+  type ComponentProps,
+  type JSX,
+  Portal,
+  type ValidComponent,
+} from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
 import type { Component } from "solid-js";
 
 import { omit } from "solid-js";
 
 const Drawer = DrawerPrimitive.Root;
-const DrawerPortal = DrawerPrimitive.Portal;
+const DrawerPortal = Portal;
 
 type DrawerTriggerProps<T extends ValidComponent = "button"> =
   & DrawerPrimitive.DrawerTriggerProps<T>

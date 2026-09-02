@@ -1,6 +1,11 @@
 import * as AlertDialogPrimitive from "@kobalte/core/alert-dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import type { ComponentProps, JSX, ValidComponent } from "@solidjs/web";
+import {
+  type ComponentProps,
+  type JSX,
+  Portal,
+  type ValidComponent,
+} from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
 import type { VariantProps } from "class-variance-authority";
 import type { Component } from "solid-js";
@@ -9,7 +14,7 @@ import { omit } from "solid-js";
 import { buttonVariants } from "./button.tsx";
 
 const AlertDialog = AlertDialogPrimitive.Root;
-const AlertDialogPortal = AlertDialogPrimitive.Portal;
+const AlertDialogPortal = Portal;
 
 type AlertDialogTriggerProps<T extends ValidComponent = "button"> =
   & AlertDialogPrimitive.AlertDialogTriggerProps<T>
