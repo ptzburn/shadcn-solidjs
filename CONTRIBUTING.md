@@ -189,3 +189,53 @@ are not in the hook, so run them yourself:
 ```sh
 deno task test
 ```
+
+## Workarounds to retest on upgrades
+
+Each entry names a deliberate deviation, the package versions it was last
+confirmed against, and how to check whether a newer release makes it
+unnecessary. Retest when `solid-js`, `@solidjs/web`, or `@kobalte/core` move.
+
+### Dialog-family portals come from `@solidjs/web`, not Kobalte
+
+`dialog.tsx`, `sheet.tsx`, `alert-dialog.tsx`, and `drawer.tsx` alias their
+`*Portal` to `Portal` from `@solidjs/web` instead of the Kobalte primitive's
+`Portal`. Last confirmed necessary on `solid-js@2.0.0-rc.5` with
+`@kobalte/core@2.0.0-alpha.1` (2026-09-02).
+
+Why: Kobalte's `Dialog.Portal` is Solid's `Portal` inside a `Show` driven by the
+dialog's presence signals, with the dismissable layer as the portal's direct
+child. On `solid-js` 2.0.0-rc.1 and later that layer's `onSettled` registration
+runs before its ref write is visible, so it never joins the layer stack and
+Escape and outside clicks do nothing. Popover, menu, select, and tooltip are
+unaffected because their positioner element sits between the portal and the
+layer. Drawer reuses Dialog's portal, and the command palette is built on our
+Dialog.
+
+To retest after bumping either package, in each of the four files change
+`const XPortal = Portal;` back to `const XPortal = XPrimitive.Portal;`, run the
+docs dev server, open the dialog, sheet, alert dialog, and drawer previews, and
+check three things: `document.body.style.pointerEvents` becomes `none` while
+open, Escape closes it, and a click outside closes it. If all three hold on
+every page, keep the Kobalte portals and delete this entry. If any fails, revert
+to `Portal` from `@solidjs/web`.
+
+### Server-side rendering stays off in the docs
+
+`ssr: false` in `apps/docs/vite.config.ts`. Last confirmed necessary on
+`solid-js@2.0.0-rc.5` (2026-09-02). A component that reads a memo inside a
+forwarded JSX prop and resolves its tag through `Dynamic`, which is the shape of
+every Kobalte polymorphic primitive, gets hydration ids two slots ahead of what
+the client computes, so its children are never claimed. Retest by setting
+`ssr: true` together with `ssr.noExternal: true` and loading the button and tabs
+pages with the console open: any "Hydration key miss" warning or "Hydration
+Mismatch" error means it is still needed.
+
+### `resolve.dedupe` for the Solid packages
+
+Kept as a guard in `apps/docs/vite.config.ts` so the bundle can never carry two
+reactive runtimes. `@kobalte/core@2.0.0-alpha.1` pins its `solid-js` peer to
+exactly `2.0.0-rc.3`; a fresh `deno install` resolves that to the app's copy
+with a warning, but a lockfile written against an earlier release candidate can
+keep a second copy alive. Safe to drop once Kobalte's peer range accepts the
+installed Solid.
