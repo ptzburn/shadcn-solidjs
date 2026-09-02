@@ -259,14 +259,14 @@ const Calendar = (props: CalendarProps) => {
 
   const dayClass = (modifiers: CalendarModifiers) =>
     cn(
-      "group/day relative aspect-square h-full w-full select-none rounded-(--cell-radius) p-0 text-center has-data-[selection-start]:relative has-data-[selection-start]:isolate has-data-[selection-start]:z-0 has-data-[selection-end]:rounded-r-(--cell-radius) has-data-[selection-start]:rounded-l-(--cell-radius) has-data-[selection-end]:after:absolute has-data-[selection-start]:after:absolute has-data-[selection-end]:after:inset-y-0 has-data-[selection-start]:after:inset-y-0 has-data-[selection-start]:after:right-0 has-data-[selection-end]:after:left-0 has-data-[selection-end]:after:w-4 has-data-[selection-start]:after:w-4 has-data-[selection-end]:after:bg-muted has-data-[selection-start]:after:bg-muted group-data-[selection-mode=range]/calendar:has-data-[selected]:bg-muted [&:last-child:has([data-selected])]:rounded-r-(--cell-radius) [&:has([data-selection-start]):has([data-selection-end])]:after:hidden [&:has([data-selected]):not(:has([data-selection-start])):not(:has([data-selection-end]))]:rounded-none",
+      "group/day relative aspect-square h-full w-full select-none rounded-(--cell-radius) p-0 text-center has-data-[selection-start]:relative has-data-[selection-start]:isolate has-data-[selection-start]:z-0 has-data-[selection-end]:rounded-r-(--cell-radius) has-data-[selection-start]:rounded-l-(--cell-radius) has-data-[selection-end]:after:absolute has-data-[selection-start]:after:absolute has-data-[selection-end]:after:inset-y-0 has-data-[selection-start]:after:inset-y-0 has-data-[selection-start]:after:right-0 has-data-[selection-end]:after:left-0 has-data-[selection-end]:after:w-4 has-data-[selection-start]:after:w-4 has-data-[selection-end]:after:bg-muted has-data-[selection-start]:after:bg-muted group-data-[selection-mode=range]/calendar:has-data-[selected]:bg-muted [&:last-child:has([data-selected])]:rounded-r-(--cell-radius) [&:has([data-selection-start]):has([data-selection-end])]:after:hidden group-data-[selection-mode=range]/calendar:[&:has([data-selected]):not(:has([data-selection-start])):not(:has([data-selection-end]))]:rounded-none",
       props.showWeekNumber
         ? "[&:nth-child(2):has([data-selected])]:rounded-l-(--cell-radius)"
         : "[&:first-child:has([data-selected])]:rounded-l-(--cell-radius)",
       "has-data-[disabled]:text-muted-foreground has-data-[outside-month]:text-muted-foreground has-data-[disabled]:opacity-50",
       !showOutsideDays() && "has-data-[outside-month]:invisible",
       modifiers.today &&
-        "rounded-(--cell-radius) bg-muted text-foreground has-data-[selected]:rounded-none",
+        "rounded-(--cell-radius) bg-muted text-foreground group-data-[selection-mode=range]/calendar:has-data-[selected]:rounded-none",
       ...Object.entries(props.modifiersClassNames ?? {})
         .filter(([name]) => modifiers[name])
         .map(([, className]) => className),
@@ -552,7 +552,7 @@ const CalendarDayButton: Component<CalendarDayButtonProps> = (props) => {
       extra={props.children}
       class={cn(
         buttonVariants({ variant: "ghost", size: "icon" }),
-        "cn-calendar-day-button relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 border-0 font-normal leading-none focus-visible:relative focus-visible:z-10 dark:hover:text-foreground data-disabled:pointer-events-none data-selection-end:rounded-(--cell-radius) data-selection-end:rounded-r-(--cell-radius) data-selection-start:rounded-(--cell-radius) data-selection-start:rounded-l-(--cell-radius) data-selected:bg-primary [&>span]:text-xs data-selected:text-primary-foreground [&>span]:opacity-70 data-outside-month:opacity-100 [&[data-selected]:not([data-selection-start]):not([data-selection-end])]:rounded-none group-data-[selection-mode=range]/calendar:[&[data-selected]:not([data-selection-start]):not([data-selection-end])]:bg-muted group-data-[selection-mode=range]/calendar:[&[data-selected]:not([data-selection-start]):not([data-selection-end])]:text-foreground",
+        "cn-calendar-day-button relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 border-0 font-normal leading-none focus-visible:relative focus-visible:z-10 dark:hover:text-foreground data-disabled:pointer-events-none data-selection-end:rounded-(--cell-radius) data-selection-end:rounded-r-(--cell-radius) data-selection-start:rounded-(--cell-radius) data-selection-start:rounded-l-(--cell-radius) data-selected:bg-primary [&>span]:text-xs data-selected:text-primary-foreground [&>span]:opacity-70 data-outside-month:opacity-100 group-data-[selection-mode=range]/calendar:[&[data-selected]:not([data-selection-start]):not([data-selection-end])]:rounded-none group-data-[selection-mode=range]/calendar:[&[data-selected]:not([data-selection-start]):not([data-selection-end])]:bg-muted group-data-[selection-mode=range]/calendar:[&[data-selected]:not([data-selection-start]):not([data-selection-end])]:text-foreground",
         props.class,
       )}
       {...others}
