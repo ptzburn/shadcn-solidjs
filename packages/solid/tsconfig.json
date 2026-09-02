@@ -1,0 +1,22 @@
+{
+  // Only consumed by tsdown's declaration build. TypeScript 7 is the native
+  // `tsgo` compiler, and rolldown-plugin-dts switches to its tsgo generator
+  // whenever TS 7 is installed — that generator requires an explicit tsconfig
+  // and cannot read deno.json. Everything else in this package (deno check,
+  // deno lint, deno test) still reads compilerOptions from deno.json, so keep
+  // the two in step when either changes.
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["esnext", "dom", "dom.asynciterable", "dom.iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "@solidjs/web",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    // Sources import siblings with explicit .ts/.tsx extensions, Deno-style.
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src"]
+}

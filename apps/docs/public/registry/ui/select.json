@@ -1,7 +1,7 @@
 {
   "name": "select",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.0",
+    "@kobalte/core@2.0.0-alpha.1",
     "unplugin-icons",
     "@iconify-json/lucide"
   ],

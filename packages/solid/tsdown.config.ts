@@ -7,7 +7,7 @@ function generateConfig(jsx: boolean): UserConfig {
     platform: "browser",
     format: ["esm"],
     clean: !jsx,
-    dts: !jsx,
+    dts: jsx ? false : { tsconfig: "./tsconfig.json" },
     entry: {
       "message-scroller/index": "src/message-scroller/index.ts",
     },

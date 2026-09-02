@@ -17,14 +17,16 @@ import remarkSolidFrontmatter from "./src/lib/mdx/frontmatter.tsx";
 import remarkNpmCommand from "./src/lib/mdx/npm-command.ts";
 import rehypePrettyCodeSecondPass from "./src/lib/mdx/pretty-code.ts";
 
-// @kobalte/core@2.0.0-alpha.0 was built against solid-js rc.0, where a
-// signal write was visible to onSettled callbacks in the same flush. rc.1
-// gives those callbacks committed visibility (solidjs/signals #3006), so
-// the dismissable layer's settle-time registration reads its just-written
-// ref as undefined and never joins the layer stack — dialogs and popovers
-// then ignore Escape and outside clicks. Every consumer of that ref reads
-// it imperatively, so a plain box restores the rc.0 behavior. Remove when
-// Kobalte releases a build for rc.1.
+// @kobalte/core@2.0.0-alpha.1 ships the same dismissable layer as alpha.0,
+// written against solid-js rc.0, where a signal write was visible to
+// onSettled callbacks in the same flush. rc.1 through rc.5 give those
+// callbacks committed visibility (solidjs/signals #3006), so the layer's
+// settle-time registration reads its just-written ref as undefined and
+// never joins the layer stack — dialogs and sheets then ignore Escape and
+// outside clicks (measured again on rc.5 + alpha.1: without this transform
+// neither dismisses, with it both do). Every consumer of that ref reads it
+// imperatively, so a plain box restores the rc.0 behavior. Remove once a
+// Kobalte release changes the line matched below.
 function kobalteDismissableLayerFix(): Plugin {
   const broken =
     "const [ref, setRef] = createSignal(void 0, { ownedWrite: true });";
@@ -151,10 +153,12 @@ export default defineConfig({
         import.meta.url,
       ).pathname,
     },
-    // @kobalte/core@2.0.0-alpha.0 pins its solid-js and @solidjs/web peers to
-    // exactly 2.0.0-rc.0, so Deno installs it a private rc.0 copy next to the
-    // rc.1 the app uses. Two reactive runtimes would never share a context;
-    // dedupe resolves every import of the Solid packages to the app's copy.
+    // @kobalte/core@2.0.0-alpha.1 pins its solid-js and @solidjs/web peers to
+    // exactly 2.0.0-rc.3. Deno resolves the unsatisfied pin to the app's rc.5
+    // copy with a warning (a fresh install links one copy), but a lockfile
+    // can keep an older copy alive, as ours did through rc.4. Two reactive
+    // runtimes would never share a context; dedupe pins every import of the
+    // Solid packages to the app's copy so that can never happen.
     dedupe: ["solid-js", "@solidjs/web", "@solidjs/signals"],
   },
   build: {
@@ -168,6 +172,8 @@ export default defineConfig({
   ssr: {
     // Kobalte's prebuilt dist is client-only (top-level template() calls);
     // bundling it lets the solid plugin compile the .jsx source for SSR.
+    // Kobalte's prebuilt dist is client-only (top-level template() calls);
+    // bundling it lets the solid plugin compile the .jsx source for SSR.
     noExternal: ["@kobalte/core"],
   },
   plugins: [
@@ -177,16 +183,26 @@ export default defineConfig({
     },
     tailwindcss(),
     solid({
-      // Client-only until Solid 2 RC's hydration-key divergence for
-      // Dynamic children under Kobalte-style polymorphic components is
-      // fixed upstream. Still reproduces on solid-js 2.0.0-rc.1: every
-      // element child of a Kobalte button (its own, or any trigger built on
-      // one) is emitted with a server hydration id three slots ahead of the
-      // id the client computes, so the children are never claimed and the
-      // miss cascades through the rest of the document. Enabling SSR also
-      // needs `ssr.noExternal: true`, without which the server loads
-      // Kobalte's pinned solid-js copy and hydration cannot align at all.
-      // Flipping this back on is the whole revert (kobaltedev/kobalte#717).
+      // Client-only until Solid's hydration-key divergence is fixed. It is
+      // a Solid bug, not a Kobalte one: a lab route reproduced it
+      // with no Kobalte in the tree, and isolated it to one combination —
+      // a memo read *inside* a forwarded JSX prop expression, on a
+      // component that resolves its tag through Dynamic. Neither half does
+      // it alone. Same component with the reads hoisted to consts first
+      // hydrates; the Dynamic wrapper with static props hydrates; the same
+      // ternary reads on a plain <button> hydrate. With both, the server
+      // emits the trigger's element children two id slots ahead of the ids
+      // the client computes, so they are never claimed. Kobalte's
+      // ButtonRoot is exactly that shape (five ternaries over memos
+      // forwarded into Polymorphic), which is why every trigger is hit.
+      // rc.2 shipped a fix for a neighbouring case (#3033, id parity for a
+      // conditional in a forwarded prop) and rc.5 another (#3105, ids after
+      // a reactive lone spread); neither covers this one. Re-verified
+      // unchanged on rc.3, rc.4 and rc.5: same four misses, same two-slot
+      // gap, and Progress and Tabs still halt hydration outright.
+      // Enabling SSR also needs `ssr.noExternal: true`, without which the
+      // server loads Kobalte's pinned solid-js copy and hydration cannot
+      // align at all. Flipping this back on is the whole revert.
       ssr: false,
       // Explicit so the module graph keys the root by its real casing: the
       // plugin's default probes `src/App.*` first, which macOS's

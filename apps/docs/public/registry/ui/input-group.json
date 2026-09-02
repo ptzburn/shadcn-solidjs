@@ -1,7 +1,7 @@
 {
   "name": "input-group",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.0",
+    "@kobalte/core@2.0.0-alpha.1",
     "class-variance-authority"
   ],
   "registryDependencies": [
