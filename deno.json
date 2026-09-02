@@ -34,12 +34,5 @@
   },
   "allowScripts": [
     "npm:lefthook"
-  ],
-  "compilerOptions": {
-    "paths": {
-      "~icons/*": [
-        "./node_modules/unplugin-icons/types/solid.d.ts"
-      ]
-    }
-  }
+  ]
 }
