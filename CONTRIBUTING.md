@@ -220,6 +220,25 @@ open, Escape closes it, and a click outside closes it. If all three hold on
 every page, keep the Kobalte portals and delete this entry. If any fails, revert
 to `Portal` from `@solidjs/web`.
 
+### Rolldown is pinned to 1.2.4
+
+`apps/docs/package.json` declares `rolldown` at exactly `1.2.4` so that Vite's
+own `~1.2.4` range dedupes onto it. Last confirmed necessary with `vite@8.2.2`
+and `@solidjs/vite-plugin@3.0.0-next.37` (2026-09-02).
+
+Why: Rolldown 1.2.5 started folding modules that the entry already loads into
+the entry chunk instead of giving them their own chunk. The registry index
+lazy-loads every ui component, and `button` and `toast` are also in the entry
+graph, so their `import()` began resolving to the entry chunk. The Solid
+vite-plugin then treats the entry as a lazy facade, drops its entry flag from
+the manifest, and the prerendered `index.html` ships with no module script:
+every page blank, dev server fine.
+
+To retest, remove the pin, delete `deno.lock`, run `deno install`, build the
+docs, and confirm `apps/docs/dist/client/index.html` contains a
+`<script type="module"` tag. If it does, the plugin has been fixed and the pin
+can go.
+
 ### Server-side rendering stays off in the docs
 
 `ssr: false` in `apps/docs/vite.config.ts`. Last confirmed necessary on
