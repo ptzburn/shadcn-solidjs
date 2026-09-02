@@ -4,100 +4,100 @@
 
 ## Overview
 
-- [Introduction](https://v2.shadcn-solidjs.com/docs/introduction): Core principles—Open Code, Composition, Distribution, Beautiful Defaults, and AI-Ready design.
-- [Components](https://v2.shadcn-solidjs.com/docs/components): Index of every component available in the library.
-- [CLI](https://v2.shadcn-solidjs.com/docs/cli): Command-line tool for installing and managing components.
-- [Figma](https://v2.shadcn-solidjs.com/docs/figma): Figma design resources.
+- [Introduction](https://v2.shadcn-solidjs.com/docs/introduction.md): Core principles—Open Code, Composition, Distribution, Beautiful Defaults, and AI-Ready design.
+- [Components](https://v2.shadcn-solidjs.com/docs/components.md): Index of every component available in the library.
+- [CLI](https://v2.shadcn-solidjs.com/docs/cli.md): Command-line tool for installing and managing components.
+- [Figma](https://v2.shadcn-solidjs.com/docs/figma.md): Figma design resources.
 
 ## Installation
 
-- [Installation](https://v2.shadcn-solidjs.com/docs/installation): How to install dependencies and structure your app.
-- [Solid](https://v2.shadcn-solidjs.com/docs/installation/solid): Install and configure a Solid 2.0 project.
+- [Installation](https://v2.shadcn-solidjs.com/docs/installation.md): How to install dependencies and structure your app.
+- [Solid](https://v2.shadcn-solidjs.com/docs/installation/solid.md): Install and configure a Solid 2.0 project.
 
 ## Components
 
 ### Form & Input
 
-- [Field](https://v2.shadcn-solidjs.com/docs/components/field): Combine labels, controls, and help text to compose accessible form fields and grouped inputs.
-- [Button](https://v2.shadcn-solidjs.com/docs/components/button): Displays a button or a component that looks like a button.
-- [Button Group](https://v2.shadcn-solidjs.com/docs/components/button-group): A container that groups related buttons together with consistent styling.
-- [Input](https://v2.shadcn-solidjs.com/docs/components/input): A text input component for forms and user data entry with built-in styling and accessibility features.
-- [Input Group](https://v2.shadcn-solidjs.com/docs/components/input-group): Add addons, buttons, and helper content to inputs.
-- [Input OTP](https://v2.shadcn-solidjs.com/docs/components/input-otp): Accessible one-time password component with copy-paste functionality.
-- [Textarea](https://v2.shadcn-solidjs.com/docs/components/textarea): Displays a form textarea or a component that looks like a textarea.
-- [Checkbox](https://v2.shadcn-solidjs.com/docs/components/checkbox): A control that allows the user to toggle between checked and not checked.
-- [Radio Group](https://v2.shadcn-solidjs.com/docs/components/radio-group): A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
-- [Select](https://v2.shadcn-solidjs.com/docs/components/select): Displays a list of options for the user to pick from—triggered by a button.
-- [Native Select](https://v2.shadcn-solidjs.com/docs/components/native-select): A styled native HTML select element with consistent design system integration.
-- [Switch](https://v2.shadcn-solidjs.com/docs/components/switch): A control that allows the user to toggle between checked and not checked.
-- [Slider](https://v2.shadcn-solidjs.com/docs/components/slider): An input where the user selects a value from within a given range.
-- [Combobox](https://v2.shadcn-solidjs.com/docs/components/combobox): Autocomplete input with a list of suggestions.
-- [Label](https://v2.shadcn-solidjs.com/docs/components/label): Renders an accessible label associated with controls.
+- [Field](https://v2.shadcn-solidjs.com/docs/components/field.md): Combine labels, controls, and help text to compose accessible form fields and grouped inputs.
+- [Button](https://v2.shadcn-solidjs.com/docs/components/button.md): Displays a button or a component that looks like a button.
+- [Button Group](https://v2.shadcn-solidjs.com/docs/components/button-group.md): A container that groups related buttons together with consistent styling.
+- [Input](https://v2.shadcn-solidjs.com/docs/components/input.md): A text input component for forms and user data entry with built-in styling and accessibility features.
+- [Input Group](https://v2.shadcn-solidjs.com/docs/components/input-group.md): Add addons, buttons, and helper content to inputs.
+- [Input OTP](https://v2.shadcn-solidjs.com/docs/components/input-otp.md): Accessible one-time password component with copy-paste functionality.
+- [Textarea](https://v2.shadcn-solidjs.com/docs/components/textarea.md): Displays a form textarea or a component that looks like a textarea.
+- [Checkbox](https://v2.shadcn-solidjs.com/docs/components/checkbox.md): A control that allows the user to toggle between checked and not checked.
+- [Radio Group](https://v2.shadcn-solidjs.com/docs/components/radio-group.md): A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
+- [Select](https://v2.shadcn-solidjs.com/docs/components/select.md): Displays a list of options for the user to pick from—triggered by a button.
+- [Native Select](https://v2.shadcn-solidjs.com/docs/components/native-select.md): A styled native HTML select element with consistent design system integration.
+- [Switch](https://v2.shadcn-solidjs.com/docs/components/switch.md): A control that allows the user to toggle between checked and not checked.
+- [Slider](https://v2.shadcn-solidjs.com/docs/components/slider.md): An input where the user selects a value from within a given range.
+- [Combobox](https://v2.shadcn-solidjs.com/docs/components/combobox.md): Autocomplete input with a list of suggestions.
+- [Label](https://v2.shadcn-solidjs.com/docs/components/label.md): Renders an accessible label associated with controls.
 
 ### Layout & Navigation
 
-- [Accordion](https://v2.shadcn-solidjs.com/docs/components/accordion): A vertically stacked set of interactive headings that each reveal a section of content.
-- [Breadcrumb](https://v2.shadcn-solidjs.com/docs/components/breadcrumb): Displays the path to the current resource using a hierarchy of links.
-- [Navigation Menu](https://v2.shadcn-solidjs.com/docs/components/navigation-menu): A collection of links for navigating websites.
-- [Sidebar](https://v2.shadcn-solidjs.com/docs/components/sidebar): A composable, themeable and customizable sidebar component.
-- [Tabs](https://v2.shadcn-solidjs.com/docs/components/tabs): A set of layered sections of content—known as tab panels—that are displayed one at a time.
-- [Separator](https://v2.shadcn-solidjs.com/docs/components/separator): Visually or semantically separates content.
-- [Scroll Area](https://v2.shadcn-solidjs.com/docs/components/scroll-area): Augments native scroll functionality for custom, cross-browser styling.
-- [Resizable](https://v2.shadcn-solidjs.com/docs/components/resizable): Accessible resizable panel groups and layouts with keyboard support.
+- [Accordion](https://v2.shadcn-solidjs.com/docs/components/accordion.md): A vertically stacked set of interactive headings that each reveal a section of content.
+- [Breadcrumb](https://v2.shadcn-solidjs.com/docs/components/breadcrumb.md): Displays the path to the current resource using a hierarchy of links.
+- [Navigation Menu](https://v2.shadcn-solidjs.com/docs/components/navigation-menu.md): A collection of links for navigating websites.
+- [Sidebar](https://v2.shadcn-solidjs.com/docs/components/sidebar.md): A composable, themeable and customizable sidebar component.
+- [Tabs](https://v2.shadcn-solidjs.com/docs/components/tabs.md): A set of layered sections of content—known as tab panels—that are displayed one at a time.
+- [Separator](https://v2.shadcn-solidjs.com/docs/components/separator.md): Visually or semantically separates content.
+- [Scroll Area](https://v2.shadcn-solidjs.com/docs/components/scroll-area.md): Augments native scroll functionality for custom, cross-browser styling.
+- [Resizable](https://v2.shadcn-solidjs.com/docs/components/resizable.md): Accessible resizable panel groups and layouts with keyboard support.
 
 ### Overlays & Dialogs
 
-- [Dialog](https://v2.shadcn-solidjs.com/docs/components/dialog): A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
-- [Alert Dialog](https://v2.shadcn-solidjs.com/docs/components/alert-dialog): A modal dialog that interrupts the user with important content and expects a response.
-- [Sheet](https://v2.shadcn-solidjs.com/docs/components/sheet): Extends the Dialog component to display content that complements the main content of the screen.
-- [Drawer](https://v2.shadcn-solidjs.com/docs/components/drawer): A drawer component for Solid.
-- [Popover](https://v2.shadcn-solidjs.com/docs/components/popover): Displays rich content in a portal, triggered by a button.
-- [Tooltip](https://v2.shadcn-solidjs.com/docs/components/tooltip): A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
-- [Hover Card](https://v2.shadcn-solidjs.com/docs/components/hover-card): For sighted users to preview content available behind a link.
-- [Context Menu](https://v2.shadcn-solidjs.com/docs/components/context-menu): Displays a menu of actions triggered by a right click.
-- [Dropdown Menu](https://v2.shadcn-solidjs.com/docs/components/dropdown-menu): Displays a menu to the user — such as a set of actions or functions — triggered by a button.
-- [Menubar](https://v2.shadcn-solidjs.com/docs/components/menubar): A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
-- [Command](https://v2.shadcn-solidjs.com/docs/components/command): Command menu for search and quick actions.
+- [Dialog](https://v2.shadcn-solidjs.com/docs/components/dialog.md): A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.
+- [Alert Dialog](https://v2.shadcn-solidjs.com/docs/components/alert-dialog.md): A modal dialog that interrupts the user with important content and expects a response.
+- [Sheet](https://v2.shadcn-solidjs.com/docs/components/sheet.md): Extends the Dialog component to display content that complements the main content of the screen.
+- [Drawer](https://v2.shadcn-solidjs.com/docs/components/drawer.md): A drawer component for Solid.
+- [Popover](https://v2.shadcn-solidjs.com/docs/components/popover.md): Displays rich content in a portal, triggered by a button.
+- [Tooltip](https://v2.shadcn-solidjs.com/docs/components/tooltip.md): A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+- [Hover Card](https://v2.shadcn-solidjs.com/docs/components/hover-card.md): For sighted users to preview content available behind a link.
+- [Context Menu](https://v2.shadcn-solidjs.com/docs/components/context-menu.md): Displays a menu of actions triggered by a right click.
+- [Dropdown Menu](https://v2.shadcn-solidjs.com/docs/components/dropdown-menu.md): Displays a menu to the user — such as a set of actions or functions — triggered by a button.
+- [Menubar](https://v2.shadcn-solidjs.com/docs/components/menubar.md): A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
+- [Command](https://v2.shadcn-solidjs.com/docs/components/command.md): Command menu for search and quick actions.
 
 ### Feedback & Status
 
-- [Alert](https://v2.shadcn-solidjs.com/docs/components/alert): Displays a callout for user attention.
-- [Toast](https://v2.shadcn-solidjs.com/docs/components/toast): A succinct message that is displayed temporarily.
-- [Progress](https://v2.shadcn-solidjs.com/docs/components/progress): Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
-- [Spinner](https://v2.shadcn-solidjs.com/docs/components/spinner): An indicator that can be used to show a loading state.
-- [Skeleton](https://v2.shadcn-solidjs.com/docs/components/skeleton): Use to show a placeholder while content is loading.
-- [Badge](https://v2.shadcn-solidjs.com/docs/components/badge): Displays a badge or a component that looks like a badge.
-- [Empty](https://v2.shadcn-solidjs.com/docs/components/empty): Use the Empty component to display an empty state.
+- [Alert](https://v2.shadcn-solidjs.com/docs/components/alert.md): Displays a callout for user attention.
+- [Toast](https://v2.shadcn-solidjs.com/docs/components/toast.md): A succinct message that is displayed temporarily.
+- [Progress](https://v2.shadcn-solidjs.com/docs/components/progress.md): Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
+- [Spinner](https://v2.shadcn-solidjs.com/docs/components/spinner.md): An indicator that can be used to show a loading state.
+- [Skeleton](https://v2.shadcn-solidjs.com/docs/components/skeleton.md): Use to show a placeholder while content is loading.
+- [Badge](https://v2.shadcn-solidjs.com/docs/components/badge.md): Displays a badge or a component that looks like a badge.
+- [Empty](https://v2.shadcn-solidjs.com/docs/components/empty.md): Use the Empty component to display an empty state.
 
 ### Display & Media
 
-- [Avatar](https://v2.shadcn-solidjs.com/docs/components/avatar): An image element with a fallback for representing the user.
-- [Card](https://v2.shadcn-solidjs.com/docs/components/card): Displays a card with header, content, and footer.
-- [Table](https://v2.shadcn-solidjs.com/docs/components/table): A responsive table component.
-- [Carousel](https://v2.shadcn-solidjs.com/docs/components/carousel): A carousel with motion and swipe built using Embla.
-- [Aspect Ratio](https://v2.shadcn-solidjs.com/docs/components/aspect-ratio): Displays content within a desired ratio.
-- [Item](https://v2.shadcn-solidjs.com/docs/components/item): A versatile component for displaying content with media, title, description, and actions.
-- [Kbd](https://v2.shadcn-solidjs.com/docs/components/kbd): Used to display textual user input from keyboard.
+- [Avatar](https://v2.shadcn-solidjs.com/docs/components/avatar.md): An image element with a fallback for representing the user.
+- [Card](https://v2.shadcn-solidjs.com/docs/components/card.md): Displays a card with header, content, and footer.
+- [Table](https://v2.shadcn-solidjs.com/docs/components/table.md): A responsive table component.
+- [Carousel](https://v2.shadcn-solidjs.com/docs/components/carousel.md): A carousel with motion and swipe built using Embla.
+- [Aspect Ratio](https://v2.shadcn-solidjs.com/docs/components/aspect-ratio.md): Displays content within a desired ratio.
+- [Item](https://v2.shadcn-solidjs.com/docs/components/item.md): A versatile component for displaying content with media, title, description, and actions.
+- [Kbd](https://v2.shadcn-solidjs.com/docs/components/kbd.md): Used to display textual user input from keyboard.
 
 ### Chat & Messaging
 
-- [Message](https://v2.shadcn-solidjs.com/docs/components/message): Displays a message in a conversation, with optional avatar, header, footer, and alignment.
-- [Message Scroller](https://v2.shadcn-solidjs.com/docs/components/message-scroller): A chat scroll container that anchors turns, opens saved transcripts, follows streamed responses, loads history without jumping, and jumps to any message.
-- [Bubble](https://v2.shadcn-solidjs.com/docs/components/bubble): Displays conversational content in a message bubble. Supports variants, alignment, grouping, reactions, and collapsible content.
-- [Marker](https://v2.shadcn-solidjs.com/docs/components/marker): Displays an inline status, system note, bordered row, or labeled separator in a conversation.
-- [Attachment](https://v2.shadcn-solidjs.com/docs/components/attachment): Displays a file or image attachment with media, metadata, upload state, and actions.
+- [Message](https://v2.shadcn-solidjs.com/docs/components/message.md): Displays a message in a conversation, with optional avatar, header, footer, and alignment.
+- [Message Scroller](https://v2.shadcn-solidjs.com/docs/components/message-scroller.md): A chat scroll container that anchors turns, opens saved transcripts, follows streamed responses, loads history without jumping, and jumps to any message.
+- [Bubble](https://v2.shadcn-solidjs.com/docs/components/bubble.md): Displays conversational content in a message bubble. Supports variants, alignment, grouping, reactions, and collapsible content.
+- [Marker](https://v2.shadcn-solidjs.com/docs/components/marker.md): Displays an inline status, system note, bordered row, or labeled separator in a conversation.
+- [Attachment](https://v2.shadcn-solidjs.com/docs/components/attachment.md): Displays a file or image attachment with media, metadata, upload state, and actions.
 
 ### Misc
 
-- [Collapsible](https://v2.shadcn-solidjs.com/docs/components/collapsible): An interactive component which expands/collapses a panel.
-- [Toggle](https://v2.shadcn-solidjs.com/docs/components/toggle): A two-state button that can be either on or off.
-- [Toggle Group](https://v2.shadcn-solidjs.com/docs/components/toggle-group): A set of two-state buttons that can be toggled on or off.
-- [Pagination](https://v2.shadcn-solidjs.com/docs/components/pagination): Pagination with page navigation, next and previous links.
+- [Collapsible](https://v2.shadcn-solidjs.com/docs/components/collapsible.md): An interactive component which expands/collapses a panel.
+- [Toggle](https://v2.shadcn-solidjs.com/docs/components/toggle.md): A two-state button that can be either on or off.
+- [Toggle Group](https://v2.shadcn-solidjs.com/docs/components/toggle-group.md): A set of two-state buttons that can be toggled on or off.
+- [Pagination](https://v2.shadcn-solidjs.com/docs/components/pagination.md): Pagination with page navigation, next and previous links.
 
 ## Dark Mode
 
-- [Dark Mode](https://v2.shadcn-solidjs.com/docs/dark-mode): Adding dark mode to your site.
-- [Dark Mode - Solid](https://v2.shadcn-solidjs.com/docs/dark-mode/solid): Dark mode setup for a Solid app.
+- [Dark Mode](https://v2.shadcn-solidjs.com/docs/dark-mode.md): Adding dark mode to your site.
+- [Dark Mode - Solid](https://v2.shadcn-solidjs.com/docs/dark-mode/solid.md): Dark mode setup for a Solid app.
 
 ## Registry
 
@@ -106,3 +106,7 @@
 ### Schemas
 
 - [components.json Schema](https://v2.shadcn-solidjs.com/schema.json): JSON Schema for `components.json`. Defines the Tailwind stylesheet and base color, the icon library, path aliases, and additional registries. There is no `rsc` field (Solid has no React Server Components), no `tailwind.config` (Tailwind v4 only), and only `"tsx": true` is supported.
+
+## Full text
+
+- [llms-full.txt](https://v2.shadcn-solidjs.com/llms-full.txt): Every page above as one Markdown file, in this order.

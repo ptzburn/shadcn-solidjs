@@ -21,7 +21,7 @@ const styleMap = createStyleMap(
  * Docs code blocks show the consumer form of registry files: style
  * markers inlined and icons resolved, matching what the CLI installs.
  */
-function toConsumerSource(source: string): string {
+export function toConsumerSource(source: string): string {
   return resolveIcons(inlineStyles(source, styleMap), defaultIconLibrary).code;
 }
 
