@@ -1,4 +1,4 @@
-import { useColorMode } from "~/lib/color-mode.tsx";
+import { useColorMode } from "@kobalte/core/color-mode";
 import { Button } from "~/registry/ui/button.tsx";
 
 export function ModeSwitcher() {

@@ -1,4 +1,4 @@
-import { useColorMode } from "~/lib/color-mode.tsx";
+import { useColorMode } from "@kobalte/core/color-mode";
 
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Button } from "~/registry/ui/button.tsx";

@@ -5,14 +5,14 @@ description: Adding dark mode to your Solid app.
 
 <Steps>
 
-### Add the color mode helper
+### Install Kobalte
 
-Start by adding `color-mode` to your project. It provides the provider,
-the pre-paint script and the `useColorMode` hook, and it mirrors the API of
-Kobalte's `color-mode` module.
+Kobalte's `color-mode` module provides the provider, the pre-paint script
+and the `useColorMode` hook. If you have installed any component, it is
+already there.
 
 ```bash
-npx @ptzburn/shadcn-solidjs@beta add color-mode
+npm install @kobalte/core@2.0.0-alpha.1
 ```
 
 ### Add the script
@@ -23,7 +23,7 @@ flashes the wrong theme.
 
 ```tsx title="src/Document.tsx" {2,10} showLineNumbers
 import { HydrationScript, type JSX } from "@solidjs/web"
-import { ColorModeScript } from "~/lib/color-mode"
+import { ColorModeScript } from "@kobalte/core/color-mode"
 
 export default function Document(props: { children: JSX.Element }) {
   return (
@@ -49,7 +49,7 @@ Add the `ColorModeProvider` to your `App.tsx`, using the same storage key.
 
 ```tsx title="src/App.tsx" {2,6,9,13} showLineNumbers
 import { Loading } from "solid-js"
-import { ColorModeProvider, createLocalStorageManager } from "~/lib/color-mode"
+import { ColorModeProvider, createLocalStorageManager } from "@kobalte/core/color-mode"
 import { Router } from "./router"
 
 export default function App() {

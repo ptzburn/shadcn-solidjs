@@ -1,6 +1,6 @@
+import { ColorModeScript } from "@kobalte/core/color-mode";
 import { HydrationScript, type JSX } from "@solidjs/web";
 import { BaseColorScript } from "~/lib/base-color-context.tsx";
-import { ColorModeScript } from "~/lib/color-mode.tsx";
 import { StyleScript } from "~/lib/style-context.tsx";
 
 export default function Document(props: { children: JSX.Element }) {
