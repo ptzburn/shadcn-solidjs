@@ -34,15 +34,17 @@ let third-party registries interoperate.
 
 The runtime layer has no single upstream counterpart. Upstream folds runtime
 assumptions directly into `get-project-info.ts` and `get-package-manager.ts`,
-which is workable when every project is a Node project.
+which is workable when every project is a Node project. This layer once also
+targeted Deno projects (`deno.json` import maps, `deno add`); that support was
+removed in October 2026 when the project left Deno, and the seam stayed because
+it keeps `init` and `add` free of project-layout details.
 
 | Ours                             | Nearest upstream                          | Notes                                                                                                                                                                                                                            |
 | -------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `src/runtime/target.ts`          | —                                         | The `ProjectTarget` seam itself. Describes the project being installed _into_, which is independent of the runtime the CLI executes under.                                                                                       |
-| `src/runtime/detect.ts`          | `utils/get-project-info.ts` (partial)     | Detects the _runtime_, not the framework. Decides per directory walking up, so a Node app nested in a Deno workspace still resolves as Node.                                                                                     |
-| `src/runtime/deno.ts`            | —                                         | No upstream equivalent. Aliases come from `deno.json` `imports`, merged nearest-first so a workspace member overrides the root.                                                                                                  |
+| `src/runtime/detect.ts`          | `utils/get-project-info.ts` (partial)     | Finds the nearest `package.json`, walking up, so a workspace member nested in a larger repository resolves to the member.                                                                                                        |
 | `src/runtime/node.ts`            | `utils/resolve-import.ts`                 | `get-tsconfig`'s `createPathsMatcher` rather than `tsconfig-paths`; it follows `extends` and reads JSONC. Same choice shadcn-vue made.                                                                                           |
-| `src/runtime/package-manager.ts` | `utils/get-package-manager.ts`            | Hand-rolled instead of `@antfu/ni`. Prefers the corepack `packageManager` field, then a lockfile, then the invoking agent. Upstream returns `"deno"` as a package manager; here the runtime is a separate axis from the manager. |
+| `src/runtime/package-manager.ts` | `utils/get-package-manager.ts`            | Hand-rolled instead of `@antfu/ni`. Prefers the corepack `packageManager` field, then a lockfile, then the invoking agent. npm, pnpm, yarn and bun only.                                                                         |
 | `src/runtime/exec.ts`            | (`execa` usage)                           | `node:child_process` directly. `shell` is never enabled, so arguments cannot be reinterpreted.                                                                                                                                   |
 | `src/utils/jsonc.ts`             | the stripper inside `get-project-info.ts` | Trailing commas are removed from recorded offsets rather than by regex, so a comma inside a string value is never mistaken for one.                                                                                              |
 

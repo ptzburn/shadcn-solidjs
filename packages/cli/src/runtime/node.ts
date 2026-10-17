@@ -19,8 +19,6 @@ import {
 const PROJECT_ROOT_TARGETS = ["./*", "./src/*", "./app/*", "./resources/js/*"];
 
 export class NodeTarget implements ProjectTarget {
-  readonly runtime = "node" as const;
-
   #tsconfig: TsConfigResult | null | undefined;
 
   constructor(readonly cwd: string, readonly configPath: string) {}
@@ -93,8 +91,8 @@ export class NodeTarget implements ProjectTarget {
   }
 
   /**
-   * Registry sources carry Deno-mandatory extensions; Node and Vite projects
-   * conventionally import without them.
+   * Registry sources carry extensions; Node and Vite projects conventionally
+   * import without them.
    */
   importSpecifier(specifier: string): string {
     return specifier.replace(/\.tsx?$/, "");

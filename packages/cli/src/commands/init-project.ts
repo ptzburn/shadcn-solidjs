@@ -12,7 +12,6 @@ import {
   SHADCN_SOLIDJS_URL,
 } from "../registry/constants.ts";
 import { fetchRegistryIndex, fetchRegistryItem } from "../registry/fetcher.ts";
-import { readNodeModulesDir } from "../runtime/deno.ts";
 import type { ProjectTarget } from "../runtime/target.ts";
 import {
   BASE_DEPENDENCIES,
@@ -48,8 +47,6 @@ export interface InitResult {
   /** Set when the project needs unplugin-icons registered by hand. */
   viteConfigPath: string | null;
   needsIconPlugin: boolean;
-  /** Deno only: a real node_modules is required by the Vite plugins. */
-  nodeModulesDirWarning: string | null;
 }
 
 /**
@@ -96,9 +93,7 @@ export async function buildConfig(
   const prefix = await target.aliasPrefix();
   if (!prefix) {
     throw new InitError(
-      target.runtime === "deno"
-        ? 'No path alias found. Add one to "imports" in deno.json, for example {"~/": "./src/"}.'
-        : 'No path alias found. Add one to "paths" in tsconfig.json, for example {"@/*": ["./src/*"]}.',
+      'No path alias found. Add one to "paths" in tsconfig.json, for example {"@/*": ["./src/*"]}.',
     );
   }
 
@@ -192,18 +187,11 @@ export async function initProject(
     ? !readFileSync(viteConfigPath, "utf8").includes("unplugin-icons")
     : true;
 
-  const nodeModulesDir = target.runtime === "deno"
-    ? readNodeModulesDir(target.configPath)
-    : undefined;
-
   return {
     configPath,
     config,
     cssPath,
     viteConfigPath,
     needsIconPlugin,
-    nodeModulesDirWarning: nodeModulesDir === "none"
-      ? 'deno.json sets "nodeModulesDir": "none", but unplugin-icons and the Tailwind Vite plugin need a real node_modules. Set it to "auto" or "manual".'
-      : null,
   };
 }

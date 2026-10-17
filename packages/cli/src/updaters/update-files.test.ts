@@ -43,7 +43,6 @@ function makeConfig(cwd: string): Config {
 }
 
 const target: ProjectTarget = {
-  runtime: "node",
   cwd: "/project",
   configPath: "/project/package.json",
   aliasPrefix: () => Promise.resolve("@"),

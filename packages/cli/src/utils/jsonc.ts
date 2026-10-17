@@ -1,5 +1,5 @@
 /**
- * A minimal JSONC reader for `deno.jsonc`.
+ * A minimal JSONC reader for `components.json` and tsconfig-style files.
  *
  * Hand-rolled rather than pulling `@std/jsonc`: a `jsr:` dependency is
  * rewritten to an `@jsr/`-scoped package by the npm build, which would force

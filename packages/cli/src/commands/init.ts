@@ -51,11 +51,6 @@ function reportNextSteps(result: InitResult, cwd: string): void {
   );
   logger.success(`Updated ${path.relative(cwd, result.cssPath)}`);
 
-  if (result.nodeModulesDirWarning) {
-    logger.log();
-    logger.warn(result.nodeModulesDirWarning);
-  }
-
   if (result.needsIconPlugin) {
     logger.log();
     logger.warn(
@@ -153,7 +148,7 @@ export const init = new Command()
       const target = detectProjectTarget(cwd);
       if (!target) {
         throw new InitError(
-          `Could not find a deno.json or package.json above ${cwd}.`,
+          `Could not find a package.json above ${cwd}.`,
         );
       }
 

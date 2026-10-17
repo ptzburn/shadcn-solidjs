@@ -36,34 +36,29 @@ function makeConfig(prefix: string): Config {
 }
 
 /** Only `importSpecifier` matters here; the rest is never reached. */
-function fakeTarget(runtime: "deno" | "node"): ProjectTarget {
+function fakeTarget(): ProjectTarget {
   return {
-    runtime,
     cwd: "/project",
-    configPath: "/project/config",
+    configPath: "/project/package.json",
     aliasPrefix: () => Promise.resolve(null),
     resolveImport: () => Promise.resolve(null),
     existingDependencies: () => Promise.resolve(new Set<string>()),
     addDependencies: () => Promise.resolve(),
-    importSpecifier: (specifier: string) =>
-      runtime === "deno" ? specifier : specifier.replace(/\.tsx?$/, ""),
+    importSpecifier: (specifier: string) => specifier.replace(/\.tsx?$/, ""),
   };
 }
 
-const deno = { config: makeConfig("~"), target: fakeTarget("deno") };
-const node = { config: makeConfig("@"), target: fakeTarget("node") };
+const node = { config: makeConfig("@"), target: fakeTarget() };
 
 test("rewrites the utils import onto the configured alias", () => {
   const source = 'import { cn } from "~/lib/utils.ts";';
 
-  expect(transformImports(source, deno)).toEqual('import { cn } from "~/lib/utils.ts";');
   expect(transformImports(source, node)).toEqual('import { cn } from "@/lib/utils";');
 });
 
 test("rewrites relative sibling imports onto the ui alias", () => {
   const source = 'import { Button } from "./button.tsx";';
 
-  expect(transformImports(source, deno)).toEqual('import { Button } from "~/components/ui/button.tsx";');
   expect(transformImports(source, node)).toEqual('import { Button } from "@/components/ui/button";');
 });
 
@@ -71,7 +66,6 @@ test("rewrites hook imports onto the hooks alias", () => {
   const source =
     'import { useMediaQuery } from "~/lib/hooks/use-media-query.ts";';
 
-  expect(transformImports(source, deno)).toEqual('import { useMediaQuery } from "~/hooks/use-media-query.ts";');
   expect(transformImports(source, node)).toEqual('import { useMediaQuery } from "@/hooks/use-media-query";');
 });
 
@@ -83,14 +77,12 @@ test("leaves bare package specifiers alone", () => {
   ].join("\n");
 
   expect(transformImports(source, node)).toEqual(source);
-  expect(transformImports(source, deno)).toEqual(source);
 });
 
 test("leaves unplugin-icons virtual modules alone", () => {
   const source = 'import IconChevronDown from "~icons/lucide/chevron-down";';
 
   expect(transformImports(source, node)).toEqual(source);
-  expect(transformImports(source, deno)).toEqual(source);
 });
 
 test("rewrites type-only and side-effect imports", () => {
@@ -125,21 +117,4 @@ test("transforms real sidebar source end to end", async () => {
   expect(!output.includes('"~/lib/'), "no source alias should survive").toBe(true);
   expect(!output.includes('from "./'), "no relative sibling should survive").toBe(true);
   expect(output).toContain('"solid-js"');
-});
-
-test("Deno output keeps every extension it needs", async () => {
-  clearRegistryCache();
-  const tree = await resolveRegistryTree(["sidebar"], {
-    iconLibrary: "lucide",
-    registries: {
-      "@shadcn-solidjs": `${R_DIR}/icons/{iconLibrary}/{name}.json`,
-    },
-  });
-
-  const sidebar = tree.files.find((file) => file.path.endsWith("sidebar.tsx"))!;
-  const output = transformImports(sidebar.content!, deno);
-
-  expect(output).toContain('"~/components/ui/button.tsx"');
-  expect(output).toContain('"~/lib/utils.ts"');
-  expect(output).toContain('"~/hooks/use-media-query.ts"');
 });

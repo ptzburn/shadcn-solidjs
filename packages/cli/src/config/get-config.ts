@@ -29,7 +29,7 @@ export class UnresolvedAliasError extends Error {
     super(
       `Could not resolve the following aliases in ${cwd}: ${
         aliases.join(", ")
-      }. Check the "paths" in your tsconfig.json or "imports" in your deno.json.`,
+      }. Check the "paths" in your tsconfig.json.`,
     );
     this.name = "UnresolvedAliasError";
   }
@@ -130,7 +130,7 @@ export async function getConfig(cwd: string): Promise<Config | null> {
   const target = detectProjectTarget(cwd);
   if (!target) {
     throw new UnsupportedConfigError(
-      `Could not find a deno.json or package.json above ${cwd}.`,
+      `Could not find a package.json above ${cwd}.`,
     );
   }
 

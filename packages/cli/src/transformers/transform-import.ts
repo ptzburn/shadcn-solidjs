@@ -24,9 +24,9 @@ function basename(specifier: string): string {
  * and leaves everything else — bare npm packages, `solid-js`, and the
  * `~icons/<library>/<name>` virtual modules — untouched.
  *
- * The rewritten specifier keeps the source extension so the target can decide:
- * Deno resolves by exact path and needs it, Node and Vite projects omit it.
- * Aliases in components.json are written without an extension either way.
+ * The rewritten specifier keeps the source extension so the target can decide;
+ * Node and Vite projects import without it. Aliases in components.json are
+ * written without an extension either way.
  */
 function rewrite(specifier: string, config: Config): string | null {
   const extension = specifier.match(EXTENSION_RE)?.[0] ?? "";

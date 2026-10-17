@@ -30,7 +30,7 @@ test("keeps an escaped quote inside a string", () => {
   expect(parseJsonc('{"a": "say \\"hi\\", ok"}')).toEqual({ a: 'say "hi", ok' });
 });
 
-test("reads a realistic deno.jsonc", () => {
+test("reads a realistic jsonc config file", () => {
   const parsed = parseJsonc(`{
     // workspace root
     "nodeModulesDir": "manual",
