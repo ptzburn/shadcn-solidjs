@@ -42,12 +42,6 @@ Then add components:
 npx @ptzburn/shadcn-solidjs@beta add button card dialog
 ```
 
-Running on Deno? `dx` is Deno's `npx`:
-
-```bash
-dx -A npm:@ptzburn/shadcn-solidjs@beta init
-```
-
 The installation guide walks through a project created from the official Solid
 2.0 templates.
 
@@ -95,9 +89,8 @@ mapping and the reasoning behind each divergence.
 
 ## Contributing
 
-This is a Deno-native monorepo. See [CONTRIBUTING.md](CONTRIBUTING.md) for the
-workspace layout, the task commands, and how to run the docs site and CLI
-locally.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the workspace layout, the commands,
+and how to run the docs site and CLI locally.
 
 ## Credits
 

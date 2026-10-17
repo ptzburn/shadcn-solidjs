@@ -16,7 +16,6 @@ interface CodeBlockCommandProps {
   yarn: string;
   pnpm: string;
   bun: string;
-  deno: string;
 }
 
 /**
@@ -36,7 +35,6 @@ const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
     npm: props.npm,
     yarn: props.yarn,
     bun: props.bun,
-    deno: props.deno,
   });
 
   const copyCommand = () => {

@@ -11,7 +11,6 @@ import { mdxTags } from "~/lib/mdx/tags.ts";
 
 import { type Component, createContext, merge, useContext } from "solid-js";
 
-// deno-lint-ignore no-explicit-any -- MDX maps components with arbitrary props
 type MDXComponents = Record<string, Component<any>>;
 
 const defaultComponents: MDXComponents = Object.fromEntries(

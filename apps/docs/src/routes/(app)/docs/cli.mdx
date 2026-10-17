@@ -20,11 +20,11 @@ Which icon library would you like to use? › Lucide
 Which style would you like to use? › Nova
 ```
 
-Paths are not asked for. `init` reads the alias your project already declares —
-`imports` in `deno.json`, or `paths` in `tsconfig.json` — and finds the
-stylesheet that imports Tailwind, so the generated `components.json` matches the
-project rather than imposing a layout on it. Both need to exist first; `init`
-reports what is missing if they don't.
+Paths are not asked for. `init` reads the alias your project already declares
+in `paths` in `tsconfig.json`, and finds the stylesheet that imports Tailwind,
+so the generated `components.json` matches the project rather than imposing a
+layout on it. Both need to exist first; `init` reports what is missing if they
+don't.
 
 To change where components are written, edit the `aliases` in
 `components.json` afterwards.

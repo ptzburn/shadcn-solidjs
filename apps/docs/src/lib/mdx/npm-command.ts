@@ -11,20 +11,12 @@ type CommandVariants = {
   yarn: string;
   pnpm: string;
   bun: string;
-  deno: string;
 };
-
-/** Bare package names resolve to npm, so `deno add` takes them as-is. */
-function denoAdd(command: string): string {
-  const args = command.replace("npm install", "").trim();
-  return args ? `deno add ${args}` : "deno install";
-}
 
 /**
  * Port of the upstream package manager derivation (lib/highlight-code.ts
- * transformers), plus branches upstream never encounters: npm init x is
- * npm create x, and deno commands are derived per shape (`deno create`
- * adds the create- prefix itself, like npm create; `dx` is Deno's npx).
+ * transformers), plus one branch upstream never encounters: npm init x is
+ * npm create x.
  */
 function packageManagerVariants(command: string): CommandVariants | undefined {
   if (command.startsWith("npm install")) {
@@ -33,7 +25,6 @@ function packageManagerVariants(command: string): CommandVariants | undefined {
       yarn: command.replace("npm install", "yarn add"),
       pnpm: command.replace("npm install", "pnpm add"),
       bun: command.replace("npm install", "bun add"),
-      deno: denoAdd(command),
     };
   }
   if (command.startsWith("npx create-")) {
@@ -42,7 +33,6 @@ function packageManagerVariants(command: string): CommandVariants | undefined {
       yarn: command.replace("npx create-", "yarn create "),
       pnpm: command.replace("npx create-", "pnpm create "),
       bun: command.replace("npx", "bunx --bun"),
-      deno: command.replace("npx create-", "deno create npm:"),
     };
   }
   if (command.startsWith("npm create") || command.startsWith("npm init")) {
@@ -52,7 +42,6 @@ function packageManagerVariants(command: string): CommandVariants | undefined {
       yarn: create.replace("npm create", "yarn create"),
       pnpm: create.replace("npm create", "pnpm create"),
       bun: create.replace("npm create", "bun create"),
-      deno: create.replace("npm create ", "deno create npm:"),
     };
   }
   if (command.startsWith("npx")) {
@@ -61,7 +50,6 @@ function packageManagerVariants(command: string): CommandVariants | undefined {
       yarn: command.replace("npx", "yarn dlx"),
       pnpm: command.replace("npx", "pnpm dlx"),
       bun: command.replace("npx", "bunx --bun"),
-      deno: command.replace("npx ", "dx -A npm:"),
     };
   }
   if (command.startsWith("npm run")) {
@@ -70,7 +58,6 @@ function packageManagerVariants(command: string): CommandVariants | undefined {
       yarn: command.replace("npm run", "yarn"),
       pnpm: command.replace("npm run", "pnpm"),
       bun: command.replace("npm run", "bun"),
-      deno: command.replace("npm run", "deno task"),
     };
   }
   return undefined;

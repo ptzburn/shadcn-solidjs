@@ -7,7 +7,7 @@ import { type Accessor, createEffect, createSignal } from "solid-js";
  */
 export type Config = {
   installationType: "cli" | "manual";
-  packageManager: "npm" | "yarn" | "pnpm" | "bun" | "deno";
+  packageManager: "npm" | "yarn" | "pnpm" | "bun";
 };
 
 const STORAGE_KEY = "config";
@@ -16,6 +16,26 @@ const defaultConfig: Config = {
   installationType: "cli",
   packageManager: "pnpm",
 };
+
+const PACKAGE_MANAGERS: ReadonlySet<string> = new Set([
+  "npm",
+  "yarn",
+  "pnpm",
+  "bun",
+]);
+
+/**
+ * Merges a stored config over the defaults, dropping a package manager the
+ * tabs no longer offer: a visitor who picked `deno` before it was removed
+ * would otherwise see an empty command block.
+ */
+export function sanitizeConfig(stored: unknown): Config {
+  const merged = { ...defaultConfig, ...(stored as Partial<Config>) };
+  if (!PACKAGE_MANAGERS.has(merged.packageManager)) {
+    merged.packageManager = defaultConfig.packageManager;
+  }
+  return merged;
+}
 
 const [config, setConfigSignal] = createSignal<Config>(defaultConfig);
 
@@ -32,7 +52,7 @@ export function useConfig(): [
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        setConfigSignal({ ...defaultConfig, ...JSON.parse(stored) });
+        setConfigSignal(sanitizeConfig(JSON.parse(stored)));
       }
     } catch {
       // Corrupted storage — keep the defaults.
