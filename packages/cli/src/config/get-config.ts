@@ -9,29 +9,40 @@ import { type Config, type RawConfig, rawConfigSchema } from "./schema.ts";
 export const CONFIG_FILE = "components.json";
 
 export class MissingConfigError extends Error {
-  constructor(readonly cwd: string) {
+  readonly cwd: string;
+
+  constructor(cwd: string) {
     super(
       `No ${CONFIG_FILE} found in ${cwd}. Run \`shadcn-solidjs init\` first.`,
     );
     this.name = "MissingConfigError";
+    this.cwd = cwd;
   }
 }
 
 export class InvalidConfigError extends Error {
-  constructor(readonly configPath: string, cause: unknown) {
+  readonly configPath: string;
+
+  constructor(configPath: string, cause: unknown) {
     super(`${configPath} is not valid.`, { cause });
     this.name = "InvalidConfigError";
+    this.configPath = configPath;
   }
 }
 
 export class UnresolvedAliasError extends Error {
-  constructor(readonly aliases: string[], readonly cwd: string) {
+  readonly aliases: string[];
+  readonly cwd: string;
+
+  constructor(aliases: string[], cwd: string) {
     super(
       `Could not resolve the following aliases in ${cwd}: ${
         aliases.join(", ")
       }. Check the "paths" in your tsconfig.json.`,
     );
     this.name = "UnresolvedAliasError";
+    this.aliases = aliases;
+    this.cwd = cwd;
   }
 }
 

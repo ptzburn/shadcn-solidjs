@@ -24,18 +24,26 @@ export interface UpdateFilesResult {
 }
 
 export class UnsafeTargetError extends Error {
-  constructor(readonly file: string, readonly resolved: string) {
+  readonly file: string;
+  readonly resolved: string;
+
+  constructor(file: string, resolved: string) {
     super(
       `Refusing to write "${file}": it resolves to ${resolved}, outside the project.`,
     );
     this.name = "UnsafeTargetError";
+    this.file = file;
+    this.resolved = resolved;
   }
 }
 
 export class MissingContentError extends Error {
-  constructor(readonly file: string) {
+  readonly file: string;
+
+  constructor(file: string) {
     super(`The registry item file "${file}" carries no content.`);
     this.name = "MissingContentError";
+    this.file = file;
   }
 }
 

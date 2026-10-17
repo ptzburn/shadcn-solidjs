@@ -19,9 +19,15 @@ import {
 const PROJECT_ROOT_TARGETS = ["./*", "./src/*", "./app/*", "./resources/js/*"];
 
 export class NodeTarget implements ProjectTarget {
+  readonly cwd: string;
+  readonly configPath: string;
+
   #tsconfig: TsConfigResult | null | undefined;
 
-  constructor(readonly cwd: string, readonly configPath: string) {}
+  constructor(cwd: string, configPath: string) {
+    this.cwd = cwd;
+    this.configPath = configPath;
+  }
 
   static detect(cwd: string): NodeTarget | null {
     const configPath = path.join(path.resolve(cwd), "package.json");

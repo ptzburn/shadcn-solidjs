@@ -10,49 +10,65 @@ export class RegistryError extends Error {
 }
 
 export class RegistryNotFoundError extends RegistryError {
-  constructor(readonly url: string, options?: RegistryErrorOptions) {
+  readonly url: string;
+
+  constructor(url: string, options?: RegistryErrorOptions) {
     super(
       `The item at ${url} was not found. It may not exist at the registry.`,
       options,
     );
+    this.url = url;
   }
 }
 
 export class RegistryUnauthorizedError extends RegistryError {
-  constructor(readonly url: string, options?: RegistryErrorOptions) {
+  readonly url: string;
+
+  constructor(url: string, options?: RegistryErrorOptions) {
     super(`You are not authorized to access the item at ${url}.`, options);
+    this.url = url;
   }
 }
 
 export class RegistryForbiddenError extends RegistryError {
-  constructor(readonly url: string, options?: RegistryErrorOptions) {
+  readonly url: string;
+
+  constructor(url: string, options?: RegistryErrorOptions) {
     super(`Access to the item at ${url} is forbidden.`, options);
+    this.url = url;
   }
 }
 
 export class RegistryFetchError extends RegistryError {
-  constructor(
-    readonly url: string,
-    readonly status?: number,
-    options?: RegistryErrorOptions,
-  ) {
+  readonly url: string;
+  readonly status?: number;
+
+  constructor(url: string, status?: number, options?: RegistryErrorOptions) {
     super(
       `Failed to fetch the item at ${url}${status ? ` (HTTP ${status})` : ""}.`,
       options,
     );
+    this.url = url;
+    this.status = status;
   }
 }
 
 export class RegistryParseError extends RegistryError {
-  constructor(readonly url: string, cause: unknown) {
+  readonly url: string;
+
+  constructor(url: string, cause: unknown) {
     super(`The item at ${url} is not a valid registry item.`, { cause });
+    this.url = url;
   }
 }
 
 export class RegistryNotConfiguredError extends RegistryError {
-  constructor(readonly registry: string) {
+  readonly registry: string;
+
+  constructor(registry: string) {
     super(
       `Unknown registry "${registry}". Add it to the "registries" field in components.json.`,
     );
+    this.registry = registry;
   }
 }

@@ -1,23 +1,22 @@
+#!/usr/bin/env node
 /**
  * The shadcn-solidjs CLI. `init` configures a SolidJS project for the registry
  * — `components.json`, the stylesheet tokens and the `cn` util — and `add`
  * copies components and their dependencies into it.
  *
  * Importing this module runs the CLI against `process.argv`, so run it rather
- * than import it. On Deno:
+ * than import it:
  *
  * ```sh
- * deno x -A jsr:@ptzburn/shadcn-solidjs@^0.2.0-beta.0 init
- * deno x -A jsr:@ptzburn/shadcn-solidjs@^0.2.0-beta.0 add button card dialog
+ * npx @ptzburn/shadcn-solidjs@beta init
+ * npx @ptzburn/shadcn-solidjs@beta add button card dialog
  * ```
  *
- * On Node, the same package is on npm: `npx @ptzburn/shadcn-solidjs@beta init`.
+ * The shebang above is kept by tsdown in the published bin, and lets the
+ * source run directly with `node src/index.ts` during development.
  *
  * @module
  */
-
-// No shebang here on purpose: dnt writes one into the npm bin, and a second
-// copy in the source lands below it and parses as code. Deno does not need it.
 import process from "node:process";
 
 import { Command } from "commander";

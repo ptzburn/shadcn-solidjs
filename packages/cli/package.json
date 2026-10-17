@@ -26,6 +26,8 @@
     "cli"
   ],
   "scripts": {
+    "build": "tsdown",
+    "dev": "node src/index.ts",
     "check": "vp check",
     "lint": "vp lint",
     "fmt": "vp fmt",

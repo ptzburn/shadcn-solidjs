@@ -44,16 +44,6 @@ Pass `--all` to add every component:
 npx @ptzburn/shadcn-solidjs@beta add --all
 ```
 
-## Deno
-
-The same CLI is published to [JSR](https://jsr.io/@ptzburn/shadcn-solidjs). JSR
-has no dist-tags, so `^0.2.0-beta.0` is what follows the beta line there — it
-resolves to the newest beta today and to `0.2.x` once it is stable:
-
-```bash
-deno x -A jsr:@ptzburn/shadcn-solidjs@^0.2.0-beta.0 init
-```
-
 ## Documentation
 
 Visit [v2.shadcn-solidjs.com/docs/cli](https://v2.shadcn-solidjs.com/docs/cli)

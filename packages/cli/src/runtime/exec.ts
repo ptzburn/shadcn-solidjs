@@ -6,17 +6,20 @@ export interface ExecOptions {
 }
 
 export class ExecError extends Error {
-  constructor(
-    readonly command: string,
-    readonly code: number | null,
-    readonly stderr: string,
-  ) {
+  readonly command: string;
+  readonly code: number | null;
+  readonly stderr: string;
+
+  constructor(command: string, code: number | null, stderr: string) {
     super(
       `\`${command}\` exited with code ${code}${
         stderr ? `:\n${stderr.trim()}` : "."
       }`,
     );
     this.name = "ExecError";
+    this.command = command;
+    this.code = code;
+    this.stderr = stderr;
   }
 }
 

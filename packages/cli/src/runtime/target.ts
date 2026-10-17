@@ -37,11 +37,14 @@ export interface ProjectTarget {
 }
 
 export class UnsafeDependencyError extends Error {
-  constructor(readonly spec: string) {
+  readonly spec: string;
+
+  constructor(spec: string) {
     super(
       `Refusing to install "${spec}": a dependency may not begin with "-".`,
     );
     this.name = "UnsafeDependencyError";
+    this.spec = spec;
   }
 }
 
