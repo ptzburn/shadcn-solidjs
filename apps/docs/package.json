@@ -4,9 +4,9 @@
   "description": "A set of beautifully designed components that you can customize, extend, and build on.",
   "type": "module",
   "scripts": {
-    "dev": "deno run --allow-env --allow-sys --allow-ffi --env-file --allow-net --allow-read --allow-write --allow-run npm:vite --port 3228",
-    "build": "deno task build:registry && deno run -A npm:vite build",
-    "start": "deno run -A npm:vite preview --port 3228",
+    "dev": "vp dev --port 3228",
+    "build": "pnpm build:registry && vp build",
+    "start": "vp preview --port 3228",
     "release": "changeset version",
     "build:registry": "node --import ./scripts/lib/alias.mjs src/scripts/build-icons.ts && node --import ./scripts/lib/alias.mjs src/scripts/build-registry.ts && node --import ./scripts/lib/alias.mjs src/scripts/build-docs-tokens.ts && vp fmt src/__registry__ src/registry/icons src/styles/style-docs.css",
     "check": "vp check",
