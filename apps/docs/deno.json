@@ -1,6 +1,0 @@
-{
-  "imports": {
-    "@ptzburn/shadcn-solid/message-scroller": "../../packages/solid/src/message-scroller/index.ts",
-    "~/": "./src/"
-  }
-}

@@ -15,9 +15,6 @@ coverage/
 # System
 .DS_Store
 
-# dnt output
-packages/cli/npm/
-
 # superpowers plugin state
 .superpowers/
 

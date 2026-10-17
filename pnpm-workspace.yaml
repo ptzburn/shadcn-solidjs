@@ -1,0 +1,33 @@
+packages:
+  - apps/*
+  - packages/*
+
+# Dependency build scripts run only for the packages allowed here; pnpm
+# refuses to install while a new one is undecided and `pnpm approve-builds
+# <pkg>` (or `'!<pkg>'` to deny) records the decision. lefthook installs the
+# git hooks; nothing else needs its script.
+allowBuilds:
+  lefthook: true
+
+# pnpm resolves nothing published less than a day ago (minimumReleaseAge,
+# 1440 minutes by default). A package that has to come in younger than that
+# is listed here by exact name@version; pnpm writes its own entry when it
+# switches itself to a young `packageManager` version.
+minimumReleaseAgeExclude: []
+
+# Vite+ bundles Vite; `vite` is aliased onto that copy so every plugin and
+# the app resolve the same one, and the override keeps a dependency from
+# pulling a second Vite. The alias package's own version is 1.x, so plugins
+# that peer on `vite ^8` see a mismatch they can ignore.
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@1.3.0
+  vite-plus: 1.3.0
+overrides:
+  vite@*: "catalog:"
+  # solid-js declares a caret range on its signals package, so a fresh
+  # resolution would take a newer release candidate than the runtime; the
+  # three move together, so this pin follows solid-js on every bump.
+  "@solidjs/signals": 2.0.0-rc.13
+peerDependencyRules:
+  allowAny:
+    - vite
