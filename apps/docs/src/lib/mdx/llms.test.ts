@@ -1,7 +1,7 @@
-import { assertEquals } from "@std/assert";
+import { expect, test } from "vite-plus/test";
 import { orderDocPages } from "./llms.ts";
 
-Deno.test("orders pages as the llms index lists them, then the rest alphabetically", () => {
+test("orders pages as the llms index lists them, then the rest alphabetically", () => {
   const index = `# Site
 
 - [Intro](https://v2.shadcn-solidjs.com/docs/introduction.md): Core ideas.
@@ -14,7 +14,7 @@ Deno.test("orders pages as the llms index lists them, then the rest alphabetical
     "/docs/introduction",
     "/docs/cli",
   ];
-  assertEquals(orderDocPages(index, pages), [
+  expect(orderDocPages(index, pages)).toEqual([
     "/docs/introduction",
     "/docs/components/button",
     "/docs/cli",

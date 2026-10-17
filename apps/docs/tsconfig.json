@@ -26,5 +26,6 @@
         "../../packages/solid/src/message-scroller/index.ts"
       ]
     }
-  }
+  },
+  "include": ["src", "scripts", "vite.config.ts"]
 }

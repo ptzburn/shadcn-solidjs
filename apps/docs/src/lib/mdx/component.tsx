@@ -5,7 +5,7 @@ import type { Node, Parent } from "unist";
 import { u } from "unist-builder";
 import { visit } from "unist-util-visit";
 
-import { Index } from "../../__registry__/index.tsx";
+import { Meta as Index } from "../../__registry__/meta.ts";
 import { defaultIconLibrary } from "../../registry/icons/icon-libraries.ts";
 import { resolveIcons } from "../registry/resolve-icons.ts";
 import { createStyleMap, inlineStyles } from "../registry/style-map.ts";

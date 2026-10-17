@@ -7,7 +7,7 @@
 import {
   type IconLibrary,
   iconLibraryNames,
-} from "~/registry/icons/icon-libraries.ts";
+} from "../../registry/icons/icon-libraries.ts";
 
 const PLACEHOLDER_IMPORT_RE =
   /^import \{ IconPlaceholder \} from "~\/registry\/icons\/icon-placeholder\.tsx";$\n?/m;

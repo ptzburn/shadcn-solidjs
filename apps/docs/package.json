@@ -9,8 +9,10 @@
     "start": "deno run -A npm:vite preview --port 3228",
     "release": "changeset version",
     "build:registry": "deno run -A ./src/scripts/build-icons.ts && deno run -A ./src/scripts/build-registry.ts && deno run -A ./src/scripts/build-docs-tokens.ts && deno fmt ./src/__registry__ ./src/registry/icons ./src/styles/style-docs.css",
-    "check": "deno fmt ./src/ && deno lint ./src/ && deno check ./src/",
-    "lint": "deno lint ./src/"
+    "check": "vp check",
+    "lint": "vp lint",
+    "fmt": "vp fmt",
+    "test": "vp test"
   },
   "license": "MIT",
   "devDependencies": {

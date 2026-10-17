@@ -2,7 +2,7 @@ import { promises as fs, readFileSync } from "node:fs";
 import { join, normalize, relative, sep } from "node:path";
 import type { Plugin } from "vite";
 
-import { Index } from "../../__registry__/index.tsx";
+import { Meta as Index } from "../../__registry__/meta.ts";
 import { toConsumerSource } from "../mdx/component.tsx";
 import { toDocumentMarkdown } from "../mdx/document-markdown.ts";
 import { orderDocPages } from "../mdx/llms.ts";

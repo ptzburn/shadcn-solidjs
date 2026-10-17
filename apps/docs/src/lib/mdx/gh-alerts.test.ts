@@ -1,4 +1,4 @@
-import { assertEquals } from "@std/assert";
+import { expect, test } from "vite-plus/test";
 import type { Root } from "mdast";
 import remarkMdx from "remark-mdx";
 import remarkParse from "remark-parse";
@@ -12,7 +12,7 @@ function parse(source: string): Root {
   return processor.runSync(processor.parse(source)) as Root;
 }
 
-Deno.test("turns a GitHub alert with a bold first line into a titled Callout", () => {
+test("turns a GitHub alert with a bold first line into a titled Callout", () => {
   const tree = parse(`> [!WARNING]
 > **Server-side rendering**
 >
@@ -24,16 +24,16 @@ Deno.test("turns a GitHub alert with a bold first line into a titled Callout", (
     attributes: Array<{ type: string; name: string; value: string }>;
     children: Array<{ type: string }>;
   }>;
-  assertEquals(node.type, "mdxJsxFlowElement");
-  assertEquals(node.name, "Callout");
-  assertEquals(node.attributes, [
+  expect(node.type).toEqual("mdxJsxFlowElement");
+  expect(node.name).toEqual("Callout");
+  expect(node.attributes).toEqual([
     { type: "mdxJsxAttribute", name: "variant", value: "warning" },
     { type: "mdxJsxAttribute", name: "title", value: "Server-side rendering" },
   ]);
-  assertEquals(node.children.map((child) => child.type), ["paragraph"]);
+  expect(node.children.map((child) => child.type)).toEqual(["paragraph"]);
 });
 
-Deno.test("maps NOTE to the default variant and keeps an untitled body", () => {
+test("maps NOTE to the default variant and keeps an untitled body", () => {
   const tree = parse(`> [!NOTE]
 > Plain note.
 `);
@@ -41,11 +41,11 @@ Deno.test("maps NOTE to the default variant and keeps an untitled body", () => {
     name: string;
     attributes: Array<{ type: string; name: string; value: string }>;
   }>;
-  assertEquals(node.name, "Callout");
-  assertEquals(node.attributes, []);
+  expect(node.name).toEqual("Callout");
+  expect(node.attributes).toEqual([]);
 });
 
-Deno.test("leaves ordinary blockquotes alone", () => {
+test("leaves ordinary blockquotes alone", () => {
   const tree = parse(`> Just a quote.\n`);
-  assertEquals(tree.children[0].type, "blockquote");
+  expect(tree.children[0].type).toEqual("blockquote");
 });
