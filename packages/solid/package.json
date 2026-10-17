@@ -41,15 +41,15 @@
   },
   "peerDependencies": {
     "@kobalte/core": "^2.0.0-alpha.0",
-    "@solidjs/web": "^2.0.0-rc.5",
-    "solid-js": "^2.0.0-rc.5"
+    "@solidjs/web": "^2.0.0-rc.13",
+    "solid-js": "^2.0.0-rc.13"
   },
   "devDependencies": {
-    "@kobalte/core": "2.0.0-alpha.1",
-    "@solidjs/web": "2.0.0-rc.5",
+    "@kobalte/core": "2.0.0-alpha.2",
+    "@solidjs/web": "2.0.0-rc.13",
     "@types/jsdom": "^30.0.0",
     "jsdom": "^30.0.1",
-    "solid-js": "2.0.0-rc.5",
+    "solid-js": "2.0.0-rc.13",
     "tsdown": "0.22.14",
     "typescript": "^7.0.2",
     "unplugin-solid": "2.0.0"

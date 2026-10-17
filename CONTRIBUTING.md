@@ -200,8 +200,8 @@ unnecessary. Retest when `solid-js`, `@solidjs/web`, or `@kobalte/core` move.
 
 `dialog.tsx`, `sheet.tsx`, `alert-dialog.tsx`, and `drawer.tsx` alias their
 `*Portal` to `Portal` from `@solidjs/web` instead of the Kobalte primitive's
-`Portal`. Last confirmed necessary on `solid-js@2.0.0-rc.5` with
-`@kobalte/core@2.0.0-alpha.1` (2026-09-02).
+`Portal`. Last confirmed necessary on `solid-js@2.0.0-rc.13` with
+`@kobalte/core@2.0.0-alpha.2` (2026-10-01).
 
 Why: Kobalte's `Dialog.Portal` is Solid's `Portal` inside a `Show` driven by the
 dialog's presence signals, with the dismissable layer as the portal's direct
@@ -220,29 +220,10 @@ open, Escape closes it, and a click outside closes it. If all three hold on
 every page, keep the Kobalte portals and delete this entry. If any fails, revert
 to `Portal` from `@solidjs/web`.
 
-### Rolldown is pinned to 1.2.4
-
-`apps/docs/package.json` declares `rolldown` at exactly `1.2.4` so that Vite's
-own `~1.2.4` range dedupes onto it. Last confirmed necessary with `vite@8.2.2`
-and `@solidjs/vite-plugin@3.0.0-next.37` (2026-09-02).
-
-Why: Rolldown 1.2.5 started folding modules that the entry already loads into
-the entry chunk instead of giving them their own chunk. The registry index
-lazy-loads every ui component, and `button` and `toast` are also in the entry
-graph, so their `import()` began resolving to the entry chunk. The Solid
-vite-plugin then treats the entry as a lazy facade, drops its entry flag from
-the manifest, and the prerendered `index.html` ships with no module script:
-every page blank, dev server fine.
-
-To retest, remove the pin, delete `deno.lock`, run `deno install`, build the
-docs, and confirm `apps/docs/dist/client/index.html` contains a
-`<script type="module"` tag. If it does, the plugin has been fixed and the pin
-can go.
-
 ### Server-side rendering stays off in the docs
 
 `ssr: false` in `apps/docs/vite.config.ts`. Last confirmed necessary on
-`solid-js@2.0.0-rc.5` (2026-09-02). A component that reads a memo inside a
+`solid-js@2.0.0-rc.13` (2026-10-01). A component that reads a memo inside a
 forwarded JSX prop and resolves its tag through `Dynamic`, which is the shape of
 every Kobalte polymorphic primitive, gets hydration ids two slots ahead of what
 the client computes, so its children are never claimed. Retest by setting
@@ -253,7 +234,7 @@ Mismatch" error means it is still needed.
 ### `resolve.dedupe` for the Solid packages
 
 Kept as a guard in `apps/docs/vite.config.ts` so the bundle can never carry two
-reactive runtimes. `@kobalte/core@2.0.0-alpha.1` pins its `solid-js` peer to
+reactive runtimes. `@kobalte/core@2.0.0-alpha.2` pins its `solid-js` peer to
 exactly `2.0.0-rc.3`; a fresh `deno install` resolves that to the app's copy
 with a warning, but a lockfile written against an earlier release candidate can
 keep a second copy alive. Safe to drop once Kobalte's peer range accepts the
