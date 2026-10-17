@@ -1,4 +1,4 @@
-import { assertEquals, assertObjectMatch } from "@std/assert";
+import { expect, test } from "vite-plus/test";
 import { JSDOM } from "jsdom";
 import {
   getContentBottom,
@@ -150,7 +150,7 @@ function createItems(
   });
 }
 
-Deno.test("getElementScrollTop: aligns to start by subtracting content padding and margin", () => {
+test("getElementScrollTop: aligns to start by subtracting content padding and margin", () => {
   const restore = stubComputedStyle();
   try {
     const { items, spacer, viewport } = createFixture({
@@ -162,22 +162,19 @@ Deno.test("getElementScrollTop: aligns to start by subtracting content padding a
     });
 
     // elementTop = 100; minus padding.start (10) minus scrollMargin (5).
-    assertEquals(
-      getElementScrollTop({
+    expect(getElementScrollTop({
         align: "start",
         element: items[0],
         scrollMargin: 5,
         spacer,
         viewport,
-      }),
-      85,
-    );
+      })).toEqual(85);
   } finally {
     restore();
   }
 });
 
-Deno.test("getElementScrollTop: centers the element within the padded inset", () => {
+test("getElementScrollTop: centers the element within the padded inset", () => {
   const restore = stubComputedStyle();
   try {
     const { items, spacer, viewport } = createFixture({
@@ -190,22 +187,19 @@ Deno.test("getElementScrollTop: centers the element within the padded inset", ()
 
     // insetHeight = 200 - 20 - 20 = 160; offset = (160 - 40) / 2 = 60.
     // elementTop (300) - padding.start (20) - 60 - scrollMargin (0) = 220.
-    assertEquals(
-      getElementScrollTop({
+    expect(getElementScrollTop({
         align: "center",
         element: items[0],
         scrollMargin: 0,
         spacer,
         viewport,
-      }),
-      220,
-    );
+      })).toEqual(220);
   } finally {
     restore();
   }
 });
 
-Deno.test("getElementScrollTop: aligns to end against the viewport bottom", () => {
+test("getElementScrollTop: aligns to end against the viewport bottom", () => {
   const restore = stubComputedStyle();
   try {
     const { items, spacer, viewport } = createFixture({
@@ -218,22 +212,19 @@ Deno.test("getElementScrollTop: aligns to end against the viewport bottom", () =
 
     // elementTop (300) - clientHeight (200) + height (50) + padding.end (8)
     //   + scrollMargin (0) = 158.
-    assertEquals(
-      getElementScrollTop({
+    expect(getElementScrollTop({
         align: "end",
         element: items[0],
         scrollMargin: 0,
         spacer,
         viewport,
-      }),
-      158,
-    );
+      })).toEqual(158);
   } finally {
     restore();
   }
 });
 
-Deno.test("getElementScrollTop: returns the current scrollTop when nearest and already visible", () => {
+test("getElementScrollTop: returns the current scrollTop when nearest and already visible", () => {
   const restore = stubComputedStyle();
   try {
     const { items, spacer, viewport } = createFixture({
@@ -247,22 +238,19 @@ Deno.test("getElementScrollTop: returns the current scrollTop when nearest and a
       items: [{ messageId: "a", top: 60, height: 40 }],
     });
 
-    assertEquals(
-      getElementScrollTop({
+    expect(getElementScrollTop({
         align: "nearest",
         element: items[0],
         scrollMargin: 0,
         spacer,
         viewport,
-      }),
-      50,
-    );
+      })).toEqual(50);
   } finally {
     restore();
   }
 });
 
-Deno.test("getElementScrollTop: scrolls up to reveal an element above the viewport when nearest", () => {
+test("getElementScrollTop: scrolls up to reveal an element above the viewport when nearest", () => {
   const restore = stubComputedStyle();
   try {
     const { items, spacer, viewport } = createFixture({
@@ -276,22 +264,19 @@ Deno.test("getElementScrollTop: scrolls up to reveal an element above the viewpo
       items: [{ messageId: "a", top: -100, height: 40 }],
     });
 
-    assertEquals(
-      getElementScrollTop({
+    expect(getElementScrollTop({
         align: "nearest",
         element: items[0],
         scrollMargin: 0,
         spacer,
         viewport,
-      }),
-      200,
-    );
+      })).toEqual(200);
   } finally {
     restore();
   }
 });
 
-Deno.test("getContentBottom: returns padding sum when there are no items", () => {
+test("getContentBottom: returns padding sum when there are no items", () => {
   const restore = stubComputedStyle();
   try {
     const { content, spacer, viewport } = createFixture({
@@ -302,13 +287,13 @@ Deno.test("getContentBottom: returns padding sum when there are no items", () =>
       items: [],
     });
 
-    assertEquals(getContentBottom({ content, spacer, viewport }), 20);
+    expect(getContentBottom({ content, spacer, viewport })).toEqual(20);
   } finally {
     restore();
   }
 });
 
-Deno.test("getContentBottom: measures from the lowest item bottom plus end padding", () => {
+test("getContentBottom: measures from the lowest item bottom plus end padding", () => {
   const restore = stubComputedStyle();
   try {
     const { content, spacer, viewport } = createFixture({
@@ -325,13 +310,13 @@ Deno.test("getContentBottom: measures from the lowest item bottom plus end paddi
 
     // Lowest item bottom in client space is 250; minus viewportRect.top (0)
     // plus scrollTop (30) plus padding.end (16) = 296.
-    assertEquals(getContentBottom({ content, spacer, viewport }), 296);
+    expect(getContentBottom({ content, spacer, viewport })).toEqual(296);
   } finally {
     restore();
   }
 });
 
-Deno.test("getContentBottom: excludes the spacer from the measurement", () => {
+test("getContentBottom: excludes the spacer from the measurement", () => {
   const restore = stubComputedStyle();
   try {
     const { content, spacer, viewport } = createFixture({
@@ -345,13 +330,13 @@ Deno.test("getContentBottom: excludes the spacer from the measurement", () => {
     // Give the spacer a tall rect; it must not raise contentBottom past 80.
     setRect(spacer, { top: 0, height: 9999 });
 
-    assertEquals(getContentBottom({ content, spacer, viewport }), 80);
+    expect(getContentBottom({ content, spacer, viewport })).toEqual(80);
   } finally {
     restore();
   }
 });
 
-Deno.test("getNewScrollAnchor / getLastScrollAnchor: finds the first anchor at or after the previous item count", () => {
+test("getNewScrollAnchor / getLastScrollAnchor: finds the first anchor at or after the previous item count", () => {
   const items = createItems([
     { id: "a", anchor: true },
     { id: "b" },
@@ -360,57 +345,57 @@ Deno.test("getNewScrollAnchor / getLastScrollAnchor: finds the first anchor at o
   ]);
 
   // Starting from index 1 skips the anchor at index 0.
-  assertEquals(getNewScrollAnchor(items, 1), items[2]);
+  expect(getNewScrollAnchor(items, 1)).toEqual(items[2]);
 });
 
-Deno.test("getNewScrollAnchor / getLastScrollAnchor: returns null when no anchor exists after the boundary", () => {
+test("getNewScrollAnchor / getLastScrollAnchor: returns null when no anchor exists after the boundary", () => {
   const items = createItems([
     { id: "a", anchor: true },
     { id: "b" },
     { id: "c" },
   ]);
 
-  assertEquals(getNewScrollAnchor(items, 1), null);
+  expect(getNewScrollAnchor(items, 1)).toEqual(null);
 });
 
-Deno.test("getNewScrollAnchor / getLastScrollAnchor: finds the last anchor scanning from the end", () => {
+test("getNewScrollAnchor / getLastScrollAnchor: finds the last anchor scanning from the end", () => {
   const items = createItems([
     { id: "a", anchor: true },
     { id: "b", anchor: true },
     { id: "c" },
   ]);
 
-  assertEquals(getLastScrollAnchor(items), items[1]);
+  expect(getLastScrollAnchor(items)).toEqual(items[1]);
 });
 
-Deno.test("getNewScrollAnchor / getLastScrollAnchor: returns null when there are no anchors", () => {
+test("getNewScrollAnchor / getLastScrollAnchor: returns null when there are no anchors", () => {
   const items = createItems([{ id: "a" }, { id: "b" }]);
 
-  assertEquals(getLastScrollAnchor(items), null);
+  expect(getLastScrollAnchor(items)).toEqual(null);
 });
 
-Deno.test("getUnanchoredScrollAnchor: returns the first anchor that has not been handled yet", () => {
+test("getUnanchoredScrollAnchor: returns the first anchor that has not been handled yet", () => {
   const items = createItems([
     { id: "a", anchor: true },
     { id: "b", anchor: true },
   ]);
   const handled = new WeakSet<HTMLElement>();
 
-  assertEquals(getUnanchoredScrollAnchor(items, handled), items[0]);
+  expect(getUnanchoredScrollAnchor(items, handled)).toEqual(items[0]);
 
   handled.add(items[0]!);
 
-  assertEquals(getUnanchoredScrollAnchor(items, handled), items[1]);
+  expect(getUnanchoredScrollAnchor(items, handled)).toEqual(items[1]);
 });
 
-Deno.test("getUnanchoredScrollAnchor: returns null when every anchor has already been handled", () => {
+test("getUnanchoredScrollAnchor: returns null when every anchor has already been handled", () => {
   const items = createItems([{ id: "a", anchor: true }]);
   const handled = new WeakSet<HTMLElement>([items[0]!]);
 
-  assertEquals(getUnanchoredScrollAnchor(items, handled), null);
+  expect(getUnanchoredScrollAnchor(items, handled)).toEqual(null);
 });
 
-Deno.test("getMessageScrollerScrollable: cannot scroll toward either edge when viewport or content is missing", () => {
+test("getMessageScrollerScrollable: cannot scroll toward either edge when viewport or content is missing", () => {
   const scrollable = getMessageScrollerScrollable({
     content: null,
     scrollEdgeThreshold: 8,
@@ -418,13 +403,13 @@ Deno.test("getMessageScrollerScrollable: cannot scroll toward either edge when v
     viewport: null,
   });
 
-  assertObjectMatch(scrollable as Record<PropertyKey, unknown>, {
+  expect(scrollable as Record<PropertyKey, unknown>).toMatchObject({
     start: false,
     end: false,
   });
 });
 
-Deno.test("getMessageScrollerScrollable: treats sub-threshold gaps at both edges as not scrollable", () => {
+test("getMessageScrollerScrollable: treats sub-threshold gaps at both edges as not scrollable", () => {
   const restore = stubComputedStyle();
   try {
     const { content, spacer, viewport } = createFixture({
@@ -445,7 +430,7 @@ Deno.test("getMessageScrollerScrollable: treats sub-threshold gaps at both edges
       viewport,
     });
 
-    assertObjectMatch(scrollable as Record<PropertyKey, unknown>, {
+    expect(scrollable as Record<PropertyKey, unknown>).toMatchObject({
       start: false,
       end: false,
     });
@@ -454,7 +439,7 @@ Deno.test("getMessageScrollerScrollable: treats sub-threshold gaps at both edges
   }
 });
 
-Deno.test("getMessageScrollerScrollable: can scroll toward both edges past the threshold", () => {
+test("getMessageScrollerScrollable: can scroll toward both edges past the threshold", () => {
   const restore = stubComputedStyle();
   try {
     const { content, spacer, viewport } = createFixture({
@@ -475,7 +460,7 @@ Deno.test("getMessageScrollerScrollable: can scroll toward both edges past the t
       viewport,
     });
 
-    assertObjectMatch(scrollable as Record<PropertyKey, unknown>, {
+    expect(scrollable as Record<PropertyKey, unknown>).toMatchObject({
       start: true,
       end: true,
     });

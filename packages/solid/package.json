@@ -32,6 +32,13 @@
     "access": "public",
     "tag": "beta"
   },
+  "scripts": {
+    "build": "tsdown",
+    "check": "vp check",
+    "lint": "vp lint",
+    "fmt": "vp fmt",
+    "test": "vp test"
+  },
   "exports": {
     "./message-scroller": {
       "types": "./dist/message-scroller/index.d.ts",
