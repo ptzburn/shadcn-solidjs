@@ -141,8 +141,8 @@ update the `@beta` tag in `packages/cli/README.md` and the module doc of
 the workspace, builds the CLI and runs `npm publish`. It skips when the version
 is already on npm, so pushes that don't bump are no-ops, and it authenticates
 with npm trusted publishing — the job's OIDC token, no secret to rotate, and
-npm attaches a provenance attestation to the version. Pull requests that touch
-the CLI get the same checks plus an `npm publish --dry-run`.
+npm attaches a provenance attestation to the version. Every pull request gets
+the same checks plus an `npm publish --dry-run`.
 
 Publishing by hand still works:
 

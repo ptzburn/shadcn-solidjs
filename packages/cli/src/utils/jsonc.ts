@@ -1,9 +1,6 @@
 /**
- * A minimal JSONC reader for `components.json` and tsconfig-style files.
- *
- * Hand-rolled rather than pulling `@std/jsonc`: a `jsr:` dependency is
- * rewritten to an `@jsr/`-scoped package by the npm build, which would force
- * every npm consumer to configure the JSR registry just to run the CLI.
+ * A minimal JSONC reader for `components.json` and tsconfig-style files,
+ * hand-rolled to keep the bin free of a dependency for two stripping rules.
  */
 export function parseJsonc(text: string): unknown {
   return JSON.parse(stripComments(text));

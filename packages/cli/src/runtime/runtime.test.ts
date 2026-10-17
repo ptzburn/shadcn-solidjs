@@ -51,6 +51,11 @@ test("a deno.json alone is not a project", () =>
     expect(detectProjectTarget(path.join(dir, "src"))).toBeNull();
   }));
 
+test("a Deno app under an unrelated package.json is not that project", () =>
+  withProject({ "package.json": "{}", "app/deno.json": "{}" }, (dir) => {
+    expect(detectProjectTarget(path.join(dir, "app"))).toBeNull();
+  }));
+
 // ------------------------------------------------------------ Node aliases
 
 test("resolves against this repo's own docs app", async () => {

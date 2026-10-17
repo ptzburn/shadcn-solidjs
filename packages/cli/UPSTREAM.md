@@ -48,12 +48,10 @@ it keeps `init` and `add` free of project-layout details.
 | `src/runtime/exec.ts`            | (`execa` usage)                           | `node:child_process` directly. `shell` is never enabled, so arguments cannot be reinterpreted.                                                           |
 | `src/utils/jsonc.ts`             | the stripper inside `get-project-info.ts` | Trailing commas are removed from recorded offsets rather than by regex, so a comma inside a string value is never mistaken for one.                      |
 
-**Two behaviours worth knowing.** `deno add -D` only applies when writing to a
-package.json, so a Deno target has no dev/prod split — registry
-`devDependencies` land in the same flat `imports` map. And upstream appends a
-`--` end-of-options separator to install commands; this does not, because
-support varies across the four managers and `assertSafeSpecs` plus spawning
-without a shell already close the same hole.
+**One behaviour worth knowing.** Upstream appends a `--` end-of-options
+separator to install commands; this does not, because support varies across
+the four managers and `assertSafeSpecs` plus spawning without a shell already
+close the same hole.
 
 ## Not ported
 
