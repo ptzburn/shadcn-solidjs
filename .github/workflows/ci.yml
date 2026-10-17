@@ -1,0 +1,80 @@
+# Checks every pull request and push, and publishes the CLI to npm.
+#
+# `check` runs the same `pnpm check` and `pnpm test` as the pre-commit hook,
+# builds the CLI and runs it once. On a pull request it also dry-runs the
+# npm publish, so a package that would fail to publish is caught before it
+# merges.
+#
+# `publish` runs on a push to main or solid2 that touches packages/cli. It
+# skips, exiting 0, when the version in packages/cli/package.json is already
+# on npm, so a release is: bump the version, push, done. It authenticates
+# with npm trusted publishing: the job's OIDC token, no stored secret, and
+# npm attaches a provenance attestation to the version.
+#
+# One-time setup on npmjs.com: under the package's settings, add a trusted
+# publisher for this repository (ptzburn/shadcn-solidjs) and this workflow
+# file (ci.yml). Until that exists the publish step fails and nothing else
+# is affected.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, solid2]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: "24"
+
+jobs:
+  check:
+    name: Check, test, build the CLI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # Reads the pnpm version from `packageManager` in package.json.
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm test -- --run
+      - run: pnpm --filter ./packages/cli build
+      - run: node packages/cli/dist/index.js --version
+      - name: Verify the package publishes
+        if: github.event_name == 'pull_request'
+        working-directory: packages/cli
+        run: npm publish --dry-run
+
+  publish:
+    name: Publish the CLI to npm
+    needs: check
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # trusted publishing + provenance
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter ./packages/cli build
+      - name: Publish unless the version is already on npm
+        working-directory: packages/cli
+        run: |
+          version=$(node -p "require('./package.json').version")
+          if npm view "@ptzburn/shadcn-solidjs@$version" version >/dev/null 2>&1; then
+            echo "@ptzburn/shadcn-solidjs@$version is already published; nothing to do."
+            exit 0
+          fi
+          npm publish
