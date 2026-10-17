@@ -61,7 +61,7 @@ function createEmblaCarousel(
   );
 
   createEffect(
-    () => (plugins ? plugins() : []),
+    () => (plugins ? plugins() : ([] as EmblaPluginType[])),
     (newPlugins) => {
       if (!canUseDOM()) return;
       if (arePluginsEqual(storedPlugins, newPlugins)) return;

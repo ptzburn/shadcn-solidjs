@@ -183,8 +183,9 @@ unnecessary. Retest when `solid-js`, `@solidjs/web`, or `@kobalte/core` move.
 
 `dialog.tsx`, `sheet.tsx`, `alert-dialog.tsx`, and `drawer.tsx` alias their
 `*Portal` to `Portal` from `@solidjs/web` instead of the Kobalte primitive's
-`Portal`. Last confirmed necessary on `solid-js@2.0.0-rc.13` with
-`@kobalte/core@2.0.0-alpha.2` (2026-10-01).
+`Portal`. Last confirmed necessary on `solid-js@2.0.0-rc.15` with
+`@kobalte/core@2.0.0-alpha.3` (2026-10-17), the first Kobalte release built
+against the current release candidate rather than rc.3.
 
 Why: Kobalte's `Dialog.Portal` is Solid's `Portal` inside a `Show` driven by the
 dialog's presence signals, with the dismissable layer as the portal's direct
@@ -201,24 +202,34 @@ docs dev server, open the dialog, sheet, alert dialog, and drawer previews, and
 check three things: `document.body.style.pointerEvents` becomes `none` while
 open, Escape closes it, and a click outside closes it. If all three hold on
 every page, keep the Kobalte portals and delete this entry. If any fails, revert
-to `Portal` from `@solidjs/web`.
+to `Portal` from `@solidjs/web`. The drawer's closing animation takes several
+seconds on the dev server, so give it that long before calling it stuck; the
+broken state shows up earlier anyway, as `pointerEvents` staying empty.
 
 ### Server-side rendering stays off in the docs
 
 `ssr: false` in `apps/docs/vite.config.ts`. Last confirmed necessary on
-`solid-js@2.0.0-rc.13` (2026-10-01). A component that reads a memo inside a
-forwarded JSX prop and resolves its tag through `Dynamic`, which is the shape of
-every Kobalte polymorphic primitive, gets hydration ids two slots ahead of what
-the client computes, so its children are never claimed. Retest by setting
-`ssr: true` together with `ssr.noExternal: true` and loading the button and tabs
-pages with the console open: any "Hydration key miss" warning or "Hydration
-Mismatch" error means it is still needed.
+`solid-js@2.0.0-rc.15` (2026-10-17). Through rc.13, a component that reads a
+memo inside a forwarded JSX prop and resolves its tag through `Dynamic`, which
+is the shape of every Kobalte polymorphic primitive, got hydration ids two slots
+ahead of what the client computes, so its children were never claimed: 101 key
+misses on the button page, 38 on tabs. rc.14 fixed that (the runtime spread now
+applies attributes before children, as the server does), and rc.15 reports no
+key miss at all; but one `Hydration Mismatch` remains on each page (key
+`…A1a000280` on button, `…q0e000280` on tabs), and it halts the reactive system,
+leaving 36 of 66 buttons wired on the button page and 10 of 41 on tabs. Retest
+by setting `ssr: true` together with `ssr.noExternal: true` and loading the
+button and tabs pages with the console open: any "Hydration key miss" warning or
+"Hydration Mismatch" error means it is still needed.
 
 ### `resolve.dedupe` for the Solid packages
 
 Kept as a guard in `apps/docs/vite.config.ts` so the bundle can never carry two
-reactive runtimes. `@kobalte/core@2.0.0-alpha.2` pins its `solid-js` peer to
-exactly `2.0.0-rc.3`; a fresh `deno install` resolves that to the app's copy
-with a warning, but a lockfile written against an earlier release candidate can
-keep a second copy alive. Safe to drop once Kobalte's peer range accepts the
-installed Solid.
+reactive runtimes. `@kobalte/core@2.0.0-alpha.3` pins its `solid-js` peer to
+exactly `2.0.0-rc.15`, the installed version, but `@kobalte/utils@2.0.0-alpha.0`
+still pins `2.0.0-rc.0`; pnpm resolves both to the app's copy with a warning,
+and `pnpm-workspace.yaml` pins `@solidjs/signals` to the same release candidate
+because `solid-js` declares a caret range on it. Safe to drop once Kobalte's
+peer ranges accept the installed Solid without a warning. Check with
+`ls node_modules/.pnpm | grep -E '^(solid-js|@solidjs\+web|@solidjs\+signals)@'`:
+one directory each.

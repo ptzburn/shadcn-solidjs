@@ -47,18 +47,18 @@
     "test": "vp test"
   },
   "devDependencies": {
-    "@kobalte/core": "2.0.0-alpha.2",
-    "@solidjs/web": "2.0.0-rc.13",
+    "@kobalte/core": "2.0.0-alpha.3",
+    "@solidjs/web": "2.0.0-rc.15",
     "@types/jsdom": "^30.0.0",
     "jsdom": "^30.0.1",
-    "solid-js": "2.0.0-rc.13",
+    "solid-js": "2.0.0-rc.15",
     "tsdown": "0.22.14",
     "typescript": "^7.0.2",
     "unplugin-solid": "2.0.0"
   },
   "peerDependencies": {
     "@kobalte/core": "^2.0.0-alpha.0",
-    "@solidjs/web": "^2.0.0-rc.13",
-    "solid-js": "^2.0.0-rc.13"
+    "@solidjs/web": "^2.0.0-rc.15",
+    "solid-js": "^2.0.0-rc.15"
   }
 }
