@@ -5,11 +5,12 @@
  * libraries.
  *
  * The docs map inlines SVG bodies from the iconify data so the app never
- * imports `~icons/*` virtual modules (which `deno check` cannot resolve);
+ * imports `~icons/*` virtual modules (which the type check cannot resolve);
  * those imports appear only in the built registry JSON, where consumers
  * resolve them with unplugin-icons.
  *
- * Run with: deno run -A ./src/scripts/build-icons.ts
+ * Run with: pnpm build:registry (or, from apps/docs,
+ * node --import ./scripts/lib/alias.mjs src/scripts/build-icons.ts)
  */
 import {
   existsSync,

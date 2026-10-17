@@ -14,9 +14,10 @@
  * `cn-card`, so this reads it from there and emits one custom property
  * per style. Docs code then says `rounded-(--docs-surface-radius)` once.
  *
- * Output is committed so `deno task dev` works without a build step.
+ * Output is committed so `pnpm dev` works without a build step.
  *
- * Run with: deno run -A ./src/scripts/build-docs-tokens.ts
+ * Run with: pnpm build:registry (or, from apps/docs,
+ * node --import ./scripts/lib/alias.mjs src/scripts/build-docs-tokens.ts)
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";

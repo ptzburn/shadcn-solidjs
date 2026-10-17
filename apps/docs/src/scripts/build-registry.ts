@@ -26,7 +26,8 @@
  * `~icons/<library>/<name>` imports per icon library
  * (unplugin-icons / @iconify-json on the consumer side).
  *
- * Run with: deno run -A ./src/scripts/build-registry.ts
+ * Run with: pnpm build:registry (or, from apps/docs,
+ * node --import ./scripts/lib/alias.mjs src/scripts/build-registry.ts)
  */
 import {
   existsSync,
@@ -229,7 +230,7 @@ function toRegistryItem(
 
 function writeJson(filePath: string, payload: unknown) {
   mkdirSync(path.dirname(filePath), { recursive: true });
-  // Trailing newline so the emitted registry is already `deno fmt` clean.
+  // Trailing newline so the emitted registry is already formatter clean.
   // Without it every build leaves files that fmt wants to touch and the
   // next build reverts, which the pre-commit hook turns into churn.
   writeFileSync(filePath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");

@@ -1,8 +1,5 @@
 import type { ComponentProps } from "@solidjs/web";
-import {
-  type LucideIconName,
-  lucideIcons,
-} from "~/registry/icons/__lucide__/index.tsx";
+import { type LucideIconName, lucideIcons } from "~/registry/icons/__lucide__/index.tsx";
 
 import { omit } from "solid-js";
 
