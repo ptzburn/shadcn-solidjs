@@ -10,13 +10,7 @@ import {
 import { Field, FieldGroup, FieldLabel } from "~/registry/ui/field.tsx";
 
 import { Input } from "~/registry/ui/input.tsx";
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemMedia,
-  ItemTitle,
-} from "~/registry/ui/item.tsx";
+import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "~/registry/ui/item.tsx";
 import IconAlertCircle from "~icons/hugeicons/alert-circle";
 import IconArrowRight01 from "~icons/hugeicons/arrow-right-01";
 import IconSquareLock02 from "~icons/hugeicons/square-lock-02";
@@ -26,19 +20,13 @@ export function AccountAccess() {
     <Card>
       <CardHeader>
         <CardTitle>Account Access</CardTitle>
-        <CardDescription>
-          Update your credentials or re-authenticate.
-        </CardDescription>
+        <CardDescription>Update your credentials or re-authenticate.</CardDescription>
       </CardHeader>
       <CardContent>
         <FieldGroup>
           <Field>
             <FieldLabel for="email-address">Email Address</FieldLabel>
-            <Input
-              id="email-address"
-              type="email"
-              placeholder="artist@studio.inc"
-            />
+            <Input id="email-address" type="email" placeholder="artist@studio.inc" />
           </Field>
           <Field>
             <div class="flex items-center justify-between">
@@ -50,11 +38,7 @@ export function AccountAccess() {
                 Forgot?
               </a>
             </div>
-            <Input
-              id="current-password"
-              type="password"
-              placeholder="••••••••••••••••••••••••"
-            />
+            <Input id="current-password" type="password" placeholder="••••••••••••••••••••••••" />
           </Field>
         </FieldGroup>
       </CardContent>

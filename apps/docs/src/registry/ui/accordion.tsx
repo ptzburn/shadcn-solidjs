@@ -6,11 +6,9 @@ import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 import { omit } from "solid-js";
 
-type AccordionProps<T extends ValidComponent = "div"> =
-  & AccordionPrimitive.AccordionRootProps<T>
-  & {
-    class?: string | undefined;
-  };
+type AccordionProps<T extends ValidComponent = "div"> = AccordionPrimitive.AccordionRootProps<T> & {
+  class?: string | undefined;
+};
 
 const Accordion = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, AccordionProps<T>>,
@@ -26,10 +24,8 @@ const Accordion = <T extends ValidComponent = "div">(
   );
 };
 
-type AccordionItemProps<T extends ValidComponent = "div"> =
-  & AccordionPrimitive.AccordionItemProps
-  & PolymorphicProps<T>
-  & {
+type AccordionItemProps<T extends ValidComponent = "div"> = AccordionPrimitive.AccordionItemProps &
+  PolymorphicProps<T> & {
     class?: string | undefined;
   };
 
@@ -48,8 +44,7 @@ const AccordionItem = <T extends ValidComponent = "div">(
 };
 
 type AccordionTriggerProps<T extends ValidComponent = "button"> =
-  & AccordionPrimitive.AccordionTriggerProps<T>
-  & {
+  AccordionPrimitive.AccordionTriggerProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
   };
@@ -94,8 +89,7 @@ const AccordionTrigger = <T extends ValidComponent = "button">(
 };
 
 type AccordionContentProps<T extends ValidComponent = "div"> =
-  & AccordionPrimitive.AccordionContentProps<T>
-  & {
+  AccordionPrimitive.AccordionContentProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
   };

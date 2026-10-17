@@ -12,8 +12,7 @@ export default function BubbleLinkButtonDemo() {
         <Bubble variant="tinted" align="end">
           <BubbleContent
             as="button"
-            onClick={() =>
-              toast.add({ description: "You clicked forgot password" })}
+            onClick={() => toast.add({ description: "You clicked forgot password" })}
           >
             I forgot my password
           </BubbleContent>
@@ -21,8 +20,7 @@ export default function BubbleLinkButtonDemo() {
         <Bubble variant="tinted" align="end">
           <BubbleContent
             as="button"
-            onClick={() =>
-              toast.add({ description: "You clicked help with subscription" })}
+            onClick={() => toast.add({ description: "You clicked help with subscription" })}
           >
             I need help with my subscription
           </BubbleContent>
@@ -33,7 +31,8 @@ export default function BubbleLinkButtonDemo() {
             onClick={() =>
               toast.add({
                 description: "You clicked something else. Talk to a human.",
-              })}
+              })
+            }
           >
             Something else. Talk to a human.
           </BubbleContent>

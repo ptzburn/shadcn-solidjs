@@ -29,13 +29,7 @@
  * Run with: pnpm build:registry (or, from apps/docs,
  * node --import ./scripts/lib/alias.mjs src/scripts/build-registry.ts)
  */
-import {
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  rmSync,
-  writeFileSync,
-} from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path, { basename } from "node:path";
 import process from "node:process";
 
@@ -48,11 +42,7 @@ import {
 } from "../registry/icons/icon-libraries.ts";
 import { registry } from "../registry/index.ts";
 import { type RegistryItem, registrySchema } from "../registry/schema.ts";
-import {
-  defaultStyle,
-  type StyleName,
-  styleNames,
-} from "../registry/styles.ts";
+import { defaultStyle, type StyleName, styleNames } from "../registry/styles.ts";
 
 const LEGACY_PATH = path.join(process.cwd(), "public/registry");
 const R_PATH = path.join(process.cwd(), "public/r");
@@ -71,12 +61,7 @@ function sourcePath(filePath: string) {
 const styleMaps = new Map(
   styleNames.map((style) => [
     style,
-    createStyleMap(
-      readFileSync(
-        sourcePath(path.join("styles", `style-${style}.css`)),
-        "utf8",
-      ),
-    ),
+    createStyleMap(readFileSync(sourcePath(path.join("styles", `style-${style}.css`)), "utf8")),
   ]),
 );
 
@@ -103,10 +88,7 @@ function readSource(filePath: string) {
   if (cached !== undefined) {
     return cached;
   }
-  const content = readFileSync(sourcePath(filePath), "utf8").replaceAll(
-    "\r\n",
-    "\n",
-  );
+  const content = readFileSync(sourcePath(filePath), "utf8").replaceAll("\r\n", "\n");
   sourceCache.set(filePath, content);
   return content;
 }
@@ -156,27 +138,24 @@ export const Meta: RegistryIndex = {
       continue;
     }
     const componentPath = item.files[0]?.path;
-    const component = withComponents && componentPath
-      ? `\n    component: lazy(() => import("~/registry/${componentPath}")),`
-      : "";
+    const component =
+      withComponents && componentPath
+        ? `\n    component: lazy(() => import("~/registry/${componentPath}")),`
+        : "";
     source += `
   "${item.name}": {
     name: "${item.name}",
     description: "${item.description ?? ""}",
     type: "${item.type}",
-    registryDependencies: ${
-      JSON.stringify(item.registryDependencies)
-    },${component}
-    files: [${
-      item.files.map(
-        (file) =>
-          `{
+    registryDependencies: ${JSON.stringify(item.registryDependencies)},${component}
+    files: [${item.files.map(
+      (file) =>
+        `{
       path: "registry/${file.path}",
       type: "${file.type}",
       target: "${file.target ?? ""}"
     }`,
-      )
-    }],
+    )}],
   },`;
   }
   source += `
@@ -185,14 +164,8 @@ export const Meta: RegistryIndex = {
   return source;
 }
 
-writeFileSync(
-  path.join(process.cwd(), "src", "__registry__", "index.tsx"),
-  renderIndex(true),
-);
-writeFileSync(
-  path.join(process.cwd(), "src", "__registry__", "meta.ts"),
-  renderIndex(false),
-);
+writeFileSync(path.join(process.cwd(), "src", "__registry__", "index.tsx"), renderIndex(true));
+writeFileSync(path.join(process.cwd(), "src", "__registry__", "meta.ts"), renderIndex(false));
 
 // #######################################
 //    BUILD public/r (shadcn v4 format)
@@ -216,13 +189,13 @@ function toRegistryItem(
       : {}),
     ...(files.length
       ? {
-        files: files.map((file) => ({
-          path: `src/registry/${file.path}`,
-          content: file.content,
-          type: `registry:${file.type}`,
-          ...(file.target ? { target: file.target } : {}),
-        })),
-      }
+          files: files.map((file) => ({
+            path: `src/registry/${file.path}`,
+            content: file.content,
+            type: `registry:${file.type}`,
+            ...(file.target ? { target: file.target } : {}),
+          })),
+        }
       : {}),
     ...(item.cssVars ? { cssVars: item.cssVars } : {}),
   };
@@ -269,30 +242,15 @@ for (const item of items) {
         }
         return { ...file, content: code };
       });
-      const devDependencies = usesIcons
-        ? ["unplugin-icons", iconLibraries[library].package]
-        : [];
+      const devDependencies = usesIcons ? ["unplugin-icons", iconLibraries[library].package] : [];
       const payload = toRegistryItem(item, resolved, devDependencies);
 
-      writeJson(
-        path.join(
-          R_PATH,
-          "styles",
-          style,
-          "icons",
-          library,
-          `${item.name}.json`,
-        ),
-        payload,
-      );
+      writeJson(path.join(R_PATH, "styles", style, "icons", library, `${item.name}.json`), payload);
 
       // The default style also lives at the unprefixed paths, so
       // registries pinned before styles existed keep resolving.
       if (style === defaultStyle) {
-        writeJson(
-          path.join(R_PATH, "icons", library, `${item.name}.json`),
-          payload,
-        );
+        writeJson(path.join(R_PATH, "icons", library, `${item.name}.json`), payload);
         if (library === defaultIconLibrary) {
           writeJson(path.join(R_PATH, `${item.name}.json`), payload);
           indexItems.push({ ...payload, files: undefined });
@@ -333,11 +291,7 @@ for (const item of items) {
   const payload = {
     ...item,
     dependencies: usesIcons
-      ? [
-        ...(item.dependencies ?? []),
-        "unplugin-icons",
-        iconLibraries[defaultIconLibrary].package,
-      ]
+      ? [...(item.dependencies ?? []), "unplugin-icons", iconLibraries[defaultIconLibrary].package]
       : item.dependencies,
     files,
   };
@@ -363,7 +317,6 @@ console.log(
 );
 if (skipped.length > 0) {
   console.log(
-    `Skipped ${skipped.length} items whose files are not ported yet: ` +
-      skipped.join(", "),
+    `Skipped ${skipped.length} items whose files are not ported yet: ` + skipped.join(", "),
   );
 }

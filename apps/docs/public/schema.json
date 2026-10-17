@@ -39,16 +39,7 @@
     },
     "style": {
       "type": "string",
-      "enum": [
-        "nova",
-        "vega",
-        "maia",
-        "lyra",
-        "mira",
-        "luma",
-        "sera",
-        "rhea"
-      ],
+      "enum": ["nova", "vega", "maia", "lyra", "mira", "luma", "sera", "rhea"],
       "default": "nova",
       "description": "The visual style components are installed in."
     },

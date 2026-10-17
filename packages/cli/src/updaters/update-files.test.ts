@@ -1,10 +1,4 @@
-import {
-  existsSync,
-  mkdtempSync,
-  readFileSync,
-  rmSync,
-  writeFileSync,
-} from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -13,11 +7,7 @@ import { expect, test } from "vite-plus/test";
 import type { Config } from "../config/schema.ts";
 import type { RegistryItemFile } from "../registry/schema.ts";
 import type { ProjectTarget } from "../runtime/target.ts";
-import {
-  resolveFilePath,
-  UnsafeTargetError,
-  updateFiles,
-} from "./update-files.ts";
+import { resolveFilePath, UnsafeTargetError, updateFiles } from "./update-files.ts";
 
 function makeConfig(cwd: string): Config {
   return {
@@ -73,10 +63,7 @@ test("routes each item type to its alias directory", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
     const cases: Array<[RegistryItemFile, string]> = [
-      [
-        file("src/registry/ui/button.tsx", "registry:ui"),
-        "src/components/ui/button.tsx",
-      ],
+      [file("src/registry/ui/button.tsx", "registry:ui"), "src/components/ui/button.tsx"],
       [file("src/registry/lib/utils.ts", "registry:lib"), "src/lib/utils.ts"],
       [
         file("src/registry/hook/use-media-query.ts", "registry:hook"),
@@ -92,23 +79,27 @@ test("routes each item type to its alias directory", () =>
 test("preserves nesting below the registry type directory", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
-    expect(resolveFilePath(
+    expect(
+      resolveFilePath(
         file("src/registry/block/sidebar-01/index.tsx", "registry:block"),
         config,
         {},
         0,
-      )).toEqual(path.join(dir, "src/components/sidebar-01/index.tsx"));
+      ),
+    ).toEqual(path.join(dir, "src/components/sidebar-01/index.tsx"));
   }));
 
 test("--path with a directory redirects every file", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
-    expect(resolveFilePath(
+    expect(
+      resolveFilePath(
         file("src/registry/ui/button.tsx", "registry:ui"),
         config,
         { path: "src/widgets" },
         0,
-      )).toEqual(path.join(dir, "src/widgets/button.tsx"));
+      ),
+    ).toEqual(path.join(dir, "src/widgets/button.tsx"));
   }));
 
 test("refuses a target that escapes the project", () =>
@@ -125,13 +116,7 @@ test("writes a component and transforms its imports", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
     const result = updateFiles(
-      [
-        file(
-          "src/registry/ui/card.tsx",
-          "registry:ui",
-          'import { cn } from "~/lib/utils.ts";\n',
-        ),
-      ],
+      [file("src/registry/ui/card.tsx", "registry:ui", 'import { cn } from "~/lib/utils.ts";\n')],
       config,
       target,
     );
@@ -163,7 +148,9 @@ test("skips a modified file unless --overwrite", () =>
 
     const skipped = updateFiles([item], config, target);
     expect(skipped.skipped.length).toEqual(1);
-    expect(readFileSync(first.created[0], "utf8"), "user edits must survive").toEqual("// edited by the user\n");
+    expect(readFileSync(first.created[0], "utf8"), "user edits must survive").toEqual(
+      "// edited by the user\n",
+    );
 
     const forced = updateFiles([item], config, target, { overwrite: true });
     expect(forced.overwritten.length).toEqual(1);
@@ -173,12 +160,9 @@ test("skips a modified file unless --overwrite", () =>
 test("--dry-run resolves and transforms but writes nothing", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
-    const result = updateFiles(
-      [file("src/registry/ui/card.tsx", "registry:ui")],
-      config,
-      target,
-      { dryRun: true },
-    );
+    const result = updateFiles([file("src/registry/ui/card.tsx", "registry:ui")], config, target, {
+      dryRun: true,
+    });
 
     expect(result.created.length).toEqual(1);
     expect(!existsSync(result.created[0]), "dry run must not touch disk").toBe(true);
@@ -189,10 +173,6 @@ test("creates missing intermediate directories", () =>
     const config = makeConfig(dir);
     mkdirSync(path.join(dir, "src"), { recursive: true });
 
-    const result = updateFiles(
-      [file("src/registry/ui/button.tsx", "registry:ui")],
-      config,
-      target,
-    );
+    const result = updateFiles([file("src/registry/ui/button.tsx", "registry:ui")], config, target);
     expect(existsSync(result.created[0])).toBe(true);
   }));

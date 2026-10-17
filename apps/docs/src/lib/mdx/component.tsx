@@ -7,14 +7,12 @@ import { visit } from "unist-util-visit";
 
 import { Meta as Index } from "../../__registry__/meta.ts";
 import { defaultIconLibrary } from "../../registry/icons/icon-libraries.ts";
+import { srcDir } from "../paths.ts";
 import { resolveIcons } from "../registry/resolve-icons.ts";
 import { createStyleMap, inlineStyles } from "../registry/style-map.ts";
 
 const styleMap = createStyleMap(
-  fs.readFileSync(
-    path.join(process.cwd(), "src/registry/styles/style-nova.css"),
-    "utf-8",
-  ),
+  fs.readFileSync(path.join(srcDir, "registry/styles/style-nova.css"), "utf-8"),
 );
 
 /**
@@ -52,11 +50,7 @@ export default function rehypeComponent() {
           return null;
         }
 
-        const filePath = path.join(
-          process.cwd(),
-          "src",
-          component.files[0].path,
-        );
+        const filePath = path.join(srcDir, component.files[0].path);
         let source = toConsumerSource(fs.readFileSync(filePath, "utf-8"));
 
         source = source.replaceAll("~/registry/", "~/components/");
@@ -64,10 +58,7 @@ export default function rehypeComponent() {
 
         // The consumer path doubles as the code block title, like the
         // upstream title="components/ui/…" on every ComponentSource.
-        const title = component.files[0].path.replace(
-          /^registry\//,
-          "components/",
-        );
+        const title = component.files[0].path.replace(/^registry\//, "components/");
 
         node.children?.push(
           u("element", {
@@ -103,11 +94,7 @@ export default function rehypeComponent() {
           return null;
         }
 
-        const filePath = path.join(
-          process.cwd(),
-          "src",
-          component.files[0].path,
-        );
+        const filePath = path.join(srcDir, component.files[0].path);
         let source = toConsumerSource(fs.readFileSync(filePath, "utf-8"));
 
         source = source.replaceAll("~/registry/", "~/components/");

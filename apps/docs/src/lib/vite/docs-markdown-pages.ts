@@ -6,23 +6,20 @@ import { Meta as Index } from "../../__registry__/meta.ts";
 import { toConsumerSource } from "../mdx/component.tsx";
 import { toDocumentMarkdown } from "../mdx/document-markdown.ts";
 import { orderDocPages } from "../mdx/llms.ts";
+import { srcDir } from "../paths.ts";
 
-const srcDir = new URL("../../", import.meta.url).pathname;
 const routesDir = join(srcDir, "routes/(app)/");
 const llmsIndex = new URL("../../../public/llms.txt", import.meta.url).pathname;
 
 // Anything the converter should have rewritten. A page that still carries
 // one of these would reach readers as raw JSX, so the build refuses it.
-const LEFTOVER_JSX =
-  /<(ComponentPreview|ComponentSource|CodeTabs|Steps|Callout)\b/;
+const LEFTOVER_JSX = /<(ComponentPreview|ComponentSource|CodeTabs|Steps|Callout)\b/;
 
 /** Registry item source as the CLI installs it, for previews and sources. */
 function resolveRegistrySource(name: string): string | undefined {
   const item = Index[name];
   if (!item) return undefined;
-  return toConsumerSource(
-    readFileSync(join(srcDir, item.files[0].path), "utf8"),
-  );
+  return toConsumerSource(readFileSync(join(srcDir, item.files[0].path), "utf8"));
 }
 
 async function render(file: string): Promise<string> {
@@ -38,20 +35,26 @@ async function render(file: string): Promise<string> {
 
 async function collect(dir: string): Promise<string[]> {
   const entries = await fs.readdir(dir, { withFileTypes: true });
-  const nested = await Promise.all(entries.map((entry) => {
-    const full = join(dir, entry.name);
-    if (entry.isDirectory()) return collect(full);
-    return Promise.resolve(entry.name.endsWith(".mdx") ? [full] : []);
-  }));
+  const nested = await Promise.all(
+    entries.map((entry) => {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) return collect(full);
+      return Promise.resolve(entry.name.endsWith(".mdx") ? [full] : []);
+    }),
+  );
   return nested.flat();
 }
 
 /** "/docs/components/button" for the page file at that route. */
 function routeOf(file: string): string {
-  return "/" + relative(routesDir, file)
-    .split(sep).join("/")
-    .replace(/\.mdx$/, "")
-    .replace(/\/index$/, "");
+  return (
+    "/" +
+    relative(routesDir, file)
+      .split(sep)
+      .join("/")
+      .replace(/\.mdx$/, "")
+      .replace(/\/index$/, "")
+  );
 }
 
 async function pageFor(pathname: string): Promise<string | undefined> {
@@ -72,10 +75,7 @@ async function pageFor(pathname: string): Promise<string | undefined> {
 async function fullText(): Promise<string> {
   const files = await collect(join(routesDir, "docs"));
   const byRoute = new Map(files.map((file) => [routeOf(file), file]));
-  const order = orderDocPages(
-    await fs.readFile(llmsIndex, "utf8"),
-    [...byRoute.keys()],
-  );
+  const order = orderDocPages(await fs.readFile(llmsIndex, "utf8"), [...byRoute.keys()]);
   const documents: string[] = [];
   for (const route of order) documents.push(await render(byRoute.get(route)!));
   return documents.join("\n\n---\n\n");
@@ -92,11 +92,12 @@ export function docsMarkdownPages(): Plugin {
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const url = req.url?.split("?")[0] ?? "";
-        const page = url === "/llms-full.txt"
-          ? Promise.resolve(fullText())
-          : url.endsWith(".md")
-          ? pageFor(url.slice(0, -3)).then((file) => file && render(file))
-          : Promise.resolve(undefined);
+        const page =
+          url === "/llms-full.txt"
+            ? Promise.resolve(fullText())
+            : url.endsWith(".md")
+              ? pageFor(url.slice(0, -3)).then((file) => file && render(file))
+              : Promise.resolve(undefined);
         page.then((body) => {
           if (body === undefined) return next();
           res.setHeader("content-type", "text/markdown; charset=utf-8");

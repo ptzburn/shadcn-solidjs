@@ -7,8 +7,7 @@ import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { omit } from "solid-js";
 
 type CheckboxRootProps<T extends ValidComponent = "div"> =
-  & CheckboxPrimitive.CheckboxRootProps<T>
-  & { class?: string | undefined };
+  CheckboxPrimitive.CheckboxRootProps<T> & { class?: string | undefined };
 
 const Checkbox = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, CheckboxRootProps<T>>,
@@ -16,11 +15,7 @@ const Checkbox = <T extends ValidComponent = "div">(
   const local = props as CheckboxRootProps;
   const others = omit(local, "class");
   return (
-    <CheckboxPrimitive.Root
-      data-slot="checkbox"
-      class="peer"
-      {...others}
-    >
+    <CheckboxPrimitive.Root data-slot="checkbox" class="peer" {...others}>
       <CheckboxPrimitive.Input class="peer" />
       <CheckboxPrimitive.Control
         class={cn(

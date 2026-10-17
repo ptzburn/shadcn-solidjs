@@ -1,8 +1,4 @@
-import {
-  Progress,
-  ProgressLabel,
-  ProgressValueLabel,
-} from "~/registry/ui/progress.tsx";
+import { Progress, ProgressLabel, ProgressValueLabel } from "~/registry/ui/progress.tsx";
 
 export default function ProgressWithLabel() {
   return (

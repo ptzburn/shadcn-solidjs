@@ -1,16 +1,8 @@
 import { useLocation } from "@solidjs/router";
-import {
-  IconCheck,
-  IconChevronDown,
-  IconCopy,
-  IconMarkdown,
-} from "~/components/icons.tsx";
+import { IconCheck, IconChevronDown, IconCopy, IconMarkdown } from "~/components/icons.tsx";
 
 import { loadDocMarkdown } from "~/lib/docs-raw.ts";
-import {
-  ButtonGroup,
-  ButtonGroupSeparator,
-} from "~/registry/ui/button-group.tsx";
+import { ButtonGroup, ButtonGroupSeparator } from "~/registry/ui/button-group.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import {
   DropdownMenu,
@@ -62,12 +54,7 @@ export function DocsCopyPage() {
           <span class="sr-only">More options</span>
         </DropdownMenuTrigger>
         <DropdownMenuContent class="w-auto animate-none! shadow-none">
-          <DropdownMenuItem
-            as="a"
-            href={markdownUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <DropdownMenuItem as="a" href={markdownUrl()} target="_blank" rel="noopener noreferrer">
             <IconMarkdown />
             View as Markdown
           </DropdownMenuItem>

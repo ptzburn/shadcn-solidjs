@@ -5,11 +5,7 @@ export function ModeSwitcher() {
   const { toggleColorMode } = useColorMode();
 
   return (
-    <Button
-      variant="ghost"
-      size="icon-sm"
-      onClick={toggleColorMode}
-    >
+    <Button variant="ghost" size="icon-sm" onClick={toggleColorMode}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"

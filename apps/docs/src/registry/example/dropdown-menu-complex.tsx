@@ -170,22 +170,14 @@ export default function DropdownMenuComplex() {
           <DropdownMenuLabel>View</DropdownMenuLabel>
           <DropdownMenuCheckboxItem
             checked={notifications().email}
-            onChange={(checked) =>
-              setNotifications({ ...notifications(), email: checked })}
+            onChange={(checked) => setNotifications({ ...notifications(), email: checked })}
           >
-            <IconPlaceholder
-              lucide="eye"
-              tabler="eye"
-              ph="eye"
-              ri="eye-line"
-              hugeicons="view"
-            />
+            <IconPlaceholder lucide="eye" tabler="eye" ph="eye" ri="eye-line" hugeicons="view" />
             Show Sidebar
           </DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem
             checked={notifications().sms}
-            onChange={(checked) =>
-              setNotifications({ ...notifications(), sms: checked })}
+            onChange={(checked) => setNotifications({ ...notifications(), sms: checked })}
           >
             <IconPlaceholder
               lucide="layout"
@@ -324,7 +316,8 @@ export default function DropdownMenuComplex() {
                           setNotifications({
                             ...notifications(),
                             push: checked,
-                          })}
+                          })
+                        }
                       >
                         <IconPlaceholder
                           lucide="bell"
@@ -341,7 +334,8 @@ export default function DropdownMenuComplex() {
                           setNotifications({
                             ...notifications(),
                             email: checked,
-                          })}
+                          })
+                        }
                       >
                         <IconPlaceholder
                           lucide="mail"

@@ -1,9 +1,4 @@
-import {
-  Switch,
-  SwitchControl,
-  SwitchLabel,
-  SwitchThumb,
-} from "~/registry/ui/switch.tsx";
+import { Switch, SwitchControl, SwitchLabel, SwitchThumb } from "~/registry/ui/switch.tsx";
 
 export default function SwitchDemo() {
   return (

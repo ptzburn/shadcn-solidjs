@@ -1,9 +1,5 @@
 import { Button } from "~/registry/ui/button.tsx";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "~/registry/ui/popover.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "~/registry/ui/popover.tsx";
 
 export default function PopoverAlignments() {
   return (

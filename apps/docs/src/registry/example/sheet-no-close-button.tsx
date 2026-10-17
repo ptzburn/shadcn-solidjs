@@ -18,8 +18,7 @@ export default function SheetNoCloseButton() {
         <SheetHeader>
           <SheetTitle>No Close Button</SheetTitle>
           <SheetDescription>
-            This sheet doesn't have a close button in the top-right corner.
-            Click outside to close.
+            This sheet doesn't have a close button in the top-right corner. Click outside to close.
           </SheetDescription>
         </SheetHeader>
       </SheetContent>

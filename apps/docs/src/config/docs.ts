@@ -351,7 +351,12 @@ const componentDocs = new Set(
     // The parens in the route-group directory are glob metacharacters and
     // need escaping to match literally.
     import.meta.glob("../routes/\\(app\\)/docs/components/*.mdx"),
-  ).map((path) => path.split("/").pop()!.replace(/\.mdx$/, "")),
+  ).map((path) =>
+    path
+      .split("/")
+      .pop()!
+      .replace(/\.mdx$/, ""),
+  ),
 );
 
 const isPorted = (item: NavElement) =>
@@ -362,10 +367,9 @@ export const docsConfig: Config = {
   sidebarNav: fullConfig.sidebarNav.map((category) =>
     category.title === "Components"
       ? { ...category, items: category.items.filter(isPorted) }
-      : category
+      : category,
   ),
 };
 
 export const componentPages =
-  docsConfig.sidebarNav.find((category) => category.title === "Components")
-    ?.items ?? [];
+  docsConfig.sidebarNav.find((category) => category.title === "Components")?.items ?? [];

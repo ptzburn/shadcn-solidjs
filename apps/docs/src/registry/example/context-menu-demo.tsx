@@ -19,12 +19,8 @@ export default function ContextMenuDemo() {
   return (
     <ContextMenu>
       <ContextMenuTrigger class="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">
-        <span class="hidden pointer-fine:inline-block">
-          Right click here
-        </span>
-        <span class="hidden pointer-coarse:inline-block">
-          Long press here
-        </span>
+        <span class="hidden pointer-fine:inline-block">Right click here</span>
+        <span class="hidden pointer-coarse:inline-block">Long press here</span>
       </ContextMenuTrigger>
       <ContextMenuContent class="w-48">
         <ContextMenuGroup>
@@ -61,18 +57,14 @@ export default function ContextMenuDemo() {
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
-          <ContextMenuCheckboxItem checked>
-            Show Bookmarks
-          </ContextMenuCheckboxItem>
+          <ContextMenuCheckboxItem checked>Show Bookmarks</ContextMenuCheckboxItem>
           <ContextMenuCheckboxItem>Show Full URLs</ContextMenuCheckboxItem>
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
           <ContextMenuRadioGroup value="pedro">
             <ContextMenuLabel>People</ContextMenuLabel>
-            <ContextMenuRadioItem value="pedro">
-              Pedro Duarte
-            </ContextMenuRadioItem>
+            <ContextMenuRadioItem value="pedro">Pedro Duarte</ContextMenuRadioItem>
             <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
           </ContextMenuRadioGroup>
         </ContextMenuGroup>

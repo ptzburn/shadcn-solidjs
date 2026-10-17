@@ -16,8 +16,7 @@ export function MetaTags(rawProps: HeadProps) {
   const props = merge(
     {
       title: "shadcn-solidjs",
-      description:
-        "Beautifully designed components built with Kobalte and Tailwind CSS.",
+      description: "Beautifully designed components built with Kobalte and Tailwind CSS.",
     },
     rawProps,
   );
@@ -50,12 +49,7 @@ export function MetaTags(rawProps: HeadProps) {
 
       <Link rel="canonical" href={BASE_URL} />
       <Link rel="manifest" href={`${BASE_URL}/site.webmanifest`} />
-      <Link
-        rel="icon"
-        type="image/png"
-        href="/favicon-96x96.png"
-        sizes="96x96"
-      />
+      <Link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
       <Link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       <Link rel="shortcut icon" href="/favicon.ico" />
       <Link rel="apple-touch-icon" href="/apple-touch-icon.png" />

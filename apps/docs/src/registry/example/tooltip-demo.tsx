@@ -1,9 +1,5 @@
 import { Button } from "~/registry/ui/button.tsx";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/registry/ui/tooltip.tsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/registry/ui/tooltip.tsx";
 
 export default function TooltipDemo() {
   return (

@@ -26,13 +26,11 @@ const badgeVariants = cva(
   },
 );
 
-type BadgeProps<T extends ValidComponent = "span"> =
-  & VariantProps<typeof badgeVariants>
-  & { class?: string | undefined };
+type BadgeProps<T extends ValidComponent = "span"> = VariantProps<typeof badgeVariants> & {
+  class?: string | undefined;
+};
 
-const Badge = <T extends ValidComponent = "span">(
-  props: PolymorphicProps<T, BadgeProps<T>>,
-) => {
+const Badge = <T extends ValidComponent = "span">(props: PolymorphicProps<T, BadgeProps<T>>) => {
   const local = props as BadgeProps;
   const others = omit(local, "class", "variant");
   return (

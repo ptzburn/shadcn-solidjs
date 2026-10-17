@@ -2,18 +2,10 @@ import type { ComponentProps } from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
-import type {
-  EmblaCarouselType,
-  EmblaOptionsType,
-  EmblaPluginType,
-} from "embla-carousel";
+import type { EmblaCarouselType, EmblaOptionsType, EmblaPluginType } from "embla-carousel";
 
 import EmblaCarousel from "embla-carousel";
-import {
-  areOptionsEqual,
-  arePluginsEqual,
-  canUseDOM,
-} from "embla-carousel-reactive-utils";
+import { areOptionsEqual, arePluginsEqual, canUseDOM } from "embla-carousel-reactive-utils";
 import type { Accessor, Component, VoidProps } from "solid-js";
 import {
   createContext,
@@ -104,9 +96,7 @@ type CarouselContextProps = {
   canScrollNext: Accessor<boolean>;
 } & CarouselProps;
 
-const CarouselContext = createContext<Accessor<CarouselContextProps> | null>(
-  null,
-);
+const CarouselContext = createContext<Accessor<CarouselContextProps> | null>(null);
 
 const useCarousel = () => {
   const context = useContext(CarouselContext);
@@ -118,20 +108,10 @@ const useCarousel = () => {
   return untrack(context);
 };
 
-const Carousel: Component<CarouselProps & ComponentProps<"div">> = (
-  rawProps,
-) => {
+const Carousel: Component<CarouselProps & ComponentProps<"div">> = (rawProps) => {
   const props = merge({ orientation: "horizontal" as const }, rawProps);
 
-  const others = omit(
-    props,
-    "orientation",
-    "opts",
-    "setApi",
-    "plugins",
-    "class",
-    "children",
-  );
+  const others = omit(props, "orientation", "opts", "setApi", "plugins", "class", "children");
 
   const [carouselRef, api] = createEmblaCarousel(
     () => ({
@@ -196,8 +176,7 @@ const Carousel: Component<CarouselProps & ComponentProps<"div">> = (
         carouselRef,
         api,
         opts: props.opts,
-        orientation: props.orientation ||
-          (props.opts?.axis === "y" ? "vertical" : "horizontal"),
+        orientation: props.orientation || (props.opts?.axis === "y" ? "vertical" : "horizontal"),
         scrollPrev,
         scrollNext,
         canScrollPrev,
@@ -208,8 +187,7 @@ const Carousel: Component<CarouselProps & ComponentProps<"div">> = (
   return (
     <CarouselContext value={value}>
       <div
-        ref={(el) =>
-          el.addEventListener("keydown", handleKeyDown, { capture: true })}
+        ref={(el) => el.addEventListener("keydown", handleKeyDown, { capture: true })}
         class={cn("relative", props.class)}
         role="region"
         aria-roledescription="carousel"
@@ -229,11 +207,7 @@ const CarouselContent: Component<ComponentProps<"div">> = (props) => {
   return (
     <div ref={carouselRef} class="overflow-hidden" data-slot="carousel-content">
       <div
-        class={cn(
-          "flex",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
-          props.class,
-        )}
+        class={cn("flex", orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col", props.class)}
         {...others}
       />
     </div>
@@ -262,10 +236,13 @@ const CarouselItem: Component<ComponentProps<"div">> = (props) => {
 type CarouselButtonProps = VoidProps<ButtonProps>;
 
 const CarouselPrevious: Component<CarouselButtonProps> = (rawProps) => {
-  const props = merge({
-    variant: "outline" as const,
-    size: "icon-sm" as const,
-  }, rawProps);
+  const props = merge(
+    {
+      variant: "outline" as const,
+      size: "icon-sm" as const,
+    },
+    rawProps,
+  );
   const others = omit(props, "class", "variant", "size");
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
@@ -299,10 +276,13 @@ const CarouselPrevious: Component<CarouselButtonProps> = (rawProps) => {
 };
 
 const CarouselNext: Component<CarouselButtonProps> = (rawProps) => {
-  const props = merge({
-    variant: "outline" as const,
-    size: "icon-sm" as const,
-  }, rawProps);
+  const props = merge(
+    {
+      variant: "outline" as const,
+      size: "icon-sm" as const,
+    },
+    rawProps,
+  );
   const others = omit(props, "class", "variant", "size");
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
@@ -335,11 +315,4 @@ const CarouselNext: Component<CarouselButtonProps> = (rawProps) => {
   );
 };
 
-export {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  useCarousel,
-};
+export { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, useCarousel };

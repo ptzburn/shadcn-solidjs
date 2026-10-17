@@ -50,9 +50,7 @@ export function NotificationSettings() {
     <Card>
       <CardHeader>
         <CardTitle>Notifications</CardTitle>
-        <CardDescription>
-          Choose which email and push alerts you want to receive.
-        </CardDescription>
+        <CardDescription>Choose which email and push alerts you want to receive.</CardDescription>
       </CardHeader>
       <CardContent>
         <FieldGroup>
@@ -66,9 +64,7 @@ export function NotificationSettings() {
                 />
                 <FieldContent>
                   {/* Our Checkbox renders the input as `<id>-input`. */}
-                  <FieldLabel for={`notify-${n.id}-input`}>
-                    {n.label}
-                  </FieldLabel>
+                  <FieldLabel for={`notify-${n.id}-input`}>{n.label}</FieldLabel>
                   <FieldDescription>{n.description}</FieldDescription>
                 </FieldContent>
               </Field>

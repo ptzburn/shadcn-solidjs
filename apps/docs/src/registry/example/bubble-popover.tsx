@@ -1,9 +1,5 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import {
-  Bubble,
-  BubbleContent,
-  BubbleReactions,
-} from "~/registry/ui/bubble.tsx";
+import { Bubble, BubbleContent, BubbleReactions } from "~/registry/ui/bubble.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import {
   Popover,
@@ -41,9 +37,7 @@ export default function BubblePopoverDemo() {
             </PopoverTrigger>
             <PopoverContent>
               <PopoverHeader>
-                <PopoverTitle class="text-sm">
-                  Command failed with exit code 1
-                </PopoverTitle>
+                <PopoverTitle class="text-sm">Command failed with exit code 1</PopoverTitle>
                 <PopoverDescription class="text-sm">
                   ENOENT: no such file or directory, open pnpm-lock.yaml
                 </PopoverDescription>

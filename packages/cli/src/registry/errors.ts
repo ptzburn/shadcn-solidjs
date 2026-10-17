@@ -13,10 +13,7 @@ export class RegistryNotFoundError extends RegistryError {
   readonly url: string;
 
   constructor(url: string, options?: RegistryErrorOptions) {
-    super(
-      `The item at ${url} was not found. It may not exist at the registry.`,
-      options,
-    );
+    super(`The item at ${url} was not found. It may not exist at the registry.`, options);
     this.url = url;
   }
 }
@@ -44,10 +41,7 @@ export class RegistryFetchError extends RegistryError {
   readonly status?: number;
 
   constructor(url: string, status?: number, options?: RegistryErrorOptions) {
-    super(
-      `Failed to fetch the item at ${url}${status ? ` (HTTP ${status})` : ""}.`,
-      options,
-    );
+    super(`Failed to fetch the item at ${url}${status ? ` (HTTP ${status})` : ""}.`, options);
     this.url = url;
     this.status = status;
   }
@@ -66,9 +60,7 @@ export class RegistryNotConfiguredError extends RegistryError {
   readonly registry: string;
 
   constructor(registry: string) {
-    super(
-      `Unknown registry "${registry}". Add it to the "registries" field in components.json.`,
-    );
+    super(`Unknown registry "${registry}". Add it to the "registries" field in components.json.`);
     this.registry = registry;
   }
 }

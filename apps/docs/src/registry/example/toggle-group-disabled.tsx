@@ -5,13 +5,7 @@ export default function ToggleGroupDisabled() {
   return (
     <ToggleGroup disabled multiple>
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
-        <IconPlaceholder
-          lucide="bold"
-          tabler="bold"
-          ph="text-b"
-          ri="bold"
-          hugeicons="text-bold"
-        />
+        <IconPlaceholder lucide="bold" tabler="bold" ph="text-b" ri="bold" hugeicons="text-bold" />
       </ToggleGroupItem>
       <ToggleGroupItem value="italic" aria-label="Toggle italic">
         <IconPlaceholder

@@ -41,7 +41,7 @@ export type RegistryItemCss = {
 };
 
 export const registryItemCssSchema: z.ZodType<RegistryItemCss> = z.lazy(() =>
-  z.record(z.string(), z.union([z.string(), registryItemCssSchema]))
+  z.record(z.string(), z.union([z.string(), registryItemCssSchema])),
 );
 
 export const registryItemSchema = z.object({
@@ -88,6 +88,4 @@ export type RegistryItemFile = z.infer<typeof registryItemFileSchema>;
 export type RegistryItemType = z.infer<typeof registryItemTypeSchema>;
 export type RegistryItemCssVars = z.infer<typeof registryItemCssVarsSchema>;
 export type RegistryIndex = z.infer<typeof registryIndexSchema>;
-export type RegistryResolvedItemsTree = z.infer<
-  typeof registryResolvedItemsTreeSchema
->;
+export type RegistryResolvedItemsTree = z.infer<typeof registryResolvedItemsTreeSchema>;

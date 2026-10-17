@@ -1,11 +1,5 @@
 import type { Accessor, Setter } from "solid-js";
-import {
-  createEffect,
-  createRenderEffect,
-  createSignal,
-  onCleanup,
-  untrack,
-} from "solid-js";
+import { createEffect, createRenderEffect, createSignal, onCleanup, untrack } from "solid-js";
 import {
   getContentBottom,
   getElementScrollTop,
@@ -92,9 +86,10 @@ type MessageScrollerRefs = {
   messageElementsRef: Ref<Map<string, HTMLElement>>;
   modeRef: Ref<MessageScrollerMode>;
   pendingScrollFrameRef: Ref<number | null>;
-  pendingScrollToMessageRef: Ref<
-    { messageId: string; options?: MessageScrollerScrollOptions } | null
-  >;
+  pendingScrollToMessageRef: Ref<{
+    messageId: string;
+    options?: MessageScrollerScrollOptions;
+  } | null>;
   prependRestoreRef: Ref<{ element: HTMLElement; viewportTop: number } | null>;
   preserveScrollOnPrependRef: Ref<boolean>;
   rootRef: Ref<HTMLDivElement | null>;
@@ -120,18 +115,18 @@ type MessageScrollerRefs = {
 // Builds the per-instance ref bag once. Prop-derived fields start from the
 // current prop values (one-time untracked reads); the controller keeps them
 // fresh with render effects (the useLatest pattern).
-function createMessageScrollerRefs(
-  props: MessageScrollerProviderProps,
-): MessageScrollerRefs {
+function createMessageScrollerRefs(props: MessageScrollerProviderProps): MessageScrollerRefs {
   const autoScroll = untrack(() => props.autoScroll ?? false);
-  const [scrollableState, setScrollableState] = createSignal<
-    MessageScrollerScrollable
-  >(EMPTY_MESSAGE_SCROLLER_SCROLLABLE, { equals: areScrollStatesEqual });
-  const [visibilityState, setVisibilityState] = createSignal<
-    MessageScrollerVisibilityState
-  >(EMPTY_MESSAGE_SCROLLER_VISIBILITY_STATE, {
-    equals: areVisibilityStatesEqual,
-  });
+  const [scrollableState, setScrollableState] = createSignal<MessageScrollerScrollable>(
+    EMPTY_MESSAGE_SCROLLER_SCROLLABLE,
+    { equals: areScrollStatesEqual },
+  );
+  const [visibilityState, setVisibilityState] = createSignal<MessageScrollerVisibilityState>(
+    EMPTY_MESSAGE_SCROLLER_VISIBILITY_STATE,
+    {
+      equals: areVisibilityStatesEqual,
+    },
+  );
 
   return {
     autoScrollRef: { current: autoScroll },
@@ -161,17 +156,13 @@ function createMessageScrollerRefs(
     preserveScrollOnPrependRef: { current: true },
     rootRef: { current: null },
     scrollEdgeThresholdRef: {
-      current: untrack(
-        () => props.scrollEdgeThreshold ?? DEFAULT_SCROLL_EDGE_THRESHOLD,
-      ),
+      current: untrack(() => props.scrollEdgeThreshold ?? DEFAULT_SCROLL_EDGE_THRESHOLD),
     },
     scrollMarginRef: {
       current: untrack(() => props.scrollMargin ?? DEFAULT_SCROLL_MARGIN),
     },
     scrollPreviousItemPeekRef: {
-      current: untrack(
-        () => props.scrollPreviousItemPeek ?? DEFAULT_SCROLL_PREVIOUS_ITEM_PEEK,
-      ),
+      current: untrack(() => props.scrollPreviousItemPeek ?? DEFAULT_SCROLL_PREVIOUS_ITEM_PEEK),
     },
     spacerGapRef: { current: 0 },
     spacerHeightRef: { current: 0 },
@@ -214,10 +205,7 @@ function createMessageScrollerCommands({
     placement?: { keepPreviousPeek?: boolean },
   ) => boolean;
   scrollToEnd: (options?: MessageScrollerScrollOptions) => boolean;
-  scrollToMessage: (
-    messageId: string,
-    options?: MessageScrollerScrollOptions,
-  ) => boolean;
+  scrollToMessage: (messageId: string, options?: MessageScrollerScrollOptions) => boolean;
   scrollToStart: (options?: MessageScrollerScrollOptions) => boolean;
 } {
   const {
@@ -294,9 +282,7 @@ function createMessageScrollerCommands({
 
     const nextScrollTop = Math.max(0, scrollTop);
 
-    if (
-      Math.abs(viewport.scrollTop - nextScrollTop) <= SCROLL_POSITION_EPSILON
-    ) {
+    if (Math.abs(viewport.scrollTop - nextScrollTop) <= SCROLL_POSITION_EPSILON) {
       viewport.scrollTop = nextScrollTop;
       commitScrollState();
       return;
@@ -313,9 +299,7 @@ function createMessageScrollerCommands({
     scheduleStateCommit();
   };
 
-  const scrollToStart = (
-    { behavior = "auto" }: MessageScrollerScrollOptions = {},
-  ): boolean => {
+  const scrollToStart = ({ behavior = "auto" }: MessageScrollerScrollOptions = {}): boolean => {
     if (!viewportRef.current) {
       return false;
     }
@@ -329,9 +313,7 @@ function createMessageScrollerCommands({
     return true;
   };
 
-  const scrollToEnd = (
-    { behavior = "auto" }: MessageScrollerScrollOptions = {},
-  ): boolean => {
+  const scrollToEnd = ({ behavior = "auto" }: MessageScrollerScrollOptions = {}): boolean => {
     const viewport = viewportRef.current;
 
     if (!viewport) {
@@ -340,9 +322,7 @@ function createMessageScrollerCommands({
 
     setTailSpacerHeight(0);
     streamingTurnRef.current = null;
-    modeRef.current = autoScrollRef.current
-      ? "following-bottom"
-      : "free-scrolling";
+    modeRef.current = autoScrollRef.current ? "following-bottom" : "free-scrolling";
     scrollToPosition(getMaxScrollTop(viewport), {
       autoscrolling: true,
       behavior,
@@ -395,9 +375,7 @@ function createMessageScrollerCommands({
       viewportTop: getElementViewportTop(element, viewport),
     };
 
-    modeRef.current = keepPreviousPeek
-      ? "anchored-to-message"
-      : "settling-jump";
+    modeRef.current = keepPreviousPeek ? "anchored-to-message" : "settling-jump";
     streamingTurnRef.current = keepPreviousPeek ? element : null;
 
     scrollToPosition(scrollTop, { behavior });
@@ -409,19 +387,19 @@ function createMessageScrollerCommands({
   const reanchorToAnchoredMessage = (): boolean => {
     const element = streamingTurnRef.current;
 
-    if (
-      !element ||
-      !element.isConnected ||
-      modeRef.current !== "anchored-to-message"
-    ) {
+    if (!element || !element.isConnected || modeRef.current !== "anchored-to-message") {
       return false;
     }
 
     // Re-run the placement so the tail spacer is recomputed for the new content
     // height and the turn is held at the reading line.
-    return scrollToElement(element, { align: "start" }, {
-      keepPreviousPeek: true,
-    });
+    return scrollToElement(
+      element,
+      { align: "start" },
+      {
+        keepPreviousPeek: true,
+      },
+    );
   };
 
   // The target row may not be mounted yet (e.g. an async-loaded transcript).
@@ -429,10 +407,7 @@ function createMessageScrollerCommands({
   // flushed later — on registerMessage for that id, or on the next content
   // change. An explicit jump also marks the mount default as applied, so
   // defaultScrollPosition does not override it.
-  const scrollToMessage = (
-    messageId: string,
-    options?: MessageScrollerScrollOptions,
-  ): boolean => {
+  const scrollToMessage = (messageId: string, options?: MessageScrollerScrollOptions): boolean => {
     const element = messageElementsRef.current.get(messageId);
 
     if (!element) {
@@ -499,9 +474,7 @@ function createMessageScrollerCommands({
 // state and visibility commits are coalesced on a requestAnimationFrame and torn
 // down on cleanup. Called from the provider's setup so the effects and
 // onCleanup bind to its owner.
-function createMessageScrollerController(
-  props: MessageScrollerProviderProps,
-): {
+function createMessageScrollerController(props: MessageScrollerProviderProps): {
   context: MessageScrollerContextValue;
   registerMessage: MessageScrollerRegisterMessage;
 } {
@@ -553,9 +526,7 @@ function createMessageScrollerController(
   const writeStateAttributes = (state: MessageScrollerScrollable): void => {
     const root = rootRef.current;
     const viewport = viewportRef.current;
-    const scrollable = [state.start && "start", state.end && "end"]
-      .filter(Boolean)
-      .join(" ");
+    const scrollable = [state.start && "start", state.end && "end"].filter(Boolean).join(" ");
     const autoScrolling = autoscrollingRef.current;
 
     for (const element of [root, viewport]) {
@@ -586,8 +557,7 @@ function createMessageScrollerController(
     // only a scrollbar drag moves scrollTop up. Growth must not release
     // follow-output: the resize handler is coalesced onto a frame, so a state
     // commit can observe the grown content before follow catches up.
-    const scrolledUp =
-      scrollTop < lastScrollTopRef.current - SCROLL_POSITION_EPSILON;
+    const scrolledUp = scrollTop < lastScrollTopRef.current - SCROLL_POSITION_EPSILON;
 
     lastScrollTopRef.current = scrollTop;
 
@@ -623,9 +593,8 @@ function createMessageScrollerController(
     // end would strobe the scroll button once per chunk. Reconcile runs on the
     // raw geometry first, so a commit that releases follow still publishes the
     // gap it released over.
-    const publishedState = modeRef.current === "following-bottom"
-      ? { ...nextState, end: false }
-      : nextState;
+    const publishedState =
+      modeRef.current === "following-bottom" ? { ...nextState, end: false } : nextState;
 
     writeStateAttributes(publishedState);
     scrollableSnapshot.current = publishedState;
@@ -734,9 +703,9 @@ function createMessageScrollerController(
 
     prependRestoreRef.current = anchor
       ? {
-        element: anchor,
-        viewportTop: getElementViewportTop(anchor, viewport),
-      }
+          element: anchor,
+          viewportTop: getElementViewportTop(anchor, viewport),
+        }
       : null;
   };
 
@@ -770,11 +739,10 @@ function createMessageScrollerController(
     if (defaultScrollPosition === "last-anchor") {
       const content = contentRef.current;
       const viewport = viewportRef.current;
-      const anchor = content && viewport
-        ? getLastScrollAnchor(
-          getMessageScrollerItems(content, spacerRef.current),
-        )
-        : null;
+      const anchor =
+        content && viewport
+          ? getLastScrollAnchor(getMessageScrollerItems(content, spacerRef.current))
+          : null;
 
       if (!content || !viewport || !anchor) {
         handled = scrollToEnd({ behavior: "auto" });
@@ -791,14 +759,19 @@ function createMessageScrollerController(
 
         handled = lastTurnFits
           ? scrollToEnd({ behavior: "auto" })
-          : scrollToElement(anchor, { align: "start" }, {
-            keepPreviousPeek: true,
-          });
+          : scrollToElement(
+              anchor,
+              { align: "start" },
+              {
+                keepPreviousPeek: true,
+              },
+            );
       }
     } else {
-      handled = defaultScrollPosition === "end"
-        ? scrollToEnd({ behavior: "auto" })
-        : scrollToStart({ behavior: "auto" });
+      handled =
+        defaultScrollPosition === "end"
+          ? scrollToEnd({ behavior: "auto" })
+          : scrollToStart({ behavior: "auto" });
     }
 
     if (!handled) {
@@ -838,11 +811,7 @@ function createMessageScrollerController(
           return;
         }
 
-        if (
-          items.length > 0 &&
-          autoScrollRef.current &&
-          scrollToEnd({ behavior: "auto" })
-        ) {
+        if (items.length > 0 && autoScrollRef.current && scrollToEnd({ behavior: "auto" })) {
           return;
         }
 
@@ -851,11 +820,8 @@ function createMessageScrollerController(
         return;
       }
 
-      const previousFirstItemIndex = previousFirstItem
-        ? items.indexOf(previousFirstItem)
-        : -1;
-      const didPrepend = preserveScrollOnPrependRef.current &&
-        previousFirstItemIndex > 0;
+      const previousFirstItemIndex = previousFirstItem ? items.indexOf(previousFirstItem) : -1;
+      const didPrepend = preserveScrollOnPrependRef.current && previousFirstItemIndex > 0;
 
       if (didPrepend) {
         // Prepended rows are not new appends. Restore the prior scroll position.
@@ -881,24 +847,29 @@ function createMessageScrollerController(
             return;
           }
 
-          scrollToElement(anchor, { align: "start" }, {
-            keepPreviousPeek: true,
-          });
+          scrollToElement(
+            anchor,
+            { align: "start" },
+            {
+              keepPreviousPeek: true,
+            },
+          );
           handledScrollAnchorsRef.current.add(anchor);
           return;
         }
       }
 
       if (items.length === previousItemCount) {
-        const anchor = getUnanchoredScrollAnchor(
-          items,
-          handledScrollAnchorsRef.current,
-        );
+        const anchor = getUnanchoredScrollAnchor(items, handledScrollAnchorsRef.current);
 
         if (anchor) {
-          scrollToElement(anchor, { align: "start" }, {
-            keepPreviousPeek: true,
-          });
+          scrollToElement(
+            anchor,
+            { align: "start" },
+            {
+              keepPreviousPeek: true,
+            },
+          );
           handledScrollAnchorsRef.current.add(anchor);
           return;
         }
@@ -936,11 +907,7 @@ function createMessageScrollerController(
       // from the anchor hold to following the bottom. Requiring the >0 → 0
       // transition keeps a turn taller than the viewport (placed with no
       // spacer) held instead of yanked to the end.
-      if (
-        autoScrollRef.current &&
-        previousSpacerHeight > 0 &&
-        spacerHeightRef.current === 0
-      ) {
+      if (autoScrollRef.current && previousSpacerHeight > 0 && spacerHeightRef.current === 0) {
         scrollToEnd({ behavior: "auto" });
       }
 
@@ -1047,10 +1014,7 @@ function createMessageScrollerController(
       return;
     }
 
-    if (
-      removedElement &&
-      messageElementsRef.current.get(messageId) === removedElement
-    ) {
+    if (removedElement && messageElementsRef.current.get(messageId) === removedElement) {
       messageElementsRef.current.delete(messageId);
       visibleMessageIdsRef.current.delete(messageId);
       visibilityObserverRef.current?.unobserve(removedElement);
@@ -1074,8 +1038,7 @@ function createMessageScrollerController(
 
   // Reads the synchronous mirror, not the signal: a commit in the same task may
   // not have flushed yet.
-  const mirrorStateAttributes = (): void =>
-    writeStateAttributes(scrollableSnapshot.current);
+  const mirrorStateAttributes = (): void => writeStateAttributes(scrollableSnapshot.current);
 
   // Stores the node and mirrors the current state attributes once it attaches —
   // the React useElementRef ref-callback pattern. A cleanup (element === null)
@@ -1198,11 +1161,7 @@ function createMessageScrollerController(
   createEffect(
     () => props.autoScroll ?? false,
     (autoScroll) => {
-      if (
-        autoScroll &&
-        modeRef.current === "following-bottom" &&
-        itemCountRef.current > 0
-      ) {
+      if (autoScroll && modeRef.current === "following-bottom" && itemCountRef.current > 0) {
         scrollToEnd({ behavior: "auto" });
         return;
       }

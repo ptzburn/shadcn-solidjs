@@ -1,9 +1,4 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarGroup,
-  AvatarImage,
-} from "~/registry/ui/avatar.tsx";
+import { Avatar, AvatarFallback, AvatarGroup, AvatarImage } from "~/registry/ui/avatar.tsx";
 
 export default function AvatarGroupExample() {
   return (
@@ -17,10 +12,7 @@ export default function AvatarGroupExample() {
         <AvatarFallback>LR</AvatarFallback>
       </Avatar>
       <Avatar>
-        <AvatarImage
-          src="https://github.com/evilrabbit.png"
-          alt="@evilrabbit"
-        />
+        <AvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
         <AvatarFallback>ER</AvatarFallback>
       </Avatar>
     </AvatarGroup>

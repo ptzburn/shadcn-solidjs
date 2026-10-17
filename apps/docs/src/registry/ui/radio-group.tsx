@@ -6,8 +6,7 @@ import { cn } from "~/lib/utils.ts";
 import { omit } from "solid-js";
 
 type RadioGroupRootProps<T extends ValidComponent = "div"> =
-  & RadioGroupPrimitive.RadioGroupRootProps<T>
-  & { class?: string | undefined };
+  RadioGroupPrimitive.RadioGroupRootProps<T> & { class?: string | undefined };
 
 const RadioGroup = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, RadioGroupRootProps<T>>,
@@ -24,8 +23,7 @@ const RadioGroup = <T extends ValidComponent = "div">(
 };
 
 type RadioGroupItemProps<T extends ValidComponent = "div"> =
-  & RadioGroupPrimitive.RadioGroupItemProps<T>
-  & {
+  RadioGroupPrimitive.RadioGroupItemProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
   };
@@ -61,8 +59,7 @@ const RadioGroupItem = <T extends ValidComponent = "div">(
 };
 
 type RadioGroupLabelProps<T extends ValidComponent = "label"> =
-  & RadioGroupPrimitive.RadioGroupLabelProps<T>
-  & {
+  RadioGroupPrimitive.RadioGroupLabelProps<T> & {
     class?: string | undefined;
   };
 

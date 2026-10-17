@@ -93,9 +93,7 @@ export default function DrawerDemo() {
               </Button>
               <div class="flex-1 text-center">
                 <div class="font-bold text-7xl tracking-tighter">{goal()}</div>
-                <div class="text-muted-foreground text-[0.70rem] uppercase">
-                  Calories/day
-                </div>
+                <div class="text-muted-foreground text-[0.70rem] uppercase">Calories/day</div>
               </div>
               <Button
                 variant="outline"

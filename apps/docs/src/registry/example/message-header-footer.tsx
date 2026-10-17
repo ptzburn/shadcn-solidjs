@@ -1,10 +1,5 @@
 import { Bubble, BubbleContent } from "~/registry/ui/bubble.tsx";
-import {
-  Message,
-  MessageContent,
-  MessageFooter,
-  MessageHeader,
-} from "~/registry/ui/message.tsx";
+import { Message, MessageContent, MessageFooter, MessageHeader } from "~/registry/ui/message.tsx";
 
 export default function MessageHeaderFooterDemo() {
   return (

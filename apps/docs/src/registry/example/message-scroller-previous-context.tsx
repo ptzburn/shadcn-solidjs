@@ -18,11 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-} from "~/registry/ui/input-group.tsx";
+import { InputGroup, InputGroupAddon, InputGroupButton } from "~/registry/ui/input-group.tsx";
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -31,11 +27,7 @@ import {
   MessageScrollerViewport,
 } from "~/registry/ui/message-scroller.tsx";
 import { Slider } from "~/registry/ui/slider.tsx";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/registry/ui/tooltip.tsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/registry/ui/tooltip.tsx";
 import { createMemo, createSignal, For, Show } from "solid-js";
 
 const DEFAULT_PEEK = 64;
@@ -83,10 +75,7 @@ export default function MessageScrollerPreviousContext() {
   return (
     <Show when={demoKey()} keyed>
       {(_key: number) => (
-        <MessageScrollerProvider
-          scrollMargin={24}
-          scrollPreviousItemPeek={peek()}
-        >
+        <MessageScrollerProvider scrollMargin={24} scrollPreviousItemPeek={peek()}>
           <div class="relative flex flex-col gap-4">
             <Card class="mx-auto h-140 w-full max-w-sm gap-0">
               <CardHeader class="gap-1 border-b">
@@ -235,9 +224,7 @@ export default function MessageScrollerPreviousContext() {
                         </DropdownMenuContent>
                       </DropdownMenu>
                       <div class="flex w-28 items-center gap-2">
-                        <span class="text-muted-foreground text-xs tabular-nums">
-                          {peek()}px
-                        </span>
+                        <span class="text-muted-foreground text-xs tabular-nums">{peek()}px</span>
                         <Slider
                           aria-label="Previous context peek"
                           value={[peek()]}
@@ -245,8 +232,7 @@ export default function MessageScrollerPreviousContext() {
                           maxValue={128}
                           step={1}
                           disabled={isBusy()}
-                          onChange={(value) =>
-                            setPeek(value[0] ?? DEFAULT_PEEK)}
+                          onChange={(value) => setPeek(value[0] ?? DEFAULT_PEEK)}
                         />
                       </div>
                       <InputGroupButton

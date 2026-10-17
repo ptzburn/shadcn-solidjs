@@ -14,12 +14,7 @@ export default function ModeToggle() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        as={Button<"button">}
-        variant="ghost"
-        size="sm"
-        class="w-9 px-0"
-      >
+      <DropdownMenuTrigger as={Button<"button">} variant="ghost" size="sm" class="w-9 px-0">
         <IconPlaceholder
           lucide="sun"
           tabler="sun"

@@ -47,26 +47,17 @@ export default function AttachmentTriggerDemo() {
               />
             </AttachmentAction>
             <AttachmentAction aria-label="Remove research-summary.pdf">
-              <IconPlaceholder
-                lucide="x"
-                tabler="x"
-                ph="x"
-                ri="close-line"
-                hugeicons="cancel-01"
-              />
+              <IconPlaceholder lucide="x" tabler="x" ph="x" ri="close-line" hugeicons="cancel-01" />
             </AttachmentAction>
           </AttachmentActions>
-          <DialogTrigger
-            as={AttachmentTrigger}
-            aria-label="Preview research-summary.pdf"
-          />
+          <DialogTrigger as={AttachmentTrigger} aria-label="Preview research-summary.pdf" />
         </Attachment>
         <DialogContent class="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>research-summary.pdf</DialogTitle>
             <DialogDescription>
-              The attachment trigger fills the card and opens the dialog, while
-              the actions stay independently clickable above it.
+              The attachment trigger fills the card and opens the dialog, while the actions stay
+              independently clickable above it.
             </DialogDescription>
           </DialogHeader>
         </DialogContent>

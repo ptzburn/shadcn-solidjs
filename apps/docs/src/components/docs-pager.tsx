@@ -7,7 +7,7 @@ import { Show } from "solid-js";
 
 // External entries are not docs pages, so they sit outside the prev/next chain.
 const categories = docsConfig.sidebarNav.map((category) =>
-  category.items.filter((item) => !item.external)
+  category.items.filter((item) => !item.external),
 );
 
 /**

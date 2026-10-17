@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/registry/ui/card.tsx";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/registry/ui/card.tsx";
 
 import { For, Show } from "solid-js";
 

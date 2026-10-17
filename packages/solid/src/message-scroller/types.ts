@@ -148,10 +148,7 @@ type MessageScrollerContextValue = {
   removeVisibilitySubscriber: () => void;
   preserveScrollOnPrependRef: Ref<boolean>;
   scrollToEnd: (options?: MessageScrollerScrollOptions) => boolean;
-  scrollToMessage: (
-    messageId: string,
-    options?: MessageScrollerScrollOptions,
-  ) => boolean;
+  scrollToMessage: (messageId: string, options?: MessageScrollerScrollOptions) => boolean;
   scrollToStart: (options?: MessageScrollerScrollOptions) => boolean;
   // removedElement: on cleanup, only null the ref if it still points at this
   // instance's element — Solid 2 mounts a replacement branch before disposing
@@ -160,10 +157,7 @@ type MessageScrollerContextValue = {
     element: HTMLDivElement | null,
     removedElement?: HTMLDivElement | null,
   ) => void;
-  setRootElement: (
-    element: HTMLDivElement | null,
-    removedElement?: HTMLDivElement | null,
-  ) => void;
+  setRootElement: (element: HTMLDivElement | null, removedElement?: HTMLDivElement | null) => void;
   setSpacerElement: (
     element: HTMLDivElement | null,
     removedElement?: HTMLDivElement | null,
@@ -190,11 +184,10 @@ const EMPTY_MESSAGE_SCROLLER_SCROLLABLE: MessageScrollerScrollable = {
 const EMPTY_VISIBLE_MESSAGE_IDS: string[] = [];
 
 // Initial MessageScrollerVisibilityState. Nothing tracked, no current anchor.
-const EMPTY_MESSAGE_SCROLLER_VISIBILITY_STATE: MessageScrollerVisibilityState =
-  {
-    currentAnchorId: null,
-    visibleMessageIds: EMPTY_VISIBLE_MESSAGE_IDS,
-  };
+const EMPTY_MESSAGE_SCROLLER_VISIBILITY_STATE: MessageScrollerVisibilityState = {
+  currentAnchorId: null,
+  visibleMessageIds: EMPTY_VISIBLE_MESSAGE_IDS,
+};
 
 export {
   AUTOSCROLLING_CLEAR_DELAY,

@@ -39,8 +39,7 @@ const spacingOptions = [
 
 export default function CardSpacing() {
   const [spacing, setSpacing] = createSignal("4");
-  const selectedSpacing = () =>
-    spacingOptions.find((option) => option.value === spacing());
+  const selectedSpacing = () => spacingOptions.find((option) => option.value === spacing());
 
   return (
     <div class="mx-auto grid w-full max-w-sm gap-4">
@@ -56,19 +55,13 @@ export default function CardSpacing() {
         class="justify-center"
       >
         <For each={spacingOptions}>
-          {(option) => (
-            <ToggleGroupItem value={option.value}>
-              {option.label}
-            </ToggleGroupItem>
-          )}
+          {(option) => <ToggleGroupItem value={option.value}>{option.label}</ToggleGroupItem>}
         </For>
       </ToggleGroup>
       <Card class={selectedSpacing()?.class}>
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account
-          </CardDescription>
+          <CardDescription>Enter your email below to login to your account</CardDescription>
           <CardAction>
             <Button variant="link">Sign Up</Button>
           </CardAction>
@@ -78,12 +71,7 @@ export default function CardSpacing() {
             <div class="flex flex-col gap-6">
               <div class="grid gap-2">
                 <Label for="email-spacing">Email</Label>
-                <Input
-                  id="email-spacing"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                />
+                <Input id="email-spacing" type="email" placeholder="m@example.com" required />
               </div>
               <div class="grid gap-2">
                 <div class="flex items-center">

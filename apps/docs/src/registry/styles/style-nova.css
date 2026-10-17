@@ -16,7 +16,8 @@
   .style-nova {
     /* MARK: Accordion */
     /* Empty rules declare markers this style leaves unstyled. */
-    .cn-accordion {}
+    .cn-accordion {
+    }
 
     .cn-accordion-item {
       @apply not-last:border-b;
@@ -32,7 +33,8 @@
         **:data-[slot=accordion-trigger-icon]:size-4;
     }
 
-    .cn-accordion-trigger-icon {}
+    .cn-accordion-trigger-icon {
+    }
 
     .cn-accordion-content {
       @apply data-[expanded]:animate-accordion-down
@@ -120,9 +122,11 @@
       @apply bg-muted/50 -mx-4 -mb-4 rounded-b-xl border-t p-4;
     }
 
-    .cn-alert-dialog-action {}
+    .cn-alert-dialog-action {
+    }
 
-    .cn-alert-dialog-cancel {}
+    .cn-alert-dialog-cancel {
+    }
 
     /* MARK: Attachment */
     .cn-attachment {
@@ -169,7 +173,8 @@
 
     /* Upstream leaves the icon media unstyled; the tokens all live on
        .cn-attachment-media. Declared so the build knows the marker. */
-    .cn-attachment-media-variant-icon {}
+    .cn-attachment-media-variant-icon {
+    }
 
     .cn-attachment-media-variant-image {
       @apply opacity-60 group-data-[state=idle]/attachment:opacity-100
@@ -196,7 +201,8 @@
     }
 
     /* Upstream leaves the action unstyled; it inherits the Button tokens. */
-    .cn-attachment-action {}
+    .cn-attachment-action {
+    }
 
     .cn-attachment-trigger {
       @apply absolute inset-0 z-10 outline-none;
@@ -224,7 +230,8 @@
       @apply bg-primary text-primary-foreground ring-background;
     }
 
-    .cn-avatar-group {}
+    .cn-avatar-group {
+    }
 
     .cn-avatar-group-count {
       @apply bg-muted text-muted-foreground size-8 rounded-full text-sm
@@ -269,7 +276,8 @@
     }
 
     /* MARK: Breadcrumb */
-    .cn-breadcrumb {}
+    .cn-breadcrumb {
+    }
 
     .cn-breadcrumb-list {
       @apply text-muted-foreground gap-1.5 text-sm;
@@ -504,11 +512,13 @@
       @apply has-focus:border-ring border-input has-focus:ring-ring/50 border
         has-focus:ring-3;
     }
-    .cn-calendar-caption {}
+    .cn-calendar-caption {
+    }
     .cn-calendar-caption-label {
       @apply h-6 pr-1 pl-1.5;
     }
-    .cn-calendar-day-button {}
+    .cn-calendar-day-button {
+    }
     .cn-card {
       @apply ring-foreground/10 bg-card text-card-foreground
         gap-(--card-spacing)
@@ -533,7 +543,8 @@
       @apply text-muted-foreground text-sm;
     }
 
-    .cn-card-action {}
+    .cn-card-action {
+    }
 
     .cn-card-content {
       @apply px-(--card-spacing);
@@ -553,7 +564,8 @@
     }
 
     /* MARK: Chart */
-    .cn-chart {}
+    .cn-chart {
+    }
 
     .cn-chart-tooltip {
       @apply border-border/50 bg-background gap-1.5 rounded-lg border px-2.5
@@ -605,7 +617,8 @@
         justify-center;
     }
 
-    .cn-combobox-item-indicator-icon {}
+    .cn-combobox-item-indicator-icon {
+    }
 
     .cn-combobox-empty {
       @apply text-muted-foreground hidden w-full justify-center py-2 text-center
@@ -635,11 +648,14 @@
       @apply text-muted-foreground size-4;
     }
 
-    .cn-combobox-input {}
+    .cn-combobox-input {
+    }
 
-    .cn-combobox-clear {}
+    .cn-combobox-clear {
+    }
 
-    .cn-combobox-clear-icon {}
+    .cn-combobox-clear-icon {
+    }
 
     .cn-combobox-chips {
       @apply dark:bg-input/30 border-input focus-within:border-ring
@@ -664,9 +680,11 @@
       @apply -ml-1 opacity-50 hover:opacity-100;
     }
 
-    .cn-combobox-chip-input {}
+    .cn-combobox-chip-input {
+    }
 
-    .cn-combobox-chip-indicator-icon {}
+    .cn-combobox-chip-indicator-icon {
+    }
 
     /* MARK: Command */
     .cn-command {
@@ -722,7 +740,8 @@
         [&_svg:not([class*='size-'])]:size-4;
     }
 
-    .cn-command-item-indicator {}
+    .cn-command-item-indicator {
+    }
 
     .cn-command-shortcut {
       @apply text-muted-foreground
@@ -731,7 +750,8 @@
     }
 
     /* MARK: Context Menu */
-    .cn-context-menu-trigger {}
+    .cn-context-menu-trigger {
+    }
 
     .cn-context-menu-content {
       @apply data-expanded:animate-in data-closed:animate-out
@@ -829,23 +849,30 @@
         text-sm shadow-md ring-1 duration-100;
     }
 
-    .cn-date-picker-view {}
+    .cn-date-picker-view {
+    }
 
-    .cn-date-picker-prev-trigger {}
+    .cn-date-picker-prev-trigger {
+    }
 
-    .cn-date-picker-next-trigger {}
+    .cn-date-picker-next-trigger {
+    }
 
     .cn-date-picker-range-text {
       @apply font-medium text-sm;
     }
 
-    .cn-date-picker-table-row {}
+    .cn-date-picker-table-row {
+    }
 
-    .cn-date-picker-table-header {}
+    .cn-date-picker-table-header {
+    }
 
-    .cn-date-picker-table-cell {}
+    .cn-date-picker-table-cell {
+    }
 
-    .cn-date-picker-table-cell-trigger {}
+    .cn-date-picker-table-cell-trigger {
+    }
 
     /* MARK: Dialog */
     .cn-dialog-overlay {
@@ -1039,11 +1066,14 @@
       @apply gap-2 data-[invalid=true]:text-destructive;
     }
 
-    .cn-field-orientation-vertical {}
+    .cn-field-orientation-vertical {
+    }
 
-    .cn-field-orientation-horizontal {}
+    .cn-field-orientation-horizontal {
+    }
 
-    .cn-field-orientation-responsive {}
+    .cn-field-orientation-responsive {
+    }
 
     .cn-field-content {
       @apply gap-0.5;
@@ -1159,7 +1189,8 @@
         [&>svg:not([class*='size-'])]:size-3.5;
     }
 
-    .cn-input-group-button-size-sm {}
+    .cn-input-group-button-size-sm {
+    }
 
     .cn-input-group-button-size-icon-xs {
       @apply size-6 rounded-[calc(var(--radius)-3px)] p-0 has-[>svg]:p-0;
@@ -1182,7 +1213,8 @@
       @apply gap-2;
     }
 
-    .cn-input-otp-input {}
+    .cn-input-otp-input {
+    }
 
     .cn-input-otp-group {
       @apply has-aria-invalid:ring-destructive/20
@@ -1201,7 +1233,8 @@
         first:border-l last:rounded-r-lg data-[active=true]:ring-3;
     }
 
-    .cn-input-otp-caret {}
+    .cn-input-otp-caret {
+    }
 
     .cn-input-otp-caret-line {
       @apply animate-caret-blink bg-foreground h-4 w-px duration-1000;
@@ -1321,7 +1354,8 @@
 
     /* Upstream leaves the default marker unstyled; the tokens all live on
        .cn-marker. Declared so the build knows the marker and drops it. */
-    .cn-marker-variant-default {}
+    .cn-marker-variant-default {
+    }
 
     .cn-marker-variant-separator {
       @apply before:mr-1 before:h-px before:min-w-0 before:flex-1
@@ -1454,22 +1488,27 @@
     /* Only the content row spacing is styled in this style; the root, viewport,
        item and button carry all their tokens in the component. Declared so the
        build knows the markers. */
-    .cn-message-scroller {}
+    .cn-message-scroller {
+    }
 
-    .cn-message-scroller-viewport {}
+    .cn-message-scroller-viewport {
+    }
 
     .cn-message-scroller-content {
       @apply gap-6;
     }
 
-    .cn-message-scroller-item {}
+    .cn-message-scroller-item {
+    }
 
-    .cn-message-scroller-button {}
+    .cn-message-scroller-button {
+    }
 
     /* MARK: Native Select */
     /* Upstream leaves the wrapper unstyled; every token lives on the select
        itself. Declared so the build knows the marker. */
-    .cn-native-select-wrapper {}
+    .cn-native-select-wrapper {
+    }
 
     .cn-native-select {
       @apply h-8 w-full min-w-0 appearance-none rounded-lg border border-input
@@ -1515,9 +1554,11 @@
         [&_svg:not([class*='size-'])]:size-4;
     }
 
-    .cn-navigation-menu-label {}
+    .cn-navigation-menu-label {
+    }
 
-    .cn-navigation-menu-description {}
+    .cn-navigation-menu-description {
+    }
 
     .cn-navigation-menu-trigger-icon {
       @apply relative top-px ml-1 size-3 transition duration-300
@@ -1558,7 +1599,8 @@
       @apply [&>ul]:gap-0.5;
     }
 
-    .cn-pagination-link {}
+    .cn-pagination-link {
+    }
 
     .cn-pagination-ellipsis {
       @apply size-8 items-center justify-center
@@ -1569,13 +1611,15 @@
       @apply pl-1.5!;
     }
 
-    .cn-pagination-previous-text {}
+    .cn-pagination-previous-text {
+    }
 
     .cn-pagination-next {
       @apply pr-1.5!;
     }
 
-    .cn-pagination-next-text {}
+    .cn-pagination-next-text {
+    }
 
     /* MARK: Popover */
     .cn-popover-content {
@@ -1598,7 +1642,8 @@
     }
 
     /* MARK: Progress */
-    .cn-progress-root {}
+    .cn-progress-root {
+    }
 
     .cn-progress-track {
       @apply bg-muted h-1 rounded-full;
@@ -1642,11 +1687,14 @@
     }
 
     /* MARK: Resizable */
-    .cn-resizable-panel-group {}
+    .cn-resizable-panel-group {
+    }
 
-    .cn-resizable-panel {}
+    .cn-resizable-panel {
+    }
 
-    .cn-resizable-handle {}
+    .cn-resizable-handle {
+    }
 
     .cn-resizable-handle-icon {
       @apply bg-border h-6 w-1 rounded-lg;
@@ -1657,7 +1705,8 @@
        browser's, so the nova scrollbar and thumb blocks belong to the radix
        and base-ui bases and have no consumer here. Declared so the build
        knows the marker. */
-    .cn-scroll-area {}
+    .cn-scroll-area {
+    }
 
     /* MARK: Select */
     .cn-select-trigger {
@@ -1709,7 +1758,8 @@
         justify-center;
     }
 
-    .cn-select-item-indicator-icon {}
+    .cn-select-item-indicator-icon {
+    }
 
     .cn-select-separator {
       @apply bg-border -mx-1 my-1 h-px;
@@ -1768,7 +1818,8 @@
         group-data-[variant=floating]:ring-1;
     }
 
-    .cn-sidebar-trigger {}
+    .cn-sidebar-trigger {
+    }
 
     .cn-sidebar-rail {
       @apply hover:after:bg-sidebar-border;
@@ -2012,9 +2063,11 @@
         data-[variant=line]:rounded-none;
     }
 
-    .cn-tabs-list-variant-default {}
+    .cn-tabs-list-variant-default {
+    }
 
-    .cn-tabs-list-variant-line {}
+    .cn-tabs-list-variant-line {
+    }
 
     .cn-tabs-trigger {
       @apply gap-1.5 rounded-md border border-transparent px-1.5 py-0.5 text-sm

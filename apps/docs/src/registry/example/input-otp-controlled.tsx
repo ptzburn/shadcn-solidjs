@@ -1,9 +1,4 @@
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPInput,
-  InputOTPSlot,
-} from "~/registry/ui/input-otp.tsx";
+import { InputOTP, InputOTPGroup, InputOTPInput, InputOTPSlot } from "~/registry/ui/input-otp.tsx";
 
 import { createSignal, Show } from "solid-js";
 
@@ -12,11 +7,7 @@ export default function InputOTPControlled() {
 
   return (
     <div class="space-y-2">
-      <InputOTP
-        maxLength={6}
-        value={value()}
-        onChange={(value) => setValue(value)}
-      >
+      <InputOTP maxLength={6} value={value()} onChange={(value) => setValue(value)}>
         <InputOTPInput />
         <InputOTPGroup>
           <InputOTPSlot index={0} />
@@ -28,10 +19,7 @@ export default function InputOTPControlled() {
         </InputOTPGroup>
       </InputOTP>
       <div class="text-center text-sm">
-        <Show
-          when={value() !== ""}
-          fallback="Enter your one-time password."
-        >
+        <Show when={value() !== ""} fallback="Enter your one-time password.">
           You entered: {value()}
         </Show>
       </div>

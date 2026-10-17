@@ -3,11 +3,7 @@ import { docsConfig } from "~/config/docs.ts";
 import { cn } from "~/lib/utils.ts";
 
 import { Button } from "~/registry/ui/button.tsx";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "~/registry/ui/popover.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "~/registry/ui/popover.tsx";
 import { createSignal, For, omit } from "solid-js";
 
 export function MobileNav(props: { class?: string }) {
@@ -41,9 +37,7 @@ export function MobileNav(props: { class?: string }) {
           </div>
           <span class="sr-only">Toggle Menu</span>
         </div>
-        <span class="flex h-8 items-center font-medium text-lg leading-none">
-          Menu
-        </span>
+        <span class="flex h-8 items-center font-medium text-lg leading-none">Menu</span>
       </PopoverTrigger>
       {/* `ring-0` because `cn-popover-content` outlines with a ring, not a border. */}
       <PopoverContent class="no-scrollbar h-[calc(100svh-var(--header-height))] w-svw max-w-none overflow-y-auto rounded-none border-none bg-background/90 p-0 shadow-none ring-0 backdrop-blur duration-100">
@@ -53,11 +47,7 @@ export function MobileNav(props: { class?: string }) {
             <div class="flex flex-col gap-3">
               <For each={docsConfig.mainNav}>
                 {(item) => (
-                  <MobileLink
-                    href={item.href}
-                    external={item.external}
-                    onOpenChange={setOpen}
-                  >
+                  <MobileLink href={item.href} external={item.external} onOpenChange={setOpen}>
                     {item.title}
                   </MobileLink>
                 )}
@@ -65,9 +55,7 @@ export function MobileNav(props: { class?: string }) {
             </div>
           </div>
           <div class="flex flex-col gap-4">
-            <div class="font-medium text-muted-foreground text-sm">
-              Sections
-            </div>
+            <div class="font-medium text-muted-foreground text-sm">Sections</div>
             <div class="flex flex-col gap-3">
               <For each={docsConfig.sectionsNav}>
                 {(section) => (
@@ -82,9 +70,7 @@ export function MobileNav(props: { class?: string }) {
             <For each={docsConfig.sidebarNav}>
               {(category) => (
                 <div class="flex flex-col gap-4">
-                  <div class="font-medium text-muted-foreground text-sm">
-                    {category.title}
-                  </div>
+                  <div class="font-medium text-muted-foreground text-sm">{category.title}</div>
                   <div class="flex flex-col gap-3">
                     <For each={category.items}>
                       {(item) => (

@@ -8,10 +8,7 @@ import type { Component } from "solid-js";
 import { merge, omit } from "solid-js";
 
 const Select = <Option, OptGroup = never, T extends ValidComponent = "div">(
-  props: PolymorphicProps<
-    T,
-    SelectPrimitive.SelectRootProps<Option, OptGroup, T>
-  >,
+  props: PolymorphicProps<T, SelectPrimitive.SelectRootProps<Option, OptGroup, T>>,
 ) => (
   <SelectPrimitive.Root
     data-slot="select"
@@ -21,21 +18,17 @@ const Select = <Option, OptGroup = never, T extends ValidComponent = "div">(
 
 const SelectHiddenSelect = SelectPrimitive.HiddenSelect;
 
-type SelectValueProps<Option, T extends ValidComponent = "span"> =
-  SelectPrimitive.SelectValueProps<Option, T>;
+type SelectValueProps<Option, T extends ValidComponent = "span"> = SelectPrimitive.SelectValueProps<
+  Option,
+  T
+>;
 
 const SelectValue = <Option, T extends ValidComponent = "span">(
   props: PolymorphicProps<T, SelectValueProps<Option, T>>,
-) => (
-  <SelectPrimitive.Value
-    data-slot="select-value"
-    {...(props as SelectValueProps<Option>)}
-  />
-);
+) => <SelectPrimitive.Value data-slot="select-value" {...(props as SelectValueProps<Option>)} />;
 
 type SelectTriggerProps<T extends ValidComponent = "button"> =
-  & SelectPrimitive.SelectTriggerProps<T>
-  & {
+  SelectPrimitive.SelectTriggerProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     size?: "sm" | "default";
@@ -44,10 +37,7 @@ type SelectTriggerProps<T extends ValidComponent = "button"> =
 const SelectTrigger = <T extends ValidComponent = "button">(
   rawProps: PolymorphicProps<T, SelectTriggerProps<T>>,
 ) => {
-  const props = merge(
-    { size: "default" as const },
-    rawProps as SelectTriggerProps,
-  );
+  const props = merge({ size: "default" as const }, rawProps as SelectTriggerProps);
   const others = omit(props, "class", "children", "size");
   return (
     <SelectPrimitive.Trigger
@@ -75,8 +65,7 @@ const SelectTrigger = <T extends ValidComponent = "button">(
 };
 
 type SelectContentProps<T extends ValidComponent = "div"> =
-  & SelectPrimitive.SelectContentProps<T>
-  & { class?: string | undefined };
+  SelectPrimitive.SelectContentProps<T> & { class?: string | undefined };
 
 const SelectContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, SelectContentProps<T>>,
@@ -93,18 +82,15 @@ const SelectContent = <T extends ValidComponent = "div">(
         )}
         {...others}
       >
-        <SelectPrimitive.Listbox
-          data-slot="select-list"
-          class="cn-select-list"
-        />
+        <SelectPrimitive.Listbox data-slot="select-list" class="cn-select-list" />
       </SelectPrimitive.Content>
     </SelectPrimitive.Portal>
   );
 };
 
-type SelectSectionProps<T extends ValidComponent = "li"> =
-  & SelectPrimitive.SelectSectionProps<T>
-  & { class?: string | undefined };
+type SelectSectionProps<T extends ValidComponent = "li"> = SelectPrimitive.SelectSectionProps<T> & {
+  class?: string | undefined;
+};
 
 const SelectSection = <T extends ValidComponent = "li">(
   props: PolymorphicProps<T, SelectSectionProps<T>>,
@@ -133,12 +119,10 @@ const SelectSeparator: Component<ComponentProps<"li">> = (props) => {
   );
 };
 
-type SelectItemProps<T extends ValidComponent = "li"> =
-  & SelectPrimitive.SelectItemProps<T>
-  & {
-    class?: string | undefined;
-    children?: JSX.Element;
-  };
+type SelectItemProps<T extends ValidComponent = "li"> = SelectPrimitive.SelectItemProps<T> & {
+  class?: string | undefined;
+  children?: JSX.Element;
+};
 
 const SelectItem = <T extends ValidComponent = "li">(
   props: PolymorphicProps<T, SelectItemProps<T>>,
@@ -166,9 +150,7 @@ const SelectItem = <T extends ValidComponent = "li">(
           />
         </SelectPrimitive.ItemIndicator>
       </span>
-      <SelectPrimitive.ItemLabel as="span">
-        {local.children}
-      </SelectPrimitive.ItemLabel>
+      <SelectPrimitive.ItemLabel as="span">{local.children}</SelectPrimitive.ItemLabel>
     </SelectPrimitive.Item>
   );
 };

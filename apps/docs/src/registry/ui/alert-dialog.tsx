@@ -1,11 +1,6 @@
 import * as AlertDialogPrimitive from "@kobalte/core/alert-dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import {
-  type ComponentProps,
-  type JSX,
-  Portal,
-  type ValidComponent,
-} from "@solidjs/web";
+import { type ComponentProps, type JSX, Portal, type ValidComponent } from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
 import type { VariantProps } from "class-variance-authority";
 import type { Component } from "solid-js";
@@ -17,8 +12,7 @@ const AlertDialog = AlertDialogPrimitive.Root;
 const AlertDialogPortal = Portal;
 
 type AlertDialogTriggerProps<T extends ValidComponent = "button"> =
-  & AlertDialogPrimitive.AlertDialogTriggerProps<T>
-  & { class?: string | undefined };
+  AlertDialogPrimitive.AlertDialogTriggerProps<T> & { class?: string | undefined };
 
 const AlertDialogTrigger = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, AlertDialogTriggerProps<T>>,
@@ -32,8 +26,7 @@ const AlertDialogTrigger = <T extends ValidComponent = "button">(
 };
 
 type AlertDialogOverlayProps<T extends ValidComponent = "div"> =
-  & AlertDialogPrimitive.AlertDialogOverlayProps<T>
-  & { class?: string | undefined };
+  AlertDialogPrimitive.AlertDialogOverlayProps<T> & { class?: string | undefined };
 
 const AlertDialogOverlay = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, AlertDialogOverlayProps<T>>,
@@ -43,18 +36,14 @@ const AlertDialogOverlay = <T extends ValidComponent = "div">(
   return (
     <AlertDialogPrimitive.Overlay
       data-slot="alert-dialog-overlay"
-      class={cn(
-        "cn-alert-dialog-overlay fixed inset-0 z-50",
-        local.class,
-      )}
+      class={cn("cn-alert-dialog-overlay fixed inset-0 z-50", local.class)}
       {...rest}
     />
   );
 };
 
 type AlertDialogContentProps<T extends ValidComponent = "div"> =
-  & AlertDialogPrimitive.AlertDialogContentProps<T>
-  & {
+  AlertDialogPrimitive.AlertDialogContentProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     size?: "default" | "sm";
@@ -88,10 +77,7 @@ const AlertDialogHeader: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="alert-dialog-header"
-      class={cn(
-        "cn-alert-dialog-header",
-        props.class,
-      )}
+      class={cn("cn-alert-dialog-header", props.class)}
       {...rest}
     />
   );
@@ -116,18 +102,14 @@ const AlertDialogMedia: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="alert-dialog-media"
-      class={cn(
-        "cn-alert-dialog-media",
-        props.class,
-      )}
+      class={cn("cn-alert-dialog-media", props.class)}
       {...rest}
     />
   );
 };
 
 type AlertDialogTitleProps<T extends ValidComponent = "h2"> =
-  & AlertDialogPrimitive.AlertDialogTitleProps<T>
-  & { class?: string | undefined };
+  AlertDialogPrimitive.AlertDialogTitleProps<T> & { class?: string | undefined };
 
 const AlertDialogTitle = <T extends ValidComponent = "h2">(
   props: PolymorphicProps<T, AlertDialogTitleProps<T>>,
@@ -137,18 +119,14 @@ const AlertDialogTitle = <T extends ValidComponent = "h2">(
   return (
     <AlertDialogPrimitive.Title
       data-slot="alert-dialog-title"
-      class={cn(
-        "cn-alert-dialog-title font-heading",
-        local.class,
-      )}
+      class={cn("cn-alert-dialog-title font-heading", local.class)}
       {...rest}
     />
   );
 };
 
 type AlertDialogDescriptionProps<T extends ValidComponent = "p"> =
-  & AlertDialogPrimitive.AlertDialogDescriptionProps<T>
-  & { class?: string | undefined };
+  AlertDialogPrimitive.AlertDialogDescriptionProps<T> & { class?: string | undefined };
 
 const AlertDialogDescription = <T extends ValidComponent = "p">(
   props: PolymorphicProps<T, AlertDialogDescriptionProps<T>>,
@@ -158,18 +136,14 @@ const AlertDialogDescription = <T extends ValidComponent = "p">(
   return (
     <AlertDialogPrimitive.Description
       data-slot="alert-dialog-description"
-      class={cn(
-        "cn-alert-dialog-description",
-        local.class,
-      )}
+      class={cn("cn-alert-dialog-description", local.class)}
       {...rest}
     />
   );
 };
 
 type AlertDialogActionProps<T extends ValidComponent = "button"> =
-  & AlertDialogPrimitive.AlertDialogCloseButtonProps<T>
-  & {
+  AlertDialogPrimitive.AlertDialogCloseButtonProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     variant?: VariantProps<typeof buttonVariants>["variant"];
@@ -200,8 +174,7 @@ const AlertDialogAction = <T extends ValidComponent = "button">(
 };
 
 type AlertDialogCancelProps<T extends ValidComponent = "button"> =
-  & AlertDialogPrimitive.AlertDialogCloseButtonProps<T>
-  & {
+  AlertDialogPrimitive.AlertDialogCloseButtonProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     variant?: VariantProps<typeof buttonVariants>["variant"];

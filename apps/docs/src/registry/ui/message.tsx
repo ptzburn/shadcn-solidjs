@@ -52,10 +52,7 @@ const MessageContent: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="message-content"
-      class={cn(
-        "cn-message-content wrap-break-word flex w-full min-w-0 flex-col",
-        props.class,
-      )}
+      class={cn("cn-message-content wrap-break-word flex w-full min-w-0 flex-col", props.class)}
       {...others}
     />
   );
@@ -66,10 +63,7 @@ const MessageHeader: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="message-header"
-      class={cn(
-        "cn-message-header flex min-w-0 max-w-full items-center",
-        props.class,
-      )}
+      class={cn("cn-message-header flex min-w-0 max-w-full items-center", props.class)}
       {...others}
     />
   );
@@ -90,11 +84,4 @@ const MessageFooter: Component<ComponentProps<"div">> = (props) => {
 };
 
 export type { MessageProps };
-export {
-  Message,
-  MessageAvatar,
-  MessageContent,
-  MessageFooter,
-  MessageGroup,
-  MessageHeader,
-};
+export { Message, MessageAvatar, MessageContent, MessageFooter, MessageGroup, MessageHeader };

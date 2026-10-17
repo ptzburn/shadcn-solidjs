@@ -6,12 +6,10 @@ import type { Component } from "solid-js";
 
 import { omit } from "solid-js";
 
-type AvatarRootProps<T extends ValidComponent = "span"> =
-  & ImagePrimitive.ImageRootProps<T>
-  & {
-    class?: string | undefined;
-    size?: "default" | "sm" | "lg";
-  };
+type AvatarRootProps<T extends ValidComponent = "span"> = ImagePrimitive.ImageRootProps<T> & {
+  class?: string | undefined;
+  size?: "default" | "sm" | "lg";
+};
 
 const Avatar = <T extends ValidComponent = "span">(
   props: PolymorphicProps<T, AvatarRootProps<T>>,
@@ -31,11 +29,9 @@ const Avatar = <T extends ValidComponent = "span">(
   );
 };
 
-type AvatarImageProps<T extends ValidComponent = "img"> =
-  & ImagePrimitive.ImageImgProps<T>
-  & {
-    class?: string | undefined;
-  };
+type AvatarImageProps<T extends ValidComponent = "img"> = ImagePrimitive.ImageImgProps<T> & {
+  class?: string | undefined;
+};
 
 const AvatarImage = <T extends ValidComponent = "img">(
   props: PolymorphicProps<T, AvatarImageProps<T>>,
@@ -45,18 +41,14 @@ const AvatarImage = <T extends ValidComponent = "img">(
   return (
     <ImagePrimitive.Img
       data-slot="avatar-image"
-      class={cn(
-        "cn-avatar-image aspect-square size-full object-cover",
-        local.class,
-      )}
+      class={cn("cn-avatar-image aspect-square size-full object-cover", local.class)}
       {...others}
     />
   );
 };
 
 type AvatarFallbackProps<T extends ValidComponent = "span"> =
-  & ImagePrimitive.ImageFallbackProps<T>
-  & { class?: string | undefined };
+  ImagePrimitive.ImageFallbackProps<T> & { class?: string | undefined };
 
 const AvatarFallback = <T extends ValidComponent = "span">(
   props: PolymorphicProps<T, AvatarFallbackProps<T>>,
@@ -120,11 +112,4 @@ const AvatarGroupCount: Component<ComponentProps<"div">> = (props) => {
   );
 };
 
-export {
-  Avatar,
-  AvatarBadge,
-  AvatarFallback,
-  AvatarGroup,
-  AvatarGroupCount,
-  AvatarImage,
-};
+export { Avatar, AvatarBadge, AvatarFallback, AvatarGroup, AvatarGroupCount, AvatarImage };

@@ -11,9 +11,9 @@ export const REGEXP_ONLY_DIGITS = "^\\d*$";
 export const REGEXP_ONLY_CHARS = "^[a-zA-Z]*$";
 export const REGEXP_ONLY_DIGITS_AND_CHARS = "^[a-zA-Z0-9]*$";
 
-type InputOTPProps<T extends ValidComponent = "div"> =
-  & OTPFieldPrimitive.OTPFieldRootProps<T>
-  & { class?: string | undefined };
+type InputOTPProps<T extends ValidComponent = "div"> = OTPFieldPrimitive.OTPFieldRootProps<T> & {
+  class?: string | undefined;
+};
 
 const InputOTP = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, InputOTPProps<T>>,
@@ -22,18 +22,14 @@ const InputOTP = <T extends ValidComponent = "div">(
   const rest = omit(local, "class");
   return (
     <OTPFieldPrimitive.Root
-      class={cn(
-        "cn-input-otp flex items-center has-disabled:opacity-50",
-        local.class,
-      )}
+      class={cn("cn-input-otp flex items-center has-disabled:opacity-50", local.class)}
       {...rest}
     />
   );
 };
 
 type InputOTPInputProps<T extends ValidComponent = "input"> =
-  & OTPFieldPrimitive.OTPFieldInputProps<T>
-  & { class?: string | undefined };
+  OTPFieldPrimitive.OTPFieldInputProps<T> & { class?: string | undefined };
 
 const InputOTPInput = <T extends ValidComponent = "input">(
   rawProps: PolymorphicProps<T, InputOTPInputProps<T>>,
@@ -44,18 +40,13 @@ const InputOTPInput = <T extends ValidComponent = "input">(
     const handler = props.onFocus;
     if (typeof handler === "function") handler(event);
     else if (handler) handler[0](handler[1], event);
-    requestAnimationFrame(() =>
-      document.dispatchEvent(new Event("selectionchange"))
-    );
+    requestAnimationFrame(() => document.dispatchEvent(new Event("selectionchange")));
   };
   return (
     <OTPFieldPrimitive.Input
       onFocus={onFocus}
       data-slot="input-otp"
-      class={cn(
-        "cn-input-otp-input z-20 disabled:cursor-not-allowed",
-        props.class,
-      )}
+      class={cn("cn-input-otp-input z-20 disabled:cursor-not-allowed", props.class)}
       {...rest}
     />
   );
@@ -66,24 +57,18 @@ const InputOTPGroup: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="input-otp-group"
-      class={cn(
-        "cn-input-otp-group flex items-center",
-        props.class,
-      )}
+      class={cn("cn-input-otp-group flex items-center", props.class)}
       {...rest}
     />
   );
 };
 
-const InputOTPSlot: Component<ComponentProps<"div"> & { index: number }> = (
-  props,
-) => {
+const InputOTPSlot: Component<ComponentProps<"div"> & { index: number }> = (props) => {
   const rest = omit(props, "class", "index");
   const context = OTPFieldPrimitive.useOTPFieldContext();
   const char = () => context.value()[props.index];
   const isActive = () => context.activeSlots().includes(props.index);
-  const showFakeCaret = () =>
-    context.value().length === props.index && context.isInserting();
+  const showFakeCaret = () => context.value().length === props.index && context.isInserting();
 
   return (
     <div
@@ -110,10 +95,7 @@ const InputOTPSeparator: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="input-otp-separator"
-      class={cn(
-        "cn-input-otp-separator flex items-center",
-        props.class,
-      )}
+      class={cn("cn-input-otp-separator flex items-center", props.class)}
       role="separator"
       {...rest}
     >
@@ -128,10 +110,4 @@ const InputOTPSeparator: Component<ComponentProps<"div">> = (props) => {
   );
 };
 
-export {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPInput,
-  InputOTPSeparator,
-  InputOTPSlot,
-};
+export { InputOTP, InputOTPGroup, InputOTPInput, InputOTPSeparator, InputOTPSlot };

@@ -16,7 +16,8 @@ export default function ToastTypes() {
           toast.add({
             type: "success",
             description: "Event has been created.",
-          })}
+          })
+        }
       >
         Success
       </Button>
@@ -26,7 +27,8 @@ export default function ToastTypes() {
           toast.add({
             type: "info",
             description: "Arrive 10 minutes before the event.",
-          })}
+          })
+        }
       >
         Info
       </Button>
@@ -36,7 +38,8 @@ export default function ToastTypes() {
           toast.add({
             type: "warning",
             description: "The event is at full capacity.",
-          })}
+          })
+        }
       >
         Warning
       </Button>
@@ -46,7 +49,8 @@ export default function ToastTypes() {
           toast.add({
             type: "error",
             description: "The event could not be created.",
-          })}
+          })
+        }
       >
         Error
       </Button>
@@ -56,7 +60,8 @@ export default function ToastTypes() {
           toast.add({
             type: "loading",
             description: "Creating the event…",
-          })}
+          })
+        }
       >
         Loading
       </Button>

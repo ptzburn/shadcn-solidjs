@@ -5,8 +5,7 @@ import { Button } from "~/registry/ui/button.tsx";
 import { Collapsible, CollapsibleTrigger } from "~/registry/ui/collapsible.tsx";
 import { createSignal } from "solid-js";
 
-const text =
-  `The accessibility review found two focus states that were visually too subtle in dark mode.
+const text = `The accessibility review found two focus states that were visually too subtle in dark mode.
 
 I checked the dialog, menu, and drawer paths because each one renders focusable controls inside a layered surface.
 
@@ -31,26 +30,24 @@ export default function BubbleCollapsible() {
         <BubbleContent class="whitespace-pre-line">
           <Collapsible open={open()} onOpenChange={setOpen}>
             <div>{open() || !isLong ? text : preview}</div>
-            {isLong
-              ? (
-                <CollapsibleTrigger
-                  as={Button}
-                  variant="link"
-                  class="group gap-1 p-0 text-muted-foreground"
-                >
-                  {open() ? "Show less" : "Show more"}
-                  <IconPlaceholder
-                    lucide="chevron-down"
-                    tabler="chevron-down"
-                    ph="caret-down"
-                    ri="arrow-down-s-line"
-                    hugeicons="arrow-down-01"
-                    data-icon="inline-end"
-                    class="group-data-expanded:rotate-180"
-                  />
-                </CollapsibleTrigger>
-              )
-              : null}
+            {isLong ? (
+              <CollapsibleTrigger
+                as={Button}
+                variant="link"
+                class="group gap-1 p-0 text-muted-foreground"
+              >
+                {open() ? "Show less" : "Show more"}
+                <IconPlaceholder
+                  lucide="chevron-down"
+                  tabler="chevron-down"
+                  ph="caret-down"
+                  ri="arrow-down-s-line"
+                  hugeicons="arrow-down-01"
+                  data-icon="inline-end"
+                  class="group-data-expanded:rotate-180"
+                />
+              </CollapsibleTrigger>
+            ) : null}
           </Collapsible>
         </BubbleContent>
       </Bubble>

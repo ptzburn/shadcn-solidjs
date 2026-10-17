@@ -1,11 +1,5 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemMedia,
-  ItemTitle,
-} from "~/registry/ui/item.tsx";
+import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "~/registry/ui/item.tsx";
 
 export default function ItemSize() {
   return (
@@ -22,9 +16,7 @@ export default function ItemSize() {
         </ItemMedia>
         <ItemContent>
           <ItemTitle>Default Size</ItemTitle>
-          <ItemDescription>
-            The standard size for most use cases.
-          </ItemDescription>
+          <ItemDescription>The standard size for most use cases.</ItemDescription>
         </ItemContent>
       </Item>
       <Item variant="outline" size="sm">

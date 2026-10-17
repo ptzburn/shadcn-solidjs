@@ -8,14 +8,11 @@ import type { Component } from "solid-js";
 import { omit } from "solid-js";
 
 const HoverCard: Component<HoverCardPrimitive.HoverCardRootProps> = (props) => {
-  return (
-    <HoverCardPrimitive.Root data-slot="hover-card" gutter={4} {...props} />
-  );
+  return <HoverCardPrimitive.Root data-slot="hover-card" gutter={4} {...props} />;
 };
 
 type HoverCardTriggerProps<T extends ValidComponent = "a"> =
-  & HoverCardPrimitive.HoverCardTriggerProps<T>
-  & { class?: string | undefined };
+  HoverCardPrimitive.HoverCardTriggerProps<T> & { class?: string | undefined };
 
 const HoverCardTrigger = <T extends ValidComponent = "a">(
   props: PolymorphicProps<T, HoverCardTriggerProps<T>>,
@@ -29,8 +26,7 @@ const HoverCardTrigger = <T extends ValidComponent = "a">(
 };
 
 type HoverCardContentProps<T extends ValidComponent = "div"> =
-  & HoverCardPrimitive.HoverCardContentProps<T>
-  & {
+  HoverCardPrimitive.HoverCardContentProps<T> & {
     class?: string | undefined;
   };
 

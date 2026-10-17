@@ -1,10 +1,6 @@
 import { Button } from "~/registry/ui/button.tsx";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/registry/ui/tooltip.tsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/registry/ui/tooltip.tsx";
 import { For } from "solid-js";
 
 const TOOLTIP_SIDES = ["left", "top", "bottom", "right"] as const;
@@ -15,11 +11,7 @@ export default function TooltipSides() {
       <For each={TOOLTIP_SIDES}>
         {(side) => (
           <Tooltip placement={side}>
-            <TooltipTrigger
-              as={Button<"button">}
-              variant="outline"
-              class="w-fit capitalize"
-            >
+            <TooltipTrigger as={Button<"button">} variant="outline" class="w-fit capitalize">
               {side}
             </TooltipTrigger>
             <TooltipContent>

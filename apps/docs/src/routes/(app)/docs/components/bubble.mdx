@@ -51,14 +51,12 @@ npm install @kobalte/core@2.0.0-alpha.1
 ## Usage
 
 ```tsx
-import { Bubble, BubbleContent, BubbleReactions } from "~/components/ui/bubble"
+import { Bubble, BubbleContent, BubbleReactions } from "~/components/ui/bubble";
 ```
 
 ```tsx
 <Bubble>
-  <BubbleContent>
-    I checked the registry output and removed the stale route.
-  </BubbleContent>
+  <BubbleContent>I checked the registry output and removed the stale route.</BubbleContent>
   <BubbleReactions>
     <span>👍</span>
   </BubbleReactions>
@@ -125,8 +123,8 @@ Use `align` on `Bubble` to align the bubble to the start or end of the conversat
 
 <Callout>
   When building chat interfaces, you probably want to set alignment on the
-  [`Message`](/docs/components/message) component itself rather than on each
-  `Bubble`. A bubble inside a `Message` follows the message alignment.
+  [`Message`](/docs/components/message) component itself rather than on each `Bubble`. A bubble
+  inside a `Message` follows the message alignment.
 </Callout>
 
 ## Bubble Group
@@ -150,14 +148,14 @@ You can turn a bubble into a link or button with the `as` prop on `BubbleContent
 <ComponentPreview name="bubble-link-button" previewClassName="h-auto" />
 
 ```tsx
-import { Bubble, BubbleContent } from "~/components/ui/bubble"
+import { Bubble, BubbleContent } from "~/components/ui/bubble";
 
 export default function BubbleLinkDemo() {
   return (
     <Bubble variant="muted">
       <BubbleContent as="button">Click here</BubbleContent>
     </Bubble>
-  )
+  );
 }
 ```
 
@@ -233,11 +231,11 @@ Bubble variants signal role and tone with color. Pair them with text, alignment,
 
 The root bubble wrapper.
 
-| Prop      | Type                                                                                      | Default     |
-| --------- | ----------------------------------------------------------------------------------------- | ----------- |
+| Prop      | Type                                                                                       | Default     |
+| --------- | ------------------------------------------------------------------------------------------ | ----------- |
 | `variant` | `"default" \| "secondary" \| "muted" \| "tinted" \| "outline" \| "ghost" \| "destructive"` | `"default"` |
-| `align`   | `"start" \| "end"`                                                                        | `"start"`   |
-| `class`   | `string`                                                                                  | -           |
+| `align`   | `"start" \| "end"`                                                                         | `"start"`   |
+| `class`   | `string`                                                                                   | -           |
 
 ### BubbleContent
 

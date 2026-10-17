@@ -31,10 +31,8 @@ const attachmentVariants = cva(
   },
 );
 
-type AttachmentProps =
-  & ComponentProps<"div">
-  & VariantProps<typeof attachmentVariants>
-  & {
+type AttachmentProps = ComponentProps<"div"> &
+  VariantProps<typeof attachmentVariants> & {
     state?: "idle" | "uploading" | "processing" | "error" | "done";
   };
 
@@ -74,9 +72,7 @@ const attachmentMediaVariants = cva(
   },
 );
 
-type AttachmentMediaProps =
-  & ComponentProps<"div">
-  & VariantProps<typeof attachmentMediaVariants>;
+type AttachmentMediaProps = ComponentProps<"div"> & VariantProps<typeof attachmentMediaVariants>;
 
 const AttachmentMedia: Component<AttachmentMediaProps> = (props) => {
   const others = omit(props, "class", "variant");
@@ -84,10 +80,7 @@ const AttachmentMedia: Component<AttachmentMediaProps> = (props) => {
     <div
       data-slot="attachment-media"
       data-variant={props.variant ?? "icon"}
-      class={cn(
-        attachmentMediaVariants({ variant: props.variant }),
-        props.class,
-      )}
+      class={cn(attachmentMediaVariants({ variant: props.variant }), props.class)}
       {...others}
     />
   );
@@ -98,10 +91,7 @@ const AttachmentContent: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="attachment-content"
-      class={cn(
-        "cn-attachment-content min-w-0 max-w-full flex-1",
-        props.class,
-      )}
+      class={cn("cn-attachment-content min-w-0 max-w-full flex-1", props.class)}
       {...others}
     />
   );
@@ -141,10 +131,7 @@ const AttachmentActions: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="attachment-actions"
-      class={cn(
-        "cn-attachment-actions flex shrink-0 items-center",
-        props.class,
-      )}
+      class={cn("cn-attachment-actions flex shrink-0 items-center", props.class)}
       {...others}
     />
   );
@@ -166,9 +153,7 @@ const AttachmentAction = <T extends ValidComponent = "button">(
   );
 };
 
-type AttachmentTriggerProps =
-  & ComponentProps<"button">
-  & { class?: string | undefined };
+type AttachmentTriggerProps = ComponentProps<"button"> & { class?: string | undefined };
 
 const AttachmentTrigger = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, AttachmentTriggerProps>,
@@ -179,13 +164,8 @@ const AttachmentTrigger = <T extends ValidComponent = "button">(
     <Polymorphic
       as="button"
       data-slot="attachment-trigger"
-      type={(props.as ?? "button") === "button"
-        ? local.type ?? "button"
-        : local.type}
-      class={cn(
-        "cn-attachment-trigger absolute inset-0 z-10 outline-none",
-        local.class,
-      )}
+      type={(props.as ?? "button") === "button" ? (local.type ?? "button") : local.type}
+      class={cn("cn-attachment-trigger absolute inset-0 z-10 outline-none", local.class)}
       {...others}
     />
   );

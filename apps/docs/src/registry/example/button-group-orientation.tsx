@@ -4,11 +4,7 @@ import { Button } from "~/registry/ui/button.tsx";
 
 export default function ButtonGroupOrientation() {
   return (
-    <ButtonGroup
-      orientation="vertical"
-      aria-label="Media controls"
-      class="h-fit"
-    >
+    <ButtonGroup orientation="vertical" aria-label="Media controls" class="h-fit">
       <Button variant="outline" size="icon">
         <IconPlaceholder
           lucide="plus"

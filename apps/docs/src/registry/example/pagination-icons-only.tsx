@@ -28,14 +28,8 @@ export default function PaginationIconsOnly() {
             <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
           )}
         >
-          <SelectTrigger
-            id="select-rows-per-page"
-            aria-label="Rows per page"
-            class="w-20"
-          >
-            <SelectValue<string>>
-              {(state) => state.selectedOption()}
-            </SelectValue>
+          <SelectTrigger id="select-rows-per-page" aria-label="Rows per page" class="w-20">
+            <SelectValue<string>>{(state) => state.selectedOption()}</SelectValue>
           </SelectTrigger>
           <SelectContent />
         </Select>
@@ -44,9 +38,7 @@ export default function PaginationIconsOnly() {
         count={10}
         defaultPage={2}
         class="mx-0 w-auto"
-        itemComponent={(props) => (
-          <PaginationItem page={props.page}>{props.page}</PaginationItem>
-        )}
+        itemComponent={(props) => <PaginationItem page={props.page}>{props.page}</PaginationItem>}
         ellipsisComponent={() => <PaginationEllipsis />}
       >
         <PaginationPrevious />

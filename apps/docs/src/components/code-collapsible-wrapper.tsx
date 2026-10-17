@@ -2,11 +2,7 @@ import type { ComponentProps } from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
 
 import { Button } from "~/registry/ui/button.tsx";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "~/registry/ui/collapsible.tsx";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "~/registry/ui/collapsible.tsx";
 import { Separator } from "~/registry/ui/separator.tsx";
 import { createSignal, omit } from "solid-js";
 
@@ -15,9 +11,7 @@ import { createSignal, omit } from "solid-js";
  * Kobalte root (not the content like radix), keeping the collapsed
  * preview in the DOM so max-h can clip it.
  */
-export function CodeCollapsibleWrapper(
-  props: ComponentProps<typeof Collapsible>,
-) {
+export function CodeCollapsibleWrapper(props: ComponentProps<typeof Collapsible>) {
   const rest = omit(props, "class", "children");
   const [isOpened, setIsOpened] = createSignal(false);
 

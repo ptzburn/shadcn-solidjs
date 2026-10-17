@@ -7,10 +7,7 @@ import { resolveRegistryTree } from "../registry/resolver.ts";
 import type { ProjectTarget } from "../runtime/target.ts";
 import { transformImports } from "./transform-import.ts";
 
-const R_DIR = path.resolve(
-  import.meta.dirname!,
-  "../../../../apps/docs/public/r",
-);
+const R_DIR = path.resolve(import.meta.dirname!, "../../../../apps/docs/public/r");
 
 function makeConfig(prefix: string): Config {
   return {
@@ -59,14 +56,17 @@ test("rewrites the utils import onto the configured alias", () => {
 test("rewrites relative sibling imports onto the ui alias", () => {
   const source = 'import { Button } from "./button.tsx";';
 
-  expect(transformImports(source, node)).toEqual('import { Button } from "@/components/ui/button";');
+  expect(transformImports(source, node)).toEqual(
+    'import { Button } from "@/components/ui/button";',
+  );
 });
 
 test("rewrites hook imports onto the hooks alias", () => {
-  const source =
-    'import { useMediaQuery } from "~/lib/hooks/use-media-query.ts";';
+  const source = 'import { useMediaQuery } from "~/lib/hooks/use-media-query.ts";';
 
-  expect(transformImports(source, node)).toEqual('import { useMediaQuery } from "@/hooks/use-media-query";');
+  expect(transformImports(source, node)).toEqual(
+    'import { useMediaQuery } from "@/hooks/use-media-query";',
+  );
 });
 
 test("leaves bare package specifiers alone", () => {
@@ -86,12 +86,18 @@ test("leaves unplugin-icons virtual modules alone", () => {
 });
 
 test("rewrites type-only and side-effect imports", () => {
-  expect(transformImports('import type { ButtonProps } from "./button.tsx";', node)).toEqual('import type { ButtonProps } from "@/components/ui/button";');
-  expect(transformImports('import "./button.tsx";', node)).toEqual('import "@/components/ui/button";');
+  expect(transformImports('import type { ButtonProps } from "./button.tsx";', node)).toEqual(
+    'import type { ButtonProps } from "@/components/ui/button";',
+  );
+  expect(transformImports('import "./button.tsx";', node)).toEqual(
+    'import "@/components/ui/button";',
+  );
 });
 
 test("rewrites dynamic imports", () => {
-  expect(transformImports('const m = await import("./button.tsx");', node)).toEqual('const m = await import("@/components/ui/button");');
+  expect(transformImports('const m = await import("./button.tsx");', node)).toEqual(
+    'const m = await import("@/components/ui/button");',
+  );
 });
 
 test("leaves lookalike strings that are not imports", () => {

@@ -12,9 +12,7 @@ export class MissingConfigError extends Error {
   readonly cwd: string;
 
   constructor(cwd: string) {
-    super(
-      `No ${CONFIG_FILE} found in ${cwd}. Run \`shadcn-solidjs init\` first.`,
-    );
+    super(`No ${CONFIG_FILE} found in ${cwd}. Run \`shadcn-solidjs init\` first.`);
     this.name = "MissingConfigError";
     this.cwd = cwd;
   }
@@ -36,9 +34,9 @@ export class UnresolvedAliasError extends Error {
 
   constructor(aliases: string[], cwd: string) {
     super(
-      `Could not resolve the following aliases in ${cwd}: ${
-        aliases.join(", ")
-      }. Check the "paths" in your tsconfig.json.`,
+      `Could not resolve the following aliases in ${cwd}: ${aliases.join(
+        ", ",
+      )}. Check the "paths" in your tsconfig.json.`,
     );
     this.name = "UnresolvedAliasError";
     this.aliases = aliases;
@@ -62,9 +60,7 @@ export function getRawConfig(cwd: string): RawConfig | null {
   const configPath = findConfigFile(cwd);
   if (!configPath) return null;
 
-  const parsed = rawConfigSchema.safeParse(
-    parseJsonc(readFileSync(configPath, "utf8")),
-  );
+  const parsed = rawConfigSchema.safeParse(parseJsonc(readFileSync(configPath, "utf8")));
   if (!parsed.success) {
     throw new InvalidConfigError(configPath, parsed.error);
   }
@@ -96,8 +92,7 @@ export async function resolveConfigPaths(
 
   const entries = await Promise.all(
     Object.entries(aliases).map(
-      async ([key, alias]) =>
-        [key, alias, await target.resolveImport(alias)] as const,
+      async ([key, alias]) => [key, alias, await target.resolveImport(alias)] as const,
     ),
   );
 
@@ -109,9 +104,10 @@ export async function resolveConfigPaths(
     );
   }
 
-  const resolved = Object.fromEntries(
-    entries.map(([key, , value]) => [key, value!]),
-  ) as Record<keyof typeof aliases, string>;
+  const resolved = Object.fromEntries(entries.map(([key, , value]) => [key, value!])) as Record<
+    keyof typeof aliases,
+    string
+  >;
 
   return {
     ...raw,
@@ -140,9 +136,7 @@ export async function getConfig(cwd: string): Promise<Config | null> {
 
   const target = detectProjectTarget(cwd);
   if (!target) {
-    throw new UnsupportedConfigError(
-      `Could not find a package.json above ${cwd}.`,
-    );
+    throw new UnsupportedConfigError(`Could not find a package.json above ${cwd}.`);
   }
 
   return await resolveConfigPaths(cwd, raw, target);

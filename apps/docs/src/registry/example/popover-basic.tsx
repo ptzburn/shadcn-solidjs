@@ -17,9 +17,7 @@ export default function PopoverBasic() {
       <PopoverContent>
         <PopoverHeader>
           <PopoverTitle>Dimensions</PopoverTitle>
-          <PopoverDescription>
-            Set the dimensions for the layer.
-          </PopoverDescription>
+          <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>
         </PopoverHeader>
       </PopoverContent>
     </Popover>

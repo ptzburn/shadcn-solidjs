@@ -26,12 +26,8 @@ export default function SelectDemo() {
       options={CATEGORIES}
       optionGroupChildren="items"
       placeholder="Select a fruit"
-      itemComponent={(props) => (
-        <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
-      )}
-      sectionComponent={(props) => (
-        <SelectSection>{props.section.rawValue.label}</SelectSection>
-      )}
+      itemComponent={(props) => <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>}
+      sectionComponent={(props) => <SelectSection>{props.section.rawValue.label}</SelectSection>}
     >
       <SelectTrigger aria-label="Fruit" class="w-full">
         <SelectValue<string>>{(state) => state.selectedOption()}</SelectValue>

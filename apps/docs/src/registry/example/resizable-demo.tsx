@@ -1,8 +1,4 @@
-import {
-  Resizable,
-  ResizableHandle,
-  ResizablePanel,
-} from "~/registry/ui/resizable.tsx";
+import { Resizable, ResizableHandle, ResizablePanel } from "~/registry/ui/resizable.tsx";
 
 export default function ResizableDemo() {
   return (

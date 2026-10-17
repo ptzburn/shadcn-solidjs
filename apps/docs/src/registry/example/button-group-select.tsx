@@ -47,16 +47,12 @@ export default function ButtonGroupSelect() {
           itemComponent={(props) => (
             <SelectItem item={props.item}>
               {props.item.rawValue.value}{" "}
-              <span class="text-muted-foreground">
-                {props.item.rawValue.label}
-              </span>
+              <span class="text-muted-foreground">{props.item.rawValue.label}</span>
             </SelectItem>
           )}
         >
           <SelectTrigger aria-label="Currency" class="font-mono">
-            <SelectValue<Currency>>
-              {(state) => state.selectedOption().value}
-            </SelectValue>
+            <SelectValue<Currency>>{(state) => state.selectedOption().value}</SelectValue>
           </SelectTrigger>
           <SelectContent class="min-w-24" />
         </Select>

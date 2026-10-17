@@ -68,10 +68,7 @@ export default function InputOTPForm() {
           </Button>
           <div class="text-muted-foreground text-sm">
             Having trouble signing in?{" "}
-            <a
-              href="#"
-              class="underline underline-offset-4 transition-colors hover:text-primary"
-            >
+            <a href="#" class="underline underline-offset-4 transition-colors hover:text-primary">
               Contact support
             </a>
           </div>

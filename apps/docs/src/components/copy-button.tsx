@@ -32,7 +32,7 @@ const CopyButton: Component<CopyButtonProps> = (props) => {
   const [hasCopied, setHasCopied] = createSignal(false);
 
   const copy = async () => {
-    if (!await copyToClipboard(props.content)) {
+    if (!(await copyToClipboard(props.content))) {
       return;
     }
     setHasCopied(true);

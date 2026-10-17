@@ -7,11 +7,7 @@ import { getConfig, MissingConfigError } from "../config/get-config.ts";
 import { detectProjectTarget } from "../runtime/detect.ts";
 import { handleError } from "../utils/handle-error.ts";
 import { logger, setSilent } from "../utils/logger.ts";
-import {
-  addComponents,
-  type AddResult,
-  listComponentNames,
-} from "./add-components.ts";
+import { addComponents, type AddResult, listComponentNames } from "./add-components.ts";
 
 interface AddCommandOptions {
   cwd?: string;
@@ -37,46 +33,29 @@ function report(result: AddResult, projectCwd: string, dryRun: boolean): void {
     logger.info(`${show(file)} is already up to date`);
   }
   for (const file of result.files.skipped) {
-    logger.warn(
-      `${show(file)} exists and differs. Pass --overwrite to replace it.`,
-    );
+    logger.warn(`${show(file)} exists and differs. Pass --overwrite to replace it.`);
   }
 
-  const installed = [
-    ...result.dependencies.installed,
-    ...result.dependencies.devInstalled,
-  ];
+  const installed = [...result.dependencies.installed, ...result.dependencies.devInstalled];
   if (installed.length > 0) {
-    logger.success(
-      `${dryRun ? "Would install" : "Installed"} ${installed.join(", ")}`,
-    );
+    logger.success(`${dryRun ? "Would install" : "Installed"} ${installed.join(", ")}`);
   }
   if (result.dependencies.alreadyPresent.length > 0) {
     logger.info(
-      `Left ${
-        result.dependencies.alreadyPresent.join(", ")
-      } at the version already declared`,
+      `Left ${result.dependencies.alreadyPresent.join(", ")} at the version already declared`,
     );
   }
 
   if (result.cssUpdated) {
-    logger.success(
-      `${dryRun ? "Would update" : "Updated"} ${show(result.cssUpdated)}`,
-    );
+    logger.success(`${dryRun ? "Would update" : "Updated"} ${show(result.cssUpdated)}`);
   }
 }
 
 export const add = new Command()
   .name("add")
   .description("add a component to your project")
-  .argument(
-    "[components...]",
-    "the components to add, or a url to the component.",
-  )
-  .option(
-    "-c, --cwd <cwd>",
-    "the working directory. defaults to the current directory.",
-  )
+  .argument("[components...]", "the components to add, or a url to the component.")
+  .option("-c, --cwd <cwd>", "the working directory. defaults to the current directory.")
   .option("-y, --yes", "skip confirmation prompt.", false)
   .option("-o, --overwrite", "overwrite existing files.", false)
   .option("-a, --all", "add all available components.", false)

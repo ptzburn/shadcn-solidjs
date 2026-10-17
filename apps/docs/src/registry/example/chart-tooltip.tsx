@@ -8,9 +8,7 @@ export default function ChartTooltip() {
   return (
     <div class="grid aspect-video w-full max-w-md justify-center text-foreground md:grid-cols-2 [&>div]:relative [&>div]:flex [&>div]:h-[137px] [&>div]:w-[224px] [&>div]:items-center [&>div]:justify-center [&>div]:p-4">
       <div>
-        <div class="absolute top-[45px] left-[-35px] z-10 font-medium text-sm">
-          Label
-        </div>
+        <div class="absolute top-[45px] left-[-35px] z-10 font-medium text-sm">Label</div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 193 40"
@@ -41,9 +39,7 @@ export default function ChartTooltip() {
         />
       </div>
       <div class="items-end">
-        <div class="absolute top-[0px] left-[122px] z-10 font-medium text-sm">
-          Name
-        </div>
+        <div class="absolute top-[0px] left-[122px] z-10 font-medium text-sm">Name</div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="35"
@@ -84,9 +80,7 @@ export default function ChartTooltip() {
         />
       </div>
       <div class="items-start! justify-start!">
-        <div class="absolute top-[60px] left-[50px] z-10 font-medium text-sm">
-          Indicator
-        </div>
+        <div class="absolute top-[60px] left-[50px] z-10 font-medium text-sm">Indicator</div>
         <TooltipDemo
           label="Browser"
           hideLabel
@@ -143,8 +137,7 @@ const TooltipDemo: Component<
     "payload",
   );
 
-  const nestLabel = () =>
-    props.payload.length === 1 && props.indicator !== "dot";
+  const nestLabel = () => props.payload.length === 1 && props.indicator !== "dot";
 
   const tooltipLabel = () => (
     <Show when={!props.hideLabel}>
@@ -173,16 +166,13 @@ const TooltipDemo: Component<
               >
                 <Show when={!props.hideIndicator}>
                   <div
-                    class={cn(
-                      "shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
-                      {
-                        "h-2.5 w-2.5": props.indicator === "dot",
-                        "w-1": props.indicator === "line",
-                        "w-0 border-dashed border-[1.5px] bg-transparent":
-                          props.indicator === "dashed",
-                        "my-0.5": nestLabel() && props.indicator === "dashed",
-                      },
-                    )}
+                    class={cn("shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)", {
+                      "h-2.5 w-2.5": props.indicator === "dot",
+                      "w-1": props.indicator === "line",
+                      "w-0 border-dashed border-[1.5px] bg-transparent":
+                        props.indicator === "dashed",
+                      "my-0.5": nestLabel() && props.indicator === "dashed",
+                    })}
                     style={{
                       "--color-bg": item.fill,
                       "--color-border": item.fill,

@@ -17,12 +17,7 @@ import {
   AccordionTrigger,
 } from "~/registry/ui/accordion.tsx";
 import { Alert, AlertDescription, AlertTitle } from "~/registry/ui/alert.tsx";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "~/registry/ui/tabs.tsx";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/registry/ui/tabs.tsx";
 
 // Reduced from main: the remaining registry-backed entries
 // (ComponentSource, CodeTabs, Tabs, Accordion, Alert, Callout, ...) return
@@ -58,11 +53,7 @@ export const MDXComponents = {
   code: (props: ComponentProps<"code">) => <code {...props} />,
   span: (props: ComponentProps<"span">) => <span {...props} />,
   div: (props: ComponentProps<"div">) => <div {...props} />,
-  blockquote: (props: ComponentProps<"blockquote">) => (
-    <blockquote
-      {...props}
-    />
-  ),
+  blockquote: (props: ComponentProps<"blockquote">) => <blockquote {...props} />,
   ul: (props: ComponentProps<"ul">) => <ul {...props} />,
   ol: (props: ComponentProps<"ol">) => <ol {...props} />,
   li: (props: ComponentProps<"li">) => <li {...props} />,
@@ -83,9 +74,7 @@ export const MDXComponents = {
   a: (props: ComponentProps<"a">) => {
     return (
       <a
-        target={typeof props.href === "string" && props.href.includes("http")
-          ? "_blank"
-          : "_self"}
+        target={typeof props.href === "string" && props.href.includes("http") ? "_blank" : "_self"}
         {...props}
       />
     );
@@ -121,8 +110,7 @@ export const MDXComponents = {
         props.class,
       )}
     >
-      {props["data-language"] &&
-        getIconForLanguageExtension(props["data-language"])}
+      {props["data-language"] && getIconForLanguageExtension(props["data-language"])}
       {props.children}
     </figcaption>
   ),
@@ -143,14 +131,9 @@ export const MDXComponents = {
       {...props}
     />
   ),
-  Tabs: (props: ComponentProps<typeof Tabs>) => (
-    <Tabs class="relative mt-6 w-full" {...props} />
-  ),
+  Tabs: (props: ComponentProps<typeof Tabs>) => <Tabs class="relative mt-6 w-full" {...props} />,
   TabsList: (props: ComponentProps<typeof TabsList>) => (
-    <TabsList
-      class="justify-start gap-4 rounded-none bg-transparent px-0"
-      {...props}
-    />
+    <TabsList class="justify-start gap-4 rounded-none bg-transparent px-0" {...props} />
   ),
   TabsTrigger: (props: ComponentProps<typeof TabsTrigger>) => (
     <TabsTrigger

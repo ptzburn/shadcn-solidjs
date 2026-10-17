@@ -10,10 +10,7 @@ import {
   updateDependencies,
   type UpdateDependenciesResult,
 } from "../updaters/update-dependencies.ts";
-import {
-  updateFiles,
-  type UpdateFilesResult,
-} from "../updaters/update-files.ts";
+import { updateFiles, type UpdateFilesResult } from "../updaters/update-files.ts";
 
 export interface AddOptions {
   overwrite?: boolean;
@@ -32,9 +29,7 @@ export interface AddResult {
 /** Every installable ui item, for `--all`. */
 export async function listComponentNames(): Promise<string[]> {
   const index = await fetchRegistryIndex(REGISTRY_INDEX_URL);
-  return index.items
-    .filter((item) => item.type === "registry:ui")
-    .map((item) => item.name);
+  return index.items.filter((item) => item.type === "registry:ui").map((item) => item.name);
 }
 
 /**
@@ -56,12 +51,10 @@ export async function addComponents(
     style: config.style,
   });
 
-  const dependencies = await updateDependencies(
-    tree.dependencies,
-    tree.devDependencies,
-    target,
-    { silent: options.silent, dryRun: options.dryRun },
-  );
+  const dependencies = await updateDependencies(tree.dependencies, tree.devDependencies, target, {
+    silent: options.silent,
+    dryRun: options.dryRun,
+  });
 
   const files = updateFiles(tree.files, config, target, {
     overwrite: options.overwrite,

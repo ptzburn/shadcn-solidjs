@@ -55,7 +55,7 @@ import {
   InputOTPInput,
   InputOTPSeparator,
   InputOTPSlot,
-} from "~/components/ui/input-otp"
+} from "~/components/ui/input-otp";
 ```
 
 ```tsx showLineNumbers
@@ -103,12 +103,12 @@ The input accepts any character by default. Use the `pattern` prop to restrict
 what can be entered.
 
 ```tsx showLineNumbers {1,4}
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from "~/components/ui/input-otp"
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from "~/components/ui/input-otp";
 
-;<InputOTP maxLength={6}>
+<InputOTP maxLength={6}>
   <InputOTPInput pattern={REGEXP_ONLY_DIGITS_AND_CHARS} />
   ...
-</InputOTP>
+</InputOTP>;
 ```
 
 <ComponentPreview name="input-otp-pattern" />
@@ -162,13 +162,13 @@ See the [Kobalte OTP Field documentation](https://kobalte.dev/docs/core/componen
 The `InputOTP` component is the wrapper that positions the hidden input and
 provides the context to the slots.
 
-| Prop            | Type                      | Default |
-| --------------- | ------------------------- | ------- |
-| `maxLength`     | `number`                  | -       |
-| `value`         | `string`                  | -       |
-| `onChange`      | `(value: string) => void` | -       |
-| `onComplete`    | `(value: string) => void` | -       |
-| `class`         | `string`                  | -       |
+| Prop         | Type                      | Default |
+| ------------ | ------------------------- | ------- |
+| `maxLength`  | `number`                  | -       |
+| `value`      | `string`                  | -       |
+| `onChange`   | `(value: string) => void` | -       |
+| `onComplete` | `(value: string) => void` | -       |
+| `class`      | `string`                  | -       |
 
 ### InputOTPInput
 

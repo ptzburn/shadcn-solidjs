@@ -17,9 +17,7 @@ export default function SelectInvalid() {
         validationState="invalid"
         options={FRUITS}
         placeholder="Select a fruit"
-        itemComponent={(props) => (
-          <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
-        )}
+        itemComponent={(props) => <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>}
       >
         <SelectTrigger aria-label="Fruit">
           <SelectValue<string>>{(state) => state.selectedOption()}</SelectValue>

@@ -1,10 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "~/registry/ui/avatar.tsx";
 import { Bubble, BubbleContent, BubbleGroup } from "~/registry/ui/bubble.tsx";
-import {
-  Message,
-  MessageAvatar,
-  MessageContent,
-} from "~/registry/ui/message.tsx";
+import { Message, MessageAvatar, MessageContent } from "~/registry/ui/message.tsx";
 
 export default function MessageAvatarDemo() {
   return (
@@ -12,18 +8,13 @@ export default function MessageAvatarDemo() {
       <Message>
         <MessageAvatar>
           <Avatar>
-            <AvatarImage
-              src="https://github.com/evilrabbit.png"
-              alt="@evilrabbit"
-            />
+            <AvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
             <AvatarFallback>ER</AvatarFallback>
           </Avatar>
         </MessageAvatar>
         <MessageContent>
           <Bubble variant="muted">
-            <BubbleContent>
-              The build failed during dependency installation.
-            </BubbleContent>
+            <BubbleContent>The build failed during dependency installation.</BubbleContent>
           </Bubble>
         </MessageContent>
       </Message>
@@ -43,10 +34,7 @@ export default function MessageAvatarDemo() {
       <Message>
         <MessageAvatar>
           <Avatar>
-            <AvatarImage
-              src="https://github.com/evilrabbit.png"
-              alt="@evilrabbit"
-            />
+            <AvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
             <AvatarFallback>ER</AvatarFallback>
           </Avatar>
         </MessageAvatar>
@@ -57,8 +45,8 @@ export default function MessageAvatarDemo() {
             </Bubble>
             <Bubble variant="muted">
               <BubbleContent>
-                Something went wrong with the build. The libraries are not
-                installed correctly. Try running the build again.
+                Something went wrong with the build. The libraries are not installed correctly. Try
+                running the build again.
               </BubbleContent>
             </Bubble>
           </BubbleGroup>

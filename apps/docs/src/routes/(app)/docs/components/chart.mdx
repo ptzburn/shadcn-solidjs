@@ -20,14 +20,14 @@ We use [chart.js](https://www.chartjs.org/) under the hood.
 We designed the `chart` component with chart.js's options API in mind. **You build your charts using the typed chart components and only bring in chart.js options, such as scales and plugins, when and where you need them**.
 
 ```tsx showLineNumbers /ChartContainer/ /BarChart/
-import { BarChart, ChartContainer } from "~/components/ui/chart"
+import { BarChart, ChartContainer } from "~/components/ui/chart";
 
 export function MyChart() {
   return (
     <ChartContainer config={chartConfig}>
       <BarChart data={chartData} />
     </ChartContainer>
-  )
+  );
 }
 ```
 
@@ -125,7 +125,7 @@ const chartData = {
       borderRadius: 4,
     },
   ],
-}
+};
 ```
 
 <Step>Define your chart config</Step>
@@ -133,7 +133,7 @@ const chartData = {
 The chart config holds configuration for the chart. This is where you place human-readable strings, such as labels, and color tokens for theming.
 
 ```tsx title="components/example-chart.tsx" showLineNumbers
-import type { ChartConfig } from "~/components/ui/chart"
+import type { ChartConfig } from "~/components/ui/chart";
 
 const chartConfig = {
   desktop: {
@@ -144,7 +144,7 @@ const chartConfig = {
     label: "Mobile",
     color: "#60a5fa",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 ```
 
 <Step>Build your chart</Step>
@@ -171,10 +171,7 @@ Let's add a grid to the chart. Grid lines belong to the scales in chart.js, so w
 
 ```tsx showLineNumbers {4}
 <ChartContainer config={chartConfig} class="min-h-[200px] w-full">
-  <BarChart
-    data={chartData}
-    options={{ scales: { y: { grid: { display: true } } } }}
-  />
+  <BarChart data={chartData} options={{ scales: { y: { grid: { display: true } } } }} />
 </ChartContainer>
 ```
 
@@ -201,7 +198,7 @@ To add an x-axis to the chart, we'll enable the ticks on the `x` scale.
           ticks: {
             display: true,
             callback: function (value) {
-              return this.getLabelForValue(Number(value)).slice(0, 3)
+              return this.getLabelForValue(Number(value)).slice(0, 3);
             },
           },
         },
@@ -261,7 +258,7 @@ It is intentionally decoupled from chart data.
 This allows you to share config and color tokens between charts. It can also work independently for cases where your data or color tokens live remotely or in a different format.
 
 ```tsx showLineNumbers /ChartConfig/
-import type { ChartConfig } from "~/components/ui/chart"
+import type { ChartConfig } from "~/components/ui/chart";
 
 const chartConfig = {
   desktop: {
@@ -274,7 +271,7 @@ const chartConfig = {
       dark: "#dc2626",
     },
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 ```
 
 ## Theming
@@ -313,7 +310,7 @@ const chartConfig = {
     label: "Mobile",
     color: "var(--chart-2)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 ```
 
 </Steps>
@@ -340,7 +337,7 @@ const chartConfig = {
     label: "Laptop",
     color: "var(--chart-2)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 ```
 
 ### Using Colors
@@ -358,7 +355,7 @@ datasets: [
     data: [186, 305, 237],
     backgroundColor: "var(--color-desktop)",
   },
-]
+];
 ```
 
 #### Per-segment colors
@@ -374,7 +371,7 @@ const chartData = {
       backgroundColor: ["var(--color-chrome)", "var(--color-safari)"],
     },
   ],
-}
+};
 ```
 
 ## Tooltip
@@ -431,10 +428,7 @@ This will use `Total Visitors` for the tooltip label. The tooltip names come fro
 The built-in chart.js legend comes pre-styled to match the other components. Enable it through the `options` prop.
 
 ```tsx title="components/example-chart.tsx"
-<BarChart
-  data={chartData}
-  options={{ plugins: { legend: { display: true } } }}
-/>
+<BarChart data={chartData} options={{ plugins: { legend: { display: true } } }} />
 ```
 
 ### Colors
@@ -455,7 +449,7 @@ const chartConfig = {
     label: "Safari",
     color: "var(--chart-2)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 const chartData = {
   labels: ["January", "February"],
@@ -466,7 +460,7 @@ const chartData = {
       backgroundColor: "var(--color-chrome)",
     },
   ],
-}
+};
 ```
 
 This will use `Chrome` for the legend name.

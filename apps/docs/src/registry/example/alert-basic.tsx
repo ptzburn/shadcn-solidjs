@@ -13,8 +13,7 @@ export default function AlertBasic() {
       />
       <AlertTitle>Account updated successfully</AlertTitle>
       <AlertDescription>
-        Your profile information has been saved. Changes will be reflected
-        immediately.
+        Your profile information has been saved. Changes will be reflected immediately.
       </AlertDescription>
     </Alert>
   );

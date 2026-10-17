@@ -55,21 +55,27 @@ export default defineConfig({
       ],
       rehypePlugins: [
         rehypeSlug,
-        [rehypePrettyCode, {
-          theme: {
-            dark: "vesper",
-            light: "github-light-default",
+        [
+          rehypePrettyCode,
+          {
+            theme: {
+              dark: "vesper",
+              light: "github-light-default",
+            },
+            keepBackground: false,
           },
-          keepBackground: false,
-        }],
+        ],
         rehypeComponent,
-        [rehypePrettyCodeSecondPass, {
-          theme: {
-            dark: "github-dark",
-            light: "github-light",
+        [
+          rehypePrettyCodeSecondPass,
+          {
+            theme: {
+              dark: "github-dark",
+              light: "github-light",
+            },
+            keepBackground: false,
           },
-          keepBackground: false,
-        }],
+        ],
       ],
     });
 

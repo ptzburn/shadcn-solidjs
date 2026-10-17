@@ -21,25 +21,17 @@ export default function EmptyAvatarGroup() {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <Avatar>
-              <AvatarImage
-                src="https://github.com/maxleiter.png"
-                alt="@maxleiter"
-              />
+              <AvatarImage src="https://github.com/maxleiter.png" alt="@maxleiter" />
               <AvatarFallback>LR</AvatarFallback>
             </Avatar>
             <Avatar>
-              <AvatarImage
-                src="https://github.com/evilrabbit.png"
-                alt="@evilrabbit"
-              />
+              <AvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
               <AvatarFallback>ER</AvatarFallback>
             </Avatar>
           </div>
         </EmptyMedia>
         <EmptyTitle>No Team Members</EmptyTitle>
-        <EmptyDescription>
-          Invite your team to collaborate on this project.
-        </EmptyDescription>
+        <EmptyDescription>Invite your team to collaborate on this project.</EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
         <Button size="sm">

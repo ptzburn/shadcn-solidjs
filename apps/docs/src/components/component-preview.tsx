@@ -89,11 +89,9 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
           </div>
         </div>
         <Show when={!props.hideCode}>
-          {
-            /* Solid 2 renders boolean attr values as bare presence attrs; the
+          {/* Solid 2 renders boolean attr values as bare presence attrs; the
               styles select data-[code-visible=false/true], so render the
-              string explicitly. */
-          }
+              string explicitly. */}
           <div
             data-slot="code"
             data-code-visible={isCodeVisible() ? "true" : "false"}

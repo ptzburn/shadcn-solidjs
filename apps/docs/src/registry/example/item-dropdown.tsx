@@ -9,13 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "~/registry/ui/dropdown-menu.tsx";
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemMedia,
-  ItemTitle,
-} from "~/registry/ui/item.tsx";
+import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from "~/registry/ui/item.tsx";
 import { For } from "solid-js";
 
 const people = [
@@ -58,16 +52,12 @@ export default function ItemDropdown() {
                   <ItemMedia>
                     <Avatar class="size-[--spacing(6.5)]">
                       <AvatarImage src={person.avatar} class="grayscale" />
-                      <AvatarFallback>
-                        {person.username.charAt(0)}
-                      </AvatarFallback>
+                      <AvatarFallback>{person.username.charAt(0)}</AvatarFallback>
                     </Avatar>
                   </ItemMedia>
                   <ItemContent class="gap-0">
                     <ItemTitle>{person.username}</ItemTitle>
-                    <ItemDescription class="leading-none">
-                      {person.email}
-                    </ItemDescription>
+                    <ItemDescription class="leading-none">{person.email}</ItemDescription>
                   </ItemContent>
                 </Item>
               </DropdownMenuItem>

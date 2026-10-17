@@ -22,11 +22,7 @@ import {
 } from "~/registry/ui/message-scroller.tsx";
 import { Message, MessageContent } from "~/registry/ui/message.tsx";
 import { toast } from "~/registry/ui/toast.tsx";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/registry/ui/tooltip.tsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/registry/ui/tooltip.tsx";
 import { createMemo, createSignal, For, Show } from "solid-js";
 
 const chat = createChat()
@@ -55,7 +51,10 @@ const history = chat.get();
 const INITIAL_VISIBLE_COUNT = 5;
 
 const paragraphsOf = (text: string) =>
-  text.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+  text
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
 
 export default function MessageScrollerLoadHistory() {
   const [demoKey, setDemoKey] = createSignal(1);
@@ -69,9 +68,7 @@ export default function MessageScrollerLoadHistory() {
         <Card class="mx-auto h-140 w-full max-w-sm gap-0">
           <CardHeader class="gap-1 border-b">
             <CardTitle>Load History</CardTitle>
-            <CardDescription>
-              Prepended messages keep your place.
-            </CardDescription>
+            <CardDescription>Prepended messages keep your place.</CardDescription>
             <CardAction>
               <Tooltip>
                 <TooltipTrigger
@@ -111,23 +108,13 @@ export default function MessageScrollerLoadHistory() {
 
                           return (
                             <MessageScrollerItem messageId={message.id}>
-                              <Message
-                                align={isUserMessage ? "end" : "start"}
-                              >
+                              <Message align={isUserMessage ? "end" : "start"}>
                                 <MessageContent>
-                                  <Bubble
-                                    variant={isUserMessage ? "muted" : "ghost"}
-                                  >
+                                  <Bubble variant={isUserMessage ? "muted" : "ghost"}>
                                     <BubbleContent class="space-y-2">
-                                      <For
-                                        each={paragraphsOf(
-                                          getMessageText(message),
-                                        )}
-                                      >
+                                      <For each={paragraphsOf(getMessageText(message))}>
                                         {(paragraph) => (
-                                          <p class="whitespace-pre-wrap">
-                                            {paragraph}
-                                          </p>
+                                          <p class="whitespace-pre-wrap">{paragraph}</p>
                                         )}
                                       </For>
                                     </BubbleContent>

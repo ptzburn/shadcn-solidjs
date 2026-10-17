@@ -14,17 +14,12 @@ import {
  * set explicitly so output spacing does not depend on what postcss inferred
  * from the surrounding file — which is what makes a second run a no-op.
  */
-function upsertDeclarations(
-  rule: Rule | AtRule,
-  declarations: Record<string, string>,
-): void {
+function upsertDeclarations(rule: Rule | AtRule, declarations: Record<string, string>): void {
   rule.raws.semicolon = true;
   rule.raws.after ??= "\n";
 
   for (const [property, value] of Object.entries(declarations)) {
-    const existing = rule.nodes?.find(
-      (node) => node.type === "decl" && node.prop === property,
-    );
+    const existing = rule.nodes?.find((node) => node.type === "decl" && node.prop === property);
     if (existing && existing.type === "decl") {
       existing.value = value;
     } else {
@@ -45,11 +40,7 @@ function findRule(root: Root, selector: string): Rule | undefined {
   return found;
 }
 
-function findAtRule(
-  root: Root,
-  name: string,
-  params?: string,
-): AtRule | undefined {
+function findAtRule(root: Root, name: string, params?: string): AtRule | undefined {
   let found: AtRule | undefined;
   root.walkAtRules(name, (rule) => {
     if (found) return;
@@ -58,11 +49,7 @@ function findAtRule(
   return found;
 }
 
-function upsertRule(
-  root: Root,
-  selector: string,
-  declarations: Record<string, string>,
-): void {
+function upsertRule(root: Root, selector: string, declarations: Record<string, string>): void {
   if (Object.keys(declarations).length === 0) return;
 
   const existing = findRule(root, selector);
@@ -206,9 +193,7 @@ export function transformCssVars(
   const dark = cssVars.dark ?? {};
 
   const toDeclarations = (vars: Record<string, string>) =>
-    Object.fromEntries(
-      Object.entries(vars).map(([name, value]) => [`--${name}`, value]),
-    );
+    Object.fromEntries(Object.entries(vars).map(([name, value]) => [`--${name}`, value]));
 
   const existingRoot = findRule(root, ":root");
   const lightDeclarations = toDeclarations(light);
@@ -221,10 +206,7 @@ export function transformCssVars(
 
   upsertRule(root, ":root", lightDeclarations);
   upsertRule(root, ".dark", toDeclarations(dark));
-  upsertTheme(root, [
-    ...Object.keys(light),
-    ...Object.keys(cssVars.theme ?? {}),
-  ]);
+  upsertTheme(root, [...Object.keys(light), ...Object.keys(cssVars.theme ?? {})]);
   ensureBaseLayer(root);
 
   return root.toString();

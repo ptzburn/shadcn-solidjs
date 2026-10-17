@@ -1,10 +1,5 @@
 import { Button } from "~/registry/ui/button.tsx";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "~/registry/ui/field.tsx";
+import { Field, FieldDescription, FieldGroup, FieldLabel } from "~/registry/ui/field.tsx";
 import { Input } from "~/registry/ui/input.tsx";
 import {
   Select,
@@ -31,19 +26,12 @@ export default function InputForm() {
       <FieldGroup>
         <Field>
           <FieldLabel for="form-name">Name</FieldLabel>
-          <Input
-            id="form-name"
-            type="text"
-            placeholder="Evil Rabbit"
-            required
-          />
+          <Input id="form-name" type="text" placeholder="Evil Rabbit" required />
         </Field>
         <Field>
           <FieldLabel for="form-email">Email</FieldLabel>
           <Input id="form-email" type="email" placeholder="john@example.com" />
-          <FieldDescription>
-            We&apos;ll never share your email with anyone.
-          </FieldDescription>
+          <FieldDescription>We&apos;ll never share your email with anyone.</FieldDescription>
         </Field>
         <div class="grid grid-cols-2 gap-4">
           <Field>
@@ -58,15 +46,11 @@ export default function InputForm() {
               optionValue="value"
               optionTextValue="label"
               itemComponent={(props) => (
-                <SelectItem item={props.item}>
-                  {props.item.rawValue.label}
-                </SelectItem>
+                <SelectItem item={props.item}>{props.item.rawValue.label}</SelectItem>
               )}
             >
               <SelectTrigger id="form-country" aria-label="Country">
-                <SelectValue<Country>>
-                  {(state) => state.selectedOption().label}
-                </SelectValue>
+                <SelectValue<Country>>{(state) => state.selectedOption().label}</SelectValue>
               </SelectTrigger>
               <SelectContent />
             </Select>

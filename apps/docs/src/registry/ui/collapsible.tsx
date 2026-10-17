@@ -11,17 +11,13 @@ const Collapsible = <T extends ValidComponent = "div">(
 const CollapsibleTrigger = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, CollapsiblePrimitive.CollapsibleTriggerProps<T>>,
 ) => {
-  return (
-    <CollapsiblePrimitive.Trigger data-slot="collapsible-trigger" {...props} />
-  );
+  return <CollapsiblePrimitive.Trigger data-slot="collapsible-trigger" {...props} />;
 };
 
 const CollapsibleContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, CollapsiblePrimitive.CollapsibleContentProps<T>>,
 ) => {
-  return (
-    <CollapsiblePrimitive.Content data-slot="collapsible-content" {...props} />
-  );
+  return <CollapsiblePrimitive.Content data-slot="collapsible-content" {...props} />;
 };
 
 export { Collapsible, CollapsibleContent, CollapsibleTrigger };

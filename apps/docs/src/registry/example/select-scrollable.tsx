@@ -58,12 +58,7 @@ const REGIONS: Region[] = [
   },
   {
     label: "South America",
-    timezones: [
-      "Argentina Time",
-      "Bolivia Time",
-      "Brasilia Time",
-      "Chile Standard Time",
-    ],
+    timezones: ["Argentina Time", "Bolivia Time", "Brasilia Time", "Chile Standard Time"],
   },
 ];
 
@@ -74,12 +69,8 @@ export default function SelectScrollable() {
       options={REGIONS}
       optionGroupChildren="timezones"
       placeholder="Select a timezone"
-      itemComponent={(props) => (
-        <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
-      )}
-      sectionComponent={(props) => (
-        <SelectSection>{props.section.rawValue.label}</SelectSection>
-      )}
+      itemComponent={(props) => <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>}
+      sectionComponent={(props) => <SelectSection>{props.section.rawValue.label}</SelectSection>}
     >
       <SelectTrigger aria-label="Timezone" class="w-full">
         <SelectValue<string>>{(state) => state.selectedOption()}</SelectValue>

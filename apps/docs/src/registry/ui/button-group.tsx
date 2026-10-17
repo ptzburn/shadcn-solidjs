@@ -27,9 +27,7 @@ const buttonGroupVariants = cva(
   },
 );
 
-type ButtonGroupProps =
-  & ComponentProps<"div">
-  & VariantProps<typeof buttonGroupVariants>;
+type ButtonGroupProps = ComponentProps<"div"> & VariantProps<typeof buttonGroupVariants>;
 
 const ButtonGroup: Component<ButtonGroupProps> = (props) => {
   const others = omit(props, "class", "orientation");
@@ -38,10 +36,7 @@ const ButtonGroup: Component<ButtonGroupProps> = (props) => {
       role="group"
       data-slot="button-group"
       data-orientation={props.orientation ?? "horizontal"}
-      class={cn(
-        buttonGroupVariants({ orientation: props.orientation }),
-        props.class,
-      )}
+      class={cn(buttonGroupVariants({ orientation: props.orientation }), props.class)}
       {...others}
     />
   );
@@ -57,26 +52,19 @@ const ButtonGroupText = <T extends ValidComponent = "div">(
   return (
     <Polymorphic
       as="div"
-      class={cn(
-        "cn-button-group-text flex items-center [&_svg]:pointer-events-none",
-        local.class,
-      )}
+      class={cn("cn-button-group-text flex items-center [&_svg]:pointer-events-none", local.class)}
       {...others}
     />
   );
 };
 
 type ButtonGroupSeparatorProps<T extends ValidComponent = "div"> =
-  & SeparatorPrimitive.SeparatorRootProps<T>
-  & { class?: string | undefined };
+  SeparatorPrimitive.SeparatorRootProps<T> & { class?: string | undefined };
 
 const ButtonGroupSeparator = <T extends ValidComponent = "div">(
   rawProps: PolymorphicProps<T, ButtonGroupSeparatorProps<T>>,
 ) => {
-  const props = merge(
-    { orientation: "vertical" as const },
-    rawProps as ButtonGroupSeparatorProps,
-  );
+  const props = merge({ orientation: "vertical" as const }, rawProps as ButtonGroupSeparatorProps);
   const others = omit(props, "class", "orientation");
   return (
     <Separator
@@ -91,9 +79,4 @@ const ButtonGroupSeparator = <T extends ValidComponent = "div">(
   );
 };
 
-export {
-  ButtonGroup,
-  ButtonGroupSeparator,
-  ButtonGroupText,
-  buttonGroupVariants,
-};
+export { ButtonGroup, ButtonGroupSeparator, ButtonGroupText, buttonGroupVariants };

@@ -8,11 +8,7 @@ import type { Component } from "solid-js";
 import { createEffect, createSignal, For, omit, Repeat, Show } from "solid-js";
 import { type ButtonProps, buttonVariants } from "./button.tsx";
 
-type CalendarCaptionLayout =
-  | "label"
-  | "dropdown"
-  | "dropdown-months"
-  | "dropdown-years";
+type CalendarCaptionLayout = "label" | "dropdown" | "dropdown-months" | "dropdown-years";
 
 type CalendarModifiers = {
   today: boolean;
@@ -35,51 +31,43 @@ type CalendarDayButtonProps = Omit<ComponentProps<"div">, "children"> & {
   children?: JSX.Element;
 };
 
-type DistributiveOmit<T, K extends PropertyKey> = T extends unknown ? Omit<T, K>
-  : never;
+type DistributiveOmit<T, K extends PropertyKey> = T extends unknown ? Omit<T, K> : never;
 
-type CalendarProps =
-  & DistributiveOmit<CalendarPrimitive.CalendarRootOptions, "visibleDuration">
-  & {
-    class?: string;
-    captionLayout?: CalendarCaptionLayout;
-    buttonVariant?: ButtonProps["variant"];
-    showOutsideDays?: boolean;
-    showWeekNumber?: boolean;
-    numberOfMonths?: number;
-    startMonth?: Date;
-    endMonth?: Date;
-    formatters?: Partial<CalendarFormatters>;
-    modifiers?: Record<string, (day: Date) => boolean>;
-    modifiersClassNames?: Record<string, string>;
-    components?: {
-      DayButton?: Component<CalendarDayButtonProps>;
-    };
+type CalendarProps = DistributiveOmit<CalendarPrimitive.CalendarRootOptions, "visibleDuration"> & {
+  class?: string;
+  captionLayout?: CalendarCaptionLayout;
+  buttonVariant?: ButtonProps["variant"];
+  showOutsideDays?: boolean;
+  showWeekNumber?: boolean;
+  numberOfMonths?: number;
+  startMonth?: Date;
+  endMonth?: Date;
+  formatters?: Partial<CalendarFormatters>;
+  modifiers?: Record<string, (day: Date) => boolean>;
+  modifiersClassNames?: Record<string, string>;
+  components?: {
+    DayButton?: Component<CalendarDayButtonProps>;
   };
+};
 
 const defaultFormatters: CalendarFormatters = {
   formatCaption: (month, locale) =>
     month.toLocaleDateString(locale, { month: "long", year: "numeric" }),
-  formatMonthDropdown: (month, locale) =>
-    month.toLocaleDateString(locale, { month: "short" }),
-  formatYearDropdown: (month, locale) =>
-    month.toLocaleDateString(locale, { year: "numeric" }),
+  formatMonthDropdown: (month, locale) => month.toLocaleDateString(locale, { month: "short" }),
+  formatYearDropdown: (month, locale) => month.toLocaleDateString(locale, { year: "numeric" }),
   formatWeekdayName: (weekday) => weekday.slice(0, 2),
   formatWeekNumber: (weekNumber, locale) => weekNumber.toLocaleString(locale),
 };
 
-const startOfMonth = (date: Date) =>
-  new Date(date.getFullYear(), date.getMonth(), 1);
+const startOfMonth = (date: Date) => new Date(date.getFullYear(), date.getMonth(), 1);
 
-const endOfMonth = (date: Date) =>
-  new Date(date.getFullYear(), date.getMonth() + 1, 0);
+const endOfMonth = (date: Date) => new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
 const addMonths = (date: Date, months: number) =>
   new Date(date.getFullYear(), date.getMonth() + months, 1);
 
 const monthsBetween = (from: Date, to: Date) =>
-  (to.getFullYear() - from.getFullYear()) * 12 +
-  (to.getMonth() - from.getMonth());
+  (to.getFullYear() - from.getFullYear()) * 12 + (to.getMonth() - from.getMonth());
 
 const isSameDay = (a: Date | null | undefined, b: Date | null | undefined) =>
   !!a &&
@@ -89,9 +77,7 @@ const isSameDay = (a: Date | null | undefined, b: Date | null | undefined) =>
   a.getDate() === b.getDate();
 
 const getWeekNumber = (date: Date) => {
-  const target = new Date(
-    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()),
-  );
+  const target = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
   const weekday = target.getUTCDay() || 7;
   target.setUTCDate(target.getUTCDate() + 4 - weekday);
   const yearStart = Date.UTC(target.getUTCFullYear(), 0, 1);
@@ -144,26 +130,22 @@ const Calendar = (props: CalendarProps) => {
     captionLayout() === "dropdown" || captionLayout() === "dropdown-years";
   const hasDropdown = () => hasMonthDropdown() || hasYearDropdown();
 
-  const minValue = () =>
-    props.minValue ?? (props.startMonth && startOfMonth(props.startMonth));
-  const maxValue = () =>
-    props.maxValue ?? (props.endMonth && endOfMonth(props.endMonth));
+  const minValue = () => props.minValue ?? (props.startMonth && startOfMonth(props.startMonth));
+  const maxValue = () => props.maxValue ?? (props.endMonth && endOfMonth(props.endMonth));
   const firstYear = () =>
     (props.startMonth ?? props.minValue)?.getFullYear() ??
-      (hasYearDropdown() ? now.getFullYear() - 100 : undefined);
+    (hasYearDropdown() ? now.getFullYear() - 100 : undefined);
   const lastYear = () =>
     (props.endMonth ?? props.maxValue)?.getFullYear() ??
-      (hasYearDropdown() ? now.getFullYear() : undefined);
+    (hasYearDropdown() ? now.getFullYear() : undefined);
   const isMonthInBounds = (month: Date) => {
     const min = minValue();
     const max = maxValue();
-    return (!min || endOfMonth(month) >= min) &&
-      (!max || startOfMonth(month) <= max);
+    return (!min || endOfMonth(month) >= min) && (!max || startOfMonth(month) <= max);
   };
 
   const [focused, setFocused] = createSignal<Date>(
-    props.focusedValue ?? props.defaultFocusedValue ?? firstSelected(props) ??
-      now,
+    props.focusedValue ?? props.defaultFocusedValue ?? firstSelected(props) ?? now,
   );
   const alignStart = (date: Date) => startOfMonth(date);
   const alignEnd = (date: Date) => addMonths(date, 1 - numberOfMonths());
@@ -173,11 +155,8 @@ const Calendar = (props: CalendarProps) => {
     if (half > 0 && months % 2 === 0) half--;
     return addMonths(date, -half);
   };
-  const [visibleStart, setVisibleStart] = createSignal<Date>(
-    alignCenter(focused()),
-  );
-  const visibleEnd = () =>
-    endOfMonth(addMonths(visibleStart(), numberOfMonths() - 1));
+  const [visibleStart, setVisibleStart] = createSignal<Date>(alignCenter(focused()));
+  const visibleEnd = () => endOfMonth(addMonths(visibleStart(), numberOfMonths() - 1));
 
   const trackFocus = (date: Date, previous: Date) => {
     const months = numberOfMonths();
@@ -200,20 +179,22 @@ const Calendar = (props: CalendarProps) => {
     setFocused(date);
     props.onFocusChange?.(date);
   };
-  createEffect(() => props.focusedValue, (date) => {
-    if (date && !isSameDay(date, focused())) {
-      trackFocus(date, focused());
-      setFocused(date);
-    }
-  });
+  createEffect(
+    () => props.focusedValue,
+    (date) => {
+      if (date && !isSameDay(date, focused())) {
+        trackFocus(date, focused());
+        setFocused(date);
+      }
+    },
+  );
 
   const gridMonth = (index: number) => addMonths(visibleStart(), index);
 
   const getModifiers = (day: Date, month: Date): CalendarModifiers => {
     const modifiers: CalendarModifiers = {
       today: isSameDay(day, now),
-      outside: day.getMonth() !== month.getMonth() ||
-        day.getFullYear() !== month.getFullYear(),
+      outside: day.getMonth() !== month.getMonth() || day.getFullYear() !== month.getFullYear(),
     };
     for (const [name, matcher] of Object.entries(props.modifiers ?? {})) {
       modifiers[name] = matcher(day);
@@ -250,10 +231,7 @@ const Calendar = (props: CalendarProps) => {
   };
 
   const jumpTo = (year: number, month: number) => {
-    const day = Math.min(
-      focused().getDate(),
-      endOfMonth(new Date(year, month, 1)).getDate(),
-    );
+    const day = Math.min(focused().getDate(), endOfMonth(new Date(year, month, 1)).getDate());
     moveFocus(new Date(year, month, day));
   };
 
@@ -333,10 +311,7 @@ const Calendar = (props: CalendarProps) => {
                         when={hasMonthDropdown()}
                         fallback={
                           <span>
-                            {formatters().formatMonthDropdown(
-                              gridMonth(index),
-                              locale(),
-                            )}
+                            {formatters().formatMonthDropdown(gridMonth(index), locale())}
                           </span>
                         }
                       >
@@ -348,15 +323,15 @@ const Calendar = (props: CalendarProps) => {
                               jumpTo(
                                 gridMonth(index).getFullYear(),
                                 Number(event.currentTarget.value) - index,
-                              )}
+                              )
+                            }
                           >
                             <For each={monthOptions(gridMonth(index))}>
                               {(option) => (
                                 <option
                                   value={option.value}
                                   disabled={option.disabled}
-                                  selected={option.value ===
-                                    gridMonth(index).getMonth()}
+                                  selected={option.value === gridMonth(index).getMonth()}
                                 >
                                   {option.label}
                                 </option>
@@ -367,10 +342,7 @@ const Calendar = (props: CalendarProps) => {
                             aria-hidden="true"
                             class="cn-calendar-caption-label flex select-none items-center gap-1 rounded-(--cell-radius) font-medium text-sm [&>svg]:size-3.5 [&>svg]:text-muted-foreground"
                           >
-                            {formatters().formatMonthDropdown(
-                              gridMonth(index),
-                              locale(),
-                            )}
+                            {formatters().formatMonthDropdown(gridMonth(index), locale())}
                             <IconPlaceholder
                               lucide="chevron-down"
                               tabler="chevron-down"
@@ -385,12 +357,7 @@ const Calendar = (props: CalendarProps) => {
                       <Show
                         when={hasYearDropdown()}
                         fallback={
-                          <span>
-                            {formatters().formatYearDropdown(
-                              gridMonth(index),
-                              locale(),
-                            )}
-                          </span>
+                          <span>{formatters().formatYearDropdown(gridMonth(index), locale())}</span>
                         }
                       >
                         <span class="cn-calendar-dropdown-root relative rounded-(--cell-radius)">
@@ -401,14 +368,14 @@ const Calendar = (props: CalendarProps) => {
                               jumpTo(
                                 Number(event.currentTarget.value),
                                 gridMonth(index).getMonth() - index,
-                              )}
+                              )
+                            }
                           >
                             <For each={yearOptions(gridMonth(index))}>
                               {(option) => (
                                 <option
                                   value={option.value}
-                                  selected={option.value ===
-                                    gridMonth(index).getFullYear()}
+                                  selected={option.value === gridMonth(index).getFullYear()}
                                 >
                                   {option.label}
                                 </option>
@@ -419,10 +386,7 @@ const Calendar = (props: CalendarProps) => {
                             aria-hidden="true"
                             class="cn-calendar-caption-label flex select-none items-center gap-1 rounded-(--cell-radius) font-medium text-sm [&>svg]:size-3.5 [&>svg]:text-muted-foreground"
                           >
-                            {formatters().formatYearDropdown(
-                              gridMonth(index),
-                              locale(),
-                            )}
+                            {formatters().formatYearDropdown(gridMonth(index), locale())}
                             <IconPlaceholder
                               lucide="chevron-down"
                               tabler="chevron-down"
@@ -447,16 +411,10 @@ const Calendar = (props: CalendarProps) => {
                       {(weekday) => (
                         <>
                           <Show when={props.showWeekNumber}>
-                            <th
-                              aria-label="Week Number"
-                              class="w-(--cell-size) select-none"
-                            />
+                            <th aria-label="Week Number" class="w-(--cell-size) select-none" />
                           </Show>
                           <CalendarPrimitive.GridHeaderCell class="flex-1 select-none rounded-(--cell-radius) font-normal text-muted-foreground text-[0.8rem]">
-                            {formatters().formatWeekdayName(
-                              weekday(),
-                              locale(),
-                            )}
+                            {formatters().formatWeekdayName(weekday(), locale())}
                           </CalendarPrimitive.GridHeaderCell>
                         </>
                       )}
@@ -482,30 +440,25 @@ const Calendar = (props: CalendarProps) => {
                                           formatters().formatWeekNumber(
                                             getWeekNumber(day()),
                                             locale(),
-                                          )}
+                                          )
+                                        }
                                       </Show>
                                     </div>
                                   </td>
                                 </Show>
-                                <Show
-                                  when={date()}
-                                  fallback={<td class="size-(--cell-size)" />}
-                                >
+                                <Show when={date()} fallback={<td class="size-(--cell-size)" />}>
                                   {(day) => {
-                                    const modifiers = () =>
-                                      getModifiers(day(), gridMonth(index));
+                                    const modifiers = () => getModifiers(day(), gridMonth(index));
                                     return (
                                       <CalendarPrimitive.GridBodyCell
                                         date={day()}
                                         class={dayClass(modifiers())}
-                                        data-day={day().toLocaleDateString(
-                                          locale(),
-                                        )}
+                                        data-day={day().toLocaleDateString(locale())}
                                       >
                                         <Dynamic
-                                          component={props.components
-                                            ?.DayButton ??
-                                            CalendarDayButton}
+                                          component={
+                                            props.components?.DayButton ?? CalendarDayButton
+                                          }
                                           day={day()}
                                           month={gridMonth(index)}
                                           modifiers={modifiers()}

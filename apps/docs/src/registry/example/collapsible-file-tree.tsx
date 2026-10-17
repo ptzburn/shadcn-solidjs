@@ -3,11 +3,7 @@ import type { JSX } from "@solidjs/web";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import { Card, CardContent, CardHeader } from "~/registry/ui/card.tsx";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "~/registry/ui/collapsible.tsx";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "~/registry/ui/collapsible.tsx";
 import { Tabs, TabsList, TabsTrigger } from "~/registry/ui/tabs.tsx";
 import { For } from "solid-js";
 
@@ -51,11 +47,7 @@ export default function CollapsibleFileTree() {
     },
     {
       name: "public",
-      items: [
-        { name: "favicon.ico" },
-        { name: "logo.svg" },
-        { name: "images" },
-      ],
+      items: [{ name: "favicon.ico" }, { name: "logo.svg" }, { name: "images" }],
     },
     { name: "app.tsx" },
     { name: "layout.tsx" },
@@ -102,18 +94,8 @@ export default function CollapsibleFileTree() {
       );
     }
     return (
-      <Button
-        variant="link"
-        size="sm"
-        class="w-full justify-start gap-2 text-foreground"
-      >
-        <IconPlaceholder
-          lucide="file"
-          tabler="file"
-          ph="file"
-          ri="file-line"
-          hugeicons="file-01"
-        />
+      <Button variant="link" size="sm" class="w-full justify-start gap-2 text-foreground">
+        <IconPlaceholder lucide="file" tabler="file" ph="file" ri="file-line" hugeicons="file-01" />
         <span>{fileItem.name}</span>
       </Button>
     );

@@ -17,18 +17,14 @@ const ItemGroup: Component<ComponentProps<"div">> = (props) => {
     <div
       role="list"
       data-slot="item-group"
-      class={cn(
-        "cn-item-group group/item-group flex w-full flex-col",
-        props.class,
-      )}
+      class={cn("cn-item-group group/item-group flex w-full flex-col", props.class)}
       {...others}
     />
   );
 };
 
 type ItemSeparatorProps<T extends ValidComponent = "hr"> =
-  & SeparatorPrimitive.SeparatorRootProps<T>
-  & { class?: string | undefined };
+  SeparatorPrimitive.SeparatorRootProps<T> & { class?: string | undefined };
 
 const ItemSeparator = <T extends ValidComponent = "hr">(
   props: PolymorphicProps<T, ItemSeparatorProps<T>>,
@@ -67,13 +63,12 @@ const itemVariants = cva(
   },
 );
 
-type ItemProps<T extends ValidComponent = "div"> =
-  & { as?: T; class?: string | undefined }
-  & VariantProps<typeof itemVariants>;
+type ItemProps<T extends ValidComponent = "div"> = {
+  as?: T;
+  class?: string | undefined;
+} & VariantProps<typeof itemVariants>;
 
-const Item = <T extends ValidComponent = "div">(
-  rawProps: PolymorphicProps<T, ItemProps<T>>,
-) => {
+const Item = <T extends ValidComponent = "div">(rawProps: PolymorphicProps<T, ItemProps<T>>) => {
   const props = merge(
     { variant: "default" as const, size: "default" as const },
     rawProps as ItemProps,
@@ -85,10 +80,7 @@ const Item = <T extends ValidComponent = "div">(
       data-slot="item"
       data-variant={props.variant}
       data-size={props.size}
-      class={cn(
-        itemVariants({ variant: props.variant, size: props.size }),
-        props.class,
-      )}
+      class={cn(itemVariants({ variant: props.variant, size: props.size }), props.class)}
       {...others}
     />
   );
@@ -110,9 +102,7 @@ const itemMediaVariants = cva(
   },
 );
 
-type ItemMediaProps =
-  & ComponentProps<"div">
-  & VariantProps<typeof itemMediaVariants>;
+type ItemMediaProps = ComponentProps<"div"> & VariantProps<typeof itemMediaVariants>;
 
 const ItemMedia: Component<ItemMediaProps> = (rawProps) => {
   const props = merge({ variant: "default" as const }, rawProps);
@@ -121,10 +111,7 @@ const ItemMedia: Component<ItemMediaProps> = (rawProps) => {
     <div
       data-slot="item-media"
       data-variant={props.variant}
-      class={cn(
-        itemMediaVariants({ variant: props.variant }),
-        props.class,
-      )}
+      class={cn(itemMediaVariants({ variant: props.variant }), props.class)}
       {...others}
     />
   );
@@ -149,10 +136,7 @@ const ItemTitle: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="item-title"
-      class={cn(
-        "cn-item-title line-clamp-1 flex w-fit items-center",
-        props.class,
-      )}
+      class={cn("cn-item-title line-clamp-1 flex w-fit items-center", props.class)}
       {...others}
     />
   );
@@ -189,10 +173,7 @@ const ItemHeader: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="item-header"
-      class={cn(
-        "cn-item-header flex basis-full items-center justify-between",
-        props.class,
-      )}
+      class={cn("cn-item-header flex basis-full items-center justify-between", props.class)}
       {...others}
     />
   );
@@ -203,10 +184,7 @@ const ItemFooter: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="item-footer"
-      class={cn(
-        "cn-item-footer flex basis-full items-center justify-between",
-        props.class,
-      )}
+      class={cn("cn-item-footer flex basis-full items-center justify-between", props.class)}
       {...others}
     />
   );

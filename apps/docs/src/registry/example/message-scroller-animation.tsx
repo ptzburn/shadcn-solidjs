@@ -73,8 +73,7 @@ export default function MessageScrollerAnimation() {
         <CardHeader class="border-b">
           <CardTitle>Animation</CardTitle>
           <CardDescription>
-            Choose how user messages are animated when they are added to the
-            conversation.
+            Choose how user messages are animated when they are added to the conversation.
           </CardDescription>
           <CardAction class="flex items-center gap-2">
             <Button
@@ -151,9 +150,7 @@ export default function MessageScrollerAnimation() {
             onChange={(value) => value && setPresetId(value.id)}
             placement="top-start"
             itemComponent={(itemProps) => (
-              <SelectItem item={itemProps.item}>
-                {itemProps.item.rawValue.name}
-              </SelectItem>
+              <SelectItem item={itemProps.item}>{itemProps.item.rawValue.name}</SelectItem>
             )}
           >
             <SelectTrigger aria-label="Animation preset" class="w-40">

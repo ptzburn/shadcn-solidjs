@@ -9,12 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "~/registry/ui/field.tsx";
+import { Field, FieldDescription, FieldGroup, FieldLabel } from "~/registry/ui/field.tsx";
 import { Progress } from "~/registry/ui/progress.tsx";
 import {
   Select,
@@ -65,24 +60,18 @@ export function PayoutThreshold() {
               optionTextValue="label"
               defaultValue={CURRENCIES[0]}
               itemComponent={(props) => (
-                <SelectItem item={props.item}>
-                  {props.item.rawValue.label}
-                </SelectItem>
+                <SelectItem item={props.item}>{props.item.rawValue.label}</SelectItem>
               )}
             >
               <SelectTrigger id="preferred-currency" class="w-full">
-                <SelectValue<Currency>>
-                  {(state) => state.selectedOption().label}
-                </SelectValue>
+                <SelectValue<Currency>>{(state) => state.selectedOption().label}</SelectValue>
               </SelectTrigger>
               <SelectContent />
             </Select>
           </Field>
           <Field>
             <div class="flex items-baseline justify-between">
-              <FieldLabel id="min-payout-label">
-                Minimum Payout Amount
-              </FieldLabel>
+              <FieldLabel id="min-payout-label">Minimum Payout Amount</FieldLabel>
               <span class="font-semibold text-2xl tabular-nums">$2500.00</span>
             </div>
             <Progress

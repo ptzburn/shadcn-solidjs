@@ -10,18 +10,8 @@
  * stored class before first paint; the provider then keeps it in sync.
  */
 import { isServer, type JSX } from "@solidjs/web";
-import {
-  defaultStyle,
-  isStyle,
-  type StyleName,
-  styleNames,
-} from "~/registry/styles.ts";
-import {
-  type Accessor,
-  createContext,
-  createSignal,
-  useContext,
-} from "solid-js";
+import { defaultStyle, isStyle, type StyleName, styleNames } from "~/registry/styles.ts";
+import { type Accessor, createContext, createSignal, useContext } from "solid-js";
 
 export const STYLE_COOKIE = "style";
 
@@ -34,9 +24,7 @@ const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
  * hand-edited cookie can never inject a class name.
  */
 export function parseStyleCookie(cookie: string | undefined): StyleName {
-  const match = cookie?.match(
-    new RegExp(`(?:^|;\\s*)${STYLE_COOKIE}=([^;]*)`),
-  );
+  const match = cookie?.match(new RegExp(`(?:^|;\\s*)${STYLE_COOKIE}=([^;]*)`));
   const value = match?.[1] ? decodeURIComponent(match[1]) : undefined;
   return value && isStyle(value) ? value : defaultStyle;
 }
@@ -57,16 +45,13 @@ type StyleContextValue = {
 
 const StyleContext = createContext<StyleContextValue>();
 
-export function StyleProvider(
-  props: { initial: StyleName; children: JSX.Element },
-) {
+export function StyleProvider(props: { initial: StyleName; children: JSX.Element }) {
   const [style, set] = createSignal<StyleName>(props.initial);
 
   const setStyle = (next: StyleName) => {
     set(next);
     if (isServer) return;
-    document.cookie =
-      `${STYLE_COOKIE}=${next}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
+    document.cookie = `${STYLE_COOKIE}=${next}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
     applyStyleClass(next);
   };
 
@@ -74,9 +59,7 @@ export function StyleProvider(
   // without) the inline script.
   applyStyleClass(props.initial);
 
-  return (
-    <StyleContext value={{ style, setStyle }}>{props.children}</StyleContext>
-  );
+  return <StyleContext value={{ style, setStyle }}>{props.children}</StyleContext>;
 }
 
 export function useStyle() {
@@ -92,10 +75,7 @@ export function useStyle() {
  * Document.tsx: a <script> rendered from the client bundle never runs.
  */
 export function StyleScript(props: { nonce?: string }) {
-  const names = JSON.stringify(
-    Object.fromEntries(styleNames.map((name) => [name, true])),
-  );
-  const script =
-    `!function(){try{var k="${STYLE_COOKIE}",m=document.cookie.match(new RegExp("(^|;\\s*)"+k+"=([^;]*)")),v=m?decodeURIComponent(m[2]):"",s=${names}[v]?v:"${defaultStyle}",d=document.documentElement;Array.prototype.slice.call(d.classList).forEach(function(c){c.indexOf("style-")===0&&d.classList.remove(c)});d.classList.add("style-"+s)}catch(e){}}();`;
+  const names = JSON.stringify(Object.fromEntries(styleNames.map((name) => [name, true])));
+  const script = `!function(){try{var k="${STYLE_COOKIE}",m=document.cookie.match(new RegExp("(^|;\\s*)"+k+"=([^;]*)")),v=m?decodeURIComponent(m[2]):"",s=${names}[v]?v:"${defaultStyle}",d=document.documentElement;Array.prototype.slice.call(d.classList).forEach(function(c){c.indexOf("style-")===0&&d.classList.remove(c)});d.classList.add("style-"+s)}catch(e){}}();`;
   return <script id="style-script" nonce={props.nonce} innerHTML={script} />;
 }

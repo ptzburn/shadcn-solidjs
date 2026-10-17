@@ -1,10 +1,6 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Field, FieldDescription, FieldLabel } from "~/registry/ui/field.tsx";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "~/registry/ui/input-group.tsx";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "~/registry/ui/input-group.tsx";
 
 export default function InputGroupInlineStart() {
   return (

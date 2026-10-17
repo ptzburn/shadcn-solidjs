@@ -1,11 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "~/registry/ui/avatar.tsx";
 import { Bubble, BubbleContent } from "~/registry/ui/bubble.tsx";
-import {
-  Message,
-  MessageAvatar,
-  MessageContent,
-  MessageGroup,
-} from "~/registry/ui/message.tsx";
+import { Message, MessageAvatar, MessageContent, MessageGroup } from "~/registry/ui/message.tsx";
 
 export default function MessageGroupDemo() {
   return (
@@ -22,10 +17,7 @@ export default function MessageGroupDemo() {
         <Message>
           <MessageAvatar>
             <Avatar>
-              <AvatarImage
-                src="https://github.com/evilrabbit.png"
-                alt="@evilrabbit"
-              />
+              <AvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
               <AvatarFallback>ER</AvatarFallback>
             </Avatar>
           </MessageAvatar>

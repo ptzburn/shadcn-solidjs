@@ -1,6 +1,4 @@
+# `pnpm check` is `vp check`: format check, lint and type check.
 pre-commit:
-  parallel: true
   jobs:
-    - run: deno lint --fix
-    - run: deno fmt
-    - run: deno task check
+    - run: pnpm check

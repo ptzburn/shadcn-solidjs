@@ -26,10 +26,7 @@ export function clearRegistryCache(): void {
   cache.clear();
 }
 
-async function readJsonFromUrl(
-  url: string,
-  headers?: Record<string, string>,
-): Promise<unknown> {
+async function readJsonFromUrl(url: string, headers?: Record<string, string>): Promise<unknown> {
   let response: Response;
   try {
     response = await fetch(url, {
@@ -72,9 +69,8 @@ export function fetchJson(
   const cached = cache.get(key);
   if (cached) return cached;
 
-  const pending = "path" in source
-    ? readJsonFromFile(source.path)
-    : readJsonFromUrl(source.url, source.headers);
+  const pending =
+    "path" in source ? readJsonFromFile(source.path) : readJsonFromUrl(source.url, source.headers);
 
   cache.set(key, pending);
   return pending;
@@ -86,21 +82,14 @@ export async function fetchRegistryItem(
   const raw = await fetchJson(source);
   const parsed = registryItemSchema.safeParse(raw);
   if (!parsed.success) {
-    throw new RegistryParseError(
-      "path" in source ? source.path : source.url,
-      parsed.error,
-    );
+    throw new RegistryParseError("path" in source ? source.path : source.url, parsed.error);
   }
   return parsed.data;
 }
 
 /** Accepts a filesystem path too, so `REGISTRY_URL` can point at `public/r`. */
-export async function fetchRegistryIndex(
-  location: string,
-): Promise<RegistryIndex> {
-  const raw = await fetchJson(
-    isUrl(location) ? { url: location } : { path: location },
-  );
+export async function fetchRegistryIndex(location: string): Promise<RegistryIndex> {
+  const raw = await fetchJson(isUrl(location) ? { url: location } : { path: location });
   const parsed = registryIndexSchema.safeParse(raw);
   if (!parsed.success) {
     throw new RegistryParseError(location, parsed.error);

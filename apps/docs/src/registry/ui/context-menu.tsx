@@ -7,9 +7,7 @@ import type { Component } from "solid-js";
 
 import { omit } from "solid-js";
 
-const ContextMenu: Component<ContextMenuPrimitive.ContextMenuRootProps> = (
-  props,
-) => {
+const ContextMenu: Component<ContextMenuPrimitive.ContextMenuRootProps> = (props) => {
   return <ContextMenuPrimitive.Root {...props} />;
 };
 
@@ -17,8 +15,7 @@ const ContextMenuPortal = ContextMenuPrimitive.Portal;
 const ContextMenuSub = ContextMenuPrimitive.Sub;
 
 type ContextMenuTriggerProps<T extends ValidComponent = "div"> =
-  & ContextMenuPrimitive.ContextMenuTriggerProps<T>
-  & {
+  ContextMenuPrimitive.ContextMenuTriggerProps<T> & {
     class?: string | undefined;
   };
 
@@ -42,9 +39,7 @@ type ContextMenuGroupProps<T extends ValidComponent = "div"> =
 const ContextMenuGroup = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ContextMenuGroupProps<T>>,
 ) => {
-  return (
-    <ContextMenuPrimitive.Group data-slot="context-menu-group" {...props} />
-  );
+  return <ContextMenuPrimitive.Group data-slot="context-menu-group" {...props} />;
 };
 
 type ContextMenuRadioGroupProps<T extends ValidComponent = "div"> =
@@ -62,8 +57,7 @@ const ContextMenuRadioGroup = <T extends ValidComponent = "div">(
 };
 
 type ContextMenuContentProps<T extends ValidComponent = "div"> =
-  & ContextMenuPrimitive.ContextMenuContentProps<T>
-  & {
+  ContextMenuPrimitive.ContextMenuContentProps<T> & {
     class?: string | undefined;
   };
 
@@ -87,8 +81,7 @@ const ContextMenuContent = <T extends ValidComponent = "div">(
 };
 
 type ContextMenuItemProps<T extends ValidComponent = "div"> =
-  & ContextMenuPrimitive.ContextMenuItemProps<T>
-  & {
+  ContextMenuPrimitive.ContextMenuItemProps<T> & {
     class?: string | undefined;
     inset?: boolean;
     variant?: "default" | "destructive";
@@ -114,8 +107,7 @@ const ContextMenuItem = <T extends ValidComponent = "div">(
 };
 
 type ContextMenuSubTriggerProps<T extends ValidComponent = "div"> =
-  & ContextMenuPrimitive.ContextMenuSubTriggerProps<T>
-  & {
+  ContextMenuPrimitive.ContextMenuSubTriggerProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     inset?: boolean;
@@ -150,8 +142,7 @@ const ContextMenuSubTrigger = <T extends ValidComponent = "div">(
 };
 
 type ContextMenuSubContentProps<T extends ValidComponent = "div"> =
-  & ContextMenuPrimitive.ContextMenuSubContentProps<T>
-  & {
+  ContextMenuPrimitive.ContextMenuSubContentProps<T> & {
     class?: string | undefined;
   };
 
@@ -175,8 +166,7 @@ const ContextMenuSubContent = <T extends ValidComponent = "div">(
 };
 
 type ContextMenuCheckboxItemProps<T extends ValidComponent = "div"> =
-  & ContextMenuPrimitive.ContextMenuCheckboxItemProps<T>
-  & {
+  ContextMenuPrimitive.ContextMenuCheckboxItemProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     inset?: boolean;
@@ -214,8 +204,7 @@ const ContextMenuCheckboxItem = <T extends ValidComponent = "div">(
 };
 
 type ContextMenuRadioItemProps<T extends ValidComponent = "div"> =
-  & ContextMenuPrimitive.ContextMenuRadioItemProps<T>
-  & {
+  ContextMenuPrimitive.ContextMenuRadioItemProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     inset?: boolean;
@@ -253,8 +242,7 @@ const ContextMenuRadioItem = <T extends ValidComponent = "div">(
 };
 
 type ContextMenuLabelProps<T extends ValidComponent = "div"> =
-  & ContextMenuPrimitive.ContextMenuGroupLabelProps<T>
-  & {
+  ContextMenuPrimitive.ContextMenuGroupLabelProps<T> & {
     class?: string | undefined;
     inset?: boolean;
   };
@@ -269,18 +257,14 @@ const ContextMenuLabel = <T extends ValidComponent = "div">(
       as="div"
       data-slot="context-menu-label"
       data-inset={local.inset}
-      class={cn(
-        "cn-context-menu-label",
-        local.class,
-      )}
+      class={cn("cn-context-menu-label", local.class)}
       {...others}
     />
   );
 };
 
 type ContextMenuSeparatorProps<T extends ValidComponent = "div"> =
-  & ContextMenuPrimitive.ContextMenuSeparatorProps<T>
-  & {
+  ContextMenuPrimitive.ContextMenuSeparatorProps<T> & {
     class?: string | undefined;
   };
 
@@ -304,10 +288,7 @@ const ContextMenuShortcut: Component<ComponentProps<"span">> = (props) => {
   return (
     <span
       data-slot="context-menu-shortcut"
-      class={cn(
-        "cn-context-menu-shortcut",
-        props.class,
-      )}
+      class={cn("cn-context-menu-shortcut", props.class)}
       {...others}
     />
   );

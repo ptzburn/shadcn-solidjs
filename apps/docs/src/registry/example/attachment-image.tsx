@@ -27,10 +27,7 @@ export default function AttachmentImage() {
           {(image) => (
             <Attachment orientation="vertical">
               <AttachmentMedia variant="image">
-                <img
-                  src={`https://avatar.vercel.sh/${image.seed}`}
-                  alt={image.name}
-                />
+                <img src={`https://avatar.vercel.sh/${image.seed}`} alt={image.name} />
               </AttachmentMedia>
               <AttachmentContent>
                 <AttachmentTitle>{image.name}</AttachmentTitle>

@@ -53,10 +53,9 @@ const THEMES = {
 
 export type ChartConfig = Record<
   string,
-  & {
+  {
     label?: string;
-  }
-  & (
+  } & (
     | { color?: string; theme?: never }
     | { color?: never; theme: Record<keyof typeof THEMES, string> }
   )
@@ -75,10 +74,7 @@ const ChartContainer: Component<
     <div
       data-slot="chart"
       data-chart={chartId()}
-      class={cn(
-        "cn-chart flex aspect-video justify-center text-xs",
-        props.class,
-      )}
+      class={cn("cn-chart flex aspect-video justify-center text-xs", props.class)}
       {...others}
     >
       <ChartStyle id={chartId()} config={props.config} />
@@ -89,25 +85,19 @@ const ChartContainer: Component<
 
 const ChartStyle: Component<{ id: string; config: ChartConfig }> = (props) => {
   const colorConfig = () =>
-    Object.entries(props.config).filter(
-      ([, config]) => config.theme ?? config.color,
-    );
+    Object.entries(props.config).filter(([, config]) => config.theme ?? config.color);
 
   const styles = () =>
     Object.entries(THEMES)
       .map(
         ([theme, prefix]) => `
 ${prefix} [data-chart=${props.id}] {
-${
-          colorConfig()
-            .map(([key, itemConfig]) => {
-              const color =
-                itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ??
-                  itemConfig.color;
-              return color ? `  --color-${key}: ${color};` : null;
-            })
-            .join("\n")
-        }
+${colorConfig()
+  .map(([key, itemConfig]) => {
+    const color = itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ?? itemConfig.color;
+    return color ? `  --color-${key}: ${color};` : null;
+  })
+  .join("\n")}
 }
 `,
       )
@@ -139,11 +129,7 @@ function resolveColors<T>(value: T, element: Element): T {
   if (Array.isArray(value)) {
     return value.map((entry) => resolveColors(entry, element)) as T;
   }
-  if (
-    value !== null &&
-    typeof value === "object" &&
-    (value as object).constructor === Object
-  ) {
+  if (value !== null && typeof value === "object" && (value as object).constructor === Object) {
     return Object.fromEntries(
       Object.entries(value as Record<string, unknown>).map(([key, entry]) => [
         key,
@@ -160,17 +146,15 @@ export type ChartTooltipOptions = {
   hideIndicator?: boolean;
 };
 
-type TypedChartProps =
-  & Omit<ComponentProps<"canvas">, "children" | "height" | "ref" | "width">
-  & {
-    data: ChartData;
-    options?: ChartOptions;
-    plugins?: ChartPlugin[];
-    tooltip?: ChartTooltipOptions;
-    ref?: JSX.Ref<HTMLCanvasElement>;
-    width?: number | undefined;
-    height?: number | undefined;
-  };
+type TypedChartProps = Omit<ComponentProps<"canvas">, "children" | "height" | "ref" | "width"> & {
+  data: ChartData;
+  options?: ChartOptions;
+  plugins?: ChartPlugin[];
+  tooltip?: ChartTooltipOptions;
+  ref?: JSX.Ref<HTMLCanvasElement>;
+  width?: number | undefined;
+  height?: number | undefined;
+};
 
 type ChartProps = TypedChartProps & {
   type: ChartType;
@@ -182,9 +166,7 @@ type ChartContext = {
 };
 
 const BaseChart: Component<ChartProps> = (rawProps) => {
-  const [canvasRef, setCanvasRef] = createSignal<HTMLCanvasElement | null>(
-    null,
-  );
+  const [canvasRef, setCanvasRef] = createSignal<HTMLCanvasElement | null>(null);
   const [chart, setChart] = createSignal<Chart>();
 
   const props = merge(
@@ -354,9 +336,9 @@ function showTooltip(context: ChartContext, options?: ChartTooltipOptions) {
 
   el.className = "cn-chart-tooltip grid min-w-32 items-start";
 
-  const label = options?.hideLabel ? "" : model.title
-    .map((title) => `<div class="font-medium">${escapeHtml(title)}</div>`)
-    .join("");
+  const label = options?.hideLabel
+    ? ""
+    : model.title.map((title) => `<div class="font-medium">${escapeHtml(title)}</div>`).join("");
 
   let content = nestLabel ? "" : label;
 
@@ -364,39 +346,31 @@ function showTooltip(context: ChartContext, options?: ChartTooltipOptions) {
   model.dataPoints.forEach((item, index) => {
     const colors = model.labelColors[index];
     const name = item.dataset.label ?? item.label;
-    const indicatorHtml = options?.hideIndicator ? "" : `
-          <div class="${
-      cn(
-        "shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
-        {
-          "h-2.5 w-2.5": indicator === "dot",
-          "w-1": indicator === "line",
-          "w-0 border-dashed border-[1.5px] bg-transparent":
-            indicator === "dashed",
-          "my-0.5": nestLabel && indicator === "dashed",
-        },
-      )
-    }" style="${indicatorStyle(colors)}"></div>`;
+    const indicatorHtml = options?.hideIndicator
+      ? ""
+      : `
+          <div class="${cn("shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)", {
+            "h-2.5 w-2.5": indicator === "dot",
+            "w-1": indicator === "line",
+            "w-0 border-dashed border-[1.5px] bg-transparent": indicator === "dashed",
+            "my-0.5": nestLabel && indicator === "dashed",
+          })}" style="${indicatorStyle(colors)}"></div>`;
     content += `
-        <div class="${
-      cn(
-        "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground",
-        indicator === "dot" && "items-center",
-      )
-    }">${indicatorHtml}
-          <div class="${
-      cn(
-        "flex flex-1 justify-between leading-none",
-        nestLabel ? "items-end" : "items-center",
-      )
-    }">
+        <div class="${cn(
+          "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground",
+          indicator === "dot" && "items-center",
+        )}">${indicatorHtml}
+          <div class="${cn(
+            "flex flex-1 justify-between leading-none",
+            nestLabel ? "items-end" : "items-center",
+          )}">
             <div class="grid gap-1.5">
               ${nestLabel ? label : ""}
               <span class="text-muted-foreground">${escapeHtml(name)}</span>
             </div>
-            <span class="font-mono font-medium text-foreground tabular-nums">${
-      escapeHtml(item.formattedValue)
-    }</span>
+            <span class="font-mono font-medium text-foreground tabular-nums">${escapeHtml(
+              item.formattedValue,
+            )}</span>
           </div>
         </div>`;
   });
@@ -436,18 +410,18 @@ function defaultOptions(
     scales: cartesianChart.includes(type)
       ? { x: axisDefaults(), y: axisDefaults() }
       : radialChart.includes(type)
-      ? {
-        r: {
-          grid: { color: "var(--border)" },
-          angleLines: { color: "var(--border)" },
-          pointLabels: { color: "var(--muted-foreground)" },
-          ticks: {
-            color: "var(--muted-foreground)",
-            backdropColor: "transparent",
-          },
-        },
-      }
-      : {},
+        ? {
+            r: {
+              grid: { color: "var(--border)" },
+              angleLines: { color: "var(--border)" },
+              pointLabels: { color: "var(--muted-foreground)" },
+              ticks: {
+                color: "var(--muted-foreground)",
+                backdropColor: "transparent",
+              },
+            },
+          }
+        : {},
     plugins: {
       legend: {
         display: false,
@@ -484,9 +458,10 @@ function createTypedChart(
     <BaseChart
       type={type}
       {...props}
-      options={mergeOptions(defaultOptions(type, () => props.tooltip), [
-        props.options ?? {},
-      ])}
+      options={mergeOptions(
+        defaultOptions(type, () => props.tooltip),
+        [props.options ?? {}],
+      )}
     />
   );
 }
@@ -502,10 +477,7 @@ const BubbleChart = /* #__PURE__ */ createTypedChart("bubble", [
   PointElement,
   LinearScale,
 ]);
-const DonutChart = /* #__PURE__ */ createTypedChart("doughnut", [
-  DoughnutController,
-  ArcElement,
-]);
+const DonutChart = /* #__PURE__ */ createTypedChart("doughnut", [DoughnutController, ArcElement]);
 const LineChart = /* #__PURE__ */ createTypedChart("line", [
   LineController,
   LineElement,
@@ -513,10 +485,7 @@ const LineChart = /* #__PURE__ */ createTypedChart("line", [
   CategoryScale,
   LinearScale,
 ]);
-const PieChart = /* #__PURE__ */ createTypedChart("pie", [
-  PieController,
-  ArcElement,
-]);
+const PieChart = /* #__PURE__ */ createTypedChart("pie", [PieController, ArcElement]);
 const PolarAreaChart = /* #__PURE__ */ createTypedChart("polarArea", [
   PolarAreaController,
   ArcElement,

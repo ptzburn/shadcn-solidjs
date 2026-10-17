@@ -5,9 +5,7 @@ import type { Component } from "solid-js";
 
 import { omit } from "solid-js";
 
-type NativeSelectProps =
-  & Omit<ComponentProps<"select">, "size">
-  & { size?: "sm" | "default" };
+type NativeSelectProps = Omit<ComponentProps<"select">, "size"> & { size?: "sm" | "default" };
 
 const NativeSelect: Component<NativeSelectProps> = (props) => {
   const others = omit(props, "class", "size");

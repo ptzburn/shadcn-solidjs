@@ -28,10 +28,7 @@ type ChatTransportHandlers = {
 // Streams the scripted assistant turn that follows a user message. `respond`
 // returns a cancel function.
 type ChatTransport = {
-  respond: (
-    userMessage: Pick<ChatMessage, "id">,
-    handlers: ChatTransportHandlers,
-  ) => () => void;
+  respond: (userMessage: Pick<ChatMessage, "id">, handlers: ChatTransportHandlers) => () => void;
 };
 
 // A deterministic conversation: chain turns, then read them back or stream them
@@ -91,9 +88,7 @@ function createChat(): Chat {
     },
     next(messages) {
       const last = messages[messages.length - 1];
-      const start = last
-        ? turns.findIndex((turn) => turn.id === last.id) + 1
-        : 0;
+      const start = last ? turns.findIndex((turn) => turn.id === last.id) + 1 : 0;
       const next = turns.slice(start).find((turn) => turn.role === "user");
       return next ? cloneMessage(next) : null;
     },
@@ -129,11 +124,14 @@ function createChat(): Chat {
             timer = setTimeout(tick, delayMs);
           };
 
-          const startTimer = setTimeout(() => {
-            if (cancelled) return;
-            handlers.onStart({ ...reply, text: "" });
-            timer = setTimeout(tick, delayMs);
-          }, delays[index + 1] ?? 0);
+          const startTimer = setTimeout(
+            () => {
+              if (cancelled) return;
+              handlers.onStart({ ...reply, text: "" });
+              timer = setTimeout(tick, delayMs);
+            },
+            delays[index + 1] ?? 0,
+          );
 
           return () => {
             cancelled = true;
@@ -151,10 +149,7 @@ function createChat(): Chat {
 // The Solid stand-in for `useChat`: a reactive transcript (store, so a streaming
 // row updates in place instead of being re-created), a status accessor, and
 // the two commands the examples call. Timers stop on disposal and on reset.
-function createChatSession(options: {
-  messages?: ChatMessage[];
-  transport: ChatTransport;
-}): {
+function createChatSession(options: { messages?: ChatMessage[]; transport: ChatTransport }): {
   messages: Store<ChatMessage[]>;
   status: Accessor<ChatStatus>;
   sendMessage: (message: ChatMessage) => void;

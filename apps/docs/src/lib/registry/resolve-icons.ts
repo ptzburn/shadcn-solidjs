@@ -4,18 +4,12 @@
  * `~icons/<library>/<name>` imports (unplugin-icons / @iconify-json on
  * the consumer side); the marker component itself never ships.
  */
-import {
-  type IconLibrary,
-  iconLibraryNames,
-} from "../../registry/icons/icon-libraries.ts";
+import { type IconLibrary, iconLibraryNames } from "../../registry/icons/icon-libraries.ts";
 
 const PLACEHOLDER_IMPORT_RE =
   /^import \{ IconPlaceholder \} from "~\/registry\/icons\/icon-placeholder\.tsx";$\n?/m;
 const PLACEHOLDER_TAG_RE = /<IconPlaceholder\b[\s\S]*?\/>/g;
-const LIB_ATTRS_RE = new RegExp(
-  `\\s*(?:${iconLibraryNames.join("|")})="[^"]*"`,
-  "g",
-);
+const LIB_ATTRS_RE = new RegExp(`\\s*(?:${iconLibraryNames.join("|")})="[^"]*"`, "g");
 
 function pascalCase(iconName: string): string {
   return iconName
@@ -39,9 +33,7 @@ export function resolveIcons(
       throw new Error(`IconPlaceholder is missing the "${library}" prop`);
     }
     icons.add(name);
-    return tag
-      .replace(LIB_ATTRS_RE, "")
-      .replace(/^<IconPlaceholder/, `<Icon${pascalCase(name)}`);
+    return tag.replace(LIB_ATTRS_RE, "").replace(/^<IconPlaceholder/, `<Icon${pascalCase(name)}`);
   });
   if (icons.size === 0) {
     return { code, icons: [] };
@@ -51,9 +43,7 @@ export function resolveIcons(
   }
   const sorted = [...icons].sort();
   const imports = sorted
-    .map((name) =>
-      `import Icon${pascalCase(name)} from "~icons/${library}/${name}";`
-    )
+    .map((name) => `import Icon${pascalCase(name)} from "~icons/${library}/${name}";`)
     .join("\n");
   code = code.replace(PLACEHOLDER_IMPORT_RE, `${imports}\n`);
   return { code, icons: sorted };

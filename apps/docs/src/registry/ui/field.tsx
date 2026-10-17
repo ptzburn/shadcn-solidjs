@@ -8,11 +8,9 @@ import { children, createMemo, For, omit, Show } from "solid-js";
 import { Label } from "./label.tsx";
 import { Separator } from "./separator.tsx";
 
-type FieldSetProps<T extends ValidComponent = "fieldset"> =
-  & ComponentProps<T>
-  & {
-    class?: string | undefined;
-  };
+type FieldSetProps<T extends ValidComponent = "fieldset"> = ComponentProps<T> & {
+  class?: string | undefined;
+};
 
 const FieldSet = <T extends ValidComponent = "fieldset">(
   props: PolymorphicProps<T, FieldSetProps<T>>,
@@ -24,21 +22,16 @@ const FieldSet = <T extends ValidComponent = "fieldset">(
     <Polymorphic<FieldSetProps>
       as="fieldset"
       data-slot="field-set"
-      class={cn(
-        "cn-field-set flex flex-col",
-        local.class,
-      )}
+      class={cn("cn-field-set flex flex-col", local.class)}
       {...others}
     />
   );
 };
 
-type FieldLegendProps<T extends ValidComponent = "legend"> =
-  & ComponentProps<T>
-  & {
-    class?: string | undefined;
-    variant?: "legend" | "label";
-  };
+type FieldLegendProps<T extends ValidComponent = "legend"> = ComponentProps<T> & {
+  class?: string | undefined;
+  variant?: "legend" | "label";
+};
 
 const FieldLegend = <T extends ValidComponent = "legend">(
   props: PolymorphicProps<T, FieldLegendProps<T>>,
@@ -51,10 +44,7 @@ const FieldLegend = <T extends ValidComponent = "legend">(
       as="legend"
       data-slot="field-legend"
       data-variant={local.variant ?? "legend"}
-      class={cn(
-        "cn-field-legend",
-        local.class,
-      )}
+      class={cn("cn-field-legend", local.class)}
       {...others}
     />
   );
@@ -83,36 +73,29 @@ const FieldGroup = <T extends ValidComponent = "div">(
   );
 };
 
-const fieldVariants = cva(
-  "cn-field group/field flex w-full",
-  {
-    variants: {
-      orientation: {
-        vertical:
-          "cn-field-orientation-vertical flex-col *:w-full [&>.sr-only]:w-auto [&>[data-slot=select]>[data-slot=select-trigger]]:w-full",
-        horizontal:
-          "cn-field-orientation-horizontal flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px has-[>[data-slot=field-content]]:[&>[data-slot=checkbox]]:mt-px has-[>[data-slot=field-content]]:[&>[data-slot=radio-group-item]]:mt-px",
-        responsive:
-          "cn-field-orientation-responsive flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px @md/field-group:has-[>[data-slot=field-content]]:[&>[data-slot=checkbox]]:mt-px @md/field-group:has-[>[data-slot=field-content]]:[&>[data-slot=radio-group-item]]:mt-px [&>[data-slot=select]>[data-slot=select-trigger]]:w-full @md/field-group:[&>[data-slot=select]>[data-slot=select-trigger]]:w-auto",
-      },
-    },
-    defaultVariants: {
-      orientation: "vertical",
+const fieldVariants = cva("cn-field group/field flex w-full", {
+  variants: {
+    orientation: {
+      vertical:
+        "cn-field-orientation-vertical flex-col *:w-full [&>.sr-only]:w-auto [&>[data-slot=select]>[data-slot=select-trigger]]:w-full",
+      horizontal:
+        "cn-field-orientation-horizontal flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px has-[>[data-slot=field-content]]:[&>[data-slot=checkbox]]:mt-px has-[>[data-slot=field-content]]:[&>[data-slot=radio-group-item]]:mt-px",
+      responsive:
+        "cn-field-orientation-responsive flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px @md/field-group:has-[>[data-slot=field-content]]:[&>[data-slot=checkbox]]:mt-px @md/field-group:has-[>[data-slot=field-content]]:[&>[data-slot=radio-group-item]]:mt-px [&>[data-slot=select]>[data-slot=select-trigger]]:w-full @md/field-group:[&>[data-slot=select]>[data-slot=select-trigger]]:w-auto",
     },
   },
-);
+  defaultVariants: {
+    orientation: "vertical",
+  },
+});
 
-type FieldProps<T extends ValidComponent = "div"> =
-  & ComponentProps<T>
-  & VariantProps<typeof fieldVariants>
-  & {
+type FieldProps<T extends ValidComponent = "div"> = ComponentProps<T> &
+  VariantProps<typeof fieldVariants> & {
     class?: string | undefined;
     orientation?: "vertical" | "horizontal" | "responsive";
   };
 
-const Field = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, FieldProps<T>>,
-) => {
+const Field = <T extends ValidComponent = "div">(props: PolymorphicProps<T, FieldProps<T>>) => {
   const local = props as FieldProps;
   const others = omit(local, "class", "orientation");
 
@@ -122,10 +105,7 @@ const Field = <T extends ValidComponent = "div">(
       role="group"
       data-slot="field"
       data-orientation={local.orientation ?? "vertical"}
-      class={cn(
-        fieldVariants({ orientation: local.orientation }),
-        local.class,
-      )}
+      class={cn(fieldVariants({ orientation: local.orientation }), local.class)}
       {...others}
     />
   );
@@ -190,20 +170,15 @@ const FieldTitle = <T extends ValidComponent = "div">(
     <Polymorphic<FieldTitleProps>
       as="div"
       data-slot="field-label"
-      class={cn(
-        "cn-field-title flex w-fit items-center",
-        local.class,
-      )}
+      class={cn("cn-field-title flex w-fit items-center", local.class)}
       {...others}
     />
   );
 };
 
-type FieldDescriptionProps<T extends ValidComponent = "p"> =
-  & ComponentProps<T>
-  & {
-    class?: string | undefined;
-  };
+type FieldDescriptionProps<T extends ValidComponent = "p"> = ComponentProps<T> & {
+  class?: string | undefined;
+};
 
 const FieldDescription = <T extends ValidComponent = "p">(
   props: PolymorphicProps<T, FieldDescriptionProps<T>>,
@@ -226,12 +201,10 @@ const FieldDescription = <T extends ValidComponent = "p">(
   );
 };
 
-type FieldSeparatorProps<T extends ValidComponent = "div"> =
-  & ComponentProps<T>
-  & {
-    class?: string | undefined;
-    children?: JSX.Element;
-  };
+type FieldSeparatorProps<T extends ValidComponent = "div"> = ComponentProps<T> & {
+  class?: string | undefined;
+  children?: JSX.Element;
+};
 
 const FieldSeparator = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, FieldSeparatorProps<T>>,
@@ -247,10 +220,7 @@ const FieldSeparator = <T extends ValidComponent = "div">(
       as="div"
       data-slot="field-separator"
       data-content={hasChildren() ? "true" : "false"}
-      class={cn(
-        "cn-field-separator relative",
-        local.class,
-      )}
+      class={cn("cn-field-separator relative", local.class)}
       {...others}
     >
       <Separator class="absolute inset-0 top-1/2" />
@@ -288,16 +258,12 @@ const FieldError = <T extends ValidComponent = "div">(
       return kids;
     }
 
-    const errors = local.errors?.filter((e): e is { message: string } =>
-      !!e?.message
-    );
+    const errors = local.errors?.filter((e): e is { message: string } => !!e?.message);
     if (!errors || errors.length === 0) {
       return null;
     }
 
-    const uniqueErrors = Array.from(
-      new Map(errors.map((e) => [e.message, e])).values(),
-    );
+    const uniqueErrors = Array.from(new Map(errors.map((e) => [e.message, e])).values());
 
     if (uniqueErrors.length === 1) {
       return uniqueErrors[0].message;
@@ -305,9 +271,7 @@ const FieldError = <T extends ValidComponent = "div">(
 
     return (
       <ul class="ml-4 flex flex-col list-disc gap-1">
-        <For each={uniqueErrors}>
-          {(error) => <li>{error.message}</li>}
-        </For>
+        <For each={uniqueErrors}>{(error) => <li>{error.message}</li>}</For>
       </ul>
     );
   });
@@ -318,10 +282,7 @@ const FieldError = <T extends ValidComponent = "div">(
         as="div"
         role="alert"
         data-slot="field-error"
-        class={cn(
-          "cn-field-error font-normal",
-          local.class,
-        )}
+        class={cn("cn-field-error font-normal", local.class)}
         {...others}
       >
         {content()}

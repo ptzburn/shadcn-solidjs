@@ -9,9 +9,7 @@ type LabelProps<T extends ValidComponent = "label"> = ComponentProps<T> & {
   class?: string | undefined;
 };
 
-const Label = <T extends ValidComponent = "label">(
-  props: PolymorphicProps<T, LabelProps<T>>,
-) => {
+const Label = <T extends ValidComponent = "label">(props: PolymorphicProps<T, LabelProps<T>>) => {
   const local = props as LabelProps;
   const others = omit(local, "class");
 

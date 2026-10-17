@@ -1,16 +1,8 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { ButtonGroup } from "~/registry/ui/button-group.tsx";
 import { Button } from "~/registry/ui/button.tsx";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "~/registry/ui/input-group.tsx";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/registry/ui/tooltip.tsx";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "~/registry/ui/input-group.tsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/registry/ui/tooltip.tsx";
 
 export default function ButtonGroupNested() {
   return (

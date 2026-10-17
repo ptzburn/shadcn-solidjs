@@ -19,14 +19,9 @@ export function SiteFooter() {
       <div class="container-wrapper px-4 xl:px-6">
         <div class="flex h-(--footer-height) items-center justify-between">
           <div class="w-full px-1 text-center text-muted-foreground text-xs leading-loose sm:text-sm">
-            Built by{" "}
-            <FooterLink href="https://twitter.com/shadcn">shadcn</FooterLink> at
-            {" "}
-            <FooterLink href="https://vercel.com">Vercel</FooterLink>. The
-            source code is available on{" "}
-            <FooterLink href="https://github.com/ptzburn/shadcn-solidjs">
-              GitHub
-            </FooterLink>.
+            Built by <FooterLink href="https://twitter.com/shadcn">shadcn</FooterLink> at{" "}
+            <FooterLink href="https://vercel.com">Vercel</FooterLink>. The source code is available
+            on <FooterLink href="https://github.com/ptzburn/shadcn-solidjs">GitHub</FooterLink>.
           </div>
         </div>
       </div>

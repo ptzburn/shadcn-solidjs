@@ -1,11 +1,7 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Bubble, BubbleContent } from "~/registry/ui/bubble.tsx";
 import { Button } from "~/registry/ui/button.tsx";
-import {
-  Message,
-  MessageContent,
-  MessageFooter,
-} from "~/registry/ui/message.tsx";
+import { Message, MessageContent, MessageFooter } from "~/registry/ui/message.tsx";
 
 export default function MessageActionsDemo() {
   return (
@@ -13,9 +9,7 @@ export default function MessageActionsDemo() {
       <Message>
         <MessageContent>
           <Bubble variant="muted">
-            <BubbleContent>
-              The install failure is coming from the workspace package.
-            </BubbleContent>
+            <BubbleContent>The install failure is coming from the workspace package.</BubbleContent>
           </Bubble>
           <MessageFooter>
             <Button variant="ghost" size="icon" aria-label="Copy" title="Copy">
@@ -36,12 +30,7 @@ export default function MessageActionsDemo() {
                 hugeicons="thumbs-up"
               />
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              aria-label="Dislike"
-              title="Dislike"
-            >
+            <Button variant="ghost" size="icon" aria-label="Dislike" title="Dislike">
               <IconPlaceholder
                 lucide="thumbs-down"
                 tabler="thumb-down"
@@ -60,12 +49,7 @@ export default function MessageActionsDemo() {
           </Bubble>
           <MessageFooter class="gap-2">
             <span class="font-normal text-destructive">Failed to send</span>
-            <Button
-              variant="ghost"
-              size="icon-xs"
-              title="Retry"
-              aria-label="Retry"
-            >
+            <Button variant="ghost" size="icon-xs" title="Retry" aria-label="Retry">
               <IconPlaceholder
                 lucide="refresh-ccw"
                 tabler="refresh"

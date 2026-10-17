@@ -16,14 +16,15 @@ type MessageAnimatedMessage = {
 
 type BubbleVariant = ComponentProps<typeof Bubble>["variant"];
 
-type MessageAnimatedProps =
-  & Omit<ComponentProps<typeof MessageScrollerItem>, "children" | "messageId">
-  & {
-    animationPreset?: MessageAnimationPreset;
-    assistantVariant?: BubbleVariant;
-    message: MessageAnimatedMessage;
-    userVariant?: BubbleVariant;
-  };
+type MessageAnimatedProps = Omit<
+  ComponentProps<typeof MessageScrollerItem>,
+  "children" | "messageId"
+> & {
+  animationPreset?: MessageAnimationPreset;
+  assistantVariant?: BubbleVariant;
+  message: MessageAnimatedMessage;
+  userVariant?: BubbleVariant;
+};
 
 // The docs' animated transcript row: user rows animate in with the preset
 // (upstream: motion.create(MessageScrollerItem)); assistant rows render plain.
@@ -43,13 +44,8 @@ const MessageAnimated: Component<MessageAnimatedProps> = (props) => {
   return (
     <MessageScrollerItem
       messageId={props.message.id}
-      scrollAnchor={isUserMessage()
-        ? (props.scrollAnchor ?? true)
-        : props.scrollAnchor}
-      class={cn(
-        isUserMessage() && [preset().class, "motion-reduce:animate-none"],
-        props.class,
-      )}
+      scrollAnchor={isUserMessage() ? (props.scrollAnchor ?? true) : props.scrollAnchor}
+      class={cn(isUserMessage() && [preset().class, "motion-reduce:animate-none"], props.class)}
       {...others}
     >
       <MessageAnimatedRow
@@ -71,15 +67,13 @@ const MessageAnimatedRow: Component<{
     props.message.text
       .split(/\n\s*\n/)
       .map((paragraph) => paragraph.trim())
-      .filter(Boolean)
+      .filter(Boolean),
   );
 
   return (
     <Message align={isUserMessage() ? "end" : "start"}>
       <MessageContent>
-        <Bubble
-          variant={isUserMessage() ? props.userVariant : props.assistantVariant}
-        >
+        <Bubble variant={isUserMessage() ? props.userVariant : props.assistantVariant}>
           <BubbleContent class="space-y-2">
             <For each={paragraphs()} keyed={false}>
               {(paragraph) => <p class="whitespace-pre-wrap">{paragraph()}</p>}

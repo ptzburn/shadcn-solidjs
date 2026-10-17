@@ -1,17 +1,7 @@
 import { createChat, getMessageText } from "~/lib/ai.ts";
 import { Bubble, BubbleContent } from "~/registry/ui/bubble.tsx";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/registry/ui/card.tsx";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "~/registry/ui/hover-card.tsx";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/registry/ui/card.tsx";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "~/registry/ui/hover-card.tsx";
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -62,9 +52,7 @@ export default function MessageScrollerVisibility() {
           <Card class="h-140 w-full gap-0">
             <CardHeader class="gap-1 border-b">
               <CardTitle>Transcript Outline</CardTitle>
-              <CardDescription>
-                Track the current anchored turn.
-              </CardDescription>
+              <CardDescription>Track the current anchored turn.</CardDescription>
             </CardHeader>
             <CardContent class="flex-1 overflow-hidden p-0">
               <MessageScroller>
@@ -76,15 +64,10 @@ export default function MessageScrollerVisibility() {
                         const text = getMessageText(message);
 
                         return (
-                          <MessageScrollerItem
-                            messageId={message.id}
-                            scrollAnchor={isUserMessage}
-                          >
+                          <MessageScrollerItem messageId={message.id} scrollAnchor={isUserMessage}>
                             <Message align={isUserMessage ? "end" : "start"}>
                               <MessageContent>
-                                <Bubble
-                                  variant={isUserMessage ? "muted" : "ghost"}
-                                >
+                                <Bubble variant={isUserMessage ? "muted" : "ghost"}>
                                   <BubbleContent class="space-y-2">
                                     <For
                                       each={text
@@ -93,9 +76,7 @@ export default function MessageScrollerVisibility() {
                                         .filter(Boolean)}
                                     >
                                       {(paragraph) => (
-                                        <p class="whitespace-pre-wrap">
-                                          {paragraph}
-                                        </p>
+                                        <p class="whitespace-pre-wrap">{paragraph}</p>
                                       )}
                                     </For>
                                   </BubbleContent>
@@ -151,19 +132,16 @@ function TranscriptOutline() {
           {(message) => (
             <button
               type="button"
-              aria-current={currentAnchorId() === message.id
-                ? "location"
-                : undefined}
+              aria-current={currentAnchorId() === message.id ? "location" : undefined}
               class="flex min-h-7 items-center rounded-xl px-2 py-1.5 text-left text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground aria-current:bg-accent aria-current:text-accent-foreground"
               onClick={() =>
                 scrollToMessage(message.id, {
                   align: "start",
                   behavior: "smooth",
-                })}
+                })
+              }
             >
-              <span class="line-clamp-1 min-w-0">
-                {getTrimmedMessageText(message)}
-              </span>
+              <span class="line-clamp-1 min-w-0">{getTrimmedMessageText(message)}</span>
             </button>
           )}
         </For>

@@ -1,18 +1,8 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 import { Button } from "~/registry/ui/button.tsx";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/registry/ui/card.tsx";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "~/registry/ui/collapsible.tsx";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/registry/ui/card.tsx";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "~/registry/ui/collapsible.tsx";
 import { Field, FieldGroup, FieldLabel } from "~/registry/ui/field.tsx";
 import { Input } from "~/registry/ui/input.tsx";
 import { createSignal, Show } from "solid-js";
@@ -27,11 +17,7 @@ export default function CollapsibleSettings() {
         <CardDescription>Set the corner radius of the element.</CardDescription>
       </CardHeader>
       <CardContent>
-        <Collapsible
-          open={isOpen()}
-          onOpenChange={setIsOpen}
-          class="flex items-start gap-2"
-        >
+        <Collapsible open={isOpen()} onOpenChange={setIsOpen} class="flex items-start gap-2">
           <FieldGroup class="grid w-full grid-cols-2 gap-2">
             <Field>
               <FieldLabel for="radius-x" class="sr-only">

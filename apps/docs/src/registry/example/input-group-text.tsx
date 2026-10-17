@@ -36,9 +36,7 @@ export default function InputGroupTextExample() {
       <InputGroup>
         <InputGroupTextarea placeholder="Enter your message" />
         <InputGroupAddon align="block-end">
-          <InputGroupText class="text-muted-foreground text-xs">
-            120 characters left
-          </InputGroupText>
+          <InputGroupText class="text-muted-foreground text-xs">120 characters left</InputGroupText>
         </InputGroupAddon>
       </InputGroup>
     </div>

@@ -19,9 +19,7 @@ export default function PopoverForm() {
       <PopoverContent class="w-64">
         <PopoverHeader>
           <PopoverTitle>Dimensions</PopoverTitle>
-          <PopoverDescription>
-            Set the dimensions for the layer.
-          </PopoverDescription>
+          <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>
         </PopoverHeader>
         <FieldGroup class="gap-4">
           <Field orientation="horizontal">

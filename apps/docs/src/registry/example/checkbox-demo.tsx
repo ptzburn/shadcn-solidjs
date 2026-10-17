@@ -17,25 +17,15 @@ export default function CheckboxDemo() {
         <Label for="terms-checkbox-input">Accept terms and conditions</Label>
       </Field>
       <Field orientation="horizontal">
-        <Checkbox
-          id="terms-checkbox-2"
-          name="terms-checkbox-2"
-          defaultChecked
-        />
+        <Checkbox id="terms-checkbox-2" name="terms-checkbox-2" defaultChecked />
         <FieldContent>
-          <FieldLabel for="terms-checkbox-2-input">
-            Accept terms and conditions
-          </FieldLabel>
-          <FieldDescription>
-            By clicking this checkbox, you agree to the terms.
-          </FieldDescription>
+          <FieldLabel for="terms-checkbox-2-input">Accept terms and conditions</FieldLabel>
+          <FieldDescription>By clicking this checkbox, you agree to the terms.</FieldDescription>
         </FieldContent>
       </Field>
       <Field orientation="horizontal" data-disabled>
         <Checkbox id="toggle-checkbox" name="toggle-checkbox" disabled />
-        <FieldLabel for="toggle-checkbox-input">
-          Enable notifications
-        </FieldLabel>
+        <FieldLabel for="toggle-checkbox-input">Enable notifications</FieldLabel>
       </Field>
       <FieldLabel>
         <Field orientation="horizontal">

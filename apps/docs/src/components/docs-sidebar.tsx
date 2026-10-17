@@ -34,19 +34,13 @@ export function DocsSidebar() {
         class="no-scrollbar scroll-fade w-(--sidebar-menu-width) overflow-x-hidden pl-2.5"
       >
         <SidebarGroup class="pt-12">
-          <SidebarGroupLabel class="font-medium text-muted-foreground">
-            Sections
-          </SidebarGroupLabel>
+          <SidebarGroupLabel class="font-medium text-muted-foreground">Sections</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <For each={docsConfig.sectionsNav}>
                 {(section) => (
                   <SidebarMenuItem>
-                    <SidebarMenuButton
-                      as="a"
-                      href={section.href}
-                      class={menuButtonClass}
-                    >
+                    <SidebarMenuButton as="a" href={section.href} class={menuButtonClass}>
                       <span class="absolute inset-0 flex w-(--sidebar-menu-width) bg-transparent" />
                       {section.title}
                     </SidebarMenuButton>

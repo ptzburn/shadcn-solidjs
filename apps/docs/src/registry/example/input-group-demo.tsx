@@ -1,9 +1,5 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "~/registry/ui/input-group.tsx";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "~/registry/ui/input-group.tsx";
 
 export default function InputGroupDemo() {
   return (

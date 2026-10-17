@@ -14,8 +14,7 @@ export default function AlertDemo() {
         />
         <AlertTitle>Payment successful</AlertTitle>
         <AlertDescription>
-          Your payment of $29.99 has been processed. A receipt has been sent to
-          your email address.
+          Your payment of $29.99 has been processed. A receipt has been sent to your email address.
         </AlertDescription>
       </Alert>
       <Alert>
@@ -28,8 +27,7 @@ export default function AlertDemo() {
         />
         <AlertTitle>New feature available</AlertTitle>
         <AlertDescription>
-          We've added dark mode support. You can enable it in your account
-          settings.
+          We've added dark mode support. You can enable it in your account settings.
         </AlertDescription>
       </Alert>
     </div>

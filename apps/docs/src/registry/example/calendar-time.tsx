@@ -2,11 +2,7 @@ import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Calendar } from "~/registry/ui/calendar.tsx";
 import { Card, CardContent, CardFooter } from "~/registry/ui/card.tsx";
 import { Field, FieldGroup, FieldLabel } from "~/registry/ui/field.tsx";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "~/registry/ui/input-group.tsx";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "~/registry/ui/input-group.tsx";
 
 import { createSignal } from "solid-js";
 
@@ -18,12 +14,7 @@ export default function CalendarTime() {
   return (
     <Card size="sm" class="mx-auto w-fit">
       <CardContent>
-        <Calendar
-          selectionMode="single"
-          value={date()}
-          onChange={setDate}
-          class="p-0"
-        />
+        <Calendar selectionMode="single" value={date()} onChange={setDate} class="p-0" />
       </CardContent>
       <CardFooter class="border-t bg-card">
         <FieldGroup>

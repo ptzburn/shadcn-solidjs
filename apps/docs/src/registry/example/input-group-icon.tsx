@@ -1,9 +1,5 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "~/registry/ui/input-group.tsx";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "~/registry/ui/input-group.tsx";
 
 export default function InputGroupIcon() {
   return (
@@ -56,13 +52,7 @@ export default function InputGroupIcon() {
       <InputGroup>
         <InputGroupInput placeholder="Card number" />
         <InputGroupAddon align="inline-end">
-          <IconPlaceholder
-            lucide="star"
-            tabler="star"
-            ph="star"
-            ri="star-line"
-            hugeicons="star"
-          />
+          <IconPlaceholder lucide="star" tabler="star" ph="star" ri="star-line" hugeicons="star" />
           <IconPlaceholder
             lucide="info"
             tabler="info-circle"

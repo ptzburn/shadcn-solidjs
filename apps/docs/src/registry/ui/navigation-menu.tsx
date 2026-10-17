@@ -5,22 +5,14 @@ import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { cva } from "class-variance-authority";
 
-import {
-  createContext,
-  createEffect,
-  createSignal,
-  omit,
-  Show,
-  useContext,
-} from "solid-js";
+import { createContext, createEffect, createSignal, omit, Show, useContext } from "solid-js";
 
 const NavigationMenuItem = NavigationMenuPrimitive.Menu;
 
 const NavigationMenuViewportContext = createContext<() => boolean>(() => true);
 
 type NavigationMenuProps<T extends ValidComponent = "ul"> =
-  & NavigationMenuPrimitive.NavigationMenuRootProps<T>
-  & {
+  NavigationMenuPrimitive.NavigationMenuRootProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     viewport?: boolean;
@@ -30,20 +22,11 @@ const NavigationMenu = <T extends ValidComponent = "ul">(
   props: PolymorphicProps<T, NavigationMenuProps<T>>,
 ) => {
   const local = props as NavigationMenuProps;
-  const others = omit(
-    local,
-    "class",
-    "children",
-    "viewport",
-    "value",
-    "onValueChange",
-  );
+  const others = omit(local, "class", "children", "viewport", "value", "onValueChange");
   const viewport = () => local.viewport ?? true;
   const orientation = () => local.orientation;
-  const [openMenu, setOpenMenu] = createSignal<string | null>(
-    local.defaultValue ?? null,
-  );
-  const value = () => local.value !== undefined ? local.value : openMenu();
+  const [openMenu, setOpenMenu] = createSignal<string | null>(local.defaultValue ?? null);
+  const value = () => (local.value !== undefined ? local.value : openMenu());
   const onValueChange = (next: string | null | undefined) => {
     setOpenMenu(next ?? null);
     local.onValueChange?.(next);
@@ -57,9 +40,7 @@ const NavigationMenu = <T extends ValidComponent = "ul">(
         const content = (event.target as HTMLElement | null)?.closest(
           "[data-slot=navigation-menu-content]",
         );
-        const trigger = document.getElementById(
-          content?.getAttribute("aria-labelledby") ?? "",
-        );
+        const trigger = document.getElementById(content?.getAttribute("aria-labelledby") ?? "");
         onValueChange(null);
         trigger?.focus();
       };
@@ -96,8 +77,7 @@ const navigationMenuTriggerStyle = cva(
 );
 
 type NavigationMenuTriggerProps<T extends ValidComponent = "button"> =
-  & NavigationMenuPrimitive.NavigationMenuTriggerProps<T>
-  & {
+  NavigationMenuPrimitive.NavigationMenuTriggerProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
   };
@@ -140,8 +120,7 @@ const NavigationMenuTrigger = <T extends ValidComponent = "button">(
 };
 
 type NavigationMenuContentProps<T extends ValidComponent = "ul"> =
-  & NavigationMenuPrimitive.NavigationMenuContentProps<T>
-  & {
+  NavigationMenuPrimitive.NavigationMenuContentProps<T> & {
     class?: string | undefined;
   };
 
@@ -163,16 +142,13 @@ const NavigationMenuContent = <T extends ValidComponent = "ul">(
   );
   return (
     <Show when={viewport()} fallback={content()}>
-      <NavigationMenuPrimitive.Portal>
-        {content()}
-      </NavigationMenuPrimitive.Portal>
+      <NavigationMenuPrimitive.Portal>{content()}</NavigationMenuPrimitive.Portal>
     </Show>
   );
 };
 
 type NavigationMenuViewportProps<T extends ValidComponent = "li"> =
-  & NavigationMenuPrimitive.NavigationMenuViewportProps<T>
-  & { class?: string | undefined };
+  NavigationMenuPrimitive.NavigationMenuViewportProps<T> & { class?: string | undefined };
 
 const NavigationMenuViewport = <T extends ValidComponent = "li">(
   props: PolymorphicProps<T, NavigationMenuViewportProps<T>>,
@@ -192,8 +168,7 @@ const NavigationMenuViewport = <T extends ValidComponent = "li">(
 };
 
 type NavigationMenuLinkProps<T extends ValidComponent = "a"> =
-  & NavigationMenuPrimitive.NavigationMenuItemProps<T>
-  & { class?: string | undefined };
+  NavigationMenuPrimitive.NavigationMenuItemProps<T> & { class?: string | undefined };
 
 const NavigationMenuLink = <T extends ValidComponent = "a">(
   props: PolymorphicProps<T, NavigationMenuLinkProps<T>>,
@@ -203,18 +178,14 @@ const NavigationMenuLink = <T extends ValidComponent = "a">(
   return (
     <NavigationMenuPrimitive.Item
       data-slot="navigation-menu-link"
-      class={cn(
-        "cn-navigation-menu-link",
-        local.class,
-      )}
+      class={cn("cn-navigation-menu-link", local.class)}
       {...others}
     />
   );
 };
 
 type NavigationMenuLabelProps<T extends ValidComponent = "div"> =
-  & NavigationMenuPrimitive.NavigationMenuItemLabelProps<T>
-  & { class?: string | undefined };
+  NavigationMenuPrimitive.NavigationMenuItemLabelProps<T> & { class?: string | undefined };
 
 const NavigationMenuLabel = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, NavigationMenuLabelProps<T>>,
@@ -231,8 +202,7 @@ const NavigationMenuLabel = <T extends ValidComponent = "div">(
 };
 
 type NavigationMenuDescriptionProps<T extends ValidComponent = "div"> =
-  & NavigationMenuPrimitive.NavigationMenuItemDescriptionProps<T>
-  & { class?: string | undefined };
+  NavigationMenuPrimitive.NavigationMenuItemDescriptionProps<T> & { class?: string | undefined };
 
 const NavigationMenuDescription = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, NavigationMenuDescriptionProps<T>>,

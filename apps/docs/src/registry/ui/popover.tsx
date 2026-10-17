@@ -11,23 +11,18 @@ const Popover: Component<PopoverPrimitive.PopoverRootProps> = (props) => {
 };
 
 type PopoverTriggerProps<T extends ValidComponent = "button"> =
-  & PopoverPrimitive.PopoverTriggerProps<T>
-  & { class?: string | undefined };
+  PopoverPrimitive.PopoverTriggerProps<T> & { class?: string | undefined };
 
 const PopoverTrigger = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, PopoverTriggerProps<T>>,
 ) => {
   return (
-    <PopoverPrimitive.Trigger
-      data-slot="popover-trigger"
-      {...(props as PopoverTriggerProps)}
-    />
+    <PopoverPrimitive.Trigger data-slot="popover-trigger" {...(props as PopoverTriggerProps)} />
   );
 };
 
 type PopoverContentProps<T extends ValidComponent = "div"> =
-  & PopoverPrimitive.PopoverContentProps<T>
-  & { class?: string | undefined };
+  PopoverPrimitive.PopoverContentProps<T> & { class?: string | undefined };
 
 const PopoverContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, PopoverContentProps<T>>,
@@ -48,34 +43,24 @@ const PopoverContent = <T extends ValidComponent = "div">(
   );
 };
 
-type PopoverAnchorProps<T extends ValidComponent = "div"> =
-  PopoverPrimitive.PopoverAnchorProps<T>;
+type PopoverAnchorProps<T extends ValidComponent = "div"> = PopoverPrimitive.PopoverAnchorProps<T>;
 
 const PopoverAnchor = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, PopoverAnchorProps<T>>,
 ) => {
-  return (
-    <PopoverPrimitive.Anchor
-      data-slot="popover-anchor"
-      {...(props as PopoverAnchorProps)}
-    />
-  );
+  return <PopoverPrimitive.Anchor data-slot="popover-anchor" {...(props as PopoverAnchorProps)} />;
 };
 
 const PopoverHeader: Component<ComponentProps<"div">> = (props) => {
   const others = omit(props, "class");
   return (
-    <div
-      data-slot="popover-header"
-      class={cn("cn-popover-header", props.class)}
-      {...others}
-    />
+    <div data-slot="popover-header" class={cn("cn-popover-header", props.class)} {...others} />
   );
 };
 
-type PopoverTitleProps<T extends ValidComponent = "h2"> =
-  & PopoverPrimitive.PopoverTitleProps<T>
-  & { class?: string | undefined };
+type PopoverTitleProps<T extends ValidComponent = "h2"> = PopoverPrimitive.PopoverTitleProps<T> & {
+  class?: string | undefined;
+};
 
 const PopoverTitle = <T extends ValidComponent = "h2">(
   props: PolymorphicProps<T, PopoverTitleProps<T>>,
@@ -92,8 +77,7 @@ const PopoverTitle = <T extends ValidComponent = "h2">(
 };
 
 type PopoverDescriptionProps<T extends ValidComponent = "p"> =
-  & PopoverPrimitive.PopoverDescriptionProps<T>
-  & { class?: string | undefined };
+  PopoverPrimitive.PopoverDescriptionProps<T> & { class?: string | undefined };
 
 const PopoverDescription = <T extends ValidComponent = "p">(
   props: PolymorphicProps<T, PopoverDescriptionProps<T>>,

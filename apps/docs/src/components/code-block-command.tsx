@@ -2,12 +2,7 @@ import { IconCheck, IconCopy, IconTerminal } from "~/components/icons.tsx";
 import { type Config, useConfig } from "~/lib/hooks/use-config.ts";
 
 import { Button } from "~/registry/ui/button.tsx";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "~/registry/ui/tabs.tsx";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/registry/ui/tabs.tsx";
 import type { Component } from "solid-js";
 import { createSignal, For, Show } from "solid-js";
 
@@ -55,7 +50,8 @@ const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
         onChange={(value: string) =>
           setConfig({
             packageManager: value as Config["packageManager"],
-          })}
+          })
+        }
         class="gap-0"
       >
         <div class="flex items-center gap-2 border-b border-border/50 px-3 py-1">
@@ -80,10 +76,7 @@ const CodeBlockCommand: Component<CodeBlockCommandProps> = (props) => {
             {([key, value]) => (
               <TabsContent value={key} class="mt-0 px-4 py-3.5">
                 <pre>
-                  <code
-                    class="relative font-mono text-sm leading-none"
-                    data-language="bash"
-                  >
+                  <code class="relative font-mono text-sm leading-none" data-language="bash">
                     {value}
                   </code>
                 </pre>

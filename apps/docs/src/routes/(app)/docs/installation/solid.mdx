@@ -31,14 +31,12 @@ the Solid 2.0 release candidate in its peer range, and `@kobalte/core`
 templates resolve to `2.0.0-rc.13`. pnpm and bun install both as is.
 
 <Callout title="Server-side rendering">
-  With `solid-js@2.0.0-rc.13` and `@kobalte/core@2.0.0-alpha.2` — the versions
-  the components are built and tested against — the library does not yet work
-  reliably with server-side rendering enabled. Stay client-rendered for now:
-  answer no if the CLI offers to enable SSR, and leave `ssr` off in the
-  `solid()` options of `vite.config.ts` (the `fullstack` template ships with
-  `ssr: true` — set it to `false`). Newer releases of either package may
-  resolve this, so if you are on later versions it is worth trying with SSR
-  on.
+  With `solid-js@2.0.0-rc.13` and `@kobalte/core@2.0.0-alpha.2` — the versions the components are
+  built and tested against — the library does not yet work reliably with server-side rendering
+  enabled. Stay client-rendered for now: answer no if the CLI offers to enable SSR, and leave `ssr`
+  off in the `solid()` options of `vite.config.ts` (the `fullstack` template ships with `ssr: true`
+  — set it to `false`). Newer releases of either package may resolve this, so if you are on later
+  versions it is worth trying with SSR on.
 </Callout>
 
 ### Add Tailwind CSS
@@ -86,12 +84,12 @@ npm install -D @types/node unplugin-icons
 ```
 
 ```ts title="vite.config.ts" showLineNumbers {1,4,12,15-19}
-import path from "node:path"
-import tailwindcss from "@tailwindcss/vite"
-import { fileRoutes } from "filesystem-routing/vite"
-import Icons from "unplugin-icons/vite"
-import solid from "@solidjs/vite-plugin"
-import { defineConfig } from "vite"
+import path from "node:path";
+import tailwindcss from "@tailwindcss/vite";
+import { fileRoutes } from "filesystem-routing/vite";
+import Icons from "unplugin-icons/vite";
+import solid from "@solidjs/vite-plugin";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [
@@ -105,7 +103,7 @@ export default defineConfig({
       "~": path.resolve(__dirname, "./src"),
     },
   },
-})
+});
 ```
 
 ### Declare the icon module types
@@ -119,10 +117,10 @@ import from `solid-js` where Solid 2.0 moved them to `@solidjs/web`):
 /// <reference types="../file-routes.d.ts" />
 
 declare module "~icons/*" {
-  import type { ComponentProps, JSX } from "@solidjs/web"
+  import type { ComponentProps, JSX } from "@solidjs/web";
 
-  const component: (props: ComponentProps<"svg">) => JSX.Element
-  export default component
+  const component: (props: ComponentProps<"svg">) => JSX.Element;
+  export default component;
 }
 ```
 
@@ -160,14 +158,14 @@ The command above will add the `Button` component to your project, along with
 the packages it needs. You can then import it in any route:
 
 ```tsx title="src/routes/index.tsx" {1,6} showLineNumbers
-import { Button } from "~/components/ui/button"
+import { Button } from "~/components/ui/button";
 
 export default function Home() {
   return (
     <div class="flex min-h-svh flex-col items-center justify-center">
       <Button>Click me</Button>
     </div>
-  )
+  );
 }
 ```
 

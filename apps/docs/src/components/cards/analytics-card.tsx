@@ -1,12 +1,6 @@
 import { Badge } from "~/registry/ui/badge.tsx";
 import { Button } from "~/registry/ui/button.tsx";
-import {
-  Card,
-  CardAction,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/registry/ui/card.tsx";
+import { Card, CardAction, CardDescription, CardHeader, CardTitle } from "~/registry/ui/card.tsx";
 
 const areaPath = "M0 52L18 40L36 46L54 70L72 50L100 49V86H0Z";
 const strokePath = "M0 52L18 40L36 46L54 70L72 50L100 49";

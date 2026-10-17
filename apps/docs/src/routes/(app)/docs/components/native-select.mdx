@@ -4,8 +4,7 @@ description: A styled native HTML select element with consistent design system i
 ---
 
 <Callout variant="info">
-  For a styled select component, see the [Select](/docs/components/select)
-  component.
+  For a styled select component, see the [Select](/docs/components/select) component.
 </Callout>
 
 <ComponentPreview name="native-select-demo" />
@@ -48,7 +47,7 @@ import {
   NativeSelect,
   NativeSelectOptGroup,
   NativeSelectOption,
-} from "~/components/ui/native-select"
+} from "~/components/ui/native-select";
 ```
 
 ```tsx
@@ -120,10 +119,10 @@ The main select component that wraps the native HTML select element. It renders
 a wrapper `div` around the `select`, so `class` styles the wrapper. Every other
 prop is forwarded to the `select` itself.
 
-| Prop    | Type                 | Default     |
-| ------- | -------------------- | ----------- |
-| `size`  | `"default" \| "sm"`  | `"default"` |
-| `class` | `string`             | -           |
+| Prop    | Type                | Default     |
+| ------- | ------------------- | ----------- |
+| `size`  | `"default" \| "sm"` | `"default"` |
+| `class` | `string`            | -           |
 
 ```tsx
 <NativeSelect>
@@ -133,8 +132,8 @@ prop is forwarded to the `select` itself.
 ```
 
 <Callout>
-  `size` sets the control height rather than the native `select` attribute for
-  the number of visible rows, which the component does not accept.
+  `size` sets the control height rather than the native `select` attribute for the number of visible
+  rows, which the component does not accept.
 </Callout>
 
 ### NativeSelectOption

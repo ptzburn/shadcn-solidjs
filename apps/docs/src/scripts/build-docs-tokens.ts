@@ -56,20 +56,14 @@ function radiusValue(token: string): string {
 const rules: string[] = [];
 
 for (const style of styleNames) {
-  const map = createStyleMap(
-    readFileSync(path.join(STYLES_DIR, `style-${style}.css`), "utf8"),
-  );
+  const map = createStyleMap(readFileSync(path.join(STYLES_DIR, `style-${style}.css`), "utf8"));
   const tokens = (map[SOURCE_MARKER] ?? "").split(/\s+/).filter(Boolean);
   // A style that declares no radius leaves the surface square, which is
   // a deliberate choice in sera rather than an omission.
   const radius = tokens.find((token) => /^rounded(-|$)/.test(token));
   const value = radius ? radiusValue(radius) : "0";
-  rules.push(
-    `  .style-${style} {\n    --docs-surface-radius: ${value};\n  }`,
-  );
-  console.log(
-    `${style.padEnd(5)} ${(radius ?? "(none)").padEnd(14)} -> ${value}`,
-  );
+  rules.push(`  .style-${style} {\n    --docs-surface-radius: ${value};\n  }`);
+  console.log(`${style.padEnd(5)} ${(radius ?? "(none)").padEnd(14)} -> ${value}`);
 }
 
 const css = `/*

@@ -29,8 +29,7 @@ const messages = [
   {
     id: "open-2",
     role: "assistant",
-    text:
-      "Workspace creation rose 8%, but first invite completion only rose 2%.",
+    text: "Workspace creation rose 8%, but first invite completion only rose 2%.",
   },
   {
     id: "open-3",
@@ -40,8 +39,7 @@ const messages = [
   {
     id: "open-4",
     role: "assistant",
-    text:
-      "Start with the invite step. Teams are creating workspaces but waiting to add collaborators.\n\nRecommended follow-up:\n\n1. Compare invite drop-off by account size.\n2. Check whether users who skip invites still return within 24 hours.\n3. Review the empty-state copy on the first project screen.\n4. Segment activation by template, since template users may not need invites right away.\n\nIf that pattern holds, the next experiment should make collaboration useful earlier instead of prompting for invites harder.",
+    text: "Start with the invite step. Teams are creating workspaces but waiting to add collaborators.\n\nRecommended follow-up:\n\n1. Compare invite drop-off by account size.\n2. Check whether users who skip invites still return within 24 hours.\n3. Review the empty-state copy on the first project screen.\n4. Segment activation by template, since template users may not need invites right away.\n\nIf that pattern holds, the next experiment should make collaboration useful earlier instead of prompting for invites harder.",
   },
 ] satisfies Array<{
   id: string;
@@ -60,36 +58,25 @@ const positions = [
 
 export default function MessageScrollerOpeningPosition() {
   const [positionKey, setPositionKey] = createSignal(0);
-  const [position, setPosition] = createSignal<
-    "start" | "end" | "last-anchor"
-  >("last-anchor");
+  const [position, setPosition] = createSignal<"start" | "end" | "last-anchor">("last-anchor");
 
   return (
     <div class="relative flex flex-col gap-4">
       <Card class="mx-auto h-140 w-full max-w-sm gap-0">
         <CardHeader class="gap-1 border-b">
           <CardTitle>Opening Position</CardTitle>
-          <CardDescription>
-            Choose where a saved transcript opens.
-          </CardDescription>
+          <CardDescription>Choose where a saved transcript opens.</CardDescription>
         </CardHeader>
         <CardContent class="flex-1 overflow-hidden p-0">
           <MessageScrollerProvider>
-            <OpeningPositionScroller
-              position={position()}
-              positionKey={positionKey()}
-            />
+            <OpeningPositionScroller position={position()} positionKey={positionKey()} />
           </MessageScrollerProvider>
         </CardContent>
         <CardFooter class="flex items-center justify-center border-t">
           <Tabs
             value={position()}
             onChange={(value) => {
-              if (
-                value === "start" ||
-                value === "end" ||
-                value === "last-anchor"
-              ) {
+              if (value === "start" || value === "end" || value === "last-anchor") {
                 setPosition(value);
                 setPositionKey((key) => key + 1);
               }
@@ -98,30 +85,23 @@ export default function MessageScrollerOpeningPosition() {
           >
             <TabsList class="w-full">
               <For each={positions}>
-                {(option) => (
-                  <TabsTrigger value={option.value}>
-                    {option.label}
-                  </TabsTrigger>
-                )}
+                {(option) => <TabsTrigger value={option.value}>{option.label}</TabsTrigger>}
               </For>
             </TabsList>
           </Tabs>
         </CardFooter>
       </Card>
       <div class="mx-auto max-w-sm px-0.5 text-center text-muted-foreground text-xs">
-        Toggle the defaultScrollPosition to see where the transcript starts when
-        you open the thread
+        Toggle the defaultScrollPosition to see where the transcript starts when you open the thread
       </div>
     </div>
   );
 }
 
-function OpeningPositionScroller(
-  props: {
-    position: "start" | "end" | "last-anchor";
-    positionKey: number;
-  },
-) {
+function OpeningPositionScroller(props: {
+  position: "start" | "end" | "last-anchor";
+  positionKey: number;
+}) {
   const { scrollToEnd, scrollToMessage, scrollToStart } = useMessageScroller();
 
   createEffect(
@@ -158,10 +138,7 @@ function OpeningPositionScroller(
               const isUserMessage = message.role === "user";
 
               return (
-                <MessageScrollerItem
-                  messageId={message.id}
-                  scrollAnchor={isUserMessage}
-                >
+                <MessageScrollerItem messageId={message.id} scrollAnchor={isUserMessage}>
                   <Message align={isUserMessage ? "end" : "start"}>
                     <MessageContent>
                       <Bubble variant={isUserMessage ? "muted" : "ghost"}>
@@ -172,9 +149,7 @@ function OpeningPositionScroller(
                               .map((paragraph) => paragraph.trim())
                               .filter(Boolean)}
                           >
-                            {(paragraph) => (
-                              <p class="whitespace-pre-wrap">{paragraph}</p>
-                            )}
+                            {(paragraph) => <p class="whitespace-pre-wrap">{paragraph}</p>}
                           </For>
                         </BubbleContent>
                       </Bubble>

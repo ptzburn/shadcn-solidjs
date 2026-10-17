@@ -23,10 +23,7 @@ export default function DropdownMenuRadioIcons() {
       <DropdownMenuContent class="min-w-56">
         <DropdownMenuGroup>
           <DropdownMenuLabel>Select Payment Method</DropdownMenuLabel>
-          <DropdownMenuRadioGroup
-            value={paymentMethod()}
-            onChange={setPaymentMethod}
-          >
+          <DropdownMenuRadioGroup value={paymentMethod()} onChange={setPaymentMethod}>
             <DropdownMenuRadioItem value="card">
               <IconPlaceholder
                 lucide="credit-card"

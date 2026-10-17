@@ -7,11 +7,7 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "~/registry/ui/input-group.tsx";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "~/registry/ui/popover.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "~/registry/ui/popover.tsx";
 import { parseDate } from "chrono-node";
 
 import { createSignal } from "solid-js";
@@ -19,10 +15,10 @@ import { createSignal } from "solid-js";
 const formatDate = (date: Date | null) =>
   date
     ? date.toLocaleDateString("en-US", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    })
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })
     : "";
 
 export default function DatePickerNaturalLanguage() {
@@ -90,8 +86,7 @@ export default function DatePickerNaturalLanguage() {
         </InputGroupAddon>
       </InputGroup>
       <p class="px-1 text-muted-foreground text-sm">
-        Your post will be published on{" "}
-        <span class="font-medium">{formatDate(date())}</span>.
+        Your post will be published on <span class="font-medium">{formatDate(date())}</span>.
       </p>
     </Field>
   );

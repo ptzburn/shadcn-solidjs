@@ -21,20 +21,16 @@ export default function rehypePrettyCodeSecondPass(options: Options) {
 
   return async function (tree: Parent, file: unknown) {
     const masked: ElementNode[] = [];
-    visit(
-      tree,
-      "element",
-      (node: ElementNode, _index, parent: ElementNode | undefined) => {
-        if (
-          node.tagName === "pre" &&
-          parent?.tagName === "figure" &&
-          parent.properties?.["data-rehype-pretty-code-figure"] !== undefined
-        ) {
-          node.tagName = "pre-highlighted";
-          masked.push(node);
-        }
-      },
-    );
+    visit(tree, "element", (node: ElementNode, _index, parent: ElementNode | undefined) => {
+      if (
+        node.tagName === "pre" &&
+        parent?.tagName === "figure" &&
+        parent.properties?.["data-rehype-pretty-code-figure"] !== undefined
+      ) {
+        node.tagName = "pre-highlighted";
+        masked.push(node);
+      }
+    });
     try {
       await transformer(tree, file);
     } finally {

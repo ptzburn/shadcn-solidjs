@@ -20,28 +20,19 @@ const ToggleGroupContext = createContext<ToggleGroupContextValue>({
 });
 
 type ToggleGroupRootProps<T extends ValidComponent = "div"> =
-  & ToggleGroupPrimitive.ToggleGroupRootProps<T>
-  & VariantProps<typeof toggleVariants>
-  & {
-    class?: string | undefined;
-    children?: JSX.Element;
-    spacing?: number;
-    orientation?: "horizontal" | "vertical";
-  };
+  ToggleGroupPrimitive.ToggleGroupRootProps<T> &
+    VariantProps<typeof toggleVariants> & {
+      class?: string | undefined;
+      children?: JSX.Element;
+      spacing?: number;
+      orientation?: "horizontal" | "vertical";
+    };
 
 const ToggleGroup = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ToggleGroupRootProps<T>>,
 ) => {
   const local = props as ToggleGroupRootProps;
-  const others = omit(
-    local,
-    "class",
-    "children",
-    "size",
-    "variant",
-    "spacing",
-    "orientation",
-  );
+  const others = omit(local, "class", "children", "size", "variant", "spacing", "orientation");
 
   return (
     <ToggleGroupPrimitive.Root
@@ -80,9 +71,8 @@ const ToggleGroup = <T extends ValidComponent = "div">(
 };
 
 type ToggleGroupItemProps<T extends ValidComponent = "button"> =
-  & ToggleGroupPrimitive.ToggleGroupItemProps<T>
-  & VariantProps<typeof toggleVariants>
-  & { class?: string | undefined; children?: JSX.Element };
+  ToggleGroupPrimitive.ToggleGroupItemProps<T> &
+    VariantProps<typeof toggleVariants> & { class?: string | undefined; children?: JSX.Element };
 
 const ToggleGroupItem = <T extends ValidComponent = "button">(
   rawProps: PolymorphicProps<T, ToggleGroupItemProps<T>>,

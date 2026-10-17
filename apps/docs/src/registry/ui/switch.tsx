@@ -5,9 +5,9 @@ import { cn } from "~/lib/utils.ts";
 
 import { omit } from "solid-js";
 
-type SwitchRootProps<T extends ValidComponent = "div"> =
-  & SwitchPrimitive.SwitchRootProps<T>
-  & { class?: string | undefined };
+type SwitchRootProps<T extends ValidComponent = "div"> = SwitchPrimitive.SwitchRootProps<T> & {
+  class?: string | undefined;
+};
 
 const Switch = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, SwitchRootProps<T>>,
@@ -106,11 +106,4 @@ const SwitchLabel = <T extends ValidComponent = "label">(
   );
 };
 
-export {
-  Switch,
-  SwitchControl,
-  SwitchDescription,
-  SwitchErrorMessage,
-  SwitchLabel,
-  SwitchThumb,
-};
+export { Switch, SwitchControl, SwitchDescription, SwitchErrorMessage, SwitchLabel, SwitchThumb };

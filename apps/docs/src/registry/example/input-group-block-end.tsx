@@ -1,9 +1,4 @@
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "~/registry/ui/field.tsx";
+import { Field, FieldDescription, FieldGroup, FieldLabel } from "~/registry/ui/field.tsx";
 import {
   InputGroup,
   InputGroupAddon,
@@ -29,10 +24,7 @@ export default function InputGroupBlockEnd() {
       <Field>
         <FieldLabel for="block-end-textarea">Textarea</FieldLabel>
         <InputGroup>
-          <InputGroupTextarea
-            id="block-end-textarea"
-            placeholder="Write a comment..."
-          />
+          <InputGroupTextarea id="block-end-textarea" placeholder="Write a comment..." />
           <InputGroupAddon align="block-end">
             <InputGroupText>0/280</InputGroupText>
             <InputGroupButton variant="default" size="sm" class="ml-auto">
@@ -40,9 +32,7 @@ export default function InputGroupBlockEnd() {
             </InputGroupButton>
           </InputGroupAddon>
         </InputGroup>
-        <FieldDescription>
-          Footer positioned below the textarea.
-        </FieldDescription>
+        <FieldDescription>Footer positioned below the textarea.</FieldDescription>
       </Field>
     </FieldGroup>
   );

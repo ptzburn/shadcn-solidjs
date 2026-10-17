@@ -48,11 +48,7 @@ export default function InputGroupDropdown() {
         <InputGroupInput placeholder="Enter search query" />
         <InputGroupAddon align="inline-end">
           <DropdownMenu placement="bottom-end">
-            <DropdownMenuTrigger
-              as={InputGroupButton}
-              variant="ghost"
-              class="pr-1.5! text-xs"
-            >
+            <DropdownMenuTrigger as={InputGroupButton} variant="ghost" class="pr-1.5! text-xs">
               Search In...{" "}
               <IconPlaceholder
                 lucide="chevron-down"

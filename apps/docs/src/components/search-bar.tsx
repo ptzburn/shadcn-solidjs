@@ -37,23 +37,25 @@ export default function SearchBar() {
   const [open, setOpen] = createSignal(false);
   const navigate = useNavigate();
 
-  createEffect(() => {}, () => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      const isToggle = event.key === "k" && (event.metaKey || event.ctrlKey);
-      const isSlash = event.key === "/" && !isEditableTarget(event.target);
-      if (!isToggle && !isSlash) return;
-      event.preventDefault();
-      setOpen((open) => !open);
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  });
+  createEffect(
+    () => {},
+    () => {
+      const handleKeyDown = (event: KeyboardEvent) => {
+        const isToggle = event.key === "k" && (event.metaKey || event.ctrlKey);
+        const isSlash = event.key === "/" && !isEditableTarget(event.target);
+        if (!isToggle && !isSlash) return;
+        event.preventDefault();
+        setOpen((open) => !open);
+      };
+      document.addEventListener("keydown", handleKeyDown);
+      return () => document.removeEventListener("keydown", handleKeyDown);
+    },
+  );
 
   const toOption = (item: NavItem, group: string): CommandOption => ({
     value: `${group}/${item.title}`,
     label: item.title,
-    icon: () =>
-      group === "Components" ? <ComponentGlyph /> : <IconArrowRight />,
+    icon: () => (group === "Components" ? <ComponentGlyph /> : <IconArrowRight />),
     keywords: [group.toLowerCase()],
     onSelect: () => {
       setOpen(false);

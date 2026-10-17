@@ -16,13 +16,7 @@ export default function DropdownMenuIcons() {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem>
-          <IconPlaceholder
-            lucide="user"
-            tabler="user"
-            ph="user"
-            ri="user-line"
-            hugeicons="user"
-          />
+          <IconPlaceholder lucide="user" tabler="user" ph="user" ri="user-line" hugeicons="user" />
           Profile
         </DropdownMenuItem>
         <DropdownMenuItem>

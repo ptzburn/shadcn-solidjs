@@ -28,17 +28,13 @@ You can also add them individually — see the
 ## Usage
 
 ```tsx showLineNumbers
-import { Button } from "~/components/ui/button"
-import { Calendar } from "~/components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "~/components/ui/popover"
+import { Button } from "~/components/ui/button";
+import { Calendar } from "~/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "~/components/ui/popover";
 ```
 
 ```tsx showLineNumbers
-const [date, setDate] = createSignal<Date | null>(null)
+const [date, setDate] = createSignal<Date | null>(null);
 
 return (
   <Popover placement="bottom-start">
@@ -49,7 +45,7 @@ return (
       <Calendar selectionMode="single" value={date()} onChange={setDate} />
     </PopoverContent>
   </Popover>
-)
+);
 ```
 
 ## Composition

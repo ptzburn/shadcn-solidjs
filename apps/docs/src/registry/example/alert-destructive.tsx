@@ -13,8 +13,7 @@ export default function AlertDestructive() {
       />
       <AlertTitle>Payment failed</AlertTitle>
       <AlertDescription>
-        Your payment could not be processed. Please check your payment method
-        and try again.
+        Your payment could not be processed. Please check your payment method and try again.
       </AlertDescription>
     </Alert>
   );

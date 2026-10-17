@@ -1,9 +1,4 @@
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardHeader,
-} from "~/registry/ui/card.tsx";
+import { Card, CardAction, CardContent, CardHeader } from "~/registry/ui/card.tsx";
 
 import { Skeleton } from "~/registry/ui/skeleton.tsx";
 import { For } from "solid-js";

@@ -45,7 +45,7 @@ npm install @kobalte/core@2.0.0-alpha.1
 ## Usage
 
 ```tsx
-import { Checkbox } from "~/components/ui/checkbox"
+import { Checkbox } from "~/components/ui/checkbox";
 ```
 
 ```tsx
@@ -58,12 +58,12 @@ Use `defaultChecked` for uncontrolled checkboxes, or `checked` and
 `onChange` to control the state.
 
 ```tsx showLineNumbers
-import { createSignal } from "solid-js"
+import { createSignal } from "solid-js";
 
 export function Example() {
-  const [checked, setChecked] = createSignal(false)
+  const [checked, setChecked] = createSignal(false);
 
-  return <Checkbox checked={checked()} onChange={setChecked} />
+  return <Checkbox checked={checked()} onChange={setChecked} />;
 }
 ```
 

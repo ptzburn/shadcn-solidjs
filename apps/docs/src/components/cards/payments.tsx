@@ -76,9 +76,7 @@ export function Payments() {
               </ItemMedia>
               <ItemContent>
                 <ItemTitle>Change transfer limit</ItemTitle>
-                <ItemDescription>
-                  Adjust how much you can send from your balance.
-                </ItemDescription>
+                <ItemDescription>Adjust how much you can send from your balance.</ItemDescription>
               </ItemContent>
               <IconArrowRight01 class="size-4 shrink-0 text-muted-foreground" />
             </Item>
@@ -90,9 +88,7 @@ export function Payments() {
               </ItemMedia>
               <ItemContent>
                 <ItemTitle>Scheduled transfers</ItemTitle>
-                <ItemDescription>
-                  Set up a transfer to send at a later date.
-                </ItemDescription>
+                <ItemDescription>Set up a transfer to send at a later date.</ItemDescription>
               </ItemContent>
               <IconArrowRight01 class="size-4 shrink-0 text-muted-foreground" />
             </Item>
@@ -104,9 +100,7 @@ export function Payments() {
               </ItemMedia>
               <ItemContent>
                 <ItemTitle>Recurring card payments</ItemTitle>
-                <ItemDescription>
-                  Manage your repeated card transactions.
-                </ItemDescription>
+                <ItemDescription>Manage your repeated card transactions.</ItemDescription>
               </ItemContent>
               <IconArrowRight01 class="size-4 shrink-0 text-muted-foreground" />
             </Item>

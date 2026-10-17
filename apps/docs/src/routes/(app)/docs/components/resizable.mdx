@@ -49,11 +49,7 @@ npm install @kobalte/core@2.0.0-alpha.1
 ## Usage
 
 ```tsx
-import {
-  Resizable,
-  ResizableHandle,
-  ResizablePanel,
-} from "~/components/ui/resizable"
+import { Resizable, ResizableHandle, ResizablePanel } from "~/components/ui/resizable";
 ```
 
 ```tsx showLineNumbers
@@ -97,14 +93,14 @@ See the [Kobalte Resizable documentation](https://kobalte.dev/docs/core/componen
 The `Resizable` component is the panel group. It renders a `div` and lays its
 panels out along `orientation`.
 
-| Prop             | Type                         | Default        |
-| ---------------- | ---------------------------- | -------------- |
-| `orientation`    | `"horizontal" \| "vertical"` | `"horizontal"` |
-| `sizes`          | `number[]`                   | -              |
-| `initialSizes`   | `Size[]`                     | -              |
-| `onSizesChange`  | `(sizes: number[]) => void`  | -              |
-| `keyboardDelta`  | `Size`                       | `0.1`          |
-| `class`          | `string`                     | -              |
+| Prop            | Type                         | Default        |
+| --------------- | ---------------------------- | -------------- |
+| `orientation`   | `"horizontal" \| "vertical"` | `"horizontal"` |
+| `sizes`         | `number[]`                   | -              |
+| `initialSizes`  | `Size[]`                     | -              |
+| `onSizesChange` | `(sizes: number[]) => void`  | -              |
+| `keyboardDelta` | `Size`                       | `0.1`          |
+| `class`         | `string`                     | -              |
 
 ### ResizablePanel
 

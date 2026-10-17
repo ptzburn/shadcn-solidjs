@@ -1,16 +1,5 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/registry/ui/card.tsx";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "~/registry/ui/tabs.tsx";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/registry/ui/card.tsx";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/registry/ui/tabs.tsx";
 
 export default function TabsDemo() {
   return (
@@ -26,8 +15,8 @@ export default function TabsDemo() {
           <CardHeader>
             <CardTitle>Overview</CardTitle>
             <CardDescription>
-              View your key metrics and recent project activity. Track progress
-              across all your active projects.
+              View your key metrics and recent project activity. Track progress across all your
+              active projects.
             </CardDescription>
           </CardHeader>
           <CardContent class="text-muted-foreground text-sm">
@@ -40,8 +29,8 @@ export default function TabsDemo() {
           <CardHeader>
             <CardTitle>Analytics</CardTitle>
             <CardDescription>
-              Track performance and user engagement metrics. Monitor trends and
-              identify growth opportunities.
+              Track performance and user engagement metrics. Monitor trends and identify growth
+              opportunities.
             </CardDescription>
           </CardHeader>
           <CardContent class="text-muted-foreground text-sm">
@@ -54,8 +43,8 @@ export default function TabsDemo() {
           <CardHeader>
             <CardTitle>Reports</CardTitle>
             <CardDescription>
-              Generate and download your detailed reports. Export data in
-              multiple formats for analysis.
+              Generate and download your detailed reports. Export data in multiple formats for
+              analysis.
             </CardDescription>
           </CardHeader>
           <CardContent class="text-muted-foreground text-sm">
@@ -68,8 +57,8 @@ export default function TabsDemo() {
           <CardHeader>
             <CardTitle>Settings</CardTitle>
             <CardDescription>
-              Manage your account preferences and options. Customize your
-              experience to fit your needs.
+              Manage your account preferences and options. Customize your experience to fit your
+              needs.
             </CardDescription>
           </CardHeader>
           <CardContent class="text-muted-foreground text-sm">

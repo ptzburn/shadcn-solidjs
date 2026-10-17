@@ -30,8 +30,7 @@ const ANIMATIONS = [
   {
     id: "blur-fade",
     name: "Blur Fade",
-    class:
-      "animate-in fade-in blur-in-4 slide-in-from-bottom-1 duration-300 ease-out",
+    class: "animate-in fade-in blur-in-4 slide-in-from-bottom-1 duration-300 ease-out",
   },
   {
     id: "scale-fade",

@@ -6,8 +6,7 @@ import { cn } from "~/lib/utils.ts";
 import { omit } from "solid-js";
 
 type ProgressRootProps<T extends ValidComponent = "div"> =
-  & ProgressPrimitive.ProgressRootProps<T>
-  & { class?: string | undefined; children?: JSX.Element };
+  ProgressPrimitive.ProgressRootProps<T> & { class?: string | undefined; children?: JSX.Element };
 
 const Progress = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ProgressRootProps<T>>,
@@ -29,8 +28,7 @@ const Progress = <T extends ValidComponent = "div">(
 };
 
 type ProgressTrackProps<T extends ValidComponent = "div"> =
-  & ProgressPrimitive.ProgressTrackProps<T>
-  & { class?: string | undefined; children?: JSX.Element };
+  ProgressPrimitive.ProgressTrackProps<T> & { class?: string | undefined; children?: JSX.Element };
 
 const ProgressTrack = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ProgressTrackProps<T>>,
@@ -50,34 +48,30 @@ const ProgressTrack = <T extends ValidComponent = "div">(
 };
 
 type ProgressIndicatorProps<T extends ValidComponent = "div"> =
-  & ProgressPrimitive.ProgressFillProps<T>
-  & { class?: string | undefined };
+  ProgressPrimitive.ProgressFillProps<T> & { class?: string | undefined };
 
 const ProgressIndicator = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ProgressIndicatorProps<T>>,
 ) => {
   const local = props as ProgressIndicatorProps;
   const others = omit(local, "class", "style");
-  const transform =
-    "translateX(calc(var(--kb-progress-fill-width, 0%) - 100%))";
+  const transform = "translateX(calc(var(--kb-progress-fill-width, 0%) - 100%))";
   return (
     <ProgressPrimitive.Fill
       data-slot="progress-indicator"
-      class={cn(
-        "cn-progress-indicator size-full flex-1 transition-all",
-        local.class,
-      )}
-      style={typeof local.style === "string"
-        ? `transform:${transform};${local.style}`
-        : { transform, ...local.style }}
+      class={cn("cn-progress-indicator size-full flex-1 transition-all", local.class)}
+      style={
+        typeof local.style === "string"
+          ? `transform:${transform};${local.style}`
+          : { transform, ...local.style }
+      }
       {...others}
     />
   );
 };
 
 type ProgressLabelProps<T extends ValidComponent = "span"> =
-  & ProgressPrimitive.ProgressLabelProps<T>
-  & { class?: string | undefined; children?: JSX.Element };
+  ProgressPrimitive.ProgressLabelProps<T> & { class?: string | undefined; children?: JSX.Element };
 
 const ProgressLabel = <T extends ValidComponent = "span">(
   props: PolymorphicProps<T, ProgressLabelProps<T>>,
@@ -94,8 +88,7 @@ const ProgressLabel = <T extends ValidComponent = "span">(
 };
 
 type ProgressValueLabelProps<T extends ValidComponent = "div"> =
-  & ProgressPrimitive.ProgressValueLabelProps<T>
-  & { class?: string | undefined };
+  ProgressPrimitive.ProgressValueLabelProps<T> & { class?: string | undefined };
 
 const ProgressValueLabel = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ProgressValueLabelProps<T>>,
@@ -105,19 +98,10 @@ const ProgressValueLabel = <T extends ValidComponent = "div">(
   return (
     <ProgressPrimitive.ValueLabel
       data-slot="progress-value"
-      class={cn(
-        "cn-progress-value",
-        local.class,
-      )}
+      class={cn("cn-progress-value", local.class)}
       {...others}
     />
   );
 };
 
-export {
-  Progress,
-  ProgressIndicator,
-  ProgressLabel,
-  ProgressTrack,
-  ProgressValueLabel,
-};
+export { Progress, ProgressIndicator, ProgressLabel, ProgressTrack, ProgressValueLabel };

@@ -15,13 +15,7 @@ export default function ToggleOutline() {
         Italic
       </Toggle>
       <Toggle variant="outline" aria-label="Toggle bold">
-        <IconPlaceholder
-          lucide="bold"
-          tabler="bold"
-          ph="text-b"
-          ri="bold"
-          hugeicons="text-bold"
-        />
+        <IconPlaceholder lucide="bold" tabler="bold" ph="text-b" ri="bold" hugeicons="text-bold" />
         Bold
       </Toggle>
     </div>

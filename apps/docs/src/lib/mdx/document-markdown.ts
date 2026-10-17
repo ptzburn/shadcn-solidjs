@@ -41,15 +41,15 @@ const CALLOUT_ALERTS: Record<string, string> = {
 };
 
 function isJsx(node: Node): node is Node & JsxElement {
-  return node.type === "mdxJsxFlowElement" ||
-    node.type === "mdxJsxTextElement";
+  return node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement";
 }
 
 function attributesOf(node: JsxElement): Record<string, string> {
   const attributes: Record<string, string> = {};
   for (const attribute of node.attributes) {
     if (
-      attribute.type === "mdxJsxAttribute" && attribute.name &&
+      attribute.type === "mdxJsxAttribute" &&
+      attribute.name &&
       typeof attribute.value === "string"
     ) {
       attributes[attribute.name] = attribute.value;
@@ -62,10 +62,7 @@ function text(value: string): PhrasingContent {
   return { type: "text", value };
 }
 
-function heading(
-  depth: Heading["depth"],
-  children: PhrasingContent[],
-): Heading {
+function heading(depth: Heading["depth"], children: PhrasingContent[]): Heading {
   return { type: "heading", depth, children };
 }
 
@@ -96,15 +93,10 @@ function frontmatterNodes(value: string): RootContent[] {
 
 function callout(node: JsxElement, body: RootContent[]): Blockquote {
   const attributes = attributesOf(node);
-  const alert = CALLOUT_ALERTS[attributes.variant ?? "default"] ??
-    CALLOUT_ALERTS.default;
-  const children: Blockquote["children"] = [
-    paragraph([{ type: "html", value: `[!${alert}]` }]),
-  ];
+  const alert = CALLOUT_ALERTS[attributes.variant ?? "default"] ?? CALLOUT_ALERTS.default;
+  const children: Blockquote["children"] = [paragraph([{ type: "html", value: `[!${alert}]` }])];
   if (attributes.title) {
-    children.push(
-      paragraph([{ type: "strong", children: [text(attributes.title)] }]),
-    );
+    children.push(paragraph([{ type: "strong", children: [text(attributes.title)] }]));
   }
   return {
     type: "blockquote",
@@ -130,10 +122,7 @@ function codeTabs(
   }
   return findJsx(node.children, "TabsContent").flatMap((content) => {
     const value = attributesOf(content).value ?? "";
-    return [
-      heading(3, [text(labels[value] || value)]),
-      ...transform(content.children),
-    ];
+    return [heading(3, [text(labels[value] || value)]), ...transform(content.children)];
   });
 }
 
@@ -146,9 +135,7 @@ function rewriteJsx(
   switch (node.name) {
     case "ComponentPreview":
     case "ComponentSource": {
-      const source = attributes.name
-        ? options.resolve?.(attributes.name)
-        : undefined;
+      const source = attributes.name ? options.resolve?.(attributes.name) : undefined;
       return source ? [code("tsx", source)] : [];
     }
     case "CodeTabs":
@@ -164,11 +151,15 @@ function rewriteJsx(
       return [callout(node, transform(node.children))];
     case "LinkedCard": {
       const label = toString(node).replace(/\s+/g, " ").trim();
-      return [paragraph([{
-        type: "link",
-        url: attributes.href ?? "",
-        children: [text(label)],
-      }])];
+      return [
+        paragraph([
+          {
+            type: "link",
+            url: attributes.href ?? "",
+            children: [text(label)],
+          },
+        ]),
+      ];
     }
     default:
       return transform(node.children);
@@ -180,7 +171,8 @@ function remarkDocument(options: DocumentMarkdownOptions) {
     (nodes as Node[]).flatMap((node): RootContent[] => {
       if (node.type === "yaml") return frontmatterNodes(node.value);
       if (
-        node.type === "mdxjsEsm" || node.type === "mdxFlowExpression" ||
+        node.type === "mdxjsEsm" ||
+        node.type === "mdxFlowExpression" ||
         node.type === "mdxTextExpression"
       ) {
         return [];
@@ -199,10 +191,7 @@ function remarkDocument(options: DocumentMarkdownOptions) {
  * models: the page header from frontmatter, no imports, and the JSX
  * components the site renders replaced by their Markdown equivalents.
  */
-export function toDocumentMarkdown(
-  source: string,
-  options: DocumentMarkdownOptions = {},
-): string {
+export function toDocumentMarkdown(source: string, options: DocumentMarkdownOptions = {}): string {
   const processor = unified()
     .use(remarkParse)
     .use(remarkMdx)

@@ -32,12 +32,7 @@ export default function TableActions() {
           <TableCell>$29.99</TableCell>
           <TableCell class="text-right">
             <DropdownMenu placement="bottom-end">
-              <DropdownMenuTrigger
-                as={Button<"button">}
-                variant="ghost"
-                size="icon"
-                class="size-8"
-              >
+              <DropdownMenuTrigger as={Button<"button">} variant="ghost" size="icon" class="size-8">
                 <IconPlaceholder
                   lucide="ellipsis"
                   tabler="dots"
@@ -51,9 +46,7 @@ export default function TableActions() {
                 <DropdownMenuItem>Edit</DropdownMenuItem>
                 <DropdownMenuItem>Duplicate</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem variant="destructive">
-                  Delete
-                </DropdownMenuItem>
+                <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </TableCell>
@@ -63,12 +56,7 @@ export default function TableActions() {
           <TableCell>$129.99</TableCell>
           <TableCell class="text-right">
             <DropdownMenu placement="bottom-end">
-              <DropdownMenuTrigger
-                as={Button<"button">}
-                variant="ghost"
-                size="icon"
-                class="size-8"
-              >
+              <DropdownMenuTrigger as={Button<"button">} variant="ghost" size="icon" class="size-8">
                 <IconPlaceholder
                   lucide="ellipsis"
                   tabler="dots"
@@ -82,9 +70,7 @@ export default function TableActions() {
                 <DropdownMenuItem>Edit</DropdownMenuItem>
                 <DropdownMenuItem>Duplicate</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem variant="destructive">
-                  Delete
-                </DropdownMenuItem>
+                <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </TableCell>
@@ -94,12 +80,7 @@ export default function TableActions() {
           <TableCell>$49.99</TableCell>
           <TableCell class="text-right">
             <DropdownMenu placement="bottom-end">
-              <DropdownMenuTrigger
-                as={Button<"button">}
-                variant="ghost"
-                size="icon"
-                class="size-8"
-              >
+              <DropdownMenuTrigger as={Button<"button">} variant="ghost" size="icon" class="size-8">
                 <IconPlaceholder
                   lucide="ellipsis"
                   tabler="dots"
@@ -113,9 +94,7 @@ export default function TableActions() {
                 <DropdownMenuItem>Edit</DropdownMenuItem>
                 <DropdownMenuItem>Duplicate</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem variant="destructive">
-                  Delete
-                </DropdownMenuItem>
+                <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </TableCell>

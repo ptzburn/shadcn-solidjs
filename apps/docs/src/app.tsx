@@ -1,17 +1,11 @@
 /// <reference types="filesystem-routing/types" />
-import {
-  ColorModeProvider,
-  cookieStorageManagerSSR,
-} from "@kobalte/core/color-mode";
+import { ColorModeProvider, cookieStorageManagerSSR } from "@kobalte/core/color-mode";
 import { createRouter } from "@solidjs/router";
 import { fileRoutes } from "@solidjs/router/fs";
 import { getRequestEvent, isServer } from "@solidjs/web";
 import { MetaTags } from "~/components/meta-tags.tsx";
 
-import {
-  BaseColorProvider,
-  parseBaseColorCookie,
-} from "~/lib/base-color-context.tsx";
+import { BaseColorProvider, parseBaseColorCookie } from "~/lib/base-color-context.tsx";
 import { parseStyleCookie, StyleProvider } from "~/lib/style-context.tsx";
 import { Toaster } from "~/registry/ui/toast.tsx";
 
@@ -26,7 +20,7 @@ const Router = createRouter({ routes: fileRoutes(pageRoutes) });
 
 export default function App() {
   const cookie = isServer
-    ? getRequestEvent()?.request.headers.get("cookie") ?? ""
+    ? (getRequestEvent()?.request.headers.get("cookie") ?? "")
     : document.cookie;
   const storageManager = cookieStorageManagerSSR(cookie);
   const initialStyle = parseStyleCookie(cookie);
@@ -38,9 +32,7 @@ export default function App() {
       <ColorModeProvider storageManager={storageManager}>
         <StyleProvider initial={initialStyle}>
           <BaseColorProvider initial={initialBaseColor}>
-            <Router>
-              {(props) => <Loading>{props.children}</Loading>}
-            </Router>
+            <Router>{(props) => <Loading>{props.children}</Loading>}</Router>
             <Toaster />
           </BaseColorProvider>
         </StyleProvider>

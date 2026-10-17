@@ -33,9 +33,7 @@ export default function SelectGroups() {
       options={CATEGORIES}
       optionGroupChildren="items"
       placeholder="Select a fruit"
-      itemComponent={(props) => (
-        <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
-      )}
+      itemComponent={(props) => <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>}
       sectionComponent={(props) => (
         <>
           <Show when={props.section.rawValue !== CATEGORIES[0]}>

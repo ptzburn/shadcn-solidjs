@@ -10,9 +10,7 @@ export default function CheckboxInvalid() {
           name="terms-checkbox-invalid"
           validationState="invalid"
         />
-        <FieldLabel for="terms-checkbox-invalid-input">
-          Accept terms and conditions
-        </FieldLabel>
+        <FieldLabel for="terms-checkbox-invalid-input">Accept terms and conditions</FieldLabel>
       </Field>
     </FieldGroup>
   );

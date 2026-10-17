@@ -27,10 +27,7 @@ const EmptyHeader: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="empty-header"
-      class={cn(
-        "cn-empty-header flex max-w-sm flex-col items-center",
-        props.class,
-      )}
+      class={cn("cn-empty-header flex max-w-sm flex-col items-center", props.class)}
       {...others}
     />
   );
@@ -51,9 +48,9 @@ const emptyMediaVariants = cva(
   },
 );
 
-const EmptyMedia: Component<
-  ComponentProps<"div"> & VariantProps<typeof emptyMediaVariants>
-> = (props) => {
+const EmptyMedia: Component<ComponentProps<"div"> & VariantProps<typeof emptyMediaVariants>> = (
+  props,
+) => {
   const others = omit(props, "class", "variant");
   return (
     <div
@@ -109,11 +106,4 @@ const EmptyContent: Component<ComponentProps<"div">> = (props) => {
   );
 };
 
-export {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-};
+export { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle };

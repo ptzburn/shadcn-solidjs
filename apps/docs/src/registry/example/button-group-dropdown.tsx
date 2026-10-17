@@ -15,11 +15,7 @@ export default function ButtonGroupDropdown() {
     <ButtonGroup>
       <Button variant="outline">Follow</Button>
       <DropdownMenu>
-        <DropdownMenuTrigger
-          as={Button<"button">}
-          variant="outline"
-          class="pl-2!"
-        >
+        <DropdownMenuTrigger as={Button<"button">} variant="outline" class="pl-2!">
           <IconPlaceholder
             lucide="chevron-down"
             tabler="chevron-down"

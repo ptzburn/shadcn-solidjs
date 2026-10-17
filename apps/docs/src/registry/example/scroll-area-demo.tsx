@@ -3,9 +3,7 @@ import { ScrollArea } from "~/registry/ui/scroll-area.tsx";
 import { Separator } from "~/registry/ui/separator.tsx";
 import { For } from "solid-js";
 
-const tags = Array.from({ length: 50 }).map(
-  (_, i, a) => `v1.2.0-beta.${a.length - i}`,
-);
+const tags = Array.from({ length: 50 }).map((_, i, a) => `v1.2.0-beta.${a.length - i}`);
 
 export default function ScrollAreaDemo() {
   return (

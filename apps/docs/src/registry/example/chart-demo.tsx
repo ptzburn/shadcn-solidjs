@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/registry/ui/card.tsx";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/registry/ui/card.tsx";
 
 import type { ChartConfig } from "~/registry/ui/chart.tsx";
 import { BarChart, ChartContainer } from "~/registry/ui/chart.tsx";
@@ -58,9 +52,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function ChartDemo() {
-  const [activeChart, setActiveChart] = createSignal<"desktop" | "mobile">(
-    "desktop",
-  );
+  const [activeChart, setActiveChart] = createSignal<"desktop" | "mobile">("desktop");
 
   const total = {
     desktop: chartData.reduce((acc, curr) => acc + curr.desktop, 0),
@@ -83,9 +75,7 @@ export default function ChartDemo() {
       <CardHeader class="flex flex-col items-stretch border-b p-0! sm:flex-row">
         <div class="flex flex-1 flex-col justify-center gap-1 px-6 pt-4 pb-3 sm:py-0!">
           <CardTitle>Bar Chart - Interactive</CardTitle>
-          <CardDescription>
-            Showing total visitors for the last 3 months
-          </CardDescription>
+          <CardDescription>Showing total visitors for the last 3 months</CardDescription>
         </div>
         <div class="flex">
           <For each={["desktop", "mobile"] as const}>
@@ -96,9 +86,7 @@ export default function ChartDemo() {
                 class="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l sm:border-l sm:border-t-0 sm:px-8 sm:py-6 data-[active=true]:bg-muted/50"
                 onClick={() => setActiveChart(chart)}
               >
-                <span class="text-muted-foreground text-xs">
-                  {chartConfig[chart].label}
-                </span>
+                <span class="text-muted-foreground text-xs">{chartConfig[chart].label}</span>
                 <span class="font-bold text-lg leading-none sm:text-3xl">
                   {total[chart].toLocaleString()}
                 </span>
@@ -108,10 +96,7 @@ export default function ChartDemo() {
         </div>
       </CardHeader>
       <CardContent class="px-2 sm:p-6">
-        <ChartContainer
-          config={chartConfig}
-          class="aspect-auto h-[250px] w-full"
-        >
+        <ChartContainer config={chartConfig} class="aspect-auto h-[250px] w-full">
           <BarChart
             data={data()}
             options={{
@@ -122,12 +107,13 @@ export default function ChartDemo() {
                     maxRotation: 0,
                     autoSkipPadding: 32,
                     callback: function (value) {
-                      return new Date(
-                        this.getLabelForValue(Number(value)),
-                      ).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                      });
+                      return new Date(this.getLabelForValue(Number(value))).toLocaleDateString(
+                        "en-US",
+                        {
+                          month: "short",
+                          day: "numeric",
+                        },
+                      );
                     },
                   },
                 },

@@ -33,8 +33,7 @@ function fromUserAgent(): PackageManager | null {
 }
 
 function isPackageManager(value: string): value is PackageManager {
-  return value === "npm" || value === "pnpm" || value === "yarn" ||
-    value === "bun";
+  return value === "npm" || value === "pnpm" || value === "yarn" || value === "bun";
 }
 
 /**
@@ -66,11 +65,7 @@ export function detectPackageManager(cwd: string): PackageManager {
  * support for it varies across the four managers, and `assertSafeSpecs` plus
  * spawning without a shell already close the injection it guards against.
  */
-export function installArgs(
-  manager: PackageManager,
-  specs: string[],
-  dev: boolean,
-): string[] {
+export function installArgs(manager: PackageManager, specs: string[], dev: boolean): string[] {
   const devFlag = manager === "yarn" ? "--dev" : "-D";
   return ["add", ...(dev ? [devFlag] : []), ...specs];
 }

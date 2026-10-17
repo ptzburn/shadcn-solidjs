@@ -22,8 +22,8 @@ before the first paint and applies the stored mode, so the page never
 flashes the wrong theme.
 
 ```tsx title="src/Document.tsx" {2,10} showLineNumbers
-import { HydrationScript, type JSX } from "@solidjs/web"
-import { ColorModeScript } from "@kobalte/core/color-mode"
+import { HydrationScript, type JSX } from "@solidjs/web";
+import { ColorModeScript } from "@kobalte/core/color-mode";
 
 export default function Document(props: { children: JSX.Element }) {
   return (
@@ -36,7 +36,7 @@ export default function Document(props: { children: JSX.Element }) {
       </head>
       <body>{props.children}</body>
     </html>
-  )
+  );
 }
 ```
 
@@ -48,20 +48,18 @@ is created on the client and never runs.
 Add the `ColorModeProvider` to your `App.tsx`, using the same storage key.
 
 ```tsx title="src/App.tsx" {2,6,9,13} showLineNumbers
-import { Loading } from "solid-js"
-import { ColorModeProvider, createLocalStorageManager } from "@kobalte/core/color-mode"
-import { Router } from "./router"
+import { Loading } from "solid-js";
+import { ColorModeProvider, createLocalStorageManager } from "@kobalte/core/color-mode";
+import { Router } from "./router";
 
 export default function App() {
-  const storageManager = createLocalStorageManager("ui-theme")
+  const storageManager = createLocalStorageManager("ui-theme");
 
   return (
     <ColorModeProvider storageManager={storageManager}>
-      <Router>
-        {(props) => <Loading>{props.children}</Loading>}
-      </Router>
+      <Router>{(props) => <Loading>{props.children}</Loading>}</Router>
     </ColorModeProvider>
-  )
+  );
 }
 ```
 

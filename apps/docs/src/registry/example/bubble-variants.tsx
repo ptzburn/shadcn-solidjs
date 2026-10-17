@@ -1,8 +1,4 @@
-import {
-  Bubble,
-  BubbleContent,
-  BubbleReactions,
-} from "~/registry/ui/bubble.tsx";
+import { Bubble, BubbleContent, BubbleReactions } from "~/registry/ui/bubble.tsx";
 
 export default function BubbleVariantsDemo() {
   return (
@@ -23,17 +19,14 @@ export default function BubbleVariantsDemo() {
       </Bubble>
       <Bubble variant="tinted" align="end">
         <BubbleContent>
-          This one is tinted. The tint is a softer color derived from the
-          primary color.
+          This one is tinted. The tint is a softer color derived from the primary color.
         </BubbleContent>
       </Bubble>
       <Bubble variant="outline">
         <BubbleContent>We can also use an outlined variant.</BubbleContent>
       </Bubble>
       <Bubble variant="destructive" align="end">
-        <BubbleContent>
-          Or a destructive variant with a reaction.
-        </BubbleContent>
+        <BubbleContent>Or a destructive variant with a reaction.</BubbleContent>
         <BubbleReactions role="img" aria-label="Reaction: fire">
           <span>🔥</span>
         </BubbleReactions>
@@ -41,17 +34,13 @@ export default function BubbleVariantsDemo() {
       <Bubble variant="ghost">
         <BubbleContent class="flex flex-col gap-4">
           <p>
-            Ghost bubbles work for assistant text, rich content, and anything
-            else that should not be framed.
+            Ghost bubbles work for assistant text, rich content, and anything else that should not
+            be framed.
           </p>
           <p>
-            This is perfect for assistant messages that should not have a frame
-            and can take the full width of the container. You can also render
-            {" "}
-            <code class="rounded bg-muted px-1 py-0.5 font-mono text-xs">
-              code
-            </code>{" "}
-            in it.
+            This is perfect for assistant messages that should not have a frame and can take the
+            full width of the container. You can also render{" "}
+            <code class="rounded bg-muted px-1 py-0.5 font-mono text-xs">code</code> in it.
           </p>
         </BubbleContent>
       </Bubble>

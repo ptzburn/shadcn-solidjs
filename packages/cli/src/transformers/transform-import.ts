@@ -10,8 +10,7 @@ export interface TransformContext {
  * Matches the specifier of `from "x"`, `import "x"` and `import("x")`, so a
  * string that merely looks like a path elsewhere in the file is left alone.
  */
-const SPECIFIER_RE =
-  /(\bfrom\s+|\bimport\s*\(\s*|\bimport\s+)(["'])([^"']+)\2/g;
+const SPECIFIER_RE = /(\bfrom\s+|\bimport\s*\(\s*|\bimport\s+)(["'])([^"']+)\2/g;
 
 const EXTENSION_RE = /\.tsx?$/;
 
@@ -49,10 +48,7 @@ function rewrite(specifier: string, config: Config): string | null {
   return null;
 }
 
-export function transformImports(
-  content: string,
-  { config, target }: TransformContext,
-): string {
+export function transformImports(content: string, { config, target }: TransformContext): string {
   return content.replace(
     SPECIFIER_RE,
     (match, prefix: string, quote: string, specifier: string) => {

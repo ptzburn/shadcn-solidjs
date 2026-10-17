@@ -1,9 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "~/registry/ui/card.tsx";
+import { Card, CardContent, CardFooter, CardHeader } from "~/registry/ui/card.tsx";
 import { Skeleton } from "~/registry/ui/skeleton.tsx";
 
 export function NewMilestone() {

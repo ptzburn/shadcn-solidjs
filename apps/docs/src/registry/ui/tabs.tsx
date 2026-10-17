@@ -6,22 +6,17 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { merge, omit } from "solid-js";
 
-type TabsProps<T extends ValidComponent = "div"> =
-  & TabsPrimitive.TabsRootProps<T>
-  & { class?: string | undefined };
+type TabsProps<T extends ValidComponent = "div"> = TabsPrimitive.TabsRootProps<T> & {
+  class?: string | undefined;
+};
 
-const Tabs = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, TabsProps<T>>,
-) => {
+const Tabs = <T extends ValidComponent = "div">(props: PolymorphicProps<T, TabsProps<T>>) => {
   const local = props as TabsProps;
   const others = omit(local, "class");
   return (
     <TabsPrimitive.Root
       data-slot="tabs"
-      class={cn(
-        "cn-tabs group/tabs flex data-[orientation=horizontal]:flex-col",
-        local.class,
-      )}
+      class={cn("cn-tabs group/tabs flex data-[orientation=horizontal]:flex-col", local.class)}
       {...others}
     />
   );
@@ -42,18 +37,13 @@ const tabsListVariants = cva(
   },
 );
 
-type TabsListProps<T extends ValidComponent = "div"> =
-  & TabsPrimitive.TabsListProps<T>
-  & VariantProps<typeof tabsListVariants>
-  & { class?: string | undefined };
+type TabsListProps<T extends ValidComponent = "div"> = TabsPrimitive.TabsListProps<T> &
+  VariantProps<typeof tabsListVariants> & { class?: string | undefined };
 
 const TabsList = <T extends ValidComponent = "div">(
   rawProps: PolymorphicProps<T, TabsListProps<T>>,
 ) => {
-  const props = merge(
-    { variant: "default" as const },
-    rawProps as TabsListProps,
-  );
+  const props = merge({ variant: "default" as const }, rawProps as TabsListProps);
   const others = omit(props, "class", "variant");
   return (
     <TabsPrimitive.List
@@ -65,9 +55,9 @@ const TabsList = <T extends ValidComponent = "div">(
   );
 };
 
-type TabsTriggerProps<T extends ValidComponent = "button"> =
-  & TabsPrimitive.TabsTriggerProps<T>
-  & { class?: string | undefined };
+type TabsTriggerProps<T extends ValidComponent = "button"> = TabsPrimitive.TabsTriggerProps<T> & {
+  class?: string | undefined;
+};
 
 const TabsTrigger = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, TabsTriggerProps<T>>,
@@ -89,9 +79,9 @@ const TabsTrigger = <T extends ValidComponent = "button">(
   );
 };
 
-type TabsContentProps<T extends ValidComponent = "div"> =
-  & TabsPrimitive.TabsContentProps<T>
-  & { class?: string | undefined };
+type TabsContentProps<T extends ValidComponent = "div"> = TabsPrimitive.TabsContentProps<T> & {
+  class?: string | undefined;
+};
 
 const TabsContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, TabsContentProps<T>>,
@@ -107,9 +97,9 @@ const TabsContent = <T extends ValidComponent = "div">(
   );
 };
 
-type TabsIndicatorProps<T extends ValidComponent = "div"> =
-  & TabsPrimitive.TabsIndicatorProps<T>
-  & { class?: string | undefined };
+type TabsIndicatorProps<T extends ValidComponent = "div"> = TabsPrimitive.TabsIndicatorProps<T> & {
+  class?: string | undefined;
+};
 
 const TabsIndicator = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, TabsIndicatorProps<T>>,
@@ -128,11 +118,4 @@ const TabsIndicator = <T extends ValidComponent = "div">(
   );
 };
 
-export {
-  Tabs,
-  TabsContent,
-  TabsIndicator,
-  TabsList,
-  tabsListVariants,
-  TabsTrigger,
-};
+export { Tabs, TabsContent, TabsIndicator, TabsList, tabsListVariants, TabsTrigger };

@@ -71,8 +71,8 @@ addressable — including your own, and including private ones:
 // components.json
 {
   "registries": {
-    "@acme": "https://acme.com/r/{name}.json"
-  }
+    "@acme": "https://acme.com/r/{name}.json",
+  },
 }
 ```
 

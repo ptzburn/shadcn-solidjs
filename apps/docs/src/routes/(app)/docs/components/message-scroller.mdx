@@ -101,14 +101,14 @@ npx @ptzburn/shadcn-solidjs@beta add button
 </CodeTabs>
 
 <Callout>
-  The scroll engine ships in the `@ptzburn/shadcn-solid` package. The CLI
-  installs it together with the styled parts in `message-scroller.tsx`.
+  The scroll engine ships in the `@ptzburn/shadcn-solid` package. The CLI installs it together with
+  the styled parts in `message-scroller.tsx`.
 </Callout>
 
 ## Usage
 
 ```tsx
-import { Message } from "~/components/ui/message"
+import { Message } from "~/components/ui/message";
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -116,7 +116,7 @@ import {
   MessageScrollerItem,
   MessageScrollerProvider,
   MessageScrollerViewport,
-} from "~/components/ui/message-scroller"
+} from "~/components/ui/message-scroller";
 ```
 
 ```tsx
@@ -126,10 +126,7 @@ import {
       <MessageScrollerContent>
         <For each={messages()}>
           {(message) => (
-            <MessageScrollerItem
-              messageId={message.id}
-              scrollAnchor={message.role === "user"}
-            >
+            <MessageScrollerItem messageId={message.id} scrollAnchor={message.role === "user"}>
               <Message />
             </MessageScrollerItem>
           )}
@@ -159,9 +156,7 @@ container.
   <MessageScroller>
     <MessageScrollerViewport>
       <MessageScrollerContent>
-        <MessageScrollerItem>
-          {/* a message, marker, or row */}
-        </MessageScrollerItem>
+        <MessageScrollerItem>{/* a message, marker, or row */}</MessageScrollerItem>
         <MessageScrollerItem />
         <MessageScrollerItem />
       </MessageScrollerContent>
@@ -200,10 +195,7 @@ does not feel detached from its context.
 
 ```tsx
 // This tells the scroller to anchor the user's message for the next turn.
-<MessageScrollerItem
-  messageId={message.id}
-  scrollAnchor={message.role === "user"}
-/>
+<MessageScrollerItem messageId={message.id} scrollAnchor={message.role === "user"} />
 ```
 
 Scroll anchors are not tied to message role. You can turn any row into an anchor:
@@ -365,18 +357,14 @@ in any component inside the provider, including controls rendered outside the
 `MessageScroller` frame.
 
 ```tsx
-import { useMessageScroller } from "~/components/ui/message-scroller"
+import { useMessageScroller } from "~/components/ui/message-scroller";
 ```
 
 ```tsx
-const { scrollToMessage, scrollToEnd, scrollToStart } = useMessageScroller()
+const { scrollToMessage, scrollToEnd, scrollToStart } = useMessageScroller();
 ```
 
-<ComponentPreview
-  name="message-scroller-commands"
-  previewClassName="h-auto p-4 sm:p-10"
-  hideCode
-/>
+<ComponentPreview name="message-scroller-commands" previewClassName="h-auto p-4 sm:p-10" hideCode />
 
 `scrollToMessage` targets the `messageId` on `MessageScrollerItem`, so rows that
 need to be addressable should have stable ids. `scrollToMessage` returns `false`
@@ -394,7 +382,7 @@ conversation. A common example is a table-of-contents or a jump menu that
 highlights the current anchored turn.
 
 ```tsx
-import { useMessageScrollerVisibility } from "~/components/ui/message-scroller"
+import { useMessageScrollerVisibility } from "~/components/ui/message-scroller";
 ```
 
 ```tsx
@@ -427,7 +415,7 @@ edges the viewport can still scroll toward; "at the start/end" is the negation
 scroller itself, prefer the `data-scrollable` attribute.
 
 ```tsx
-import { useMessageScrollerScrollable } from "~/components/ui/message-scroller"
+import { useMessageScrollerScrollable } from "~/components/ui/message-scroller";
 ```
 
 ```tsx
@@ -440,9 +428,9 @@ scrollable().end;
 <ComponentPreview name="message-scroller-scrollable" previewClassName="h-auto p-4 sm:p-10" />
 
 <Callout>
-  The two state hooks return Solid accessors, so read them inside a tracked
-  scope: `scrollable().end`, not `scrollable.end`. `useMessageScroller`
-  returns plain functions and needs no call.
+  The two state hooks return Solid accessors, so read them inside a tracked scope:
+  `scrollable().end`, not `scrollable.end`. `useMessageScroller` returns plain functions and needs
+  no call.
 </Callout>
 
 ## Performance
@@ -477,38 +465,33 @@ When a transcript is large enough to need virtualization, use
 rows.
 
 <Callout>
-  `@tanstack/solid-virtual` currently pins Solid 1, so this snippet shows the
-  shape of the integration and is not yet verified on Solid 2.
+  `@tanstack/solid-virtual` currently pins Solid 1, so this snippet shows the shape of the
+  integration and is not yet verified on Solid 2.
 </Callout>
 
 ```tsx showLineNumbers
-import { createVirtualizer } from "@tanstack/solid-virtual"
-import { For } from "solid-js"
+import { createVirtualizer } from "@tanstack/solid-virtual";
+import { For } from "solid-js";
 
-function VirtualizedTranscript(props: {
-  messages: Array<{ id: string; content: JSX.Element }>
-}) {
-  let viewportRef: HTMLDivElement | undefined
+function VirtualizedTranscript(props: { messages: Array<{ id: string; content: JSX.Element }> }) {
+  let viewportRef: HTMLDivElement | undefined;
 
   const virtualizer = createVirtualizer({
     get count() {
-      return props.messages.length
+      return props.messages.length;
     },
     getScrollElement: () => viewportRef ?? null,
     estimateSize: () => 86,
     getItemKey: (index) => props.messages[index]?.id ?? index,
     overscan: 8,
-  })
+  });
 
   return (
     <MessageScrollerProvider>
       <MessageScroller>
         <MessageScrollerViewport ref={(el) => (viewportRef = el)}>
           <MessageScrollerContent class="block min-h-full">
-            <div
-              class="relative w-full"
-              style={{ height: `${virtualizer.getTotalSize()}px` }}
-            >
+            <div class="relative w-full" style={{ height: `${virtualizer.getTotalSize()}px` }}>
               <For each={virtualizer.getVirtualItems()}>
                 {(virtualItem) => (
                   <div
@@ -527,7 +510,7 @@ function VirtualizedTranscript(props: {
         <MessageScrollerButton />
       </MessageScroller>
     </MessageScrollerProvider>
-  )
+  );
 }
 ```
 
@@ -565,10 +548,7 @@ your own markup and styles, import the namespace object instead of the flat
 styled parts.
 
 ```tsx
-import {
-  MessageScroller,
-  useMessageScroller,
-} from "@ptzburn/shadcn-solid/message-scroller";
+import { MessageScroller, useMessageScroller } from "@ptzburn/shadcn-solid/message-scroller";
 ```
 
 ```tsx
@@ -578,10 +558,7 @@ import {
       <MessageScroller.Content>
         <For each={messages()}>
           {(message) => (
-            <MessageScroller.Item
-              messageId={message.id}
-              scrollAnchor={message.role === "user"}
-            >
+            <MessageScroller.Item messageId={message.id} scrollAnchor={message.role === "user"}>
               {/* your message UI */}
             </MessageScroller.Item>
           )}
@@ -604,7 +581,7 @@ The headless root. It owns scroll state and the behavior props, and provides
 them to the parts and the hooks. It renders no DOM of its own.
 
 | Prop                     | Type                                | Default | Description                                                                                                                                                                          |
-| ------------------------ | ------------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ------------------------ | ----------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `autoScroll`             | `boolean`                           | `false` | Follow new content only while the reader is already at the live edge. Wheel, touch, keyboard scroll, and explicit jumps release it.                                                  |
 | `defaultScrollPosition`  | `"start" \| "end" \| "last-anchor"` | `"end"` | Opening position on the first non-empty render, applied once. `"last-anchor"` opens at the last `scrollAnchor` row and falls back to `"end"` when the turn fits or no anchor exists. |
 | `scrollEdgeThreshold`    | `number`                            | `8`     | Distance from either edge that still counts as being at the start or end. Controls state attributes and scroll button visibility.                                                    |
@@ -617,7 +594,7 @@ The frame and layout container. It fills its parent, so use it inside a
 height-constrained layout, within a `MessageScrollerProvider`.
 
 | Prop       | Type                    | Default | Description                        |
-| ---------- | ----------------------- | ------- | ----------------------------------- |
+| ---------- | ----------------------- | ------- | ---------------------------------- |
 | `...props` | `ComponentProps<"div">` | -       | Props spread to the frame element. |
 
 The root mirrors the scroll-state attributes below (the viewport carries them
@@ -625,7 +602,7 @@ too), so you can style the container by scroll state, such as edge fades on the
 frame.
 
 | Data attribute       | Value                                             | Description                                                                                            |
-| --------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| -------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `data-scrollable`    | `"start"` \| `"end"` \| `"start end"` \| _absent_ | Edges the viewport can scroll toward. Query one with `[data-scrollable~="end"]`; absent means it fits. |
 | `data-autoscrolling` | present                                           | Present while the viewport is programmatically scrolling to the latest message.                        |
 
@@ -634,7 +611,7 @@ frame.
 The scrollable viewport.
 
 | Prop                      | Type                    | Default      | Description                                                               |
-| ------------------------- | ------------------------ | ------------- | --------------------------------------------------------------------------- |
+| ------------------------- | ----------------------- | ------------ | ------------------------------------------------------------------------- |
 | `preserveScrollOnPrepend` | `boolean`               | `true`       | Keep the first visible message item stable when older rows are prepended. |
 | `role`                    | `string`                | `"region"`   | Landmark role for the labelled scrollable transcript viewport.            |
 | `aria-label`              | `string`                | `"Messages"` | Accessible name for the scrollable chat transcript.                       |
@@ -642,7 +619,7 @@ The scrollable viewport.
 | `...props`                | `ComponentProps<"div">` | -            | Props spread to the viewport element.                                     |
 
 | Data attribute       | Value                                             | Description                                                                                            |
-| --------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| -------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `data-scrollable`    | `"start"` \| `"end"` \| `"start end"` \| _absent_ | Edges the viewport can scroll toward. Query one with `[data-scrollable~="end"]`; absent means it fits. |
 | `data-autoscrolling` | present                                           | Present while the viewport is programmatically scrolling to the latest message.                        |
 
@@ -652,7 +629,7 @@ The transcript content element. Every direct child should be a
 `MessageScrollerItem`.
 
 | Prop              | Type                    | Default       | Description                                                             |
-| ------------------ | ------------------------ | -------------- | --------------------------------------------------------------------------- |
+| ----------------- | ----------------------- | ------------- | ----------------------------------------------------------------------- |
 | `role`            | `string`                | `"log"`       | ARIA role applied to the message list for live announcements.           |
 | `aria-relevant`   | `string`                | `"additions"` | Live-region updates to announce. Defaults to new transcript rows only.  |
 | `aria-busy`       | `"true" \| "false"`     | -             | Marks the live region busy while a turn streams, if needed.             |
@@ -664,13 +641,13 @@ The transcript content element. Every direct child should be a
 One transcript row: a message, marker, typing row, separator, or load-more row.
 
 | Prop           | Type                    | Default | Description                                                                    |
-| -------------- | ------------------------ | ------- | ------------------------------------------------------------------------------ |
+| -------------- | ----------------------- | ------- | ------------------------------------------------------------------------------ |
 | `messageId`    | `string`                | -       | Stable row id used by `scrollToMessage`, visibility, and prepend preservation. |
 | `scrollAnchor` | `boolean`               | `false` | Marks this row as a turn boundary that can anchor newly appended turns.        |
 | `...props`     | `ComponentProps<"div">` | -       | Props spread to the item element.                                              |
 
 | Data attribute       | Value                 | Description                        |
-| --------------------- | ---------------------- | ------------------------------------- |
+| -------------------- | --------------------- | ---------------------------------- |
 | `data-message-id`    | `string`              | Mirrors `messageId` when provided. |
 | `data-scroll-anchor` | `"true"` \| `"false"` | Mirrors `scrollAnchor`.            |
 
@@ -682,7 +659,7 @@ component renders a [`Button`](/docs/components/button); the unstyled part is
 polymorphic through `as`.
 
 | Prop        | Type                       | Default       | Description                                                              |
-| ----------- | --------------------------- | -------------- | ------------------------------------------------------------------------ |
+| ----------- | -------------------------- | ------------- | ------------------------------------------------------------------------ |
 | `behavior`  | `ScrollBehavior`           | `"smooth"`    | Native scroll behavior used when the button scrolls to its target edge.  |
 | `direction` | `"start" \| "end"`         | `"end"`       | Transcript edge the button scrolls toward.                               |
 | `variant`   | `Button` variant           | `"secondary"` | Styled component only.                                                   |
@@ -692,7 +669,7 @@ polymorphic through `as`.
 | `...props`  | `ComponentProps<"button">` | -             | Props spread to the button.                                              |
 
 | Data attribute   | Value                 | Description                               |
-| ----------------- | ----------------------- | --------------------------------------------- |
+| ---------------- | --------------------- | ----------------------------------------- |
 | `data-direction` | `"start"` \| `"end"`  | Mirrors `direction`.                      |
 | `data-active`    | `"true"` \| `"false"` | Whether this button can currently scroll. |
 
@@ -701,7 +678,7 @@ polymorphic through `as`.
 Imperative transcript controls. Returns plain functions.
 
 | Method            | Type                                       | Description                     |
-| ----------------- | -------------------------------------------- | ---------------------------------- |
+| ----------------- | ------------------------------------------ | ------------------------------- |
 | `scrollToMessage` | `(messageId: string, options?) => boolean` | Scroll to a mounted message id. |
 | `scrollToEnd`     | `(options?) => boolean`                    | Scroll to the latest message.   |
 | `scrollToStart`   | `(options?) => boolean`                    | Scroll to the top.              |
@@ -714,7 +691,7 @@ and cannot be queued.
 Command options:
 
 | Option         | Type                                              | Default                 | Description                                          |
-| -------------- | --------------------------------------------------- | -------------------------- | -------------------------------------------------------- |
+| -------------- | ------------------------------------------------- | ----------------------- | ---------------------------------------------------- |
 | `align`        | `"start"` \| `"center"` \| `"end"` \| `"nearest"` | `"start"`               | How a message target aligns in the viewport.         |
 | `behavior`     | `ScrollBehavior`                                  | `"auto"`                | Native scroll behavior for the command.              |
 | `scrollMargin` | `number`                                          | provider `scrollMargin` | Margin applied to the aligned edge for this command. |
@@ -726,7 +703,7 @@ UI that needs the values in JavaScript. Prefer the `data-scrollable` attribute
 for styling the scroller itself.
 
 | Value   | Type      | Description                                                                                                                                                                     |
-| ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `start` | `boolean` | Whether the viewport can scroll toward the start. Content is hidden above (`!start` means at the top).                                                                          |
 | `end`   | `boolean` | Whether the viewport can scroll toward the end. Content is hidden below (`!end` means at the bottom). Stays `false` while follow-output is keeping the reader at the live edge. |
 
@@ -738,7 +715,7 @@ one subscriber is mounted. Call it from a component body (it subscribes in
 `onSettled`), not from an event handler.
 
 | Value               | Type             | Description                                                                                    |
-| ------------------- | ----------------- | ---------------------------------------------------------------------------------------------------- |
+| ------------------- | ---------------- | ---------------------------------------------------------------------------------------------- |
 | `currentAnchorId`   | `string \| null` | The current anchored turn, based on the last `scrollAnchor` item at or above the reading line. |
 | `visibleMessageIds` | `string[]`       | Message ids intersecting the viewport, in document order.                                      |
 

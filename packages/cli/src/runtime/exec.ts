@@ -11,11 +11,7 @@ export class ExecError extends Error {
   readonly stderr: string;
 
   constructor(command: string, code: number | null, stderr: string) {
-    super(
-      `\`${command}\` exited with code ${code}${
-        stderr ? `:\n${stderr.trim()}` : "."
-      }`,
-    );
+    super(`\`${command}\` exited with code ${code}${stderr ? `:\n${stderr.trim()}` : "."}`);
     this.name = "ExecError";
     this.command = command;
     this.code = code;

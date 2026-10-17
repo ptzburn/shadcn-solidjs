@@ -1,7 +1,4 @@
-import {
-  NativeSelect,
-  NativeSelectOption,
-} from "~/registry/ui/native-select.tsx";
+import { NativeSelect, NativeSelectOption } from "~/registry/ui/native-select.tsx";
 
 export default function NativeSelectDisabled() {
   return (

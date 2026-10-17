@@ -7,21 +7,17 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "~/registry/ui/input-group.tsx";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "~/registry/ui/popover.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "~/registry/ui/popover.tsx";
 
 import { createSignal } from "solid-js";
 
 const formatDate = (date: Date | null) =>
   date
     ? date.toLocaleDateString("en-US", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    })
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })
     : "";
 
 const isValidDate = (date: Date) => !Number.isNaN(date.getTime());

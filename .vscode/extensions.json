@@ -1,5 +1,8 @@
 {
   "recommendations": [
-    "denoland.vscode-deno"
+    "VoidZero.vite-plus-extension-pack",
+    "bradlc.vscode-tailwindcss",
+    "antfu.iconify",
+    "anthropic.claude-code"
   ]
 }

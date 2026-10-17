@@ -35,21 +35,16 @@ function withProject(
 
 test("detects a Node project", () =>
   withProject({ "package.json": "{}" }, (dir) => {
-    expect(detectProjectTarget(dir)?.configPath).toEqual(
-      path.join(dir, "package.json"),
-    );
+    expect(detectProjectTarget(dir)?.configPath).toEqual(path.join(dir, "package.json"));
   }));
 
 test("finds the project from a nested directory", () =>
-  withProject(
-    { "package.json": "{}", "src/components/.keep": "" },
-    (dir) => {
-      const nested = path.join(dir, "src/components");
-      const target = detectProjectTarget(nested);
-      expect(target?.cwd).toEqual(nested);
-      expect(target?.configPath).toEqual(path.join(dir, "package.json"));
-    },
-  ));
+  withProject({ "package.json": "{}", "src/components/.keep": "" }, (dir) => {
+    const nested = path.join(dir, "src/components");
+    const target = detectProjectTarget(nested);
+    expect(target?.cwd).toEqual(nested);
+    expect(target?.configPath).toEqual(path.join(dir, "package.json"));
+  }));
 
 test("a deno.json alone is not a project", () =>
   withProject({ "deno.json": "{}", "src/.keep": "" }, (dir) => {
@@ -77,23 +72,18 @@ const TSCONFIG = JSON.stringify({
 });
 
 test("reads the Node alias prefix from tsconfig paths", () =>
-  withProject(
-    { "package.json": "{}", "tsconfig.json": TSCONFIG },
-    async (dir) => {
-      expect(await NodeTarget.detect(dir)!.aliasPrefix()).toEqual("@");
-    },
-  ));
+  withProject({ "package.json": "{}", "tsconfig.json": TSCONFIG }, async (dir) => {
+    expect(await NodeTarget.detect(dir)!.aliasPrefix()).toEqual("@");
+  }));
 
 test("resolves a Node aliased import to a path", () =>
-  withProject(
-    { "package.json": "{}", "tsconfig.json": TSCONFIG },
-    async (dir) => {
-      const resolved = await NodeTarget.detect(dir)!.resolveImport(
-        "@/lib/utils",
-      );
-      expect(resolved?.endsWith(path.join("src", "lib", "utils")), `unexpected resolution: ${resolved}`).toBe(true);
-    },
-  ));
+  withProject({ "package.json": "{}", "tsconfig.json": TSCONFIG }, async (dir) => {
+    const resolved = await NodeTarget.detect(dir)!.resolveImport("@/lib/utils");
+    expect(
+      resolved?.endsWith(path.join("src", "lib", "utils")),
+      `unexpected resolution: ${resolved}`,
+    ).toBe(true);
+  }));
 
 test("tolerates a tsconfig with comments", () =>
   withProject(
@@ -123,7 +113,9 @@ test("strips the extension from an import specifier", () =>
 // ------------------------------------------------------------ dependencies
 
 test("rejects a dependency that would read as a flag", () => {
-  expect(() => assertSafeSpecs(["@kobalte/core", "--registry=evil"])).toThrow(UnsafeDependencyError);
+  expect(() => assertSafeSpecs(["@kobalte/core", "--registry=evil"])).toThrow(
+    UnsafeDependencyError,
+  );
 });
 
 test("accepts ordinary dependency names", () => {
@@ -139,9 +131,8 @@ test("yarn spells the dev flag differently", () => {
 // -------------------------------------------------------- package managers
 
 test("detects the package manager from a lockfile", () =>
-  withProject(
-    { "package.json": "{}", "pnpm-lock.yaml": "" },
-    (dir) => expect(detectPackageManager(dir)).toEqual("pnpm"),
+  withProject({ "package.json": "{}", "pnpm-lock.yaml": "" }, (dir) =>
+    expect(detectPackageManager(dir)).toEqual("pnpm"),
   ));
 
 test("the packageManager field wins over a lockfile", () =>
@@ -154,8 +145,6 @@ test("the packageManager field wins over a lockfile", () =>
   ));
 
 test("inherits a lockfile from the repository root", () =>
-  withProject(
-    { "bun.lock": "", "apps/web/package.json": "{}" },
-    (dir) =>
-      expect(detectPackageManager(path.join(dir, "apps/web"))).toEqual("bun"),
+  withProject({ "bun.lock": "", "apps/web/package.json": "{}" }, (dir) =>
+    expect(detectPackageManager(path.join(dir, "apps/web"))).toEqual("bun"),
   ));

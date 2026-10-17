@@ -1,10 +1,4 @@
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldSet,
-} from "~/registry/ui/field.tsx";
+import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSet } from "~/registry/ui/field.tsx";
 import { Input } from "~/registry/ui/input.tsx";
 
 export default function FieldInput() {
@@ -14,15 +8,11 @@ export default function FieldInput() {
         <Field>
           <FieldLabel for="username">Username</FieldLabel>
           <Input id="username" type="text" placeholder="Max Leiter" />
-          <FieldDescription>
-            Choose a unique username for your account.
-          </FieldDescription>
+          <FieldDescription>Choose a unique username for your account.</FieldDescription>
         </Field>
         <Field>
           <FieldLabel for="password">Password</FieldLabel>
-          <FieldDescription>
-            Must be at least 8 characters long.
-          </FieldDescription>
+          <FieldDescription>Must be at least 8 characters long.</FieldDescription>
           <Input id="password" type="password" placeholder="••••••••" />
         </Field>
       </FieldGroup>

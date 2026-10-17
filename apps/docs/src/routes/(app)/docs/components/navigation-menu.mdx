@@ -3,11 +3,7 @@ title: Navigation Menu
 description: A collection of links for navigating websites.
 ---
 
-<ComponentPreview
-  name="navigation-menu-demo"
-  previewClassName="h-96"
-  class="overflow-visible"
-/>
+<ComponentPreview name="navigation-menu-demo" previewClassName="h-96" class="overflow-visible" />
 
 ## Installation
 
@@ -55,7 +51,7 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuTrigger,
-} from "~/components/ui/navigation-menu"
+} from "~/components/ui/navigation-menu";
 ```
 
 ```tsx showLineNumbers
@@ -129,12 +125,9 @@ itself in this mode, which means it takes over `value` — pass `value` and
 Use the `as` prop to compose a custom link component such as the router's `A`.
 
 ```tsx showLineNumbers
-import { A } from "@solidjs/router"
+import { A } from "@solidjs/router";
 
-import {
-  NavigationMenuContent,
-  NavigationMenuLink,
-} from "~/components/ui/navigation-menu"
+import { NavigationMenuContent, NavigationMenuLink } from "~/components/ui/navigation-menu";
 
 export function NavigationMenuDemo() {
   return (
@@ -143,7 +136,7 @@ export function NavigationMenuDemo() {
         Documentation
       </NavigationMenuLink>
     </NavigationMenuContent>
-  )
+  );
 }
 ```
 
@@ -158,7 +151,9 @@ opens nothing, and it renders no chevron. It already carries
 
 ```tsx showLineNumbers
 <NavigationMenu>
-  <NavigationMenuTrigger as="a" href="/docs">Docs</NavigationMenuTrigger>
+  <NavigationMenuTrigger as="a" href="/docs">
+    Docs
+  </NavigationMenuTrigger>
 </NavigationMenu>
 ```
 
@@ -175,9 +170,7 @@ wire a link's `aria-labelledby` and `aria-describedby`.
 ```tsx showLineNumbers
 <NavigationMenuLink href="/docs">
   <div class="flex flex-col gap-1 text-sm">
-    <NavigationMenuLabel class="leading-none font-medium">
-      Introduction
-    </NavigationMenuLabel>
+    <NavigationMenuLabel class="leading-none font-medium">Introduction</NavigationMenuLabel>
     <NavigationMenuDescription class="line-clamp-2 text-muted-foreground">
       Re-usable components built with Kobalte and Tailwind CSS.
     </NavigationMenuDescription>

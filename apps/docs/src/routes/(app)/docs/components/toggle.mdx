@@ -45,7 +45,7 @@ npm install @kobalte/core@2.0.0-alpha.1
 ## Usage
 
 ```tsx
-import { Toggle } from "~/components/ui/toggle"
+import { Toggle } from "~/components/ui/toggle";
 ```
 
 ```tsx
@@ -77,18 +77,18 @@ Use the `size` prop to change the size of the toggle.
 Use the `pressed` and `onChange` props to control the toggle.
 
 ```tsx showLineNumbers
-import { createSignal } from "solid-js"
+import { createSignal } from "solid-js";
 
-import { Toggle } from "~/components/ui/toggle"
+import { Toggle } from "~/components/ui/toggle";
 
 export function ToggleControlled() {
-  const [pressed, setPressed] = createSignal(false)
+  const [pressed, setPressed] = createSignal(false);
 
   return (
     <Toggle pressed={pressed()} onChange={setPressed} aria-label="Toggle bold">
       Bold
     </Toggle>
-  )
+  );
 }
 ```
 

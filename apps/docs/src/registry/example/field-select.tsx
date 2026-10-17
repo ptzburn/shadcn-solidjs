@@ -25,20 +25,14 @@ export default function FieldSelect() {
       <Select
         options={DEPARTMENTS}
         placeholder="Choose department"
-        itemComponent={(props) => (
-          <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
-        )}
+        itemComponent={(props) => <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>}
       >
         <SelectTrigger aria-label="Department">
-          <SelectValue<string>>
-            {(state) => state.selectedOption()}
-          </SelectValue>
+          <SelectValue<string>>{(state) => state.selectedOption()}</SelectValue>
         </SelectTrigger>
         <SelectContent />
       </Select>
-      <FieldDescription>
-        Select your department or area of work.
-      </FieldDescription>
+      <FieldDescription>Select your department or area of work.</FieldDescription>
     </Field>
   );
 }

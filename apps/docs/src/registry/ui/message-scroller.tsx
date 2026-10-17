@@ -34,9 +34,7 @@ const MessageScroller: Component<ComponentProps<"div">> = (props) => {
   );
 };
 
-const MessageScrollerViewport: Component<MessageScrollerViewportProps> = (
-  props,
-) => {
+const MessageScrollerViewport: Component<MessageScrollerViewportProps> = (props) => {
   const others = omit(props, "class");
   return (
     <MessageScrollerPrimitive.Viewport
@@ -50,17 +48,12 @@ const MessageScrollerViewport: Component<MessageScrollerViewportProps> = (
   );
 };
 
-const MessageScrollerContent: Component<MessageScrollerContentProps> = (
-  props,
-) => {
+const MessageScrollerContent: Component<MessageScrollerContentProps> = (props) => {
   const others = omit(props, "class");
   return (
     <MessageScrollerPrimitive.Content
       data-slot="message-scroller-content"
-      class={cn(
-        "cn-message-scroller-content flex h-max min-h-full flex-col",
-        props.class,
-      )}
+      class={cn("cn-message-scroller-content flex h-max min-h-full flex-col", props.class)}
       {...others}
     />
   );
@@ -81,31 +74,17 @@ const MessageScrollerItem: Component<MessageScrollerItemProps> = (props) => {
   );
 };
 
-type MessageScrollerButtonProps =
-  & ComponentProps<"button">
-  & Pick<ButtonProps, "variant" | "size">
-  & {
+type MessageScrollerButtonProps = ComponentProps<"button"> &
+  Pick<ButtonProps, "variant" | "size"> & {
     behavior?: ScrollBehavior;
     direction?: MessageScrollerButtonDirection;
   };
 
-const MessageScrollerButton: Component<MessageScrollerButtonProps> = (
-  props,
-) => {
-  const others = omit(
-    props,
-    "class",
-    "children",
-    "direction",
-    "variant",
-    "size",
-  );
-  const direction = (): MessageScrollerButtonDirection =>
-    props.direction ?? "end";
-  const variant = (): MessageScrollerButtonProps["variant"] =>
-    props.variant ?? "secondary";
-  const size = (): MessageScrollerButtonProps["size"] =>
-    props.size ?? "icon-sm";
+const MessageScrollerButton: Component<MessageScrollerButtonProps> = (props) => {
+  const others = omit(props, "class", "children", "direction", "variant", "size");
+  const direction = (): MessageScrollerButtonDirection => props.direction ?? "end";
+  const variant = (): MessageScrollerButtonProps["variant"] => props.variant ?? "secondary";
+  const size = (): MessageScrollerButtonProps["size"] => props.size ?? "icon-sm";
 
   return (
     <MessageScrollerPrimitive.Button
@@ -132,9 +111,7 @@ const MessageScrollerButton: Component<MessageScrollerButtonProps> = (
             ri="arrow-down-line"
             hugeicons="arrow-down-02"
           />
-          <span class="sr-only">
-            {direction() === "end" ? "Scroll to end" : "Scroll to start"}
-          </span>
+          <span class="sr-only">{direction() === "end" ? "Scroll to end" : "Scroll to start"}</span>
         </>
       )}
     </MessageScrollerPrimitive.Button>

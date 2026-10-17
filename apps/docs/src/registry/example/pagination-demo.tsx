@@ -12,9 +12,7 @@ export default function PaginationDemo() {
     <Pagination
       count={10}
       defaultPage={2}
-      itemComponent={(props) => (
-        <PaginationItem page={props.page}>{props.page}</PaginationItem>
-      )}
+      itemComponent={(props) => <PaginationItem page={props.page}>{props.page}</PaginationItem>}
       ellipsisComponent={() => <PaginationEllipsis />}
     >
       <PaginationPrevious />

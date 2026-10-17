@@ -1,37 +1,28 @@
 {
   "name": "@ptzburn/shadcn-solidjs",
   "version": "0.2.0-beta.1",
-  "type": "module",
   "description": "A CLI for adding SolidJS components to your project.",
+  "keywords": [
+    "cli",
+    "components",
+    "kobalte",
+    "shadcn",
+    "solid",
+    "solidjs",
+    "tailwind",
+    "tailwindcss",
+    "ui"
+  ],
+  "homepage": "https://v2.shadcn-solidjs.com",
+  "bugs": {
+    "url": "https://github.com/ptzburn/shadcn-solidjs/issues"
+  },
   "license": "MIT",
   "author": "ptzburn",
-  "homepage": "https://v2.shadcn-solidjs.com",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ptzburn/shadcn-solidjs.git",
     "directory": "packages/cli"
-  },
-  "bugs": {
-    "url": "https://github.com/ptzburn/shadcn-solidjs/issues"
-  },
-  "keywords": [
-    "components",
-    "ui",
-    "tailwind",
-    "tailwindcss",
-    "solid",
-    "solidjs",
-    "kobalte",
-    "shadcn",
-    "cli"
-  ],
-  "scripts": {
-    "build": "tsdown",
-    "dev": "node src/index.ts",
-    "check": "vp check",
-    "lint": "vp lint",
-    "fmt": "vp fmt",
-    "test": "vp test"
   },
   "bin": {
     "shadcn-solidjs": "./dist/index.js"
@@ -39,12 +30,18 @@
   "files": [
     "dist"
   ],
-  "engines": {
-    "node": ">=20"
-  },
+  "type": "module",
   "publishConfig": {
     "access": "public",
     "tag": "beta"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "node src/index.ts",
+    "check": "vp check",
+    "lint": "vp lint",
+    "fmt": "vp fmt",
+    "test": "vp test"
   },
   "dependencies": {
     "commander": "^15.0.0",
@@ -56,5 +53,8 @@
   "devDependencies": {
     "@types/prompts": "^2.4.9",
     "tsdown": "^0.23.1"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

@@ -25,9 +25,7 @@ export function ClaimableBalance() {
     <Card>
       <CardHeader>
         <CardDescription>Claimable Balance</CardDescription>
-        <CardTitle class="text-4xl tabular-nums">
-          ${formatCurrency(totalClaimable)}
-        </CardTitle>
+        <CardTitle class="text-4xl tabular-nums">${formatCurrency(totalClaimable)}</CardTitle>
         <Badge variant="outline">
           <span class="size-2 rounded-full bg-yellow-500" />
           Pending Setup
@@ -38,9 +36,7 @@ export function ClaimableBalance() {
           <ItemContent class="gap-3">
             <div class="flex items-center justify-between">
               <span class="text-muted-foreground text-sm">Net Royalties</span>
-              <span class="font-medium text-sm tabular-nums">
-                ${formatCurrency(netRoyalties)}
-              </span>
+              <span class="font-medium text-sm tabular-nums">${formatCurrency(netRoyalties)}</span>
             </div>
             <div class="flex items-center justify-between">
               <span class="text-muted-foreground text-sm">Processing Fee</span>
@@ -50,9 +46,7 @@ export function ClaimableBalance() {
             </div>
             <Separator />
             <div class="flex items-center justify-between">
-              <span class="text-muted-foreground text-sm">
-                Total Ready to Claim
-              </span>
+              <span class="text-muted-foreground text-sm">Total Ready to Claim</span>
               <span class="font-semibold text-sm tabular-nums">
                 ${formatCurrency(totalClaimable)} USD
               </span>
@@ -62,8 +56,8 @@ export function ClaimableBalance() {
       </CardContent>
       <CardFooter>
         <CardDescription>
-          Once your bank is connected, balances over $10.00 are automatically
-          eligible for monthly distribution on the 15th of each month.
+          Once your bank is connected, balances over $10.00 are automatically eligible for monthly
+          distribution on the 15th of each month.
         </CardDescription>
       </CardFooter>
     </Card>

@@ -16,9 +16,7 @@ const presets = [
 ];
 
 export default function CalendarPresets() {
-  const [date, setDate] = createSignal<Date | null>(
-    new Date(new Date().getFullYear(), 1, 12),
-  );
+  const [date, setDate] = createSignal<Date | null>(new Date(new Date().getFullYear(), 1, 12));
   const [focused, setFocused] = createSignal(new Date());
 
   return (

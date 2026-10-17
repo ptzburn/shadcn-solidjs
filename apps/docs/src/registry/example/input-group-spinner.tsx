@@ -42,9 +42,7 @@ export default function InputGroupSpinner() {
           />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
-          <InputGroupText class="text-muted-foreground">
-            Please wait...
-          </InputGroupText>
+          <InputGroupText class="text-muted-foreground">Please wait...</InputGroupText>
         </InputGroupAddon>
       </InputGroup>
     </div>

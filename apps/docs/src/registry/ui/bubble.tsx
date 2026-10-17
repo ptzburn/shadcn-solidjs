@@ -19,30 +19,25 @@ const BubbleGroup: Component<ComponentProps<"div">> = (props) => {
   );
 };
 
-const bubbleVariants = cva(
-  "cn-bubble group/bubble relative flex w-fit min-w-0 flex-col",
-  {
-    variants: {
-      variant: {
-        default: "cn-bubble-variant-default",
-        secondary: "cn-bubble-variant-secondary",
-        muted: "cn-bubble-variant-muted",
-        tinted: "cn-bubble-variant-tinted",
-        outline: "cn-bubble-variant-outline",
-        ghost: "cn-bubble-variant-ghost",
-        destructive: "cn-bubble-variant-destructive",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
+const bubbleVariants = cva("cn-bubble group/bubble relative flex w-fit min-w-0 flex-col", {
+  variants: {
+    variant: {
+      default: "cn-bubble-variant-default",
+      secondary: "cn-bubble-variant-secondary",
+      muted: "cn-bubble-variant-muted",
+      tinted: "cn-bubble-variant-tinted",
+      outline: "cn-bubble-variant-outline",
+      ghost: "cn-bubble-variant-ghost",
+      destructive: "cn-bubble-variant-destructive",
     },
   },
-);
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
-type BubbleProps =
-  & ComponentProps<"div">
-  & VariantProps<typeof bubbleVariants>
-  & { align?: "start" | "end" };
+type BubbleProps = ComponentProps<"div"> &
+  VariantProps<typeof bubbleVariants> & { align?: "start" | "end" };
 
 const Bubble: Component<BubbleProps> = (props) => {
   const others = omit(props, "class", "variant", "align");
@@ -97,12 +92,10 @@ const bubbleReactionsVariants = cva(
   },
 );
 
-type BubbleReactionsProps =
-  & ComponentProps<"div">
-  & {
-    align?: "start" | "end";
-    side?: "top" | "bottom";
-  };
+type BubbleReactionsProps = ComponentProps<"div"> & {
+  align?: "start" | "end";
+  side?: "top" | "bottom";
+};
 
 const BubbleReactions: Component<BubbleReactionsProps> = (props) => {
   const others = omit(props, "class", "side", "align");
@@ -111,10 +104,7 @@ const BubbleReactions: Component<BubbleReactionsProps> = (props) => {
       data-slot="bubble-reactions"
       data-align={props.align ?? "end"}
       data-side={props.side ?? "bottom"}
-      class={cn(
-        bubbleReactionsVariants({ side: props.side, align: props.align }),
-        props.class,
-      )}
+      class={cn(bubbleReactionsVariants({ side: props.side, align: props.align }), props.class)}
       {...others}
     />
   );

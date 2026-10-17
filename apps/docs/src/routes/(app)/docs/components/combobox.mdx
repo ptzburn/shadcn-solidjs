@@ -52,11 +52,11 @@ import {
   ComboboxInput,
   ComboboxItem,
   ComboboxList,
-} from "~/components/ui/combobox"
+} from "~/components/ui/combobox";
 ```
 
 ```tsx showLineNumbers
-const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
 export function ExampleCombobox() {
   return (
@@ -73,7 +73,7 @@ export function ExampleCombobox() {
         <ComboboxList />
       </ComboboxContent>
     </Combobox>
-  )
+  );
 }
 ```
 
@@ -146,18 +146,18 @@ import {
   ComboboxInput,
   ComboboxItem,
   ComboboxList,
-} from "~/components/ui/combobox"
+} from "~/components/ui/combobox";
 
 type Framework = {
-  label: string
-  value: string
-}
+  label: string;
+  value: string;
+};
 
 const frameworks: Framework[] = [
   { label: "Next.js", value: "next" },
   { label: "SvelteKit", value: "sveltekit" },
   { label: "Nuxt", value: "nuxt" },
-]
+];
 
 export function ExampleComboboxCustomItems() {
   return (
@@ -168,9 +168,7 @@ export function ExampleComboboxCustomItems() {
       optionLabel="label"
       allowsEmptyCollection
       itemComponent={(props) => (
-        <ComboboxItem item={props.item}>
-          {props.item.rawValue.label}
-        </ComboboxItem>
+        <ComboboxItem item={props.item}>{props.item.rawValue.label}</ComboboxItem>
       )}
     >
       <ComboboxInput placeholder="Select a framework" />
@@ -179,7 +177,7 @@ export function ExampleComboboxCustomItems() {
         <ComboboxList />
       </ComboboxContent>
     </Combobox>
-  )
+  );
 }
 ```
 
@@ -188,7 +186,7 @@ export function ExampleComboboxCustomItems() {
 Use `multiple` with chips for multi-select behavior.
 
 ```tsx showLineNumbers
-import { For } from "solid-js"
+import { For } from "solid-js";
 
 import {
   Combobox,
@@ -199,9 +197,9 @@ import {
   ComboboxEmpty,
   ComboboxItem,
   ComboboxList,
-} from "~/components/ui/combobox"
+} from "~/components/ui/combobox";
 
-const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
 export function ExampleComboboxMultiple() {
   return (
@@ -218,9 +216,7 @@ export function ExampleComboboxMultiple() {
           <>
             <For each={state.selectedOptions()}>
               {(option) => (
-                <ComboboxChip onRemove={() => state.remove(option)}>
-                  {option}
-                </ComboboxChip>
+                <ComboboxChip onRemove={() => state.remove(option)}>{option}</ComboboxChip>
               )}
             </For>
             <ComboboxChipsInput placeholder="Add framework" />
@@ -232,7 +228,7 @@ export function ExampleComboboxMultiple() {
         <ComboboxList />
       </ComboboxContent>
     </Combobox>
-  )
+  );
 }
 ```
 

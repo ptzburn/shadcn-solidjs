@@ -8,13 +8,7 @@ import {
   CardTitle,
 } from "~/registry/ui/card.tsx";
 
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemGroup,
-  ItemTitle,
-} from "~/registry/ui/item.tsx";
+import { Item, ItemContent, ItemDescription, ItemGroup, ItemTitle } from "~/registry/ui/item.tsx";
 import IconCancel01 from "~icons/hugeicons/cancel-01";
 import { For } from "solid-js";
 
@@ -88,9 +82,7 @@ export function DividendIncome() {
         <ItemGroup>
           <For each={HOLDINGS}>
             {(holding) => {
-              const peak = Math.max(
-                ...holding.data.map((point) => point.value),
-              );
+              const peak = Math.max(...holding.data.map((point) => point.value));
               return (
                 <Item role="listitem" variant="muted">
                   <ItemContent>

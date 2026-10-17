@@ -9,14 +9,7 @@ import { children, omit, Show } from "solid-js";
 
 const Breadcrumb: Component<ComponentProps<"nav">> = (props) => {
   const others = omit(props, "class");
-  return (
-    <nav
-      aria-label="breadcrumb"
-      data-slot="breadcrumb"
-      class={cn(props.class)}
-      {...others}
-    />
-  );
+  return <nav aria-label="breadcrumb" data-slot="breadcrumb" class={cn(props.class)} {...others} />;
 };
 
 const BreadcrumbList: Component<ComponentProps<"ol">> = (props) => {
@@ -24,10 +17,7 @@ const BreadcrumbList: Component<ComponentProps<"ol">> = (props) => {
   return (
     <ol
       data-slot="breadcrumb-list"
-      class={cn(
-        "cn-breadcrumb-list wrap-break-word flex flex-wrap items-center",
-        props.class,
-      )}
+      class={cn("cn-breadcrumb-list wrap-break-word flex flex-wrap items-center", props.class)}
       {...others}
     />
   );
@@ -44,9 +34,9 @@ const BreadcrumbItem: Component<ComponentProps<"li">> = (props) => {
   );
 };
 
-type BreadcrumbLinkProps<T extends ValidComponent = "a"> =
-  & ComponentProps<"a">
-  & { class?: string | undefined };
+type BreadcrumbLinkProps<T extends ValidComponent = "a"> = ComponentProps<"a"> & {
+  class?: string | undefined;
+};
 
 const BreadcrumbLink = <T extends ValidComponent = "a">(
   props: PolymorphicProps<T, BreadcrumbLinkProps<T>>,
@@ -112,10 +102,7 @@ const BreadcrumbEllipsis: Component<ComponentProps<"span">> = (props) => {
       data-slot="breadcrumb-ellipsis"
       role="presentation"
       aria-hidden="true"
-      class={cn(
-        "cn-breadcrumb-ellipsis flex items-center justify-center",
-        props.class,
-      )}
+      class={cn("cn-breadcrumb-ellipsis flex items-center justify-center", props.class)}
       {...others}
     >
       <IconPlaceholder

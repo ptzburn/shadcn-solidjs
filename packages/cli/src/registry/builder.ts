@@ -47,12 +47,7 @@ function normalizeRegistryConfigItem(item: RegistryConfigItem): {
   return typeof item === "string" ? { url: item } : item;
 }
 
-function applyTemplate(
-  template: string,
-  item: string,
-  iconLibrary: string,
-  style: string,
-): string {
+function applyTemplate(template: string, item: string, iconLibrary: string, style: string): string {
   return template
     .replaceAll("{name}", item)
     .replaceAll("{iconLibrary}", iconLibrary)
@@ -76,19 +71,14 @@ function appendParams(url: string, params?: Record<string, string>): string {
  * are already concrete (a raw URL or a local file), which the fetcher handles
  * directly.
  */
-export function buildItemUrl(
-  address: ItemAddress,
-  options: BuildUrlOptions = {},
-): BuiltUrl | null {
+export function buildItemUrl(address: ItemAddress, options: BuildUrlOptions = {}): BuiltUrl | null {
   if (address.kind === "url" || address.kind === "file") {
     return null;
   }
 
   const iconLibrary = options.iconLibrary ?? DEFAULT_ICON_LIBRARY;
   const style = options.style ?? DEFAULT_STYLE;
-  const registryName = address.kind === "namespace"
-    ? address.registry
-    : DEFAULT_REGISTRY;
+  const registryName = address.kind === "namespace" ? address.registry : DEFAULT_REGISTRY;
   const item = address.kind === "namespace" ? address.item : address.name;
 
   const registries: Record<string, RegistryConfigItem> = {
@@ -102,9 +92,7 @@ export function buildItemUrl(
   }
 
   const { url, params, headers } = normalizeRegistryConfigItem(configured);
-  const templated = expandEnvVars(
-    applyTemplate(url, item, iconLibrary, style),
-  );
+  const templated = expandEnvVars(applyTemplate(url, item, iconLibrary, style));
 
   const resolvedHeaders: Record<string, string> = {};
   for (const [key, value] of Object.entries(headers ?? {})) {
@@ -115,16 +103,11 @@ export function buildItemUrl(
 
   return {
     url: appendParams(templated, params),
-    headers: Object.keys(resolvedHeaders).length > 0
-      ? resolvedHeaders
-      : undefined,
+    headers: Object.keys(resolvedHeaders).length > 0 ? resolvedHeaders : undefined,
   };
 }
 
 /** Convenience wrapper for the common "string in, URL out" case. */
-export function buildUrlForItem(
-  address: string,
-  options: BuildUrlOptions = {},
-): BuiltUrl | null {
+export function buildUrlForItem(address: string, options: BuildUrlOptions = {}): BuiltUrl | null {
   return buildItemUrl(resolveItemAddress(address), options);
 }

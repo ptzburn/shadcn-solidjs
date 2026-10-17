@@ -1,11 +1,6 @@
 import * as DrawerPrimitive from "@kobalte/core/drawer";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import {
-  type ComponentProps,
-  type JSX,
-  Portal,
-  type ValidComponent,
-} from "@solidjs/web";
+import { type ComponentProps, type JSX, Portal, type ValidComponent } from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
 import type { Component } from "solid-js";
 
@@ -15,38 +10,25 @@ const Drawer = DrawerPrimitive.Root;
 const DrawerPortal = Portal;
 
 type DrawerTriggerProps<T extends ValidComponent = "button"> =
-  & DrawerPrimitive.DrawerTriggerProps<T>
-  & { class?: string | undefined };
+  DrawerPrimitive.DrawerTriggerProps<T> & { class?: string | undefined };
 
 const DrawerTrigger = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, DrawerTriggerProps<T>>,
 ) => {
-  return (
-    <DrawerPrimitive.Trigger
-      data-slot="drawer-trigger"
-      {...(props as DrawerTriggerProps)}
-    />
-  );
+  return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...(props as DrawerTriggerProps)} />;
 };
 
 type DrawerCloseProps<T extends ValidComponent = "button"> =
-  & DrawerPrimitive.DrawerCloseButtonProps<T>
-  & { class?: string | undefined };
+  DrawerPrimitive.DrawerCloseButtonProps<T> & { class?: string | undefined };
 
 const DrawerClose = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, DrawerCloseProps<T>>,
 ) => {
-  return (
-    <DrawerPrimitive.CloseButton
-      data-slot="drawer-close"
-      {...(props as DrawerCloseProps)}
-    />
-  );
+  return <DrawerPrimitive.CloseButton data-slot="drawer-close" {...(props as DrawerCloseProps)} />;
 };
 
 type DrawerOverlayProps<T extends ValidComponent = "div"> =
-  & DrawerPrimitive.DrawerOverlayProps<T>
-  & { class?: string | undefined };
+  DrawerPrimitive.DrawerOverlayProps<T> & { class?: string | undefined };
 
 const DrawerOverlay = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, DrawerOverlayProps<T>>,
@@ -66,8 +48,7 @@ const DrawerOverlay = <T extends ValidComponent = "div">(
 };
 
 type DrawerContentProps<T extends ValidComponent = "div"> =
-  & DrawerPrimitive.DrawerContentProps<T>
-  & {
+  DrawerPrimitive.DrawerContentProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
   };
@@ -120,9 +101,9 @@ const DrawerFooter: Component<ComponentProps<"div">> = (props) => {
   );
 };
 
-type DrawerTitleProps<T extends ValidComponent = "h2"> =
-  & DrawerPrimitive.DrawerTitleProps<T>
-  & { class?: string | undefined };
+type DrawerTitleProps<T extends ValidComponent = "h2"> = DrawerPrimitive.DrawerTitleProps<T> & {
+  class?: string | undefined;
+};
 
 const DrawerTitle = <T extends ValidComponent = "h2">(
   props: PolymorphicProps<T, DrawerTitleProps<T>>,
@@ -132,18 +113,14 @@ const DrawerTitle = <T extends ValidComponent = "h2">(
   return (
     <DrawerPrimitive.Title
       data-slot="drawer-title"
-      class={cn(
-        "cn-drawer-title font-heading",
-        local.class,
-      )}
+      class={cn("cn-drawer-title font-heading", local.class)}
       {...rest}
     />
   );
 };
 
 type DrawerDescriptionProps<T extends ValidComponent = "p"> =
-  & DrawerPrimitive.DrawerDescriptionProps<T>
-  & { class?: string | undefined };
+  DrawerPrimitive.DrawerDescriptionProps<T> & { class?: string | undefined };
 
 const DrawerDescription = <T extends ValidComponent = "p">(
   props: PolymorphicProps<T, DrawerDescriptionProps<T>>,

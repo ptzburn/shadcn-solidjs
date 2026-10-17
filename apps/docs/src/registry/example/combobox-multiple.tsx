@@ -29,9 +29,7 @@ export default function ComboboxMultiple() {
           <>
             <For each={state.selectedOptions()}>
               {(option) => (
-                <ComboboxChip onRemove={() => state.remove(option)}>
-                  {option}
-                </ComboboxChip>
+                <ComboboxChip onRemove={() => state.remove(option)}>{option}</ComboboxChip>
               )}
             </For>
             <ComboboxChipsInput />

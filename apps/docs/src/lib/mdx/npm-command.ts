@@ -71,36 +71,28 @@ function packageManagerVariants(command: string): CommandVariants | undefined {
  */
 export default function remarkNpmCommand() {
   return function (tree: Node) {
-    visit(
-      tree,
-      "code",
-      (
-        node: CodeNode,
-        index: number | undefined,
-        parent: Parent | undefined,
-      ) => {
-        if (!parent || index === undefined || node.lang !== "bash") {
-          return;
-        }
-        const command = node.value.trim();
-        if (!/^(npm|npx)\s[^\n]*$/.test(command)) {
-          return;
-        }
-        const variants = packageManagerVariants(command);
-        if (!variants) {
-          return;
-        }
-        parent.children[index] = {
-          type: "mdxJsxFlowElement",
-          name: "CodeBlockCommand",
-          attributes: Object.entries(variants).map(([name, value]) => ({
-            type: "mdxJsxAttribute",
-            name,
-            value,
-          })),
-          children: [],
-        } as unknown as Node;
-      },
-    );
+    visit(tree, "code", (node: CodeNode, index: number | undefined, parent: Parent | undefined) => {
+      if (!parent || index === undefined || node.lang !== "bash") {
+        return;
+      }
+      const command = node.value.trim();
+      if (!/^(npm|npx)\s[^\n]*$/.test(command)) {
+        return;
+      }
+      const variants = packageManagerVariants(command);
+      if (!variants) {
+        return;
+      }
+      parent.children[index] = {
+        type: "mdxJsxFlowElement",
+        name: "CodeBlockCommand",
+        attributes: Object.entries(variants).map(([name, value]) => ({
+          type: "mdxJsxAttribute",
+          name,
+          value,
+        })),
+        children: [],
+      } as unknown as Node;
+    });
   };
 }

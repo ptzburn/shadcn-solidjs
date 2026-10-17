@@ -18,9 +18,7 @@ function generateConfig(jsx: boolean): UserConfig {
     },
     outExtensions: () => (jsx ? { js: ".jsx" } : {}),
     inputOptions: jsx ? { transform: { jsx: "preserve" } } : undefined,
-    plugins: jsx
-      ? []
-      : [solid({ solid: { generate: "dom", moduleName: "@solidjs/web" } })],
+    plugins: jsx ? [] : [solid({ solid: { generate: "dom", moduleName: "@solidjs/web" } })],
   };
 }
 

@@ -32,10 +32,7 @@ export function PageHeaderDescription(props: ComponentProps<"p">) {
   const others = omit(props, "class");
   return (
     <p
-      class={cn(
-        "max-w-4xl text-balance text-base text-foreground sm:text-lg",
-        props.class,
-      )}
+      class={cn("max-w-4xl text-balance text-base text-foreground sm:text-lg", props.class)}
       {...others}
     />
   );

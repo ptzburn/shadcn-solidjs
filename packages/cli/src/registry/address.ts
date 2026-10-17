@@ -29,9 +29,7 @@ export function isLocalFile(value: string): boolean {
 }
 
 /** Splits `@acme/button` into its registry and item halves. */
-export function parseNamespace(
-  value: string,
-): { registry: string; item: string } | null {
+export function parseNamespace(value: string): { registry: string; item: string } | null {
   const match = value.match(NAMESPACE_RE);
   if (!match) return null;
   return { registry: match[1], item: match[2] };

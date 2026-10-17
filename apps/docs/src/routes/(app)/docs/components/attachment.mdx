@@ -53,10 +53,9 @@ npx @ptzburn/shadcn-solidjs@beta add button
 </CodeTabs>
 
 <Callout>
-  `AttachmentTitle` shimmers while the attachment is `uploading` or
-  `processing`, and `AttachmentGroup` fades its scroll edges. Both rely on the
-  `shimmer` and `scroll-fade-x` utilities in your global CSS — see
-  [Utilities](#utilities) below.
+  `AttachmentTitle` shimmers while the attachment is `uploading` or `processing`, and
+  `AttachmentGroup` fades its scroll edges. Both rely on the `shimmer` and `scroll-fade-x` utilities
+  in your global CSS — see [Utilities](#utilities) below.
 </Callout>
 
 ## Usage
@@ -70,7 +69,7 @@ import {
   AttachmentDescription,
   AttachmentMedia,
   AttachmentTitle,
-} from "~/components/ui/attachment"
+} from "~/components/ui/attachment";
 ```
 
 ```tsx
@@ -156,10 +155,7 @@ Add an `AttachmentTrigger` to make the whole card open a link or dialog. It fill
 <Dialog>
   <Attachment>
     {/* media, content, actions */}
-    <DialogTrigger
-      as={AttachmentTrigger}
-      aria-label="Preview research-summary.pdf"
-    />
+    <DialogTrigger as={AttachmentTrigger} aria-label="Preview research-summary.pdf" />
   </Attachment>
   <DialogContent>{/* ... */}</DialogContent>
 </Dialog>

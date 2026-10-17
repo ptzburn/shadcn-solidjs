@@ -6,8 +6,7 @@ import { cn } from "~/lib/utils.ts";
 import { omit } from "solid-js";
 
 type SeparatorRootProps<T extends ValidComponent = "div"> =
-  & SeparatorPrimitive.SeparatorRootProps<T>
-  & {
+  SeparatorPrimitive.SeparatorRootProps<T> & {
     class?: string | undefined;
     decorative?: boolean | undefined;
   };
@@ -25,9 +24,7 @@ const Separator = <T extends ValidComponent = "div">(
       data-slot="separator"
       data-orientation={orientation()}
       role={decorative() ? "none" : "separator"}
-      aria-orientation={!decorative() && orientation() === "vertical"
-        ? "vertical"
-        : undefined}
+      aria-orientation={!decorative() && orientation() === "vertical" ? "vertical" : undefined}
       class={cn(
         "shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch",
         local.class,

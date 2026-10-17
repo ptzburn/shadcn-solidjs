@@ -21,8 +21,7 @@ const components: { title: string; href: string; description: string }[] = [
   {
     title: "Hover Card",
     href: "/docs/components/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
+    description: "For sighted users to preview content available behind a link.",
   },
   {
     title: "Progress",
@@ -67,9 +66,7 @@ export default function NavigationMenuDemo() {
         </NavigationMenuContent>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <NavigationMenuTrigger class="hidden md:inline-flex">
-          Components
-        </NavigationMenuTrigger>
+        <NavigationMenuTrigger class="hidden md:inline-flex">Components</NavigationMenuTrigger>
         <NavigationMenuContent class="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
           <For each={components}>
             {(component) => (
@@ -87,17 +84,11 @@ export default function NavigationMenuDemo() {
   );
 }
 
-function ListItem(props: {
-  title: string;
-  href: string;
-  children: JSX.Element;
-}) {
+function ListItem(props: { title: string; href: string; children: JSX.Element }) {
   return (
     <NavigationMenuLink href={props.href}>
       <div class="flex flex-col gap-1 text-sm">
-        <NavigationMenuLabel class="font-medium leading-none">
-          {props.title}
-        </NavigationMenuLabel>
+        <NavigationMenuLabel class="font-medium leading-none">{props.title}</NavigationMenuLabel>
         <NavigationMenuDescription class="line-clamp-2 text-muted-foreground">
           {props.children}
         </NavigationMenuDescription>

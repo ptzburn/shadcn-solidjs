@@ -46,18 +46,17 @@ export default defineConfig({
 
 function reportNextSteps(result: InitResult, cwd: string): void {
   logger.log();
-  logger.success(
-    `Wrote ${path.relative(cwd, result.configPath) || "components.json"}`,
-  );
+  logger.success(`Wrote ${path.relative(cwd, result.configPath) || "components.json"}`);
   logger.success(`Updated ${path.relative(cwd, result.cssPath)}`);
 
   if (result.needsIconPlugin) {
     logger.log();
     logger.warn(
       result.viteConfigPath
-        ? `Components use \`~icons/…\` imports. Register unplugin-icons in ${
-          path.relative(cwd, result.viteConfigPath)
-        }:`
+        ? `Components use \`~icons/…\` imports. Register unplugin-icons in ${path.relative(
+            cwd,
+            result.viteConfigPath,
+          )}:`
         : "Components use `~icons/…` imports. Register unplugin-icons in your Vite config:",
     );
     logger.log();
@@ -128,10 +127,7 @@ async function promptForOptions(
 export const init = new Command()
   .name("init")
   .description("initialize your project and install dependencies")
-  .option(
-    "-c, --cwd <cwd>",
-    "the working directory. defaults to the current directory.",
-  )
+  .option("-c, --cwd <cwd>", "the working directory. defaults to the current directory.")
   .option("-y, --yes", "skip confirmation prompt.", false)
   .option("-d, --defaults", "use default configuration.", false)
   .option("-f, --force", "force overwrite of existing configuration.", false)
@@ -147,9 +143,7 @@ export const init = new Command()
 
       const target = detectProjectTarget(cwd);
       if (!target) {
-        throw new InitError(
-          `Could not find a package.json above ${cwd}.`,
-        );
+        throw new InitError(`Could not find a package.json above ${cwd}.`);
       }
 
       if (options.baseColor && !options.baseColor.trim()) {
@@ -163,15 +157,11 @@ export const init = new Command()
       const { baseColor, iconLibrary, style } = await promptForOptions(options);
       if (!isIconLibrary(iconLibrary)) {
         throw new InitError(
-          `Unknown icon library "${iconLibrary}". Choose one of: ${
-            ICON_LIBRARY_NAMES.join(", ")
-          }.`,
+          `Unknown icon library "${iconLibrary}". Choose one of: ${ICON_LIBRARY_NAMES.join(", ")}.`,
         );
       }
       if (!isStyle(style)) {
-        throw new InitError(
-          `Unknown style "${style}". Choose one of: ${STYLE_NAMES.join(", ")}.`,
-        );
+        throw new InitError(`Unknown style "${style}". Choose one of: ${STYLE_NAMES.join(", ")}.`);
       }
 
       const result = await initProject(cwd, target, {

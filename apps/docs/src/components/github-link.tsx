@@ -32,11 +32,7 @@ function StarsCount() {
       const json = await response.json();
       const count = json.stargazers_count;
       if (typeof count === "number") {
-        setStars(
-          count >= 1000
-            ? `${Math.round(count / 1000)}k`
-            : count.toLocaleString(),
-        );
+        setStars(count >= 1000 ? `${Math.round(count / 1000)}k` : count.toLocaleString());
       }
     } catch {
       // Leave the skeleton in place when the request fails.
@@ -44,15 +40,16 @@ function StarsCount() {
   };
 
   // Effects only run on the client, standing in for Solid 1's onMount.
-  createEffect(() => {}, () => {
-    void fetchStars();
-  });
+  createEffect(
+    () => {},
+    () => {
+      void fetchStars();
+    },
+  );
 
   return (
     <Show when={stars()} fallback={<Skeleton class="h-4 w-8" />}>
-      <span class="w-fit text-muted-foreground text-xs tabular-nums">
-        {stars()}
-      </span>
+      <span class="w-fit text-muted-foreground text-xs tabular-nums">{stars()}</span>
     </Show>
   );
 }

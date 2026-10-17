@@ -12,9 +12,7 @@ export default function FieldFieldset() {
   return (
     <FieldSet class="w-full max-w-sm">
       <FieldLegend>Address Information</FieldLegend>
-      <FieldDescription>
-        We need your address to deliver your order.
-      </FieldDescription>
+      <FieldDescription>We need your address to deliver your order.</FieldDescription>
       <FieldGroup>
         <Field>
           <FieldLabel for="street">Street Address</FieldLabel>

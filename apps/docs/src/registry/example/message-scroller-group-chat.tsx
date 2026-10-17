@@ -19,16 +19,8 @@ import {
   MessageScrollerProvider,
   MessageScrollerViewport,
 } from "~/registry/ui/message-scroller.tsx";
-import {
-  Message,
-  MessageContent,
-  MessageHeader,
-} from "~/registry/ui/message.tsx";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/registry/ui/tooltip.tsx";
+import { Message, MessageContent, MessageHeader } from "~/registry/ui/message.tsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/registry/ui/tooltip.tsx";
 import { createMemo, createSignal, For, Show } from "solid-js";
 
 const currentUser = "Grace";
@@ -39,16 +31,14 @@ const initialItems = [
     type: "message",
     sender: "Grace",
     role: "participant",
-    text:
-      "@mary, the astrophage line keeps matching Venus energy output. Can you check my math?",
+    text: "@mary, the astrophage line keeps matching Venus energy output. Can you check my math?",
   },
   {
     id: "group-2",
     type: "message",
     sender: "Mary (Agent)",
     role: "assistant",
-    text:
-      "Yes. Confirmed. The curve points to a microorganism harvesting stellar energy and breeding near carbon dioxide. If @rocky agrees, this is the clue we need.",
+    text: "Yes. Confirmed. The curve points to a microorganism harvesting stellar energy and breeding near carbon dioxide. If @rocky agrees, this is the clue we need.",
   },
   {
     id: "group-3",
@@ -72,40 +62,36 @@ const rockyMessage = {
   type: "message",
   sender: "Rocky",
   role: "participant",
-  text:
-    "Amaze. Astrophage eats light, makes heat, goes to carbon dioxide. Rocky has fuel model. Grace is smart.",
+  text: "Amaze. Astrophage eats light, makes heat, goes to carbon dioxide. Rocky has fuel model. Grace is smart.",
 } satisfies GroupChatItem;
 
 type GroupChatItem =
   | {
-    id: string;
-    type: "event";
-    text: string;
-    scrollAnchor?: boolean;
-  }
+      id: string;
+      type: "event";
+      text: string;
+      scrollAnchor?: boolean;
+    }
   | {
-    id: string;
-    type: "message";
-    sender: string;
-    role: "assistant" | "participant";
-    text: string;
-    scrollAnchor?: boolean;
-  };
+      id: string;
+      type: "message";
+      sender: string;
+      role: "assistant" | "participant";
+      text: string;
+      scrollAnchor?: boolean;
+    };
 
 export default function MessageScrollerGroupChat() {
   const [demoKey, setDemoKey] = createSignal(1);
-  const [rockyTurn, setRockyTurn] = createSignal<
-    "idle" | "marker" | "message"
-  >("idle");
+  const [rockyTurn, setRockyTurn] = createSignal<"idle" | "marker" | "message">("idle");
   const items = createMemo((): GroupChatItem[] =>
     rockyTurn() === "message"
       ? [...initialItems, rockyMarker, rockyMessage]
       : rockyTurn() === "marker"
-      ? [...initialItems, rockyMarker]
-      : initialItems
+        ? [...initialItems, rockyMarker]
+        : initialItems,
   );
-  const buttonLabel = () =>
-    rockyTurn() === "idle" ? "Add Rocky" : "Send Message as Rocky";
+  const buttonLabel = () => (rockyTurn() === "idle" ? "Add Rocky" : "Send Message as Rocky");
   const isComplete = () => rockyTurn() === "message";
 
   return (
@@ -115,8 +101,8 @@ export default function MessageScrollerGroupChat() {
           <CardHeader class="gap-1 border-b">
             <CardTitle>Group Chat</CardTitle>
             <CardDescription>
-              A group chat with several participants and an assistant. The
-              Marker is marked as a turn.
+              A group chat with several participants and an assistant. The Marker is marked as a
+              turn.
             </CardDescription>
             <CardAction>
               <Tooltip>
@@ -154,14 +140,12 @@ export default function MessageScrollerGroupChat() {
                       <MessageScrollerContent class="p-(--card-spacing)">
                         <For each={items()}>
                           {(item) =>
-                            item.type === "message"
-                              ? <GroupChatMessage item={item} />
-                              : (
-                                <GroupChatMarker
-                                  item={item}
-                                  scrollAnchor={item.scrollAnchor}
-                                />
-                              )}
+                            item.type === "message" ? (
+                              <GroupChatMessage item={item} />
+                            ) : (
+                              <GroupChatMarker item={item} scrollAnchor={item.scrollAnchor} />
+                            )
+                          }
                         </For>
                       </MessageScrollerContent>
                     </MessageScrollerViewport>
@@ -175,8 +159,7 @@ export default function MessageScrollerGroupChat() {
             <Button
               type="button"
               disabled={isComplete()}
-              onClick={() =>
-                setRockyTurn((turn) => turn === "idle" ? "marker" : "message")}
+              onClick={() => setRockyTurn((turn) => (turn === "idle" ? "marker" : "message"))}
               class="w-full"
               variant="secondary"
             >
@@ -190,30 +173,21 @@ export default function MessageScrollerGroupChat() {
           </CardFooter>
         </Card>
         <div class="mx-auto max-w-sm text-balance px-0.5 text-center text-muted-foreground text-xs">
-          When a user joins, a marker is created. scrollAnchor on the marker
-          marks it as the next turn
+          When a user joins, a marker is created. scrollAnchor on the marker marks it as the next
+          turn
         </div>
       </div>
     </MessageScrollerProvider>
   );
 }
 
-function GroupChatMessage(
-  props: { item: Extract<GroupChatItem, { type: "message" }> },
-) {
+function GroupChatMessage(props: { item: Extract<GroupChatItem, { type: "message" }> }) {
   const isCurrentUser = () => props.item.sender === currentUser;
   const variant = () =>
-    isCurrentUser()
-      ? "muted"
-      : props.item.role === "assistant"
-      ? "ghost"
-      : "tinted";
+    isCurrentUser() ? "muted" : props.item.role === "assistant" ? "ghost" : "tinted";
 
   return (
-    <MessageScrollerItem
-      messageId={props.item.id}
-      scrollAnchor={props.item.scrollAnchor}
-    >
+    <MessageScrollerItem messageId={props.item.id} scrollAnchor={props.item.scrollAnchor}>
       <Message align={isCurrentUser() ? "end" : "start"}>
         <MessageContent>
           <Show when={!isCurrentUser()}>
@@ -228,12 +202,10 @@ function GroupChatMessage(
   );
 }
 
-function GroupChatMarker(
-  props: {
-    item: Extract<GroupChatItem, { type: "event" }>;
-    scrollAnchor?: boolean;
-  },
-) {
+function GroupChatMarker(props: {
+  item: Extract<GroupChatItem, { type: "event" }>;
+  scrollAnchor?: boolean;
+}) {
   return (
     <MessageScrollerItem scrollAnchor={props.scrollAnchor ?? false}>
       <Marker variant="separator">

@@ -33,10 +33,7 @@ const chartConfig = {
 export default function ChartExampleGrid() {
   return (
     <ChartContainer config={chartConfig} class="min-h-[200px] w-full">
-      <BarChart
-        data={chartData}
-        options={{ scales: { y: { grid: { display: true } } } }}
-      />
+      <BarChart data={chartData} options={{ scales: { y: { grid: { display: true } } } }} />
     </ChartContainer>
   );
 }

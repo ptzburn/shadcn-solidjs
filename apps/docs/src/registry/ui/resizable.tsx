@@ -6,9 +6,9 @@ import { cn } from "~/lib/utils.ts";
 
 import { omit, Show } from "solid-js";
 
-type ResizableProps<T extends ValidComponent = "div"> =
-  & ResizablePrimitive.RootProps<T>
-  & { class?: string | undefined };
+type ResizableProps<T extends ValidComponent = "div"> = ResizablePrimitive.RootProps<T> & {
+  class?: string | undefined;
+};
 
 const Resizable = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ResizableProps<T>>,
@@ -27,9 +27,9 @@ const Resizable = <T extends ValidComponent = "div">(
   );
 };
 
-type ResizablePanelProps<T extends ValidComponent = "div"> =
-  & ResizablePrimitive.PanelProps<T>
-  & { class?: string | undefined };
+type ResizablePanelProps<T extends ValidComponent = "div"> = ResizablePrimitive.PanelProps<T> & {
+  class?: string | undefined;
+};
 
 const ResizablePanel = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ResizablePanelProps<T>>,
@@ -46,8 +46,7 @@ const ResizablePanel = <T extends ValidComponent = "div">(
 };
 
 type ResizableHandleProps<T extends ValidComponent = "button"> =
-  & ResizablePrimitive.HandleProps<T>
-  & {
+  ResizablePrimitive.HandleProps<T> & {
     class?: string | undefined;
     withHandle?: boolean;
   };

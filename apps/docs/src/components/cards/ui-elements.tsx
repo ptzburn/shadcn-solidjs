@@ -32,17 +32,8 @@ import {
   InputGroupText,
 } from "~/registry/ui/input-group.tsx";
 import { Label } from "~/registry/ui/label.tsx";
-import {
-  RadioGroup,
-  RadioGroupItem,
-  RadioGroupItemLabel,
-} from "~/registry/ui/radio-group.tsx";
-import {
-  Switch,
-  SwitchControl,
-  SwitchLabel,
-  SwitchThumb,
-} from "~/registry/ui/switch.tsx";
+import { RadioGroup, RadioGroupItem, RadioGroupItemLabel } from "~/registry/ui/radio-group.tsx";
+import { Switch, SwitchControl, SwitchLabel, SwitchThumb } from "~/registry/ui/switch.tsx";
 import { Textarea } from "~/registry/ui/textarea.tsx";
 import IconArrowRight02 from "~icons/hugeicons/arrow-right-02";
 import IconArrowUp01 from "~icons/hugeicons/arrow-up-01";
@@ -110,25 +101,20 @@ export function UIElements() {
             <SwitchControl>
               <SwitchThumb />
             </SwitchControl>
-            <SwitchLabel class="sr-only">
-              Enable compact notifications
-            </SwitchLabel>
+            <SwitchLabel class="sr-only">Enable compact notifications</SwitchLabel>
           </Switch>
         </div>
         <div class="flex items-center gap-4">
           <AlertDialog>
             <AlertDialogTrigger as={Button} variant="outline">
-              <span class="hidden md:flex style-sera:md:hidden">
-                Alert Dialog
-              </span>
+              <span class="hidden md:flex style-sera:md:hidden">Alert Dialog</span>
               <span class="flex md:hidden style-sera:md:flex">Dialog</span>
             </AlertDialogTrigger>
             <AlertDialogContent size="sm" class="theme-neutral">
               <AlertDialogHeader>
                 <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  Do you want to allow the USB accessory to connect to this
-                  device and your data?
+                  Do you want to allow the USB accessory to connect to this device and your data?
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
@@ -160,9 +146,7 @@ export function UIElements() {
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem variant="destructive">
-                    Delete Conversation
-                  </DropdownMenuItem>
+                  <DropdownMenuItem variant="destructive">Delete Conversation</DropdownMenuItem>
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>

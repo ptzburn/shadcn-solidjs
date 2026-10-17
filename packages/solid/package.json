@@ -2,32 +2,39 @@
   "name": "@ptzburn/shadcn-solid",
   "version": "0.2.0-beta.0",
   "description": "Unstyled components for Solid.",
+  "keywords": [
+    "accessible",
+    "headless",
+    "primitives",
+    "shadcn",
+    "solid",
+    "solidjs",
+    "ui",
+    "unstyled"
+  ],
+  "homepage": "https://v2.shadcn-solidjs.com",
+  "bugs": {
+    "url": "https://github.com/ptzburn/shadcn-solidjs/issues"
+  },
   "license": "MIT",
   "author": "ptzburn",
-  "homepage": "https://v2.shadcn-solidjs.com",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ptzburn/shadcn-solidjs.git",
     "directory": "packages/solid"
   },
-  "bugs": {
-    "url": "https://github.com/ptzburn/shadcn-solidjs/issues"
-  },
-  "keywords": [
-    "solid",
-    "solidjs",
-    "headless",
-    "unstyled",
-    "primitives",
-    "accessible",
-    "ui",
-    "shadcn"
-  ],
-  "type": "module",
-  "sideEffects": false,
   "files": [
     "dist"
   ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./message-scroller": {
+      "types": "./dist/message-scroller/index.d.ts",
+      "solid": "./dist/message-scroller/index.jsx",
+      "default": "./dist/message-scroller/index.js"
+    }
+  },
   "publishConfig": {
     "access": "public",
     "tag": "beta"
@@ -39,18 +46,6 @@
     "fmt": "vp fmt",
     "test": "vp test"
   },
-  "exports": {
-    "./message-scroller": {
-      "types": "./dist/message-scroller/index.d.ts",
-      "solid": "./dist/message-scroller/index.jsx",
-      "default": "./dist/message-scroller/index.js"
-    }
-  },
-  "peerDependencies": {
-    "@kobalte/core": "^2.0.0-alpha.0",
-    "@solidjs/web": "^2.0.0-rc.13",
-    "solid-js": "^2.0.0-rc.13"
-  },
   "devDependencies": {
     "@kobalte/core": "2.0.0-alpha.2",
     "@solidjs/web": "2.0.0-rc.13",
@@ -60,5 +55,10 @@
     "tsdown": "0.22.14",
     "typescript": "^7.0.2",
     "unplugin-solid": "2.0.0"
+  },
+  "peerDependencies": {
+    "@kobalte/core": "^2.0.0-alpha.0",
+    "@solidjs/web": "^2.0.0-rc.13",
+    "solid-js": "^2.0.0-rc.13"
   }
 }

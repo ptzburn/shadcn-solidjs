@@ -33,9 +33,7 @@ function stubComputedStyle(): () => void {
   globalThis.getComputedStyle = ((element: Element) => {
     const style = original(element);
 
-    if (
-      element instanceof HTMLElement && element.dataset.paddingStart
-    ) {
+    if (element instanceof HTMLElement && element.dataset.paddingStart) {
       return {
         ...style,
         gap: "0px",
@@ -139,9 +137,7 @@ function createFixture(options: {
   return { viewport, content, spacer, items };
 }
 
-function createItems(
-  specs: Array<{ id: string; anchor?: boolean }>,
-): HTMLElement[] {
+function createItems(specs: Array<{ id: string; anchor?: boolean }>): HTMLElement[] {
   return specs.map((spec) => {
     const element = document.createElement("div");
     element.dataset.messageId = spec.id;
@@ -162,13 +158,15 @@ test("getElementScrollTop: aligns to start by subtracting content padding and ma
     });
 
     // elementTop = 100; minus padding.start (10) minus scrollMargin (5).
-    expect(getElementScrollTop({
+    expect(
+      getElementScrollTop({
         align: "start",
         element: items[0],
         scrollMargin: 5,
         spacer,
         viewport,
-      })).toEqual(85);
+      }),
+    ).toEqual(85);
   } finally {
     restore();
   }
@@ -187,13 +185,15 @@ test("getElementScrollTop: centers the element within the padded inset", () => {
 
     // insetHeight = 200 - 20 - 20 = 160; offset = (160 - 40) / 2 = 60.
     // elementTop (300) - padding.start (20) - 60 - scrollMargin (0) = 220.
-    expect(getElementScrollTop({
+    expect(
+      getElementScrollTop({
         align: "center",
         element: items[0],
         scrollMargin: 0,
         spacer,
         viewport,
-      })).toEqual(220);
+      }),
+    ).toEqual(220);
   } finally {
     restore();
   }
@@ -212,13 +212,15 @@ test("getElementScrollTop: aligns to end against the viewport bottom", () => {
 
     // elementTop (300) - clientHeight (200) + height (50) + padding.end (8)
     //   + scrollMargin (0) = 158.
-    expect(getElementScrollTop({
+    expect(
+      getElementScrollTop({
         align: "end",
         element: items[0],
         scrollMargin: 0,
         spacer,
         viewport,
-      })).toEqual(158);
+      }),
+    ).toEqual(158);
   } finally {
     restore();
   }
@@ -238,13 +240,15 @@ test("getElementScrollTop: returns the current scrollTop when nearest and alread
       items: [{ messageId: "a", top: 60, height: 40 }],
     });
 
-    expect(getElementScrollTop({
+    expect(
+      getElementScrollTop({
         align: "nearest",
         element: items[0],
         scrollMargin: 0,
         spacer,
         viewport,
-      })).toEqual(50);
+      }),
+    ).toEqual(50);
   } finally {
     restore();
   }
@@ -264,13 +268,15 @@ test("getElementScrollTop: scrolls up to reveal an element above the viewport wh
       items: [{ messageId: "a", top: -100, height: 40 }],
     });
 
-    expect(getElementScrollTop({
+    expect(
+      getElementScrollTop({
         align: "nearest",
         element: items[0],
         scrollMargin: 0,
         spacer,
         viewport,
-      })).toEqual(200);
+      }),
+    ).toEqual(200);
   } finally {
     restore();
   }
@@ -349,21 +355,13 @@ test("getNewScrollAnchor / getLastScrollAnchor: finds the first anchor at or aft
 });
 
 test("getNewScrollAnchor / getLastScrollAnchor: returns null when no anchor exists after the boundary", () => {
-  const items = createItems([
-    { id: "a", anchor: true },
-    { id: "b" },
-    { id: "c" },
-  ]);
+  const items = createItems([{ id: "a", anchor: true }, { id: "b" }, { id: "c" }]);
 
   expect(getNewScrollAnchor(items, 1)).toEqual(null);
 });
 
 test("getNewScrollAnchor / getLastScrollAnchor: finds the last anchor scanning from the end", () => {
-  const items = createItems([
-    { id: "a", anchor: true },
-    { id: "b", anchor: true },
-    { id: "c" },
-  ]);
+  const items = createItems([{ id: "a", anchor: true }, { id: "b", anchor: true }, { id: "c" }]);
 
   expect(getLastScrollAnchor(items)).toEqual(items[1]);
 });

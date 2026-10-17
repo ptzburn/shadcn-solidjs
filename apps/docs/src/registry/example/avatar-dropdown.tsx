@@ -12,12 +12,7 @@ import {
 export default function AvatarDropdown() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        as={Button<"button">}
-        variant="ghost"
-        size="icon"
-        class="rounded-full"
-      >
+      <DropdownMenuTrigger as={Button<"button">} variant="ghost" size="icon" class="rounded-full">
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" alt="shadcn" />
           <AvatarFallback>CN</AvatarFallback>

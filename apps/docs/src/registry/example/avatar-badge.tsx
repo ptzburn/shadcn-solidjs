@@ -1,9 +1,4 @@
-import {
-  Avatar,
-  AvatarBadge,
-  AvatarFallback,
-  AvatarImage,
-} from "~/registry/ui/avatar.tsx";
+import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "~/registry/ui/avatar.tsx";
 
 export default function AvatarWithBadge() {
   return (

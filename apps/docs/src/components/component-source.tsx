@@ -9,11 +9,7 @@ interface ComponentSourceProps extends ComponentProps<"div"> {
 }
 
 const ComponentSource: Component<ComponentSourceProps> = (props) => {
-  return (
-    <CodeCollapsibleWrapper class={props.class}>
-      {props.children}
-    </CodeCollapsibleWrapper>
-  );
+  return <CodeCollapsibleWrapper class={props.class}>{props.children}</CodeCollapsibleWrapper>;
 };
 
 export { ComponentSource };

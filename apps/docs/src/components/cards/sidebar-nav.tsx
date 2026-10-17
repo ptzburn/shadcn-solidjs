@@ -99,12 +99,7 @@ const SECTIONS: NavSection[] = [
 
 function SidebarSection(props: { section: NavSection }) {
   return (
-    <Card
-      class={cn(
-        "w-full overflow-hidden rounded-3xl py-0",
-        props.section.class,
-      )}
-    >
+    <Card class={cn("w-full overflow-hidden rounded-3xl py-0", props.section.class)}>
       <SidebarProvider class="min-h-0">
         <Sidebar collapsible="none" class="w-full bg-transparent">
           <SidebarContent class="gap-0 overflow-hidden">
@@ -135,9 +130,7 @@ function SidebarSection(props: { section: NavSection }) {
 export function SidebarNav() {
   return (
     <div class="grid w-full grid-cols-2 gap-4 xl:gap-6">
-      <For each={SECTIONS}>
-        {(section) => <SidebarSection section={section} />}
-      </For>
+      <For each={SECTIONS}>{(section) => <SidebarSection section={section} />}</For>
     </div>
   );
 }

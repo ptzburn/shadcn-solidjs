@@ -17,9 +17,7 @@ export function MDXHeader(props: HeaderProps) {
     <div data-not-typeset="" class="flex flex-col gap-2 pb-8">
       <MetaTags title={props.title} description={props.description} />
       <div class="flex items-center justify-between md:items-start">
-        <h1 class="scroll-m-24 font-semibold text-3xl tracking-tight">
-          {props.title}
-        </h1>
+        <h1 class="scroll-m-24 font-semibold text-3xl tracking-tight">{props.title}</h1>
         <div class="docs-nav flex items-center gap-2">
           <div class="hidden sm:block">
             <DocsCopyPage />

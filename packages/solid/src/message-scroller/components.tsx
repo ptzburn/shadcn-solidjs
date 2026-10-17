@@ -47,20 +47,14 @@ function callEventHandler<T, E extends Event>(
   }
 }
 
-const MessageScrollerContext = createContext<
-  MessageScrollerContextValue | null
->(null);
-const MessageScrollerItemContext = createContext<
-  MessageScrollerRegisterMessage | null
->(null);
+const MessageScrollerContext = createContext<MessageScrollerContextValue | null>(null);
+const MessageScrollerItemContext = createContext<MessageScrollerRegisterMessage | null>(null);
 
 function useMessageScrollerContext(): MessageScrollerContextValue {
   const context = useContext(MessageScrollerContext);
 
   if (!context) {
-    throw new Error(
-      "useMessageScroller must be used within a MessageScroller.",
-    );
+    throw new Error("useMessageScroller must be used within a MessageScroller.");
   }
 
   return context;
@@ -70,9 +64,7 @@ function useMessageScrollerItemContext(): MessageScrollerRegisterMessage {
   const context = useContext(MessageScrollerItemContext);
 
   if (!context) {
-    throw new Error(
-      "MessageScrollerItem must be used within a MessageScroller.",
-    );
+    throw new Error("MessageScrollerItem must be used within a MessageScroller.");
   }
 
   return context;
@@ -82,10 +74,7 @@ function useMessageScrollerItemContext(): MessageScrollerRegisterMessage {
 // — call them directly (e.g. onClick={() => scrollToEnd()}).
 function useMessageScroller(): {
   scrollToEnd: (options?: MessageScrollerScrollOptions) => boolean;
-  scrollToMessage: (
-    messageId: string,
-    options?: MessageScrollerScrollOptions,
-  ) => boolean;
+  scrollToMessage: (messageId: string, options?: MessageScrollerScrollOptions) => boolean;
   scrollToStart: (options?: MessageScrollerScrollOptions) => boolean;
 } {
   const context = useMessageScrollerContext();
@@ -106,9 +95,7 @@ function useMessageScrollerScrollable(): Accessor<MessageScrollerScrollable> {
 // The anchored turn and visible message ids. Returns an accessor; calling the
 // hook lazily starts visibility tracking once the caller settles and stops it
 // when the caller is disposed (the store's ref-counted subscribe upstream).
-function useMessageScrollerVisibility(): Accessor<
-  MessageScrollerVisibilityState
-> {
+function useMessageScrollerVisibility(): Accessor<MessageScrollerVisibilityState> {
   const context = useMessageScrollerContext();
 
   onSettled(() => {
@@ -122,9 +109,7 @@ function useMessageScrollerVisibility(): Accessor<
 
 // Headless root. Owns scroll state, anchoring, auto-follow, and visibility;
 // renders no DOM of its own.
-function MessageScrollerProvider(
-  props: MessageScrollerProviderProps,
-): JSX.Element {
+function MessageScrollerProvider(props: MessageScrollerProviderProps): JSX.Element {
   const { context, registerMessage } = createMessageScrollerController(props);
 
   return (
@@ -161,9 +146,7 @@ function MessageScroller(props: MessageScrollerProps): JSX.Element {
 }
 
 // Scrollable frame. Owns native scroll events and prepend preservation.
-function MessageScrollerViewport(
-  props: MessageScrollerViewportProps,
-): JSX.Element {
+function MessageScrollerViewport(props: MessageScrollerViewportProps): JSX.Element {
   const context = useMessageScrollerContext();
   const others = omit(
     props,
@@ -217,16 +200,12 @@ function MessageScrollerViewport(
     context.setViewportElement(element);
   };
 
-  const handleTouchMove: JSX.EventHandler<HTMLDivElement, TouchEvent> = (
-    event,
-  ) => {
+  const handleTouchMove: JSX.EventHandler<HTMLDivElement, TouchEvent> = (event) => {
     context.userScrollIntent();
     callEventHandler(props.onTouchMove, event);
   };
 
-  const handleKeyDown: JSX.EventHandler<HTMLDivElement, KeyboardEvent> = (
-    event,
-  ) => {
+  const handleKeyDown: JSX.EventHandler<HTMLDivElement, KeyboardEvent> = (event) => {
     if (USER_SCROLL_KEYS.has(event.key)) {
       context.userScrollIntent();
     }
@@ -281,18 +260,9 @@ function MessageScrollerViewport(
 }
 
 // Transcript container. Defaults role="log" + aria-relevant="additions".
-function MessageScrollerContent(
-  props: MessageScrollerContentProps,
-): JSX.Element {
+function MessageScrollerContent(props: MessageScrollerContentProps): JSX.Element {
   const context = useMessageScrollerContext();
-  const others = omit(
-    props,
-    "ref",
-    "children",
-    "role",
-    "aria-relevant",
-    "spacerClassName",
-  );
+  const others = omit(props, "ref", "children", "role", "aria-relevant", "spacerClassName");
 
   let contentNode: HTMLDivElement | undefined;
   let spacerNode: HTMLDivElement | undefined;
@@ -473,8 +443,7 @@ function MessageScrollerButton<T extends ValidComponent = "button">(
     "type",
   );
 
-  const direction = (): MessageScrollerButtonDirection =>
-    local.direction ?? "end";
+  const direction = (): MessageScrollerButtonDirection => local.direction ?? "end";
   const behavior = (): ScrollBehavior => local.behavior ?? "smooth";
   const isActive = createMemo((): boolean => {
     const state = context.scrollableState();
@@ -482,9 +451,7 @@ function MessageScrollerButton<T extends ValidComponent = "button">(
     return direction() === "start" ? state.start : state.end;
   });
 
-  const handleClick: JSX.EventHandler<HTMLButtonElement, MouseEvent> = (
-    event,
-  ) => {
+  const handleClick: JSX.EventHandler<HTMLButtonElement, MouseEvent> = (event) => {
     if (!isActive()) {
       return;
     }

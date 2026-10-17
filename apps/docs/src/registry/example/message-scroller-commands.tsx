@@ -66,9 +66,7 @@ export default function MessageScrollerCommands() {
         <Card class="mx-auto h-140 w-full max-w-sm gap-0">
           <CardHeader class="gap-1 border-b">
             <CardTitle>Commands</CardTitle>
-            <CardDescription>
-              Drive the transcript from outside.
-            </CardDescription>
+            <CardDescription>Drive the transcript from outside.</CardDescription>
             <CardAction>
               <CommandMenu />
             </CardAction>
@@ -83,15 +81,10 @@ export default function MessageScrollerCommands() {
                       const text = getMessageText(message);
 
                       return (
-                        <MessageScrollerItem
-                          messageId={message.id}
-                          scrollAnchor={isUserMessage}
-                        >
+                        <MessageScrollerItem messageId={message.id} scrollAnchor={isUserMessage}>
                           <Message align={isUserMessage ? "end" : "start"}>
                             <MessageContent>
-                              <Bubble
-                                variant={isUserMessage ? "muted" : "ghost"}
-                              >
+                              <Bubble variant={isUserMessage ? "muted" : "ghost"}>
                                 <BubbleContent class="space-y-2">
                                   <For
                                     each={text
@@ -99,11 +92,7 @@ export default function MessageScrollerCommands() {
                                       .map((paragraph) => paragraph.trim())
                                       .filter(Boolean)}
                                   >
-                                    {(paragraph) => (
-                                      <p class="whitespace-pre-wrap">
-                                        {paragraph}
-                                      </p>
-                                    )}
+                                    {(paragraph) => <p class="whitespace-pre-wrap">{paragraph}</p>}
                                   </For>
                                 </BubbleContent>
                               </Bubble>
@@ -132,11 +121,7 @@ function CommandMenu() {
 
   return (
     <DropdownMenu placement="bottom-end">
-      <DropdownMenuTrigger
-        as={Button<"button">}
-        type="button"
-        variant="secondary"
-      >
+      <DropdownMenuTrigger as={Button<"button">} type="button" variant="secondary">
         Jump to...
       </DropdownMenuTrigger>
       <DropdownMenuContent class="w-64">
@@ -149,11 +134,10 @@ function CommandMenu() {
                   scrollToMessage(message.id, {
                     align: "start",
                     behavior: "smooth",
-                  })}
+                  })
+                }
               >
-                <span class="line-clamp-1 min-w-0">
-                  {getTrimmedMessageText(message)}
-                </span>
+                <span class="line-clamp-1 min-w-0">{getTrimmedMessageText(message)}</span>
               </DropdownMenuItem>
             )}
           </For>

@@ -41,51 +41,51 @@ function getHeadingsFromToc(tableOfContents: TocItem[]) {
     const scrollMt = parseFloat(style.scrollMarginTop) + 1;
     const puffer = 50;
 
-    const top = globalThis.scrollY + el.getBoundingClientRect().top - scrollMt -
-      puffer;
+    const top = globalThis.scrollY + el.getBoundingClientRect().top - scrollMt - puffer;
 
     return { slug, top };
   });
 }
 
 function useCurrentSection(tableOfContents: Accessor<TocItem[] | undefined>) {
-  const [currentSection, setCurrentSection] = createSignal(
-    tableOfContents()?.[0]?.slug,
-  );
+  const [currentSection, setCurrentSection] = createSignal(tableOfContents()?.[0]?.slug);
 
-  createEffect(() => tableOfContents(), (toc) => {
-    if (toc == null || toc.length === 0) {
-      return;
-    }
-
-    const headings = getHeadingsFromToc(toc);
-
-    function onScroll() {
-      const top = globalThis.scrollY;
-      let current = headings[0]?.slug;
-
-      for (const heading of headings) {
-        if (heading == null) {
-          continue;
-        }
-
-        if (top >= heading.top) {
-          current = heading.slug;
-        } else {
-          break;
-        }
+  createEffect(
+    () => tableOfContents(),
+    (toc) => {
+      if (toc == null || toc.length === 0) {
+        return;
       }
-      setCurrentSection(current);
-    }
 
-    globalThis.addEventListener("scroll", onScroll, { passive: true });
+      const headings = getHeadingsFromToc(toc);
 
-    onScroll();
+      function onScroll() {
+        const top = globalThis.scrollY;
+        let current = headings[0]?.slug;
 
-    return () => {
-      globalThis.removeEventListener("scroll", onScroll);
-    };
-  });
+        for (const heading of headings) {
+          if (heading == null) {
+            continue;
+          }
+
+          if (top >= heading.top) {
+            current = heading.slug;
+          } else {
+            break;
+          }
+        }
+        setCurrentSection(current);
+      }
+
+      globalThis.addEventListener("scroll", onScroll, { passive: true });
+
+      onScroll();
+
+      return () => {
+        globalThis.removeEventListener("scroll", onScroll);
+      };
+    },
+  );
 
   return currentSection;
 }
@@ -96,28 +96,29 @@ export function TableOfContents() {
   const location = useLocation();
 
   const [toc, setToc] = createSignal<TocItem[]>([]);
-  createEffect(() => location.pathname, () => {
-    updateHeadings(setToc);
-  });
+  createEffect(
+    () => location.pathname,
+    () => {
+      updateHeadings(setToc);
+    },
+  );
 
   const currentSection = useCurrentSection(toc);
 
-  createEffect(() => currentSection(), (current) => {
-    const element = document.querySelector(
-      `a[data-toc-slug="${current}"]`,
-    );
+  createEffect(
+    () => currentSection(),
+    (current) => {
+      const element = document.querySelector(`a[data-toc-slug="${current}"]`);
 
-    element?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-    });
-  });
+      element?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    },
+  );
 
   return (
-    <nav
-      aria-labelledby="on-this-page-title"
-      class="flex flex-col gap-2 p-4 pt-0 text-sm"
-    >
+    <nav aria-labelledby="on-this-page-title" class="flex flex-col gap-2 p-4 pt-0 text-sm">
       <Loading>
         <p
           id="on-this-page-title"
@@ -125,19 +126,15 @@ export function TableOfContents() {
         >
           On This Page
         </p>
-        {
-          /* data-current rather than main's data-active: the next-branch
+        {/* data-current rather than main's data-active: the next-branch
             router stamps data-active on every same-origin anchor itself
             (these hash links all match the page path), clobbering a manual
-            value on its sweeps. */
-        }
+            value on its sweeps. */}
         <For each={toc()}>
           {(section) => (
             <a
               data-toc-slug={section.slug}
-              data-current={section.slug === currentSection()
-                ? "true"
-                : undefined}
+              data-current={section.slug === currentSection() ? "true" : undefined}
               data-depth={section.depth}
               class="text-muted-foreground text-[0.8rem] no-underline transition-colors hover:text-foreground data-[depth=3]:pl-4 data-[depth=4]:pl-6 data-[current=true]:font-medium data-[current=true]:text-foreground"
               href={`${location.pathname}#${section.slug}`}

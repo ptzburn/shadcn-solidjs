@@ -1,15 +1,7 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import {
-  Bubble,
-  BubbleContent,
-  BubbleReactions,
-} from "~/registry/ui/bubble.tsx";
+import { Bubble, BubbleContent, BubbleReactions } from "~/registry/ui/bubble.tsx";
 import { Button } from "~/registry/ui/button.tsx";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/registry/ui/tooltip.tsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/registry/ui/tooltip.tsx";
 
 export default function BubbleTooltipDemo() {
   return (
@@ -21,11 +13,7 @@ export default function BubbleTooltipDemo() {
         <BubbleContent>Yes, removed it from the registry.</BubbleContent>
         <BubbleReactions class="p-0">
           <Tooltip>
-            <TooltipTrigger
-              as={Button<"button">}
-              variant="ghost"
-              size="icon-xs"
-            >
+            <TooltipTrigger as={Button<"button">} variant="ghost" size="icon-xs">
               <IconPlaceholder
                 lucide="check"
                 tabler="check"

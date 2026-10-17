@@ -39,14 +39,12 @@ const scriptedMessages: ChatMessage[] = [
   {
     id: "anchor-1-user",
     role: "user",
-    text:
-      "Can you show me how anchoring behaves when a new prompt starts the turn?",
+    text: "Can you show me how anchoring behaves when a new prompt starts the turn?",
   },
   {
     id: "anchor-1-assistant",
     role: "assistant",
-    text:
-      "Append the user prompt first, then append the assistant response. With User selected, the prompt settles near the top and the assistant response fills in below it.",
+    text: "Append the user prompt first, then append the assistant response. With User selected, the prompt settles near the top and the assistant response fills in below it.",
   },
   {
     id: "anchor-2-user",
@@ -56,8 +54,7 @@ const scriptedMessages: ChatMessage[] = [
   {
     id: "anchor-2-assistant",
     role: "assistant",
-    text:
-      "Now each assistant response is the item `MessageScroller` keeps in view. This is useful when the reply is the moment you want readers to land on after each turn.",
+    text: "Now each assistant response is the item `MessageScroller` keeps in view. This is useful when the reply is the moment you want readers to land on after each turn.",
   },
   {
     id: "anchor-3-user",
@@ -67,8 +64,7 @@ const scriptedMessages: ChatMessage[] = [
   {
     id: "anchor-3-assistant",
     role: "assistant",
-    text:
-      "Yes. The next appended message with the selected role becomes the anchor, so you can compare user and assistant anchoring without resetting the demo.",
+    text: "Yes. The next appended message with the selected role becomes the anchor, so you can compare user and assistant anchoring without resetting the demo.",
   },
 ];
 
@@ -87,9 +83,7 @@ export default function MessageScrollerAnchoring() {
       <Card class="mx-auto h-140 w-full max-w-sm gap-0">
         <CardHeader class="border-b">
           <CardTitle>Anchoring Turns</CardTitle>
-          <CardDescription>
-            Choose which role settles near the top edge.
-          </CardDescription>
+          <CardDescription>Choose which role settles near the top edge.</CardDescription>
           <CardAction>
             <Button
               type="button"
@@ -167,10 +161,7 @@ export default function MessageScrollerAnchoring() {
             <ToggleGroupItem value="user" aria-label="Anchor user messages">
               User
             </ToggleGroupItem>
-            <ToggleGroupItem
-              value="assistant"
-              aria-label="Anchor assistant messages"
-            >
+            <ToggleGroupItem value="assistant" aria-label="Anchor assistant messages">
               Assistant
             </ToggleGroupItem>
           </ToggleGroup>
@@ -201,8 +192,7 @@ export default function MessageScrollerAnchoring() {
         </CardFooter>
       </Card>
       <div class="mx-auto max-w-xs px-0.5 text-center text-muted-foreground text-xs">
-        Toggle the anchor role, then send messages to compare where turns
-        settle.
+        Toggle the anchor role, then send messages to compare where turns settle.
       </div>
     </div>
   );

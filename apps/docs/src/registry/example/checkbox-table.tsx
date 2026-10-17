@@ -38,9 +38,7 @@ const tableData = [
 ];
 
 export default function CheckboxInTable() {
-  const [selectedRows, setSelectedRows] = createSignal<Set<string>>(
-    new Set(["1"]),
-  );
+  const [selectedRows, setSelectedRows] = createSignal<Set<string>>(new Set(["1"]));
 
   const selectAll = () => selectedRows().size === tableData.length;
 
@@ -82,9 +80,7 @@ export default function CheckboxInTable() {
       <TableBody>
         <For each={tableData}>
           {(row) => (
-            <TableRow
-              data-state={selectedRows().has(row.id) ? "selected" : undefined}
-            >
+            <TableRow data-state={selectedRows().has(row.id) ? "selected" : undefined}>
               <TableCell>
                 <Checkbox
                   id={`row-${row.id}-checkbox`}

@@ -1,9 +1,4 @@
-import {
-  Bubble,
-  BubbleContent,
-  BubbleGroup,
-  BubbleReactions,
-} from "~/registry/ui/bubble.tsx";
+import { Bubble, BubbleContent, BubbleGroup, BubbleReactions } from "~/registry/ui/bubble.tsx";
 
 export default function BubbleGroupDemo() {
   return (
@@ -27,8 +22,7 @@ export default function BubbleGroupDemo() {
       </BubbleGroup>
       <Bubble variant="muted">
         <BubbleContent>
-          Want me to diff yesterday's you against today's you? It's a bit
-          embarrassing.
+          Want me to diff yesterday's you against today's you? It's a bit embarrassing.
         </BubbleContent>
       </Bubble>
     </div>

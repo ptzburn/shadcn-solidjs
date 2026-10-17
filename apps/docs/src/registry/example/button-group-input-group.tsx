@@ -8,11 +8,7 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "~/registry/ui/input-group.tsx";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/registry/ui/tooltip.tsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/registry/ui/tooltip.tsx";
 import { createSignal } from "solid-js";
 
 export default function ButtonGroupInputGroup() {
@@ -34,9 +30,7 @@ export default function ButtonGroupInputGroup() {
       <ButtonGroup>
         <InputGroup>
           <InputGroupInput
-            placeholder={voiceEnabled()
-              ? "Record and send audio..."
-              : "Send a message..."}
+            placeholder={voiceEnabled() ? "Record and send audio..." : "Send a message..."}
             disabled={voiceEnabled()}
           />
           <InputGroupAddon align="inline-end">

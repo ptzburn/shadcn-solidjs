@@ -7,9 +7,7 @@ import type { Component } from "solid-js";
 
 import { omit } from "solid-js";
 
-const DropdownMenu: Component<DropdownMenuPrimitive.DropdownMenuRootProps> = (
-  props,
-) => {
+const DropdownMenu: Component<DropdownMenuPrimitive.DropdownMenuRootProps> = (props) => {
   return <DropdownMenuPrimitive.Root gutter={4} {...props} />;
 };
 
@@ -17,8 +15,7 @@ const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
 const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 
 type DropdownMenuTriggerProps<T extends ValidComponent = "button"> =
-  & DropdownMenuPrimitive.DropdownMenuTriggerProps<T>
-  & {
+  DropdownMenuPrimitive.DropdownMenuTriggerProps<T> & {
     class?: string | undefined;
   };
 
@@ -34,8 +31,7 @@ const DropdownMenuTrigger = <T extends ValidComponent = "button">(
 };
 
 type DropdownMenuContentProps<T extends ValidComponent = "div"> =
-  & DropdownMenuPrimitive.DropdownMenuContentProps<T>
-  & {
+  DropdownMenuPrimitive.DropdownMenuContentProps<T> & {
     class?: string | undefined;
   };
 
@@ -64,14 +60,11 @@ type DropdownMenuGroupProps<T extends ValidComponent = "div"> =
 const DropdownMenuGroup = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, DropdownMenuGroupProps<T>>,
 ) => {
-  return (
-    <DropdownMenuPrimitive.Group data-slot="dropdown-menu-group" {...props} />
-  );
+  return <DropdownMenuPrimitive.Group data-slot="dropdown-menu-group" {...props} />;
 };
 
 type DropdownMenuItemProps<T extends ValidComponent = "div"> =
-  & DropdownMenuPrimitive.DropdownMenuItemProps<T>
-  & {
+  DropdownMenuPrimitive.DropdownMenuItemProps<T> & {
     class?: string | undefined;
     inset?: boolean;
     variant?: "default" | "destructive";
@@ -97,8 +90,7 @@ const DropdownMenuItem = <T extends ValidComponent = "div">(
 };
 
 type DropdownMenuCheckboxItemProps<T extends ValidComponent = "div"> =
-  & DropdownMenuPrimitive.DropdownMenuCheckboxItemProps<T>
-  & {
+  DropdownMenuPrimitive.DropdownMenuCheckboxItemProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     inset?: boolean;
@@ -153,8 +145,7 @@ const DropdownMenuRadioGroup = <T extends ValidComponent = "div">(
 };
 
 type DropdownMenuRadioItemProps<T extends ValidComponent = "div"> =
-  & DropdownMenuPrimitive.DropdownMenuRadioItemProps<T>
-  & {
+  DropdownMenuPrimitive.DropdownMenuRadioItemProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     inset?: boolean;
@@ -195,8 +186,7 @@ const DropdownMenuRadioItem = <T extends ValidComponent = "div">(
 };
 
 type DropdownMenuLabelProps<T extends ValidComponent = "div"> =
-  & DropdownMenuPrimitive.DropdownMenuGroupLabelProps<T>
-  & {
+  DropdownMenuPrimitive.DropdownMenuGroupLabelProps<T> & {
     class?: string | undefined;
     inset?: boolean;
   };
@@ -211,18 +201,14 @@ const DropdownMenuLabel = <T extends ValidComponent = "div">(
       as="div"
       data-slot="dropdown-menu-label"
       data-inset={local.inset}
-      class={cn(
-        "cn-dropdown-menu-label",
-        local.class,
-      )}
+      class={cn("cn-dropdown-menu-label", local.class)}
       {...others}
     />
   );
 };
 
 type DropdownMenuSeparatorProps<T extends ValidComponent = "div"> =
-  & DropdownMenuPrimitive.DropdownMenuSeparatorProps<T>
-  & {
+  DropdownMenuPrimitive.DropdownMenuSeparatorProps<T> & {
     class?: string | undefined;
   };
 
@@ -246,18 +232,14 @@ const DropdownMenuShortcut: Component<ComponentProps<"span">> = (props) => {
   return (
     <span
       data-slot="dropdown-menu-shortcut"
-      class={cn(
-        "cn-dropdown-menu-shortcut",
-        props.class,
-      )}
+      class={cn("cn-dropdown-menu-shortcut", props.class)}
       {...others}
     />
   );
 };
 
 type DropdownMenuSubTriggerProps<T extends ValidComponent = "div"> =
-  & DropdownMenuPrimitive.DropdownMenuSubTriggerProps<T>
-  & {
+  DropdownMenuPrimitive.DropdownMenuSubTriggerProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     inset?: boolean;
@@ -292,8 +274,7 @@ const DropdownMenuSubTrigger = <T extends ValidComponent = "div">(
 };
 
 type DropdownMenuSubContentProps<T extends ValidComponent = "div"> =
-  & DropdownMenuPrimitive.DropdownMenuSubContentProps<T>
-  & {
+  DropdownMenuPrimitive.DropdownMenuSubContentProps<T> & {
     class?: string | undefined;
   };
 

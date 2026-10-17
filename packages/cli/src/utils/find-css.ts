@@ -1,21 +1,9 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
-const IGNORED = new Set([
-  "node_modules",
-  "dist",
-  "build",
-  ".output",
-  ".git",
-  ".vinxi",
-  "coverage",
-]);
+const IGNORED = new Set(["node_modules", "dist", "build", ".output", ".git", ".vinxi", "coverage"]);
 
-const TAILWIND_MARKERS = [
-  '@import "tailwindcss"',
-  "@import 'tailwindcss'",
-  "@tailwind base",
-];
+const TAILWIND_MARKERS = ['@import "tailwindcss"', "@import 'tailwindcss'", "@tailwind base"];
 
 /**
  * Finds the stylesheet that pulls in Tailwind, which is where theme variables
@@ -49,9 +37,7 @@ export function findTailwindCss(cwd: string, maxDepth = 4): string | null {
   walk(path.resolve(cwd), 0);
 
   // Shallower files win: an app entry stylesheet outranks a nested partial.
-  candidates.sort((a, b) =>
-    a.split(path.sep).length - b.split(path.sep).length
-  );
+  candidates.sort((a, b) => a.split(path.sep).length - b.split(path.sep).length);
 
   for (const candidate of candidates) {
     try {
@@ -69,14 +55,7 @@ export function findTailwindCss(cwd: string, maxDepth = 4): string | null {
 
 /** Locates a Vite config, whose plugin list `init` needs to report on. */
 export function findViteConfig(cwd: string): string | null {
-  for (
-    const name of [
-      "vite.config.ts",
-      "vite.config.js",
-      "vite.config.mts",
-      "vite.config.mjs",
-    ]
-  ) {
+  for (const name of ["vite.config.ts", "vite.config.js", "vite.config.mts", "vite.config.mjs"]) {
     const candidate = path.join(path.resolve(cwd), name);
     try {
       readFileSync(candidate, "utf8");

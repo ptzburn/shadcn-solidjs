@@ -6,9 +6,7 @@ import { unified } from "unified";
 import remarkGithubAlerts from "./gh-alerts.ts";
 
 function parse(source: string): Root {
-  const processor = unified().use(remarkParse).use(remarkMdx).use(
-    remarkGithubAlerts,
-  );
+  const processor = unified().use(remarkParse).use(remarkMdx).use(remarkGithubAlerts);
   return processor.runSync(processor.parse(source)) as Root;
 }
 

@@ -6,13 +6,7 @@ import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import type { Component } from "solid-js";
 
 import { createMemo, createSignal, omit, Show } from "solid-js";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "./dialog.tsx";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./dialog.tsx";
 import { InputGroup, InputGroupAddon } from "./input-group.tsx";
 
 interface CommandOption {
@@ -34,13 +28,14 @@ const keepInputFocus = (event: MouseEvent) => event.preventDefault();
 
 const commandFilter = (option: CommandOption, input: string) => {
   const needle = input.toLowerCase();
-  return [option.label ?? option.value, ...(option.keywords ?? [])]
-    .some((haystack) => haystack.toLowerCase().includes(needle));
+  return [option.label ?? option.value, ...(option.keywords ?? [])].some((haystack) =>
+    haystack.toLowerCase().includes(needle),
+  );
 };
 
-const CommandItem: Component<
-  SearchPrimitive.SearchRootItemComponentProps<CommandOption>
-> = (props) => {
+const CommandItem: Component<SearchPrimitive.SearchRootItemComponentProps<CommandOption>> = (
+  props,
+) => {
   return (
     <SearchPrimitive.Item
       item={props.item}
@@ -114,7 +109,7 @@ const Command: Component<CommandProps> = (props) => {
         const kept = entry.options.filter(keep);
         if (kept.length) groups.push({ ...entry, options: kept });
       } else if (keep(entry)) {
-        if (!loose) groups.push({ options: loose = [] });
+        if (!loose) groups.push({ options: (loose = []) });
         loose.push(entry);
       }
     }
@@ -140,15 +135,9 @@ const Command: Component<CommandProps> = (props) => {
       optionLabel={(option) => option.label ?? option.value}
       optionDisabled="disabled"
       optionGroupChildren="options"
-      class={cn(
-        "cn-command flex size-full flex-col overflow-hidden",
-        props.class,
-      )}
+      class={cn("cn-command flex size-full flex-col overflow-hidden", props.class)}
     >
-      <SearchPrimitive.Control
-        data-slot="command-input-wrapper"
-        class="cn-command-input-wrapper"
-      >
+      <SearchPrimitive.Control data-slot="command-input-wrapper" class="cn-command-input-wrapper">
         <InputGroup class="cn-command-input-group">
           <SearchPrimitive.Input
             data-slot="command-input"
@@ -182,10 +171,8 @@ const Command: Component<CommandProps> = (props) => {
   );
 };
 
-type CommandDialogProps =
-  & Omit<ComponentProps<typeof Dialog>, "children">
-  & CommandProps
-  & {
+type CommandDialogProps = Omit<ComponentProps<typeof Dialog>, "children"> &
+  CommandProps & {
     title?: string;
     description?: string;
     showCloseButton?: boolean;
@@ -200,10 +187,7 @@ const CommandDialogContent: Component<
   return (
     <DialogContent
       showCloseButton={props.showCloseButton ?? false}
-      class={cn(
-        "cn-command-dialog top-1/3 translate-y-0 overflow-hidden p-0",
-        props.class,
-      )}
+      class={cn("cn-command-dialog top-1/3 translate-y-0 overflow-hidden p-0", props.class)}
       onEscapeKeyDown={(event) => {
         if (event.defaultPrevented) dialog.close();
       }}
@@ -241,10 +225,7 @@ const CommandDialog: Component<CommandDialogProps> = (props) => {
           {props.description ?? "Search for a command to run..."}
         </DialogDescription>
       </DialogHeader>
-      <CommandDialogContent
-        showCloseButton={props.showCloseButton}
-        class={props.class}
-      >
+      <CommandDialogContent showCloseButton={props.showCloseButton} class={props.class}>
         <Command {...commandProps()} />
       </CommandDialogContent>
     </Dialog>

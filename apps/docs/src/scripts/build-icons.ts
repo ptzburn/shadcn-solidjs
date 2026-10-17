@@ -12,13 +12,7 @@
  * Run with: pnpm build:registry (or, from apps/docs,
  * node --import ./scripts/lib/alias.mjs src/scripts/build-icons.ts)
  */
-import {
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  writeFileSync,
-} from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 
@@ -42,21 +36,14 @@ interface IconifyData {
 function findIconifyData(library: IconLibrary): IconifyData {
   let dir = process.cwd();
   while (true) {
-    const candidate = path.join(
-      dir,
-      "node_modules",
-      iconLibraries[library].package,
-      "icons.json",
-    );
+    const candidate = path.join(dir, "node_modules", iconLibraries[library].package, "icons.json");
     if (existsSync(candidate)) {
       return JSON.parse(readFileSync(candidate, "utf8"));
     }
     const parent = path.dirname(dir);
     if (parent === dir) {
       throw new Error(
-        `Cannot find ${
-          iconLibraries[library].package
-        }/icons.json — is it installed?`,
+        `Cannot find ${iconLibraries[library].package}/icons.json — is it installed?`,
       );
     }
     dir = parent;
@@ -64,9 +51,7 @@ function findIconifyData(library: IconLibrary): IconifyData {
 }
 
 function resolveIcon(data: IconifyData, name: string) {
-  const resolved = data.aliases?.[name]
-    ? data.icons[data.aliases[name].parent]
-    : data.icons[name];
+  const resolved = data.aliases?.[name] ? data.icons[data.aliases[name].parent] : data.icons[name];
   if (!resolved) return undefined;
   return {
     body: resolved.body,
@@ -156,25 +141,22 @@ export const ${defaultIconLibrary}Icons = {
 `;
 for (const name of names) {
   const resolved = resolveIcon(defaultData, name)!;
-  const body = resolved.body.replaceAll("\\", "\\\\").replaceAll("`", "\\`")
+  const body = resolved.body
+    .replaceAll("\\", "\\\\")
+    .replaceAll("`", "\\`")
     .replaceAll("${", "\\${");
-  output +=
-    `  "${name}": icon("0 0 ${resolved.width} ${resolved.height}", \`${body}\`),\n`;
+  output += `  "${name}": icon("0 0 ${resolved.width} ${resolved.height}", \`${body}\`),\n`;
 }
 output += `};
 
-export type ${
-  pascalCase(defaultIconLibrary)
-}IconName = keyof typeof ${defaultIconLibrary}Icons;
+export type ${pascalCase(defaultIconLibrary)}IconName = keyof typeof ${defaultIconLibrary}Icons;
 `;
 
 const outDir = path.join(ICONS_PATH, `__${defaultIconLibrary}__`);
 mkdirSync(outDir, { recursive: true });
 writeFileSync(path.join(outDir, "index.tsx"), output);
 
-console.log(
-  `Generated __${defaultIconLibrary}__/index.tsx with ${names.length} icons.`,
-);
+console.log(`Generated __${defaultIconLibrary}__/index.tsx with ${names.length} icons.`);
 for (const library of iconLibraryNames) {
   console.log(`  ${library}: ${used.get(library)!.size} icon names validated`);
 }

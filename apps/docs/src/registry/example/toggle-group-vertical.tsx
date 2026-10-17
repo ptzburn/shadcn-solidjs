@@ -3,20 +3,9 @@ import { ToggleGroup, ToggleGroupItem } from "~/registry/ui/toggle-group.tsx";
 
 export default function ToggleGroupVertical() {
   return (
-    <ToggleGroup
-      multiple
-      orientation="vertical"
-      spacing={1}
-      defaultValue={["bold", "italic"]}
-    >
+    <ToggleGroup multiple orientation="vertical" spacing={1} defaultValue={["bold", "italic"]}>
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
-        <IconPlaceholder
-          lucide="bold"
-          tabler="bold"
-          ph="text-b"
-          ri="bold"
-          hugeicons="text-bold"
-        />
+        <IconPlaceholder lucide="bold" tabler="bold" ph="text-b" ri="bold" hugeicons="text-bold" />
       </ToggleGroupItem>
       <ToggleGroupItem value="italic" aria-label="Toggle italic">
         <IconPlaceholder

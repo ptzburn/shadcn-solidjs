@@ -1,17 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "~/registry/ui/avatar.tsx";
-import {
-  Bubble,
-  BubbleContent,
-  BubbleGroup,
-  BubbleReactions,
-} from "~/registry/ui/bubble.tsx";
+import { Bubble, BubbleContent, BubbleGroup, BubbleReactions } from "~/registry/ui/bubble.tsx";
 import { Marker, MarkerContent } from "~/registry/ui/marker.tsx";
-import {
-  Message,
-  MessageAvatar,
-  MessageContent,
-  MessageFooter,
-} from "~/registry/ui/message.tsx";
+import { Message, MessageAvatar, MessageContent, MessageFooter } from "~/registry/ui/message.tsx";
 
 export default function MessageDemo() {
   return (
@@ -32,10 +22,7 @@ export default function MessageDemo() {
       <Message>
         <MessageAvatar>
           <Avatar>
-            <AvatarImage
-              src="https://github.com/evilrabbit.png"
-              alt="@evilrabbit"
-            />
+            <AvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
             <AvatarFallback>ER</AvatarFallback>
           </Avatar>
         </MessageAvatar>
@@ -62,10 +49,7 @@ export default function MessageDemo() {
       <Message>
         <MessageAvatar>
           <Avatar>
-            <AvatarImage
-              src="https://github.com/evilrabbit.png"
-              alt="@evilrabbit"
-            />
+            <AvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
             <AvatarFallback>ER</AvatarFallback>
           </Avatar>
         </MessageAvatar>

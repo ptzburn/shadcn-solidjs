@@ -20,17 +20,16 @@ Some **prose** here.
 });
 
 const resolve = (name: string) =>
-  name === "button-demo"
-    ? "export default () => <button>Hi</button>;\n"
-    : undefined;
+  name === "button-demo" ? "export default () => <button>Hi</button>;\n" : undefined;
 
 test("expands previews and sources into tsx fences, drops unknown ones", () => {
-  const source =
-    `<ComponentPreview name="button-demo" previewClassName="h-auto" />
+  const source = `<ComponentPreview name="button-demo" previewClassName="h-auto" />
 
 <ComponentSource name="missing" />
 `;
-  expect(toDocumentMarkdown(source, { resolve })).toEqual("```tsx\nexport default () => <button>Hi</button>;\n```\n");
+  expect(toDocumentMarkdown(source, { resolve })).toEqual(
+    "```tsx\nexport default () => <button>Hi</button>;\n```\n",
+  );
 });
 
 test("turns code tabs into one section per tab", () => {
@@ -57,7 +56,9 @@ Copy the file.
 
 </CodeTabs>
 `;
-  expect(toDocumentMarkdown(source)).toEqual("### Command\n\n```bash\nnpx add button\n```\n\n### Manual\n\nCopy the file.\n");
+  expect(toDocumentMarkdown(source)).toEqual(
+    "### Command\n\n```bash\nnpx add button\n```\n\n### Manual\n\nCopy the file.\n",
+  );
 });
 
 test("turns steps into level-four headings", () => {
@@ -71,7 +72,9 @@ npm install clsx
 
 </Steps>
 `;
-  expect(toDocumentMarkdown(source)).toEqual("#### Install the following dependencies:\n\n```bash\nnpm install clsx\n```\n");
+  expect(toDocumentMarkdown(source)).toEqual(
+    "#### Install the following dependencies:\n\n```bash\nnpm install clsx\n```\n",
+  );
 });
 
 test("turns callouts into GitHub alerts with the title in bold", () => {

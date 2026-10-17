@@ -11,8 +11,7 @@ import { buttonVariants } from "./button.tsx";
 const PaginationItems = PaginationPrimitive.Items;
 
 type PaginationRootProps<T extends ValidComponent = "nav"> =
-  & PaginationPrimitive.PaginationRootProps<T>
-  & { class?: string | undefined };
+  PaginationPrimitive.PaginationRootProps<T> & { class?: string | undefined };
 
 const Pagination = <T extends ValidComponent = "nav">(
   props: PolymorphicProps<T, PaginationRootProps<T>>,
@@ -35,8 +34,7 @@ const Pagination = <T extends ValidComponent = "nav">(
 };
 
 type PaginationItemProps<T extends ValidComponent = "button"> =
-  & PaginationPrimitive.PaginationItemProps<T>
-  & {
+  PaginationPrimitive.PaginationItemProps<T> & {
     class?: string | undefined;
     size?: ButtonProps["size"];
   };
@@ -63,8 +61,7 @@ const PaginationItem = <T extends ValidComponent = "button">(
 };
 
 type PaginationEllipsisProps<T extends ValidComponent = "div"> =
-  & PaginationPrimitive.PaginationEllipsisProps<T>
-  & {
+  PaginationPrimitive.PaginationEllipsisProps<T> & {
     class?: string | undefined;
   };
 
@@ -77,10 +74,7 @@ const PaginationEllipsis = <T extends ValidComponent = "div">(
     <PaginationPrimitive.Ellipsis
       aria-hidden="true"
       data-slot="pagination-ellipsis"
-      class={cn(
-        "cn-pagination-ellipsis flex items-center justify-center",
-        local.class,
-      )}
+      class={cn("cn-pagination-ellipsis flex items-center justify-center", local.class)}
       {...others}
     >
       <IconPlaceholder
@@ -96,8 +90,7 @@ const PaginationEllipsis = <T extends ValidComponent = "div">(
 };
 
 type PaginationPreviousProps<T extends ValidComponent = "button"> =
-  & PaginationPrimitive.PaginationPreviousProps<T>
-  & {
+  PaginationPrimitive.PaginationPreviousProps<T> & {
     class?: string | undefined;
     text?: string;
     children?: JSX.Element;
@@ -136,17 +129,14 @@ const PaginationPrevious = <T extends ValidComponent = "button">(
           data-icon="inline-start"
           class="cn-rtl-flip"
         />
-        <span class="cn-pagination-previous-text hidden sm:block">
-          {local.text ?? "Previous"}
-        </span>
+        <span class="cn-pagination-previous-text hidden sm:block">{local.text ?? "Previous"}</span>
       </Show>
     </PaginationPrimitive.Previous>
   );
 };
 
 type PaginationNextProps<T extends ValidComponent = "button"> =
-  & PaginationPrimitive.PaginationNextProps<T>
-  & {
+  PaginationPrimitive.PaginationNextProps<T> & {
     class?: string | undefined;
     text?: string;
     children?: JSX.Element;
@@ -176,9 +166,7 @@ const PaginationNext = <T extends ValidComponent = "button">(
       {...others}
     >
       <Show when={!hasChildren()} fallback={resolvedChildren()}>
-        <span class="cn-pagination-next-text hidden sm:block">
-          {local.text ?? "Next"}
-        </span>
+        <span class="cn-pagination-next-text hidden sm:block">{local.text ?? "Next"}</span>
         <IconPlaceholder
           lucide="chevron-right"
           tabler="chevron-right"

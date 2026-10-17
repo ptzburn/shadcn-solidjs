@@ -30,8 +30,7 @@ export default function CalendarCustomDays() {
           components={{
             DayButton: (props) => {
               const others = omit(props, "children");
-              const isWeekend = () =>
-                props.day.getDay() === 0 || props.day.getDay() === 6;
+              const isWeekend = () => props.day.getDay() === 0 || props.day.getDay() === 6;
 
               return (
                 <CalendarDayButton {...others}>

@@ -6,9 +6,7 @@ export default function CheckboxBasic() {
     <FieldGroup class="mx-auto w-56">
       <Field orientation="horizontal">
         <Checkbox id="terms-checkbox-basic" name="terms-checkbox-basic" />
-        <FieldLabel for="terms-checkbox-basic-input">
-          Accept terms and conditions
-        </FieldLabel>
+        <FieldLabel for="terms-checkbox-basic-input">Accept terms and conditions</FieldLabel>
       </Field>
     </FieldGroup>
   );

@@ -3,11 +3,7 @@ import { Dynamic } from "@solidjs/web";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/registry/ui/avatar.tsx";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "~/registry/ui/collapsible.tsx";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "~/registry/ui/collapsible.tsx";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -245,18 +241,14 @@ type Team = (typeof data.teams)[number];
 
 function TeamSwitcher(props: { teams: Team[] }) {
   const { isMobile } = useSidebar();
-  const [activeTeam, setActiveTeam] = createSignal<Team | undefined>(
-    props.teams[0],
-  );
+  const [activeTeam, setActiveTeam] = createSignal<Team | undefined>(props.teams[0]);
 
   return (
     <Show when={activeTeam()}>
       {(team) => (
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu
-              placement={isMobile() ? "bottom-start" : "right-start"}
-            >
+            <DropdownMenu placement={isMobile() ? "bottom-start" : "right-start"}>
               <SidebarMenuButton
                 as={DropdownMenuTrigger}
                 size="lg"
@@ -280,9 +272,7 @@ function TeamSwitcher(props: { teams: Team[] }) {
               </SidebarMenuButton>
               <DropdownMenuContent class="min-w-56 rounded-lg">
                 <DropdownMenuGroup>
-                  <DropdownMenuLabel class="text-muted-foreground text-xs">
-                    Teams
-                  </DropdownMenuLabel>
+                  <DropdownMenuLabel class="text-muted-foreground text-xs">Teams</DropdownMenuLabel>
                   <For each={props.teams}>
                     {(item, index) => (
                       <DropdownMenuItem
@@ -293,9 +283,7 @@ function TeamSwitcher(props: { teams: Team[] }) {
                           <item.logo class="size-3.5 shrink-0" />
                         </div>
                         {item.name}
-                        <DropdownMenuShortcut>
-                          ⌘{index() + 1}
-                        </DropdownMenuShortcut>
+                        <DropdownMenuShortcut>⌘{index() + 1}</DropdownMenuShortcut>
                       </DropdownMenuItem>
                     )}
                   </For>
@@ -313,9 +301,7 @@ function TeamSwitcher(props: { teams: Team[] }) {
                         class="size-4"
                       />
                     </div>
-                    <div class="font-medium text-muted-foreground">
-                      Add team
-                    </div>
+                    <div class="font-medium text-muted-foreground">Add team</div>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
               </DropdownMenuContent>
@@ -335,14 +321,8 @@ function NavMain(props: { items: typeof data.navMain }) {
         <For each={props.items}>
           {(item) => (
             <SidebarMenuItem>
-              <Collapsible
-                class="group/collapsible"
-                defaultOpen={item.isActive}
-              >
-                <SidebarMenuButton
-                  as={CollapsibleTrigger}
-                  tooltip={item.title}
-                >
+              <Collapsible class="group/collapsible" defaultOpen={item.isActive}>
+                <SidebarMenuButton as={CollapsibleTrigger} tooltip={item.title}>
                   <item.icon />
                   <span>{item.title}</span>
                   <IconPlaceholder
@@ -390,9 +370,7 @@ function NavProjects(props: { projects: typeof data.projects }) {
                 <item.icon />
                 <span>{item.name}</span>
               </SidebarMenuButton>
-              <DropdownMenu
-                placement={isMobile() ? "bottom-end" : "right-start"}
-              >
+              <DropdownMenu placement={isMobile() ? "bottom-end" : "right-start"}>
                 <SidebarMenuAction as={DropdownMenuTrigger} showOnHover>
                   <IconPlaceholder
                     lucide="ellipsis"
@@ -499,10 +477,7 @@ function NavUser(props: { user: typeof data.user }) {
               <DropdownMenuLabel class="p-0 font-normal">
                 <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                   <Avatar class="size-8 rounded-lg">
-                    <AvatarImage
-                      src={props.user.avatar}
-                      alt={props.user.name}
-                    />
+                    <AvatarImage src={props.user.avatar} alt={props.user.name} />
                     <AvatarFallback class="rounded-lg">CN</AvatarFallback>
                   </Avatar>
                   <div class="grid flex-1 text-left text-sm leading-tight">

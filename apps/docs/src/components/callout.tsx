@@ -25,9 +25,7 @@ export const Callout: Component<CalloutProps> = (props) => {
       <Show when={props.title}>
         <AlertTitle>{props.title}</AlertTitle>
       </Show>
-      <AlertDescription class="text-card-foreground/80">
-        {props.children}
-      </AlertDescription>
+      <AlertDescription class="text-card-foreground/80">{props.children}</AlertDescription>
     </Alert>
   );
 };

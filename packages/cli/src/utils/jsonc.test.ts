@@ -7,11 +7,13 @@ test("parses plain JSON", () => {
 });
 
 test("strips line and block comments", () => {
-  expect(parseJsonc(`{
+  expect(
+    parseJsonc(`{
       // leading
       "a": 1, /* inline */
       "b": 2
-    }`)).toEqual({ a: 1, b: 2 });
+    }`),
+  ).toEqual({ a: 1, b: 2 });
 });
 
 test("strips trailing commas in objects and arrays", () => {
@@ -19,7 +21,9 @@ test("strips trailing commas in objects and arrays", () => {
 });
 
 test("keeps a // sequence inside a string", () => {
-  expect(parseJsonc('{"url": "https://example.com/r/{name}.json"}')).toEqual({ url: "https://example.com/r/{name}.json" });
+  expect(parseJsonc('{"url": "https://example.com/r/{name}.json"}')).toEqual({
+    url: "https://example.com/r/{name}.json",
+  });
 });
 
 test("keeps a comma inside a string before a brace", () => {

@@ -1,11 +1,7 @@
 import { Button } from "~/registry/ui/button.tsx";
 import { Calendar } from "~/registry/ui/calendar.tsx";
 import { Field, FieldLabel } from "~/registry/ui/field.tsx";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "~/registry/ui/popover.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "~/registry/ui/popover.tsx";
 
 import { createSignal, Show } from "solid-js";
 

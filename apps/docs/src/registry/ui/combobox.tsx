@@ -8,18 +8,10 @@ import type { Component } from "solid-js";
 import { omit, Show } from "solid-js";
 
 import { Button } from "./button.tsx";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-} from "./input-group.tsx";
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "./input-group.tsx";
 
 const Combobox = <Option, OptGroup = never, T extends ValidComponent = "div">(
-  props: PolymorphicProps<
-    T,
-    ComboboxPrimitive.ComboboxRootProps<Option, OptGroup, T>
-  >,
+  props: PolymorphicProps<T, ComboboxPrimitive.ComboboxRootProps<Option, OptGroup, T>>,
 ) => (
   <ComboboxPrimitive.Root
     triggerMode="focus"
@@ -31,8 +23,7 @@ const ComboboxItemLabel = ComboboxPrimitive.ItemLabel;
 const ComboboxHiddenSelect = ComboboxPrimitive.HiddenSelect;
 
 type ComboboxTriggerProps<T extends ValidComponent = "button"> =
-  & ComboboxPrimitive.ComboboxTriggerProps<T>
-  & {
+  ComboboxPrimitive.ComboboxTriggerProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
   };
@@ -61,13 +52,11 @@ const ComboboxTrigger = <T extends ValidComponent = "button">(
   );
 };
 
-type ComboboxClearProps =
-  & Omit<ComponentProps<"button">, "disabled" | "type" | "tabindex">
-  & {
-    disabled?: boolean;
-    type?: string;
-    tabindex?: number | string;
-  };
+type ComboboxClearProps = Omit<ComponentProps<"button">, "disabled" | "type" | "tabindex"> & {
+  disabled?: boolean;
+  type?: string;
+  tabindex?: number | string;
+};
 
 const ComboboxClear: Component<ComboboxClearProps> = (props) => {
   const context = ComboboxPrimitive.useComboboxContext();
@@ -95,8 +84,7 @@ const ComboboxClear: Component<ComboboxClearProps> = (props) => {
 };
 
 type ComboboxInputProps<T extends ValidComponent = "input"> =
-  & ComboboxPrimitive.ComboboxInputProps<T>
-  & {
+  ComboboxPrimitive.ComboboxInputProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
     placeholder?: string;
@@ -111,10 +99,7 @@ const ComboboxInput = <T extends ValidComponent = "input">(
   const local = props as ComboboxInputProps;
   const others = omit(local, "class", "children", "showTrigger", "showClear");
   return (
-    <ComboboxPrimitive.Control
-      as={InputGroup}
-      class={cn("cn-combobox-input w-auto", local.class)}
-    >
+    <ComboboxPrimitive.Control as={InputGroup} class={cn("cn-combobox-input w-auto", local.class)}>
       {(state) => (
         <>
           <ComboboxPrimitive.Input as={InputGroupInput} {...others} />
@@ -138,9 +123,10 @@ const ComboboxInput = <T extends ValidComponent = "input">(
   );
 };
 
-type ComboboxChipsProps<Option, T extends ValidComponent = "div"> =
-  & ComboboxPrimitive.ComboboxControlProps<Option, T>
-  & { class?: string | undefined };
+type ComboboxChipsProps<
+  Option,
+  T extends ValidComponent = "div",
+> = ComboboxPrimitive.ComboboxControlProps<Option, T> & { class?: string | undefined };
 
 const ComboboxChips = <Option, T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ComboboxChipsProps<Option, T>>,
@@ -150,10 +136,7 @@ const ComboboxChips = <Option, T extends ValidComponent = "div">(
   return (
     <ComboboxPrimitive.Control
       data-slot="combobox-chips"
-      class={cn(
-        "cn-combobox-chips",
-        local.class,
-      )}
+      class={cn("cn-combobox-chips", local.class)}
       {...others}
     />
   );
@@ -202,8 +185,7 @@ const ComboboxChip: Component<ComboboxChipProps> = (props) => {
 };
 
 type ComboboxChipsInputProps<T extends ValidComponent = "input"> =
-  & ComboboxPrimitive.ComboboxInputProps<T>
-  & { class?: string | undefined };
+  ComboboxPrimitive.ComboboxInputProps<T> & { class?: string | undefined };
 
 const ComboboxChipsInput = <T extends ValidComponent = "input">(
   props: PolymorphicProps<T, ComboboxChipsInputProps<T>>,
@@ -213,10 +195,7 @@ const ComboboxChipsInput = <T extends ValidComponent = "input">(
   return (
     <ComboboxPrimitive.Input
       data-slot="combobox-chip-input"
-      class={cn(
-        "cn-combobox-chip-input min-w-16 flex-1 outline-none",
-        local.class,
-      )}
+      class={cn("cn-combobox-chip-input min-w-16 flex-1 outline-none", local.class)}
       {...others}
     />
   );
@@ -225,20 +204,12 @@ const ComboboxChipsInput = <T extends ValidComponent = "input">(
 const ComboboxEmpty: Component<ComponentProps<"div">> = (props) => {
   const others = omit(props, "class");
   return (
-    <div
-      data-slot="combobox-empty"
-      class={cn(
-        "cn-combobox-empty",
-        props.class,
-      )}
-      {...others}
-    />
+    <div data-slot="combobox-empty" class={cn("cn-combobox-empty", props.class)} {...others} />
   );
 };
 
 type ComboboxSectionProps<T extends ValidComponent = "li"> =
-  & ComboboxPrimitive.ComboboxSectionProps<T>
-  & { class?: string | undefined };
+  ComboboxPrimitive.ComboboxSectionProps<T> & { class?: string | undefined };
 
 const ComboboxSection = <T extends ValidComponent = "li">(
   props: PolymorphicProps<T, ComboboxSectionProps<T>>,
@@ -267,12 +238,10 @@ const ComboboxSeparator: Component<ComponentProps<"li">> = (props) => {
   );
 };
 
-type ComboboxItemProps<T extends ValidComponent = "li"> =
-  & ComboboxPrimitive.ComboboxItemProps<T>
-  & {
-    class?: string | undefined;
-    children?: JSX.Element;
-  };
+type ComboboxItemProps<T extends ValidComponent = "li"> = ComboboxPrimitive.ComboboxItemProps<T> & {
+  class?: string | undefined;
+  children?: JSX.Element;
+};
 
 const ComboboxItem = <T extends ValidComponent = "li">(
   props: PolymorphicProps<T, ComboboxItemProps<T>>,
@@ -304,8 +273,7 @@ const ComboboxItem = <T extends ValidComponent = "li">(
 };
 
 type ComboboxContentProps<T extends ValidComponent = "div"> =
-  & ComboboxPrimitive.ComboboxContentProps<T>
-  & {
+  ComboboxPrimitive.ComboboxContentProps<T> & {
     class?: string | undefined;
     children?: JSX.Element;
   };
@@ -333,15 +301,9 @@ type ComboboxListProps<
   Option,
   OptGroup = never,
   T extends ValidComponent = "ul",
-> =
-  & ComboboxPrimitive.ComboboxListboxProps<Option, OptGroup, T>
-  & { class?: string | undefined };
+> = ComboboxPrimitive.ComboboxListboxProps<Option, OptGroup, T> & { class?: string | undefined };
 
-const ComboboxList = <
-  Option,
-  OptGroup = never,
-  T extends ValidComponent = "ul",
->(
+const ComboboxList = <Option, OptGroup = never, T extends ValidComponent = "ul">(
   props: PolymorphicProps<T, ComboboxListProps<Option, OptGroup, T>>,
 ) => {
   const local = props as ComboboxListProps<Option, OptGroup>;
@@ -349,10 +311,7 @@ const ComboboxList = <
   return (
     <ComboboxPrimitive.Listbox
       data-slot="combobox-list"
-      class={cn(
-        "cn-combobox-list overflow-y-auto overscroll-contain",
-        local.class,
-      )}
+      class={cn("cn-combobox-list overflow-y-auto overscroll-contain", local.class)}
       {...others}
     />
   );

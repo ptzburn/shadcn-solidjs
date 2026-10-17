@@ -23,10 +23,7 @@ export function NewMilestone() {
         <FieldGroup>
           <Field>
             <FieldLabel for="goal-name">Goal Name</FieldLabel>
-            <Input
-              id="goal-name"
-              placeholder="e.g. New Car, Home Downpayment"
-            />
+            <Input id="goal-name" placeholder="e.g. New Car, Home Downpayment" />
           </Field>
           <div class="grid grid-cols-2 gap-3">
             <Field>

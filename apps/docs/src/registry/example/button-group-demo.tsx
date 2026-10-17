@@ -122,15 +122,9 @@ export default function ButtonGroupDemo() {
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>
                   <DropdownMenuRadioGroup value={label()} onChange={setLabel}>
-                    <DropdownMenuRadioItem value="personal">
-                      Personal
-                    </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="work">
-                      Work
-                    </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="other">
-                      Other
-                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="personal">Personal</DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="work">Work</DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="other">Other</DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
                 </DropdownMenuSubContent>
               </DropdownMenuSub>

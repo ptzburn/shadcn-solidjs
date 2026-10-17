@@ -17,12 +17,7 @@ const defaultConfig: Config = {
   packageManager: "pnpm",
 };
 
-const PACKAGE_MANAGERS: ReadonlySet<string> = new Set([
-  "npm",
-  "yarn",
-  "pnpm",
-  "bun",
-]);
+const PACKAGE_MANAGERS: ReadonlySet<string> = new Set(["npm", "yarn", "pnpm", "bun"]);
 
 /**
  * Merges a stored config over the defaults, dropping a package manager the
@@ -41,23 +36,23 @@ const [config, setConfigSignal] = createSignal<Config>(defaultConfig);
 
 let hydrated = false;
 
-export function useConfig(): [
-  Accessor<Config>,
-  (partial: Partial<Config>) => void,
-] {
+export function useConfig(): [Accessor<Config>, (partial: Partial<Config>) => void] {
   // Effects only run on the client, standing in for Solid 1's onMount.
-  createEffect(() => {}, () => {
-    if (hydrated) return;
-    hydrated = true;
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        setConfigSignal(sanitizeConfig(JSON.parse(stored)));
+  createEffect(
+    () => {},
+    () => {
+      if (hydrated) return;
+      hydrated = true;
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          setConfigSignal(sanitizeConfig(JSON.parse(stored)));
+        }
+      } catch {
+        // Corrupted storage — keep the defaults.
       }
-    } catch {
-      // Corrupted storage — keep the defaults.
-    }
-  });
+    },
+  );
 
   const setConfig = (partial: Partial<Config>) => {
     const next = { ...config(), ...partial };

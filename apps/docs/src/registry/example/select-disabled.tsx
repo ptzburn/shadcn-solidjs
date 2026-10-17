@@ -16,9 +16,7 @@ export default function SelectDisabled() {
       options={FRUITS}
       optionDisabled={(fruit) => fruit === "Grapes"}
       placeholder="Select a fruit"
-      itemComponent={(props) => (
-        <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
-      )}
+      itemComponent={(props) => <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>}
     >
       <SelectTrigger aria-label="Fruit" class="w-full">
         <SelectValue<string>>{(state) => state.selectedOption()}</SelectValue>

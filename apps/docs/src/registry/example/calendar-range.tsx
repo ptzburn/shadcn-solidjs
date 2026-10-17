@@ -8,9 +8,7 @@ const addDays = (date: Date, days: number) =>
 
 export default function CalendarRange() {
   const start = new Date(new Date().getFullYear(), 0, 12);
-  const [dateRange, setDateRange] = createSignal<
-    { start: Date; end: Date } | null
-  >({
+  const [dateRange, setDateRange] = createSignal<{ start: Date; end: Date } | null>({
     start,
     end: addDays(start, 30),
   });

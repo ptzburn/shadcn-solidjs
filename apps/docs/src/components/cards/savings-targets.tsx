@@ -6,13 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/registry/ui/card.tsx";
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemFooter,
-  ItemGroup,
-} from "~/registry/ui/item.tsx";
+import { Item, ItemContent, ItemDescription, ItemFooter, ItemGroup } from "~/registry/ui/item.tsx";
 import { Progress } from "~/registry/ui/progress.tsx";
 
 export function SavingsTargets() {
@@ -21,8 +15,8 @@ export function SavingsTargets() {
       <CardHeader>
         <CardTitle>Savings Targets</CardTitle>
         <CardDescription>
-          Active milestones for 2024 across your portfolio. Monitor how close
-          you are to each savings goal.
+          Active milestones for 2024 across your portfolio. Monitor how close you are to each
+          savings goal.
         </CardDescription>
       </CardHeader>
       <CardContent>

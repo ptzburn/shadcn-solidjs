@@ -24,21 +24,14 @@ export default function EmptyDemo() {
         </EmptyMedia>
         <EmptyTitle>No Projects Yet</EmptyTitle>
         <EmptyDescription>
-          You haven&apos;t created any projects yet. Get started by creating
-          your first project.
+          You haven&apos;t created any projects yet. Get started by creating your first project.
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent class="flex-row justify-center gap-2">
         <Button>Create Project</Button>
         <Button variant="outline">Import Project</Button>
       </EmptyContent>
-      <Button
-        as="a"
-        variant="link"
-        class="text-muted-foreground"
-        size="sm"
-        href="#"
-      >
+      <Button as="a" variant="link" class="text-muted-foreground" size="sm" href="#">
         Learn More{" "}
         <IconPlaceholder
           lucide="arrow-up-right"

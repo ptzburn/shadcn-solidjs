@@ -52,19 +52,13 @@ function addressKey(address: string, options: ResolveOptions): string {
  * filesystem path, so `REGISTRY_URL` can point at a built `public/r` directory
  * without a server in front of it.
  */
-function fetchFrom(
-  location: string,
-  headers?: Record<string, string>,
-): Promise<RegistryItem> {
+function fetchFrom(location: string, headers?: Record<string, string>): Promise<RegistryItem> {
   return isUrl(location)
     ? fetchRegistryItem({ url: location, headers })
     : fetchRegistryItem({ path: location });
 }
 
-async function fetchByAddress(
-  address: string,
-  options: ResolveOptions,
-): Promise<RegistryItem> {
+async function fetchByAddress(address: string, options: ResolveOptions): Promise<RegistryItem> {
   const parsed = resolveItemAddress(address);
   if (parsed.kind === "url") {
     return await fetchRegistryItem({ url: parsed.url });
@@ -180,17 +174,14 @@ function topologicalSort(nodes: Map<string, ResolvedNode>): RegistryItem[] {
   return ordered;
 }
 
-function mergeCss(
-  target: RegistryItemCss,
-  source: RegistryItemCss,
-): RegistryItemCss {
+function mergeCss(target: RegistryItemCss, source: RegistryItemCss): RegistryItemCss {
   const result: RegistryItemCss = { ...target };
   for (const [key, value] of Object.entries(source)) {
     const existing = result[key];
-    result[key] = typeof value === "object" && typeof existing === "object" &&
-        existing !== null
-      ? mergeCss(existing, value)
-      : value;
+    result[key] =
+      typeof value === "object" && typeof existing === "object" && existing !== null
+        ? mergeCss(existing, value)
+        : value;
   }
   return result;
 }

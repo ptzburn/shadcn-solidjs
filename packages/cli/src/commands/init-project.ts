@@ -13,10 +13,7 @@ import {
 } from "../registry/constants.ts";
 import { fetchRegistryIndex, fetchRegistryItem } from "../registry/fetcher.ts";
 import type { ProjectTarget } from "../runtime/target.ts";
-import {
-  BASE_DEPENDENCIES,
-  BASE_DEV_DEPENDENCIES,
-} from "../updaters/css-conventions.ts";
+import { BASE_DEPENDENCIES, BASE_DEV_DEPENDENCIES } from "../updaters/css-conventions.ts";
 import { transformCssVars } from "../updaters/update-css-vars.ts";
 import { updateDependencies } from "../updaters/update-dependencies.ts";
 import { findTailwindCss, findViteConfig } from "../utils/find-css.ts";
@@ -138,9 +135,7 @@ export async function initProject(
 ): Promise<InitResult> {
   const configPath = path.join(cwd, CONFIG_FILE);
   if (existsSync(configPath) && !options.force) {
-    throw new InitError(
-      `${CONFIG_FILE} already exists in ${cwd}. Pass --force to overwrite it.`,
-    );
+    throw new InitError(`${CONFIG_FILE} already exists in ${cwd}. Pass --force to overwrite it.`);
   }
 
   const { config, cssPath } = await buildConfig(cwd, target, options);
@@ -151,32 +146,23 @@ export async function initProject(
     const hint = accents.includes(config.tailwind.baseColor)
       ? `"${config.tailwind.baseColor}" is an accent theme, not a base color — apply it with \`shadcn-solidjs add ${config.tailwind.baseColor}\` after init. `
       : "";
-    throw new InitError(
-      `${hint}Choose a base color from: ${baseColors.join(", ")}.`,
-    );
+    throw new InitError(`${hint}Choose a base color from: ${baseColors.join(", ")}.`);
   }
 
   writeFileSync(configPath, `${JSON.stringify(config, null, 2)}\n`, "utf8");
 
   const theme = await fetchRegistryItem(themeSource(config.tailwind.baseColor));
   if (theme.cssVars) {
-    writeFileSync(
-      cssPath,
-      transformCssVars(readFileSync(cssPath, "utf8"), theme.cssVars),
-      "utf8",
-    );
+    writeFileSync(cssPath, transformCssVars(readFileSync(cssPath, "utf8"), theme.cssVars), "utf8");
   }
 
   const resolved = await resolveConfigPaths(cwd, config, target);
 
   // Through the updater rather than the target directly, so re-running init
   // never rewrites a range the project already pinned.
-  await updateDependencies(
-    [...BASE_DEPENDENCIES],
-    [...BASE_DEV_DEPENDENCIES],
-    target,
-    { silent: options.silent },
-  );
+  await updateDependencies([...BASE_DEPENDENCIES], [...BASE_DEV_DEPENDENCIES], target, {
+    silent: options.silent,
+  });
 
   // Every ui item imports `cn`, but no item declares it as a dependency —
   // upstream leaves it to init as well.

@@ -29,13 +29,7 @@ export default function AttachmentStates() {
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Remove selected-file.pdf">
-            <IconPlaceholder
-              lucide="x"
-              tabler="x"
-              ph="x"
-              ri="close-line"
-              hugeicons="cancel-01"
-            />
+            <IconPlaceholder lucide="x" tabler="x" ph="x" ri="close-line" hugeicons="cancel-01" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>
@@ -49,13 +43,7 @@ export default function AttachmentStates() {
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Cancel upload">
-            <IconPlaceholder
-              lucide="x"
-              tabler="x"
-              ph="x"
-              ri="close-line"
-              hugeicons="cancel-01"
-            />
+            <IconPlaceholder lucide="x" tabler="x" ph="x" ri="close-line" hugeicons="cancel-01" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>
@@ -75,13 +63,7 @@ export default function AttachmentStates() {
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Remove market-research.pdf">
-            <IconPlaceholder
-              lucide="x"
-              tabler="x"
-              ph="x"
-              ri="close-line"
-              hugeicons="cancel-01"
-            />
+            <IconPlaceholder lucide="x" tabler="x" ph="x" ri="close-line" hugeicons="cancel-01" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>
@@ -97,9 +79,7 @@ export default function AttachmentStates() {
         </AttachmentMedia>
         <AttachmentContent>
           <AttachmentTitle>financial-model.xlsx</AttachmentTitle>
-          <AttachmentDescription>
-            Upload failed. Try again.
-          </AttachmentDescription>
+          <AttachmentDescription>Upload failed. Try again.</AttachmentDescription>
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Retry upload">
@@ -112,13 +92,7 @@ export default function AttachmentStates() {
             />
           </AttachmentAction>
           <AttachmentAction aria-label="Remove financial-model.xlsx">
-            <IconPlaceholder
-              lucide="x"
-              tabler="x"
-              ph="x"
-              ri="close-line"
-              hugeicons="cancel-01"
-            />
+            <IconPlaceholder lucide="x" tabler="x" ph="x" ri="close-line" hugeicons="cancel-01" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>
@@ -138,13 +112,7 @@ export default function AttachmentStates() {
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Remove uploaded-report.pdf">
-            <IconPlaceholder
-              lucide="x"
-              tabler="x"
-              ph="x"
-              ri="close-line"
-              hugeicons="cancel-01"
-            />
+            <IconPlaceholder lucide="x" tabler="x" ph="x" ri="close-line" hugeicons="cancel-01" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>

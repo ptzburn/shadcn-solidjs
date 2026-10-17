@@ -28,8 +28,7 @@ function getMessageScrollerScrollable({
 
   return {
     start: viewport.scrollTop > scrollEdgeThreshold,
-    end: contentBottom - viewport.scrollTop - viewport.clientHeight >
-      scrollEdgeThreshold,
+    end: contentBottom - viewport.scrollTop - viewport.clientHeight > scrollEdgeThreshold,
   };
 }
 
@@ -74,13 +73,12 @@ function getMessageScrollerVisibilityState({
     const isAnchor = item.dataset.scrollAnchor === "true";
     // Anchors need a rect to place the current line; non-anchors lean on the
     // observer set (or a rect in the no-observer fallback).
-    const rect = isAnchor || trackByLayout
-      ? item.getBoundingClientRect()
-      : null;
+    const rect = isAnchor || trackByLayout ? item.getBoundingClientRect() : null;
 
-    const isVisible = trackByLayout && rect
-      ? rect.bottom > lineTop && rect.top < viewportRect.bottom
-      : visibleMessageIds.has(messageId);
+    const isVisible =
+      trackByLayout && rect
+        ? rect.bottom > lineTop && rect.top < viewportRect.bottom
+        : visibleMessageIds.has(messageId);
 
     if (isVisible) {
       visible.push(messageId);
@@ -105,20 +103,13 @@ function getMessageScrollerVisibilityState({
   };
 }
 
-function getMessageScrollerItems(
-  content: HTMLElement,
-  spacer: HTMLElement | null,
-): HTMLElement[] {
+function getMessageScrollerItems(content: HTMLElement, spacer: HTMLElement | null): HTMLElement[] {
   return Array.from(content.children).filter(
-    (child): child is HTMLElement =>
-      child instanceof HTMLElement && child !== spacer,
+    (child): child is HTMLElement => child instanceof HTMLElement && child !== spacer,
   );
 }
 
-function getNewScrollAnchor(
-  items: HTMLElement[],
-  previousItemCount: number,
-): HTMLElement | null {
+function getNewScrollAnchor(items: HTMLElement[], previousItemCount: number): HTMLElement | null {
   for (let index = previousItemCount; index < items.length; index++) {
     const item = items[index];
 
@@ -143,10 +134,7 @@ function getUnanchoredScrollAnchor(
   return null;
 }
 
-function hasMultipleNewScrollAnchors(
-  items: HTMLElement[],
-  previousItemCount: number,
-): boolean {
+function hasMultipleNewScrollAnchors(items: HTMLElement[], previousItemCount: number): boolean {
   let count = 0;
 
   for (let index = previousItemCount; index < items.length; index++) {
@@ -227,29 +215,17 @@ function getElementScrollTop({
       viewport.clientHeight - contentPadding.start - contentPadding.end,
     );
 
-    return (
-      elementTop -
-      contentPadding.start -
-      (insetHeight - elementHeight) / 2 -
-      scrollMargin
-    );
+    return elementTop - contentPadding.start - (insetHeight - elementHeight) / 2 - scrollMargin;
   }
 
   if (align === "end") {
-    return (
-      elementTop -
-      viewport.clientHeight +
-      elementHeight +
-      contentPadding.end +
-      scrollMargin
-    );
+    return elementTop - viewport.clientHeight + elementHeight + contentPadding.end + scrollMargin;
   }
 
   if (align === "nearest") {
     const elementBottom = elementTop + elementHeight;
     const viewportTop = viewport.scrollTop + contentPadding.start;
-    const viewportBottom = viewport.scrollTop + viewport.clientHeight -
-      contentPadding.end;
+    const viewportBottom = viewport.scrollTop + viewport.clientHeight - contentPadding.end;
 
     if (elementTop >= viewportTop && elementBottom <= viewportBottom) {
       return viewport.scrollTop;
@@ -259,9 +235,7 @@ function getElementScrollTop({
       return elementTop - contentPadding.start - scrollMargin;
     }
 
-    return (
-      elementBottom - viewport.clientHeight + contentPadding.end + scrollMargin
-    );
+    return elementBottom - viewport.clientHeight + contentPadding.end + scrollMargin;
   }
 
   return elementTop - contentPadding.start - scrollMargin;
@@ -274,13 +248,8 @@ function getElementTop(element: HTMLElement, viewport: HTMLElement): number {
   return elementRect.top - viewportRect.top + viewport.scrollTop;
 }
 
-function getElementViewportTop(
-  element: HTMLElement,
-  viewport: HTMLElement,
-): number {
-  return (
-    element.getBoundingClientRect().top - viewport.getBoundingClientRect().top
-  );
+function getElementViewportTop(element: HTMLElement, viewport: HTMLElement): number {
+  return element.getBoundingClientRect().top - viewport.getBoundingClientRect().top;
 }
 
 function getTailSpacerHeight({
@@ -330,9 +299,7 @@ function getMaxScrollTop(viewport: HTMLElement): number {
   return Math.max(0, viewport.scrollHeight - viewport.clientHeight);
 }
 
-function getBlockPadding(
-  element: HTMLElement,
-): { end: number; start: number } {
+function getBlockPadding(element: HTMLElement): { end: number; start: number } {
   const style = globalThis.getComputedStyle(element);
 
   return {
@@ -341,9 +308,7 @@ function getBlockPadding(
   };
 }
 
-function getContentBlockPadding(
-  spacer: HTMLElement | null,
-): { end: number; start: number } {
+function getContentBlockPadding(spacer: HTMLElement | null): { end: number; start: number } {
   const content = spacer?.parentElement;
 
   if (!content) {

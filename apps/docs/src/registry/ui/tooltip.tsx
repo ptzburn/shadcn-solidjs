@@ -20,23 +20,18 @@ const Tooltip: Component<TooltipPrimitive.TooltipRootProps> = (props) => {
 };
 
 type TooltipTriggerProps<T extends ValidComponent = "button"> =
-  & TooltipPrimitive.TooltipTriggerProps<T>
-  & { class?: string | undefined };
+  TooltipPrimitive.TooltipTriggerProps<T> & { class?: string | undefined };
 
 const TooltipTrigger = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, TooltipTriggerProps<T>>,
 ) => {
   return (
-    <TooltipPrimitive.Trigger
-      data-slot="tooltip-trigger"
-      {...(props as TooltipTriggerProps)}
-    />
+    <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...(props as TooltipTriggerProps)} />
   );
 };
 
 type TooltipContentProps<T extends ValidComponent = "div"> =
-  & TooltipPrimitive.TooltipContentProps<T>
-  & { class?: string | undefined; children?: JSX.Element };
+  TooltipPrimitive.TooltipContentProps<T> & { class?: string | undefined; children?: JSX.Element };
 
 const TooltipContent = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, TooltipContentProps<T>>,

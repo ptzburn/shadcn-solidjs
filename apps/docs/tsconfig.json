@@ -16,12 +16,14 @@
     // Type Checking & Safety
     "strict": true,
     "skipLibCheck": true,
-    "types": ["vite/client", "unplugin-icons/types/solid"],
+    // Sources import siblings with explicit .ts/.tsx extensions.
+    "allowImportingTsExtensions": true,
+    // Not unplugin-icons/types/solid: see src/icons.d.ts.
+    "types": ["vite/client"],
 
     // Source mappings the Vite config mirrors in resolve.alias
     "paths": {
       "~/*": ["./src/*"],
-      "~icons/*": ["./node_modules/unplugin-icons/types/solid.d.ts"],
       "@ptzburn/shadcn-solid/message-scroller": [
         "../../packages/solid/src/message-scroller/index.ts"
       ]

@@ -32,10 +32,8 @@ const inputGroupAddonVariants = cva(
       align: {
         "inline-start": "cn-input-group-addon-align-inline-start order-first",
         "inline-end": "cn-input-group-addon-align-inline-end order-last",
-        "block-start":
-          "cn-input-group-addon-align-block-start order-first w-full justify-start",
-        "block-end":
-          "cn-input-group-addon-align-block-end order-last w-full justify-start",
+        "block-start": "cn-input-group-addon-align-block-start order-first w-full justify-start",
+        "block-end": "cn-input-group-addon-align-block-end order-last w-full justify-start",
       },
     },
     defaultVariants: {
@@ -44,9 +42,7 @@ const inputGroupAddonVariants = cva(
   },
 );
 
-type InputGroupAddonProps =
-  & ComponentProps<"div">
-  & VariantProps<typeof inputGroupAddonVariants>;
+type InputGroupAddonProps = ComponentProps<"div"> & VariantProps<typeof inputGroupAddonVariants>;
 
 const InputGroupAddon: Component<InputGroupAddonProps> = (rawProps) => {
   const props = merge({ align: "inline-start" as const }, rawProps);
@@ -71,26 +67,22 @@ const InputGroupAddon: Component<InputGroupAddonProps> = (rawProps) => {
   );
 };
 
-const inputGroupButtonVariants = cva(
-  "cn-input-group-button flex items-center shadow-none",
-  {
-    variants: {
-      size: {
-        xs: "cn-input-group-button-size-xs",
-        sm: "cn-input-group-button-size-sm",
-        "icon-xs": "cn-input-group-button-size-icon-xs",
-        "icon-sm": "cn-input-group-button-size-icon-sm",
-      },
-    },
-    defaultVariants: {
-      size: "xs",
+const inputGroupButtonVariants = cva("cn-input-group-button flex items-center shadow-none", {
+  variants: {
+    size: {
+      xs: "cn-input-group-button-size-xs",
+      sm: "cn-input-group-button-size-sm",
+      "icon-xs": "cn-input-group-button-size-icon-xs",
+      "icon-sm": "cn-input-group-button-size-icon-sm",
     },
   },
-);
+  defaultVariants: {
+    size: "xs",
+  },
+});
 
-type InputGroupButtonProps<T extends ValidComponent = "button"> =
-  & Omit<ButtonProps<T>, "size">
-  & VariantProps<typeof inputGroupButtonVariants>;
+type InputGroupButtonProps<T extends ValidComponent = "button"> = Omit<ButtonProps<T>, "size"> &
+  VariantProps<typeof inputGroupButtonVariants>;
 
 const InputGroupButton = <T extends ValidComponent = "button">(
   rawProps: PolymorphicProps<T, InputGroupButtonProps<T>>,
@@ -115,10 +107,7 @@ const InputGroupText: Component<ComponentProps<"span">> = (props) => {
   const others = omit(props, "class");
   return (
     <span
-      class={cn(
-        "cn-input-group-text flex items-center [&_svg]:pointer-events-none",
-        props.class,
-      )}
+      class={cn("cn-input-group-text flex items-center [&_svg]:pointer-events-none", props.class)}
       {...others}
     />
   );
@@ -129,10 +118,7 @@ const InputGroupInput: Component<ComponentProps<"input">> = (props) => {
   return (
     <Input
       data-slot="input-group-control"
-      class={cn(
-        "cn-input-group-input flex-1",
-        props.class,
-      )}
+      class={cn("cn-input-group-input flex-1", props.class)}
       {...others}
     />
   );
@@ -143,10 +129,7 @@ const InputGroupTextarea: Component<ComponentProps<"textarea">> = (props) => {
   return (
     <Textarea
       data-slot="input-group-control"
-      class={cn(
-        "cn-input-group-textarea flex-1 resize-none",
-        props.class,
-      )}
+      class={cn("cn-input-group-textarea flex-1 resize-none", props.class)}
       {...others}
     />
   );

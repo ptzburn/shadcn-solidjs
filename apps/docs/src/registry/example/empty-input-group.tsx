@@ -6,11 +6,7 @@ import {
   EmptyHeader,
   EmptyTitle,
 } from "~/registry/ui/empty.tsx";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "~/registry/ui/input-group.tsx";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "~/registry/ui/input-group.tsx";
 import { Kbd } from "~/registry/ui/kbd.tsx";
 
 export default function EmptyInputGroup() {
@@ -19,8 +15,8 @@ export default function EmptyInputGroup() {
       <EmptyHeader>
         <EmptyTitle>404 - Not Found</EmptyTitle>
         <EmptyDescription>
-          The page you&apos;re looking for doesn&apos;t exist. Try searching for
-          what you need below.
+          The page you&apos;re looking for doesn&apos;t exist. Try searching for what you need
+          below.
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent>

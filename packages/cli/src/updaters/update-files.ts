@@ -28,9 +28,7 @@ export class UnsafeTargetError extends Error {
   readonly resolved: string;
 
   constructor(file: string, resolved: string) {
-    super(
-      `Refusing to write "${file}": it resolves to ${resolved}, outside the project.`,
-    );
+    super(`Refusing to write "${file}": it resolves to ${resolved}, outside the project.`);
     this.name = "UnsafeTargetError";
     this.file = file;
     this.resolved = resolved;
@@ -76,8 +74,11 @@ function directoryForType(file: RegistryItemFile, config: Config): string {
  */
 function assertWithin(resolved: string, root: string, file: string): string {
   const relative = path.relative(root, resolved);
-  const escapes = !relative || relative === ".." ||
-    relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative);
+  const escapes =
+    !relative ||
+    relative === ".." ||
+    relative.startsWith(`..${path.sep}`) ||
+    path.isAbsolute(relative);
   if (escapes) throw new UnsafeTargetError(file, resolved);
   return resolved;
 }
@@ -93,9 +94,10 @@ export function resolveFilePath(
 
   if (options.path) {
     const looksLikeFile = /\.[^/\\]+$/.test(options.path);
-    const destination = looksLikeFile && index === 0
-      ? path.resolve(cwd, options.path)
-      : path.resolve(cwd, options.path, relative);
+    const destination =
+      looksLikeFile && index === 0
+        ? path.resolve(cwd, options.path)
+        : path.resolve(cwd, options.path, relative);
     return assertWithin(destination, cwd, file.path);
   }
 
@@ -106,11 +108,7 @@ export function resolveFilePath(
     return assertWithin(target, cwd, file.path);
   }
 
-  return assertWithin(
-    path.resolve(directoryForType(file, config), relative),
-    cwd,
-    file.path,
-  );
+  return assertWithin(path.resolve(directoryForType(file, config), relative), cwd, file.path);
 }
 
 export interface PlannedFile {

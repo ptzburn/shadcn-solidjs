@@ -1,9 +1,4 @@
-import {
-  Item,
-  ItemContent,
-  ItemMedia,
-  ItemTitle,
-} from "~/registry/ui/item.tsx";
+import { Item, ItemContent, ItemMedia, ItemTitle } from "~/registry/ui/item.tsx";
 import { Spinner } from "~/registry/ui/spinner.tsx";
 
 export default function SpinnerDemo() {

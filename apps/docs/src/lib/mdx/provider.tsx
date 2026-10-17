@@ -22,10 +22,7 @@ const defaultComponents: MDXComponents = Object.fromEntries(
 
 const MDXContext = createContext<MDXComponents>(defaultComponents);
 
-function MDXProvider(props: {
-  components?: MDXComponents;
-  children?: JSX.Element;
-}) {
+function MDXProvider(props: { components?: MDXComponents; children?: JSX.Element }) {
   const parent = useContext(MDXContext);
   const value = merge(parent, () => props.components ?? {});
   return <MDXContext value={value}>{props.children}</MDXContext>;

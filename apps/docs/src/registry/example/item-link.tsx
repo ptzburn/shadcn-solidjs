@@ -1,11 +1,5 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemDescription,
-  ItemTitle,
-} from "~/registry/ui/item.tsx";
+import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "~/registry/ui/item.tsx";
 
 export default function ItemLink() {
   return (
@@ -13,9 +7,7 @@ export default function ItemLink() {
       <Item as="a" href="#">
         <ItemContent>
           <ItemTitle>Visit our documentation</ItemTitle>
-          <ItemDescription>
-            Learn how to get started with our components.
-          </ItemDescription>
+          <ItemDescription>Learn how to get started with our components.</ItemDescription>
         </ItemContent>
         <ItemActions>
           <IconPlaceholder
@@ -28,18 +20,10 @@ export default function ItemLink() {
           />
         </ItemActions>
       </Item>
-      <Item
-        variant="outline"
-        as="a"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <Item variant="outline" as="a" href="#" target="_blank" rel="noopener noreferrer">
         <ItemContent>
           <ItemTitle>External resource</ItemTitle>
-          <ItemDescription>
-            Opens in a new tab with security attributes.
-          </ItemDescription>
+          <ItemDescription>Opens in a new tab with security attributes.</ItemDescription>
         </ItemContent>
         <ItemActions>
           <IconPlaceholder

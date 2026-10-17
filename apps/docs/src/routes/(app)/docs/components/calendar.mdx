@@ -55,20 +55,15 @@ The `Calendar` component uses the `Button` component. Make sure you have it inst
 ## Usage
 
 ```tsx showLineNumbers
-import { Calendar } from "~/components/ui/calendar"
+import { Calendar } from "~/components/ui/calendar";
 ```
 
 ```tsx showLineNumbers
-const [date, setDate] = createSignal<Date | null>(new Date())
+const [date, setDate] = createSignal<Date | null>(new Date());
 
 return (
-  <Calendar
-    selectionMode="single"
-    value={date()}
-    onChange={setDate}
-    class="rounded-lg border"
-  />
-)
+  <Calendar selectionMode="single" value={date()} onChange={setDate} class="rounded-lg border" />
+);
 ```
 
 See the [Kobalte Calendar](https://kobalte.dev/docs/core/components/calendar) documentation for more information.
@@ -87,10 +82,7 @@ A basic calendar component. We used `class="rounded-lg border"` to style the cal
 
 Use the `selectionMode="range"` prop to enable range selection. The value is an object with `start` and `end` dates. The first click sets the start of the range and the second click sets the end.
 
-<ComponentPreview
-  name="calendar-range"
-  previewClassName="h-[36rem] md:h-96"
-/>
+<ComponentPreview name="calendar-range" previewClassName="h-[36rem] md:h-96" />
 
 ## Month and Year Selector
 
@@ -157,34 +149,34 @@ See the [Kobalte Calendar documentation](https://kobalte.dev/docs/core/component
 The `Calendar` component renders the navigation, caption and month grids. It
 accepts every prop of the Kobalte `Calendar` root, plus the ones below.
 
-| Prop                        | Type                                                                   | Default   |
-| --------------------------- | ---------------------------------------------------------------------- | --------- |
-| `selectionMode`             | `"single" \| "multiple" \| "range"`                                     | -         |
-| `value`                     | `Date \| null` · `Date[] \| null` · `{ start: Date; end: Date } \| null`  | -         |
-| `defaultValue`              | same as `value`                                                        | -         |
-| `onChange`                  | `(value) => void`                                                      | -         |
-| `focusedValue`              | `Date`                                                                 | -         |
-| `defaultFocusedValue`       | `Date`                                                                 | today     |
-| `onFocusChange`             | `(date: Date) => void`                                                 | -         |
-| `numberOfMonths`            | `number`                                                               | `1`       |
-| `minValue`                  | `Date`                                                                 | -         |
-| `maxValue`                  | `Date`                                                                 | -         |
-| `isDateUnavailable`         | `(date: Date) => boolean`                                              | -         |
-| `allowsNonContiguousRanges` | `boolean`                                                              | `false`   |
-| `disabled`                  | `boolean`                                                              | `false`   |
-| `readOnly`                  | `boolean`                                                              | `false`   |
-| `locale`                    | `string`                                                               | `"en-US"` |
-| `showOutsideDays`           | `boolean`                                                              | `true`    |
-| `showWeekNumber`            | `boolean`                                                              | `false`   |
+| Prop                        | Type                                                                     | Default   |
+| --------------------------- | ------------------------------------------------------------------------ | --------- |
+| `selectionMode`             | `"single" \| "multiple" \| "range"`                                      | -         |
+| `value`                     | `Date \| null` · `Date[] \| null` · `{ start: Date; end: Date } \| null` | -         |
+| `defaultValue`              | same as `value`                                                          | -         |
+| `onChange`                  | `(value) => void`                                                        | -         |
+| `focusedValue`              | `Date`                                                                   | -         |
+| `defaultFocusedValue`       | `Date`                                                                   | today     |
+| `onFocusChange`             | `(date: Date) => void`                                                   | -         |
+| `numberOfMonths`            | `number`                                                                 | `1`       |
+| `minValue`                  | `Date`                                                                   | -         |
+| `maxValue`                  | `Date`                                                                   | -         |
+| `isDateUnavailable`         | `(date: Date) => boolean`                                                | -         |
+| `allowsNonContiguousRanges` | `boolean`                                                                | `false`   |
+| `disabled`                  | `boolean`                                                                | `false`   |
+| `readOnly`                  | `boolean`                                                                | `false`   |
+| `locale`                    | `string`                                                                 | `"en-US"` |
+| `showOutsideDays`           | `boolean`                                                                | `true`    |
+| `showWeekNumber`            | `boolean`                                                                | `false`   |
 | `captionLayout`             | `"label" \| "dropdown" \| "dropdown-months" \| "dropdown-years"`         | `"label"` |
-| `buttonVariant`             | `ButtonProps["variant"]`                                               | `"ghost"` |
-| `startMonth`                | `Date`                                                                 | -         |
-| `endMonth`                  | `Date`                                                                 | -         |
-| `formatters`                | `Partial<CalendarFormatters>`                                          | -         |
-| `modifiers`                 | `Record<string, (day: Date) => boolean>`                               | -         |
-| `modifiersClassNames`       | `Record<string, string>`                                               | -         |
-| `components`                | `{ DayButton?: Component<CalendarDayButtonProps> }`                    | -         |
-| `class`                     | `string`                                                               | -         |
+| `buttonVariant`             | `ButtonProps["variant"]`                                                 | `"ghost"` |
+| `startMonth`                | `Date`                                                                   | -         |
+| `endMonth`                  | `Date`                                                                   | -         |
+| `formatters`                | `Partial<CalendarFormatters>`                                            | -         |
+| `modifiers`                 | `Record<string, (day: Date) => boolean>`                                 | -         |
+| `modifiersClassNames`       | `Record<string, string>`                                                 | -         |
+| `components`                | `{ DayButton?: Component<CalendarDayButtonProps> }`                      | -         |
+| `class`                     | `string`                                                                 | -         |
 
 The visible month follows the focused date: the navigation buttons, the
 keyboard and the caption dropdowns all move it, and `focusedValue` controls it

@@ -1,9 +1,4 @@
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPInput,
-  InputOTPSlot,
-} from "~/registry/ui/input-otp.tsx";
+import { InputOTP, InputOTPGroup, InputOTPInput, InputOTPSlot } from "~/registry/ui/input-otp.tsx";
 
 import { createSignal } from "solid-js";
 

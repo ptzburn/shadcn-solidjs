@@ -17,7 +17,8 @@ export function CodeTabs(props: ComponentProps<typeof Tabs>) {
       onChange={(value: string) =>
         setConfig({
           installationType: value as Config["installationType"],
-        })}
+        })
+      }
       class="relative mt-6 w-full *:data-[slot=tabs-list]:gap-6"
     />
   );

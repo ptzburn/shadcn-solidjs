@@ -562,11 +562,13 @@
       @apply has-focus:border-ring border-input has-focus:ring-ring/30 border
         has-focus:ring-3;
     }
-    .cn-calendar-caption {}
+    .cn-calendar-caption {
+    }
     .cn-calendar-caption-label {
       @apply h-8 pr-2 pl-3;
     }
-    .cn-calendar-day-button {}
+    .cn-calendar-day-button {
+    }
     .cn-card {
       @apply bg-card text-card-foreground ring-foreground/5
         dark:ring-foreground/10 gap-(--card-spacing) overflow-hidden rounded-4xl
@@ -1959,107 +1961,158 @@
     /* MARK: Unstyled in this style
        Empty rules declare markers this style leaves unstyled. */
 
-    .cn-accordion-trigger-icon {}
+    .cn-accordion-trigger-icon {
+    }
 
-    .cn-alert-dialog-action {}
+    .cn-alert-dialog-action {
+    }
 
-    .cn-alert-dialog-cancel {}
+    .cn-alert-dialog-cancel {
+    }
 
-    .cn-alert-dialog-footer {}
+    .cn-alert-dialog-footer {
+    }
 
-    .cn-attachment-action {}
+    .cn-attachment-action {
+    }
 
-    .cn-attachment-media-variant-icon {}
+    .cn-attachment-media-variant-icon {
+    }
 
-    .cn-avatar-group {}
+    .cn-avatar-group {
+    }
 
-    .cn-breadcrumb {}
+    .cn-breadcrumb {
+    }
 
-    .cn-card-action {}
+    .cn-card-action {
+    }
 
-    .cn-chart {}
+    .cn-chart {
+    }
 
-    .cn-combobox-chip-indicator-icon {}
+    .cn-combobox-chip-indicator-icon {
+    }
 
-    .cn-combobox-chip-input {}
+    .cn-combobox-chip-input {
+    }
 
-    .cn-combobox-clear {}
+    .cn-combobox-clear {
+    }
 
-    .cn-combobox-clear-icon {}
+    .cn-combobox-clear-icon {
+    }
 
-    .cn-combobox-input {}
+    .cn-combobox-input {
+    }
 
-    .cn-combobox-item-indicator-icon {}
+    .cn-combobox-item-indicator-icon {
+    }
 
-    .cn-command-item-indicator {}
+    .cn-command-item-indicator {
+    }
 
-    .cn-context-menu-trigger {}
+    .cn-context-menu-trigger {
+    }
 
-    .cn-date-picker-next-trigger {}
+    .cn-date-picker-next-trigger {
+    }
 
-    .cn-date-picker-prev-trigger {}
+    .cn-date-picker-prev-trigger {
+    }
 
-    .cn-date-picker-table-cell {}
+    .cn-date-picker-table-cell {
+    }
 
-    .cn-date-picker-table-cell-trigger {}
+    .cn-date-picker-table-cell-trigger {
+    }
 
-    .cn-date-picker-table-header {}
+    .cn-date-picker-table-header {
+    }
 
-    .cn-date-picker-table-row {}
+    .cn-date-picker-table-row {
+    }
 
-    .cn-date-picker-view {}
+    .cn-date-picker-view {
+    }
 
-    .cn-field-orientation-horizontal {}
+    .cn-field-orientation-horizontal {
+    }
 
-    .cn-field-orientation-responsive {}
+    .cn-field-orientation-responsive {
+    }
 
-    .cn-field-orientation-vertical {}
+    .cn-field-orientation-vertical {
+    }
 
-    .cn-input-group-button-size-sm {}
+    .cn-input-group-button-size-sm {
+    }
 
-    .cn-input-otp-caret {}
+    .cn-input-otp-caret {
+    }
 
-    .cn-input-otp-input {}
+    .cn-input-otp-input {
+    }
 
-    .cn-marker-variant-default {}
+    .cn-marker-variant-default {
+    }
 
-    .cn-message-scroller {}
+    .cn-message-scroller {
+    }
 
-    .cn-message-scroller-button {}
+    .cn-message-scroller-button {
+    }
 
-    .cn-message-scroller-item {}
+    .cn-message-scroller-item {
+    }
 
-    .cn-message-scroller-viewport {}
+    .cn-message-scroller-viewport {
+    }
 
-    .cn-native-select-wrapper {}
+    .cn-native-select-wrapper {
+    }
 
-    .cn-navigation-menu-description {}
+    .cn-navigation-menu-description {
+    }
 
-    .cn-navigation-menu-label {}
+    .cn-navigation-menu-label {
+    }
 
-    .cn-pagination-link {}
+    .cn-pagination-link {
+    }
 
-    .cn-pagination-next-text {}
+    .cn-pagination-next-text {
+    }
 
-    .cn-pagination-previous-text {}
+    .cn-pagination-previous-text {
+    }
 
-    .cn-progress-root {}
+    .cn-progress-root {
+    }
 
-    .cn-resizable-handle {}
+    .cn-resizable-handle {
+    }
 
-    .cn-resizable-panel {}
+    .cn-resizable-panel {
+    }
 
-    .cn-resizable-panel-group {}
+    .cn-resizable-panel-group {
+    }
 
-    .cn-scroll-area {}
+    .cn-scroll-area {
+    }
 
-    .cn-select-item-indicator-icon {}
+    .cn-select-item-indicator-icon {
+    }
 
-    .cn-sidebar-trigger {}
+    .cn-sidebar-trigger {
+    }
 
-    .cn-tabs-list-variant-default {}
+    .cn-tabs-list-variant-default {
+    }
 
-    .cn-tabs-list-variant-line {}
+    .cn-tabs-list-variant-line {
+    }
 
     /* MARK: Surfaces upstream does not have
        Composed from this style's own analogues by port-style.ts;

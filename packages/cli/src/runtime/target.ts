@@ -24,10 +24,7 @@ export interface ProjectTarget {
    */
   existingDependencies(): Promise<Set<string>>;
 
-  addDependencies(
-    specs: string[],
-    options?: AddDependenciesOptions,
-  ): Promise<void>;
+  addDependencies(specs: string[], options?: AddDependenciesOptions): Promise<void>;
 
   /**
    * Emits the specifier a component file should import by. Registry sources
@@ -40,9 +37,7 @@ export class UnsafeDependencyError extends Error {
   readonly spec: string;
 
   constructor(spec: string) {
-    super(
-      `Refusing to install "${spec}": a dependency may not begin with "-".`,
-    );
+    super(`Refusing to install "${spec}": a dependency may not begin with "-".`);
     this.name = "UnsafeDependencyError";
     this.spec = spec;
   }

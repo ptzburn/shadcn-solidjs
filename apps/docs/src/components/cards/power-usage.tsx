@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/registry/ui/card.tsx";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/registry/ui/card.tsx";
 
 import { Separator } from "~/registry/ui/separator.tsx";
 import { For } from "solid-js";
@@ -42,9 +36,7 @@ export function PowerUsage() {
                   class="min-h-2 rounded-t bg-chart-2"
                   style={{ height: `${(item.usage / maxUsage) * 100}%` }}
                 />
-                <span class="text-center text-muted-foreground text-xs">
-                  {item.hour}
-                </span>
+                <span class="text-center text-muted-foreground text-xs">{item.hour}</span>
               </div>
             )}
           </For>

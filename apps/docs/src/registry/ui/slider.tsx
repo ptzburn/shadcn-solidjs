@@ -5,15 +5,11 @@ import { cn } from "~/lib/utils.ts";
 
 import { omit, Repeat } from "solid-js";
 
-type SliderProps<T extends ValidComponent = "div"> =
-  & SliderPrimitive.SliderRootProps<T>
-  & {
-    class?: string | undefined;
-  };
+type SliderProps<T extends ValidComponent = "div"> = SliderPrimitive.SliderRootProps<T> & {
+  class?: string | undefined;
+};
 
-const Slider = <T extends ValidComponent = "div">(
-  props: PolymorphicProps<T, SliderProps<T>>,
-) => {
+const Slider = <T extends ValidComponent = "div">(props: PolymorphicProps<T, SliderProps<T>>) => {
   const local = props as SliderProps;
   const others = omit(local, "class");
 

@@ -1,11 +1,6 @@
 import * as SheetPrimitive from "@kobalte/core/dialog";
 import type { PolymorphicProps } from "@kobalte/core/polymorphic";
-import {
-  type ComponentProps,
-  type JSX,
-  Portal,
-  type ValidComponent,
-} from "@solidjs/web";
+import { type ComponentProps, type JSX, Portal, type ValidComponent } from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import type { Component } from "solid-js";
@@ -17,38 +12,26 @@ const Sheet = SheetPrimitive.Root;
 const SheetPortal = Portal;
 
 type SheetTriggerProps<T extends ValidComponent = "button"> =
-  & SheetPrimitive.DialogTriggerProps<T>
-  & { class?: string | undefined };
+  SheetPrimitive.DialogTriggerProps<T> & { class?: string | undefined };
 
 const SheetTrigger = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, SheetTriggerProps<T>>,
 ) => {
-  return (
-    <SheetPrimitive.Trigger
-      data-slot="sheet-trigger"
-      {...(props as SheetTriggerProps)}
-    />
-  );
+  return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...(props as SheetTriggerProps)} />;
 };
 
 type SheetCloseProps<T extends ValidComponent = "button"> =
-  & SheetPrimitive.DialogCloseButtonProps<T>
-  & { class?: string | undefined };
+  SheetPrimitive.DialogCloseButtonProps<T> & { class?: string | undefined };
 
 const SheetClose = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, SheetCloseProps<T>>,
 ) => {
-  return (
-    <SheetPrimitive.CloseButton
-      data-slot="sheet-close"
-      {...(props as SheetCloseProps)}
-    />
-  );
+  return <SheetPrimitive.CloseButton data-slot="sheet-close" {...(props as SheetCloseProps)} />;
 };
 
-type SheetOverlayProps<T extends ValidComponent = "div"> =
-  & SheetPrimitive.DialogOverlayProps<T>
-  & { class?: string | undefined };
+type SheetOverlayProps<T extends ValidComponent = "div"> = SheetPrimitive.DialogOverlayProps<T> & {
+  class?: string | undefined;
+};
 
 const SheetOverlay = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, SheetOverlayProps<T>>,
@@ -67,14 +50,12 @@ const SheetOverlay = <T extends ValidComponent = "div">(
   );
 };
 
-type SheetContentProps<T extends ValidComponent = "div"> =
-  & SheetPrimitive.DialogContentProps<T>
-  & {
-    class?: string | undefined;
-    children?: JSX.Element;
-    side?: "top" | "right" | "bottom" | "left";
-    showCloseButton?: boolean;
-  };
+type SheetContentProps<T extends ValidComponent = "div"> = SheetPrimitive.DialogContentProps<T> & {
+  class?: string | undefined;
+  children?: JSX.Element;
+  side?: "top" | "right" | "bottom" | "left";
+  showCloseButton?: boolean;
+};
 
 const SheetContent = <T extends ValidComponent = "div">(
   rawProps: PolymorphicProps<T, SheetContentProps<T>>,
@@ -100,18 +81,9 @@ const SheetContent = <T extends ValidComponent = "div">(
         <Show when={props.showCloseButton}>
           <SheetPrimitive.CloseButton
             data-slot="sheet-close"
-            class={cn(
-              buttonVariants({ variant: "ghost", size: "icon-sm" }),
-              "cn-sheet-close",
-            )}
+            class={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "cn-sheet-close")}
           >
-            <IconPlaceholder
-              lucide="x"
-              tabler="x"
-              ph="x"
-              ri="close-line"
-              hugeicons="cancel-01"
-            />
+            <IconPlaceholder lucide="x" tabler="x" ph="x" ri="close-line" hugeicons="cancel-01" />
             <span class="sr-only">Close</span>
           </SheetPrimitive.CloseButton>
         </Show>
@@ -142,9 +114,9 @@ const SheetFooter: Component<ComponentProps<"div">> = (props) => {
   );
 };
 
-type SheetTitleProps<T extends ValidComponent = "h2"> =
-  & SheetPrimitive.DialogTitleProps<T>
-  & { class?: string | undefined };
+type SheetTitleProps<T extends ValidComponent = "h2"> = SheetPrimitive.DialogTitleProps<T> & {
+  class?: string | undefined;
+};
 
 const SheetTitle = <T extends ValidComponent = "h2">(
   props: PolymorphicProps<T, SheetTitleProps<T>>,
@@ -154,18 +126,14 @@ const SheetTitle = <T extends ValidComponent = "h2">(
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"
-      class={cn(
-        "cn-sheet-title font-heading",
-        local.class,
-      )}
+      class={cn("cn-sheet-title font-heading", local.class)}
       {...others}
     />
   );
 };
 
 type SheetDescriptionProps<T extends ValidComponent = "p"> =
-  & SheetPrimitive.DialogDescriptionProps<T>
-  & { class?: string | undefined };
+  SheetPrimitive.DialogDescriptionProps<T> & { class?: string | undefined };
 
 const SheetDescription = <T extends ValidComponent = "p">(
   props: PolymorphicProps<T, SheetDescriptionProps<T>>,

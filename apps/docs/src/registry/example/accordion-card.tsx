@@ -5,13 +5,7 @@ import {
   AccordionTrigger,
 } from "~/registry/ui/accordion.tsx";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/registry/ui/card.tsx";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/registry/ui/card.tsx";
 import { For } from "solid-js";
 
 const items = [
@@ -41,8 +35,7 @@ export default function AccordionCard() {
       <CardHeader>
         <CardTitle>Subscription & Billing</CardTitle>
         <CardDescription>
-          Common questions about your account, plans, payments and
-          cancellations.
+          Common questions about your account, plans, payments and cancellations.
         </CardDescription>
       </CardHeader>
       <CardContent>

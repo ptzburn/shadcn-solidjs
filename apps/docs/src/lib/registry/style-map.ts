@@ -17,9 +17,7 @@ import { twMerge } from "tailwind-merge";
  * Marker classes that ship as-is: they are selector hooks with no style
  * tokens of their own (styled by consumers or third-party CSS).
  */
-export const STYLE_ALLOWLIST: ReadonlySet<string> = new Set([
-  "cn-rtl-flip",
-]);
+export const STYLE_ALLOWLIST: ReadonlySet<string> = new Set(["cn-rtl-flip"]);
 
 export type StyleMap = Record<string, string>;
 
@@ -63,9 +61,8 @@ export function createStyleMap(css: string): StyleMap {
         continue;
       }
       const className = match[1];
-      map[className] = className in map
-        ? [map[className], ...tokens].filter(Boolean).join(" ")
-        : tokens.join(" ");
+      map[className] =
+        className in map ? [map[className], ...tokens].filter(Boolean).join(" ") : tokens.join(" ");
     }
   });
 
@@ -81,28 +78,29 @@ const STRING_LITERAL_RE = /"(?:[^"\\\n])*"/g;
  * missing CSS blocks fail the build instead of shipping.
  */
 export function inlineStyles(source: string, styleMap: StyleMap): string {
-  const transformed = source.replace(STRING_LITERAL_RE, (literal) => {
-    const value = literal.slice(1, -1);
-    const tokens = value.split(/\s+/).filter(Boolean);
-    if (!tokens.some((token) => token.startsWith(CN_PREFIX))) {
-      return literal;
-    }
+  const transformed = source
+    .replace(STRING_LITERAL_RE, (literal) => {
+      const value = literal.slice(1, -1);
+      const tokens = value.split(/\s+/).filter(Boolean);
+      if (!tokens.some((token) => token.startsWith(CN_PREFIX))) {
+        return literal;
+      }
 
-    const expanded = tokens.flatMap((token) => {
-      if (!token.startsWith(CN_PREFIX)) {
-        return [token];
-      }
-      if (token in styleMap) {
-        return styleMap[token].split(/\s+/).filter(Boolean);
-      }
-      if (STYLE_ALLOWLIST.has(token)) {
-        return [token];
-      }
-      throw new Error(`Unknown style marker "${token}"`);
-    });
+      const expanded = tokens.flatMap((token) => {
+        if (!token.startsWith(CN_PREFIX)) {
+          return [token];
+        }
+        if (token in styleMap) {
+          return styleMap[token].split(/\s+/).filter(Boolean);
+        }
+        if (STYLE_ALLOWLIST.has(token)) {
+          return [token];
+        }
+        throw new Error(`Unknown style marker "${token}"`);
+      });
 
-    return `"${twMerge(expanded.join(" "))}"`;
-  })
+      return `"${twMerge(expanded.join(" "))}"`;
+    })
     // A marker that inlines to nothing leaves an empty first argument
     // behind; upstream's transform drops it (removeEmptyArgumentsFromCnCall)
     // so consumers never see cn("", ...).
@@ -113,9 +111,7 @@ export function inlineStyles(source: string, styleMap: StyleMap): string {
   const templates = transformed.match(/`[^`]*`/g) ?? [];
   for (const template of templates) {
     if (/(^|[\s`])cn-[a-z0-9-]+/.test(template)) {
-      throw new Error(
-        `Style marker found in a template literal: ${template.slice(0, 80)}`,
-      );
+      throw new Error(`Style marker found in a template literal: ${template.slice(0, 80)}`);
     }
   }
 

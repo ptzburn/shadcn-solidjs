@@ -6,11 +6,7 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "~/registry/ui/input-group.tsx";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "~/registry/ui/popover.tsx";
+import { Popover, PopoverContent, PopoverTrigger } from "~/registry/ui/popover.tsx";
 import { createSignal, Show } from "solid-js";
 
 export default function InputGroupButtonExample() {
@@ -62,11 +58,7 @@ export default function InputGroupButtonExample() {
       <InputGroup class="[--radius:9999px]">
         <Popover placement="bottom-start">
           <InputGroupAddon>
-            <PopoverTrigger
-              as={InputGroupButton}
-              variant="secondary"
-              size="icon-xs"
-            >
+            <PopoverTrigger as={InputGroupButton} variant="secondary" size="icon-xs">
               <IconPlaceholder
                 lucide="info"
                 tabler="info-circle"
@@ -81,15 +73,10 @@ export default function InputGroupButtonExample() {
             <p>You should not enter any sensitive information on this site.</p>
           </PopoverContent>
         </Popover>
-        <InputGroupAddon class="pl-1.5 text-muted-foreground">
-          https://
-        </InputGroupAddon>
+        <InputGroupAddon class="pl-1.5 text-muted-foreground">https://</InputGroupAddon>
         <InputGroupInput id="input-secure-19" />
         <InputGroupAddon align="inline-end">
-          <InputGroupButton
-            onClick={() => setIsFavorite(!isFavorite())}
-            size="icon-xs"
-          >
+          <InputGroupButton onClick={() => setIsFavorite(!isFavorite())} size="icon-xs">
             <IconPlaceholder
               lucide="star"
               tabler="star"

@@ -22,8 +22,7 @@ export default function MarkerLinkButtonDemo() {
         as="button"
         type="button"
         class="transition-colors hover:text-foreground"
-        onClick={() =>
-          toast.add({ description: "You clicked the revert button" })}
+        onClick={() => toast.add({ description: "You clicked the revert button" })}
       >
         <MarkerIcon>
           <IconPlaceholder

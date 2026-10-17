@@ -9,13 +9,11 @@ import type { Component } from "solid-js";
 import { omit, Show } from "solid-js";
 import { Button } from "./button.tsx";
 
-type ToastProps<T extends ValidComponent = "li"> =
-  & ToastPrimitive.ToastRootProps<T>
-  & { class?: string | undefined };
+type ToastProps<T extends ValidComponent = "li"> = ToastPrimitive.ToastRootProps<T> & {
+  class?: string | undefined;
+};
 
-const Toast = <T extends ValidComponent = "li">(
-  props: PolymorphicProps<T, ToastProps<T>>,
-) => {
+const Toast = <T extends ValidComponent = "li">(props: PolymorphicProps<T, ToastProps<T>>) => {
   const local = props as ToastProps;
   const rest = omit(local, "class");
   return (
@@ -38,18 +36,15 @@ const ToastContent: Component<ComponentProps<"div">> = (props) => {
   return (
     <div
       data-slot="toast-content"
-      class={cn(
-        "flex w-full items-center gap-3 overflow-hidden p-4 text-sm",
-        props.class,
-      )}
+      class={cn("flex w-full items-center gap-3 overflow-hidden p-4 text-sm", props.class)}
       {...rest}
     />
   );
 };
 
-type ToastTitleProps<T extends ValidComponent = "div"> =
-  & ToastPrimitive.ToastTitleProps<T>
-  & { class?: string | undefined };
+type ToastTitleProps<T extends ValidComponent = "div"> = ToastPrimitive.ToastTitleProps<T> & {
+  class?: string | undefined;
+};
 
 const ToastTitle = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ToastTitleProps<T>>,
@@ -66,8 +61,7 @@ const ToastTitle = <T extends ValidComponent = "div">(
 };
 
 type ToastDescriptionProps<T extends ValidComponent = "div"> =
-  & ToastPrimitive.ToastDescriptionProps<T>
-  & { class?: string | undefined };
+  ToastPrimitive.ToastDescriptionProps<T> & { class?: string | undefined };
 
 const ToastDescription = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ToastDescriptionProps<T>>,
@@ -84,8 +78,7 @@ const ToastDescription = <T extends ValidComponent = "div">(
 };
 
 type ToastActionProps<T extends ValidComponent = "button"> =
-  & ToastPrimitive.ToastCloseButtonProps<T>
-  & { class?: string | undefined; children?: JSX.Element };
+  ToastPrimitive.ToastCloseButtonProps<T> & { class?: string | undefined; children?: JSX.Element };
 
 const ToastAction = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, ToastActionProps<T>>,
@@ -105,8 +98,7 @@ const ToastAction = <T extends ValidComponent = "button">(
 };
 
 type ToastCloseProps<T extends ValidComponent = "button"> =
-  & ToastPrimitive.ToastCloseButtonProps<T>
-  & { class?: string | undefined; children?: JSX.Element };
+  ToastPrimitive.ToastCloseButtonProps<T> & { class?: string | undefined; children?: JSX.Element };
 
 const ToastClose = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, ToastCloseProps<T>>,
@@ -220,15 +212,9 @@ interface ToastAddOptions {
   persistent?: boolean;
 }
 
-const ToastTemplate: Component<ToastAddOptions & { toastId: number }> = (
-  props,
-) => {
+const ToastTemplate: Component<ToastAddOptions & { toastId: number }> = (props) => {
   return (
-    <Toast
-      toastId={props.toastId}
-      duration={props.duration}
-      persistent={props.persistent}
-    >
+    <Toast toastId={props.toastId} duration={props.duration} persistent={props.persistent}>
       <ToastContent>
         <ToastIcon type={props.type} />
         <div class="flex min-w-0 flex-1 flex-col gap-1">
@@ -266,17 +252,10 @@ const toast = {
   clear() {
     ToastPrimitive.toaster.clear();
   },
-  promise<T, U = unknown>(
-    promise: Promise<T>,
-    messages: ToastPromiseMessages<T, U>,
-  ): number {
+  promise<T, U = unknown>(promise: Promise<T>, messages: ToastPromiseMessages<T, U>): number {
     return ToastPrimitive.toaster.promise<T, U>(promise, (props) => {
       const type = (): ToastType =>
-        props.state === "pending"
-          ? "loading"
-          : props.state === "fulfilled"
-          ? "success"
-          : "error";
+        props.state === "pending" ? "loading" : props.state === "fulfilled" ? "success" : "error";
       const description = () => {
         if (props.state === "pending") return messages.loading;
         if (props.state === "fulfilled") {
@@ -309,11 +288,7 @@ const Toaster: Component<ToasterProps> = (props) => {
   const rest = omit(local, "class");
   return (
     <Portal>
-      <ToastPrimitive.Region
-        swipeDirection="right"
-        pauseOnInteraction
-        {...rest}
-      >
+      <ToastPrimitive.Region swipeDirection="right" pauseOnInteraction {...rest}>
         <ToastPrimitive.List
           data-slot="toast-viewport"
           class={cn(

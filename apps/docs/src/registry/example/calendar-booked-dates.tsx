@@ -9,15 +9,12 @@ const isSameDay = (a: Date, b: Date) =>
   a.getDate() === b.getDate();
 
 export default function CalendarBookedDates() {
-  const [date, setDate] = createSignal<Date | null>(
-    new Date(new Date().getFullYear(), 1, 3),
-  );
+  const [date, setDate] = createSignal<Date | null>(new Date(new Date().getFullYear(), 1, 3));
   const bookedDates = Array.from(
     { length: 15 },
     (_, i) => new Date(new Date().getFullYear(), 1, 12 + i),
   );
-  const isBooked = (day: Date) =>
-    bookedDates.some((booked) => isSameDay(booked, day));
+  const isBooked = (day: Date) => bookedDates.some((booked) => isSameDay(booked, day));
 
   return (
     <Card class="mx-auto w-fit p-0">

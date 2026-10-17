@@ -28,8 +28,7 @@ export default function DropdownMenuCheckboxesIcons() {
           <DropdownMenuLabel>Notification Preferences</DropdownMenuLabel>
           <DropdownMenuCheckboxItem
             checked={notifications().email}
-            onChange={(checked) =>
-              setNotifications({ ...notifications(), email: checked })}
+            onChange={(checked) => setNotifications({ ...notifications(), email: checked })}
           >
             <IconPlaceholder
               lucide="mail"
@@ -42,8 +41,7 @@ export default function DropdownMenuCheckboxesIcons() {
           </DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem
             checked={notifications().sms}
-            onChange={(checked) =>
-              setNotifications({ ...notifications(), sms: checked })}
+            onChange={(checked) => setNotifications({ ...notifications(), sms: checked })}
           >
             <IconPlaceholder
               lucide="message-square"
@@ -56,8 +54,7 @@ export default function DropdownMenuCheckboxesIcons() {
           </DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem
             checked={notifications().push}
-            onChange={(checked) =>
-              setNotifications({ ...notifications(), push: checked })}
+            onChange={(checked) => setNotifications({ ...notifications(), push: checked })}
           >
             <IconPlaceholder
               lucide="bell"

@@ -40,17 +40,11 @@ export function Customizer(props: { class?: string }) {
   const { style, setStyle } = useStyle();
   const { baseColor, setBaseColor } = useBaseColor();
   const activeStyle = () => styles.find((entry) => entry.name === style());
-  const activeBase = () =>
-    baseColors.find((entry) => entry.name === baseColor());
+  const activeBase = () => baseColors.find((entry) => entry.name === baseColor());
 
   return (
     <DropdownMenu placement="bottom-end">
-      <DropdownMenuTrigger
-        as={Button}
-        variant="ghost"
-        size="icon-sm"
-        class={props.class}
-      >
+      <DropdownMenuTrigger as={Button} variant="ghost" size="icon-sm" class={props.class}>
         <IconSliders />
         <span class="sr-only">Customize</span>
       </DropdownMenuTrigger>
@@ -72,9 +66,7 @@ export function Customizer(props: { class?: string }) {
                 >
                   <div class="flex flex-1 flex-col">
                     <span class="font-medium">{entry.title}</span>
-                    <span class="text-muted-foreground text-xs">
-                      {entry.description}
-                    </span>
+                    <span class="text-muted-foreground text-xs">{entry.description}</span>
                   </div>
                   <Show when={style() === entry.name}>
                     <IconCheck class="mt-0.5 size-4 shrink-0" />
@@ -92,9 +84,7 @@ export function Customizer(props: { class?: string }) {
                 <span class="font-medium">{activeBase()?.title}</span>
               </div>
               <Show when={activeBase()}>
-                {(base) => (
-                  <Swatch light={base().dot.light} dark={base().dot.dark} />
-                )}
+                {(base) => <Swatch light={base().dot.light} dark={base().dot.dark} />}
               </Show>
             </div>
           </DropdownMenuSubTrigger>

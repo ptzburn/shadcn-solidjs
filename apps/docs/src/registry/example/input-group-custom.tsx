@@ -1,8 +1,4 @@
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-} from "~/registry/ui/input-group.tsx";
+import { InputGroup, InputGroupAddon, InputGroupButton } from "~/registry/ui/input-group.tsx";
 
 export default function InputGroupCustom() {
   return (

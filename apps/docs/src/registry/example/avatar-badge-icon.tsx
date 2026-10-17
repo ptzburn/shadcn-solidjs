@@ -1,10 +1,5 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
-import {
-  Avatar,
-  AvatarBadge,
-  AvatarFallback,
-  AvatarImage,
-} from "~/registry/ui/avatar.tsx";
+import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "~/registry/ui/avatar.tsx";
 
 export default function AvatarBadgeIconExample() {
   return (

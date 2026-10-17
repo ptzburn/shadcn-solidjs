@@ -1,11 +1,7 @@
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import { Button } from "~/registry/ui/button.tsx";
 import { Kbd } from "~/registry/ui/kbd.tsx";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/registry/ui/tooltip.tsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/registry/ui/tooltip.tsx";
 
 export default function TooltipKeyboard() {
   return (

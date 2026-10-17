@@ -9,18 +9,14 @@ import { resolveRegistryItems, resolveRegistryTree } from "./resolver.ts";
  * Resolves against the registry this repo actually builds, so the tests break
  * when the emitted shape drifts rather than agreeing with a stale fixture.
  */
-const R_DIR = path.resolve(
-  import.meta.dirname!,
-  "../../../../apps/docs/public/r",
-);
+const R_DIR = path.resolve(import.meta.dirname!, "../../../../apps/docs/public/r");
 
 function options(iconLibrary = "lucide", style = "nova") {
   return {
     iconLibrary,
     style,
     registries: {
-      "@shadcn-solidjs":
-        `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
+      "@shadcn-solidjs": `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
     },
     // Without this the bare-name theme retry falls back to the public
     // registry, so a miss becomes a network round-trip instead of a local one.
@@ -42,10 +38,11 @@ test("resolves registryDependencies transitively", async () => {
   clearRegistryCache();
   const items = await resolveRegistryItems(["sidebar"], options());
 
-  for (
-    const expected of ["button", "separator", "tooltip", "use-media-query"]
-  ) {
-    expect(names(items).includes(expected), `expected "${expected}" to be pulled in, got ${names(items).join(", ")}`).toBe(true);
+  for (const expected of ["button", "separator", "tooltip", "use-media-query"]) {
+    expect(
+      names(items).includes(expected),
+      `expected "${expected}" to be pulled in, got ${names(items).join(", ")}`,
+    ).toBe(true);
   }
 });
 
@@ -55,7 +52,10 @@ test("orders dependencies before the items that need them", async () => {
   const order = names(items);
 
   for (const dep of ["button", "input", "separator", "tooltip"]) {
-    expect(order.indexOf(dep) < order.indexOf("sidebar"), `"${dep}" should be written before "sidebar"`).toBe(true);
+    expect(
+      order.indexOf(dep) < order.indexOf("sidebar"),
+      `"${dep}" should be written before "sidebar"`,
+    ).toBe(true);
   }
 });
 
@@ -67,10 +67,7 @@ test("deduplicates an item requested twice", async () => {
 
 test("deduplicates an item reached by two paths", async () => {
   clearRegistryCache();
-  const items = await resolveRegistryItems(
-    ["sidebar", "button"],
-    options(),
-  );
+  const items = await resolveRegistryItems(["sidebar", "button"], options());
   expect(names(items).filter((name) => name === "button").length).toEqual(1);
 });
 
@@ -78,8 +75,14 @@ test("selects the icon library variant", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["accordion"], options("tabler"));
 
-  expect(tree.devDependencies.includes("@iconify-json/tabler"), `expected the tabler icon package, got ${tree.devDependencies.join(", ")}`).toBe(true);
-  expect(tree.files[0].content?.includes("~icons/tabler/"), "expected tabler icon imports in the emitted content").toBe(true);
+  expect(
+    tree.devDependencies.includes("@iconify-json/tabler"),
+    `expected the tabler icon package, got ${tree.devDependencies.join(", ")}`,
+  ).toBe(true);
+  expect(
+    tree.files[0].content?.includes("~icons/tabler/"),
+    "expected tabler icon imports in the emitted content",
+  ).toBe(true);
 });
 
 test("the default icon library is lucide", async () => {
@@ -98,7 +101,10 @@ test("selects the style variant", async () => {
   // sera sets buttons in uppercase with tracked-out letterforms; nova does
   // not. Asserting on tokens the styles genuinely disagree about proves the
   // style reached the emitted code, not just the URL.
-  expect(content.includes("uppercase") && content.includes("tracking-widest"), "expected sera's uppercase button tokens in the emitted content").toBe(true);
+  expect(
+    content.includes("uppercase") && content.includes("tracking-widest"),
+    "expected sera's uppercase button tokens in the emitted content",
+  ).toBe(true);
 });
 
 test("the default style is nova", async () => {
@@ -106,8 +112,7 @@ test("the default style is nova", async () => {
   const tree = await resolveRegistryTree(["button"], {
     iconLibrary: "lucide",
     registries: {
-      "@shadcn-solidjs":
-        `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
+      "@shadcn-solidjs": `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
     },
   });
 
@@ -134,8 +139,13 @@ test("merges dependencies across the resolved tree", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["sidebar"], options());
 
-  expect(tree.dependencies.some((dep) => dep.startsWith("@kobalte/core")), "should carry the Kobalte dependency (possibly pinned)").toBe(true);
-  expect(tree.dependencies.length, "dependencies should be deduplicated").toEqual(new Set(tree.dependencies).size);
+  expect(
+    tree.dependencies.some((dep) => dep.startsWith("@kobalte/core")),
+    "should carry the Kobalte dependency (possibly pinned)",
+  ).toBe(true);
+  expect(tree.dependencies.length, "dependencies should be deduplicated").toEqual(
+    new Set(tree.dependencies).size,
+  );
 });
 
 test("ships lib and hook items under every icon prefix", async () => {
@@ -155,8 +165,7 @@ test("sorts theme items to the front", async () => {
   const items = await resolveRegistryItems(["button", "@theme/blue"], {
     ...options(),
     registries: {
-      "@shadcn-solidjs":
-        `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
+      "@shadcn-solidjs": `${R_DIR}/styles/{style}/icons/{iconLibrary}/{name}.json`,
       "@theme": `${R_DIR}/themes/{name}.json`,
     },
   });
@@ -165,5 +174,7 @@ test("sorts theme items to the front", async () => {
 
 test("reports a missing item rather than failing silently", async () => {
   clearRegistryCache();
-  await await expect((() => resolveRegistryItems(["does-not-exist"], options()))()).rejects.toThrow(RegistryNotFoundError);
+  await await expect((() => resolveRegistryItems(["does-not-exist"], options()))()).rejects.toThrow(
+    RegistryNotFoundError,
+  );
 });

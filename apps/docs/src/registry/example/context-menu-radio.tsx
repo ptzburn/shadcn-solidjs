@@ -18,20 +18,14 @@ export default function ContextMenuRadio() {
   return (
     <ContextMenu>
       <ContextMenuTrigger class="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">
-        <span class="hidden pointer-fine:inline-block">
-          Right click here
-        </span>
-        <span class="hidden pointer-coarse:inline-block">
-          Long press here
-        </span>
+        <span class="hidden pointer-fine:inline-block">Right click here</span>
+        <span class="hidden pointer-coarse:inline-block">Long press here</span>
       </ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuGroup>
           <ContextMenuLabel>People</ContextMenuLabel>
           <ContextMenuRadioGroup value={user()} onChange={setUser}>
-            <ContextMenuRadioItem value="pedro">
-              Pedro Duarte
-            </ContextMenuRadioItem>
+            <ContextMenuRadioItem value="pedro">Pedro Duarte</ContextMenuRadioItem>
             <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
           </ContextMenuRadioGroup>
         </ContextMenuGroup>

@@ -25,11 +25,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "~/registry/ui/empty.tsx";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-} from "~/registry/ui/input-group.tsx";
+import { InputGroup, InputGroupAddon, InputGroupButton } from "~/registry/ui/input-group.tsx";
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -37,11 +33,7 @@ import {
   MessageScrollerProvider,
   MessageScrollerViewport,
 } from "~/registry/ui/message-scroller.tsx";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/registry/ui/tooltip.tsx";
+import { Tooltip, TooltipContent, TooltipTrigger } from "~/registry/ui/tooltip.tsx";
 import { createMemo, For, Show } from "solid-js";
 
 const chat = createChat()
@@ -146,10 +138,7 @@ export default function MessageScrollerStreaming() {
                   >
                     <For each={messages}>
                       {(message) => (
-                        <MessageAnimated
-                          message={message}
-                          scrollAnchor={message.role === "user"}
-                        />
+                        <MessageAnimated message={message} scrollAnchor={message.role === "user"} />
                       )}
                     </For>
                   </MessageScrollerContent>

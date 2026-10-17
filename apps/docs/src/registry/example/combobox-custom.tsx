@@ -6,12 +6,7 @@ import {
   ComboboxItem,
   ComboboxList,
 } from "~/registry/ui/combobox.tsx";
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemTitle,
-} from "~/registry/ui/item.tsx";
+import { Item, ItemContent, ItemDescription, ItemTitle } from "~/registry/ui/item.tsx";
 
 interface Country {
   code: string;
@@ -85,9 +80,7 @@ export default function ComboboxWithCustomItems() {
         <ComboboxItem item={props.item}>
           <Item size="xs" class="p-0">
             <ItemContent>
-              <ItemTitle class="whitespace-nowrap">
-                {props.item.rawValue.label}
-              </ItemTitle>
+              <ItemTitle class="whitespace-nowrap">{props.item.rawValue.label}</ItemTitle>
               <ItemDescription>
                 {props.item.rawValue.continent} ({props.item.rawValue.code})
               </ItemDescription>

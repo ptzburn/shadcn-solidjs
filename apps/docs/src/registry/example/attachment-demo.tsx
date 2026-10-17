@@ -27,10 +27,7 @@ export default function AttachmentDemo() {
           {(image) => (
             <Attachment orientation="vertical">
               <AttachmentMedia variant="image">
-                <img
-                  src={`https://avatar.vercel.sh/${image.seed}`}
-                  alt={image.name}
-                />
+                <img src={`https://avatar.vercel.sh/${image.seed}`} alt={image.name} />
               </AttachmentMedia>
               <AttachmentContent>
                 <AttachmentTitle>{image.name}</AttachmentTitle>
@@ -50,13 +47,7 @@ export default function AttachmentDemo() {
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Cancel upload">
-            <IconPlaceholder
-              lucide="x"
-              tabler="x"
-              ph="x"
-              ri="close-line"
-              hugeicons="cancel-01"
-            />
+            <IconPlaceholder lucide="x" tabler="x" ph="x" ri="close-line" hugeicons="cancel-01" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>
@@ -76,13 +67,7 @@ export default function AttachmentDemo() {
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Remove message-renderer.tsx">
-            <IconPlaceholder
-              lucide="x"
-              tabler="x"
-              ph="x"
-              ri="close-line"
-              hugeicons="cancel-01"
-            />
+            <IconPlaceholder lucide="x" tabler="x" ph="x" ri="close-line" hugeicons="cancel-01" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>

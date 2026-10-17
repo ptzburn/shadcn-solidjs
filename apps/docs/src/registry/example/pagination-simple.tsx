@@ -10,9 +10,7 @@ export default function PaginationSimple() {
     <Pagination
       count={5}
       defaultPage={2}
-      itemComponent={(props) => (
-        <PaginationItem page={props.page}>{props.page}</PaginationItem>
-      )}
+      itemComponent={(props) => <PaginationItem page={props.page}>{props.page}</PaginationItem>}
       ellipsisComponent={() => <PaginationEllipsis />}
     >
       <PaginationItems />
