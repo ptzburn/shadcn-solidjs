@@ -1,0 +1,56 @@
+{
+  // Node 24, the runtime the workspace runs on; keep the major in step with
+  // NODE_VERSION in the Dockerfile and .github/workflows/ci.yml. The image
+  // ships pnpm, which switches itself to the version `packageManager` in
+  // package.json names. Same image as talentseek/app so the two projects
+  // share one container shape.
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24-trixie",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers-extra/features/zsh-plugins:0": {
+      "plugins": "zsh-autosuggestions zsh-syntax-highlighting",
+      "omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions https://github.com/zsh-users/zsh-syntax-highlighting"
+    },
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
+    // The repo lives on GitHub: gh for pull requests, issues and Actions.
+    // Git itself needs nothing here; VS Code forwards credential requests
+    // to the host's helper.
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "mounts": [
+    "source=claude-code-config,target=/home/node/.claude,type=volume",
+    // node_modules must not be shared with the host checkout: pnpm install
+    // writes this platform's native builds (rolldown, oxc, …) and each
+    // side's install would break the other's. The volume gives the container
+    // its own tree; pnpm install below fills it.
+    "source=shadcn-solidjs-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ],
+  "containerEnv": {
+    "CLAUDE_CONFIG_DIR": "/home/node/.claude"
+  },
+  // Docker creates a volume's mount point as root, so both are chowned
+  // before pnpm writes into them.
+  "postCreateCommand": "sudo chown -R node:node /home/node/.claude ${containerWorkspaceFolder}/node_modules && pnpm install",
+  "forwardPorts": [3228],
+  "portsAttributes": {
+    "3228": { "label": "Docs (Vite)" }
+  },
+  "customizations": {
+    "vscode": {
+      // Keep in step with .vscode/extensions.json, which prompts for the
+      // same set outside the container.
+      "extensions": [
+        "VoidZero.vite-plus-extension-pack",
+        "bradlc.vscode-tailwindcss",
+        "antfu.iconify",
+        "anthropic.claude-code",
+        "ms-azuretools.vscode-containers"
+      ],
+      "settings": {
+        "terminal.integrated.cwd": "${workspaceFolder}"
+      }
+    }
+  }
+}
