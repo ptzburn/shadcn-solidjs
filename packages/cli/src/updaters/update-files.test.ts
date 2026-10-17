@@ -8,7 +8,7 @@ import {
 import { mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { assert, assertEquals, assertThrows } from "@std/assert";
+import { expect, test } from "vite-plus/test";
 
 import type { Config } from "../config/schema.ts";
 import type { RegistryItemFile } from "../registry/schema.ts";
@@ -70,7 +70,7 @@ function withDir(run: (dir: string) => void): void {
   }
 }
 
-Deno.test("routes each item type to its alias directory", () =>
+test("routes each item type to its alias directory", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
     const cases: Array<[RegistryItemFile, string]> = [
@@ -86,55 +86,43 @@ Deno.test("routes each item type to its alias directory", () =>
     ];
 
     for (const [item, expected] of cases) {
-      assertEquals(
-        resolveFilePath(item, config, {}, 0),
-        path.join(dir, expected),
-      );
+      expect(resolveFilePath(item, config, {}, 0)).toEqual(path.join(dir, expected));
     }
   }));
 
-Deno.test("preserves nesting below the registry type directory", () =>
+test("preserves nesting below the registry type directory", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
-    assertEquals(
-      resolveFilePath(
+    expect(resolveFilePath(
         file("src/registry/block/sidebar-01/index.tsx", "registry:block"),
         config,
         {},
         0,
-      ),
-      path.join(dir, "src/components/sidebar-01/index.tsx"),
-    );
+      )).toEqual(path.join(dir, "src/components/sidebar-01/index.tsx"));
   }));
 
-Deno.test("--path with a directory redirects every file", () =>
+test("--path with a directory redirects every file", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
-    assertEquals(
-      resolveFilePath(
+    expect(resolveFilePath(
         file("src/registry/ui/button.tsx", "registry:ui"),
         config,
         { path: "src/widgets" },
         0,
-      ),
-      path.join(dir, "src/widgets/button.tsx"),
-    );
+      )).toEqual(path.join(dir, "src/widgets/button.tsx"));
   }));
 
-Deno.test("refuses a target that escapes the project", () =>
+test("refuses a target that escapes the project", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
     const escaping = {
       ...file("src/registry/ui/button.tsx", "registry:ui"),
       target: "../../etc/passwd",
     };
-    assertThrows(
-      () => resolveFilePath(escaping, config, {}, 0),
-      UnsafeTargetError,
-    );
+    expect(() => resolveFilePath(escaping, config, {}, 0)).toThrow(UnsafeTargetError);
   }));
 
-Deno.test("writes a component and transforms its imports", () =>
+test("writes a component and transforms its imports", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
     const result = updateFiles(
@@ -149,12 +137,12 @@ Deno.test("writes a component and transforms its imports", () =>
       target,
     );
 
-    assertEquals(result.created.length, 1);
+    expect(result.created.length).toEqual(1);
     const written = readFileSync(result.created[0], "utf8");
-    assertEquals(written, 'import { cn } from "@/lib/utils";\n');
+    expect(written).toEqual('import { cn } from "@/lib/utils";\n');
   }));
 
-Deno.test("leaves an identical file untouched", () =>
+test("leaves an identical file untouched", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
     const item = file("src/registry/ui/card.tsx", "registry:ui");
@@ -162,11 +150,11 @@ Deno.test("leaves an identical file untouched", () =>
     updateFiles([item], config, target);
     const second = updateFiles([item], config, target);
 
-    assertEquals(second.created, []);
-    assertEquals(second.unchanged.length, 1);
+    expect(second.created).toEqual([]);
+    expect(second.unchanged.length).toEqual(1);
   }));
 
-Deno.test("skips a modified file unless --overwrite", () =>
+test("skips a modified file unless --overwrite", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
     const item = file("src/registry/ui/card.tsx", "registry:ui");
@@ -175,19 +163,15 @@ Deno.test("skips a modified file unless --overwrite", () =>
     writeFileSync(first.created[0], "// edited by the user\n");
 
     const skipped = updateFiles([item], config, target);
-    assertEquals(skipped.skipped.length, 1);
-    assertEquals(
-      readFileSync(first.created[0], "utf8"),
-      "// edited by the user\n",
-      "user edits must survive",
-    );
+    expect(skipped.skipped.length).toEqual(1);
+    expect(readFileSync(first.created[0], "utf8"), "user edits must survive").toEqual("// edited by the user\n");
 
     const forced = updateFiles([item], config, target, { overwrite: true });
-    assertEquals(forced.overwritten.length, 1);
-    assert(readFileSync(first.created[0], "utf8").includes("export const x"));
+    expect(forced.overwritten.length).toEqual(1);
+    expect(readFileSync(first.created[0], "utf8").includes("export const x")).toBe(true);
   }));
 
-Deno.test("--dry-run resolves and transforms but writes nothing", () =>
+test("--dry-run resolves and transforms but writes nothing", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
     const result = updateFiles(
@@ -197,11 +181,11 @@ Deno.test("--dry-run resolves and transforms but writes nothing", () =>
       { dryRun: true },
     );
 
-    assertEquals(result.created.length, 1);
-    assert(!existsSync(result.created[0]), "dry run must not touch disk");
+    expect(result.created.length).toEqual(1);
+    expect(!existsSync(result.created[0]), "dry run must not touch disk").toBe(true);
   }));
 
-Deno.test("creates missing intermediate directories", () =>
+test("creates missing intermediate directories", () =>
   withDir((dir) => {
     const config = makeConfig(dir);
     mkdirSync(path.join(dir, "src"), { recursive: true });
@@ -211,5 +195,5 @@ Deno.test("creates missing intermediate directories", () =>
       config,
       target,
     );
-    assert(existsSync(result.created[0]));
+    expect(existsSync(result.created[0])).toBe(true);
   }));

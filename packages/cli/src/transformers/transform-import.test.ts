@@ -1,5 +1,5 @@
 import path from "node:path";
-import { assert, assertEquals, assertStringIncludes } from "@std/assert";
+import { expect, test } from "vite-plus/test";
 
 import type { Config } from "../config/schema.ts";
 import { clearRegistryCache } from "../registry/fetcher.ts";
@@ -53,88 +53,61 @@ function fakeTarget(runtime: "deno" | "node"): ProjectTarget {
 const deno = { config: makeConfig("~"), target: fakeTarget("deno") };
 const node = { config: makeConfig("@"), target: fakeTarget("node") };
 
-Deno.test("rewrites the utils import onto the configured alias", () => {
+test("rewrites the utils import onto the configured alias", () => {
   const source = 'import { cn } from "~/lib/utils.ts";';
 
-  assertEquals(
-    transformImports(source, deno),
-    'import { cn } from "~/lib/utils.ts";',
-  );
-  assertEquals(
-    transformImports(source, node),
-    'import { cn } from "@/lib/utils";',
-  );
+  expect(transformImports(source, deno)).toEqual('import { cn } from "~/lib/utils.ts";');
+  expect(transformImports(source, node)).toEqual('import { cn } from "@/lib/utils";');
 });
 
-Deno.test("rewrites relative sibling imports onto the ui alias", () => {
+test("rewrites relative sibling imports onto the ui alias", () => {
   const source = 'import { Button } from "./button.tsx";';
 
-  assertEquals(
-    transformImports(source, deno),
-    'import { Button } from "~/components/ui/button.tsx";',
-  );
-  assertEquals(
-    transformImports(source, node),
-    'import { Button } from "@/components/ui/button";',
-  );
+  expect(transformImports(source, deno)).toEqual('import { Button } from "~/components/ui/button.tsx";');
+  expect(transformImports(source, node)).toEqual('import { Button } from "@/components/ui/button";');
 });
 
-Deno.test("rewrites hook imports onto the hooks alias", () => {
+test("rewrites hook imports onto the hooks alias", () => {
   const source =
     'import { useMediaQuery } from "~/lib/hooks/use-media-query.ts";';
 
-  assertEquals(
-    transformImports(source, deno),
-    'import { useMediaQuery } from "~/hooks/use-media-query.ts";',
-  );
-  assertEquals(
-    transformImports(source, node),
-    'import { useMediaQuery } from "@/hooks/use-media-query";',
-  );
+  expect(transformImports(source, deno)).toEqual('import { useMediaQuery } from "~/hooks/use-media-query.ts";');
+  expect(transformImports(source, node)).toEqual('import { useMediaQuery } from "@/hooks/use-media-query";');
 });
 
-Deno.test("leaves bare package specifiers alone", () => {
+test("leaves bare package specifiers alone", () => {
   const source = [
     'import { mergeProps } from "solid-js";',
     'import * as ButtonPrimitive from "@kobalte/core/button";',
     'import { cva } from "class-variance-authority";',
   ].join("\n");
 
-  assertEquals(transformImports(source, node), source);
-  assertEquals(transformImports(source, deno), source);
+  expect(transformImports(source, node)).toEqual(source);
+  expect(transformImports(source, deno)).toEqual(source);
 });
 
-Deno.test("leaves unplugin-icons virtual modules alone", () => {
+test("leaves unplugin-icons virtual modules alone", () => {
   const source = 'import IconChevronDown from "~icons/lucide/chevron-down";';
 
-  assertEquals(transformImports(source, node), source);
-  assertEquals(transformImports(source, deno), source);
+  expect(transformImports(source, node)).toEqual(source);
+  expect(transformImports(source, deno)).toEqual(source);
 });
 
-Deno.test("rewrites type-only and side-effect imports", () => {
-  assertEquals(
-    transformImports('import type { ButtonProps } from "./button.tsx";', node),
-    'import type { ButtonProps } from "@/components/ui/button";',
-  );
-  assertEquals(
-    transformImports('import "./button.tsx";', node),
-    'import "@/components/ui/button";',
-  );
+test("rewrites type-only and side-effect imports", () => {
+  expect(transformImports('import type { ButtonProps } from "./button.tsx";', node)).toEqual('import type { ButtonProps } from "@/components/ui/button";');
+  expect(transformImports('import "./button.tsx";', node)).toEqual('import "@/components/ui/button";');
 });
 
-Deno.test("rewrites dynamic imports", () => {
-  assertEquals(
-    transformImports('const m = await import("./button.tsx");', node),
-    'const m = await import("@/components/ui/button");',
-  );
+test("rewrites dynamic imports", () => {
+  expect(transformImports('const m = await import("./button.tsx");', node)).toEqual('const m = await import("@/components/ui/button");');
 });
 
-Deno.test("leaves lookalike strings that are not imports", () => {
+test("leaves lookalike strings that are not imports", () => {
   const source = 'const label = "./button.tsx";';
-  assertEquals(transformImports(source, node), source);
+  expect(transformImports(source, node)).toEqual(source);
 });
 
-Deno.test("transforms real sidebar source end to end", async () => {
+test("transforms real sidebar source end to end", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["sidebar"], {
     iconLibrary: "lucide",
@@ -146,15 +119,15 @@ Deno.test("transforms real sidebar source end to end", async () => {
   const sidebar = tree.files.find((file) => file.path.endsWith("sidebar.tsx"))!;
   const output = transformImports(sidebar.content!, node);
 
-  assertStringIncludes(output, '"@/components/ui/button"');
-  assertStringIncludes(output, '"@/lib/utils"');
-  assertStringIncludes(output, '"@/hooks/use-media-query"');
-  assert(!output.includes('"~/lib/'), "no source alias should survive");
-  assert(!output.includes('from "./'), "no relative sibling should survive");
-  assertStringIncludes(output, '"solid-js"');
+  expect(output).toContain('"@/components/ui/button"');
+  expect(output).toContain('"@/lib/utils"');
+  expect(output).toContain('"@/hooks/use-media-query"');
+  expect(!output.includes('"~/lib/'), "no source alias should survive").toBe(true);
+  expect(!output.includes('from "./'), "no relative sibling should survive").toBe(true);
+  expect(output).toContain('"solid-js"');
 });
 
-Deno.test("Deno output keeps every extension it needs", async () => {
+test("Deno output keeps every extension it needs", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["sidebar"], {
     iconLibrary: "lucide",
@@ -166,7 +139,7 @@ Deno.test("Deno output keeps every extension it needs", async () => {
   const sidebar = tree.files.find((file) => file.path.endsWith("sidebar.tsx"))!;
   const output = transformImports(sidebar.content!, deno);
 
-  assertStringIncludes(output, '"~/components/ui/button.tsx"');
-  assertStringIncludes(output, '"~/lib/utils.ts"');
-  assertStringIncludes(output, '"~/hooks/use-media-query.ts"');
+  expect(output).toContain('"~/components/ui/button.tsx"');
+  expect(output).toContain('"~/lib/utils.ts"');
+  expect(output).toContain('"~/hooks/use-media-query.ts"');
 });

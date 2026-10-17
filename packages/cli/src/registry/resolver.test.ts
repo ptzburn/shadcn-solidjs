@@ -1,5 +1,5 @@
 import path from "node:path";
-import { assert, assertEquals, assertRejects } from "@std/assert";
+import { expect, test } from "vite-plus/test";
 
 import { RegistryNotFoundError } from "./errors.ts";
 import { clearRegistryCache } from "./fetcher.ts";
@@ -32,77 +32,65 @@ function names(items: { name: string }[]) {
   return items.map((item) => item.name);
 }
 
-Deno.test("resolves a single item with no dependencies", async () => {
+test("resolves a single item with no dependencies", async () => {
   clearRegistryCache();
   const items = await resolveRegistryItems(["button"], options());
-  assertEquals(names(items), ["button"]);
+  expect(names(items)).toEqual(["button"]);
 });
 
-Deno.test("resolves registryDependencies transitively", async () => {
+test("resolves registryDependencies transitively", async () => {
   clearRegistryCache();
   const items = await resolveRegistryItems(["sidebar"], options());
 
   for (
     const expected of ["button", "separator", "tooltip", "use-media-query"]
   ) {
-    assert(
-      names(items).includes(expected),
-      `expected "${expected}" to be pulled in, got ${names(items).join(", ")}`,
-    );
+    expect(names(items).includes(expected), `expected "${expected}" to be pulled in, got ${names(items).join(", ")}`).toBe(true);
   }
 });
 
-Deno.test("orders dependencies before the items that need them", async () => {
+test("orders dependencies before the items that need them", async () => {
   clearRegistryCache();
   const items = await resolveRegistryItems(["sidebar"], options());
   const order = names(items);
 
   for (const dep of ["button", "input", "separator", "tooltip"]) {
-    assert(
-      order.indexOf(dep) < order.indexOf("sidebar"),
-      `"${dep}" should be written before "sidebar"`,
-    );
+    expect(order.indexOf(dep) < order.indexOf("sidebar"), `"${dep}" should be written before "sidebar"`).toBe(true);
   }
 });
 
-Deno.test("deduplicates an item requested twice", async () => {
+test("deduplicates an item requested twice", async () => {
   clearRegistryCache();
   const items = await resolveRegistryItems(["button", "button"], options());
-  assertEquals(names(items), ["button"]);
+  expect(names(items)).toEqual(["button"]);
 });
 
-Deno.test("deduplicates an item reached by two paths", async () => {
+test("deduplicates an item reached by two paths", async () => {
   clearRegistryCache();
   const items = await resolveRegistryItems(
     ["sidebar", "button"],
     options(),
   );
-  assertEquals(names(items).filter((name) => name === "button").length, 1);
+  expect(names(items).filter((name) => name === "button").length).toEqual(1);
 });
 
-Deno.test("selects the icon library variant", async () => {
+test("selects the icon library variant", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["accordion"], options("tabler"));
 
-  assert(
-    tree.devDependencies.includes("@iconify-json/tabler"),
-    `expected the tabler icon package, got ${tree.devDependencies.join(", ")}`,
-  );
-  assert(
-    tree.files[0].content?.includes("~icons/tabler/"),
-    "expected tabler icon imports in the emitted content",
-  );
+  expect(tree.devDependencies.includes("@iconify-json/tabler"), `expected the tabler icon package, got ${tree.devDependencies.join(", ")}`).toBe(true);
+  expect(tree.files[0].content?.includes("~icons/tabler/"), "expected tabler icon imports in the emitted content").toBe(true);
 });
 
-Deno.test("the default icon library is lucide", async () => {
+test("the default icon library is lucide", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["accordion"], options());
 
-  assert(tree.devDependencies.includes("@iconify-json/lucide"));
-  assert(tree.files[0].content?.includes("~icons/lucide/"));
+  expect(tree.devDependencies.includes("@iconify-json/lucide")).toBe(true);
+  expect(tree.files[0].content?.includes("~icons/lucide/")).toBe(true);
 });
 
-Deno.test("selects the style variant", async () => {
+test("selects the style variant", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["button"], options("lucide", "sera"));
 
@@ -110,13 +98,10 @@ Deno.test("selects the style variant", async () => {
   // sera sets buttons in uppercase with tracked-out letterforms; nova does
   // not. Asserting on tokens the styles genuinely disagree about proves the
   // style reached the emitted code, not just the URL.
-  assert(
-    content.includes("uppercase") && content.includes("tracking-widest"),
-    "expected sera's uppercase button tokens in the emitted content",
-  );
+  expect(content.includes("uppercase") && content.includes("tracking-widest"), "expected sera's uppercase button tokens in the emitted content").toBe(true);
 });
 
-Deno.test("the default style is nova", async () => {
+test("the default style is nova", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["button"], {
     iconLibrary: "lucide",
@@ -127,11 +112,11 @@ Deno.test("the default style is nova", async () => {
   });
 
   const content = tree.files[0].content ?? "";
-  assert(content.includes("rounded-[min("), "expected nova's button radius");
-  assert(!content.includes("tracking-widest"));
+  expect(content.includes("rounded-[min("), "expected nova's button radius").toBe(true);
+  expect(!content.includes("tracking-widest")).toBe(true);
 });
 
-Deno.test("the unprefixed paths still resolve the default style", async () => {
+test("the unprefixed paths still resolve the default style", async () => {
   clearRegistryCache();
   // Registries pinned before styles existed address items without a style
   // segment; the build keeps writing the default style there.
@@ -142,35 +127,28 @@ Deno.test("the unprefixed paths still resolve the default style", async () => {
     },
   });
 
-  assert(tree.files[0].content?.includes("rounded-[min("));
+  expect(tree.files[0].content?.includes("rounded-[min(")).toBe(true);
 });
 
-Deno.test("merges dependencies across the resolved tree", async () => {
+test("merges dependencies across the resolved tree", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["sidebar"], options());
 
-  assert(
-    tree.dependencies.some((dep) => dep.startsWith("@kobalte/core")),
-    "should carry the Kobalte dependency (possibly pinned)",
-  );
-  assertEquals(
-    tree.dependencies.length,
-    new Set(tree.dependencies).size,
-    "dependencies should be deduplicated",
-  );
+  expect(tree.dependencies.some((dep) => dep.startsWith("@kobalte/core")), "should carry the Kobalte dependency (possibly pinned)").toBe(true);
+  expect(tree.dependencies.length, "dependencies should be deduplicated").toEqual(new Set(tree.dependencies).size);
 });
 
-Deno.test("ships lib and hook items under every icon prefix", async () => {
+test("ships lib and hook items under every icon prefix", async () => {
   clearRegistryCache();
   const tree = await resolveRegistryTree(["utils"], options("hugeicons"));
 
-  assertEquals(tree.files.length, 1);
-  assertEquals(tree.files[0].type, "registry:lib");
-  assert(tree.dependencies.includes("clsx"));
-  assert(tree.dependencies.includes("tailwind-merge"));
+  expect(tree.files.length).toEqual(1);
+  expect(tree.files[0].type).toEqual("registry:lib");
+  expect(tree.dependencies.includes("clsx")).toBe(true);
+  expect(tree.dependencies.includes("tailwind-merge")).toBe(true);
 });
 
-Deno.test("sorts theme items to the front", async () => {
+test("sorts theme items to the front", async () => {
   clearRegistryCache();
   // Themes are emitted to `r/themes/`, outside the icon-library fan-out, so
   // they need their own template. This doubles as the namespaced-registry test.
@@ -182,13 +160,10 @@ Deno.test("sorts theme items to the front", async () => {
       "@theme": `${R_DIR}/themes/{name}.json`,
     },
   });
-  assertEquals(names(items), ["blue", "button"]);
+  expect(names(items)).toEqual(["blue", "button"]);
 });
 
-Deno.test("reports a missing item rather than failing silently", async () => {
+test("reports a missing item rather than failing silently", async () => {
   clearRegistryCache();
-  await assertRejects(
-    () => resolveRegistryItems(["does-not-exist"], options()),
-    RegistryNotFoundError,
-  );
+  await await expect((() => resolveRegistryItems(["does-not-exist"], options()))()).rejects.toThrow(RegistryNotFoundError);
 });

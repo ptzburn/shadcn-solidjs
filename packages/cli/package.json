@@ -25,6 +25,12 @@
     "shadcn",
     "cli"
   ],
+  "scripts": {
+    "check": "vp check",
+    "lint": "vp lint",
+    "fmt": "vp fmt",
+    "test": "vp test"
+  },
   "bin": {
     "shadcn-solidjs": "./dist/index.js"
   },

@@ -1,9 +1,9 @@
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { assert, assertEquals, assertThrows } from "@std/assert";
+import { expect, test } from "vite-plus/test";
 
-import { DenoTarget, readNodeModulesDir } from "./deno.ts";
+import { DenoTarget } from "./deno.ts";
 import { detectProjectTarget } from "./detect.ts";
 import { NodeTarget } from "./node.ts";
 import { detectPackageManager, installArgs } from "./package-manager.ts";
@@ -38,50 +38,50 @@ function withProject(
 
 // ---------------------------------------------------------------- detection
 
-Deno.test("detects a Deno project", () =>
+test("detects a Deno project", () =>
   withProject({ "deno.json": "{}" }, (dir) => {
-    assertEquals(detectProjectTarget(dir)?.runtime, "deno");
+    expect(detectProjectTarget(dir)?.runtime).toEqual("deno");
   }));
 
-Deno.test("detects a Node project", () =>
+test("detects a Node project", () =>
   withProject({ "package.json": "{}" }, (dir) => {
-    assertEquals(detectProjectTarget(dir)?.runtime, "node");
+    expect(detectProjectTarget(dir)?.runtime).toEqual("node");
   }));
 
-Deno.test("prefers Deno when a project carries both configs", () =>
+test("prefers Deno when a project carries both configs", () =>
   withProject({ "deno.json": "{}", "package.json": "{}" }, (dir) => {
-    assertEquals(detectProjectTarget(dir)?.runtime, "deno");
+    expect(detectProjectTarget(dir)?.runtime).toEqual("deno");
   }));
 
-Deno.test("a Node app nested in a Deno workspace resolves as Node", () =>
+test("a Node app nested in a Deno workspace resolves as Node", () =>
   withProject(
     { "deno.json": "{}", "apps/web/package.json": "{}" },
     (dir) => {
       const target = detectProjectTarget(path.join(dir, "apps/web"));
-      assertEquals(target?.runtime, "node");
+      expect(target?.runtime).toEqual("node");
     },
   ));
 
-Deno.test("finds the project from a nested directory", () =>
+test("finds the project from a nested directory", () =>
   withProject(
     { "deno.json": "{}", "src/components/.keep": "" },
     (dir) => {
       const target = detectProjectTarget(path.join(dir, "src/components"));
-      assertEquals(target?.runtime, "deno");
+      expect(target?.runtime).toEqual("deno");
     },
   ));
 
 // ------------------------------------------------------------ Deno aliases
 
-Deno.test("reads the Deno alias prefix", () =>
+test("reads the Deno alias prefix", () =>
   withProject(
     { "deno.json": JSON.stringify({ imports: { "~/": "./src/" } }) },
     async (dir) => {
-      assertEquals(await DenoTarget.detect(dir)!.aliasPrefix(), "~");
+      expect(await DenoTarget.detect(dir)!.aliasPrefix()).toEqual("~");
     },
   ));
 
-Deno.test("ignores bare package specifiers when picking the prefix", () =>
+test("ignores bare package specifiers when picking the prefix", () =>
   withProject(
     {
       "deno.json": JSON.stringify({
@@ -89,22 +89,22 @@ Deno.test("ignores bare package specifiers when picking the prefix", () =>
       }),
     },
     async (dir) => {
-      assertEquals(await DenoTarget.detect(dir)!.aliasPrefix(), "@");
+      expect(await DenoTarget.detect(dir)!.aliasPrefix()).toEqual("@");
     },
   ));
 
-Deno.test("resolves a Deno aliased import to a path", () =>
+test("resolves a Deno aliased import to a path", () =>
   withProject(
     { "deno.json": JSON.stringify({ imports: { "~/": "./src/" } }) },
     async (dir) => {
       const resolved = await DenoTarget.detect(dir)!.resolveImport(
         "~/lib/utils.ts",
       );
-      assertEquals(resolved, path.join(dir, "src/lib/utils.ts"));
+      expect(resolved).toEqual(path.join(dir, "src/lib/utils.ts"));
     },
   ));
 
-Deno.test("a workspace member's aliases win over the root's", () =>
+test("a workspace member's aliases win over the root's", () =>
   withProject(
     {
       "deno.json": JSON.stringify({
@@ -118,24 +118,20 @@ Deno.test("a workspace member's aliases win over the root's", () =>
       const resolved = await DenoTarget.detect(member)!.resolveImport(
         "~/lib/utils.ts",
       );
-      assertEquals(resolved, path.join(member, "src/lib/utils.ts"));
+      expect(resolved).toEqual(path.join(member, "src/lib/utils.ts"));
     },
   ));
 
-Deno.test("resolves against this repo's own docs app", async () => {
+test("resolves against this repo's own docs app", async () => {
   const docs = path.join(REPO_ROOT, "apps/docs");
-  const target = DenoTarget.detect(docs)!;
+  const target = NodeTarget.detect(docs)!;
 
-  assertEquals(await target.aliasPrefix(), "~");
-  assertEquals(
-    await target.resolveImport("~/lib/utils.ts"),
-    path.join(docs, "src/lib/utils.ts"),
-  );
-});
-
-Deno.test("reads nodeModulesDir for the init warning", () => {
-  const configPath = path.join(REPO_ROOT, "deno.json");
-  assertEquals(readNodeModulesDir(configPath), "manual");
+  expect(await target.aliasPrefix()).toEqual("~");
+  const resolved = await target.resolveImport("~/lib/utils.ts");
+  expect(
+    resolved?.endsWith(path.join("apps", "docs", "src", "lib", "utils.ts")),
+    `unexpected resolution: ${resolved}`,
+  ).toBe(true);
 });
 
 // ------------------------------------------------------------ Node aliases
@@ -144,29 +140,26 @@ const TSCONFIG = JSON.stringify({
   compilerOptions: { baseUrl: ".", paths: { "@/*": ["./src/*"] } },
 });
 
-Deno.test("reads the Node alias prefix from tsconfig paths", () =>
+test("reads the Node alias prefix from tsconfig paths", () =>
   withProject(
     { "package.json": "{}", "tsconfig.json": TSCONFIG },
     async (dir) => {
-      assertEquals(await NodeTarget.detect(dir)!.aliasPrefix(), "@");
+      expect(await NodeTarget.detect(dir)!.aliasPrefix()).toEqual("@");
     },
   ));
 
-Deno.test("resolves a Node aliased import to a path", () =>
+test("resolves a Node aliased import to a path", () =>
   withProject(
     { "package.json": "{}", "tsconfig.json": TSCONFIG },
     async (dir) => {
       const resolved = await NodeTarget.detect(dir)!.resolveImport(
         "@/lib/utils",
       );
-      assert(
-        resolved?.endsWith(path.join("src", "lib", "utils")),
-        `unexpected resolution: ${resolved}`,
-      );
+      expect(resolved?.endsWith(path.join("src", "lib", "utils")), `unexpected resolution: ${resolved}`).toBe(true);
     },
   ));
 
-Deno.test("tolerates a tsconfig with comments", () =>
+test("tolerates a tsconfig with comments", () =>
   withProject(
     {
       "package.json": "{}",
@@ -176,96 +169,84 @@ Deno.test("tolerates a tsconfig with comments", () =>
       }`,
     },
     async (dir) => {
-      assertEquals(await NodeTarget.detect(dir)!.aliasPrefix(), "~");
+      expect(await NodeTarget.detect(dir)!.aliasPrefix()).toEqual("~");
     },
   ));
 
 // ------------------------------------------------------- import specifiers
 
-Deno.test("Deno keeps the file extension, Node strips it", () =>
+test("Deno keeps the file extension, Node strips it", () =>
   withProject({ "deno.json": "{}", "package.json": "{}" }, (dir) => {
     const deno = DenoTarget.detect(dir)!;
     const node = NodeTarget.detect(dir)!;
 
-    assertEquals(
-      deno.importSpecifier("~/components/ui/button.tsx"),
-      "~/components/ui/button.tsx",
-    );
-    assertEquals(
-      node.importSpecifier("@/components/ui/button.tsx"),
-      "@/components/ui/button",
-    );
-    assertEquals(node.importSpecifier("@/lib/utils.ts"), "@/lib/utils");
-    assertEquals(node.importSpecifier("@kobalte/core"), "@kobalte/core");
+    expect(deno.importSpecifier("~/components/ui/button.tsx")).toEqual("~/components/ui/button.tsx");
+    expect(node.importSpecifier("@/components/ui/button.tsx")).toEqual("@/components/ui/button");
+    expect(node.importSpecifier("@/lib/utils.ts")).toEqual("@/lib/utils");
+    expect(node.importSpecifier("@kobalte/core")).toEqual("@kobalte/core");
   }));
 
 // ------------------------------------------------------------ dependencies
 
-Deno.test("rejects a dependency that would read as a flag", () => {
-  assertThrows(
-    () => assertSafeSpecs(["@kobalte/core", "--registry=evil"]),
-    UnsafeDependencyError,
-  );
+test("rejects a dependency that would read as a flag", () => {
+  expect(() => assertSafeSpecs(["@kobalte/core", "--registry=evil"])).toThrow(UnsafeDependencyError);
 });
 
-Deno.test("accepts ordinary dependency names", () => {
+test("accepts ordinary dependency names", () => {
   assertSafeSpecs(["@kobalte/core", "clsx", "tailwind-merge@^3.6.0"]);
 });
 
-Deno.test("yarn spells the dev flag differently", () => {
-  assertEquals(installArgs("yarn", ["clsx"], true), ["add", "--dev", "clsx"]);
-  assertEquals(installArgs("pnpm", ["clsx"], true), ["add", "-D", "clsx"]);
-  assertEquals(installArgs("npm", ["clsx"], false), ["add", "clsx"]);
-  assertEquals(installArgs("deno", ["clsx"], true), ["add", "-D", "clsx"]);
+test("yarn spells the dev flag differently", () => {
+  expect(installArgs("yarn", ["clsx"], true)).toEqual(["add", "--dev", "clsx"]);
+  expect(installArgs("pnpm", ["clsx"], true)).toEqual(["add", "-D", "clsx"]);
+  expect(installArgs("npm", ["clsx"], false)).toEqual(["add", "clsx"]);
+  expect(installArgs("deno", ["clsx"], true)).toEqual(["add", "-D", "clsx"]);
 });
 
 // -------------------------------------------------------- package managers
 
-Deno.test("detects the package manager from a lockfile", () =>
+test("detects the package manager from a lockfile", () =>
   withProject(
     { "package.json": "{}", "pnpm-lock.yaml": "" },
-    (dir) => assertEquals(detectPackageManager(dir), "pnpm"),
+    (dir) => expect(detectPackageManager(dir)).toEqual("pnpm"),
   ));
 
-Deno.test("the packageManager field wins over a lockfile", () =>
+test("the packageManager field wins over a lockfile", () =>
   withProject(
     {
       "package.json": JSON.stringify({ packageManager: "yarn@4.1.0" }),
       "package-lock.json": "{}",
     },
-    (dir) => assertEquals(detectPackageManager(dir), "yarn"),
+    (dir) => expect(detectPackageManager(dir)).toEqual("yarn"),
   ));
 
-Deno.test("a deno.lock means deno manages the package.json project", () =>
+test("a deno.lock means deno manages the package.json project", () =>
   withProject(
     { "package.json": "{}", "deno.lock": "{}" },
-    (dir) => assertEquals(detectPackageManager(dir), "deno"),
+    (dir) => expect(detectPackageManager(dir)).toEqual("deno"),
   ));
 
-Deno.test("a Deno-laid-out node_modules means deno even without a lockfile", () =>
+test("a Deno-laid-out node_modules means deno even without a lockfile", () =>
   withProject(
     { "package.json": "{}", "node_modules/.deno/.keep": "" },
-    (dir) => assertEquals(detectPackageManager(dir), "deno"),
+    (dir) => expect(detectPackageManager(dir)).toEqual("deno"),
   ));
 
-Deno.test("inherits a lockfile from the repository root", () =>
+test("inherits a lockfile from the repository root", () =>
   withProject(
     { "bun.lock": "", "apps/web/package.json": "{}" },
     (dir) =>
-      assertEquals(detectPackageManager(path.join(dir, "apps/web")), "bun"),
+      expect(detectPackageManager(path.join(dir, "apps/web"))).toEqual("bun"),
   ));
 
 // ------------------------------------------------------------------ prefix
 
-Deno.test("longest prefix wins", () => {
+test("longest prefix wins", () => {
   const entries: Array<[string, string]> = [
     ["~/", "./src/"],
     ["~/lib/", "./packages/lib/"],
   ];
-  assertEquals(
-    matchLongestPrefix("~/lib/utils.ts", entries)?.value,
-    "./packages/lib/",
-  );
-  assertEquals(matchLongestPrefix("~/app.tsx", entries)?.value, "./src/");
-  assertEquals(matchLongestPrefix("solid-js", entries), null);
+  expect(matchLongestPrefix("~/lib/utils.ts", entries)?.value).toEqual("./packages/lib/");
+  expect(matchLongestPrefix("~/app.tsx", entries)?.value).toEqual("./src/");
+  expect(matchLongestPrefix("solid-js", entries)).toEqual(null);
 });

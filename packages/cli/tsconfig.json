@@ -1,0 +1,19 @@
+{
+  // The source runs directly on Node (`node src/index.ts`) as well as through
+  // tsdown, so it is held to the syntax Node's type stripping accepts:
+  // erasable only, and type-only imports marked as such.
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022"],
+    "types": ["node"],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true
+  },
+  "include": ["src", "vite.config.ts", "tsdown.config.ts"]
+}
