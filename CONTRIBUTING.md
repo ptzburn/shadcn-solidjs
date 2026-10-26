@@ -183,9 +183,8 @@ unnecessary. Retest when `solid-js`, `@solidjs/web`, or `@kobalte/core` move.
 
 `dialog.tsx`, `sheet.tsx`, `alert-dialog.tsx`, and `drawer.tsx` alias their
 `*Portal` to `Portal` from `@solidjs/web` instead of the Kobalte primitive's
-`Portal`. Last confirmed necessary on `solid-js@2.0.0-rc.15` with
-`@kobalte/core@2.0.0-alpha.3` (2026-10-17), the first Kobalte release built
-against the current release candidate rather than rc.3.
+`Portal`. Last confirmed necessary on `solid-js@2.0.0-rc.18` with
+`@kobalte/core@2.0.0-alpha.4` (2026-10-26).
 
 Why: Kobalte's `Dialog.Portal` is Solid's `Portal` inside a `Show` driven by the
 dialog's presence signals, with the dismissable layer as the portal's direct
@@ -225,9 +224,9 @@ button and tabs pages with the console open: any "Hydration key miss" warning or
 ### `resolve.dedupe` for the Solid packages
 
 Kept as a guard in `apps/docs/vite.config.ts` so the bundle can never carry two
-reactive runtimes. `@kobalte/core@2.0.0-alpha.3` pins its `solid-js` peer to
-exactly `2.0.0-rc.15`, the installed version, but `@kobalte/utils@2.0.0-alpha.0`
-still pins `2.0.0-rc.0`; pnpm resolves both to the app's copy with a warning,
+reactive runtimes. `@kobalte/core@2.0.0-alpha.4` and `@kobalte/utils@2.0.0-alpha.1`
+pin their `solid-js` peer to exactly `2.0.0-rc.16`, older than the installed
+`2.0.0-rc.18`; pnpm resolves both to the app's copy with a warning,
 and `pnpm-workspace.yaml` pins `@solidjs/signals` to the same release candidate
 because `solid-js` declares a caret range on it. Safe to drop once Kobalte's
 peer ranges accept the installed Solid without a warning. Check with

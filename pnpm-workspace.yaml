@@ -27,7 +27,7 @@ overrides:
   # solid-js declares a caret range on its signals package, so a fresh
   # resolution would take a newer release candidate than the runtime; the
   # three move together, so this pin follows solid-js on every bump.
-  "@solidjs/signals": 2.0.0-rc.15
+  "@solidjs/signals": 2.0.0-rc.18
 peerDependencyRules:
   allowAny:
     - vite

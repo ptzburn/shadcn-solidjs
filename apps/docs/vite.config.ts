@@ -37,6 +37,7 @@ export default defineConfig({
     noExternal: ["@kobalte/core"],
   },
   test: {
+    environment: "node",
     include: ["src/**/*.test.ts"],
   },
   // Lazy so that fmt, lint and check never instantiate the plugins: the MDX
