@@ -18,9 +18,8 @@ tokens, rebuilt on Solid's reactivity and on headless primitives from
 [Kobalte](https://kobalte.dev).
 
 > [!NOTE]
-> This is the **Solid 2.0** line, published under the `beta` tag while Solid 2.0
-> and Kobalte 2.0 are pre-release. The Solid 1.x line stays on `latest` at
-> [shadcn-solidjs.com](https://shadcn-solidjs.com).
+> Built for **Solid 2.0** and published under the `beta` tag while Solid 2.0
+> and Kobalte 2.0 are pre-release.
 
 ## Documentation
 

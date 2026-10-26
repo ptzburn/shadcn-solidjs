@@ -6,9 +6,8 @@ SolidJS port of [shadcn/ui](https://ui.shadcn.com) built on
 [Kobalte](https://kobalte.dev) and Tailwind CSS — code you copy into your
 project and own outright.
 
-> **Note:** this is the **Solid 2.0** line, published under the `beta` tag while
-> Solid 2.0 and Kobalte 2.0 are pre-release. The Solid 1.x line stays on
-> `latest`.
+> **Note:** built for **Solid 2.0** and published under the `beta` tag while
+> Solid 2.0 and Kobalte 2.0 are pre-release.
 
 ## init
 
