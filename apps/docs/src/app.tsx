@@ -1,5 +1,6 @@
 /// <reference types="filesystem-routing/types" />
 import { ColorModeProvider, cookieStorageManagerSSR } from "@kobalte/core/color-mode";
+import { announceRoutes } from "@solidjs/prerender";
 import { createRouter } from "@solidjs/router";
 import { fileRoutes } from "@solidjs/router/fs";
 import { getRequestEvent, isServer } from "@solidjs/web";
@@ -19,6 +20,7 @@ import { pageRoutes } from "virtual:file-routes";
 const Router = createRouter({ routes: fileRoutes(pageRoutes) });
 
 export default function App() {
+  announceRoutes(Router);
   const cookie = isServer
     ? (getRequestEvent()?.request.headers.get("cookie") ?? "")
     : document.cookie;

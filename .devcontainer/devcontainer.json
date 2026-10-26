@@ -1,6 +1,6 @@
 {
   // Node 24, the runtime the workspace runs on; keep the major in step with
-  // NODE_VERSION in the Dockerfile and .github/workflows/ci.yml. The image
+  // NODE_VERSION in .github/workflows/ci.yml. The image
   // ships pnpm, which switches itself to the version `packageManager` in
   // package.json names. Same image as talentseek/app so the two projects
   // share one container shape.

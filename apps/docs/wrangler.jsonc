@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shadcn-solidjs",
+  "compatibility_date": "2026-10-19",
+  // Deploy creates the DNS record and certificate; the hostname must have no
+  // other record on the zone. The workers.dev URL stays on.
+  "routes": [{ "pattern": "shadcn-solidjs.com", "custom_domain": true }],
+  // Every page is prerendered into dist/client, so the Worker is assets only:
+  // no script runs, and a path with no file gets the prerendered 404 page.
+  "assets": {
+    "directory": "./dist/client",
+    "not_found_handling": "404-page",
+  },
+}

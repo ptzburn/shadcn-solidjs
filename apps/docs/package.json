@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vp dev --port 3228",
     "build": "pnpm build:registry && vp build",
-    "start": "vp preview --port 3228",
+    "start": "wrangler dev --port 3228",
+    "deploy": "pnpm build && wrangler deploy",
     "release": "changeset version",
     "build:registry": "node --import ./scripts/lib/alias.mjs src/scripts/build-icons.ts && node --import ./scripts/lib/alias.mjs src/scripts/build-registry.ts && node --import ./scripts/lib/alias.mjs src/scripts/build-docs-tokens.ts && vp fmt src/__registry__ src/registry/icons src/styles/style-docs.css",
     "check": "vp check",
@@ -18,6 +19,7 @@
   "dependencies": {
     "@kobalte/core": "2.0.0-alpha.4",
     "@solidjs/meta": "1.0.0-next.2",
+    "@solidjs/prerender": "0.3.0",
     "@solidjs/router": "2.0.0-next.42",
     "@solidjs/web": "2.0.0-rc.18",
     "chart.js": "^4.5.1",
@@ -51,6 +53,7 @@
     "estree-util-value-to-estree": "^3.5.0",
     "filesystem-routing": "^0.4.0",
     "mdast-util-to-string": "^4.0.0",
+    "prerender-crawler": "0.3.0",
     "rehype-pretty-code": "^0.14.5",
     "rehype-slug": "^6.0.0",
     "remark-frontmatter": "^5.0.0",
@@ -63,6 +66,7 @@
     "unist-builder": "^4.0.0",
     "unist-util-visit": "^5.1.0",
     "unplugin-icons": "^23.0.1",
-    "vite": "catalog:"
+    "vite": "catalog:",
+    "wrangler": "4.152.0"
   }
 }

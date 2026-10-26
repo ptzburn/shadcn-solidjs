@@ -56,7 +56,7 @@ From the repo root:
 ```sh
 pnpm dev     # run the docs site (port 3228)
 pnpm build   # build the registry, then the docs site
-pnpm start   # serve the built site (port 3228)
+pnpm start   # serve the built site as Cloudflare does (port 3228)
 pnpm test    # run all tests across the workspace
 pnpm lint    # lint all members
 pnpm fmt     # format all members
@@ -152,6 +152,28 @@ cd packages/cli && npm publish
 ```
 
 It needs the account's one-time password and carries no provenance.
+
+## Deploying the docs
+
+The docs site is static. `pnpm build` renders every page through the server
+build at build time ([`prerender-crawler`](https://github.com/solidjs/prerender-crawler))
+and writes it to `apps/docs/dist/client` as `<route>.html`, next to the
+Markdown exports and the registry JSON. Cloudflare Workers serves that
+directory as static assets (`apps/docs/wrangler.jsonc`): no Worker script runs,
+so requests cost no CPU time, and a path with no file gets the prerendered
+`404.html`.
+
+The crawl finds pages by following links from `/`, and `app.tsx` announces the
+router's static routes so a page nothing links to is still rendered. It does
+not follow `<iframe src>`. Prerendering happens without a request, so it sees
+no cookies: anything rendered from a cookie must render the default first and
+apply the stored value after hydration, as the style, base-color and
+color-mode scripts in `Document.tsx` do for the root element.
+
+**CI deploys on every push to `main`**, after the checks pass, with the
+`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets. To
+deploy by hand, run `pnpm --filter ./apps/docs run deploy` after
+`pnpm exec wrangler login` in `apps/docs`.
 
 ## Porting from upstream
 

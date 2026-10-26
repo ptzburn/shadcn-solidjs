@@ -2,6 +2,7 @@ import mdx from "@mdx-js/rollup";
 import solid from "@solidjs/vite-plugin";
 import tailwindcss from "@tailwindcss/vite";
 import { fileRoutes } from "filesystem-routing/vite";
+import { prerender } from "prerender-crawler/vite";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkFrontmatter from "remark-frontmatter";
@@ -29,9 +30,6 @@ export default defineConfig({
   },
   build: {
     target: "esnext",
-  },
-  preview: {
-    allowedHosts: [".shadcn-solidjs.com"],
   },
   test: {
     environment: "node",
@@ -87,6 +85,18 @@ export default defineConfig({
         ssr: true,
         start: { app: "src/app.tsx" },
         extensions: [".mdx", ".md"],
+      }),
+      // The build renders every page through the server build and writes it
+      // to dist/client as HTML, so the site deploys as static files. Pages
+      // come from the links the crawl follows and the routes app.tsx
+      // announces; the 404 page is seeded by name. Pages are written as
+      // `<route>.html` rather than `<route>/index.html`, which Cloudflare
+      // serves at the route's own URL instead of redirecting to a trailing
+      // slash.
+      prerender({
+        mode: "static",
+        pages: ["/", { path: "/404", filename: "404.html" }],
+        autoSubfolderIndex: false,
       }),
       fileRoutes({
         extensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],

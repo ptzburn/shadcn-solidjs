@@ -5,9 +5,12 @@ packages:
 # Dependency build scripts run only for the packages allowed here; pnpm
 # refuses to install while a new one is undecided and `pnpm approve-builds
 # <pkg>` (or `'!<pkg>'` to deny) records the decision. lefthook installs the
-# git hooks; nothing else needs its script.
+# git hooks and workerd fetches the Workers runtime binary; esbuild comes in
+# with wrangler and ships its binary as an optional dependency already.
 allowBuilds:
+  esbuild: false
   lefthook: true
+  workerd: true
 
 # pnpm resolves nothing published less than a day ago (minimumReleaseAge,
 # 1440 minutes by default). A package that has to come in younger than that

@@ -20,3 +20,6 @@ coverage/
 
 # superpowers specs and plans (local working notes)
 /docs/
+
+# Wrangler and the Cloudflare Vite plugin (local workerd state)
+.wrangler
