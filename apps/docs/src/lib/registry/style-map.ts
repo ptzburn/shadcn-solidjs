@@ -8,7 +8,8 @@
  * At build time the markers are replaced with their inlined Tailwind
  * tokens (then run through tailwind-merge), so consumers receive fully
  * inlined class strings — the same output shape ui.shadcn.com ships.
- * The docs site instead loads the style CSS at runtime via app.css.
+ * The docs site instead loads the active style's CSS at runtime (see
+ * lib/style-sheets.ts).
  */
 import postcss from "postcss";
 import { twMerge } from "tailwind-merge";

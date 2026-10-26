@@ -16,8 +16,8 @@
  * - `cn-*` style markers, inlined per style from
  *   `src/registry/styles/style-<style>.css` (see
  *   src/lib/registry/style-map.ts). The docs site instead styles the
- *   markers at runtime by loading every style CSS scoped under
- *   `.style-<name>`.
+ *   markers at runtime with the active style's CSS, scoped under
+ *   `.style-<name>` (see src/lib/style-sheets.ts).
  * - Registry definitions are copied from main in full, but items whose
  *   authored files are not ported yet are skipped (and counted below), so
  *   entries activate as their files land.

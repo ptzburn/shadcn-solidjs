@@ -1,0 +1,10 @@
+/*
+ * The maia style's tokens for the registry's cn-* markers, built as their own
+ * stylesheet: only the active style is loaded (see lib/style-sheets.ts), so
+ * the browser matches one style's rules instead of all eight. The layer
+ * statement comes first because this sheet loads before app.css, and the
+ * first sheet to name a layer fixes its place in the order.
+ */
+@layer theme, base, components, utilities;
+@reference "../app.css";
+@import "../../registry/styles/style-maia.css";

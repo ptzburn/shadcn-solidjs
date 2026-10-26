@@ -5,18 +5,10 @@
 @import "./base-colors.css";
 
 /*
- * Every style's tokens for the registry's cn-* markers, each scoped under
- * `.style-<name>`. They all load together and the switcher picks one by
- * swapping that class on the root element.
+ * Each style's tokens for the registry's cn-* markers are not imported here:
+ * styles/style/<name>.css builds them as one stylesheet per style, and only
+ * the active one is loaded (lib/style-sheets.ts).
  */
-@import "../registry/styles/style-nova.css";
-@import "../registry/styles/style-vega.css";
-@import "../registry/styles/style-maia.css";
-@import "../registry/styles/style-lyra.css";
-@import "../registry/styles/style-mira.css";
-@import "../registry/styles/style-luma.css";
-@import "../registry/styles/style-sera.css";
-@import "../registry/styles/style-rhea.css";
 
 @custom-variant dark (&:where(.dark, .dark *, [data-kb-theme=dark],
   [data-kb-theme=dark] *));

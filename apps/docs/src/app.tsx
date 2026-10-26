@@ -1,7 +1,7 @@
 /// <reference types="filesystem-routing/types" />
 import { ColorModeProvider, cookieStorageManagerSSR } from "@kobalte/core/color-mode";
 import { announceRoutes } from "@solidjs/prerender";
-import { createRouter } from "@solidjs/router";
+import { createRouter, intentPreload } from "@solidjs/router";
 import { fileRoutes } from "@solidjs/router/fs";
 import { getRequestEvent, isServer } from "@solidjs/web";
 import { MetaTags } from "~/components/meta-tags.tsx";
@@ -17,7 +17,9 @@ import { Loading } from "solid-js";
 
 import { pageRoutes } from "virtual:file-routes";
 
-const Router = createRouter({ routes: fileRoutes(pageRoutes) });
+// A link's page starts loading once the pointer rests on it, it gets focus,
+// or a touch starts, so most of the code has arrived by the click.
+const Router = createRouter({ routes: fileRoutes(pageRoutes), preloadLinks: intentPreload() });
 
 export default function App() {
   announceRoutes(Router);

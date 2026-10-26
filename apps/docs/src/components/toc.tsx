@@ -29,6 +29,23 @@ function updateHeadings(setter: Setter<TocItem[]>) {
   );
 }
 
+/**
+ * Runs `fn` once the browser has painted the next frame. Reading layout
+ * while a navigation is still rendering forces the whole new page through
+ * style and layout before it can appear; after the paint it costs nothing
+ * the reader waits for. Returns a cancel function for effect cleanup.
+ */
+function afterPaint(fn: () => void): () => void {
+  let timeout: ReturnType<typeof setTimeout> | undefined;
+  const frame = requestAnimationFrame(() => {
+    timeout = setTimeout(fn, 0);
+  });
+  return () => {
+    cancelAnimationFrame(frame);
+    clearTimeout(timeout);
+  };
+}
+
 function getHeadingsFromToc(tableOfContents: TocItem[]) {
   return tableOfContents.map(({ slug }) => {
     const el = document.getElementById(slug);
@@ -57,7 +74,7 @@ function useCurrentSection(tableOfContents: Accessor<TocItem[] | undefined>) {
         return;
       }
 
-      const headings = getHeadingsFromToc(toc);
+      let headings: ReturnType<typeof getHeadingsFromToc> = [];
 
       function onScroll() {
         const top = globalThis.scrollY;
@@ -77,11 +94,14 @@ function useCurrentSection(tableOfContents: Accessor<TocItem[] | undefined>) {
         setCurrentSection(current);
       }
 
-      globalThis.addEventListener("scroll", onScroll, { passive: true });
-
-      onScroll();
+      const cancel = afterPaint(() => {
+        headings = getHeadingsFromToc(toc);
+        globalThis.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      });
 
       return () => {
+        cancel();
         globalThis.removeEventListener("scroll", onScroll);
       };
     },
@@ -98,23 +118,20 @@ export function TableOfContents() {
   const [toc, setToc] = createSignal<TocItem[]>([]);
   createEffect(
     () => location.pathname,
-    () => {
-      updateHeadings(setToc);
-    },
+    () => afterPaint(() => updateHeadings(setToc)),
   );
 
   const currentSection = useCurrentSection(toc);
 
   createEffect(
     () => currentSection(),
-    (current) => {
-      const element = document.querySelector(`a[data-toc-slug="${current}"]`);
-
-      element?.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-      });
-    },
+    (current) =>
+      afterPaint(() => {
+        document.querySelector(`a[data-toc-slug="${current}"]`)?.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+        });
+      }),
   );
 
   return (

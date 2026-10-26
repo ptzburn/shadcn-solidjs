@@ -16,6 +16,7 @@ import remarkGithubAlerts from "./src/lib/mdx/gh-alerts.ts";
 import remarkNpmCommand from "./src/lib/mdx/npm-command.ts";
 import rehypePrettyCodeSecondPass from "./src/lib/mdx/pretty-code.ts";
 import { docsMarkdownPages } from "./src/lib/vite/docs-markdown-pages.ts";
+import { previewPreload } from "./src/lib/vite/preview-preload.ts";
 
 export default defineConfig({
   resolve: {
@@ -106,6 +107,7 @@ export default defineConfig({
         autoInstall: true,
       }),
       docsMarkdownPages(),
+      previewPreload(),
     ];
   }),
 });
