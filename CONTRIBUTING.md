@@ -148,10 +148,12 @@ Publishing by hand still works:
 
 ```sh
 pnpm --filter ./packages/cli build
-cd packages/cli && npm publish
+cd packages/cli && npm publish --tag beta
 ```
 
-It needs the account's one-time password and carries no provenance.
+It needs the account's one-time password and carries no provenance. Pass the
+tag from `publishConfig.tag` explicitly: npm ignores it and would otherwise
+publish to `latest`.
 
 ## Deploying the docs
 

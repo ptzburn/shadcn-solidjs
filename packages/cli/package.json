@@ -25,7 +25,7 @@
     "directory": "packages/cli"
   },
   "bin": {
-    "shadcn-solidjs": "./dist/index.js"
+    "shadcn-solidjs": "dist/index.js"
   },
   "files": [
     "dist"

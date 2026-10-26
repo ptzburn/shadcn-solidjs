@@ -59,7 +59,7 @@ jobs:
       - name: Verify the package publishes
         if: github.event_name == 'pull_request'
         working-directory: packages/cli
-        run: npm publish --dry-run
+        run: npm publish --dry-run --tag "$(node -p "require('./package.json').publishConfig.tag")"
 
   publish:
     name: Publish the CLI to npm
@@ -87,7 +87,8 @@ jobs:
             echo "@ptzburn/shadcn-solidjs@$version is already published; nothing to do."
             exit 0
           fi
-          npm publish
+          # npm ignores publishConfig.tag, so the tag goes on the command line.
+          npm publish --tag "$(node -p "require('./package.json').publishConfig.tag")"
 
   deploy:
     name: Deploy the docs to Cloudflare
