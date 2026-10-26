@@ -136,7 +136,7 @@ tag disagrees with the version. When the line changes — beta to stable — als
 update the `@beta` tag in `packages/cli/README.md` and the module doc of
 `packages/cli/src/index.ts`.
 
-**npm publishes from CI.** Pushing the bump to `main` or `solid2` runs
+**npm publishes from CI.** Pushing the bump to `main` runs
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml), which checks and tests
 the workspace, builds the CLI and runs `npm publish`. It skips when the version
 is already on npm, so pushes that don't bump are no-ops, and it authenticates

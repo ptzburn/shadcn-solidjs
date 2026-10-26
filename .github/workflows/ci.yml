@@ -5,10 +5,10 @@
 # npm publish, so a package that would fail to publish is caught before it
 # merges.
 #
-# `publish` runs on every push to main or solid2 (no path filter: the skip
-# below makes a push without a version bump a cheap no-op). It
-# skips, exiting 0, when the version in packages/cli/package.json is already
-# on npm, so a release is: bump the version, push, done. It authenticates
+# `publish` runs on every push to main (no path filter: the skip below
+# makes a push without a version bump a cheap no-op). It skips, exiting 0,
+# when the version in packages/cli/package.json is already on npm, so a
+# release is: bump the version, push, done. It authenticates
 # with npm trusted publishing: the job's OIDC token, no stored secret, and
 # npm attaches a provenance attestation to the version.
 #
@@ -21,7 +21,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [main, solid2]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
