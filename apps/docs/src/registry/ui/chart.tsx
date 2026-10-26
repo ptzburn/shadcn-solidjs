@@ -1,3 +1,4 @@
+import { isServer } from "@solidjs/web";
 import type { ComponentProps, JSX } from "@solidjs/web";
 import { cn } from "~/lib/utils.ts";
 
@@ -281,6 +282,9 @@ const BaseChart: Component<ChartProps> = (rawProps) => {
   });
 
   onCleanup(() => {
+    if (isServer) {
+      return;
+    }
     untrack(chart)?.destroy();
     document.getElementById("chartjs-tooltip")?.remove();
   });

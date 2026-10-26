@@ -205,22 +205,6 @@ to `Portal` from `@solidjs/web`. The drawer's closing animation takes several
 seconds on the dev server, so give it that long before calling it stuck; the
 broken state shows up earlier anyway, as `pointerEvents` staying empty.
 
-### Server-side rendering stays off in the docs
-
-`ssr: false` in `apps/docs/vite.config.ts`. Last confirmed necessary on
-`solid-js@2.0.0-rc.15` (2026-10-17). Through rc.13, a component that reads a
-memo inside a forwarded JSX prop and resolves its tag through `Dynamic`, which
-is the shape of every Kobalte polymorphic primitive, got hydration ids two slots
-ahead of what the client computes, so its children were never claimed: 101 key
-misses on the button page, 38 on tabs. rc.14 fixed that (the runtime spread now
-applies attributes before children, as the server does), and rc.15 reports no
-key miss at all; but one `Hydration Mismatch` remains on each page (key
-`…A1a000280` on button, `…q0e000280` on tabs), and it halts the reactive system,
-leaving 36 of 66 buttons wired on the button page and 10 of 41 on tabs. Retest
-by setting `ssr: true` together with `ssr.noExternal: true` and loading the
-button and tabs pages with the console open: any "Hydration key miss" warning or
-"Hydration Mismatch" error means it is still needed.
-
 ### `resolve.dedupe` for the Solid packages
 
 Kept as a guard in `apps/docs/vite.config.ts` so the bundle can never carry two

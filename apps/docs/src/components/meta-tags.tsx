@@ -8,9 +8,7 @@ export interface HeadProps {
   description?: string;
 }
 
-// Charset and viewport live statically in Document.tsx: with ssr off,
-// managed meta applies only after the client bundle runs, too late for
-// the viewport. Main's raw lowercase icon tags become managed Link/Meta
+// Charset and viewport live statically in Document.tsx. Main's raw lowercase icon tags become managed Link/Meta
 // here so they land in the head instead of the mount point.
 export function MetaTags(rawProps: HeadProps) {
   const props = merge(

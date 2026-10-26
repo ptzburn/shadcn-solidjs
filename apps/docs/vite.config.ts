@@ -33,9 +33,6 @@ export default defineConfig({
   preview: {
     allowedHosts: [".shadcn-solidjs.com"],
   },
-  ssr: {
-    noExternal: ["@kobalte/core"],
-  },
   test: {
     environment: "node",
     include: ["src/**/*.test.ts"],
@@ -87,7 +84,7 @@ export default defineConfig({
       },
       tailwindcss(),
       solid({
-        ssr: false,
+        ssr: true,
         start: { app: "src/app.tsx" },
         extensions: [".mdx", ".md"],
       }),

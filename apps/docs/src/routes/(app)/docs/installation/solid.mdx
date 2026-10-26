@@ -24,19 +24,11 @@ already has Tailwind CSS wired up:
 ```
 
 The `basic` and `fullstack` templates work just as well — add Tailwind CSS
-in the next step. `@kobalte/core` 2.0.0-alpha.3 pins its `solid-js` peer to
-exactly `2.0.0-rc.15`, which is what the templates resolve to today, so npm,
-pnpm and bun all install it as is. npm warns that `@kobalte/utils` still pins an
-older release candidate and overrides it; the warning is safe to ignore.
-
-<Callout title="Server-side rendering">
-  With `solid-js@2.0.0-rc.15` and `@kobalte/core@2.0.0-alpha.3` — the versions the components are
-  built and tested against — the library does not yet work reliably with server-side rendering
-  enabled. Stay client-rendered for now: answer no if the CLI offers to enable SSR, and leave `ssr`
-  off in the `solid()` options of `vite.config.ts` (the `fullstack` template ships with `ssr: true`
-  — set it to `false`). Newer releases of either package may resolve this, so if you are on later
-  versions it is worth trying with SSR on.
-</Callout>
+in the next step. `@kobalte/core` 2.0.0-alpha.4 pins its `solid-js` peer to
+exactly `2.0.0-rc.16`. npm settles the templates' `solid-js` range on that
+release; pnpm installs the newest release candidate instead and warns about
+Kobalte's peer. The components are tested against both, so the warning is safe
+to ignore.
 
 ### Add Tailwind CSS
 
