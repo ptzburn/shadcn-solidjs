@@ -117,32 +117,43 @@ declare module "~icons/*" {
 
 ### Run the CLI
 
-Run the `shadcn-solidjs` init command to setup your project:
+Set up the project with the `init` command of the shadcn CLI, pointed at the
+base color you want:
 
 ```bash
-npx @ptzburn/shadcn-solidjs@beta init
+npx shadcn@latest init https://shadcn-solidjs.com/r/init/neutral.json
 ```
 
-### Configure components.json
+The base colors are `neutral`, `stone`, `zinc`, `mauve`, `olive`, `mist` and
+`taupe`. `init` writes `components.json`, adds the theme variables to the
+stylesheet that imports Tailwind, and adds the `cn` util along with the
+packages it needs. It reads the `~` alias from `tsconfig.json`, so that has to
+be in place first.
 
-You will be asked which base color, icon library and style to use:
+### Add the registry
 
-```txt showLineNumbers
-Which base color would you like to use? › zinc
-Which icon library would you like to use? › Lucide
-Which style would you like to use? › Nova
+Add the registry to `components.json`. Its URL picks the style and the icon
+library every component is installed in:
+
+```json title="components.json" {3-5} showLineNumbers
+{
+  // ...
+  "registries": {
+    "@shadcn-solidjs": "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/{name}.json"
+  }
+}
 ```
 
-`init` reads the path alias your project already declares and finds the
-stylesheet that imports Tailwind, so it does not ask where those live. The
-answers and the detected paths are written to `components.json`.
+The styles are `nova`, `vega`, `maia`, `lyra`, `mira`, `luma`, `sera` and
+`rhea`, and the icon libraries are `lucide`, `tabler`, `ph` (Phosphor), `ri`
+(Remix Icon) and `hugeicons`.
 
 ### That's it
 
 You can now start adding components to your project.
 
 ```bash
-npx @ptzburn/shadcn-solidjs@beta add button
+npx shadcn@latest add @shadcn-solidjs/button
 ```
 
 The command above will add the `Button` component to your project, along with

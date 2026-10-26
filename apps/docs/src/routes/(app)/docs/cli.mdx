@@ -1,74 +1,82 @@
 ---
 title: CLI
-description: Use the CLI to add components to your project.
+description: Use the shadcn CLI to add components to your project.
 ---
+
+Components are installed with the [shadcn CLI](https://ui.shadcn.com/docs/cli)
+from the shadcn-solidjs registry. Every item is a standard registry item, so
+the CLI copies the files into your project, rewrites their imports to your
+aliases and installs the packages they need.
 
 ## init
 
-Use the `init` command to set up a project. It writes a `components.json`, seeds
-your stylesheet with the base color's tokens, and adds the `cn` util.
+Use the `init` command to set up a project, pointed at the base color you want.
+It writes `components.json`, adds the theme variables to the stylesheet that
+imports Tailwind, and adds the `cn` util.
 
 ```bash
-npx @ptzburn/shadcn-solidjs@beta init
+npx shadcn@latest init https://shadcn-solidjs.com/r/init/neutral.json
 ```
 
-You will be asked which base color, icon library and style to use:
+The base colors are `neutral`, `stone`, `zinc`, `mauve`, `olive`, `mist` and
+`taupe`. `init` reads the `~` alias from `tsconfig.json` and finds the
+stylesheet that imports Tailwind, so both need to exist first.
 
-```txt
-Which base color would you like to use? › zinc
-Which icon library would you like to use? › Lucide
-Which style would you like to use? › Nova
+## registries
+
+Add the registry to `components.json` once. The URL picks the style and the
+icon library, and every component, along with the components it depends on, is
+installed in them:
+
+```json title="components.json"
+{
+  "registries": {
+    "@shadcn-solidjs": "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/{name}.json"
+  }
+}
 ```
 
-Paths are not asked for. `init` reads the alias your project already declares
-in `paths` in `tsconfig.json`, and finds the stylesheet that imports Tailwind,
-so the generated `components.json` matches the project rather than imposing a
-layout on it. Both need to exist first; `init` reports what is missing if they
-don't.
+| Part of the URL   | Values                                                              |
+| ----------------- | ------------------------------------------------------------------- |
+| `styles/<style>`  | `nova`, `vega`, `maia`, `lyra`, `mira`, `luma`, `sera`, `rhea`      |
+| `icons/<library>` | `lucide`, `tabler`, `ph` (Phosphor), `ri` (Remix Icon), `hugeicons` |
 
-To change where components are written, edit the `aliases` in
-`components.json` afterwards.
-
-### Options
-
-```txt
--c, --cwd <cwd>            the working directory. defaults to the current directory.
--y, --yes                  skip confirmation prompt.
--d, --defaults             use default configuration.
--f, --force                force overwrite of existing configuration.
--s, --silent               mute output.
--b, --base-color <color>   the base color to use.
-    --style <style>        the style to use.
-    --css-variables        use css variables for theming. (default)
-    --no-css-variables     use utility classes for theming.
-```
+To move to another style or icon library later, change the URL and add the
+components again with `--overwrite`.
 
 ## add
 
-Use the `add` command to add components and their dependencies to your project.
+Use the `add` command to add components and their dependencies to your
+project.
 
 ```bash
-npx @ptzburn/shadcn-solidjs@beta add button card dialog
+npx shadcn@latest add @shadcn-solidjs/button @shadcn-solidjs/card @shadcn-solidjs/dialog
 ```
 
-Components are named, not picked from a list — pass one or more names, a URL, or
-`--all` to add everything:
+Pass `--dry-run` to see what would change first, or `--diff` to compare the
+files you have with the registry's.
 
 ```bash
-npx @ptzburn/shadcn-solidjs@beta add --all
+npx shadcn@latest add @shadcn-solidjs/button --diff
 ```
 
-Files that already exist and differ are left alone and reported, so a re-run
-never overwrites your edits silently. Pass `--overwrite` when you do want them
-replaced, or `--dry-run` to see what would change first.
+## Themes
 
-### Options
+The accent themes layer on top of a base color. Add one by its URL:
 
-```txt
--c, --cwd <cwd>      the working directory. defaults to the current directory.
--o, --overwrite      overwrite existing files.
--a, --all            add all available components.
--p, --path <path>    the path to add the component to.
--s, --silent         mute output.
-    --dry-run        preview the changes without writing files.
+```bash
+npx shadcn@latest add https://shadcn-solidjs.com/r/themes/blue.json
+```
+
+The accents are `amber`, `blue`, `cyan`, `emerald`, `fuchsia`, `green`,
+`indigo`, `lime`, `orange`, `pink`, `purple`, `red`, `rose`, `sky`, `teal`,
+`violet` and `yellow`.
+
+## search and view
+
+`search` lists the registry's items and `view` prints one before you add it:
+
+```bash
+npx shadcn@latest search @shadcn-solidjs -q dialog
+npx shadcn@latest view @shadcn-solidjs/dialog
 ```

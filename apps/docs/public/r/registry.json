@@ -8,7 +8,7 @@
       "name": "accordion",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -20,7 +20,7 @@
       "name": "alert",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ]
     },
@@ -29,11 +29,11 @@
       "name": "alert-dialog",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "button"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json"
       ]
     },
     {
@@ -46,11 +46,11 @@
       "name": "attachment",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "button"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json"
       ]
     },
     {
@@ -58,7 +58,7 @@
       "name": "avatar",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -66,7 +66,7 @@
       "name": "badge",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ]
     },
@@ -75,7 +75,7 @@
       "name": "breadcrumb",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -87,7 +87,7 @@
       "name": "bubble",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ]
     },
@@ -96,7 +96,7 @@
       "name": "button",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ]
     },
@@ -105,11 +105,11 @@
       "name": "button-group",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "separator"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/separator.json"
       ]
     },
     {
@@ -117,14 +117,14 @@
       "name": "calendar",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"
       ],
       "registryDependencies": [
-        "button"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json"
       ]
     },
     {
@@ -145,7 +145,7 @@
         "@iconify-json/lucide"
       ],
       "registryDependencies": [
-        "button"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json"
       ]
     },
     {
@@ -161,7 +161,7 @@
       "name": "checkbox",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -173,15 +173,15 @@
       "name": "combobox",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"
       ],
       "registryDependencies": [
-        "button",
-        "input-group"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/input-group.json"
       ]
     },
     {
@@ -189,15 +189,15 @@
       "name": "command",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"
       ],
       "registryDependencies": [
-        "dialog",
-        "input-group"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/dialog.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/input-group.json"
       ]
     },
     {
@@ -205,7 +205,7 @@
       "name": "context-menu",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -217,7 +217,7 @@
       "name": "collapsible",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -226,9 +226,9 @@
       "type": "registry:ui",
       "description": "A date picker is a composition of Popover and Calendar. This installs both, plus the Button its trigger uses.",
       "registryDependencies": [
-        "button",
-        "calendar",
-        "popover"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/calendar.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/popover.json"
       ]
     },
     {
@@ -236,14 +236,14 @@
       "name": "dialog",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"
       ],
       "registryDependencies": [
-        "button"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json"
       ]
     },
     {
@@ -251,7 +251,7 @@
       "name": "drawer",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -259,7 +259,7 @@
       "name": "dropdown-menu",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -279,12 +279,12 @@
       "name": "field",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "label",
-        "separator"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/label.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/separator.json"
       ]
     },
     {
@@ -292,7 +292,7 @@
       "name": "hover-card",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -305,13 +305,13 @@
       "name": "input-group",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "button",
-        "input",
-        "textarea"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/input.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/textarea.json"
       ]
     },
     {
@@ -319,7 +319,7 @@
       "name": "input-otp",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -331,11 +331,11 @@
       "name": "item",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "separator"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/separator.json"
       ]
     },
     {
@@ -348,7 +348,7 @@
       "name": "label",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -356,7 +356,7 @@
       "name": "marker",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ]
     },
@@ -365,7 +365,7 @@
       "name": "menubar",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -383,14 +383,14 @@
       "type": "registry:ui",
       "dependencies": [
         "@ptzburn/shadcn-solid@^0.2.0-beta.0",
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"
       ],
       "registryDependencies": [
-        "button"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json"
       ]
     },
     {
@@ -407,7 +407,7 @@
       "name": "navigation-menu",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ],
       "devDependencies": [
@@ -420,14 +420,14 @@
       "name": "pagination",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"
       ],
       "registryDependencies": [
-        "button"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json"
       ]
     },
     {
@@ -435,7 +435,7 @@
       "name": "popover",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -443,7 +443,7 @@
       "name": "progress",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -451,7 +451,7 @@
       "name": "radio-group",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -459,7 +459,7 @@
       "name": "resizable",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -472,7 +472,7 @@
       "name": "select",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
@@ -484,7 +484,7 @@
       "name": "separator",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -492,14 +492,14 @@
       "name": "sheet",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"
       ],
       "registryDependencies": [
-        "button"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json"
       ]
     },
     {
@@ -507,7 +507,7 @@
       "name": "sidebar",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ],
       "devDependencies": [
@@ -515,13 +515,13 @@
         "@iconify-json/lucide"
       ],
       "registryDependencies": [
-        "button",
-        "input",
-        "separator",
-        "sheet",
-        "skeleton",
-        "tooltip",
-        "use-media-query"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/input.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/separator.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/sheet.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/skeleton.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/tooltip.json",
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/use-media-query.json"
       ]
     },
     {
@@ -534,7 +534,7 @@
       "name": "slider",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -551,7 +551,7 @@
       "name": "switch",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {
@@ -564,7 +564,7 @@
       "name": "tabs",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ]
     },
@@ -578,14 +578,14 @@
       "name": "toast",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ],
       "devDependencies": [
         "unplugin-icons",
         "@iconify-json/lucide"
       ],
       "registryDependencies": [
-        "button"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/button.json"
       ]
     },
     {
@@ -593,7 +593,7 @@
       "name": "toggle",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ]
     },
@@ -602,11 +602,11 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1",
+        "@kobalte/core@2.0.0-alpha.4",
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "toggle"
+        "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/toggle.json"
       ]
     },
     {
@@ -614,7 +614,7 @@
       "name": "tooltip",
       "type": "registry:ui",
       "dependencies": [
-        "@kobalte/core@2.0.0-alpha.1"
+        "@kobalte/core@2.0.0-alpha.4"
       ]
     },
     {

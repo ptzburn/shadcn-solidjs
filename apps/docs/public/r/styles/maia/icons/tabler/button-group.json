@@ -3,11 +3,11 @@
   "name": "button-group",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.1",
+    "@kobalte/core@2.0.0-alpha.4",
     "class-variance-authority"
   ],
   "registryDependencies": [
-    "separator"
+    "https://shadcn-solidjs.com/r/styles/maia/icons/tabler/separator.json"
   ],
   "files": [
     {

@@ -7,7 +7,11 @@
  * - `public/r/icons/<library>/<name>.json` — per-icon-library variants of
  *   every item.
  * - `public/r/themes/<name>.json` — theme items (cssVars only).
- * - `public/r/registry.json` + `public/r/index.json` — item index.
+ * - `public/r/init/<base-color>.json` — the item `shadcn init` starts a
+ *   project from (see src/lib/registry/init-item.ts).
+ * - `public/r/registry.json` + `public/r/index.json` — item index, and a
+ *   `registry.json` in every `styles/<style>/icons/<library>/` directory,
+ *   which `shadcn search` reads next to the items a namespace points at.
  * - `public/registry/**` — legacy format predating shadcn-solidjs, icons
  *   resolved to the default library.
  *
@@ -33,6 +37,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node
 import path, { basename } from "node:path";
 import process from "node:process";
 
+import { initItem, isBaseColor } from "../lib/registry/init-item.ts";
 import { resolveIcons } from "../lib/registry/resolve-icons.ts";
 import { createStyleMap, inlineStyles } from "../lib/registry/style-map.ts";
 import {
@@ -47,6 +52,32 @@ import { defaultStyle, type StyleName, styleNames } from "../registry/styles.ts"
 const LEGACY_PATH = path.join(process.cwd(), "public/registry");
 const R_PATH = path.join(process.cwd(), "public/r");
 const HOMEPAGE = "https://shadcn-solidjs.com";
+
+/**
+ * Items name their registry dependencies by URL: the shadcn CLI resolves a
+ * bare name against ui.shadcn.com and would install its React component.
+ * REGISTRY_ORIGIN points those URLs at a local server when testing a build.
+ */
+const REGISTRY_ORIGIN = process.env.REGISTRY_ORIGIN ?? HOMEPAGE;
+
+/**
+ * Dependencies whose npm `latest` is not the line these components are built
+ * on (`@kobalte/core`'s is the Solid 1 release). They are pinned to the exact
+ * version the docs install, so a consumer gets the one the docs test.
+ */
+const PINNED_DEPENDENCIES = ["@kobalte/core"];
+const docsDependencies: Record<string, string> = JSON.parse(
+  readFileSync(path.join(process.cwd(), "package.json"), "utf8"),
+).dependencies;
+
+function pinDependencies(dependencies: string[] | undefined) {
+  return dependencies?.map((dependency) => {
+    if (!PINNED_DEPENDENCIES.includes(dependency)) return dependency;
+    const version = docsDependencies[dependency];
+    if (!version) throw new Error(`${dependency} is pinned but not a docs dependency`);
+    return `${dependency}@${version}`;
+  });
+}
 
 const result = registrySchema.safeParse(registry);
 if (!result.success) {
@@ -171,22 +202,39 @@ writeFileSync(path.join(process.cwd(), "src", "__registry__", "meta.ts"), render
 //    BUILD public/r (shadcn v4 format)
 // #######################################
 
+/** The URL of an item built for one style and icon library. */
+function itemUrl(name: string, style: StyleName, library: string) {
+  return `${REGISTRY_ORIGIN}/r/styles/${style}/icons/${library}/${name}.json`;
+}
+
+const builtNames = new Set(
+  items.filter((item) => ["ui", "lib", "hook"].includes(item.type)).map((item) => item.name),
+);
+
 function toRegistryItem(
   item: RegistryItem,
   files: { path: string; content: string; type: string; target?: string }[],
   devDependencies: string[],
+  tree?: { style: StyleName; library: string },
 ) {
+  const dependencies = pinDependencies(item.dependencies);
+  // A dependency resolves within the same style and icon library as the item
+  // that names it, so one `registries` URL in components.json picks both.
+  const registryDependencies = item.registryDependencies?.map((name) => {
+    if (!builtNames.has(name)) {
+      throw new Error(`${item.name} depends on ${name}, which the registry does not build`);
+    }
+    return tree ? itemUrl(name, tree.style, tree.library) : name;
+  });
   return {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
     name: item.name,
     type: `registry:${item.type}`,
     ...(item.title ? { title: item.title } : {}),
     ...(item.description ? { description: item.description } : {}),
-    ...(item.dependencies?.length ? { dependencies: item.dependencies } : {}),
+    ...(dependencies?.length ? { dependencies } : {}),
     ...(devDependencies.length ? { devDependencies } : {}),
-    ...(item.registryDependencies?.length
-      ? { registryDependencies: item.registryDependencies }
-      : {}),
+    ...(registryDependencies?.length ? { registryDependencies } : {}),
     ...(files.length
       ? {
           files: files.map((file) => ({
@@ -210,6 +258,7 @@ function writeJson(filePath: string, payload: unknown) {
 }
 
 const indexItems: Record<string, unknown>[] = [];
+const treeIndexItems = new Map<string, Record<string, unknown>[]>();
 
 for (const item of items) {
   if (item.type === "theme") {
@@ -243,9 +292,14 @@ for (const item of items) {
         return { ...file, content: code };
       });
       const devDependencies = usesIcons ? ["unplugin-icons", iconLibraries[library].package] : [];
-      const payload = toRegistryItem(item, resolved, devDependencies);
+      const payload = toRegistryItem(item, resolved, devDependencies, { style, library });
 
-      writeJson(path.join(R_PATH, "styles", style, "icons", library, `${item.name}.json`), payload);
+      const tree = path.join(R_PATH, "styles", style, "icons", library);
+      writeJson(path.join(tree, `${item.name}.json`), payload);
+      treeIndexItems.set(tree, [
+        ...(treeIndexItems.get(tree) ?? []),
+        { ...payload, files: undefined },
+      ]);
 
       // The default style also lives at the unprefixed paths, so
       // registries pinned before styles existed keep resolving.
@@ -260,6 +314,13 @@ for (const item of items) {
   }
 }
 
+for (const theme of items.filter((item) => item.type === "theme" && isBaseColor(item))) {
+  writeJson(
+    path.join(R_PATH, "init", `${theme.name}.json`),
+    initItem(theme, itemUrl("utils", defaultStyle, defaultIconLibrary)),
+  );
+}
+
 const registryIndex = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "shadcn-solidjs",
@@ -268,6 +329,9 @@ const registryIndex = {
 };
 writeJson(path.join(R_PATH, "registry.json"), registryIndex);
 writeJson(path.join(R_PATH, "index.json"), registryIndex);
+for (const [tree, treeItems] of treeIndexItems) {
+  writeJson(path.join(tree, "registry.json"), { ...registryIndex, items: treeItems });
+}
 
 // #######################################
 //    BUILD public/registry (legacy pre-shadcn-solidjs format)
@@ -288,11 +352,12 @@ for (const item of items) {
     return { name: basename(file.path), content: code };
   });
 
+  const dependencies = pinDependencies(item.dependencies);
   const payload = {
     ...item,
     dependencies: usesIcons
-      ? [...(item.dependencies ?? []), "unplugin-icons", iconLibraries[defaultIconLibrary].package]
-      : item.dependencies,
+      ? [...(dependencies ?? []), "unplugin-icons", iconLibraries[defaultIconLibrary].package]
+      : dependencies,
     files,
   };
 

@@ -4,8 +4,8 @@
   "type": "registry:ui",
   "description": "A date picker is a composition of Popover and Calendar. This installs both, plus the Button its trigger uses.",
   "registryDependencies": [
-    "button",
-    "calendar",
-    "popover"
+    "https://shadcn-solidjs.com/r/styles/luma/icons/lucide/button.json",
+    "https://shadcn-solidjs.com/r/styles/luma/icons/lucide/calendar.json",
+    "https://shadcn-solidjs.com/r/styles/luma/icons/lucide/popover.json"
   ]
 }

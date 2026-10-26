@@ -23,22 +23,34 @@ tokens, rebuilt on Solid's reactivity and on headless primitives from
 
 ## Documentation
 
-Visit [v2.shadcn-solidjs.com/docs](https://v2.shadcn-solidjs.com/docs) to view
-the documentation.
+Visit [shadcn-solidjs.com/docs](https://shadcn-solidjs.com/docs) to view the
+documentation.
 
 ## Quick start
 
+Components install with the [shadcn CLI](https://ui.shadcn.com/docs/cli).
 Initialize a project — this writes `components.json`, sets up your stylesheet
 and base color, and adds the `cn` helper:
 
 ```bash
-npx @ptzburn/shadcn-solidjs@beta init
+npx shadcn@latest init https://shadcn-solidjs.com/r/init/neutral.json
+```
+
+Add the registry to `components.json`; the URL picks the style and icon
+library:
+
+```jsonc
+{
+  "registries": {
+    "@shadcn-solidjs": "https://shadcn-solidjs.com/r/styles/nova/icons/lucide/{name}.json",
+  },
+}
 ```
 
 Then add components:
 
 ```bash
-npx @ptzburn/shadcn-solidjs@beta add button card dialog
+npx shadcn@latest add @shadcn-solidjs/button @shadcn-solidjs/card @shadcn-solidjs/dialog
 ```
 
 The installation guide walks through a project created from the official Solid
@@ -52,33 +64,20 @@ The installation guide walks through a project created from the official Solid
 - **5 icon libraries** — [Lucide](https://lucide.dev),
   [Tabler](https://tabler.io/icons), [Phosphor](https://phosphoricons.com),
   [Remix Icon](https://remixicon.com) and [Hugeicons](https://hugeicons.com).
-  You pick one at `init` and it's baked into the code you receive.
+  The registry URL picks one, and it's baked into the code you receive.
 - **24 themes**, installable like any other registry item.
 - **Dark mode** guide, with a `color-mode` helper that mirrors Kobalte's.
 
 Every item is addressable under both a style and an icon-library prefix, so
 adding a component never pulls in an icon set you didn't choose.
 
-## Registry compatibility
+## Registry
 
-The CLI is a port of shadcn's own, and stays deliberately wire-compatible with
-it: the `registry:*` item types, the `components.json` field names, and
-`@namespace/item` addressing all match. Any registry that speaks that format is
-addressable — including your own, and including private ones:
-
-```jsonc
-// components.json
-{
-  "registries": {
-    "@acme": "https://acme.com/r/{name}.json",
-  },
-}
-```
-
-Two deliberate differences: `{iconLibrary}` replaces upstream's `{style}` URL
-placeholder, and the `github:owner/repo/item` scheme is not implemented. See
-[`packages/cli/UPSTREAM.md`](packages/cli/UPSTREAM.md) for the full file-by-file
-mapping and the reasoning behind each divergence.
+Every item is a standard [shadcn registry](https://ui.shadcn.com/docs/registry)
+item, installed by the shadcn CLI. Items name the components they depend on by
+URL within the same style and icon library, so one `registries` entry decides
+both for everything you add, and `@kobalte/core` is pinned to the version the
+components are tested against.
 
 ## Built with
 
@@ -89,7 +88,7 @@ mapping and the reasoning behind each divergence.
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the workspace layout, the commands,
-and how to run the docs site and CLI locally.
+and how to test the registry locally.
 
 ## Credits
 

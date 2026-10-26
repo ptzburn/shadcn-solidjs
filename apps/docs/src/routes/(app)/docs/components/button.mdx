@@ -17,7 +17,7 @@ description: Displays a button or a component that looks like a button.
 <TabsContent value="cli">
 
 ```bash
-npx @ptzburn/shadcn-solidjs@beta add button
+npx shadcn@latest add @shadcn-solidjs/button
 ```
 
 </TabsContent>
@@ -57,8 +57,6 @@ import { Button } from "~/components/ui/button";
 Tailwind v4 [switched](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor) from `cursor: pointer` to `cursor: default` for the button component.
 
 If you want to keep the `cursor: pointer` behavior, add the following code to your CSS file:
-
-You can also enable this during project setup with `npx @ptzburn/shadcn-solidjs@beta init --pointer`.
 
 ```css showLineNumbers title="app.css"
 @layer base {

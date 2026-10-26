@@ -3,11 +3,11 @@
   "name": "toggle-group",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.1",
+    "@kobalte/core@2.0.0-alpha.4",
     "class-variance-authority"
   ],
   "registryDependencies": [
-    "toggle"
+    "https://shadcn-solidjs.com/r/styles/nova/icons/hugeicons/toggle.json"
   ],
   "files": [
     {

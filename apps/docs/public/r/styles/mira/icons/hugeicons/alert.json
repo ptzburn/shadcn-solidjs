@@ -3,7 +3,7 @@
   "name": "alert",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.1",
+    "@kobalte/core@2.0.0-alpha.4",
     "class-variance-authority"
   ],
   "files": [

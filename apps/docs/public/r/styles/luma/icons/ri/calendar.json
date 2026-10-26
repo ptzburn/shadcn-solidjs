@@ -3,14 +3,14 @@
   "name": "calendar",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.1"
+    "@kobalte/core@2.0.0-alpha.4"
   ],
   "devDependencies": [
     "unplugin-icons",
     "@iconify-json/ri"
   ],
   "registryDependencies": [
-    "button"
+    "https://shadcn-solidjs.com/r/styles/luma/icons/ri/button.json"
   ],
   "files": [
     {

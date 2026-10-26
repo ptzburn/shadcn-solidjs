@@ -39,9 +39,6 @@ apps/
     public/r/         # the generated registry served at /r
 packages/
   solid/              # @ptzburn/shadcn-solid: unstyled primitives, built by tsdown
-  cli/                # @ptzburn/shadcn-solidjs: the component installer
-    src/commands/     # init, add
-    UPSTREAM.md       # file-by-file mapping to shadcn's own CLI
 ```
 
 Dependencies are added per member as code arrives, at their latest versions.
@@ -81,8 +78,8 @@ LEFTHOOK=0 git commit -m "..."
 ## The registry
 
 `apps/docs/src/registry/` holds the source of truth for every component. The
-generated registry under `apps/docs/public/r/` is what the CLI actually fetches,
-and it is committed. After changing anything under `src/registry/`, regenerate
+generated registry under `apps/docs/public/r/` is what the shadcn CLI actually
+fetches, and it is committed. After changing anything under `src/registry/`, regenerate
 it:
 
 ```sh
@@ -98,62 +95,32 @@ The scripts behind it run on plain Node, which strips types natively, with
 `tsconfig.json` and `vite.config.ts` do. Keep their import chain to erasable
 TypeScript and explicit `.ts` extensions.
 
-## Running the CLI locally
+## Testing the registry locally
 
-Run the CLI from source rather than the published package, and point it at a
-local registry so `init` and `add` test your changes instead of what is live:
-
-```sh
-# terminal 1 — serve the registry
-pnpm dev
-
-# terminal 2 — run the CLI against it, from your test project
-REGISTRY_URL=http://localhost:3228/r \
-  node /path/to/shadcn-solidjs/packages/cli/src/index.ts init
-```
-
-`REGISTRY_URL` and `SHADCN_SOLIDJS_URL` are both overridable — see
-`packages/cli/src/registry/constants.ts`.
-
-The source runs on Node directly, so it is held to the syntax Node's type
-stripping accepts (`erasableSyntaxOnly` and `verbatimModuleSyntax` in
-`packages/cli/tsconfig.json`): no parameter properties or enums, and type-only
-imports marked `type`.
-
-## Publishing
-
-The CLI is published to npm as `@ptzburn/shadcn-solidjs`, built by
-[tsdown](https://tsdown.dev) into one ESM file with the shebang from
-`src/index.ts`. `packages/cli/README.md` is the package page on npm.
-
-### Releasing
-
-Bump `version` in `packages/cli/package.json` and `VERSION` in
-`packages/cli/src/version.ts` together — `version.test.ts` fails if they drift.
-`publishConfig.tag` in `package.json` decides where the version lands: `beta`
-for a pre-release, `latest` for a stable version, and the same test fails if the
-tag disagrees with the version. When the line changes — beta to stable — also
-update the `@beta` tag in `packages/cli/README.md` and the module doc of
-`packages/cli/src/index.ts`.
-
-**npm publishes from CI.** Pushing the bump to `main` runs
-[`.github/workflows/ci.yml`](.github/workflows/ci.yml), which checks and tests
-the workspace, builds the CLI and runs `npm publish`. It skips when the version
-is already on npm, so pushes that don't bump are no-ops, and it authenticates
-with npm trusted publishing — the job's OIDC token, no secret to rotate, and
-npm attaches a provenance attestation to the version. Every pull request gets
-the same checks plus an `npm publish --dry-run`.
-
-Publishing by hand still works:
+Components install with the [shadcn CLI](https://ui.shadcn.com/docs/cli). Every
+item names the items it depends on by URL — the CLI would resolve a bare name
+against ui.shadcn.com and install its React component — so a build points
+those URLs at the live site. To test registry changes end to end, build with
+`REGISTRY_ORIGIN` set to a local server and serve the result:
 
 ```sh
-pnpm --filter ./packages/cli build
-cd packages/cli && npm publish --tag beta
+# terminal 1 — build with local dependency URLs, then serve the build
+REGISTRY_ORIGIN=http://localhost:3228 pnpm build
+pnpm start
+
+# terminal 2 — from a test project with the ~ alias and Tailwind in place
+npx shadcn@latest init http://localhost:3228/r/init/neutral.json
+# then, in components.json:
+#   "registries": { "@shadcn-solidjs": "http://localhost:3228/r/styles/nova/icons/lucide/{name}.json" }
+npx shadcn@latest add @shadcn-solidjs/dialog
 ```
 
-It needs the account's one-time password and carries no provenance. Pass the
-tag from `publishConfig.tag` explicitly: npm ignores it and would otherwise
-publish to `latest`.
+Run `pnpm build:registry` again without `REGISTRY_ORIGIN` before committing,
+so the committed registry points at the live site.
+
+`@kobalte/core` is pinned in every item to the exact version `apps/docs`
+installs, because its npm `latest` is the Solid 1 release; the build reads it
+from `apps/docs/package.json`. Other dependencies are left unversioned.
 
 ## Deploying the docs
 
@@ -179,14 +146,13 @@ deploy by hand, run `pnpm --filter ./apps/docs run deploy` after
 
 ## Porting from upstream
 
-This project tracks [shadcn/ui](https://ui.shadcn.com). When porting a component
-or a CLI change, keep the divergence deliberate and record it — for CLI files,
-that means a row in [`packages/cli/UPSTREAM.md`](packages/cli/UPSTREAM.md)
-explaining what differs and why.
+This project tracks [shadcn/ui](https://ui.shadcn.com). When porting a
+component, keep the divergence deliberate.
 
-The registry stays wire-compatible with shadcn's: the `registry:*` item types,
-the `components.json` field names, and `@namespace/item` addressing. Changes
-that break that compatibility need a good reason.
+The registry is installed by the shadcn CLI, so it stays a standard shadcn
+registry: the `registry:*` item types and the item schema at
+`https://ui.shadcn.com/schema/registry-item.json`. A change the shadcn CLI
+cannot install needs a good reason and an end-to-end test as described above.
 
 ## Before opening a PR
 

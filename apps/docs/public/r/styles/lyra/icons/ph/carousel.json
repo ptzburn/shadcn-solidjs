@@ -11,7 +11,7 @@
     "@iconify-json/ph"
   ],
   "registryDependencies": [
-    "button"
+    "https://shadcn-solidjs.com/r/styles/lyra/icons/ph/button.json"
   ],
   "files": [
     {

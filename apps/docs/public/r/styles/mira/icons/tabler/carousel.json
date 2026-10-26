@@ -11,7 +11,7 @@
     "@iconify-json/tabler"
   ],
   "registryDependencies": [
-    "button"
+    "https://shadcn-solidjs.com/r/styles/mira/icons/tabler/button.json"
   ],
   "files": [
     {

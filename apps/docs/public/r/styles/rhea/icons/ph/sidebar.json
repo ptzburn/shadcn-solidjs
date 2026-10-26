@@ -3,7 +3,7 @@
   "name": "sidebar",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.1",
+    "@kobalte/core@2.0.0-alpha.4",
     "class-variance-authority"
   ],
   "devDependencies": [
@@ -11,13 +11,13 @@
     "@iconify-json/ph"
   ],
   "registryDependencies": [
-    "button",
-    "input",
-    "separator",
-    "sheet",
-    "skeleton",
-    "tooltip",
-    "use-media-query"
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/ph/button.json",
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/ph/input.json",
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/ph/separator.json",
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/ph/sheet.json",
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/ph/skeleton.json",
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/ph/tooltip.json",
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/ph/use-media-query.json"
   ],
   "files": [
     {

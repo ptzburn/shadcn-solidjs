@@ -11,7 +11,7 @@
     "@iconify-json/hugeicons"
   ],
   "registryDependencies": [
-    "button"
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/hugeicons/button.json"
   ],
   "files": [
     {

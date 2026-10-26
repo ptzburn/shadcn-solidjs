@@ -11,7 +11,7 @@
     "@iconify-json/lucide"
   ],
   "registryDependencies": [
-    "button"
+    "https://shadcn-solidjs.com/r/styles/sera/icons/lucide/button.json"
   ],
   "files": [
     {

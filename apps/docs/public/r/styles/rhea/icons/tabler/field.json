@@ -3,12 +3,12 @@
   "name": "field",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.1",
+    "@kobalte/core@2.0.0-alpha.4",
     "class-variance-authority"
   ],
   "registryDependencies": [
-    "label",
-    "separator"
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/tabler/label.json",
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/tabler/separator.json"
   ],
   "files": [
     {

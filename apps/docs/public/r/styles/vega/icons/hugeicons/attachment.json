@@ -3,11 +3,11 @@
   "name": "attachment",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.1",
+    "@kobalte/core@2.0.0-alpha.4",
     "class-variance-authority"
   ],
   "registryDependencies": [
-    "button"
+    "https://shadcn-solidjs.com/r/styles/vega/icons/hugeicons/button.json"
   ],
   "files": [
     {

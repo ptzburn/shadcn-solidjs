@@ -3,13 +3,13 @@
   "name": "input-group",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.1",
+    "@kobalte/core@2.0.0-alpha.4",
     "class-variance-authority"
   ],
   "registryDependencies": [
-    "button",
-    "input",
-    "textarea"
+    "https://shadcn-solidjs.com/r/styles/luma/icons/lucide/button.json",
+    "https://shadcn-solidjs.com/r/styles/luma/icons/lucide/input.json",
+    "https://shadcn-solidjs.com/r/styles/luma/icons/lucide/textarea.json"
   ],
   "files": [
     {

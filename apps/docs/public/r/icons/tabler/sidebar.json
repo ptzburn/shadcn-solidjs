@@ -3,7 +3,7 @@
   "name": "sidebar",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.1",
+    "@kobalte/core@2.0.0-alpha.4",
     "class-variance-authority"
   ],
   "devDependencies": [
@@ -11,13 +11,13 @@
     "@iconify-json/tabler"
   ],
   "registryDependencies": [
-    "button",
-    "input",
-    "separator",
-    "sheet",
-    "skeleton",
-    "tooltip",
-    "use-media-query"
+    "https://shadcn-solidjs.com/r/styles/nova/icons/tabler/button.json",
+    "https://shadcn-solidjs.com/r/styles/nova/icons/tabler/input.json",
+    "https://shadcn-solidjs.com/r/styles/nova/icons/tabler/separator.json",
+    "https://shadcn-solidjs.com/r/styles/nova/icons/tabler/sheet.json",
+    "https://shadcn-solidjs.com/r/styles/nova/icons/tabler/skeleton.json",
+    "https://shadcn-solidjs.com/r/styles/nova/icons/tabler/tooltip.json",
+    "https://shadcn-solidjs.com/r/styles/nova/icons/tabler/use-media-query.json"
   ],
   "files": [
     {

@@ -3,15 +3,15 @@
   "name": "combobox",
   "type": "registry:ui",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.1"
+    "@kobalte/core@2.0.0-alpha.4"
   ],
   "devDependencies": [
     "unplugin-icons",
     "@iconify-json/hugeicons"
   ],
   "registryDependencies": [
-    "button",
-    "input-group"
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/hugeicons/button.json",
+    "https://shadcn-solidjs.com/r/styles/rhea/icons/hugeicons/input-group.json"
   ],
   "files": [
     {

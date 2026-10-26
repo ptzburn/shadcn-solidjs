@@ -11,7 +11,7 @@
     "@iconify-json/ri"
   ],
   "registryDependencies": [
-    "button"
+    "https://shadcn-solidjs.com/r/styles/luma/icons/ri/button.json"
   ],
   "files": [
     {
