@@ -6,7 +6,7 @@ import {
   type CommandOption,
   type CommandOptionGroup,
 } from "~/registry/ui/command.tsx";
-import { createEffect, createSignal } from "solid-js";
+import { createSignal, onFlush, onSettled } from "solid-js";
 
 import { IconArrowRight } from "./icons.tsx";
 
@@ -37,20 +37,17 @@ export default function SearchBar() {
   const [open, setOpen] = createSignal(false);
   const navigate = useNavigate();
 
-  createEffect(
-    () => {},
-    () => {
-      const handleKeyDown = (event: KeyboardEvent) => {
-        const isToggle = event.key === "k" && (event.metaKey || event.ctrlKey);
-        const isSlash = event.key === "/" && !isEditableTarget(event.target);
-        if (!isToggle && !isSlash) return;
-        event.preventDefault();
-        setOpen((open) => !open);
-      };
-      document.addEventListener("keydown", handleKeyDown);
-      return () => document.removeEventListener("keydown", handleKeyDown);
-    },
-  );
+  onSettled(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const isToggle = event.key === "k" && (event.metaKey || event.ctrlKey);
+      const isSlash = event.key === "/" && !isEditableTarget(event.target);
+      if (!isToggle && !isSlash) return;
+      event.preventDefault();
+      setOpen((open) => !open);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  });
 
   const toOption = (item: NavItem, group: string): CommandOption => ({
     value: `${group}/${item.title}`,
@@ -58,7 +55,9 @@ export default function SearchBar() {
     icon: () => (group === "Components" ? <ComponentGlyph /> : <IconArrowRight />),
     keywords: [group.toLowerCase()],
     onSelect: () => {
-      setOpen(false);
+      // On its own flush, so the dialog closes at once rather than with
+      // the page the navigation is still loading.
+      onFlush(() => setOpen(false));
       navigateOnSelect(item, navigate);
     },
   });

@@ -20,11 +20,8 @@ export interface IconPlaceholderProps extends ComponentProps<"svg"> {
  */
 const IconPlaceholder = (props: IconPlaceholderProps) => {
   const rest = omit(props, "lucide", "tabler", "ph", "ri", "hugeicons");
-  // Direct call instead of <Dynamic>: a Dynamic child inside a Kobalte
-  // primitive computes divergent server/client hydration keys under the
-  // Solid 2 RC and crashes hydration (see the mdx-components note and
-  // kobaltedev/kobalte#717). The marker's icon name is static by design,
-  // so the lost reactivity on `lucide` is irrelevant.
+  // A direct call is enough: the marker's icon name is static by design, so
+  // nothing needs <Dynamic> to swap the component.
   return lucideIcons[props.lucide](rest);
 };
 

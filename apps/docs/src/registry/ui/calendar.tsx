@@ -5,7 +5,7 @@ import { cn } from "~/lib/utils.ts";
 import { IconPlaceholder } from "~/registry/icons/icon-placeholder.tsx";
 import type { Component } from "solid-js";
 
-import { createEffect, createSignal, For, omit, Repeat, Show } from "solid-js";
+import { createEffect, createSignal, For, omit, Repeat, Show, untrack } from "solid-js";
 import { type ButtonProps, buttonVariants } from "./button.tsx";
 
 type CalendarCaptionLayout = "label" | "dropdown" | "dropdown-months" | "dropdown-years";
@@ -144,8 +144,9 @@ const Calendar = (props: CalendarProps) => {
     return (!min || endOfMonth(month) >= min) && (!max || startOfMonth(month) <= max);
   };
 
+  // Seeded once; later focus moves come through moveFocus and the effect below.
   const [focused, setFocused] = createSignal<Date>(
-    props.focusedValue ?? props.defaultFocusedValue ?? firstSelected(props) ?? now,
+    untrack(() => props.focusedValue ?? props.defaultFocusedValue ?? firstSelected(props) ?? now),
   );
   const alignStart = (date: Date) => startOfMonth(date);
   const alignEnd = (date: Date) => addMonths(date, 1 - numberOfMonths());
@@ -155,7 +156,7 @@ const Calendar = (props: CalendarProps) => {
     if (half > 0 && months % 2 === 0) half--;
     return addMonths(date, -half);
   };
-  const [visibleStart, setVisibleStart] = createSignal<Date>(alignCenter(focused()));
+  const [visibleStart, setVisibleStart] = createSignal<Date>(untrack(() => alignCenter(focused())));
   const visibleEnd = () => endOfMonth(addMonths(visibleStart(), numberOfMonths() - 1));
 
   const trackFocus = (date: Date, previous: Date) => {
@@ -179,11 +180,14 @@ const Calendar = (props: CalendarProps) => {
     setFocused(date);
     props.onFocusChange?.(date);
   };
+  // Only a new focusedValue re-runs this. The current focus is read untracked,
+  // so moving focus inside the calendar does not snap it back.
   createEffect(
     () => props.focusedValue,
     (date) => {
-      if (date && !isSameDay(date, focused())) {
-        trackFocus(date, focused());
+      const current = untrack(focused);
+      if (date && !isSameDay(date, current)) {
+        trackFocus(date, current);
         setFocused(date);
       }
     },
@@ -436,12 +440,14 @@ const Calendar = (props: CalendarProps) => {
                                   <td class="select-none text-muted-foreground text-[0.8rem]">
                                     <div class="flex size-(--cell-size) items-center justify-center text-center">
                                       <Show when={date()}>
-                                        {(day) =>
-                                          formatters().formatWeekNumber(
-                                            getWeekNumber(day()),
-                                            locale(),
-                                          )
-                                        }
+                                        {(day) => (
+                                          <>
+                                            {formatters().formatWeekNumber(
+                                              getWeekNumber(day()),
+                                              locale(),
+                                            )}
+                                          </>
+                                        )}
                                       </Show>
                                     </div>
                                   </td>

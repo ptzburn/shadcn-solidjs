@@ -2,7 +2,7 @@ import { IconBrandGithub } from "~/components/icons.tsx";
 
 import { Button } from "~/registry/ui/button.tsx";
 import { Skeleton } from "~/registry/ui/skeleton.tsx";
-import { createEffect, createSignal, Show } from "solid-js";
+import { createSignal, onSettled, Show } from "solid-js";
 
 const REPO = "ptzburn/shadcn-solidjs";
 
@@ -39,13 +39,11 @@ function StarsCount() {
     }
   };
 
-  // Effects only run on the client, standing in for Solid 1's onMount.
-  createEffect(
-    () => {},
-    () => {
-      void fetchStars();
-    },
-  );
+  // Client only: onSettled never runs on the server, so prerendering does
+  // not bake a star count into the page.
+  onSettled(() => {
+    void fetchStars();
+  });
 
   return (
     <Show when={stars()} fallback={<Skeleton class="h-4 w-8" />}>

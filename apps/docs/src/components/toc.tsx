@@ -1,6 +1,6 @@
 import { useLocation } from "@solidjs/router";
 import type { Accessor, Setter } from "solid-js";
-import { createEffect, createSignal, For, Loading } from "solid-js";
+import { createEffect, createSignal, For, Loading, untrack } from "solid-js";
 
 type TocItem = {
   depth: number;
@@ -65,7 +65,9 @@ function getHeadingsFromToc(tableOfContents: TocItem[]) {
 }
 
 function useCurrentSection(tableOfContents: Accessor<TocItem[] | undefined>) {
-  const [currentSection, setCurrentSection] = createSignal(tableOfContents()?.[0]?.slug);
+  const [currentSection, setCurrentSection] = createSignal(
+    untrack(() => tableOfContents()?.[0]?.slug),
+  );
 
   createEffect(
     () => tableOfContents(),

@@ -27,7 +27,6 @@ export default defineConfig({
         import.meta.url,
       ).pathname,
     },
-    dedupe: ["solid-js", "@solidjs/web", "@solidjs/signals"],
   },
   build: {
     target: "esnext",
