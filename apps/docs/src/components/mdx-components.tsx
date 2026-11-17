@@ -41,11 +41,8 @@ export const MDXComponents = {
   h6: (props: ComponentProps<"h6">) => {
     return <h6 data-toc="" {...props} />;
   },
-  // Static passthroughs for every tag markdown emits. The provider's default
-  // map renders unmapped tags through Dynamic, and a hydration-keyed Dynamic
-  // child inside a Kobalte primitive (e.g. a <p> wrapped inside <Button>)
-  // computes a mismatched hydration key under Solid 2 RC and crashes
-  // hydration. Plain elements hydrate structurally and dodge that entirely.
+  // Static passthroughs for every tag markdown emits, so they render as plain
+  // elements instead of through the provider's Dynamic fallback.
   p: (props: ComponentProps<"p">) => <p {...props} />,
   em: (props: ComponentProps<"em">) => <em {...props} />,
   strong: (props: ComponentProps<"strong">) => <strong {...props} />,

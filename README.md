@@ -18,8 +18,8 @@ tokens, rebuilt on Solid's reactivity and on headless primitives from
 [Kobalte](https://kobalte.dev).
 
 > [!NOTE]
-> Built for **Solid 2.0** and published under the `beta` tag while Solid 2.0
-> and Kobalte 2.0 are pre-release.
+> Built for **Solid 2.0** and published under the `beta` tag while Kobalte 2.0
+> is pre-release.
 
 ## Documentation
 
