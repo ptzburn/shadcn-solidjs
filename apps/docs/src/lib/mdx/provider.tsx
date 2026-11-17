@@ -9,7 +9,7 @@
 import { Dynamic, type JSX } from "@solidjs/web";
 import { mdxTags } from "~/lib/mdx/tags.ts";
 
-import { type Component, createContext, merge, useContext } from "solid-js";
+import { type Component, createContext, untrack, useContext } from "solid-js";
 
 type MDXComponents = Record<string, Component<any>>;
 
@@ -22,9 +22,12 @@ const defaultComponents: MDXComponents = Object.fromEntries(
 
 const MDXContext = createContext<MDXComponents>(defaultComponents);
 
+// The map is read once. Compiled MDX copies it into a plain object at the top
+// of every page anyway, so a lazy merge() here would only turn that copy into
+// one untracked reactive read per tag.
 function MDXProvider(props: { components?: MDXComponents; children?: JSX.Element }) {
   const parent = useContext(MDXContext);
-  const value = merge(parent, () => props.components ?? {});
+  const value = { ...parent, ...untrack(() => props.components) };
   return <MDXContext value={value}>{props.children}</MDXContext>;
 }
 

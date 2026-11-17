@@ -57,12 +57,9 @@ export function BaseColorProvider(props: { initial: BaseColorName; children: JSX
   return <BaseColorContext value={{ baseColor, setBaseColor }}>{props.children}</BaseColorContext>;
 }
 
+// The context has no default, so outside a BaseColorProvider this throws.
 export function useBaseColor() {
-  const context = useContext(BaseColorContext);
-  if (!context) {
-    throw new Error("useBaseColor must be used within a BaseColorProvider");
-  }
-  return context;
+  return useContext(BaseColorContext);
 }
 
 /**

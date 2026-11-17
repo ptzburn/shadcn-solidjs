@@ -91,12 +91,9 @@ export function StyleProvider(props: { initial: StyleName; children: JSX.Element
   return <StyleContext value={{ style, setStyle }}>{props.children}</StyleContext>;
 }
 
+// The context has no default, so outside a StyleProvider this throws.
 export function useStyle() {
-  const context = useContext(StyleContext);
-  if (!context) {
-    throw new Error("useStyle must be used within a StyleProvider");
-  }
-  return context;
+  return useContext(StyleContext);
 }
 
 /**

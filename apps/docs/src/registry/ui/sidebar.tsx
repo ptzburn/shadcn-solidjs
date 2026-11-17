@@ -11,11 +11,11 @@ import type { Accessor, Component } from "solid-js";
 
 import {
   createContext,
-  createEffect,
   createSignal,
   Match,
   merge,
   omit,
+  onSettled,
   Show,
   Switch,
   useContext,
@@ -105,20 +105,17 @@ const SidebarProvider: Component<SidebarProviderProps> = (rawProps) => {
     return isMobile() ? setOpenMobile((open) => !open) : setOpen((open) => !open);
   };
 
-  createEffect(
-    () => {},
-    () => {
-      const handleKeyDown = (event: KeyboardEvent) => {
-        if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
-          event.preventDefault();
-          toggleSidebar();
-        }
-      };
+  onSettled(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault();
+        toggleSidebar();
+      }
+    };
 
-      globalThis.addEventListener("keydown", handleKeyDown);
-      return () => globalThis.removeEventListener("keydown", handleKeyDown);
-    },
-  );
+    globalThis.addEventListener("keydown", handleKeyDown);
+    return () => globalThis.removeEventListener("keydown", handleKeyDown);
+  });
 
   const state = () => (open() ? "expanded" : "collapsed");
 

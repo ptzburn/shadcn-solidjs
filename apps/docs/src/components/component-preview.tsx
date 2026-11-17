@@ -29,7 +29,7 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
   );
   const [isCodeVisible, setIsCodeVisible] = createSignal(false);
 
-  const Preview = createMemo(() => {
+  const preview = createMemo(() => {
     // Blocks render inside an iframe, so never instantiate the registry
     // component here — a lazy() component created for a discarded subtree
     // still costs work even without hydration in play.
@@ -85,7 +85,7 @@ const ComponentPreview: Component<ComponentPreviewProps> = (rawProps) => {
               props.previewClassName,
             )}
           >
-            <Preview />
+            {preview()}
           </div>
         </div>
         <Show when={!props.hideCode}>
