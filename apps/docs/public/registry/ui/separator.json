@@ -1,7 +1,7 @@
 {
   "name": "separator",
   "dependencies": [
-    "@kobalte/core@2.0.0-alpha.4"
+    "@kobalte/core@2.0.0-alpha.5"
   ],
   "files": [
     {
