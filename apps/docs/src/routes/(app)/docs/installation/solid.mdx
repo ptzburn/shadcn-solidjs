@@ -26,31 +26,6 @@ already has Tailwind CSS wired up:
 The `basic` and `fullstack` templates work just as well — add Tailwind CSS
 in the next step.
 
-### Let Kobalte use your Solid packages
-
-The components are built on `@kobalte/core` 2.0.0-alpha.4, which still pins
-its `solid-js` and `@solidjs/web` peers to exactly `2.0.0-rc.16`. The
-components are tested against Solid 2.0, the version the templates install.
-
-If you use npm, add an `overrides` entry to `package.json` so Kobalte uses
-your project's Solid packages. Without it, `npm install` stops with an
-`ERESOLVE` error when the CLI adds a component:
-
-```json title="package.json" showLineNumbers
-{
-  // ...
-  "overrides": {
-    "@kobalte/core": {
-      "solid-js": "$solid-js",
-      "@solidjs/web": "$@solidjs/web"
-    }
-  }
-}
-```
-
-pnpm, Yarn and Bun install Kobalte anyway and print a peer dependency warning,
-which is safe to ignore.
-
 ### Add Tailwind CSS
 
 If your project already has Tailwind CSS configured, skip this step.

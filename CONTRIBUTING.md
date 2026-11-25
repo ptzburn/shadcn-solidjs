@@ -173,8 +173,8 @@ unnecessary. Retest when `solid-js`, `@solidjs/web`, or `@kobalte/core` move.
 
 `dialog.tsx`, `sheet.tsx`, `alert-dialog.tsx`, and `drawer.tsx` alias their
 `*Portal` to `Portal` from `@solidjs/web` instead of the Kobalte primitive's
-`Portal`. Last confirmed necessary on `solid-js@2.0.0` with
-`@kobalte/core@2.0.0-alpha.4` (2026-11-17).
+`Portal`. Last confirmed necessary on `solid-js@2.0.4` with
+`@kobalte/core@2.0.0-alpha.5` (2026-11-25).
 
 Why: Kobalte's `Dialog.Portal` is Solid's `Portal` inside a `Show` driven by the
 dialog's presence signals, with the dismissable layer as the portal's direct
@@ -194,21 +194,3 @@ every page, keep the Kobalte portals and delete this entry. If any fails, revert
 to `Portal` from `@solidjs/web`. The drawer's closing animation takes several
 seconds on the dev server, so give it that long before calling it stuck; the
 broken state shows up earlier anyway, as `pointerEvents` staying empty.
-
-### npm projects override Kobalte's Solid peers
-
-The Solid installation guide (`installation/solid.mdx`) has npm users add an
-`overrides` entry that points `@kobalte/core`'s `solid-js` and `@solidjs/web`
-at the project's own copies. Last confirmed necessary on `solid-js@2.0.0` with
-`@kobalte/core@2.0.0-alpha.4` (2026-11-17).
-
-Why: `@kobalte/core@2.0.0-alpha.4` and `@kobalte/utils@2.0.0-alpha.1` pin both
-peers to exactly `2.0.0-rc.16`. The Solid 2.0 templates depend on `^2.0.0`,
-which no release candidate satisfies, so `npm install` stops with `ERESOLVE`
-when the shadcn CLI adds a component. pnpm, Yarn and Bun install anyway with a
-peer warning, and the components are tested against the stable release.
-
-To retest after bumping `@kobalte/core`, in an empty directory with a
-`package.json` that depends on `solid-js` and `@solidjs/web` at `^2.0.0`, run
-`npm install @kobalte/core@<version>` without the override. If it succeeds,
-delete the step from the installation guide and this entry.

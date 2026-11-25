@@ -17,20 +17,17 @@ allowBuilds:
 # is listed here by exact name@version; pnpm writes its own entry when it
 # switches itself to a young `packageManager` version.
 minimumReleaseAgeExclude:
-  # Solid 2.0.0 and its router, meta and Vite plugin, published 2026-11-17.
-  - "@solidjs/compiler-darwin-arm64@2.0.0"
-  - "@solidjs/compiler-darwin-x64@2.0.0"
-  - "@solidjs/compiler-linux-arm64-gnu@2.0.0"
-  - "@solidjs/compiler-linux-x64-gnu@2.0.0"
-  - "@solidjs/compiler-wasm32-wasi@2.0.0"
-  - "@solidjs/compiler-win32-x64-msvc@2.0.0"
-  - "@solidjs/compiler@2.0.0"
-  - "@solidjs/meta@2.0.0"
-  - "@solidjs/router@2.0.0"
-  - "@solidjs/signals@2.0.0"
-  - "@solidjs/vite-plugin@3.0.0"
-  - "@solidjs/web@2.0.0"
-  - solid-js@2.0.0
+  # Solid 2.0.4 and its compiler 2.0.3, published 2026-11-25.
+  - "@solidjs/compiler-darwin-arm64@2.0.3"
+  - "@solidjs/compiler-darwin-x64@2.0.3"
+  - "@solidjs/compiler-linux-arm64-gnu@2.0.3"
+  - "@solidjs/compiler-linux-x64-gnu@2.0.3"
+  - "@solidjs/compiler-wasm32-wasi@2.0.3"
+  - "@solidjs/compiler-win32-x64-msvc@2.0.3"
+  - "@solidjs/compiler@2.0.3"
+  - "@solidjs/signals@2.0.4"
+  - "@solidjs/web@2.0.4"
+  - solid-js@2.0.4
 
 # Vite+ bundles Vite; `vite` is aliased onto that copy so every plugin and
 # the app resolve the same one, and the override keeps a dependency from
